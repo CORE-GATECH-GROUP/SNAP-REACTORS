@@ -38,12 +38,6 @@ The package/database primarily focuses on collecting, processing, and accessing:
 4. Validation data of dry critical experiments,
 5. Validation data of wet experiments.
 
-The package calculates the following time-dependent results:
-- Nuclide densities,
-- Activities,
-- Decay heat,
-- Radiotoxicity,
-
 
 Installation
 ============

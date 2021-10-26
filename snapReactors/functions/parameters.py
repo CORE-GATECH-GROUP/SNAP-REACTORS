@@ -8,7 +8,7 @@ Provides a simple way to retrieve the description of the input and output
 parameters, and their corresponding units.
 
 Created on Tue Oct 26 08:00:00 2020 @author: Dan Kotlyar
-Last updated on MTue Oct 26 08:00:00 2020 @author: Dan Kotlyar
+Last updated on Tue Oct 26 08:00:00 2020 @author: Dan Kotlyar
 email: dan.kotlyar@me.gatech.edu
 """
 
@@ -23,7 +23,7 @@ Units = namedtuple("units", ["SI", "CGS"])
 
 # General structure of the ALLOWED_PROPERTIES is
 # {property : (description, units)}
-PROPERTIES =\
+ALLOWED_PROPERTIES =\
     {'cp': Property('heat capacity (constant pressure)', 'J/kg/K'),
      'cv': Property('heat capacity (constant volume)', 'J/kg/K'),
      'g': Property('Gamma=Cp/Cv', 'Dimensionless'),
