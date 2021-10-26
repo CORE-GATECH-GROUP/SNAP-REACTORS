@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Decay Case &#8212; snapReactors 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Developer’s Guide" href="../develop/index.html" />
+    <link rel="prev" title="Examples" href="index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="decay-case">
+<span id="decay-example"></span><h1>Decay Case<a class="headerlink" href="#decay-case" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>Example on how to execute only decay (without transmutation)</p>
+</div>
+<div class="section" id="load-modules">
+<h2>Load modules<a class="headerlink" href="#load-modules" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pyIsoDep.functions.maindepletionsolver</span> <span class="k">import</span> <span class="n">MainDepletion</span>
+<span class="kn">from</span> <span class="nn">pyIsoDep.functions.generatedata</span> <span class="k">import</span> <span class="n">TransmutationData</span>
+<span class="kn">from</span> <span class="nn">pyIsoDep.functions.postprocessresults</span> <span class="k">import</span> <span class="n">Results</span>
+</pre></div>
+</div>
+<div class="section" id="decay-data-pre-generated-in-advance">
+<h3>Decay data pre-generated in advance<a class="headerlink" href="#decay-data-pre-generated-in-advance" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyIsoDep.tests.pregenerated_decay_isotopes</span> <span class="k">import</span> <span class="n">ID</span><span class="p">,</span> <span class="n">N0</span><span class="p">,</span>\
+    <span class="n">timepoints</span><span class="p">,</span> <span class="n">timeUnits</span><span class="p">,</span> <span class="n">vol</span>
+<span class="c1"># Metadata is defined in the pre-generated file</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-generation-stage">
+<h3>Data Generation Stage<a class="headerlink" href="#data-generation-stage" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reset the data container</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">TransmutationData</span><span class="p">(</span><span class="n">libraryFlag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">wgtFY</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="depletion-stage">
+<h3>Depletion Stage<a class="headerlink" href="#depletion-stage" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="execute-decay">
+<h4>Execute Decay<a class="headerlink" href="#execute-decay" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dep</span> <span class="o">=</span> <span class="n">MainDepletion</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="c1"># define metadata (steps, flux, and so on)</span>
+<span class="n">dep</span><span class="o">.</span><span class="n">SetDepScenario</span><span class="p">(</span><span class="n">timeUnits</span><span class="o">=</span><span class="n">timeUnits</span><span class="p">,</span> <span class="n">timepoints</span><span class="o">=</span><span class="n">timepoints</span><span class="p">)</span>
+<span class="c1"># set initial composition</span>
+<span class="n">dep</span><span class="o">.</span><span class="n">SetInitialComposition</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span> <span class="n">N0</span><span class="p">,</span> <span class="n">vol</span><span class="o">=</span><span class="n">vol</span><span class="p">)</span>
+<span class="c1"># solve the Bateman equations</span>
+<span class="n">dep</span><span class="o">.</span><span class="n">SolveDecay</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;cram&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">No</span> <span class="n">attribute</span> <span class="o">&lt;</span><span class="n">EfissMeV</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">data</span>
+<span class="n">No</span> <span class="n">attribute</span> <span class="o">&lt;</span><span class="n">EfissJoule</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">data</span>
+<span class="n">No</span> <span class="n">attribute</span> <span class="o">&lt;</span><span class="n">xsData</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">data</span>
+<span class="n">No</span> <span class="n">attribute</span> <span class="o">&lt;</span><span class="n">transmutationmtx</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="post-decay-analysis">
+<h4>Post Decay analysis<a class="headerlink" href="#post-decay-analysis" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dep</span><span class="o">.</span><span class="n">DecayHeat</span><span class="p">()</span>
+<span class="n">dep</span><span class="o">.</span><span class="n">Radiotoxicity</span><span class="p">()</span>
+<span class="n">dep</span><span class="o">.</span><span class="n">Activity</span><span class="p">()</span>
+<span class="n">dep</span><span class="o">.</span><span class="n">Mass</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="post-process-results">
+<h3>Post-process results<a class="headerlink" href="#post-process-results" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">Results</span><span class="p">(</span><span class="n">dep</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">.</span><span class="n">getvalues</span><span class="p">(</span><span class="s2">&quot;totalQt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span><span class="mf">1.56602539e+07</span><span class="p">,</span> <span class="mf">1.05738584e+07</span><span class="p">,</span> <span class="mf">5.72598936e+06</span><span class="p">,</span> <span class="mf">3.19174204e+05</span><span class="p">,</span>
+       <span class="mf">8.44793164e+04</span><span class="p">,</span> <span class="mf">4.59066647e+04</span><span class="p">,</span> <span class="mf">1.84245030e+04</span><span class="p">,</span> <span class="mf">1.12211458e+03</span><span class="p">,</span>
+       <span class="mf">5.01962241e+02</span><span class="p">,</span> <span class="mf">3.13646011e+02</span><span class="p">,</span> <span class="mf">2.19046147e+02</span><span class="p">,</span> <span class="mf">1.63311340e+02</span><span class="p">,</span>
+       <span class="mf">1.28306043e+02</span><span class="p">,</span> <span class="mf">1.05206592e+02</span><span class="p">,</span> <span class="mf">8.91708518e+01</span><span class="p">,</span> <span class="mf">7.74417476e+01</span><span class="p">,</span>
+       <span class="mf">6.84223791e+01</span><span class="p">,</span> <span class="mf">5.51416437e+01</span><span class="p">,</span> <span class="mf">4.54841730e+01</span><span class="p">,</span> <span class="mf">3.79714447e+01</span><span class="p">,</span>
+       <span class="mf">3.19441303e+01</span><span class="p">,</span> <span class="mf">2.70438717e+01</span><span class="p">,</span> <span class="mf">2.30363183e+01</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;Nt&quot;</span><span class="p">,</span> <span class="n">timeUnits</span><span class="o">=</span><span class="s2">&quot;hours&quot;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;--^&#39;</span><span class="p">,</span> <span class="s1">&#39;--o&#39;</span><span class="p">],</span> <span class="n">isotopes</span><span class="o">=</span><span class="p">[</span><span class="mi">531350</span><span class="p">,</span> <span class="mi">541350</span><span class="p">],</span>
+         <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Atomic density, #/b/cm&quot;</span><span class="p">,</span> <span class="n">pltType</span><span class="o">=</span><span class="s2">&quot;semilogx&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/decay_19_0.png" src="../_images/decay_19_0.png" />
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;totalQt&quot;</span><span class="p">,</span> <span class="n">timeUnits</span><span class="o">=</span><span class="s2">&quot;hours&quot;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="mf">1E+6</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Decay heat, MW&quot;</span><span class="p">,</span> <span class="n">pltType</span><span class="o">=</span><span class="s2">&quot;semilogx&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/decay_20_0.png" src="../_images/decay_20_0.png" />
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;Nt&quot;</span><span class="p">,</span> <span class="n">timeUnits</span><span class="o">=</span><span class="s2">&quot;hours&quot;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;--k^&#39;</span><span class="p">,</span> <span class="s1">&#39;--ro&#39;</span><span class="p">],</span> <span class="n">isotopes</span><span class="o">=</span><span class="p">[</span><span class="mi">390900</span><span class="p">,</span> <span class="mi">942380</span><span class="p">],</span>
+         <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Atomic density, #/b/cm&quot;</span><span class="p">,</span> <span class="n">pltType</span><span class="o">=</span><span class="s2">&quot;semilogx&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/decay_21_0.png" src="../_images/decay_21_0.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">snapReactors</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors.html">Developer Team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Manual/index.html">User’s Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../develop/index.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Examples</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Examples</a></li>
+      <li>Next: <a href="../develop/index.html" title="next chapter">Developer’s Guide</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Dan Kotlyar.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Examples/decay.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

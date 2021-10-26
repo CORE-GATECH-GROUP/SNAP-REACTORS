@@ -1,6 +1,8 @@
-========================
-# SNAP-REACTORS-DATABASE
-========================
+.. _project-overview:
+
+================
+Project Overview
+================
 
 The proposed database is part of an International Reactor Physics Experiment Evaluation Project (IRPhEP).
 The benchmark evaluation based on data from the Systems for Nuclear Auxiliary Power (SNAP) [1] program.
@@ -39,32 +41,6 @@ The package/database primarily focuses on collecting, processing, and accessing:
 5. Validation data of wet experiments.
 
 
-Installation
-============
-After downloading all the package navigate to the root directory.
-The ``setup.py`` defines how to install the code.
-Execute the following line:
-
-python setup.py sdist bdist_wheel
-
-
-The command should create a ``dist`` directory where you should find the `<tar.gz>`
-and `<.whl>` files. The `<tar.gz>` file is a source archive and `<.whl>` is a built distribution.
-
-Before installing you may need to make sure that you have the latest pip, setuptools,and wheel on your system.
-Follow the next execution line:
-
-python setup.py install --user
-
-
-Execution
-=========
-The `snapReactors` package can now be imported as as standard PyPI using:
-
-import ``import snapReactors``
-
-
-
 References
 ==========
 [1] AI-AEC-12989 
@@ -72,3 +48,4 @@ References
 [2] NAA-SR-MEMO-12099 
 
 [3] NAA-SR-9618
+

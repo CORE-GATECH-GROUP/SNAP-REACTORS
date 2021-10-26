@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Installation &#8212; snapReactors 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="Coding Style" href="develop/codestyle.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="installation">
+<span id="install"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>In order to properly install this package, you need a version of
+python that plays well with libraries like <a class="reference internal" href="glossary.html#term-numpy"><span class="xref std std-term">numpy</span></a> and <a class="reference internal" href="glossary.html#term-matplotlib"><span class="xref std std-term">matplotlib</span></a>.
+This is easy or less easy depending on your operating system.</p>
+<div class="section" id="terminal-terminology">
+<span id="install-terminals"></span><h2>Terminal terminology<a class="headerlink" href="#terminal-terminology" title="Permalink to this headline">¶</a></h2>
+<p>Commands below that begin with <code class="docutils literal notranslate"><span class="pre">$</span></code> must be run from the
+terminal containing your preferred python distribution, neglecting
+the <code class="docutils literal notranslate"><span class="pre">$</span></code>.
+Depending on operating system, this could be the normal
+terminal, or a modified prompt.
+for more information if you are not sure.</p>
+<p>Commands that begin with <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> should be run inside of a python
+environment.
+The following would be a valid set of instructions to pass to your terminal,
+printing a very basic python command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m &quot;print(&#39;hello world&#39;)&quot;
+hello world
+$ python
+&gt;&gt;&gt; print(&#39;hello world&#39;)
+hello world
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-from-a-release">
+<span id="install-pip"></span><h2>Installing from a Release<a class="headerlink" href="#installing-from-a-release" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="glossary.html#term-pip"><span class="xref std std-term">pip</span></a> is the easiest way to install the latest version of
+<code class="docutils literal notranslate"><span class="pre">snapReactors</span></code>. First, ensure that you have <a class="reference internal" href="glossary.html#term-numpy"><span class="xref std std-term">numpy</span></a> installed,
+as this is one of the required packages that is tricky to install. You can
+check by opening up a your preferred terminal and executing</p>
+<p>After downloading  the package navigate to the root directory.
+The <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> defines how to install the code.
+Execute the following line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python setup.py sdist bdist_wheel
+</pre></div>
+</div>
+<p>The command should create a <code class="docutils literal notranslate"><span class="pre">dist</span></code> directory where you should find the <code class="docutils literal notranslate"><span class="pre">tar.gz</span></code>
+and <code class="docutils literal notranslate"><span class="pre">.whl</span></code> files. The <code class="docutils literal notranslate"><span class="pre">tar.gz</span></code> file is a source archive and <code class="docutils literal notranslate"><span class="pre">.whl</span></code> is a built distribution.
+Before installing you may need to make sure that you have the latest pip, setuptools, and wheel on your system.
+Follow the next execution line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -c &quot;import numpy&quot;
+</pre></div>
+</div>
+<p>Next, installation with pip can be completed with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m pip install -upgrade pip setuptools wheel
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">snapReactors</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html">Developer Team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Manual/index.html">User’s Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="develop/index.html">Developer’s Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="develop/codestyle.html" title="previous chapter">Coding Style</a></li>
+      <li>Next: <a href="license.html" title="next chapter">License</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Dan Kotlyar.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/install.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
