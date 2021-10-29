@@ -14,7 +14,7 @@ Author contact info
 class Container:
     """ Brief container description
 
-    Detailed container usage and workflow   
+    Detailed container usage and workflow
 
     Attributes
     ----------
