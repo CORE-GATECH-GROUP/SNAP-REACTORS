@@ -12,7 +12,7 @@ Add/Edit Data
 
 Multiple containers exist to enable easy addition and edit of data
 
-	1. :ref:`Material Container <_material_cont>`: define a single or multiple ``TransmutationData`` containers.
+	1. :ref:`Material Container <material_cont>`: define a single or multiple ``TransmutationData`` containers.
 	2. Component Container
 	3. Other containers
 
