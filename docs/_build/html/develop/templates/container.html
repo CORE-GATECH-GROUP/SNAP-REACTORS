@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding Templates &#8212; snapReactors 0.0.1 documentation</title>
+    <title>Container Python File Structure &#8212; snapReactors 0.0.1 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -16,8 +16,8 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Container Python File Structure" href="container.html" />
-    <link rel="prev" title="Coding Style" href="../codestyle.html" />
+    <link rel="next" title="Installation" href="../../install.html" />
+    <link rel="prev" title="Coding Templates" href="index.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -34,26 +34,41 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="coding-templates">
-<span id="template-index"></span><h1>Coding Templates<a class="headerlink" href="#coding-templates" title="Permalink to this headline">¶</a></h1>
-<p>This section provides templates for container,
-testing, and manual creation.</p>
-<p>We have developed multipple templates to store and w rok with data.
-Please follow the following format and guidelines when building a customized container:</p>
+  <div class="section" id="container-python-file-structure">
+<span id="container-template"></span><h1>Container Python File Structure<a class="headerlink" href="#container-python-file-structure" title="Permalink to this headline">¶</a></h1>
+<p>The general structure includes:
+1. Header
+2. Import
+3. Global variables
+4. Class Name and</p>
+<div class="section" id="header">
+<h2>Header<a class="headerlink" href="#header" title="Permalink to this headline">¶</a></h2>
+<p>Describes</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Container name</span>
+
+<span class="sd">Brief description of container</span>
+
+<span class="sd">Author</span>
+<span class="sd">Date created/ date modified</span>
+<span class="sd">Author contact info</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">&quot;&quot;&quot; Imports. For example, importing check error functions would look like</span>
+<span class="sd">&gt;&gt;&gt; from snapReactor.functions.checkerrors import ( _isint, _isbool )</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="class">
+<h2>Class<a class="headerlink" href="#class" title="Permalink to this headline">¶</a></h2>
+<p>Describe attributes, methods, and so on</p>
+</div>
+<div class="section" id="code-s-structure">
+<h2>Code’s Structure<a class="headerlink" href="#code-s-structure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li><p><a class="reference internal" href="container.html#container-template"><span class="std std-ref">Container Template</span></a></p></li>
-<li><p>Function template</p></li>
+<li><p>__init__</p></li>
+<li><p>methods</p></li>
 </ol>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">templates:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="container.html">Container Python File Structure</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="container.html#header">Header</a></li>
-<li class="toctree-l2"><a class="reference internal" href="container.html#class">Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="container.html#code-s-structure">Code’s Structure</a></li>
-</ul>
-</li>
-</ul>
 </div>
 </div>
 
@@ -91,8 +106,10 @@ Please follow the following format and guidelines when building a customized con
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
   <li><a href="../index.html">Developer’s Guide</a><ul>
-      <li>Previous: <a href="../codestyle.html" title="previous chapter">Coding Style</a></li>
-      <li>Next: <a href="container.html" title="next chapter">Container Python File Structure</a></li>
+  <li><a href="index.html">Coding Templates</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Coding Templates</a></li>
+      <li>Next: <a href="../../install.html" title="next chapter">Installation</a></li>
+  </ul></li>
   </ul></li>
   </ul></li>
 </ul>
@@ -127,7 +144,7 @@ Please follow the following format and guidelines when building a customized con
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../../_sources/develop/templates/index.rst.txt"
+      <a href="../../_sources/develop/templates/container.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

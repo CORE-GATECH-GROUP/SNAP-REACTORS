@@ -15,5 +15,5 @@ without any loss of comprehension.
     contributing.rst
     documentation.rst
     codestyle.rst
-    templates.rst
+    templates/index.rst
 
