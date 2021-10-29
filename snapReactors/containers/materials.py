@@ -27,17 +27,6 @@ class Material:
     The properties can be either temperature-dependent or both temperature-
     and pressure-dependent.
 
-    Parameters
-    ----------
-    matId : str
-        name of the material
-    temperatures : ndarray
-        temperature points to be used for interpolation/extrapolation
-    pressures : 1-dim array, optional
-        Pressure points to be used for interpolation/extrapolation
-    reference : str, optional
-        reference for the material
-
     Attributes
     ----------
     name : str
