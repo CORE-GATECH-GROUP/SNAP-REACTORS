@@ -24,7 +24,7 @@ Verstile functionality was added to obtain and compare data
 
 	1. Obtain properties for a specific material
 	2. Obtain dimensions
-	3. 
+
 
 Measured Data
 -------------
@@ -33,7 +33,7 @@ The package includes
 
 	1. Dry experiments
 	2. Wet experiments
-		
+
 Process the Data
 ----------------
 Following a successive execution of each of the above stages, the containers will be populated with data unique to each container.

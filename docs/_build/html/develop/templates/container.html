@@ -1,22 +1,21 @@
 
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Container Python File Structure &#8212; snapReactors 0.0.1 documentation</title>
+    <title>Container Template &#8212; snapReactors 0.0.1 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Installation" href="../../install.html" />
+    <link rel="next" title="Manual Template" href="manualTemplate.html" />
     <link rel="prev" title="Coding Templates" href="index.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -34,41 +33,173 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="container-python-file-structure">
-<span id="container-template"></span><h1>Container Python File Structure<a class="headerlink" href="#container-python-file-structure" title="Permalink to this headline">¶</a></h1>
-<p>The general structure includes:
-1. Header
-2. Import
-3. Global variables
-4. Class Name and</p>
+  <div class="section" id="container-template">
+<span id="id1"></span><h1>Container Template<a class="headerlink" href="#container-template" title="Permalink to this headline">¶</a></h1>
+<p>The general structure includes:</p>
+<ol class="arabic simple">
+<li><p>Header</p></li>
+<li><p>Imports</p></li>
+<li><p>Init</p></li>
+<li><p>Methods</p></li>
+</ol>
 <div class="section" id="header">
 <h2>Header<a class="headerlink" href="#header" title="Permalink to this headline">¶</a></h2>
-<p>Describes</p>
+<p>Describes container and contains authorship info</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Container name</span>
 
 <span class="sd">Brief description of container</span>
 
-<span class="sd">Author</span>
-<span class="sd">Date created/ date modified</span>
-<span class="sd">Author contact info</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="sd">&quot;&quot;&quot; Imports. For example, importing check error functions would look like</span>
-<span class="sd">&gt;&gt;&gt; from snapReactor.functions.checkerrors import ( _isint, _isbool )</span>
+<span class="sd">Date created by author</span>
+<span class="sd">Date modified by author</span>
+<span class="sd">Author email</span>
 <span class="sd">&quot;&quot;&quot;</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="class">
-<h2>Class<a class="headerlink" href="#class" title="Permalink to this headline">¶</a></h2>
-<p>Describe attributes, methods, and so on</p>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<p>Contains all imports. Refere to <a class="reference internal" href="../codestyle.html#code-style"><span class="std std-ref">Coding Style</span></a> for importing customs</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Imports. For example, importing check error functions &quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">snapReactor.functions.checkerrors</span> <span class="k">import</span> <span class="p">(</span><span class="n">_isint</span><span class="p">,</span> <span class="n">_isbool</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="section" id="code-s-structure">
-<h2>Code’s Structure<a class="headerlink" href="#code-s-structure" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li><p>__init__</p></li>
-<li><p>methods</p></li>
-</ol>
+</div>
+<div class="section" id="init">
+<h2>Init<a class="headerlink" href="#init" title="Permalink to this headline">¶</a></h2>
+<p>Describes container purpopose and gives detailed description of
+attributes, methods, errors, and examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Container</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Brief container description</span>
+
+<span class="sd">    Detailed container usage and workflow</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    All container object attributes should be listed here, along</span>
+<span class="sd">    with their corresponding type and decription. They should be</span>
+<span class="sd">    in the following format.</span>
+
+<span class="sd">    attr1 : type of attr1</span>
+<span class="sd">        desctiption of attr1</span>
+<span class="sd">    attr2 : type of attr2</span>
+<span class="sd">        description of attr2</span>
+
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    All container object methods should be listed here, along</span>
+<span class="sd">    with their corresponding decription. They should be</span>
+<span class="sd">    in the following format.</span>
+
+<span class="sd">    method1 : decription of function of method1</span>
+<span class="sd">    method2 : decription of function of method2</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    All container object raised errors should be listed here,</span>
+<span class="sd">    along with their corresponding error type, and a description</span>
+<span class="sd">    of the conditions that cause the error.</span>
+
+<span class="sd">    error1 type</span>
+<span class="sd">        descriptions of conditions that cause error1 to be raised</span>
+<span class="sd">    error2 type</span>
+<span class="sd">        descriptions of conditions that cause error2 to be raised</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Brief examples of using the container and methods should be</span>
+<span class="sd">    included here. Python code should be prefixed by &#39;&gt;&gt;&gt;&#39; such</span>
+<span class="sd">    that upon documentation a distinction will be made from</span>
+<span class="sd">    comments and code. An Example is shown below.</span>
+
+<span class="sd">    container1 = container(attr1, attr2)</span>
+<span class="sd">    contaner1.method1(arg1, arg2)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="sd">&quot;&quot;&quot; Initialization/Init function for container object. &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr1</span><span class="p">,</span> <span class="n">attr2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Before setting attributes you should make a check on the</span>
+<span class="sd">        given attributes types. For example if attr1 is an int and</span>
+<span class="sd">        attr2 is a boolean. Then the following would proceed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">_isint</span><span class="p">(</span><span class="n">attr1</span><span class="p">,</span> <span class="s2">&quot;attribute 1 name&quot;</span><span class="p">)</span>
+        <span class="n">_isbool</span><span class="p">(</span><span class="n">attr1</span><span class="p">,</span> <span class="s2">&quot;attribute 2 name&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">attr1</span> <span class="o">=</span> <span class="n">attr1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attr2</span> <span class="o">=</span> <span class="n">attr2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<p>Describes function purpopose and gives detailed description of
+parameters, errors, return data, and examples.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">method1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Brief description of method</span>
+
+<span class="sd">    Detailed description of method use and workflow.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    All parameters of the method should be listed here, along</span>
+<span class="sd">    with their corresponding type and decription. They should be</span>
+<span class="sd">    in the following format.</span>
+
+<span class="sd">    arg1 : arg1 type</span>
+<span class="sd">        description of arg1</span>
+<span class="sd">    arg2 : arg2 type</span>
+<span class="sd">        description of arg2</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    A decription of the returned data with their corresponding type/s</span>
+<span class="sd">    and description/s</span>
+
+<span class="sd">    returned data type</span>
+<span class="sd">        returned data description</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    All method raised errors should be listed here,</span>
+<span class="sd">    along with their corresponding error type, and a description</span>
+<span class="sd">    of the conditions that cause the error.</span>
+
+<span class="sd">    error1 type</span>
+<span class="sd">        descriptions of conditions that cause error1 to be raised</span>
+<span class="sd">    error2 type</span>
+<span class="sd">        descriptions of conditions that cause error2 to be raised</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Brief examples of using the methods should be</span>
+<span class="sd">    included here. Python code should be prefixed by &#39;&gt;&gt;&gt;&#39; such</span>
+<span class="sd">    that upon documentation a distinction will be made from</span>
+<span class="sd">    comments and code. An Example is shown below.</span>
+
+<span class="sd">    &gt;&gt;&gt; container1 = container(attr1, attr2)</span>
+<span class="sd">    &gt;&gt;&gt;  value1 = contaner1.method1(arg1, arg2)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="sd">&quot;&quot;&quot; Before working with function arguments you should make</span>
+<span class="sd">     a check on the given argument types. For example if arg1</span>
+<span class="sd">     is an int and must be postive and arg2 is a 1darray attr2</span>
+<span class="sd">     Then the following would proceed. Conditions that arent</span>
+<span class="sd">     checked through check error functions that would cause</span>
+<span class="sd">     issues should be handled through raising manual errors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_isint</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="s2">&quot;arg 1 name&quot;</span><span class="p">)</span>
+    <span class="n">_ispostive</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="s2">&quot;arg 1 name&quot;</span><span class="p">)</span>
+    <span class="n">_is1darray</span><span class="p">(</span><span class="n">arg2</span><span class="p">,</span> <span class="s2">&quot;arg 2 name)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">condition</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">error</span><span class="p">(</span><span class="s2">&quot;error message&quot;</span><span class="p">)</span>
+
+    <span class="c1"># manipulation of variables</span>
+    <span class="c1"># arg1 + arg2</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># ...</span>
+    <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -108,7 +239,7 @@
   <li><a href="../index.html">Developer’s Guide</a><ul>
   <li><a href="index.html">Coding Templates</a><ul>
       <li>Previous: <a href="index.html" title="previous chapter">Coding Templates</a></li>
-      <li>Next: <a href="../../install.html" title="next chapter">Installation</a></li>
+      <li>Next: <a href="manualTemplate.html" title="next chapter">Manual Template</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -123,7 +254,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
 
 
 
@@ -140,7 +271,7 @@
       &copy;2021, Dan Kotlyar.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

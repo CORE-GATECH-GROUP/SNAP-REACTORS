@@ -1,22 +1,21 @@
 
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coding Templates &#8212; snapReactors 0.0.1 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Container Python File Structure" href="container.html" />
+    <link rel="next" title="Container Template" href="container.html" />
     <link rel="prev" title="Coding Style" href="../codestyle.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -37,20 +36,26 @@
   <div class="section" id="coding-templates">
 <span id="template-index"></span><h1>Coding Templates<a class="headerlink" href="#coding-templates" title="Permalink to this headline">¶</a></h1>
 <p>This section provides templates for container,
-testing, and manual creation.</p>
-<p>We have developed multipple templates to store and w rok with data.
-Please follow the following format and guidelines when building a customized container:</p>
-<ol class="arabic simple">
-<li><p><a class="reference internal" href="container.html#container-template"><span class="std std-ref">Container Template</span></a></p></li>
-<li><p>Function template</p></li>
-</ol>
+testing, and manual creation</p>
+<p>We have developed templates for best coding structure and organization
+purposes. Please follow the following format and guidelines when
+building a customized container</p>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">templates:</span></p>
+<p class="caption"><span class="caption-text">Templates:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="container.html">Container Python File Structure</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="container.html">Container Template</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="container.html#header">Header</a></li>
-<li class="toctree-l2"><a class="reference internal" href="container.html#class">Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="container.html#code-s-structure">Code’s Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="container.html#imports">Imports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="container.html#init">Init</a></li>
+<li class="toctree-l2"><a class="reference internal" href="container.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manualTemplate.html">Manual Template</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manualTemplate.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manualTemplate.html#snapshot">Snapshot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manualTemplate.html#imports">Imports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manualTemplate.html#init">Init</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manualTemplate.html#methods">Methods</a></li>
 </ul>
 </li>
 </ul>
@@ -92,7 +97,7 @@ Please follow the following format and guidelines when building a customized con
   <li><a href="../../index.html">Documentation overview</a><ul>
   <li><a href="../index.html">Developer’s Guide</a><ul>
       <li>Previous: <a href="../codestyle.html" title="previous chapter">Coding Style</a></li>
-      <li>Next: <a href="container.html" title="next chapter">Container Python File Structure</a></li>
+      <li>Next: <a href="container.html" title="next chapter">Container Template</a></li>
   </ul></li>
   </ul></li>
 </ul>
@@ -106,7 +111,7 @@ Please follow the following format and guidelines when building a customized con
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
 
 
 
@@ -123,7 +128,7 @@ Please follow the following format and guidelines when building a customized con
       &copy;2021, Dan Kotlyar.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Manual Template &#8212; snapReactors 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Installation" href="../../install.html" />
+    <link rel="prev" title="Container Template" href="container.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="manual-template">
+<span id="id1"></span><h1>Manual Template<a class="headerlink" href="#manual-template" title="Permalink to this headline">¶</a></h1>
+<p>The general structure of a manual should follow</p>
+<ol class="arabic simple">
+<li><p>Brief description of the container/function</p></li>
+<li><p>Code snapshot of the contianer/function workflow</p></li>
+<li><p>Init function and attributes description w/ example</p></li>
+<li><p>Relevant methods with description and examples</p></li>
+</ol>
+<p>A large majority of the description can be taken from
+container/function dosctring.</p>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>Add a short description of the container/function
+Can be taken from dosctring</p>
+</div>
+<div class="section" id="snapshot">
+<h2>Snapshot<a class="headerlink" href="#snapshot" title="Permalink to this headline">¶</a></h2>
+<p>Provide a short snapshot of the container/function
+usage and workflow</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Snapshot of code goes here</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># ...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>You can describe the important bits of inputs
+General notes about the container/function</p>
+</div>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<p>Imports required for container/function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">snapReactors.containers.materials</span> <span class="kn">import</span> <span class="n">Material</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="init">
+<h2>Init<a class="headerlink" href="#init" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Go over Init function attributes</p></li>
+<li><p>Describe Init function attribute types and caveats</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c1</span> <span class="o">=</span> <span class="n">container</span><span class="p">(</span><span class="n">attr1</span><span class="p">,</span> <span class="n">attr1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Go over relevant methods for container</p></li>
+<li><p>Give examples using methods</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c1</span> <span class="o">=</span> <span class="n">container</span><span class="p">(</span><span class="n">attr1</span><span class="p">,</span> <span class="n">attr1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v1</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="n">method1</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">method2</span><span class="p">(</span><span class="bp">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">snapReactors</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributors.html">Developer Team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manual/index.html">User’s Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Examples/index.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Developer’s Guide</a><ul>
+  <li><a href="index.html">Coding Templates</a><ul>
+      <li>Previous: <a href="container.html" title="previous chapter">Container Template</a></li>
+      <li>Next: <a href="../../install.html" title="next chapter">Installation</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Dan Kotlyar.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/develop/templates/manualTemplate.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

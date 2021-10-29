@@ -5,19 +5,16 @@ Coding Templates
 =================
 
 This section provides templates for container,
-testing, and manual creation.
+testing, and manual creation
 
-We have developed multipple templates to store and w rok with data.
-Please follow the following format and guidelines when building a customized container:
-
-1. :ref:`Container Template <container_template>`
-2. Function template
-
-
+We have developed templates for best coding structure and organization
+purposes. Please follow the following format and guidelines when 
+building a customized container
 
 .. toctree::
     :maxdepth: 3
-    :caption: templates:
+    :caption: Templates:
 
     container.rst
+    manualTemplate.rst
 
