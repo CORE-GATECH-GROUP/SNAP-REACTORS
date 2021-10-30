@@ -1,5 +1,5 @@
 SNAP-REACTORS-DATABASE
-----------------------
+======================
 
 The proposed database is part of an International Reactor Physics Experiment Evaluation Project (IRPhEP).
 The benchmark evaluation based on data from the Systems for Nuclear Auxiliary Power (SNAP) [1] program.
@@ -9,7 +9,7 @@ compact core design, representative physics phenomena (e.g. strong reflector eff
 alkali metal heat removal working fluid and high-temperature solid moderators that are prone to hydrogen migration.
 
 Description
-============
+-----------
 
 The SNAP-8 Experimental Reactor (S8ER), which will serve as the main data source for the proposed scope, 
 operated for over 10,000 hrs at high temperature in an inert atmosphere. 
@@ -39,7 +39,7 @@ The package/database primarily focuses on collecting, processing, and accessing:
 
 
 Installation
-============
+------------
 After downloading all the package navigate to the root directory.
 The ``setup.py`` defines how to install the code.
 Execute the following line:
@@ -57,7 +57,7 @@ python setup.py install --user
 
 
 Execution
-=========
+---------
 The `snapReactors` package can now be imported as as standard PyPI using:
 
 import ``import snapReactors``
@@ -65,7 +65,7 @@ import ``import snapReactors``
 
 
 References
-==========
+----------
 [1] AI-AEC-12989 
 
 [2] NAA-SR-MEMO-12099 
