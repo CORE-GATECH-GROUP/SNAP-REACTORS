@@ -65,7 +65,7 @@ Pull Requests
 Pull requests are how we review, approve, and incorporate changes into
 the ``master`` branch. If you have code you want to
 contribute, please look at the content in the :ref:`dev-guide`
-for things like :ref:`pr-checklist`, :ref:`code-style`, and more.
+for things like :ref:`code-style`, and more.
 
 When your content is ready for the pull request, follow the
 `pull-request-template <https://github.com/CORE-GATECH-GROUP/serpent-tools/blob/master/.github/pull_request_template.md>`_

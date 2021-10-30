@@ -9,8 +9,9 @@ Python package to interact with ....
 .. admonition:: Preferred citation for attribution
     :class: tip
 
-    Dan Kotlyar, Bojan Petrovic, Ben Lindley, Mark DeHart, Shane Stimpson
+    
 		Funded by DOE/NEUP program (2021).
+		References produced by the project will be added in the future.
 
 .. toctree::
    :maxdepth: 1
