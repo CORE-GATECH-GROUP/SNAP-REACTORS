@@ -1,5 +1,5 @@
-# SNAP-REACTORS-DATABASE
-========================
+SNAP-REACTORS-DATABASE
+----------------------
 
 The proposed database is part of an International Reactor Physics Experiment Evaluation Project (IRPhEP).
 The benchmark evaluation based on data from the Systems for Nuclear Auxiliary Power (SNAP) [1] program.
