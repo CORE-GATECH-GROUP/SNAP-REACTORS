@@ -13,7 +13,7 @@ Add/Edit Data
 Multiple containers exist to enable easy addition and edit of data
 
 	1. :ref:`Material Container <material_cont>`: define a single or multiple ``TransmutationData`` containers.
-	2. Component Container
+	2.  :ref:`Dummy container <dummy>`
 	3. Other containers
 
 
@@ -50,6 +50,7 @@ The following sub-sections describe the data stored on each container:
    :caption: Contents:
 
    material_cont.rst
+   dummy_cont.rst
 
 
 
