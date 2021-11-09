@@ -1,19 +1,18 @@
 
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Container Template &#8212; snapReactors 0.0.1 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Manual Template" href="manualTemplate.html" />
@@ -61,7 +60,7 @@
 <h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
 <p>Contains all imports. Refere to <a class="reference internal" href="../codestyle.html#code-style"><span class="std std-ref">Coding Style</span></a> for importing customs</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Imports. For example, importing check error functions &quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">snapReactor.functions.checkerrors</span> <span class="kn">import</span> <span class="p">(</span><span class="n">_isint</span><span class="p">,</span> <span class="n">_isbool</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">snapReactor.functions.checkerrors</span> <span class="k">import</span> <span class="p">(</span><span class="n">_isint</span><span class="p">,</span> <span class="n">_isbool</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -117,7 +116,7 @@ attributes, methods, errors, and examples</p>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="sd">&quot;&quot;&quot; Initialization/Init function for container object. &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr1</span><span class="p">,</span> <span class="n">attr2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr1</span><span class="p">,</span> <span class="n">attr2</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Before setting attributes you should make a check on the</span>
 <span class="sd">        given attributes types. For example if attr1 is an int and</span>
 <span class="sd">        attr2 is a boolean. Then the following would proceed.</span>
@@ -255,7 +254,7 @@ parameters, errors, return data, and examples.</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
 
 
 
@@ -272,7 +271,7 @@ parameters, errors, return data, and examples.</p>
       &copy;2021, Dan Kotlyar.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
