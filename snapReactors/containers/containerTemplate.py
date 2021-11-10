@@ -10,7 +10,7 @@ Author contact info
 """
 
 """ Imports. For example, importing check error functions would look like
->>> from snapReactor.functions.checkerrors import ( _isint, _isbool )
+>>> from snapReactors.functions.checkerrors import ( _isint, _isbool )
 """
 class Container:
     """ Brief container description
