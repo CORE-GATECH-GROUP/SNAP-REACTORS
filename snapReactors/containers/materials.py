@@ -8,7 +8,7 @@ Each material is defined individually. This functionality is envisioned to be
 executed at the start of the simulation.
 
 Created on Tue Oct 26 08:00:00 2020 @author: Dan Kotlyar
-Last updated on Tue Oct 26 08:00:00 2020 @author: Dan Kotlyar
+Last updated on Thurs Nov 11 12:11:35 2021 @author: Sam Garcia
 email: dan.kotlyar@me.gatech.edu
 """
 
@@ -17,7 +17,34 @@ from snapReactors.functions.checkerrors import _isstr, _isarray,\
 
 from snapReactors.functions.parameters import ALLOWED_PROPERTIES
 
+from enum import Enum
 
+import sympy as sp
+
+import numpy as np
+class UTYPE(Enum):
+    """An Enum to describe all options for an uncertainty's type.
+    
+    Uncertainty type refers to if the uncertainty is given as absolute, 
+    relative, or percentage. 
+
+    The UTYPE Enum is used to organize properties to facilitate handling
+    of properties i.e. evaluation methods.
+    """
+    ABSOLUTE = 1
+    RELATIVE = 2
+    PERCENTAGE = 3
+class CTYPE(Enum):
+    """An Enum to describe all options for a composition's type 
+    
+    Composition type refers to if the composition is given as weight percent
+    or as atomic percent
+    
+    The CTYPE Enum is used to organize properties to facilitate handling 
+    of properties i.e. evaluation methods.
+    """
+    ATOMIC = 1
+    WEIGHT = 2  
 class Material:
     """A container to store the data for each material
 
@@ -49,7 +76,7 @@ class Material:
     Raises
     ------
     TypeError
-        If ``matId`` or ``reference``is not str.
+        If ``matName`` or ``reference``is not str.
         If ``temperatures`` or ``pressures`` is not ndarray.
     ValueError
         If temperatures or pressures are not all positive.
@@ -60,25 +87,47 @@ class Material:
 
     """
 
-    def __init__(self, matId, temperatures, pressures=None, reference=None):
+    def __init__(self, matName, utype, ctype, temperatures, abundances, 
+    isotopes, unc=None, pressures=None, reference=None, description=None):
 
         # check that variables are of correct type (return TypeError if not)
-        _isstr(matId, "Material name")
+        _isstr(matName, "Material name")
+        _isstr(utype, "Uncertainty Type")
+        _isstr(ctype, "Composition Type")
         # check that all values are positive (ValueError)
         _isnonnegativearray(temperatures, "Temperatures dependency")
-
+        # check that all values are positive (ValueError)
+        _isnonnegativearray(abundances, "Abundances")
+        # check names are of correct type (return TypeError if not)
+        _isstr(isotopes, "(Isotope name")
+        
+        if not isinstance(unc, type(None)):
+            _isnonnegativearray(unc, "property value uncertainty/s")
         # check the pressure dependency type and values
         if pressures is not None:
             _isnonnegativearray(pressures, "Pressures dependency")
 
-        if reference is not None:
-            _isstr(reference, "Reference")
+        if reference != None:
+            _isstr(reference, "Reference"))
+        
+        if description is not None:
+            _isstr(description, "description of property/notes")
 
-        self.matId = matId
-        self.reference = reference
-        self.pressures = pressures
+        self.matName = matName
+        self.utype = UTYPE[utype]
+        self.ctype = CTYPE[ctype]
         self.temperatures = temperatures
+        self.abundances = abundances
+        self.isotopes = isotopes
+        self.unc = unc
+        self.pressures = pressures
+        self.reference = reference
+        self.description = description
         self._properties = []
+
+    def __str__(self):
+        """Overwrites print method, prints all objects variables."""
+        return str(vars(self))
 
     def addproperty(self, pty, vals):
         """Add data for a specific property
@@ -212,7 +261,7 @@ class Materials:
 
     Attributes
     ----------
-    matIds : list of str
+    matNames : list of str
         name of all the materials
 
     Methods
@@ -224,7 +273,7 @@ class Materials:
     def __init__(self):
         # Init to empty dictionary
         self._materials = {}
-        self.matIds = []  # names for all the materials in the container
+        self.matNames = []  # names for all the materials in the container
 
     def addmat(self, material):
         """Add new material to the container
@@ -247,11 +296,11 @@ class Materials:
         if not isinstance(material, Material):
             raise TypeError("material must be a Material and"
                             "not {}".format(type(material)))
-        if material.matId in self.matIds:
-            raise KeyError("Material {} already exists".format(material.matId))
+        if material.matName in self.matNames:
+            raise KeyError("Material {} already exists".format(material.matName))
 
-        self.matIds.append(material.matId)
-        self._materials[material.matId] = material
+        self.matNames.append(material.matName)
+        self._materials[material.matName] = material
 
     def __getitem__(self, pos):
         return self._materials[pos]
