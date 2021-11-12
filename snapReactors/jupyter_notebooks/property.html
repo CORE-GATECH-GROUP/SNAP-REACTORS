@@ -13408,7 +13408,7 @@ for different dependency values.</li>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Evaluating-Correlation-propertys-at-specified-dependencys">Evaluating Correlation propertys at specified dependencys<a class="anchor-link" href="#Evaluating-Correlation-propertys-at-specified-dependencys">&#182;</a></h4><ol>
-<li>Correlations only support 1 dependency for now and will output the evualted value at the given dependency</li>
+<li>Correlations only support 2 dependency and will output the evualted value at the given dependency/s</li>
 </ol>
 
 </div>
@@ -13419,8 +13419,8 @@ for different dependency values.</li>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">v1p3</span> <span class="o">=</span> <span class="n">p3</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dependency1</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-<span class="n">v2p3</span> <span class="o">=</span> <span class="n">p3</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dependency1</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">v1p3</span> <span class="o">=</span> <span class="n">p3</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dependency1</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">dependency2</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">v2p3</span> <span class="o">=</span> <span class="n">p3</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dependency1</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">dependency2</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">v1p3</span><span class="p">,</span> <span class="n">v2p3</span><span class="p">)</span>
 </pre></div>
@@ -13439,7 +13439,7 @@ for different dependency values.</li>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>90000.5000000000 160000.500000000
+<pre>90015.5000000000 160015.500000000
 </pre>
 </div>
 </div>
