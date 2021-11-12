@@ -23,6 +23,8 @@ from enum import Enum
 
 import sympy as sp
 
+from sympy.parsing.sympy_parser import parse_expr 
+
 import numpy as np
 class DTYPE(Enum):
     """An Enum to describe all options for a property's data type.
@@ -195,8 +197,44 @@ class Property:
         """" Overwrites print method, prints all objects variables. """
         return str(vars(self))
 
-    def evaluate(self, dependency1=None, dependency2=None):
-        """ TODO: Create evaluate method for differnt types of properties"""
+    def _evalConstant(self):
+        """" Evaluates constant for given dependencys """
+        return self.value
+
+    def _evalTable(self):
+        """" Evaluates table for given dependencys """
+        """" TODO: Linear Interpolator for Table """
+        pass
+
+
+    def _evalCorr(self, dependencys):
+        """" Evaluates correlation for given dependencys """
+        def _symParse(string):
+            symsStrList = string.split(",")
+            symsList = [None]*len(symsStrList)
+            for i in range(0, len(symsList)):
+                symsList[i] = sp.symbols(symsStrList[i])
+            
+            return symsList
+
+        def _eqParse(string):
+            return parse_expr(string)
+
+        def _evaluateSympyCorrelation(correlation, symbols, dependencys):
+            for i in range(0, len(symbols)):
+                correlation = correlation.subs(symbols[i], dependencys[i])
+
+            return correlation.evalf()
+
+        symString = self.syms
+        eqString = self.expr
+
+        syms = _symParse(symString)
+        eq = _eqParse(eqString)
+
+        return _evaluateSympyCorrelation(eq, syms, dependencys)
+
+    def evaluate(self, dependency1, dependency2=None):
         """ The evaluate function serves to evaluate properties at a
         specified dependency/s point/s, i.e at a specific temperature or/and
         pressure. The evaluate distinguished between property based on their
@@ -216,6 +254,8 @@ class Property:
 
         ValueError
             If ``dependency1``, ``dependency2`` is not non-negative.
+            If number of dependencys given does not match number of
+                dependencys in correlation.
 
         Returns
         -------
@@ -227,15 +267,14 @@ class Property:
         >>> p1 = Constant('cv', 'THPHYS', 1, 'kg')
         >>> p1.evaluate(300, 1500) #300 K and 1500 Pa
         """
-        if dependency1 !=None:
-            _isnonnegative(dependency1, "value of dependency1")
+        _isnonnegative(dependency1, "value of dependency1")
         if dependency2 !=None:
             _isnonnegative(dependency2, "value of dependency2")
 
         evaluatedValue = None
 
         if isinstance(self, Constant): 
-            evaluatedValue = float(self.value)
+            evaluatedValue = self._evalConstant()
 
         if isinstance(self, Table):
             self.value
@@ -245,16 +284,24 @@ class Property:
             self.dependencyUnit1
             self.dependencyUnit2
 
-            #evaluatedValue = Interpolating method that uses value and deps
+            #conditions for dealing with 1 or 2 dependency
+
+            evaluatedValue = self._evalTable()
 
         if isinstance(self, Correlation):
-            def _evalCorr(corrExpr, corrSyms, dependency):
-                return float(corrExpr.evalf(subs = {corrSyms:dependency}))
+            dependencys = [dependency1]
+            if dependency2 != None:
+                dependencys = [dependency1, dependency2]
 
-            evaluatedValue = _evalCorr(self.expr, self.syms, dependency1)
-            
+            if len(dependencys) != len(self.syms.split(",")):
+                raise ValueError("number of depdencys given: {},  does not "
+                "match number of dependencys in correlation: {}, "
+                "correlation has dependencys {}".format(len(dependencys), 
+                                    len(self.syms.split(",")), self.syms))
+  
+            evaluatedValue = self._evalCorr(dependencys)
+
         return evaluatedValue
-
 class Constant(Property):
     """A derivative of the Property container meant to represent a constant
     property. Has all attributes of the Property Container with a simpler
@@ -385,7 +432,7 @@ class Table(Property):
                 raise ValueError("values must have {} columns and not {}"
                                     .format(len(self.dependency1),
                                             value.shape[1]))
-                                            
+
         if dependencyUnit2 != None:
             _isstr(dependencyUnit2, "value dependency/s unit/s")
                                 
@@ -419,18 +466,22 @@ class Correlation(Property):
         name of the property
     ptype : Enum.PTYPE
         property type i.e. Thermophysical, Thermomechanical, etc. 
-    corrExpr : sympy expression
-        expression representing correlation
-    corrSyms : sympy symbol
-        expression representing correlation
+    corrExpr : str
+        expression representing correlation 
+    corrSyms : str
+        symbols contained in str delineated by commas, i.e. "T, P"
     valueUnit: str
         units of value/s as they appear in reference
     unc: ndarray
         uncertainty of correlation as it appears in reference.
-    dependencyRange: list
+    dependencyRange1: ndarray
         property dependency range, bounds for correlation. 
-    dependencyUnit: str
-        property dependency/s units.
+    dependencyUnit1: str
+        property dependency units.
+    dependencyRange2: ndarray
+        property dependency range, bounds for correlation. 
+    dependencyUnit2: str
+        property dependency units.
     ref: str
         property data reference tag i.e NAA-SR-0069  
     description: str
@@ -444,15 +495,16 @@ class Correlation(Property):
     Raises
     ------
     TypeError
-        If ``id``, ``ptype``, ``valueUnit``, ``dependencyUnit``, ``ref``, 
-        ``description``,  is not str.
-        If ``dependencyRange`` is not an ndarray.
-        If ``corrExpr`` is not a sympy expression.
-        if ``corrSyms`` is not a sympy symbol.
+        If ``id``, ``ptype``, ``valueUnit``, ``dependencyUnit1``, 
+            ``dependencyUnit1``,``ref``, ``description``,  is not str.
+        If ``dependencyRange1``, ``dependencyRange2`` is not an ndarray.
+        If ``corrExpr`` is not a string expression.
+        if ``corrSyms`` is not a string of symbols.
 
     ValueError
-        If ``dependencyRange``, ``unc`` are not positive.
-        If ``dependencyRange`` is not of length 2.
+        If ``dependencyRange1``, ``dependencyRange1``, ``unc``
+            are not positive.
+        If ``dependencyRange1``, ``dependencyRange2`` is not of length 2.
 
     KeyError
         If ``id`` is not within ALLOWED_PROPERTIES.
@@ -465,42 +517,54 @@ class Correlation(Property):
     >>> p3 = Correlation('h', 'THPHYS', corr1, T, 'W/K*m^2', 
     >>>     np.array([300, 600]), 'K')
     """
-    def __init__(self, id, ptype, corrExpr, corrSyms, valueUnit, 
-        dependencyRange, dependencyUnit, unc = None,
+    def __init__(self, id, ptype, corrExpr, corrSyms, corrUnit, 
+        dependencyRange1, dependencyUnit1, dependencyRange2=None,
+        dependencyUnit2=None,  unc=None,
         ref=None, description=None):
 
-        if not isinstance(corrExpr, sp.Expr):
-            raise TypeError("Correlation expression {} is not a sympy"
-                "expression of type: {}".format(corrExpr, sp.Expr))
+        _isstr(corrExpr, "correlation expression")
+        _isstr(corrSyms, "correlation expression symbols")
+        _isstr(dependencyUnit1, "dependency 1 units")
+        _isstr(dependencyUnit2, "dependency 2 units")
 
-        if not isinstance(corrSyms, sp.symbol.Symbol):
-            raise TypeError("Correlation symbols {} is not a sympy symbol"
-                "of type: {}".format(corrSyms, sp.core.symbol.Symbol))
+        _isnonnegativearray(dependencyRange1, "correlation dependency1 range")
+        if (len(dependencyRange1) != 2):
+            raise ValueError("dependency1 range must be a list of two bounds"
+                "not {}".format(dependencyRange1))
 
-        if (len(dependencyRange) != 2):
-            raise ValueError("dependency range must be a list of two bounds"
-                "not {}".format(dependencyRange))
+        if not isinstance(dependencyRange2, type(None)):
+            _isnonnegativearray(dependencyRange2, "correlation dependency2 range")
+            if (len(dependencyRange2) != 2):
+                raise ValueError("dependency2 range must be a list of two bounds"
+                    "not {}".format(dependencyRange2))
 
-        _isnonnegativearray(dependencyRange, "correlation dependency range")
-
-        def _evalCorr(corrExpr, corrSyms, independentValue):
-            return float(corrExpr.evalf(subs = {corrSyms:independentValue}))
-
-        corrRange = np.linspace(dependencyRange[0], dependencyRange[1])
-        corrValues = np.zeros(len(corrRange))
-
-        for i in range(0, len(corrRange)):
-            corrValues[i] = _evalCorr(corrExpr, corrSyms, corrRange[i])
+        corrRange1 = np.linspace(dependencyRange1[0], dependencyRange1[1])
+        corrValues = np.zeros(len(corrRange1))
+        corrRange = corrRange1
+        dependentsUnit = dependencyUnit1
+        
+        if not isinstance(dependencyRange2, type(None)):
+            corrRange2 = np.linspace(dependencyRange2[0], dependencyRange2[1])
+            corrRange = np.array([corrRange1, corrRange2])
+            dependentsUnit = dependencyUnit1+ ", " +dependencyUnit2
 
         Property.__init__(self, id, ptype, 'NDARRAY', 'CORRELATION',
-            corrValues, valueUnit, unc, corrRange,
-            dependencyUnit, ref, description)
+            corrValues, corrUnit, unc, corrRange,
+            dependentsUnit, ref, description)
 
         self.expr = corrExpr
         self.syms = corrSyms
-        self.dependencyRange = dependencyRange
+        self.dependencyRange1 = dependencyRange1
+        self.dependencyUnit1 = dependencyUnit1
+        self.dependencyRange2 = dependencyRange2
+        self.dependencyUnit2 = dependencyUnit2
 
+        if not isinstance(dependencyRange2, type(None)):
+            for i in range(0, len(corrRange1)):
+                corrValues[i] =super().evaluate(corrRange1[i], corrRange2[i])
+        else:
+            for i in range(0, len(corrRange1)):
+                corrValues[i] =super().evaluate(corrRange1[i])
 
-
-
+        self.value = corrValues
 
