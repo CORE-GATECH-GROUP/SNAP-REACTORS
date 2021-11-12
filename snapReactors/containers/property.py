@@ -385,7 +385,7 @@ class Table(Property):
                 raise ValueError("values must have {} columns and not {}"
                                     .format(len(self.dependency1),
                                             value.shape[1]))
-
+                                            
         if dependencyUnit2 != None:
             _isstr(dependencyUnit2, "value dependency/s unit/s")
                                 
@@ -465,34 +465,23 @@ class Correlation(Property):
     >>> p3 = Correlation('h', 'THPHYS', corr1, T, 'W/K*m^2', 
     >>>     np.array([300, 600]), 'K')
     """
-    def __init__(self, id, ptype, corrExpr, corrSyms, corrUnit, 
-        dependencyRange1, dependencyUnit1, dependencyRange2=None,
-        dependencyUnit2=None,  unc=None,
+    def __init__(self, id, ptype, corrExpr, corrSyms, valueUnit, 
+        dependencyRange, dependencyUnit, unc = None,
         ref=None, description=None):
 
-        _isstr(corrExpr, "correlation expression")
-        _isstr(corrSyms, "correlation expression symbols")
-        # if not isinstance(corrExpr, sp.Expr):
-        #     raise TypeError("Correlation expression {} is not a sympy"
-        #         "expression of type: {}".format(corrExpr, sp.Expr))
+        if not isinstance(corrExpr, sp.Expr):
+            raise TypeError("Correlation expression {} is not a sympy"
+                "expression of type: {}".format(corrExpr, sp.Expr))
 
-        # if not isinstance(corrSyms, sp.symbol.Symbol):
-        #     raise TypeError("Correlation symbols {} is not a sympy symbol"
-        #         "of type: {}".format(corrSyms, sp.core.symbol.Symbol))
+        if not isinstance(corrSyms, sp.symbol.Symbol):
+            raise TypeError("Correlation symbols {} is not a sympy symbol"
+                "of type: {}".format(corrSyms, sp.core.symbol.Symbol))
 
-        if (len(dependencyRange1) != 2):
+        if (len(dependencyRange) != 2):
             raise ValueError("dependency range must be a list of two bounds"
-                "not {}".format(dependencyRange1))
+                "not {}".format(dependencyRange))
 
-        _isnonnegativearray(dependencyRange1, "correlation dependency range")
-
-
-        if (len(dependencyRange2) != 2):
-            raise ValueError("dependency range must be a list of two bounds"
-                "not {}".format(dependencyRange2))
-
-        _isnonnegativearray(dependencyRange2, "correlation dependency range")
-
+        _isnonnegativearray(dependencyRange, "correlation dependency range")
 
         def _evalCorr(corrExpr, corrSyms, independentValue):
             return float(corrExpr.evalf(subs = {corrSyms:independentValue}))
@@ -510,13 +499,6 @@ class Correlation(Property):
         self.expr = corrExpr
         self.syms = corrSyms
         self.dependencyRange = dependencyRange
-
-    def evaluate(self, dependencys):
-
-
-
-        return super().evaluate(dependency1=dependency1, dependency2=dependency2)
-
 
 
 
