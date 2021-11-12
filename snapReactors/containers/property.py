@@ -525,7 +525,6 @@ class Correlation(Property):
         _isstr(corrExpr, "correlation expression")
         _isstr(corrSyms, "correlation expression symbols")
         _isstr(dependencyUnit1, "dependency 1 units")
-        _isstr(dependencyUnit2, "dependency 2 units")
 
         _isnonnegativearray(dependencyRange1, "correlation dependency1 range")
         if (len(dependencyRange1) != 2):
@@ -537,6 +536,7 @@ class Correlation(Property):
             if (len(dependencyRange2) != 2):
                 raise ValueError("dependency2 range must be a list of two bounds"
                     "not {}".format(dependencyRange2))
+            _isstr(dependencyUnit2, "dependency 2 units")
 
         corrRange1 = np.linspace(dependencyRange1[0], dependencyRange1[1])
         corrValues = np.zeros(len(corrRange1))
