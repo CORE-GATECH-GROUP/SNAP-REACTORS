@@ -8,10 +8,9 @@ Each material is defined individually. This functionality is envisioned to be
 executed at the start of the simulation.
 
 Created on Tue Oct 26 08:00:00 2020 @author: Dan Kotlyar
-Last updated on Thurs Nov 11 12:11:35 2021 @author: Sam Garcia
+Last updated on Thurs Nov 15 13:44:35 2021 @author: Sam Garcia
 email: dan.kotlyar@me.gatech.edu
 """
-
 from snapReactors.functions.checkerrors import _isstr, _isarray,\
     _explengtharray, _isnonnegativearray
 
@@ -34,6 +33,7 @@ class UTYPE(Enum):
     ABSOLUTE = 1
     RELATIVE = 2
     PERCENTAGE = 3
+
 class CTYPE(Enum):
     """An Enum to describe all options for a composition's type 
     
@@ -45,10 +45,11 @@ class CTYPE(Enum):
     """
     ATOMIC = 1
     WEIGHT = 2  
+
 class Material:
     """A container to store the data for each material
 
-    This container stores all the relevant information for a specific material.
+    This container stores all the relevant information for a specific material
     Multiple properties can be stored for each material as long as these
     properties exist in the ``ALLOWED_PROPERTIES``.
     The properties can be either temperature-dependent or both temperature-
@@ -56,15 +57,27 @@ class Material:
 
     Attributes
     ----------
-    name : str
+    matName : str
         name of the material
-    temperature : ndarray
+    utype : Enum.UTYPE
+        uncertainty value type i.e. Absolute, Relative, Percentage
+    ctype : Enum.CTYPE
+        composition value type i.e. a/o or w/o    
+    temperatures : ndarray
         temperature points to be used for interpolation/extrapolation
-    pressure : ndarray or None
+    abundances : ndarray
+        abundance value/s as they appear in reference & supplied unnormalized
+    isotopes : str
+        isotope name within a a component
+    unc : ndarray or None
+        uncertainty of value/s as they appear in reference
+    pressures : ndarray or None
         Pressure points to be used for interpolation/extrapolation. A value
         of ``None`` implies no properties are pressure dependent
     reference : str or None
         reference for the material
+    description : str or None
+        property description
 
     Methods
     -------
@@ -76,50 +89,69 @@ class Material:
     Raises
     ------
     TypeError
-        If ``matName`` or ``reference``is not str.
-        If ``temperatures`` or ``pressures`` is not ndarray.
+        If ``matName``, ``reference``, ``description`` is not str.
+        If ``temperatures``,``abundances``, ``unc``, ``pressures``, and
+        ``isotopes`` is not ndarray.
     ValueError
-        If temperatures or pressures are not all positive.
-
+        If ``temperatures``, ``abundances``, ``unc``, ``pressures``, `` are 
+            not all positive.
+    KeyError
+        If ``utype`` and ``ctype`` are not within ``Enum.UTYPE`` and 
+            ``Enum.CTYPE``, respectively.
     Examples
     --------
     >>> UC = Material("UC", np.array([300, 900, 1800]))
-
+    >>> controlRod = Material(matName= "Boron Carbide", utype= "ABSOLUTE", 
+                    ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
+                    abundances= np.array(0.xxx, 0.yyy, 0.zzz),
+                    unc = np.array(xxx, yyy, zzz))
     """
 
-    def __init__(self, matName, utype, ctype, temperatures, abundances, 
-    isotopes, unc=None, pressures=None, reference=None, description=None):
+    def __init__(self, matName, utype, ctype, isotopes, abundances,
+    unc=None, temperatures=None, pressures=None, reference=None, 
+    description=None):
 
         # check that variables are of correct type (return TypeError if not)
         _isstr(matName, "Material name")
         _isstr(utype, "Uncertainty Type")
         _isstr(ctype, "Composition Type")
-        # check that all values are positive (ValueError)
-        _isnonnegativearray(temperatures, "Temperatures dependency")
+        
+        # check names are of correct type (return TypeError if not)
+        _isarray(isotopes, "(Isotope name")
+        
         # check that all values are positive (ValueError)
         _isnonnegativearray(abundances, "Abundances")
-        # check names are of correct type (return TypeError if not)
-        _isstr(isotopes, "(Isotope name")
         
         if not isinstance(unc, type(None)):
             _isnonnegativearray(unc, "property value uncertainty/s")
+
+        if not isinstance(temperatures, type(None)):
+            _isnonnegativearray(temperatures, "Temperatures dependency")
+
         # check the pressure dependency type and values
-        if pressures is not None:
+        if not isinstance(pressures, type(None)):
             _isnonnegativearray(pressures, "Pressures dependency")
 
         if reference != None:
-            _isstr(reference, "Reference"))
+            _isstr(reference, "Reference")
         
-        if description is not None:
+        if description != None:
             _isstr(description, "description of property/notes")
+
+        if utype not in UTYPE.__members__:
+            raise KeyError("Uncertainty Type {} is not an allowed uncertainty"
+                "type: {}".format(utype, UTYPE._member_names_))
+        if ctype not in CTYPE.__members__:
+            raise KeyError("Composition Type {} is not an allowed composition"
+                "type: {}".format(ctype, CTYPE._member_names_))
 
         self.matName = matName
         self.utype = UTYPE[utype]
         self.ctype = CTYPE[ctype]
-        self.temperatures = temperatures
         self.abundances = abundances
         self.isotopes = isotopes
         self.unc = unc
+        self.temperatures = temperatures
         self.pressures = pressures
         self.reference = reference
         self.description = description
@@ -128,7 +160,7 @@ class Material:
     def __str__(self):
         """Overwrites print method, prints all objects variables."""
         return str(vars(self))
-
+    
     def addproperty(self, pty, vals):
         """Add data for a specific property
 
