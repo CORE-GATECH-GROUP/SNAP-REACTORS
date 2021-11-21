@@ -18,7 +18,7 @@ from snapReactors.functions.parameters import ALLOWED_PROPERTIES
 
 from enum import Enum
 
-import sympy as sp
+import os
 
 import numpy as np
 class UTYPE(Enum):
@@ -75,9 +75,11 @@ class Material:
         Pressure points to be used for interpolation/extrapolation. A value
         of ``None`` implies no properties are pressure dependent
     reference : str or None
-        reference for the material
+        reference tag for material
     description : str or None
-        property description
+        material description
+    filename : str or None
+        filename containing isotopic abundance data
 
     Methods
     -------
@@ -85,11 +87,13 @@ class Material:
     getproperty : obtain the values for a certain property
     properties : obtain all the properties allowable to be defined
     ptyIs : obtain the description and the units of the property
+    readData : read in data from a text file
 
     Raises
     ------
     TypeError
-        If ``matName``, ``reference``, ``description`` is not str.
+        If ``matName``, ``reference``, ``description``, ``filename`` is not 
+            str.
         If ``temperatures``,``abundances``, ``unc``, ``pressures``, and
         ``isotopes`` is not ndarray.
     ValueError
@@ -109,7 +113,7 @@ class Material:
 
     def __init__(self, matName, utype, ctype, isotopes, abundances,
     unc=None, temperatures=None, pressures=None, reference=None, 
-    description=None):
+    description=None, filename=None):
 
         # check that variables are of correct type (return TypeError if not)
         _isstr(matName, "Material name")
@@ -137,7 +141,8 @@ class Material:
         
         if description != None:
             _isstr(description, "description of property/notes")
-
+        if filename != None:
+            _isstr(filename, "data filename")
         if utype not in UTYPE.__members__:
             raise KeyError("Uncertainty Type {} is not an allowed uncertainty"
                 "type: {}".format(utype, UTYPE._member_names_))
@@ -155,6 +160,7 @@ class Material:
         self.pressures = pressures
         self.reference = reference
         self.description = description
+        self.filename = filename
         self._properties = []
 
     def __str__(self):
@@ -286,7 +292,189 @@ class Material:
         """
 
         return list(ALLOWED_PROPERTIES)
+    def readData(self, filename, utype=None):
+        """Reads compositional data to save isotopic data quickly. Furthemore,
+        the formatting of input filename is assumed to have the following 
+        formatting:
+        Isotope Abundance Uncertainty
+        Isotope Abundance Uncertainty
+        
+        Note that if uncertainties are indicated to not exist then the method
+        will not save uncertainty data. If uncertainties are indicated to 
+        exist then the type must be declared
 
+        Attributes
+        ----------
+        filename : str
+            input file that will be parsed
+        utype : Enum.UTYPE
+            uncertainty type i.e. absolute, relative, percentage
+        unc : ndarray
+            uncertainty of value/s as they appear in reference
+        
+        Raises
+        ------
+        TypeError
+            If ``filename``, ``utype`` are not str
+            If ``unc`` is not ndarray
+        ValueError
+            If ``unc`` are not non-negative
+        KeyError
+            If ``utype`` is not within ``Enum.UTYPE``
+        OSError
+            "If ``filename`` is not found 
+        Examples
+        --------
+        >>> Mat1 = Material(matName= "Mat1", utype= "ABSOLUTE", 
+                    ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
+                    abundances= np.array(0.xxx, 0.yyy, 0.zzz),
+                    unc = np.array(xxx, yyy, zzz))
+        >>> Mat1.readData(file.i, "Relative" )
+            """
+        _isstr(filename, "file name")
+        
+        if not os.path.isfile(filename):
+            raise OSError("Filename {} is not found".format(filename))
+        
+        if utype not in UTYPE.__members__:
+            raise KeyError("Uncertainty Type {} is not an allowed uncertainty"
+                "type: {}".format(utype, UTYPE._member_names_))
+        
+        # check if the uncertainty is present
+        if utype != None:
+            ucheck = True
+
+        with open(filename) as filehandle:
+            lines = filehandle.readlines()
+
+        # remove any empty lines in filename
+        with open(filename, 'w') as filehandle:
+            lines = filter(lambda x: x.strip(), lines)
+            filehandle.writelines(lines)
+
+        # read input file
+        with open(filename, "r") as f:
+            lines = f.readlines()
+
+        matKeyword = "Material"
+        compKeyword = "Component"
+        matCount = 0
+        isoCount = 0
+        fileCount = 0
+        isoList = list()
+        abunList = list()
+        compList = list()
+        uncList = list()
+        matList = list()
+        materialName = list()
+        isotopes = list()
+        abundances = list()
+        for line in lines:
+            fileCount += 1
+        # check to see if the name of component is in line
+            if compKeyword in line:
+            # only parse the component name at the start of file
+                if fileCount == 1:
+                    compList.append(line.split(":")[1])
+            # if component comes up again then dump xList data into 
+            # respective lists
+                else:
+                    materialName.append(matList.copy())
+                    compList.append(line.split(":")[1])
+                    for i in range(isoCount):
+                        isotopes.append([isoList[i], uncList[i]])
+                        abundances.append(abunList[i])
+                    matList = []
+                    compList = []
+                    isoList = []
+                    uncList = []
+                    isoCount = 0
+                    matCount = 0
+        # check to see if the name of the material is in line and pull it
+            if matKeyword in line:
+            # check to see if material list is empty, if its not then store 
+            # into materialName
+                matList.append(line.split(":")[1])
+                for i in range(isoCount):
+                    isotopes.append([isoList[i], uncList[i]])
+                    abundances.append(abunList[i])
+                isoList = []
+                abunList = []
+                uncList = []
+                matCount += 1
+                isoCount = 0
+        # check to see that material name and component name are not present
+            if matKeyword not in line and compKeyword not in line:
+                isoList.append(line.split()[0])
+                abunList.append(line.split()[1])
+                if ucheck is True:
+                    uncList.append(line.split()[2])
+                isoCount += 1
+        # check to see if the text file is at the end and if so then make final updates
+            if fileCount == len(lines):
+                materialName.append(matList.copy())
+                for i in range(isoCount):
+                    isotopes.append([isoList[i], uncList[i]])
+                    abundances.append(abunList[i])
+        self.abundances.append(abundances)
+        self.isotopes.append(isotopes)
+        self.matName.append(materialName)
+class Composition(Material):
+    """A derivative of the Material container meant to represent the 
+    composition of a material through isotopic abundance defintion. It 
+    contains all the attributes of the Material container but with a simpler 
+    interface to define isotopic composition.
+    
+    Attributes
+    ----------
+     utype : Enum.UTYPE
+        uncertainty type i.e. absolute, relative, percentage
+    ctype : Enum.CTYPE
+        composition type i.e. w/o or a/o
+    isotopes : str
+        isotope name within a a component
+    abundances : ndarray
+        abundance value/s as they appear in reference & supplied unnormalized
+    unc : ndarray
+        uncterainty of value/s as they appear in  reference
+    reference : str
+        material data reference tag
+    description : str
+        material description
+    
+    Raises
+    ------
+    TypeError 
+        If ``ctype``, ``utype``, ``isotopes``, ``ref``, ``description`` is 
+            not str
+        If ``abundances``, ``unc`` is not ndarray
+    ValueError
+        if ``unc``, ``abundances`` is not non-negative.
+    KeyError
+        If ``utype``, ``ctype`` is not within ``Enum.UTYPE`` and 
+            ``Enum.CTYPE``
+    
+    Examples
+    --------
+    >>> comp1 = Composition(Boron Carbide, 'ABSOLUTE', 'WEIGHT', [B-10], 
+                [1.0], [0], 'Taken from reference x', 'This is an example')
+    """
+    def __init__(self, matName, utype, ctype, isotopes, abundances, unc=None, 
+        reference=None, description=None):
+
+        # check names are of correct type (return TypeError if not)
+        _isarray(isotopes, "(Isotope name")
+        
+        # check that all values are positive (ValueError)
+        _isnonnegativearray(abundances, "Abundances")
+        
+        if not isinstance(unc, type(None)):
+            _isnonnegativearray(unc, "property value uncertainty/s")
+        
+        Material.__init__(self, matName, utype, ctype, isotopes, abundances,
+        unc, reference=reference, description=description)
+        
+        
 
 class Materials:
     """A container to store the data for all material
