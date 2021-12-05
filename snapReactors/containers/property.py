@@ -26,6 +26,9 @@ import sympy as sp
 from sympy.parsing.sympy_parser import parse_expr 
 
 import numpy as np
+import numbers
+import bisect
+
 class DTYPE(Enum):
     """An Enum to describe all options for a property's data type.
 
@@ -201,11 +204,156 @@ class Property:
         """" Evaluates constant for given dependencys """
         return self.value
 
-    def _evalTable(self):
-        """" Evaluates table for given dependencys """
-        """" TODO: Linear Interpolator for Table """
-        pass
+    def _evalTable(self, dependency1, dependency2=None):
+        """Evaluate a specific property for given dependency1 and/or 
+        dependency2
 
+        dependency1 and/or dependency2 can be provided as arguments,
+        or by name. If just the dependency1 is used, either directly
+        pass a ``None`` dependency2, e.g.  ``evaluate(600, None)`` or
+        use named arguments with ``evaluate(dependency1=600)``.
+        Similarly the option also exists to not pass
+        anything as well, e.g. ``evalute(20)``
+
+        Parameters
+        ----------
+        dependency1 : float
+
+        dependency2 : float, optional
+
+
+        Returns
+        -------
+        float
+            value of the property
+
+        Raises
+        ------
+        TypeError
+            If ``dependency1`` and/or ``dependency2`` are not properly 
+                defined.
+        ValueError
+            If ``dependency1`` and/or ``dependency2`` are not properly 
+                defined, e.g. values are out of bounds.
+
+        Note
+        ----
+        * 2-D interpolation is allowed for dependency1 and dependency2.
+        * 1-D interpolation is allowed only for dependency1.
+
+        Examples
+        --------
+
+        """
+        data = self.value
+
+        if not isinstance(dependency1, numbers.Real) and not isinstance(
+                dependency2, numbers.Real):
+            raise ValueError("Need dependency1 and/or dependency2")
+
+        # 2-D interpolation on dependency1 and dependency2
+        if self.dependency1 is not None and self.dependency2 is not None:
+            if dependency1 is None or dependency2 is None:
+                raise ValueError("Both dependencies are required")
+            # 2D interpolation on dependency1 and dependency2
+            return self._interp2D(
+                    dependency1,
+                    self.dependency1,
+                    "dependency1",
+                    dependency2,
+                    self.dependency2,
+                    "dependency2",
+                    data)
+
+        # 1-D interpolation on dependency1
+        if self.dependency1 is not None and self.dependency2 is None:
+            # if dependency1 is None or dependency1 is not None:
+            #     raise ValueError("Only dependency1 is required")
+            return self._interp1D(
+                    dependency1, self.dependency1, "dependency1", data)
+
+    def _interp2D(self, x, xvalues, xdesc, y, yvalues, ydesc, Z):
+
+        if x < xvalues[0] or x > xvalues[-1]:
+            raise ValueError(
+                "{} must be between {} and {}, not {}".format(
+                    xdesc, xvalues[0], xvalues[-1], x
+                )
+            )
+        if y < yvalues[0] or y > yvalues[-1]:
+            raise ValueError(
+                "{} must be between {} and {}, not {}".format(
+                    ydesc, yvalues[0], yvalues[-1], y
+                )
+            )
+
+        # Find the extreme cases (P,T)min and (P,T)max
+        # idx00 = np.intersect1d(np.where(xvalues <= x), np.where(
+        #         yvalues <= y), return_indices=False)[-1]
+        # idx11 = np.intersect1d(np.where(xvalues >= x), np.where(
+        #         yvalues >= y), return_indices=False)[0]
+
+        idx00 = np.where((xvalues <= x) & (yvalues <= y))[0][-1]
+        idx11 = np.where((xvalues >= x) & (yvalues >= y))[0][0]
+
+        # (P,T) exist and there is no need to interpolate
+        if idx00 == idx11:
+            return Z[idx00]
+        # same P[MPa], but different T[K]
+        if xvalues[idx00] == xvalues[idx11]:
+            ypts = yvalues[idx00], yvalues[idx11]
+            zpts = Z[idx00], Z[idx11]
+            return self._local1DInterp(y, ypts, zpts)
+        # same T[K], but different P[MPa]
+        elif yvalues[idx00] == yvalues[idx11]:
+            xpts = xvalues[idx00], xvalues[idx11]
+            zpts = Z[idx00], Z[idx11]
+            return self._local1DInterp(x, xpts, zpts)
+
+        zvalues = [
+            [Z[idx00], Z[idx00+1]],
+            [Z[idx11-1], Z[idx11]],
+        ]
+
+        xpts = xvalues[idx00], xvalues[idx11]
+        ypts = yvalues[idx00], yvalues[idx11]
+
+        return self._bilinear2D(
+            x,
+            y,
+            xpts,
+            ypts,
+            zvalues,
+        )
+
+    @staticmethod
+    def _bilinear2D(x, y, xv, yv, zm):
+        denom = (xv[1] - xv[0]) * (yv[1] - yv[0])
+        xlead = [xv[1] - x, x - xv[0]]
+        ytail = [yv[1] - y, y - yv[0]]
+        prod = np.matmul(zm, ytail)
+        return np.matmul(xlead, prod) / denom
+
+    def _interp1D(self, x, xvalues, xdesc, yvalues):
+        if x < xvalues[0] or x > xvalues[-1]:
+            raise ValueError(
+                "{} must be between {} and {}, not {}".format(
+                    xdesc, xvalues[0], xvalues[-1], x
+                )
+            )
+        # Find index that is closest to requested value
+        index = bisect.bisect_left(xvalues, x)
+        if xvalues[index] == x:
+            return yvalues[index]
+        return self._local1DInterp(x, xvalues[index:index+2],
+                                yvalues[index:index+2])
+
+    @staticmethod
+    def _local1DInterp(c, x, y):
+        assert len(x) == len(y)
+        slope = (y[1] - y[0]) / (x[1] - x[0])
+        return y[0] + slope * (c - x[0])
+        pass
 
     def _evalCorr(self, dependencys):
         """" Evaluates correlation for given dependencys """
@@ -277,16 +425,8 @@ class Property:
             evaluatedValue = self._evalConstant()
 
         if isinstance(self, Table):
-            self.value
-            self.dependents
-            self.dependency1
-            self.dependency2
-            self.dependencyUnit1
-            self.dependencyUnit2
 
-            #conditions for dealing with 1 or 2 dependency
-
-            evaluatedValue = self._evalTable()
+            evaluatedValue = self._evalTable(dependency1, dependency2)
 
         if isinstance(self, Correlation):
             dependencys = [dependency1]
@@ -567,4 +707,3 @@ class Correlation(Property):
                 corrValues[i] =super().evaluate(corrRange1[i])
 
         self.value = corrValues
-
