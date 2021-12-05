@@ -26,9 +26,10 @@ import sympy as sp
 from sympy.parsing.sympy_parser import parse_expr 
 
 import numpy as np
+import pandas as pa
 import numbers
 import bisect
-
+import os
 class DTYPE(Enum):
     """An Enum to describe all options for a property's data type.
 
@@ -442,6 +443,59 @@ class Property:
             evaluatedValue = self._evalCorr(dependencys)
 
         return evaluatedValue
+
+    @staticmethod
+    def csvPropertyReader(filepath):
+        simp_path = filepath
+        abs_path = os.path.abspath(simp_path)
+        df = pa.read_csv(abs_path, sep = r',', skipinitialspace = True)
+
+        def _constParser(str):
+            vals = str.split(",")
+            value = float(vals[0])
+            unit = vals[1]
+            return value, unit
+
+        def _TableParser(str):
+            vals = str.split(",")
+            value = np.fromstring( vals[0], dtype=np.float, sep=' ')
+            unit = vals[1]
+            dep = np.fromstring( vals[2], dtype=np.float, sep=' ')
+            depUnit = vals[3]
+            return value, unit, dep, depUnit
+
+        def _CorrParser(str):
+            vals = str.split(",")
+            corr = vals[0]
+            syms = vals[1]
+            unit = vals[2]
+            depRange = np.fromstring(vals[3], dtype=np.float, sep=' ')
+            depUnit = vals[4]
+            return corr, syms, unit, depRange, depUnit
+
+        def _dfParser(df, i):
+            id = str(df['id'][i])
+            ptype = str(df['ptype'][i])
+
+            if(str(df['prop'][i]) == "Const"):
+                value, unit  = _constParser(df['mand_values'][i]) 
+                return Constant(id, ptype, value, unit)     
+            elif(str(df['prop'][i]) == "Table"):
+                value, unit, dep, depUnit = _TableParser(df['mand_values'][i]) 
+                return Table(id, ptype, value, unit, dep, depUnit)              
+            elif(str(df['prop'][i]) == "Corr"):
+                corr, syms, unit, depRange, depUnit = _CorrParser(df['mand_values'][i]) 
+                return Correlation(id, ptype, corr, syms, unit, depRange, depUnit)
+            else:
+                pass               
+
+        numProp = len(df['prop'])
+        csvProps = [None]*numProp
+        for i in range(0, numProp):
+            csvProps[i] = _dfParser(df, i)
+
+        return csvProps
+
 class Constant(Property):
     """A derivative of the Property container meant to represent a constant
     property. Has all attributes of the Property Container with a simpler
