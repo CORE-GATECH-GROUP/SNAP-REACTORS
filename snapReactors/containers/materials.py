@@ -33,6 +33,7 @@ class UTYPE(Enum):
     ABSOLUTE = 1
     RELATIVE = 2
     PERCENTAGE = 3
+    NONE = 4
 
 class CTYPE(Enum):
     """An Enum to describe all options for a composition's type 
@@ -45,6 +46,7 @@ class CTYPE(Enum):
     """
     ATOMIC = 1
     WEIGHT = 2  
+    NONE = 3
 
 class Material:
     """A container to store the data for each material
@@ -292,7 +294,7 @@ class Material:
         """
 
         return list(ALLOWED_PROPERTIES)
-    def readData(self, filename, utype=None):
+    def readData(self, filename, utype):
         """Reads compositional data to save isotopic data quickly. Furthemore,
         the formatting of input filename is assumed to have the following 
         formatting:
@@ -341,7 +343,7 @@ class Material:
                 "type: {}".format(utype, UTYPE._member_names_))
         
         # check if the uncertainty is present
-        if utype != None:
+        if utype != 'NONE':
             ucheck = True
 
         with open(filename) as filehandle:
@@ -375,29 +377,39 @@ class Material:
             if compKeyword in line:
             # only parse the component name at the start of file
                 if fileCount == 1:
-                    compList.append(line.split(":")[1])
+                    compList.append(line.split()[1])
             # if component comes up again then dump xList data into 
             # respective lists
                 else:
                     materialName.append(matList.copy())
-                    compList.append(line.split(":")[1])
-                    for i in range(isoCount):
-                        isotopes.append([isoList[i], uncList[i]])
-                        abundances.append(abunList[i])
+                    compList.append(line.split()[1])
+                    if ucheck is True:
+                        for i in range(isoCount):
+                            isotopes.append([isoList[i], uncList[i]])
+                            abundances.append(abunList[i])
+                    else:
+                        for i in range(isoCount):
+                            isotopes.append(isoList[i])
+                            abundances.append(abunList[i])
                     matList = []
                     compList = []
                     isoList = []
                     uncList = []
                     isoCount = 0
-                    matCount = 0
+                   # matCount = 0
         # check to see if the name of the material is in line and pull it
             if matKeyword in line:
             # check to see if material list is empty, if its not then store 
             # into materialName
-                matList.append(line.split(":")[1])
-                for i in range(isoCount):
-                    isotopes.append([isoList[i], uncList[i]])
-                    abundances.append(abunList[i])
+                matList.append(line.split()[1])
+                if ucheck is True:
+                    for i in range(isoCount):
+                        isotopes.append([isoList[i], uncList[i]])
+                        abundances.append(abunList[i])
+                else:
+                    for i in range(isoCount):
+                        isotopes.append(isoList[i])
+                        abundances.append(abunList[i])
                 isoList = []
                 abunList = []
                 uncList = []
@@ -413,9 +425,14 @@ class Material:
         # check to see if the text file is at the end and if so then make final updates
             if fileCount == len(lines):
                 materialName.append(matList.copy())
-                for i in range(isoCount):
-                    isotopes.append([isoList[i], uncList[i]])
-                    abundances.append(abunList[i])
+                if ucheck is True:
+                    for i in range(isoCount):
+                        isotopes.append([isoList[i], uncList[i]])
+                        abundances.append(abunList[i])
+                else:
+                    for i in range(isoCount):
+                        isotopes.append(isoList[i])
+                        abundances.append(abunList[i])
         self.abundances.append(abundances)
         self.isotopes.append(isotopes)
         self.matName.append(materialName)
