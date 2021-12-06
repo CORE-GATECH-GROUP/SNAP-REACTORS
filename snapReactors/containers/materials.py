@@ -294,7 +294,7 @@ class Material:
         """
 
         return list(ALLOWED_PROPERTIES)
-    def readData(self, filename, utype):
+    def readData(self, filename, utype='NONE'):
         """Reads compositional data to save isotopic data quickly. Furthemore,
         the formatting of input filename is assumed to have the following 
         formatting:
@@ -343,6 +343,7 @@ class Material:
                 "type: {}".format(utype, UTYPE._member_names_))
         
         # check if the uncertainty is present
+        ucheck = False
         if utype != 'NONE':
             ucheck = True
 
@@ -396,7 +397,7 @@ class Material:
                     isoList = []
                     uncList = []
                     isoCount = 0
-                   # matCount = 0
+                    matCount = 0
         # check to see if the name of the material is in line and pull it
             if matKeyword in line:
             # check to see if material list is empty, if its not then store 
@@ -419,9 +420,9 @@ class Material:
             if matKeyword not in line and compKeyword not in line:
                 isoList.append(line.split()[0])
                 abunList.append(line.split()[1])
+                isoCount += 1
                 if ucheck is True:
                     uncList.append(line.split()[2])
-                isoCount += 1
         # check to see if the text file is at the end and if so then make final updates
             if fileCount == len(lines):
                 materialName.append(matList.copy())
