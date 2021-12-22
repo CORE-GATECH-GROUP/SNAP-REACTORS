@@ -434,8 +434,8 @@ class Material:
                     for i in range(isoCount):
                         isotopes.append(isoList[i])
                         abundances.append(abunList[i])
-        self.abundances.append(abundances)
-        self.isotopes.append(isotopes)
+        self.abundances.append(np.array(abundances))
+        self.isotopes.append(np.array(isotopes))
         self.matName.append(materialName)
 class Composition(Material):
     """A derivative of the Material container meant to represent the 
