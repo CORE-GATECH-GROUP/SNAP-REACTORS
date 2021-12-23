@@ -12,7 +12,7 @@ Last updated on Thurs Nov 15 13:44:35 2021 @author: Sam Garcia
 email: dan.kotlyar@me.gatech.edu
 """
 from snapReactors.functions.checkerrors import _isstr, _isarray,\
-    _explengtharray, _isnonnegativearray
+    _explengtharray, _isnonnegativearray, _isinstanceList
 
 from snapReactors.functions.parameters import ALLOWED_PROPERTIES
 
@@ -123,7 +123,7 @@ class Material:
         _isstr(ctype, "Composition Type")
         
         # check names are of correct type (return TypeError if not)
-        _isarray(isotopes, "(Isotope name")
+        _isarray(isotopes, "Isotope Name")
         
         # check that all values are positive (ValueError)
         _isnonnegativearray(abundances, "Abundances")
@@ -219,6 +219,8 @@ class Material:
 
         _isarray(vals, "Property values")
 
+        _isinstanceList(pty, property, "List of properties") 
+        self._properties.append(pty)
         # check that the dimensions of data align with sizes of temperatures
         # and pressures
         if self.pressures is not None:
@@ -434,9 +436,11 @@ class Material:
                     for i in range(isoCount):
                         isotopes.append(isoList[i])
                         abundances.append(abunList[i])
-        self.abundances.append(np.array(abundances))
-        self.isotopes.append(np.array(isotopes))
-        self.matName.append(materialName)
+        self.abundances = np.hstack((self.abundances,
+                                    np.array(abundances, dtype=float)))
+        self.isotopes = np.hstack((self.isotopes, 
+                                    np.array(isotopes, dtype=object)))
+        #self.matName.append(materialName)
 class Composition(Material):
     """A derivative of the Material container meant to represent the 
     composition of a material through isotopic abundance defintion. It 
@@ -542,3 +546,4 @@ class Materials:
 
     def __getitem__(self, pos):
         return self._materials[pos]
+        
