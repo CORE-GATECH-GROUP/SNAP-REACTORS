@@ -169,7 +169,7 @@ class Property:
         if ((valueUnit != ALLOWED_PROPERTIES[id].units.SI) & 
             (valueUnit != ALLOWED_PROPERTIES[id].units.imperial)):
 
-            raise ValueError("Property Units must be either SI: {}"
+            raise ValueError("Property Units must be either SI: {} "
                 "or Imperial: {} , not: {}"
                 " ".format(ALLOWED_PROPERTIES[id].units.SI,
                  ALLOWED_PROPERTIES[id].units.imperial, valueUnit))
