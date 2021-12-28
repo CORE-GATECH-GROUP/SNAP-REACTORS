@@ -44,20 +44,6 @@ class DTYPE(Enum):
     DATAFRAME = 3
     PNG = 4
 
-class PTYPE(Enum):
-    """An Enum to describe all options for a property's type.
-
-    Property type refers to if the propertys type is a Thermophysical,
-    Thermomechanical, Reactor, Operational, etc.
-
-    The PTYPE Enum is used to organize properties to facilitate 
-    handling of properties i.e. evaluation methods.
-    """
-    THPHYS = 1
-    THMECH = 2
-    REACTOR = 3
-    OPERATIONAL = 4
-    
 class VTYPE(Enum):
     """An Enum to describe all options for a property's value type.
 
@@ -170,10 +156,6 @@ class Property:
         if id not in ALLOWED_PROPERTIES:
             raise KeyError("Property {} is not an allowed property: {}"
                 .format(id, ALLOWED_PROPERTIES.keys()))
-
-        if ptype not in PTYPE.__members__:
-            raise KeyError("Property Type {} is not an allowed property"
-                "type: {}".format(ptype, PTYPE._member_names_))
     
         if dtype not in DTYPE.__members__:
             raise KeyError("Property Data Type {} is not an allowed"
@@ -186,7 +168,6 @@ class Property:
                     format(ptype, VTYPE._member_names_))
 
         self.id = id
-        self.ptype = PTYPE[ptype]
         self.dtype = DTYPE[dtype]
         self.vtype = VTYPE[vtype]
         self.value = value
@@ -536,7 +517,7 @@ class Constant(Property):
     --------
     >>> p1 = Constant('cv', 'THPHYS', 1, 'kg')
     """
-    def __init__(self, id, ptype, value, unit, unc=None,
+    def __init__(self, id, value, unit, unc=None,
          ref=None, description=None):
 
         _isnumber(value, "Constant value")
@@ -547,7 +528,7 @@ class Constant(Property):
             _isnonnegative(unc, "Constant uncertainty ")
             unc = np.array([unc])
 
-        Property.__init__(self, id, ptype, 'NUMBER', 'CONSTANT', 
+        Property.__init__(self, id,'NUMBER', 'CONSTANT', 
             value, unit, unc, ref=ref, description = description)
 class Table(Property):
     """A derivative of the Property container meant to represent a TABLE/-
@@ -609,7 +590,7 @@ class Table(Property):
     >>>     np.array([100, 200, 300, 400]), 'K', 
     >>>     unc = np.array([.01, .01, .01, .01]))
     """
-    def __init__(self, id, ptype, value, valueUnit, dependency1, 
+    def __init__(self, id, value, valueUnit, dependency1, 
         dependencyUnit1, dependency2=None, dependencyUnit2=None,  
         unc = None, ref=None, description=None):
 
@@ -638,7 +619,7 @@ class Table(Property):
             dependents = dependency1
             dependentsUnit = dependencyUnit1
 
-        Property.__init__(self, id, ptype, 'NDARRAY',
+        Property.__init__(self, id, 'NDARRAY',
             'TABLE', value, valueUnit, unc, dependents, dependentsUnit,
              ref, description)
 
@@ -711,7 +692,7 @@ class Correlation(Property):
     >>> p3 = Correlation('h', 'THPHYS', corr1, T, 'W/K*m^2', 
     >>>     np.array([300, 600]), 'K')
     """
-    def __init__(self, id, ptype, corrExpr, corrSyms, corrUnit, 
+    def __init__(self, id, corrExpr, corrSyms, corrUnit, 
         dependencyRange1, dependencyUnit1, dependencyRange2=None,
         dependencyUnit2=None,  unc=None,
         ref=None, description=None):
@@ -742,7 +723,7 @@ class Correlation(Property):
             corrRange = np.array([corrRange1, corrRange2])
             dependentsUnit = dependencyUnit1+ ", " +dependencyUnit2
 
-        Property.__init__(self, id, ptype, 'NDARRAY', 'CORRELATION',
+        Property.__init__(self, id,'NDARRAY', 'CORRELATION',
             corrValues, corrUnit, unc, corrRange,
             dependentsUnit, ref, description)
 
