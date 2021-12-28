@@ -106,6 +106,8 @@ class Property:
 
     ValueError
         If ``dependents``, ``unc`` are not positive.
+        If ``valueUnit`` is not in SI or Imperial Units for the specified 
+        property.
 
     KeyError
         If ``id`` is not within ALLOWED_PROPERTIES.
@@ -166,6 +168,14 @@ class Property:
             raise KeyError("Property Value Type {} is not an allowed"
                 "property value type: {}".
                     format(ptype, VTYPE._member_names_))
+
+        if ((valueUnit != ALLOWED_PROPERTIES[id].units.SI) & 
+            (valueUnit != ALLOWED_PROPERTIES[id].units.imperial)):
+
+            raise ValueError("Property Units must be either SI: {}"
+                "or Imperial: {} , not: {}"
+                " ".format(ALLOWED_PROPERTIES[id].units.SI,
+                 ALLOWED_PROPERTIES[id].units.imperial, valueUnit))
 
         self.id = id
         self.dtype = DTYPE[dtype]
