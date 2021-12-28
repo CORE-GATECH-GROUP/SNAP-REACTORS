@@ -73,8 +73,6 @@ class Property:
         name of the property
     dtype : Enum.DTYPE
         property value type i.e.Table, Constant, Correlation, etc. 
-    ptype : Enum.PTYPE
-        property type i.e. Thermophysical, Thermomechanical, etc. 
     vtype : Enum.VTYPE
         property value type i.e.Table, Constant, Correlation, etc. 
     value : ndarray
@@ -100,7 +98,7 @@ class Property:
     Raises
     ------
     TypeError
-        If ``id``, ``dtype``,  ``ptype``,  ``vtype``, ``valueUnit``, 
+        If ``id``, ``dtype``,  ``vtype``, ``valueUnit``, 
             ``ref``,   ``description``, ``dependentsUnit`` is not str.
         If ``value``, ``dependents``, ``unc`` is not ndarray.
 
@@ -111,8 +109,8 @@ class Property:
 
     KeyError
         If ``id`` is not within ALLOWED_PROPERTIES.
-        If ``dtype``,  ``ptype``,  ``vtype``, are not within
-        ``Enum.DTYPE``, ``Enum.PTYPE`` , ``Enum.VTYPE``, respectively.
+        If ``dtype``,  ``vtype``, are not within
+        ``Enum.DTYPE``, ``Enum.VTYPE``, respectively.
 
     Examples
     --------
@@ -129,12 +127,11 @@ class Property:
     >>>     np.array([300, 600]), 'K')
     """
 
-    def __init__(self, id, ptype, dtype, vtype, value, valueUnit,
+    def __init__(self, id, dtype, vtype, value, valueUnit,
         unc = None, dependents=None, dependentsUnit=None, ref=None, 
         description=None):
 
         _isstr(id, "property name/id")
-        _isstr(ptype, "property type")
         _isstr(dtype, "property data type")
         _isstr(vtype, "property value type")
         _isnonnegativearray(value, "property value/s")
@@ -162,12 +159,12 @@ class Property:
         if dtype not in DTYPE.__members__:
             raise KeyError("Property Data Type {} is not an allowed"
                 "property data type: {}"
-                    .format(ptype, DTYPE._member_names_))
+                    .format(dtype, DTYPE._member_names_))
 
         if vtype not in VTYPE.__members__:
             raise KeyError("Property Value Type {} is not an allowed"
                 "property value type: {}".
-                    format(ptype, VTYPE._member_names_))
+                    format(vtype, VTYPE._member_names_))
 
         if ((valueUnit != ALLOWED_PROPERTIES[id].units.SI) & 
             (valueUnit != ALLOWED_PROPERTIES[id].units.imperial)):
@@ -466,17 +463,16 @@ class Property:
 
         def _dfParser(df, i):
             id = str(df['id'][i])
-            ptype = str(df['ptype'][i])
 
             if(str(df['prop'][i]) == "Const"):
                 value, unit  = _constParser(df['mand_values'][i]) 
-                return Constant(id, ptype, value, unit)     
+                return Constant(id, value, unit)     
             elif(str(df['prop'][i]) == "Table"):
                 value, unit, dep, depUnit = _TableParser(df['mand_values'][i]) 
-                return Table(id, ptype, value, unit, dep, depUnit)              
+                return Table(id, value, unit, dep, depUnit)              
             elif(str(df['prop'][i]) == "Corr"):
                 corr, syms, unit, depRange, depUnit = _CorrParser(df['mand_values'][i]) 
-                return Correlation(id, ptype, corr, syms, unit, depRange, depUnit)
+                return Correlation(id, corr, syms, unit, depRange, depUnit)
             else:
                 pass               
 
@@ -496,8 +492,6 @@ class Constant(Property):
     ----------
     id : str
         name of the property
-    ptype : Enum.PTYPE
-        property type i.e. Thermophysical, Thermomechanical, etc. 
     value : ndarray
         value/s of property 
     valueUnit: str
@@ -512,7 +506,7 @@ class Constant(Property):
     Raises
     ------
     TypeError
-        If ``id``, ``ptype``, ``valueUnit``, ``ref``, 
+        If ``id``, ``valueUnit``, ``ref``, 
             ``description`` is not str.
         If ``value``,  ``unc`` is not a number.
 
@@ -521,7 +515,6 @@ class Constant(Property):
 
     KeyError
         If ``id`` is not within ALLOWED_PROPERTIES.
-        If ``ptype``is not within ``Enum.PTYPE``.
 
     Examples
     --------
@@ -550,8 +543,6 @@ class Table(Property):
     ----------
     id : str
         name of the property
-    ptype : Enum.PTYPE
-        property type i.e. Thermophysical, Thermomechanical, etc. 
     value : ndarray
         value/s of property 
     valueUnit: str
@@ -579,7 +570,7 @@ class Table(Property):
     Raises
     ------
     TypeError
-        If ``id``, ``dtype``,  ``ptype``,  ``vtype``, ``valueUnit``, 
+        If ``id``, ``dtype``, ``vtype``, ``valueUnit``, 
             ``ref``,   ``description``, ``dependencyUnit1``, 
             ``dependencyUnit2` is not str.
         If ``value``, ``dependency1``, ``dependency1``, 
@@ -592,7 +583,6 @@ class Table(Property):
 
     KeyError
         If ``id`` is not within ALLOWED_PROPERTIES.
-        If ``ptype``is not within ``Enum.PTYPE``
 
     Examples
     --------
@@ -649,8 +639,6 @@ class Correlation(Property):
     ----------
     id : str
         name of the property
-    ptype : Enum.PTYPE
-        property type i.e. Thermophysical, Thermomechanical, etc. 
     corrExpr : str
         expression representing correlation 
     corrSyms : str
@@ -680,7 +668,7 @@ class Correlation(Property):
     Raises
     ------
     TypeError
-        If ``id``, ``ptype``, ``valueUnit``, ``dependencyUnit1``, 
+        If ``id``, ``valueUnit``, ``dependencyUnit1``, 
             ``dependencyUnit1``,``ref``, ``description``,  is not str.
         If ``dependencyRange1``, ``dependencyRange2`` is not an ndarray.
         If ``corrExpr`` is not a string expression.
@@ -693,7 +681,6 @@ class Correlation(Property):
 
     KeyError
         If ``id`` is not within ALLOWED_PROPERTIES.
-        If ``ptype`` is not within ``Enum.PTYPE``.
 
     Examples
     --------
