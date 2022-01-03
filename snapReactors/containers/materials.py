@@ -344,15 +344,6 @@ class Material:
         if not os.path.isfile(filename):
             raise OSError("Filename {} is not found".format(filename))
 
-        # if utype not in UTYPE.__members__:
-        #    raise KeyError("Uncertainty Type {} is not an allowed uncertainty"
-        #        "type: {}".format(utype, UTYPE._member_names_))
-
-        # check if the uncertainty is present
-        #ucheck = False
-        # if utype != 'NONE':
-        #    ucheck = True
-
         with open(filename) as filehandle:
             lines = filehandle.readlines()
 
@@ -423,9 +414,15 @@ class Material:
         self.isotopes = np.hstack((self.matName, 
                                     np.array(self.matpoints[:]["isotopes"], 
                                             dtype=object)))
-        self.unc = np.hstack((self.matName, 
-                                    np.array(self.matpoints[:]["unc"], 
+        for i in range(self.matpoints[:]["unc"]):
+            if type(self.matpoints[:]["unc"]) is str:
+                self.unc = np.hstack((self.matName, 
+                                    np.array(self.matpoints[i]["unc"], 
                                             dtype=object)))
+            else:
+                self.unc = np.hstack((self.matName, 
+                                    np.array(self.matpoints[i]["unc"], 
+                                            dtype=float)))
         self.reference = np.hstack((self.matName, 
                                     np.array(self.matpoints[:]["reference"], 
                                             dtype=object)))
