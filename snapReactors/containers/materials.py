@@ -21,9 +21,11 @@ from enum import Enum
 import os
 
 import numpy as np
+
+
 class UTYPE(Enum):
     """An Enum to describe all options for an uncertainty's type.
-    
+
     Uncertainty type refers to if the uncertainty is given as absolute, 
     relative, or percentage. 
 
@@ -35,18 +37,19 @@ class UTYPE(Enum):
     PERCENTAGE = 3
     NONE = 4
 
+
 class CTYPE(Enum):
     """An Enum to describe all options for a composition's type 
-    
+
     Composition type refers to if the composition is given as weight percent
     or as atomic percent
-    
+
     The CTYPE Enum is used to organize properties to facilitate handling 
     of properties i.e. evaluation methods.
     """
     ATOMIC = 1
-    WEIGHT = 2  
-    NONE = 3
+    WEIGHT = 2
+
 
 class Material:
     """A container to store the data for each material
@@ -114,20 +117,20 @@ class Material:
     """
 
     def __init__(self, matName, utype, ctype, isotopes, abundances,
-    unc=None, temperatures=None, pressures=None, reference=None, 
-    description=None, filename=None):
+                 unc=None, temperatures=None, pressures=None, reference=None,
+                 description=None, filename=None):
 
         # check that variables are of correct type (return TypeError if not)
         _isstr(matName, "Material name")
         _isstr(utype, "Uncertainty Type")
         _isstr(ctype, "Composition Type")
-        
+
         # check names are of correct type (return TypeError if not)
         _isarray(isotopes, "Isotope Name")
-        
+
         # check that all values are positive (ValueError)
         _isnonnegativearray(abundances, "Abundances")
-        
+
         if not isinstance(unc, type(None)):
             _isnonnegativearray(unc, "property value uncertainty/s")
 
@@ -140,17 +143,17 @@ class Material:
 
         if reference != None:
             _isstr(reference, "Reference")
-        
+
         if description != None:
             _isstr(description, "description of property/notes")
         if filename != None:
             _isstr(filename, "data filename")
         if utype not in UTYPE.__members__:
             raise KeyError("Uncertainty Type {} is not an allowed uncertainty"
-                "type: {}".format(utype, UTYPE._member_names_))
+                           "type: {}".format(utype, UTYPE._member_names_))
         if ctype not in CTYPE.__members__:
             raise KeyError("Composition Type {} is not an allowed composition"
-                "type: {}".format(ctype, CTYPE._member_names_))
+                           "type: {}".format(ctype, CTYPE._member_names_))
 
         self.matName = matName
         self.utype = UTYPE[utype]
@@ -168,7 +171,7 @@ class Material:
     def __str__(self):
         """Overwrites print method, prints all objects variables."""
         return str(vars(self))
-    
+
     def addproperty(self, pty, vals):
         """Add data for a specific property
 
@@ -209,41 +212,41 @@ class Material:
 
         """
 
-        _isstr(pty, "Property")
-        if pty not in ALLOWED_PROPERTIES:
-            raise KeyError("Property {} is not an allowed property: {}"
-                           .format(pty, ALLOWED_PROPERTIES.keys()))
-        if hasattr(self, pty):
-            raise AttributeError("Property {} already exists in attributes {}"
-                                 .format(pty, self))
+        #_isstr(pty, "Property")
+        # if pty not in ALLOWED_PROPERTIES:
+        #    raise KeyError("Property {} is not an allowed property: {}"
+        #                   .format(pty, ALLOWED_PROPERTIES.keys()))
+        # if hasattr(self, pty):
+        #    raise AttributeError("Property {} already exists in attributes {}"
+        #                         .format(pty, self))
 
-        _isarray(vals, "Property values")
+        #_isarray(vals, "Property values")
 
-        _isinstanceList(pty, property, "List of properties") 
+        _isinstanceList(pty, property, "List of properties")
         self._properties.append(pty)
         # check that the dimensions of data align with sizes of temperatures
         # and pressures
-        if self.pressures is not None:
-            _explengtharray(vals.shape, 2, "vals array")
-            if vals.shape[0] != len(self.pressures):
-                raise ValueError("vals must have {} rows and not {}"
-                                 .format(len(self.pressures), vals.shape[0]))
-            if vals.shape[1] != len(self.temperatures):
-                raise ValueError("vals must have {} columns and not {}"
-                                 .format(len(self.temperatures),
-                                         vals.shape[1]))
-            # check that values are all positive
-            for rows in vals:
-                _isnonnegativearray(rows, "Values in Data array")
-        else:
-            _explengtharray(vals, len(self.temperatures),
-                           "Number of values in vals")
-            # check that values are all positive
-            _isnonnegativearray(vals, "Values in Data array")
+        # if self.pressures is not None:
+        #    _explengtharray(vals.shape, 2, "vals array")
+        #    if vals.shape[0] != len(self.pressures):
+        #        raise ValueError("vals must have {} rows and not {}"
+        #                         .format(len(self.pressures), vals.shape[0]))
+        #    if vals.shape[1] != len(self.temperatures):
+        #        raise ValueError("vals must have {} columns and not {}"
+        #                         .format(len(self.temperatures),
+        #                                 vals.shape[1]))
+        # check that values are all positive
+        #    for rows in vals:
+        #        _isnonnegativearray(rows, "Values in Data array")
+        # else:
+        #    _explengtharray(vals, len(self.temperatures),
+        #                   "Number of values in vals")
+        # check that values are all positive
+        #    _isnonnegativearray(vals, "Values in Data array")
 
         # Assign values associated with this pty to a new attribute
-        setattr(self, pty, vals)
-        self._properties.append(pty)
+        #setattr(self, pty, vals)
+        # self._properties.append(pty)
 
     def getproperty(self, pty):
         """Obtain the values for a certain property
@@ -296,13 +299,14 @@ class Material:
         """
 
         return list(ALLOWED_PROPERTIES)
-    def readData(self, filename, utype='NONE'):
+
+    def readData(self, filename):
         """Reads compositional data to save isotopic data quickly. Furthemore,
         the formatting of input filename is assumed to have the following 
         formatting:
         Isotope Abundance Uncertainty
         Isotope Abundance Uncertainty
-        
+
         Note that if uncertainties are indicated to not exist then the method
         will not save uncertainty data. If uncertainties are indicated to 
         exist then the type must be declared
@@ -315,7 +319,7 @@ class Material:
             uncertainty type i.e. absolute, relative, percentage
         unc : ndarray
             uncertainty of value/s as they appear in reference
-        
+
         Raises
         ------
         TypeError
@@ -336,18 +340,18 @@ class Material:
         >>> Mat1.readData(file.i, "Relative" )
             """
         _isstr(filename, "file name")
-        
+
         if not os.path.isfile(filename):
             raise OSError("Filename {} is not found".format(filename))
-        
-        if utype not in UTYPE.__members__:
-            raise KeyError("Uncertainty Type {} is not an allowed uncertainty"
-                "type: {}".format(utype, UTYPE._member_names_))
-        
+
+        # if utype not in UTYPE.__members__:
+        #    raise KeyError("Uncertainty Type {} is not an allowed uncertainty"
+        #        "type: {}".format(utype, UTYPE._member_names_))
+
         # check if the uncertainty is present
-        ucheck = False
-        if utype != 'NONE':
-            ucheck = True
+        #ucheck = False
+        # if utype != 'NONE':
+        #    ucheck = True
 
         with open(filename) as filehandle:
             lines = filehandle.readlines()
@@ -359,7 +363,21 @@ class Material:
 
         # read input file
         with open(filename, "r") as f:
-            lines = f.readlines()
+            data = f.readlines()
+        self.matpoints = []
+        mp = None
+        for j, line in enumerate(data):
+
+            if "Material Name" in line:
+                mp = dict()
+                mp["matname"] = str(line.split(":")[-1])
+
+            if "ctype" in line:
+                mp["ctype"] = str(line.split(":")[-1])
+            
+            if "Number of isotopes" in line:
+                isoNumber = int(line.split(":")[-1])
+            
 
         matKeyword = "Material"
         compKeyword = "Component"
@@ -378,10 +396,10 @@ class Material:
             fileCount += 1
         # check to see if the name of component is in line
             if compKeyword in line:
-            # only parse the component name at the start of file
+                # only parse the component name at the start of file
                 if fileCount == 1:
                     compList.append(line.split()[1])
-            # if component comes up again then dump xList data into 
+            # if component comes up again then dump xList data into
             # respective lists
                 else:
                     materialName.append(matList.copy())
@@ -402,8 +420,8 @@ class Material:
                     matCount = 0
         # check to see if the name of the material is in line and pull it
             if matKeyword in line:
-            # check to see if material list is empty, if its not then store 
-            # into materialName
+                # check to see if material list is empty, if its not then store
+                # into materialName
                 matList.append(line.split()[1])
                 if ucheck is True:
                     for i in range(isoCount):
@@ -437,16 +455,18 @@ class Material:
                         isotopes.append(isoList[i])
                         abundances.append(abunList[i])
         self.abundances = np.hstack((self.abundances,
-                                    np.array(abundances, dtype=float)))
-        self.isotopes = np.hstack((self.isotopes, 
-                                    np.array(isotopes, dtype=object)))
-        #self.matName.append(materialName)
+                                     np.array(abundances, dtype=float)))
+        self.isotopes = np.hstack((self.isotopes,
+                                   np.array(isotopes, dtype=object)))
+        # self.matName.append(materialName)
+
+
 class Composition(Material):
     """A derivative of the Material container meant to represent the 
     composition of a material through isotopic abundance defintion. It 
     contains all the attributes of the Material container but with a simpler 
     interface to define isotopic composition.
-    
+
     Attributes
     ----------
      utype : Enum.UTYPE
@@ -463,7 +483,7 @@ class Composition(Material):
         material data reference tag
     description : str
         material description
-    
+
     Raises
     ------
     TypeError 
@@ -475,28 +495,28 @@ class Composition(Material):
     KeyError
         If ``utype``, ``ctype`` is not within ``Enum.UTYPE`` and 
             ``Enum.CTYPE``
-    
+
     Examples
     --------
     >>> comp1 = Composition(Boron Carbide, 'ABSOLUTE', 'WEIGHT', [B-10], 
                 [1.0], [0], 'Taken from reference x', 'This is an example')
     """
-    def __init__(self, matName, utype, ctype, isotopes, abundances, unc=None, 
-        reference=None, description=None):
+
+    def __init__(self, matName, utype, ctype, isotopes, abundances, unc=None,
+                 reference=None, description=None):
 
         # check names are of correct type (return TypeError if not)
         _isarray(isotopes, "(Isotope name")
-        
+
         # check that all values are positive (ValueError)
         _isnonnegativearray(abundances, "Abundances")
-        
+
         if not isinstance(unc, type(None)):
             _isnonnegativearray(unc, "property value uncertainty/s")
-        
+
         Material.__init__(self, matName, utype, ctype, isotopes, abundances,
-        unc, reference=reference, description=description)
-        
-        
+                          unc, reference=reference, description=description)
+
 
 class Materials:
     """A container to store the data for all material
@@ -539,11 +559,11 @@ class Materials:
             raise TypeError("material must be a Material and"
                             "not {}".format(type(material)))
         if material.matName in self.matNames:
-            raise KeyError("Material {} already exists".format(material.matName))
+            raise KeyError(
+                "Material {} already exists".format(material.matName))
 
         self.matNames.append(material.matName)
         self._materials[material.matName] = material
 
     def __getitem__(self, pos):
         return self._materials[pos]
-        
