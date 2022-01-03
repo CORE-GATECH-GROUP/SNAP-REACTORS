@@ -365,12 +365,20 @@ class Material:
         with open(filename, "r") as f:
             data = f.readlines()
         self.matpoints = []
+        firstState = True
         mp = None
+
         for j, line in enumerate(data):
 
             if "Material Name" in line:
+                
+                if firstState:
+                    firstState = False
+                else:
+                    self.matpoints.append(mp)
+
                 mp = dict()
-                mp["matname"] = str(line.split(":")[-1])
+                mp["matName"] = str(line.split(":")[-1])
 
             if "ctype" in line:
                 mp["ctype"] = str(line.split(":")[-1])
@@ -390,6 +398,8 @@ class Material:
                     mp["abundances"][k] = float(line1[1])
                     if mp["utype"] is not "NONE":
                         mp["unc"][k] = float(line1[2])
+                    else:
+                        mp["unc"][k] = str("None")
             
             if "Reference" in line:
                 mp["reference"] = str(line.split(":")[-1])
@@ -398,88 +408,31 @@ class Material:
                 mp["description"] = str(line.split(":")[-1])
         
         self.matpoints.append(mp)
-
-        
-        matKeyword = "Material"
-        compKeyword = "Component"
-        matCount = 0
-        isoCount = 0
-        fileCount = 0
-        isoList = list()
-        abunList = list()
-        compList = list()
-        uncList = list()
-        matList = list()
-        materialName = list()
-        isotopes = list()
-        abundances = list()
-        for line in lines:
-            fileCount += 1
-        # check to see if the name of component is in line
-            if compKeyword in line:
-                # only parse the component name at the start of file
-                if fileCount == 1:
-                    compList.append(line.split()[1])
-            # if component comes up again then dump xList data into
-            # respective lists
-                else:
-                    materialName.append(matList.copy())
-                    compList.append(line.split()[1])
-                    if ucheck is True:
-                        for i in range(isoCount):
-                            isotopes.append([isoList[i], uncList[i]])
-                            abundances.append(abunList[i])
-                    else:
-                        for i in range(isoCount):
-                            isotopes.append(isoList[i])
-                            abundances.append(abunList[i])
-                    matList = []
-                    compList = []
-                    isoList = []
-                    uncList = []
-                    isoCount = 0
-                    matCount = 0
-        # check to see if the name of the material is in line and pull it
-            if matKeyword in line:
-                # check to see if material list is empty, if its not then store
-                # into materialName
-                matList.append(line.split()[1])
-                if ucheck is True:
-                    for i in range(isoCount):
-                        isotopes.append([isoList[i], uncList[i]])
-                        abundances.append(abunList[i])
-                else:
-                    for i in range(isoCount):
-                        isotopes.append(isoList[i])
-                        abundances.append(abunList[i])
-                isoList = []
-                abunList = []
-                uncList = []
-                matCount += 1
-                isoCount = 0
-        # check to see that material name and component name are not present
-            if matKeyword not in line and compKeyword not in line:
-                isoList.append(line.split()[0])
-                abunList.append(line.split()[1])
-                isoCount += 1
-                if ucheck is True:
-                    uncList.append(line.split()[2])
-        # check to see if the text file is at the end and if so then make final updates
-            if fileCount == len(lines):
-                materialName.append(matList.copy())
-                if ucheck is True:
-                    for i in range(isoCount):
-                        isotopes.append([isoList[i], uncList[i]])
-                        abundances.append(abunList[i])
-                else:
-                    for i in range(isoCount):
-                        isotopes.append(isoList[i])
-                        abundances.append(abunList[i])
-        self.abundances = np.hstack((self.abundances,
-                                     np.array(abundances, dtype=float)))
-        self.isotopes = np.hstack((self.isotopes,
-                                   np.array(isotopes, dtype=object)))
-        # self.matName.append(materialName)
+        self.matName = np.hstack((self.matName, 
+                                    np.array(self.matpoints[:]["matName"], 
+                                            dtype=object)))
+        self.utype = np.hstack((self.matName, 
+                                    np.array(self.matpoints[:]["utype"], 
+                                            dtype=object)))
+        self.ctype = np.hstack((self.matName, 
+                                    np.array(self.matpoints[:]["ctype"], 
+                                            dtype=object)))
+        self.abundances = np.hstack((self.matName, 
+                                    np.array(self.matpoints[:]["abundances"], 
+                                            dtype=float)))
+        self.isotopes = np.hstack((self.matName, 
+                                    np.array(self.matpoints[:]["isotopes"], 
+                                            dtype=object)))
+        self.unc = np.hstack((self.matName, 
+                                    np.array(self.matpoints[:]["unc"], 
+                                            dtype=object)))
+        self.reference = np.hstack((self.matName, 
+                                    np.array(self.matpoints[:]["reference"], 
+                                            dtype=object)))
+        self.description = np.hstack((self.matName, 
+                                    np.array(self.matpoints[:]["description"], 
+                                            dtype=object)))
+        self.filename = filename
 
 
 class Composition(Material):
