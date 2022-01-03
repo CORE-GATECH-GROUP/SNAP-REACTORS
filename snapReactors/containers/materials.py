@@ -375,10 +375,31 @@ class Material:
             if "ctype" in line:
                 mp["ctype"] = str(line.split(":")[-1])
             
+            if "utype" in line:
+                mp["utype"] = str(line.split(":")[-1])
+            
             if "Number of isotopes" in line:
                 isoNumber = int(line.split(":")[-1])
             
+            if "Isotopic Definition" in line:
+                for var in ["isotopes", "abundances", "unc"]:
+                    mp[var] = np.zeros(isoNumber)
+                for k in range(isoNumber):
+                    line1 = data[j+k+3].split()
+                    mp["isotopes"][k] = str(line1[0])
+                    mp["abundances"][k] = float(line1[1])
+                    if mp["utype"] is not "NONE":
+                        mp["unc"][k] = float(line1[2])
+            
+            if "Reference" in line:
+                mp["reference"] = str(line.split(":")[-1])
+            
+            if "Description" in line:
+                mp["description"] = str(line.split(":")[-1])
+        
+        self.matpoints.append(mp)
 
+        
         matKeyword = "Material"
         compKeyword = "Component"
         matCount = 0
