@@ -14,7 +14,7 @@ email: dan.kotlyar@me.gatech.edu
 from snapReactors.functions.checkerrors import _isstr, _isarray,\
     _explengtharray, _isnonnegativearray, _isinstanceList
 
-from snapReactors.functions.parameters import ALLOWED_PROPERTIES
+from snapReactors.functions.parameters import ALLOWED_PROPERTIES, Property
 
 from enum import Enum
 
@@ -357,15 +357,17 @@ class Material:
             if "ctype" in line:
                 ctype = str(line.split(":")[-1])
                 if ctype.strip() not in CTYPE.__members__:
-                    raise KeyError("Composition Type {} is not an allowed composition"
-                           "type: {}".format(ctype, CTYPE._member_names_))
+                    raise KeyError("Composition Type {} is not an allowed" 
+                                    "composition type: {}".format(ctype, 
+                                                        CTYPE._member_names_))
                 mp["ctype"] = CTYPE[ctype.strip()]
             
             if "utype" in line:
                 utype = str(line.split(":")[-1])
                 if utype.strip() not in UTYPE.__members__:
-                    raise KeyError("Uncertainty Type {} is not an allowed uncertainty"
-                           "type: {}".format(utype, UTYPE._member_names_))
+                    raise KeyError("Uncertainty Type {} is not an allowed" 
+                                    "uncertainty type: {}".format(utype, 
+                                                        UTYPE._member_names_))
                 mp["utype"] = UTYPE[utype.strip()]
             
             if "Number of isotopes" in line:
@@ -396,7 +398,14 @@ class Material:
             
             if "Description" in line:
                 mp["description"] = str(line.split(":")[-1])
-        
+
+            if "Properties" in line:
+                indexBegin = j + 1
+            if "}" == line:
+                indexEnd = j - 1
+            mp["Properties"] = Property._readProperty(data[indexBegin: 
+                                                                    indexEnd])
+
         matpoints.append(mp)
         for i in range(len(matpoints)):
             self.matName.append(matpoints[i]["matName"])
@@ -407,7 +416,7 @@ class Material:
             self.unc.append(matpoints[i]["unc"])
             self.reference.append(matpoints[i]["reference"])
             self.description.append(matpoints[i]["description"])
-
+            self._properties.append(matpoints[i]["Properties"])
 
 class Composition(Material):
     """A derivative of the Material container meant to represent the 
