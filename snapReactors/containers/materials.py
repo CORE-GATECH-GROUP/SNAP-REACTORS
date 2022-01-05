@@ -154,18 +154,33 @@ class Material:
         if ctype not in CTYPE.__members__:
             raise KeyError("Composition Type {} is not an allowed composition"
                            "type: {}".format(ctype, CTYPE._member_names_))
-
-        self.matName = matName
-        self.utype = UTYPE[utype]
-        self.ctype = CTYPE[ctype]
-        self.abundances = abundances
-        self.isotopes = isotopes
-        self.unc = unc
-        self.temperatures = temperatures
-        self.pressures = pressures
-        self.reference = reference
-        self.description = description
-        self.filename = filename
+        # Need to initialize all parameters in Material (i.e. matName, utype,
+        # ctype, etc) as lists so that we can have nested numpy arrays of
+        # different lengths within each parameter to allow for variance, i.e.
+        # numpy is designed for multidimensional arrays whose individual array 
+        # sizes can vary
+        self.matName = []
+        self.matName.append(matName)
+        self.utype = []
+        self.utype.append(UTYPE[utype])
+        self.ctype = []
+        self.ctype.append(CTYPE[ctype])
+        self.abundances = []
+        self.abundances.append(abundances)
+        self.isotopes = []
+        self.isotopes.append(isotopes)
+        self.unc = []
+        self.unc.append(unc)
+        self.temperatures = []
+        self.temperatures.append(temperatures)
+        self.pressures = []
+        self.pressures.append(pressures)
+        self.reference = []
+        self.reference.append(reference)
+        self.description = []
+        self.description.append(description)
+        self.filename = []
+        self.filename.append(filename)
         self._properties = []
 
     def __str__(self):
@@ -355,7 +370,7 @@ class Material:
         # read input file
         with open(filename, "r") as f:
             data = f.readlines()
-        self.matpoints = []
+        matpoints = []
         firstState = True
         mp = None
 
@@ -366,31 +381,47 @@ class Material:
                 if firstState:
                     firstState = False
                 else:
-                    self.matpoints.append(mp)
+                    matpoints.append(mp)
 
                 mp = dict()
                 mp["matName"] = str(line.split(":")[-1])
 
             if "ctype" in line:
-                mp["ctype"] = str(line.split(":")[-1])
+                ctype = str(line.split(":")[-1])
+                if ctype.strip() not in CTYPE.__members__:
+                    raise KeyError("Composition Type {} is not an allowed composition"
+                           "type: {}".format(ctype, CTYPE._member_names_))
+                mp["ctype"] = ctype.strip()
             
             if "utype" in line:
-                mp["utype"] = str(line.split(":")[-1])
+                utype = str(line.split(":")[-1])
+                if utype.strip() not in UTYPE.__members__:
+                    raise KeyError("Uncertainty Type {} is not an allowed uncertainty"
+                           "type: {}".format(utype, UTYPE._member_names_))
+                mp["utype"] = UTYPE[utype.strip()]
             
             if "Number of isotopes" in line:
                 isoNumber = int(line.split(":")[-1])
             
             if "Isotopic Definition" in line:
                 for var in ["isotopes", "abundances", "unc"]:
-                    mp[var] = np.zeros(isoNumber)
-                for k in range(isoNumber):
-                    line1 = data[j+k+3].split()
-                    mp["isotopes"][k] = str(line1[0])
-                    mp["abundances"][k] = float(line1[1])
-                    if mp["utype"] is not "NONE":
-                        mp["unc"][k] = float(line1[2])
+                    if var == "isotopes":
+                        mp[var] = np.zeros(isoNumber, dtype=object)
+                    elif var == "unc":
+                        if mp["utype"] == UTYPE.NONE:
+                            mp[var] = np.zeros(isoNumber, dtype=object)
+                        else:
+                            mp[var] = np.zeros(isoNumber, dtype=float)
                     else:
-                        mp["unc"][k] = str("None")
+                        mp[var] = np.zeros(isoNumber, dtype = float)
+                for k in range(isoNumber):
+                    line1 = data[j+k+2].split()
+                    mp["isotopes"][k] = line1[0]
+                    mp["abundances"][k] = float(line1[1])
+                    if mp["utype"] == UTYPE.NONE:
+                        mp["unc"][k] = "None"
+                    else:
+                        mp["unc"][k] = float(line1[2])
             
             if "Reference" in line:
                 mp["reference"] = str(line.split(":")[-1])
@@ -398,38 +429,38 @@ class Material:
             if "Description" in line:
                 mp["description"] = str(line.split(":")[-1])
         
-        self.matpoints.append(mp)
-        self.matName = np.hstack((self.matName, 
-                                    np.array(self.matpoints[:]["matName"], 
+        matpoints.append(mp)
+        for i in range(len(matpoints)):
+            self.matName = np.hstack((self.matName, 
+                                    np.array(matpoints[i]["matName"], 
                                             dtype=object)))
-        self.utype = np.hstack((self.matName, 
-                                    np.array(self.matpoints[:]["utype"], 
+            self.utype = np.hstack((self.utype, 
+                                    np.array(matpoints[i]["utype"], 
                                             dtype=object)))
-        self.ctype = np.hstack((self.matName, 
-                                    np.array(self.matpoints[:]["ctype"], 
+            self.ctype = np.hstack((self.ctype, 
+                                    np.array(matpoints[i]["ctype"], 
                                             dtype=object)))
-        self.abundances = np.hstack((self.matName, 
-                                    np.array(self.matpoints[:]["abundances"], 
+            self.abundances = np.hstack((self.abundances, 
+                                    np.array(matpoints[i]["abundances"], 
                                             dtype=float)))
-        self.isotopes = np.hstack((self.matName, 
-                                    np.array(self.matpoints[:]["isotopes"], 
+            self.isotopes = np.hstack((self.isotopes, 
+                                    np.array(matpoints[i]["isotopes"], 
                                             dtype=object)))
-        for i in range(self.matpoints[:]["unc"]):
-            if type(self.matpoints[:]["unc"]) is str:
-                self.unc = np.hstack((self.matName, 
-                                    np.array(self.matpoints[i]["unc"], 
+            for j in range(len(matpoints[i]["unc"])):
+                if matpoints[i]["unc"][j] == "None":
+                    self.unc = np.hstack((self.unc, 
+                                    np.array(matpoints[i]["unc"][j], 
                                             dtype=object)))
-            else:
-                self.unc = np.hstack((self.matName, 
-                                    np.array(self.matpoints[i]["unc"], 
+                else:
+                    self.unc = np.hstack((self.unc, 
+                                    np.array(matpoints[i]["unc"][j], 
                                             dtype=float)))
-        self.reference = np.hstack((self.matName, 
-                                    np.array(self.matpoints[:]["reference"], 
+            self.reference = np.hstack((self.reference, 
+                                    np.array(matpoints[i]["reference"], 
                                             dtype=object)))
-        self.description = np.hstack((self.matName, 
-                                    np.array(self.matpoints[:]["description"], 
+            self.description = np.hstack((self.description, 
+                                    np.array(matpoints[i]["description"], 
                                             dtype=object)))
-        self.filename = filename
 
 
 class Composition(Material):
@@ -538,3 +569,9 @@ class Materials:
 
     def __getitem__(self, pos):
         return self._materials[pos]
+
+
+if __name__ == "__main__":
+    mat1 = Material("newMat", 'NONE', 'WEIGHT', np.array([]), np.array([]), None, np.array([300, 900, 1800]), np.array([10E+6, 11E+6]), reference=None, description='This is an example')
+    Material.readData(mat1, 'c:\\Users\\Samuel\\Documents\\GitHub\\SNAP-REACTORS\\snapReactors\\containers\\test.txt')
+    print(mat1)    

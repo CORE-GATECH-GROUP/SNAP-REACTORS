@@ -1,4 +1,10 @@
-Material hasteC
+Material Name: hasteC
+ctype: ATOMIC
+utype: NONE
+Number of isotopes: 33
+Isotopic Definition:
+--------------------
+
 6000.03c     -0.0007    
 27059.03c    -0.0125    
 24050.03c    -0.006952
@@ -32,3 +38,5 @@ Material hasteC
 28061.03c     -0.0020438407
 28062.03c     -0.0065166585
 28064.03c     -0.0016596008
+reference: NA-Examples
+description: This is an example input file
