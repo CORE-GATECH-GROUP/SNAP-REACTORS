@@ -187,7 +187,7 @@ class Material:
         """Overwrites print method, prints all objects variables."""
         return str(vars(self))
 
-    def addproperty(self, pty, vals):
+    def addproperty(self, pty):
         """Add data for a specific property
 
         Values for a specific property, e.g. ``tc`` (thermal conductivity) are
@@ -227,41 +227,8 @@ class Material:
 
         """
 
-        #_isstr(pty, "Property")
-        # if pty not in ALLOWED_PROPERTIES:
-        #    raise KeyError("Property {} is not an allowed property: {}"
-        #                   .format(pty, ALLOWED_PROPERTIES.keys()))
-        # if hasattr(self, pty):
-        #    raise AttributeError("Property {} already exists in attributes {}"
-        #                         .format(pty, self))
-
-        #_isarray(vals, "Property values")
-
         _isinstanceList(pty, property, "List of properties")
         self._properties.append(pty)
-        # check that the dimensions of data align with sizes of temperatures
-        # and pressures
-        # if self.pressures is not None:
-        #    _explengtharray(vals.shape, 2, "vals array")
-        #    if vals.shape[0] != len(self.pressures):
-        #        raise ValueError("vals must have {} rows and not {}"
-        #                         .format(len(self.pressures), vals.shape[0]))
-        #    if vals.shape[1] != len(self.temperatures):
-        #        raise ValueError("vals must have {} columns and not {}"
-        #                         .format(len(self.temperatures),
-        #                                 vals.shape[1]))
-        # check that values are all positive
-        #    for rows in vals:
-        #        _isnonnegativearray(rows, "Values in Data array")
-        # else:
-        #    _explengtharray(vals, len(self.temperatures),
-        #                   "Number of values in vals")
-        # check that values are all positive
-        #    _isnonnegativearray(vals, "Values in Data array")
-
-        # Assign values associated with this pty to a new attribute
-        #setattr(self, pty, vals)
-        # self._properties.append(pty)
 
     def getproperty(self, pty):
         """Obtain the values for a certain property
@@ -316,34 +283,35 @@ class Material:
         return list(ALLOWED_PROPERTIES)
 
     def readData(self, filename):
-        """Reads compositional data to save isotopic data quickly. Furthemore,
+        """Reads compositional data to save material data quickly. Furthemore,
         the formatting of input filename is assumed to have the following 
         formatting:
-        Isotope Abundance Uncertainty
-        Isotope Abundance Uncertainty
+        
+        Material Name: exampleName
+        ctype: compositionType
+        utype: uncertaintyType
+        Number of isotopes: isoNumber
+        Isotopic Definition:
+        --------------------
+        AAZZZ XXXXX UUUUU
+        ...
+        reference: NA-Examples
+        description: This is an example input file
 
         Note that if uncertainties are indicated to not exist then the method
-        will not save uncertainty data. If uncertainties are indicated to 
-        exist then the type must be declared
+        will save uncertainty data as 'None'. Additionally, this method reads
+        multiple material data for components that require more than one 
+        material.
 
         Attributes
         ----------
         filename : str
             input file that will be parsed
-        utype : Enum.UTYPE
-            uncertainty type i.e. absolute, relative, percentage
-        unc : ndarray
-            uncertainty of value/s as they appear in reference
 
         Raises
         ------
         TypeError
             If ``filename``, ``utype`` are not str
-            If ``unc`` is not ndarray
-        ValueError
-            If ``unc`` are not non-negative
-        KeyError
-            If ``utype`` is not within ``Enum.UTYPE``
         OSError
             "If ``filename`` is not found 
         Examples
@@ -352,7 +320,7 @@ class Material:
                     ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
                     abundances= np.array(0.xxx, 0.yyy, 0.zzz),
                     unc = np.array(xxx, yyy, zzz))
-        >>> Mat1.readData(file.i, "Relative" )
+        >>> Material.readData(Mat1, file.i)
             """
         _isstr(filename, "file name")
 
@@ -391,7 +359,7 @@ class Material:
                 if ctype.strip() not in CTYPE.__members__:
                     raise KeyError("Composition Type {} is not an allowed composition"
                            "type: {}".format(ctype, CTYPE._member_names_))
-                mp["ctype"] = ctype.strip()
+                mp["ctype"] = CTYPE[ctype.strip()]
             
             if "utype" in line:
                 utype = str(line.split(":")[-1])
@@ -431,36 +399,14 @@ class Material:
         
         matpoints.append(mp)
         for i in range(len(matpoints)):
-            self.matName = np.hstack((self.matName, 
-                                    np.array(matpoints[i]["matName"], 
-                                            dtype=object)))
-            self.utype = np.hstack((self.utype, 
-                                    np.array(matpoints[i]["utype"], 
-                                            dtype=object)))
-            self.ctype = np.hstack((self.ctype, 
-                                    np.array(matpoints[i]["ctype"], 
-                                            dtype=object)))
-            self.abundances = np.hstack((self.abundances, 
-                                    np.array(matpoints[i]["abundances"], 
-                                            dtype=float)))
-            self.isotopes = np.hstack((self.isotopes, 
-                                    np.array(matpoints[i]["isotopes"], 
-                                            dtype=object)))
-            for j in range(len(matpoints[i]["unc"])):
-                if matpoints[i]["unc"][j] == "None":
-                    self.unc = np.hstack((self.unc, 
-                                    np.array(matpoints[i]["unc"][j], 
-                                            dtype=object)))
-                else:
-                    self.unc = np.hstack((self.unc, 
-                                    np.array(matpoints[i]["unc"][j], 
-                                            dtype=float)))
-            self.reference = np.hstack((self.reference, 
-                                    np.array(matpoints[i]["reference"], 
-                                            dtype=object)))
-            self.description = np.hstack((self.description, 
-                                    np.array(matpoints[i]["description"], 
-                                            dtype=object)))
+            self.matName.append(matpoints[i]["matName"])
+            self.utype.append(matpoints[i]["utype"])
+            self.ctype.append(matpoints[i]["ctype"])
+            self.abundances.append(matpoints[i]["abundances"])
+            self.isotopes.append(matpoints[i]["isotopes"])
+            self.unc.append(matpoints[i]["unc"])
+            self.reference.append(matpoints[i]["reference"])
+            self.description.append(matpoints[i]["description"])
 
 
 class Composition(Material):
@@ -570,8 +516,4 @@ class Materials:
     def __getitem__(self, pos):
         return self._materials[pos]
 
-
-if __name__ == "__main__":
-    mat1 = Material("newMat", 'NONE', 'WEIGHT', np.array([]), np.array([]), None, np.array([300, 900, 1800]), np.array([10E+6, 11E+6]), reference=None, description='This is an example')
-    Material.readData(mat1, 'c:\\Users\\Samuel\\Documents\\GitHub\\SNAP-REACTORS\\snapReactors\\containers\\test.txt')
-    print(mat1)    
+        
