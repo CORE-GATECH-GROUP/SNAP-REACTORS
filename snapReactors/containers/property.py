@@ -14,6 +14,7 @@ Last updated on 2021-11-09 10:32:40 @author: Isaac Naupa
 email: iaguirre6@gatech.edu
 """
 
+from sympy.polys.specialpolys import dmp_fateman_poly_F_1
 from snapReactors.functions.checkerrors import _isstr, _isarray,\
     _explengtharray, _isnonnegativearray, _isnumber, _isnonnegative
 
@@ -433,55 +434,251 @@ class Property:
         return evaluatedValue
 
     @staticmethod
-    def csvPropertyReader(filepath):
-        simp_path = filepath
-        abs_path = os.path.abspath(simp_path)
-        df = pa.read_csv(abs_path, sep = r',', skipinitialspace = True)
-
-        def _constParser(str):
-            vals = str.split(",")
-            value = float(vals[0])
-            unit = vals[1]
-            return value, unit
-
-        def _TableParser(str):
-            vals = str.split(",")
-            value = np.fromstring( vals[0], dtype=np.float, sep=' ')
-            unit = vals[1]
-            dep = np.fromstring( vals[2], dtype=np.float, sep=' ')
-            depUnit = vals[3]
-            return value, unit, dep, depUnit
-
-        def _CorrParser(str):
-            vals = str.split(",")
-            corr = vals[0]
-            syms = vals[1]
-            unit = vals[2]
-            depRange = np.fromstring(vals[3], dtype=np.float, sep=' ')
-            depUnit = vals[4]
-            return corr, syms, unit, depRange, depUnit
-
-        def _dfParser(df, i):
-            id = str(df['id'][i])
-
-            if(str(df['prop'][i]) == "Const"):
-                value, unit  = _constParser(df['mand_values'][i]) 
-                return Constant(id, value, unit)     
-            elif(str(df['prop'][i]) == "Table"):
-                value, unit, dep, depUnit = _TableParser(df['mand_values'][i]) 
-                return Table(id, value, unit, dep, depUnit)              
-            elif(str(df['prop'][i]) == "Corr"):
-                corr, syms, unit, depRange, depUnit = _CorrParser(df['mand_values'][i]) 
-                return Correlation(id, corr, syms, unit, depRange, depUnit)
+    def _propertyReader(data):
+        def _arrayStrParse(arrStr):
+            arrayType = ""
+            vals = arrStr.replace("{", "")
+            
+            if (vals[len(vals)-2] == "}"):
+                vals = vals[:len(vals)-2]
+                arrayType = "2D"
+            elif (vals[len(vals)-1] == "}"):
+                vals = vals[:len(vals)-1]
+                arrayType = "1D"
             else:
-                pass               
+                arrayType = "0D"
 
-        numProp = len(df['prop'])
-        csvProps = [None]*numProp
-        for i in range(0, numProp):
-            csvProps[i] = _dfParser(df, i)
+            vals = vals.split("},")
+            list1 = [0]*len(vals)
+            
+            for i in range(0, len(vals)):
+                list1[i] = vals[i].split(",")
 
-        return csvProps
+            if (arrayType == "2D"):
+                for i in range(0, len(list1)):
+                    for j in range(0, len(list1[0])):
+                        list1[i][j] = float(list1[i][j])
+                
+            elif (arrayType == "1D"):
+                for i in range(0, len(list1[0])):
+                    list1[0][i] = float(list1[0][i])
+                    
+            else:
+                list1[0][0] = float(list1[0][0])
+                
+            list1 = np.array(list1)
+
+            return list1
+
+        input = dict()
+        pcount = 0
+
+
+        # with open(abs_path, "r") as f:
+        #     data = f.readlines()
+        for i in range(0, len(data)):
+            if (data[i][0] == "%"):
+                pass
+            else:
+                values = data[i].split(" ")
+                for j in range(0, len(values)):
+                    if "type" in values[j]:
+                        pcount = pcount + 1
+                    
+        input["nprops"] = pcount
+        
+        
+        for i in range(0, pcount):
+            key = "prop"+str(i+1)
+            input[key] = dict()
+
+        
+        pcount = 0
+        while (pcount < input["nprops"]):   
+            for i in range(0, len(data)):
+                if (data[i][0] == "%"):
+                    pass
+                else:
+                    values = data[i].split(" ")
+                    for j in range(0, len(values)):
+                        if "type" in values[j]:
+                            pcount = pcount + 1
+
+                        if "id" in values[j]:  
+                            value = values[j].split(":")[-1]
+                            value = value.replace("\n", "")
+                            key = "prop"+str(pcount)
+                            input[key]["id"] = value
+
+                        if "type" in values[j]:  
+                            value = values[j].split(":")[-1]
+                            key = "prop"+str(pcount)
+                            input[key]["type"] = value
+
+                        if "unit" == values[j].split(":")[0]:
+                            value = values[j].split(":")[-1]
+                            value = value.replace("\n", "")
+                            key = "prop"+str(pcount)
+                            input[key]["unit"] = value
+
+                        if "ref" in values[j]:  
+                            value = values[j].split(":")[-1]
+                            value = value.replace("\n", "")
+                            key = "prop"+str(pcount)
+                            input[key]["ref"] = value
+
+                        if "desc" in values[j]:  
+                            value = values[j].split(":")[-1]
+                            value = value.replace("\n", "")
+                            key = "prop"+str(pcount)
+                            input[key]["desc"] = value
+
+                        if "value:" in values[j]:  
+                            value = values[j].split(":")[-1]
+                            value = value.replace("\n", "")
+                            key = "prop"+str(pcount)
+                            input[key]["value"] = _arrayStrParse(value)
+                            
+                        if "unc" in values[j]:  
+                            value = values[j].split(":")[-1]
+                            value = value.replace("\n", "")
+                            key = "prop"+str(pcount)
+                            input[key]["unc"] = _arrayStrParse(value)
+        
+                        if "dep1unit" in values[j]:  
+                            value = values[j].split(":")[-1]
+                            value = value.replace("\n", "")
+                            key = "prop"+str(pcount)
+                            input[key]["dep1unit"] = value
+
+                        if "dep1values" in values[j]:  
+                            value = values[j].split(":")[-1]
+                            value = value.replace("\n", "")
+                            key = "prop"+str(pcount)
+                            vkey = "dep1values"
+                            input[key][vkey] = _arrayStrParse(value)
+                            
+                        if "dep2unit" in values[j]:  
+                            value = values[j].split(":")[-1]
+                            value = value.replace("\n", "")
+                            key = "prop"+str(pcount)
+                            input[key]["dep2unit"] = value
+
+                        if "dep2values" in values[j]:  
+                            value = values[j].split(":")[-1]
+                            value = value.replace("\n", "")
+                            key = "prop"+str(pcount)
+                            vkey = "dep2values"
+                            input[key][vkey] = _arrayStrParse(value)
+                            
+                        if "deps" in values[j]:  
+                            value = values[j].split(":")[-1]
+                            value = value.replace("\n", "")
+                            key = "prop"+str(pcount)
+                            value = sp.symbols(value)
+                            input[key]["deps"] = value
+                            
+                        if "dep1range" in values[j]:  
+                            value = values[j].split(":")[-1]
+                            value = value.replace("\n", "")
+                            pkey = "prop"+str(pcount)
+                            vkey = "dep1range"
+                            input[pkey][vkey] = _arrayStrParse(value)
+                            
+                        if "dep2range" in values[j]:  
+                            value = values[j].split(":")[-1]
+                            value = value.replace("\n", "")
+                            pkey = "prop"+str(pcount)
+                            vkey = "dep1range"
+                            input[key][vkey] = _arrayStrParse(value)
+
+        properties = [0]*input["nprops"]
+        for i in range(0, len(properties)):
+            properties[i] = input["prop"+str(i+1)]
+            
+            if properties[i]["type"] == "const":
+                id =properties[i]["id"]
+                val = properties[i]["value"]
+                unit = properties[i]["unit"]
+
+                if "unc" in properties[i]:
+                    unc = properties[i]["unc"]
+                else:
+                    unc = None
+
+                if "ref" in properties[i]:
+                    ref = properties[i]["ref"]
+                else:
+                    ref = None
+
+                pty = Constant(id, val, unit, unc, ref)
+                properties[i] = pty
+
+            elif properties[i]["type"] == "table":
+                id =properties[i]["id"]
+                val = properties[i]["value"]
+                unit = properties[i]["unit"]
+                dep1  = properties[i]["dep1values"]
+                dep1unit = properties[i]["dep1unit"]
+
+                if "dep2values" in properties[i]:
+                    dep2 = properties[i]["dep2values"]
+                else:
+                    dep2 = None
+
+                if "dep2unit" in properties[i]:
+                    dep2unit = properties[i]["dep2unit"]
+                else:
+                    dep2unit = None
+
+                if "unc" in properties[i]:
+                    unc = properties[i]["unc"]
+                else:
+                    unc = None
+
+                if "ref" in properties[i]:
+                    ref = properties[i]["ref"]
+                else:
+                    ref = None
+
+    
+                pty = Table(id, val, unit, dep1, dep1unit, dep2,
+                                                        dep2unit, unc, ref)
+                properties[i] = pty
+
+            else:
+                id =properties[i]["id"]
+                unit = properties[i]["unit"]
+                corr = properties[i]["corr"]
+                deps = properties[i]["deps"]
+                dep1unit = properties[i]["dep1unit"]
+                dep1range = properties[i]["dep1range"]
+
+                if "dep2unit" in properties[i]:
+                    dep2range = properties[i]["dep2range"]
+                else:
+                    dep2range= None
+
+                if "dep2unit" in properties[i]:
+                    dep2unit = properties[i]["dep2unit"]
+                else:
+                    dep2unit = None
+
+                if "unc" in properties[i]:
+                    unc = properties[i]["unc"]
+                else:
+                    unc = None
+
+                if "ref" in properties[i]:
+                    ref = properties[i]["ref"]
+                else:
+                    ref = None
+
+                pty = Correlation(id, corr, deps, unit, dep1range, dep1unit,
+                                            dep2range, dep2unit, unc, ref)
+                properties[i] = pty
+
+        return properties
 
 class Constant(Property):
     """A derivative of the Property container meant to represent a constant
