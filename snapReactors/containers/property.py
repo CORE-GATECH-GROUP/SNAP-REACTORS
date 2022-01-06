@@ -767,16 +767,16 @@ class Table(Property):
     Raises
     ------
     TypeError
-        If ``id``, ``dtype``, ``vtype``, ``valueUnit``, 
-            ``ref``,   ``description``, ``dependencyUnit1``, 
-            ``dependencyUnit2` is not str.
-        If ``value``, ``dependency1``, ``dependency1``, 
+        If ``id``, ``valueUnit``, ``ref``, ``description``, 
+            ``dependencyUnit1``, ``dependencyUnit2` is not str.
+        If ``value``, ``dependency1``, ``dependency2``, 
             ``unc`` is not ndarray.
 
     ValueError
         If ``dependency1``, ``dependency2``, ``unc`` are not positive.
         If ``dependency1`` and ``dependency2`` are not corresponding in 
             length with ``value``.
+        If ``unc`` and ``value`` do not have the same shape.
 
     KeyError
         If ``id`` is not within ALLOWED_PROPERTIES.
@@ -791,26 +791,35 @@ class Table(Property):
         dependencyUnit1, dependency2=None, dependencyUnit2=None,  
         unc = None, ref=None, description=None):
 
+        _isarray(value, "Table values")
         _isnonnegativearray(dependency1,"value dependency/s ")
         _isstr(dependencyUnit1, "value dependency/s units")
     
         if value.shape[0] != len(dependency1):
-            raise ValueError("values must have {} rows and not {}"
-                                .format(len(dependency1), value.shape[0]))
+            raise ValueError("dependency1 must have length {} to match"
+            "value shape:{} and not {}".format(value.shape[0], value.shape, 
+                                                        len(dependency1)))
 
         if not isinstance(dependency2, type(None)):
             _isnonnegativearray(dependency2, "value dependency/s")
             if value.shape[1] != len(dependency2):
-                raise ValueError("values must have {} columns and not {}"
-                                    .format(len(self.dependency1),
-                                            value.shape[1]))
+                raise ValueError("dependency2 must have length {} to match"
+                        "value shape:{} and not {}".format(value.shape[1], 
+                                             value.shape, len(dependency2)))
+
+        if not isinstance(unc, type(None)):
+            _isarray(unc, "table uncertainties")
+            if value.shape != unc.shape:
+                raise ValueError("value and uncertainty arrays must have"
+                            "same shape. values shape: {}, unc shape: {}"
+                                        .format(value.shape, unc.shape))
 
         if dependencyUnit2 != None:
             _isstr(dependencyUnit2, "value dependency/s unit/s")
                                 
         if not(isinstance(dependency2, type(None)) 
             & (dependencyUnit2 == None)):
-            dependents = np.array([dependency1], [dependency2])
+            dependents = np.array([[dependency1], [dependency2]])
             dependentsUnit = dependencyUnit1 + ", " + dependencyUnit2
         else:
             dependents = dependency1
@@ -866,14 +875,13 @@ class Correlation(Property):
     ------
     TypeError
         If ``id``, ``valueUnit``, ``dependencyUnit1``, 
-            ``dependencyUnit1``,``ref``, ``description``,  is not str.
+            ``dependencyUnit2``,``ref``, ``description``,  is not str.
         If ``dependencyRange1``, ``dependencyRange2`` is not an ndarray.
         If ``corrExpr`` is not a string expression.
         if ``corrSyms`` is not a string of symbols.
 
     ValueError
-        If ``dependencyRange1``, ``dependencyRange1``, ``unc``
-            are not positive.
+        If ``dependencyRange1``, ``dependencyRange1``
         If ``dependencyRange1``, ``dependencyRange2`` is not of length 2.
 
     KeyError
@@ -895,15 +903,19 @@ class Correlation(Property):
         _isstr(corrSyms, "correlation expression symbols")
         _isstr(dependencyUnit1, "dependency 1 units")
 
-        _isnonnegativearray(dependencyRange1, "correlation dependency1 range")
+        _isnonnegativearray(dependencyRange1, "correlation dependency1"
+                                                                    "range")
         if (len(dependencyRange1) != 2):
-            raise ValueError("dependency1 range must be a list of two bounds"
-                "not {}".format(dependencyRange1))
+            raise ValueError("dependency1 range must be a"
+                                                        "list of two bounds"
+                " not {}".format(dependencyRange1))
 
         if not isinstance(dependencyRange2, type(None)):
-            _isnonnegativearray(dependencyRange2, "correlation dependency2 range")
+            _isnonnegativearray(dependencyRange2, "correlation dependency2"
+                                                                " range")
             if (len(dependencyRange2) != 2):
-                raise ValueError("dependency2 range must be a list of two bounds"
+                raise ValueError("dependency2 range must be a"
+                                                    " list of two bounds"
                     "not {}".format(dependencyRange2))
             _isstr(dependencyUnit2, "dependency 2 units")
 
@@ -913,7 +925,8 @@ class Correlation(Property):
         dependentsUnit = dependencyUnit1
         
         if not isinstance(dependencyRange2, type(None)):
-            corrRange2 = np.linspace(dependencyRange2[0], dependencyRange2[1])
+            corrRange2 = np.linspace(dependencyRange2[0], 
+                                                        dependencyRange2[1])
             corrRange = np.array([corrRange1, corrRange2])
             dependentsUnit = dependencyUnit1+ ", " +dependencyUnit2
 
@@ -930,7 +943,8 @@ class Correlation(Property):
 
         if not isinstance(dependencyRange2, type(None)):
             for i in range(0, len(corrRange1)):
-                corrValues[i] =super().evaluate(corrRange1[i], corrRange2[i])
+                corrValues[i] =super().evaluate(corrRange1[i], 
+                                                            corrRange2[i])
         else:
             for i in range(0, len(corrRange1)):
                 corrValues[i] =super().evaluate(corrRange1[i])
