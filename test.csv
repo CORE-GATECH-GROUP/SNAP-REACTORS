@@ -1,4 +1,0 @@
-prop, ptype, id, mand_values, opt_values
-Const, THPHYS, h, "1, W/K*m^2"
-Table, THPHYS, h, "1 2 3 4, W/K*m^2, 100 200 300 400, K"
-Corr, THPHYS, h, "T**2 + 1/2, T, W/K*m^2, 300 600, K"
