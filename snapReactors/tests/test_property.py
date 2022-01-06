@@ -391,7 +391,7 @@ def test_errs_correlation(setCorrelation):
 
     # depRange1 is not an ndarray
     with pytest.raises(TypeError,
-                match="correlation dependency1 range must be a ndarray*"):
+                match="correlation dependency1range must be a ndarray*"):
         corr1 = "T**2 + P + 1/2"
         syms1 = "T, P"
         Correlation(9999, corrExpr=corr1, corrSyms=syms1,corrUnit='W/K/m^2',
@@ -411,7 +411,7 @@ def test_errs_correlation(setCorrelation):
 
     # depRange1 is not of length 2
     with pytest.raises(ValueError,
-                match="dependency1 range must be a list of two bounds*"):
+                match="dependency1 range must be alist of two bounds*"):
         corr1 = "T**2 + P + 1/2"
         syms1 = "T, P"
         Correlation("h", corrExpr=corr1, corrSyms=syms1, corrUnit="W/K/m^2",
@@ -431,7 +431,7 @@ def test_errs_correlation(setCorrelation):
 
     # depRange1 is not positive ndarray
     with pytest.raises(ValueError,
-                    match="correlation dependency1 range*"):
+                    match="correlation dependency1range*"):
         corr1 = "T**2 + P + 1/2"
         syms1 = "T, P"
         Correlation("h", corrExpr=corr1, corrSyms=syms1, corrUnit="W/K/m^2",
