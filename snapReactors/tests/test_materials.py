@@ -128,7 +128,7 @@ def test_pty_description():
 
     val = ALLOWED_PROPERTIES["cp"]
     prdDes = val.description
-    prdUnt = val.units
+    prdUnt = val.units.SI
     expDes = 'heat capacity (constant pressure)'
     expUnt = 'J/kg/K'
     assert prdDes == expDes
@@ -136,7 +136,7 @@ def test_pty_description():
 
     val = ALLOWED_PROPERTIES["my"]
     prdDes = val.description
-    prdUnt = val.units
+    prdUnt = val.units.SI
     expDes = 'Viscosity'
     expUnt = 'kg/m/s'
     assert prdDes == expDes
