@@ -37,5 +37,7 @@ Isotopic Definition:
 28061.03c     -0.0020438407
 28062.03c     -0.0065166585
 28064.03c     -0.0016596008
+Properties: [
+]
 Reference: NA-Examples
 Description: This is an example input file

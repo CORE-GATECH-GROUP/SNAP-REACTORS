@@ -8,8 +8,8 @@ Each material is defined individually. This functionality is envisioned to be
 executed at the start of the simulation.
 
 Created on Tue Oct 26 08:00:00 2020 @author: Dan Kotlyar
-Last updated on Thurs Nov 15 13:44:35 2021 @author: Sam Garcia
-email: dan.kotlyar@me.gatech.edu
+Last updated on Thurs Jan 06 12:45:00 2022 @author: Sam Garcia
+email: dan.kotlyar@me.gatech.edu, sgarcia9@wisc.edu
 """
 from snapReactors.functions.checkerrors import _isstr, _isarray,\
     _explengtharray, _isnonnegativearray, _isinstanceList
@@ -97,7 +97,7 @@ class Material:
     Raises
     ------
     TypeError
-        If ``matName``, ``reference``, ``description``, ``filename`` is not 
+        If ``matName``, ``reference``, ``description`` is not 
             str.
         If ``temperatures``,``abundances``, ``unc``, ``pressures``, and
         ``isotopes`` is not ndarray.
@@ -109,7 +109,6 @@ class Material:
             ``Enum.CTYPE``, respectively.
     Examples
     --------
-    >>> UC = Material("UC", np.array([300, 900, 1800]))
     >>> controlRod = Material(matName= "Boron Carbide", utype= "ABSOLUTE", 
                     ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
                     abundances= np.array(0.xxx, 0.yyy, 0.zzz),
@@ -118,7 +117,7 @@ class Material:
 
     def __init__(self, matName, utype, ctype, isotopes, abundances,
                  unc=None, temperatures=None, pressures=None, reference=None,
-                 description=None, filename=None):
+                 description=None):
 
         # check that variables are of correct type (return TypeError if not)
         _isstr(matName, "Material name")
@@ -146,8 +145,6 @@ class Material:
 
         if description != None:
             _isstr(description, "description of property/notes")
-        if filename != None:
-            _isstr(filename, "data filename")
         if utype not in UTYPE.__members__:
             raise KeyError("Uncertainty Type {} is not an allowed uncertainty"
                            "type: {}".format(utype, UTYPE._member_names_))
@@ -179,8 +176,6 @@ class Material:
         self.reference.append(reference)
         self.description = []
         self.description.append(description)
-        self.filename = []
-        self.filename.append(filename)
         self._properties = []
 
     def __str__(self):
@@ -202,32 +197,27 @@ class Material:
         ----------
         pty : str
             name of the property
-        vals : ndarray
-            values for the specific property
-            1-D or 2-D array depending on whether only temperature or both
-            temperatures and pressures are provided as dependencies. In the 2-D
-            array the columns represent the temperatures while the rows
-            represent the pressure values.
 
         Raises
         ------
         TypeError
-            If ``pty`` is not a string. If ``vals`` is not ndarray.
-        ValueError
-            If any of the parameters, e.g. ``vals``, does not have correct
-            dimensions. If any of the values in ``vals`` is non-positive.
+            If ``pty`` is not a string.
+
         KeyError
             If the property is not recognized by the package
             (i.e. PROPERTY_LIST). If the property already exists.
 
         Examples
         --------
-        >>> UC = Material("UC", np.array([300, 900, 1800]))
-        >>> UC.addproperty("tc", [15.0, 13.5, 9.0])
+        >>> controlRod = Material(matName= "Boron Carbide", utype= "ABSOLUTE", 
+                    ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
+                    abundances= np.array(0.xxx, 0.yyy, 0.zzz),
+                    unc = np.array(xxx, yyy, zzz))
+        >>> controlRod.addproperty("tc")
 
         """
 
-        _isinstanceList(pty, property, "List of properties")
+        _isinstanceList(pty, Property, "List of properties")
         self._properties.append(pty)
 
     def getproperty(self, pty):
@@ -399,12 +389,12 @@ class Material:
             if "Description" in line:
                 mp["description"] = str(line.split(":")[-1])
 
-            if "Properties" in line:
-                indexBegin = j + 1
-            if "}" == line:
-                indexEnd = j - 1
-            mp["Properties"] = Property._readProperty(data[indexBegin: 
-                                                                    indexEnd])
+            #if "Properties" in line:
+            #    indexBegin = j + 1
+            #if "}" == line:
+            #    indexEnd = j - 1
+            #mp["Properties"] = Property._readProperty(data[indexBegin: 
+            #                                                        indexEnd])
 
         matpoints.append(mp)
         for i in range(len(matpoints)):
@@ -416,7 +406,7 @@ class Material:
             self.unc.append(matpoints[i]["unc"])
             self.reference.append(matpoints[i]["reference"])
             self.description.append(matpoints[i]["description"])
-            self._properties.append(matpoints[i]["Properties"])
+            #self._properties.append(matpoints[i]["Properties"])
 
 class Composition(Material):
     """A derivative of the Material container meant to represent the 
