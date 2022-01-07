@@ -353,77 +353,23 @@ def test_allowed_properties():
 def test_addproperty(setMaterial):
     """check that property is added and retrieved"""
 
-    prdval = setMaterial.getproperty("tc")
-    expval = np.array([[15.0, 13.5, 9.0], [14.9, 13.4, 8.9]])
-    assert prdval == pytest.approx(expval)
-
-    prdval = setMaterial.getproperty("my")
-    expval = np.array([[15.0, 13.5, 9.0], [14.9, 13.4, 8.9]])
-    assert prdval == pytest.approx(expval)
+    prdval = setMaterial.addproperty(['g'])
+    expval = ['g']
+    assert prdval == expval
 
 
 def test_errs_addproperty(setMaterial):
     """check that errors are properly raised when adding or retrieving"""
 
-    # pty is not a string
+    # pty is not a list
     with pytest.raises(TypeError,
-                       match="Property must be string*"):
-        setMaterial.addproperty(999, np.array([[1, 1, 1], [2, 2, 2]]))
+                       match="Property must be list*"):
+        setMaterial.addproperty(999)
 
-    # pty already exists
-    with pytest.raises(AttributeError,
-                       match="Property tc already exists*"):
-        setMaterial.addproperty("tc", np.array([[1, 1, 1], [2, 2, 2]]))
-
-    # pty does not exist in the list of allowable properties
-    with pytest.raises(KeyError,
-                       match="Property NO_PTY*"):
-        setMaterial.addproperty("NO_PTY", np.array([[1, 1, 1], [2, 2, 2]]))
-
-    # vals must be of ndarray type
-    with pytest.raises(TypeError,
-                       match="Property values must be a ndarray*"):
-        setMaterial.addproperty('v', [[1, 1, 1], [2, 2, 2]])
-
-    # number of values correspond to the number of temperature values
-    with pytest.raises(ValueError,
-                       match="vals must have*"):
-        setMaterial.addproperty('v', np.array([[1, 1, 1, 1], [2, 2, 2, 2]]))
-
-    # number of values correspond to the number of pressures values
-    with pytest.raises(ValueError,
-                       match="vals must have*"):
-        setMaterial.addproperty('v', np.array([[1, 1, 1], [2, 2, 2],
-                                               [3, 3, 3]]))
-
-    # all values must be positive
-    with pytest.raises(ValueError,
-                       match="Values in Data array must be positive*"):
-        setMaterial.addproperty('v', np.array([[1, 1, 1], [2, -1, 2]]))
-
-
-def test_pty_description():
-    """description and units for a property"""
-
-    val = ALLOWED_PROPERTIES["cp"]
-    prdDes = val.description
-    prdUnt = val.units
-    expDes = 'heat capacity (constant pressure)'
-    expUnt = 'J/kg/K'
-    assert prdDes == expDes
-    assert prdUnt == expUnt
-
-    val = ALLOWED_PROPERTIES["my"]
-    prdDes = val.description
-    prdUnt = val.units
-    expDes = 'Viscosity'
-    expUnt = 'kg/m/s'
-    assert prdDes == expDes
-    assert prdUnt == expUnt
-
-    with pytest.raises(KeyError,
-                       match="'NONE'"):
-        ALLOWED_PROPERTIES["NONE"]
+    # pty is a list but does not contain allowable properties
+    with pytest.raises(ValueError, 
+                        match="Property must be in ALLOWABLE_PROPERTIES"):
+        setMaterial.addproperty(['prop'])
 
 
 @pytest.fixture()
