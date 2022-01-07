@@ -14,7 +14,9 @@ email: dan.kotlyar@me.gatech.edu, sgarcia9@wisc.edu
 from snapReactors.functions.checkerrors import _isstr, _isarray,\
     _explengtharray, _isnonnegativearray, _isinstanceList
 
-from snapReactors.functions.parameters import ALLOWED_PROPERTIES, Property
+from snapReactors.functions.parameters import ALLOWED_PROPERTIES
+
+from snapReactors.containers.property import Property
 
 from enum import Enum
 
@@ -218,7 +220,8 @@ class Material:
         """
 
         _isinstanceList(pty, Property, "List of properties")
-        self._properties.append(pty)
+        for i in range(0, len(pty)):
+            self._properties.append(pty[i])
 
     def getproperty(self, pty):
         """Obtain the values for a certain property

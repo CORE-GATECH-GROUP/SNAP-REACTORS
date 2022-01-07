@@ -18,7 +18,7 @@ import numpy as np
 
 from snapReactors.containers.materials import Material, Composition
 from snapReactors.functions.parameters import ALLOWED_PROPERTIES
-
+from snapReactors.containers.property import Constant, Table, Correlation
 
 def test_material(setMaterial, setComposition):
     """check that values are assigned to the material container"""
@@ -350,11 +350,13 @@ def test_allowed_properties():
     assert prdval == expval
 
 
-def test_addproperty(setMaterial):
+def test_addproperty(setMaterial, setPropertyList):
     """check that property is added and retrieved"""
-
-    prdval = setMaterial.addproperty(['g'])
-    expval = ['g']
+    mat = setMaterial 
+    plist = setPropertyList
+    mat.addproperty(plist)
+    prdval = mat._properties
+    expval = setPropertyList
     assert prdval == expval
 
 
@@ -363,14 +365,23 @@ def test_errs_addproperty(setMaterial):
 
     # pty is not a list
     with pytest.raises(TypeError,
-                       match="Property must be list*"):
-        setMaterial.addproperty(999)
+                       match="List of properties must be list*"):
+        setMaterial.addproperty(9999)
 
     # pty is a list but does not contain allowable properties
-    with pytest.raises(ValueError, 
-                        match="Property must be in ALLOWABLE_PROPERTIES"):
-        setMaterial.addproperty(['prop'])
+    with pytest.raises(TypeError, 
+                        match="List of properties must be a list of*"):
+        setMaterial.addproperty(['badvalue'])
 
+@pytest.fixture()
+def setPropertyList():
+    """create a list of properties"""
+    p1 = Constant(id='cv', ptype='THPHYS', value=1, unit='kg', unc=None, 
+                    ref=None, description=None)
+    p2 = Constant(id='cp', ptype='THPHYS', value=1, unit='kg', unc=None, 
+                    ref=None, description=None)
+
+    return [p1, p2]
 
 @pytest.fixture()
 def setMaterial():
