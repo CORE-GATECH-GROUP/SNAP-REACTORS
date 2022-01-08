@@ -37,7 +37,27 @@ Isotopic Definition:
 28061.03c     -0.0020438407
 28062.03c     -0.0065166585
 28064.03c     -0.0016596008
-Properties: [
-]
+Properties: {
+%property values for material
+%type = const, table, corr
+%id = prop id
+%unit = SI or imperial
+%value = either number for const or if array/ nd array use {} i.e. {1, 2, 3} or {{1, 2}, {3, 4}}
+%must have a single space " " between keywords "type", "id"
+%must have a ":" between keyword and value
+%Supports comments by preceeding a line with "%"
+type:const id:cp unit:SI 
+value:1 unc:.01 
+
+type:table id:h unit:imperial ref:NAA-SR-6160 
+dep1unit:K dep1values:{300,600,900} 
+dep2unit:Pa dep2values:{16,32,48}
+value:{{1,2,3},{4,5,6},{7,8,9}}
+unc:{{.01,.01,.01},{.01,.01,.01},{.01,.01,.01}}
+
+type:corr id:r unit:SI ref:NAA-SR-3120
+corr:T+P**2 deps:T,P dep1unit:K dep2unit:Pa
+dep1range:{300,900} dep2range:{16,48}    
+}
 Reference: NA-Examples
 Description: This is an example input file

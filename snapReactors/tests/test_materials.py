@@ -343,6 +343,25 @@ def test_errs_composition(setComposition):
 
 def test_allowed_properties():
     """check that all properties are obtained"""
+    val = ALLOWED_PROPERTIES["cp"]	
+    prdDes = val.description	
+    prdUnt = val.units.SI	
+    expDes = 'heat capacity (constant pressure)'	
+    expUnt = 'J/kg/K'	
+    assert prdDes == expDes	
+    assert prdUnt == expUnt	
+
+    val = ALLOWED_PROPERTIES["my"]	
+    prdDes = val.description	
+    prdUnt = val.units.SI	
+    expDes = 'Viscosity'	
+    expUnt = 'kg/m/s'	
+    assert prdDes == expDes	
+    assert prdUnt == expUnt	
+    
+    with pytest.raises(KeyError,	
+                       match="'NONE'"):	
+        ALLOWED_PROPERTIES["NONE"]
 
     prdval = list(ALLOWED_PROPERTIES.keys())
     expval = ['cp', 'cv', 'g', 'h', 'my', 'pr', 'mol', 'r', 's', 'tc', 'v',
@@ -376,10 +395,10 @@ def test_errs_addproperty(setMaterial):
 @pytest.fixture()
 def setPropertyList():
     """create a list of properties"""
-    p1 = Constant(id='cv', ptype='THPHYS', value=1, unit='kg', unc=None, 
-                    ref=None, description=None)
-    p2 = Constant(id='cp', ptype='THPHYS', value=1, unit='kg', unc=None, 
-                    ref=None, description=None)
+    p1 = Constant(id='cv',  value=1, unit= "J/kg/K", unc=None, ref=None, 
+                    description=None)
+    p2 = Constant(id='cp',  value=1, unit= "J/kg/K", unc=None, ref=None, 
+                    description=None)
 
     return [p1, p2]
 

@@ -324,9 +324,9 @@ class Material:
             lines = filehandle.readlines()
 
         # remove any empty lines in filename
-        with open(filename, 'w') as filehandle:
-            lines = filter(lambda x: x.strip(), lines)
-            filehandle.writelines(lines)
+        #with open(filename, 'w') as filehandle:
+        #    lines = filter(lambda x: x.strip(), lines)
+        #    filehandle.writelines(lines)
 
         # read input file
         with open(filename, "r") as f:
@@ -392,12 +392,14 @@ class Material:
             if "Description" in line:
                 mp["description"] = str(line.split(":")[-1])
 
-            #if "Properties" in line:
-            #    indexBegin = j + 1
-            #if "}" == line:
-            #    indexEnd = j - 1
-            #mp["Properties"] = Property._readProperty(data[indexBegin: 
-            #                                                        indexEnd])
+            if "Properties" in line:
+                print("check1")
+                indexBegin = j + 1
+            if "}\n" == line:
+                print("check2")
+                indexEnd = j - 1
+                mp["Properties"] = Property._propertyReader(data[indexBegin: 
+                                                                    indexEnd])
 
         matpoints.append(mp)
         for i in range(len(matpoints)):
@@ -409,7 +411,7 @@ class Material:
             self.unc.append(matpoints[i]["unc"])
             self.reference.append(matpoints[i]["reference"])
             self.description.append(matpoints[i]["description"])
-            #self._properties.append(matpoints[i]["Properties"])
+            self._properties.append(matpoints[i]["Properties"])
 
 class Composition(Material):
     """A derivative of the Material container meant to represent the 
@@ -518,4 +520,7 @@ class Materials:
     def __getitem__(self, pos):
         return self._materials[pos]
 
-        
+if __name__ == "__main__":
+    mat1 = Material("newMat", 'NONE', 'WEIGHT', np.array([]), np.array([]), None, np.array([300, 900, 1800]), np.array([10E+6, 11E+6]), reference=None, description='This is an example')
+    Material.readData(mat1, 'c:\\Users\\Samuel\\Documents\\GitHub\\SNAP-REACTORS\\snapReactors\\containers\\test.txt')
+    print(mat1)   

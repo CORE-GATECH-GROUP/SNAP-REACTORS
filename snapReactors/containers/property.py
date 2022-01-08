@@ -598,11 +598,12 @@ class Property:
             
             if properties[i]["type"] == "const":
                 id =properties[i]["id"]
-                val = properties[i]["value"]
+                val = float(properties[i]["value"][0][0])
                 unit = properties[i]["unit"]
+                unit  = ALLOWED_PROPERTIES[id].units.SI
 
                 if "unc" in properties[i]:
-                    unc = properties[i]["unc"]
+                    unc = float(properties[i]["unc"][0][0])
                 else:
                     unc = None
 
@@ -618,6 +619,7 @@ class Property:
                 id =properties[i]["id"]
                 val = properties[i]["value"]
                 unit = properties[i]["unit"]
+                unit  = ALLOWED_PROPERTIES[id].units.SI
                 dep1  = properties[i]["dep1values"]
                 dep1unit = properties[i]["dep1unit"]
 
@@ -649,6 +651,7 @@ class Property:
             else:
                 id =properties[i]["id"]
                 unit = properties[i]["unit"]
+                unit  = ALLOWED_PROPERTIES[id].units.SI
                 corr = properties[i]["corr"]
                 deps = properties[i]["deps"]
                 dep1unit = properties[i]["dep1unit"]
