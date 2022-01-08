@@ -296,11 +296,47 @@ class Material:
         multiple material data for components that require more than one 
         material.
 
+
+        Properties can be read in for the material by adding a Properties 
+        section.
+
+        The properties section takes the form:
+
+        Properties: {
+        %property values for material
+        %type = const, table, corr
+        %id = prop id
+        %unit = SI or imperial
+        %value = either number for const or if array/ nd array use {} 
+        i.e. {1, 2, 3} or {{1, 2}, {3, 4}}
+        %must have a single space " " between keywords "type", "id", etc
+        %must have a ":" between keyword and value
+        %Supports comments by preceeding a line with "%"
+        %Examples are includes below
+
+        type:const id:cp unit:SI 
+        value:1 unc:.01 
+
+        type:table id:h unit:imperial ref:NAA-SR-6160 
+        dep1unit:K dep1values:{300,600,900} 
+        dep2unit:Pa dep2values:{16,32,48}
+        value:{{1,2,3},{4,5,6},{7,8,9}}
+        unc:{{.01,.01,.01},{.01,.01,.01},{.01,.01,.01}}
+
+        type:corr id:r unit:SI ref:NAA-SR-3120
+        corr:T+P**2 deps:T,P dep1unit:K dep2unit:Pa
+        dep1range:{300,900} dep2range:{16,48}
+        }
+
+        Note that if uncertainties are indicated to not exist then the method
+        will save uncertainty data as 'None'. Additionally, this method reads
+        multiple material data for components that require more than one 
+        material.
+
         Attributes
         ----------
         filename : str
             input file that will be parsed
-
         Raises
         ------
         TypeError
@@ -393,11 +429,10 @@ class Material:
                 mp["description"] = str(line.split(":")[-1])
 
             if "Properties" in line:
-                print("check1")
                 indexBegin = j + 1
+
             if "}\n" == line:
-                print("check2")
-                indexEnd = j - 1
+                indexEnd = j 
                 mp["Properties"] = Property._propertyReader(data[indexBegin: 
                                                                     indexEnd])
 
@@ -519,8 +554,3 @@ class Materials:
 
     def __getitem__(self, pos):
         return self._materials[pos]
-
-if __name__ == "__main__":
-    mat1 = Material("newMat", 'NONE', 'WEIGHT', np.array([]), np.array([]), None, np.array([300, 900, 1800]), np.array([10E+6, 11E+6]), reference=None, description='This is an example')
-    Material.readData(mat1, 'c:\\Users\\Samuel\\Documents\\GitHub\\SNAP-REACTORS\\snapReactors\\containers\\test.txt')
-    print(mat1)   
