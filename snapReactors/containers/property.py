@@ -462,6 +462,7 @@ class Property:
             elif (arrayType == "1D"):
                 for i in range(0, len(list1[0])):
                     list1[0][i] = float(list1[0][i])
+                list1 = list1[0]
                     
             else:
                 list1[0][0] = float(list1[0][0])
@@ -570,12 +571,19 @@ class Property:
                             key = "prop"+str(pcount)
                             vkey = "dep2values"
                             input[key][vkey] = _arrayStrParse(value)
-                            
+
+                        if "corr" in values[j]:  
+                            value = values[j].split(":")[-1]
+                            value = value.replace("\n", "")
+                            key = "prop"+str(pcount)
+                            # value = sp.symbols(value)
+                            input[key]["corr"] = value
+
                         if "deps" in values[j]:  
                             value = values[j].split(":")[-1]
                             value = value.replace("\n", "")
                             key = "prop"+str(pcount)
-                            value = sp.symbols(value)
+                            # value = sp.symbols(value)
                             input[key]["deps"] = value
                             
                         if "dep1range" in values[j]:  
@@ -589,7 +597,7 @@ class Property:
                             value = values[j].split(":")[-1]
                             value = value.replace("\n", "")
                             pkey = "prop"+str(pcount)
-                            vkey = "dep1range"
+                            vkey = "dep2range"
                             input[key][vkey] = _arrayStrParse(value)
 
         properties = [0]*input["nprops"]
@@ -600,7 +608,10 @@ class Property:
                 id =properties[i]["id"]
                 val = float(properties[i]["value"][0][0])
                 unit = properties[i]["unit"]
-                unit  = ALLOWED_PROPERTIES[id].units.SI
+                if unit == "SI":
+                    unit  = ALLOWED_PROPERTIES[id].units.SI
+                else:
+                    unit  = ALLOWED_PROPERTIES[id].units.imperial
 
                 if "unc" in properties[i]:
                     unc = float(properties[i]["unc"][0][0])
@@ -619,7 +630,10 @@ class Property:
                 id =properties[i]["id"]
                 val = properties[i]["value"]
                 unit = properties[i]["unit"]
-                unit  = ALLOWED_PROPERTIES[id].units.SI
+                if unit == "SI":
+                    unit  = ALLOWED_PROPERTIES[id].units.SI
+                else:
+                    unit  = ALLOWED_PROPERTIES[id].units.imperial
                 dep1  = properties[i]["dep1values"]
                 dep1unit = properties[i]["dep1unit"]
 
@@ -651,13 +665,16 @@ class Property:
             else:
                 id =properties[i]["id"]
                 unit = properties[i]["unit"]
-                unit  = ALLOWED_PROPERTIES[id].units.SI
+                if unit == "SI":
+                    unit  = ALLOWED_PROPERTIES[id].units.SI
+                else:
+                    unit  = ALLOWED_PROPERTIES[id].units.imperial
                 corr = properties[i]["corr"]
                 deps = properties[i]["deps"]
                 dep1unit = properties[i]["dep1unit"]
                 dep1range = properties[i]["dep1range"]
 
-                if "dep2unit" in properties[i]:
+                if "dep2range" in properties[i]:
                     dep2range = properties[i]["dep2range"]
                 else:
                     dep2range= None
