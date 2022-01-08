@@ -13099,15 +13099,10 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Description">Description<a class="anchor-link" href="#Description">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Allows to add new material sets and modify or create a new h5 file</strong></p>
-<p>Add a short description of the container.</p>
+<ul>
+<li>This container stores materials information such as isotopic definition, abundances, uncertainties and material properties.</li>
+<li>The container also stores, modifies or creates new h5 files for data storage.</li>
+</ul>
 
 </div>
 </div>
@@ -13115,147 +13110,464 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Code:">Code:<a class="anchor-link" href="#Code:">&#182;</a></h3>
+<h2 id="Code:">Code:<a class="anchor-link" href="#Code:">&#182;</a></h2>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">UC</span> <span class="o">=</span> <span class="n">Material</span><span class="p">(</span><span class="s2">&quot;UC&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">300</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span> <span class="mi">1800</span><span class="p">]))</span>
-    <span class="o">&gt;&gt;&gt;</span> <span class="n">UC</span><span class="o">.</span><span class="n">addproperty</span><span class="p">(</span><span class="s2">&quot;tc&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">15.0</span><span class="p">,</span> <span class="mf">13.5</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">]))</span>
-    <span class="o">&gt;&gt;&gt;</span> <span class="n">addMaterial</span><span class="p">(</span><span class="n">material</span><span class="o">=</span><span class="n">UC</span><span class="p">,</span>
-    <span class="o">...</span>             <span class="n">newFile</span><span class="o">=</span><span class="s2">&quot;../tests/ThermoPhysicalPropertiesMod.h5&quot;</span><span class="p">,</span>
-    <span class="o">...</span>             <span class="n">origFile</span><span class="o">=</span><span class="s2">&quot;../database/ThermoPhysicalProperties.h5&quot;</span><span class="p">,</span>
-    <span class="o">...</span>             <span class="n">copyMat</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>You can describe the important bits of inputs</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Notes:">Notes:<a class="anchor-link" href="#Notes:">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">UC</span> <span class="o">=</span> <span class="n">Material</span><span class="p">(</span><span class="s2">&quot;UC&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">300</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span> <span class="mi">1800</span><span class="p">]))</span>
-    <span class="o">&gt;&gt;&gt;</span> <span class="n">UC</span><span class="o">.</span><span class="n">addproperty</span><span class="p">(</span><span class="s2">&quot;tc&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">15.0</span><span class="p">,</span> <span class="mf">13.5</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">]))</span>
-    <span class="o">&gt;&gt;&gt;</span> <span class="n">addMaterial</span><span class="p">(</span><span class="n">material</span><span class="o">=</span><span class="n">UC</span><span class="p">,</span>
-    <span class="o">...</span>             <span class="n">newFile</span><span class="o">=</span><span class="s2">&quot;../tests/ThermoPhysicalPropertiesMod.h5&quot;</span><span class="p">,</span>
-    <span class="o">...</span>             <span class="n">origFile</span><span class="o">=</span><span class="s2">&quot;../database/ThermoPhysicalProperties.h5&quot;</span><span class="p">,</span>
-    <span class="o">...</span>             <span class="n">copyMat</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>You can describe the important bits of inputs</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Execute">Execute<a class="anchor-link" href="#Execute">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">snapReactors.containers.materials</span> <span class="k">import</span> <span class="n">Material</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Set-a-new-material">Set a new material<a class="anchor-link" href="#Set-a-new-material">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Define-the-material">Define the material<a class="anchor-link" href="#Define-the-material">&#182;</a></h4><ol>
-<li>name of the material,</li>
-<li>its dependencies (pressure and temperature or just temperature)</li>
-</ol>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">newmat</span> <span class="o">=</span> <span class="n">Material</span><span class="p">(</span><span class="s2">&quot;newMat&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">300</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span> <span class="mi">1800</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">10E+6</span><span class="p">,</span> <span class="mf">11E+6</span><span class="p">]))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Add-properties-to-the-material">Add properties to the material<a class="anchor-link" href="#Add-properties-to-the-material">&#182;</a></h4><ol>
-<li>The properties must be from the following list: ['cp', 'cv', 'g', 'h', 'my', 'pr', 'r', 's', 'tc', 'v']</li>
-<li>The dimensions of the property must allign with the pressure-temperature definition.</li>
-</ol>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">newmat</span><span class="o">.</span><span class="n">addproperty</span><span class="p">(</span><span class="s2">&quot;my&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">15.0</span><span class="p">,</span> <span class="mf">13.5</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">14.9</span><span class="p">,</span> <span class="mf">13.4</span><span class="p">,</span> <span class="mf">8.9</span><span class="p">]]))</span>
-<span class="n">newmat</span><span class="o">.</span><span class="n">addproperty</span><span class="p">(</span><span class="s2">&quot;tc&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">15.0</span><span class="p">,</span> <span class="mf">13.5</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">14.9</span><span class="p">,</span> <span class="mf">13.4</span><span class="p">,</span> <span class="mf">8.9</span><span class="p">]]))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">snapReactors.containers.materials</span> <span class="k">import</span> <span class="n">Material</span><span class="p">,</span> <span class="n">Composition</span>
+<span class="kn">from</span> <span class="nn">snapReactors.containers.property</span> <span class="k">import</span> <span class="n">Constant</span><span class="p">,</span> <span class="n">Table</span><span class="p">,</span> <span class="n">Correlation</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Defining-a-new-material">Defining a new material<a class="anchor-link" href="#Defining-a-new-material">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Define-with-Materials-container">Define with Materials container<a class="anchor-link" href="#Define-with-Materials-container">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>Give name of material</li>
+<li>Give type of uncertainty, must be in <code>Enum.UTYPE</code></li>
+<li>Give the composition type, must be in <code>Enum.CTYPE</code></li>
+<li>Give the isotopes that define a material</li>
+<li>Give the abundances for each isotope</li>
+<li>The uncertainty value, temperature and pressure dependencies, reference, description and filename to read data from are left as optional parameters.<ol>
+<li>Note that temperature and pressure dependencies must be under <code>ALLOWED_PROPERTIES</code></li>
+</ol>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mat1</span> <span class="o">=</span> <span class="n">Material</span><span class="p">(</span><span class="s2">&quot;newMat&quot;</span><span class="p">,</span> <span class="s1">&#39;NONE&#39;</span><span class="p">,</span> <span class="s1">&#39;WEIGHT&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]),</span> <span class="kc">None</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">300</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span> <span class="mi">1800</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">10E+6</span><span class="p">,</span> <span class="mf">11E+6</span><span class="p">]),</span> <span class="n">reference</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;This is an example&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mat1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#39;matName&#39;: [&#39;newMat&#39;], &#39;utype&#39;: [&lt;UTYPE.NONE: 4&gt;], &#39;ctype&#39;: [&lt;CTYPE.WEIGHT: 2&gt;], &#39;abundances&#39;: [array([], dtype=float64)], &#39;isotopes&#39;: [array([], dtype=float64)], &#39;unc&#39;: [None], &#39;temperatures&#39;: [array([ 300,  900, 1800])], &#39;pressures&#39;: [array([10000000., 11000000.])], &#39;reference&#39;: [None], &#39;description&#39;: [&#39;This is an example&#39;], &#39;_properties&#39;: []}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Using-the-Composition-subcontainer">Using the Composition subcontainer<a class="anchor-link" href="#Using-the-Composition-subcontainer">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The goal of the <code>Composition</code> subcontainer is to provide an easier interface. As such this effectively excludes temperature and pressure dependencies.</p>
+<ol>
+<li>Give name of material</li>
+<li>Give type of uncertainty, must be in <code>Enum.UTYPE</code></li>
+<li>Give the composition type, must be in <code>Enum.CTYPE</code></li>
+<li>Give the isotopes that define a material</li>
+<li>Give the abundances for each isotopes</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mat2</span> <span class="o">=</span> <span class="n">Composition</span><span class="p">(</span><span class="s1">&#39;newmat&#39;</span><span class="p">,</span> <span class="s1">&#39;NONE&#39;</span><span class="p">,</span> <span class="s1">&#39;WEIGHT&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]),</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;This example uses the Composition subcontainer&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mat2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#39;matName&#39;: [&#39;newmat&#39;], &#39;utype&#39;: [&lt;UTYPE.NONE: 4&gt;], &#39;ctype&#39;: [&lt;CTYPE.WEIGHT: 2&gt;], &#39;abundances&#39;: [array([], dtype=float64)], &#39;isotopes&#39;: [array([], dtype=float64)], &#39;unc&#39;: [None], &#39;temperatures&#39;: [None], &#39;pressures&#39;: [None], &#39;reference&#39;: [None], &#39;description&#39;: [&#39;This example uses the Composition subcontainer&#39;], &#39;_properties&#39;: []}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Reading-in-isotopic-defintiion-through-a-text-file">Reading in isotopic defintiion through a text file<a class="anchor-link" href="#Reading-in-isotopic-defintiion-through-a-text-file">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>The <code>Materials.readData(filename)</code> method is used to read in all relevenat materials information through a text file. </li>
+<li>The text file follows a specific structure that pulls in all parameters specific to the material.<ol>
+<li>All parameters must be included in .txt file except for property parameters</li>
+</ol>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Example-text-file-shown-below">Example text file shown below<a class="anchor-link" href="#Example-text-file-shown-below">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#text_file = open(&#39;test.txt&#39;)</span>
+<span class="n">text_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;c:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">Owner</span><span class="se">\\</span><span class="s1">Documents</span><span class="se">\\</span><span class="s1">GitHub</span><span class="se">\\</span><span class="s1">SNAP-REACTORS</span><span class="se">\\</span><span class="s1">snapReactors</span><span class="se">\\</span><span class="s1">containers</span><span class="se">\\</span><span class="s1">test.txt&#39;</span><span class="p">)</span>
+<span class="n">file_content</span> <span class="o">=</span> <span class="n">text_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">file_content</span><span class="p">)</span>
+<span class="n">text_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Material Name: hasteC
+ctype: ATOMIC
+utype: NONE
+Number of isotopes: 33
+Isotopic Definition:
+--------------------
+6000.03c     -0.0007    
+27059.03c    -0.0125    
+24050.03c    -0.006952
+24052.03c    -0.1340624
+24053.03c    -0.0152016
+24054.03c    -0.003784
+42092.03c    -0.0249033
+42094.03c    -0.0156179
+42095.03c    -0.0269841
+42096.03c    -0.0283441
+42097.03c    -0.0162894
+42098.03c    -0.0412964
+42100.03c    -0.0165648
+23050.03c    -0.0000075
+23051.03c    -0.0029925
+74180.03c    -0.00048
+74182.03c    -0.106
+74183.03c    -0.05724
+74184.03c    -0.12256
+74186.03c    -0.11372
+26054.03c    -0.003360875
+26056.03c    -0.05275855
+26057.03c    -0.001218425
+26058.03c    -0.00016215
+25055.03c    -0.01     
+14028.03c     -0.00645561
+14029.03c     -0.00032795
+14030.03c     -0.00032795
+28058.03c     -0.1220600887
+28060.03c     -0.0470180183
+28061.03c     -0.0020438407
+28062.03c     -0.0065166585
+28064.03c     -0.0016596008
+Properties: {
+%property values for material
+%type = const, table, corr
+%id = prop id
+%unit = SI or imperial
+%value = either number for const or if array/ nd array use {} i.e. {1, 2, 3} or {{1, 2}, {3, 4}}
+%must have a single space &#34; &#34; between keywords &#34;type&#34;, &#34;id&#34;
+%must have a &#34;:&#34; between keyword and value
+%Supports comments by preceeding a line with &#34;%&#34;
+type:const id:cp unit:SI 
+value:1 unc:.01 
+
+type:table id:h unit:imperial ref:NAA-SR-6160 
+dep1unit:K dep1values:{300,600,900} 
+dep2unit:Pa dep2values:{16,32,48}
+value:{{1,2,3},{4,5,6},{7,8,9}}
+unc:{{.01,.01,.01},{.01,.01,.01},{.01,.01,.01}}
+
+type:corr id:r unit:SI ref:NAA-SR-3120
+corr:T+P**2 deps:T,P dep1unit:K dep2unit:Pa
+dep1range:{300,900} dep2range:{16,48}
+}
+Reference: NA-Examples
+Description: This is an example input file
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Materials-definition-returned-by-readData">Materials definition returned by readData<a class="anchor-link" href="#Materials-definition-returned-by-readData">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Material</span><span class="o">.</span><span class="n">readData</span><span class="p">(</span><span class="n">mat1</span><span class="p">,</span> <span class="s1">&#39;c:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">Owner</span><span class="se">\\</span><span class="s1">Documents</span><span class="se">\\</span><span class="s1">GitHub</span><span class="se">\\</span><span class="s1">SNAP-REACTORS</span><span class="se">\\</span><span class="s1">snapReactors</span><span class="se">\\</span><span class="s1">containers</span><span class="se">\\</span><span class="s1">test.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mat1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#39;matName&#39;: [&#39;newMat&#39;, &#39; hasteC\n&#39;, &#39; hasteC\n&#39;, &#39; hasteC\n&#39;], &#39;utype&#39;: [&lt;UTYPE.NONE: 4&gt;, &lt;UTYPE.NONE: 4&gt;, &lt;UTYPE.NONE: 4&gt;, &lt;UTYPE.NONE: 4&gt;], &#39;ctype&#39;: [&lt;CTYPE.WEIGHT: 2&gt;, &lt;CTYPE.ATOMIC: 1&gt;, &lt;CTYPE.ATOMIC: 1&gt;, &lt;CTYPE.ATOMIC: 1&gt;], &#39;abundances&#39;: [array([], dtype=float64), array([-7.00000000e-04, -1.25000000e-02, -6.95200000e-03, -1.34062400e-01,
+       -1.52016000e-02, -3.78400000e-03, -2.49033000e-02, -1.56179000e-02,
+       -2.69841000e-02, -2.83441000e-02, -1.62894000e-02, -4.12964000e-02,
+       -1.65648000e-02, -7.50000000e-06, -2.99250000e-03, -4.80000000e-04,
+       -1.06000000e-01, -5.72400000e-02, -1.22560000e-01, -1.13720000e-01,
+       -3.36087500e-03, -5.27585500e-02, -1.21842500e-03, -1.62150000e-04,
+       -1.00000000e-02, -6.45561000e-03, -3.27950000e-04, -3.27950000e-04,
+       -1.22060089e-01, -4.70180183e-02, -2.04384070e-03, -6.51665850e-03,
+       -1.65960080e-03]), array([-7.00000000e-04, -1.25000000e-02, -6.95200000e-03, -1.34062400e-01,
+       -1.52016000e-02, -3.78400000e-03, -2.49033000e-02, -1.56179000e-02,
+       -2.69841000e-02, -2.83441000e-02, -1.62894000e-02, -4.12964000e-02,
+       -1.65648000e-02, -7.50000000e-06, -2.99250000e-03, -4.80000000e-04,
+       -1.06000000e-01, -5.72400000e-02, -1.22560000e-01, -1.13720000e-01,
+       -3.36087500e-03, -5.27585500e-02, -1.21842500e-03, -1.62150000e-04,
+       -1.00000000e-02, -6.45561000e-03, -3.27950000e-04, -3.27950000e-04,
+       -1.22060089e-01, -4.70180183e-02, -2.04384070e-03, -6.51665850e-03,
+       -1.65960080e-03]), array([-7.00000000e-04, -1.25000000e-02, -6.95200000e-03, -1.34062400e-01,
+       -1.52016000e-02, -3.78400000e-03, -2.49033000e-02, -1.56179000e-02,
+       -2.69841000e-02, -2.83441000e-02, -1.62894000e-02, -4.12964000e-02,
+       -1.65648000e-02, -7.50000000e-06, -2.99250000e-03, -4.80000000e-04,
+       -1.06000000e-01, -5.72400000e-02, -1.22560000e-01, -1.13720000e-01,
+       -3.36087500e-03, -5.27585500e-02, -1.21842500e-03, -1.62150000e-04,
+       -1.00000000e-02, -6.45561000e-03, -3.27950000e-04, -3.27950000e-04,
+       -1.22060089e-01, -4.70180183e-02, -2.04384070e-03, -6.51665850e-03,
+       -1.65960080e-03])], &#39;isotopes&#39;: [array([], dtype=float64), array([&#39;6000.03c&#39;, &#39;27059.03c&#39;, &#39;24050.03c&#39;, &#39;24052.03c&#39;, &#39;24053.03c&#39;,
+       &#39;24054.03c&#39;, &#39;42092.03c&#39;, &#39;42094.03c&#39;, &#39;42095.03c&#39;, &#39;42096.03c&#39;,
+       &#39;42097.03c&#39;, &#39;42098.03c&#39;, &#39;42100.03c&#39;, &#39;23050.03c&#39;, &#39;23051.03c&#39;,
+       &#39;74180.03c&#39;, &#39;74182.03c&#39;, &#39;74183.03c&#39;, &#39;74184.03c&#39;, &#39;74186.03c&#39;,
+       &#39;26054.03c&#39;, &#39;26056.03c&#39;, &#39;26057.03c&#39;, &#39;26058.03c&#39;, &#39;25055.03c&#39;,
+       &#39;14028.03c&#39;, &#39;14029.03c&#39;, &#39;14030.03c&#39;, &#39;28058.03c&#39;, &#39;28060.03c&#39;,
+       &#39;28061.03c&#39;, &#39;28062.03c&#39;, &#39;28064.03c&#39;], dtype=object), array([&#39;6000.03c&#39;, &#39;27059.03c&#39;, &#39;24050.03c&#39;, &#39;24052.03c&#39;, &#39;24053.03c&#39;,
+       &#39;24054.03c&#39;, &#39;42092.03c&#39;, &#39;42094.03c&#39;, &#39;42095.03c&#39;, &#39;42096.03c&#39;,
+       &#39;42097.03c&#39;, &#39;42098.03c&#39;, &#39;42100.03c&#39;, &#39;23050.03c&#39;, &#39;23051.03c&#39;,
+       &#39;74180.03c&#39;, &#39;74182.03c&#39;, &#39;74183.03c&#39;, &#39;74184.03c&#39;, &#39;74186.03c&#39;,
+       &#39;26054.03c&#39;, &#39;26056.03c&#39;, &#39;26057.03c&#39;, &#39;26058.03c&#39;, &#39;25055.03c&#39;,
+       &#39;14028.03c&#39;, &#39;14029.03c&#39;, &#39;14030.03c&#39;, &#39;28058.03c&#39;, &#39;28060.03c&#39;,
+       &#39;28061.03c&#39;, &#39;28062.03c&#39;, &#39;28064.03c&#39;], dtype=object), array([&#39;6000.03c&#39;, &#39;27059.03c&#39;, &#39;24050.03c&#39;, &#39;24052.03c&#39;, &#39;24053.03c&#39;,
+       &#39;24054.03c&#39;, &#39;42092.03c&#39;, &#39;42094.03c&#39;, &#39;42095.03c&#39;, &#39;42096.03c&#39;,
+       &#39;42097.03c&#39;, &#39;42098.03c&#39;, &#39;42100.03c&#39;, &#39;23050.03c&#39;, &#39;23051.03c&#39;,
+       &#39;74180.03c&#39;, &#39;74182.03c&#39;, &#39;74183.03c&#39;, &#39;74184.03c&#39;, &#39;74186.03c&#39;,
+       &#39;26054.03c&#39;, &#39;26056.03c&#39;, &#39;26057.03c&#39;, &#39;26058.03c&#39;, &#39;25055.03c&#39;,
+       &#39;14028.03c&#39;, &#39;14029.03c&#39;, &#39;14030.03c&#39;, &#39;28058.03c&#39;, &#39;28060.03c&#39;,
+       &#39;28061.03c&#39;, &#39;28062.03c&#39;, &#39;28064.03c&#39;], dtype=object)], &#39;unc&#39;: [None, array([&#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;], dtype=object), array([&#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;], dtype=object), array([&#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;], dtype=object)], &#39;temperatures&#39;: [array([ 300,  900, 1800])], &#39;pressures&#39;: [array([10000000., 11000000.])], &#39;reference&#39;: [None, &#39; NA-Examples\n&#39;, &#39; NA-Examples\n&#39;, &#39; NA-Examples\n&#39;], &#39;description&#39;: [&#39;This is an example&#39;, &#39; This is an example input file&#39;, &#39; This is an example input file&#39;, &#39; This is an example input file&#39;], &#39;_properties&#39;: [[&lt;snapReactors.containers.property.Constant object at 0x000002E67EA899C8&gt;, &lt;snapReactors.containers.property.Table object at 0x000002E67E6651C8&gt;, &lt;snapReactors.containers.property.Correlation object at 0x000002E67EA897C8&gt;], [&lt;snapReactors.containers.property.Constant object at 0x000002E67F53B908&gt;, &lt;snapReactors.containers.property.Table object at 0x000002E67F53B808&gt;, &lt;snapReactors.containers.property.Correlation object at 0x000002E67F53BA48&gt;], [&lt;snapReactors.containers.property.Constant object at 0x000002E67EA71D88&gt;, &lt;snapReactors.containers.property.Table object at 0x000002E67EA72608&gt;, &lt;snapReactors.containers.property.Correlation object at 0x000002E67EA72448&gt;]]}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Updating-properties-to-materials">Updating properties to materials<a class="anchor-link" href="#Updating-properties-to-materials">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>The properties must be from the following list: ['cp', 'cv', 'g', 'h', 'my', 'pr', 'r', 's', 'tc', 'v']</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;cv&#39;</span><span class="p">,</span>  <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span> <span class="s2">&quot;J/kg/K&quot;</span><span class="p">,</span> <span class="n">unc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+
+<span class="n">mat1</span><span class="o">.</span><span class="n">addproperty</span><span class="p">([</span><span class="n">p1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mat1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#39;id&#39;: &#39;cv&#39;, &#39;dtype&#39;: &lt;DTYPE.NUMBER: 1&gt;, &#39;vtype&#39;: &lt;VTYPE.CONSTANT: 1&gt;, &#39;value&#39;: array([1]), &#39;valueUnit&#39;: &#39;J/kg/K&#39;, &#39;unc&#39;: None, &#39;dependents&#39;: None, &#39;dependentsUnit&#39;: None, &#39;description&#39;: None, &#39;ref&#39;: None}
+{&#39;matName&#39;: [&#39;newMat&#39;, &#39; hasteC\n&#39;, &#39; hasteC\n&#39;, &#39; hasteC\n&#39;], &#39;utype&#39;: [&lt;UTYPE.NONE: 4&gt;, &lt;UTYPE.NONE: 4&gt;, &lt;UTYPE.NONE: 4&gt;, &lt;UTYPE.NONE: 4&gt;], &#39;ctype&#39;: [&lt;CTYPE.WEIGHT: 2&gt;, &lt;CTYPE.ATOMIC: 1&gt;, &lt;CTYPE.ATOMIC: 1&gt;, &lt;CTYPE.ATOMIC: 1&gt;], &#39;abundances&#39;: [array([], dtype=float64), array([-7.00000000e-04, -1.25000000e-02, -6.95200000e-03, -1.34062400e-01,
+       -1.52016000e-02, -3.78400000e-03, -2.49033000e-02, -1.56179000e-02,
+       -2.69841000e-02, -2.83441000e-02, -1.62894000e-02, -4.12964000e-02,
+       -1.65648000e-02, -7.50000000e-06, -2.99250000e-03, -4.80000000e-04,
+       -1.06000000e-01, -5.72400000e-02, -1.22560000e-01, -1.13720000e-01,
+       -3.36087500e-03, -5.27585500e-02, -1.21842500e-03, -1.62150000e-04,
+       -1.00000000e-02, -6.45561000e-03, -3.27950000e-04, -3.27950000e-04,
+       -1.22060089e-01, -4.70180183e-02, -2.04384070e-03, -6.51665850e-03,
+       -1.65960080e-03]), array([-7.00000000e-04, -1.25000000e-02, -6.95200000e-03, -1.34062400e-01,
+       -1.52016000e-02, -3.78400000e-03, -2.49033000e-02, -1.56179000e-02,
+       -2.69841000e-02, -2.83441000e-02, -1.62894000e-02, -4.12964000e-02,
+       -1.65648000e-02, -7.50000000e-06, -2.99250000e-03, -4.80000000e-04,
+       -1.06000000e-01, -5.72400000e-02, -1.22560000e-01, -1.13720000e-01,
+       -3.36087500e-03, -5.27585500e-02, -1.21842500e-03, -1.62150000e-04,
+       -1.00000000e-02, -6.45561000e-03, -3.27950000e-04, -3.27950000e-04,
+       -1.22060089e-01, -4.70180183e-02, -2.04384070e-03, -6.51665850e-03,
+       -1.65960080e-03]), array([-7.00000000e-04, -1.25000000e-02, -6.95200000e-03, -1.34062400e-01,
+       -1.52016000e-02, -3.78400000e-03, -2.49033000e-02, -1.56179000e-02,
+       -2.69841000e-02, -2.83441000e-02, -1.62894000e-02, -4.12964000e-02,
+       -1.65648000e-02, -7.50000000e-06, -2.99250000e-03, -4.80000000e-04,
+       -1.06000000e-01, -5.72400000e-02, -1.22560000e-01, -1.13720000e-01,
+       -3.36087500e-03, -5.27585500e-02, -1.21842500e-03, -1.62150000e-04,
+       -1.00000000e-02, -6.45561000e-03, -3.27950000e-04, -3.27950000e-04,
+       -1.22060089e-01, -4.70180183e-02, -2.04384070e-03, -6.51665850e-03,
+       -1.65960080e-03])], &#39;isotopes&#39;: [array([], dtype=float64), array([&#39;6000.03c&#39;, &#39;27059.03c&#39;, &#39;24050.03c&#39;, &#39;24052.03c&#39;, &#39;24053.03c&#39;,
+       &#39;24054.03c&#39;, &#39;42092.03c&#39;, &#39;42094.03c&#39;, &#39;42095.03c&#39;, &#39;42096.03c&#39;,
+       &#39;42097.03c&#39;, &#39;42098.03c&#39;, &#39;42100.03c&#39;, &#39;23050.03c&#39;, &#39;23051.03c&#39;,
+       &#39;74180.03c&#39;, &#39;74182.03c&#39;, &#39;74183.03c&#39;, &#39;74184.03c&#39;, &#39;74186.03c&#39;,
+       &#39;26054.03c&#39;, &#39;26056.03c&#39;, &#39;26057.03c&#39;, &#39;26058.03c&#39;, &#39;25055.03c&#39;,
+       &#39;14028.03c&#39;, &#39;14029.03c&#39;, &#39;14030.03c&#39;, &#39;28058.03c&#39;, &#39;28060.03c&#39;,
+       &#39;28061.03c&#39;, &#39;28062.03c&#39;, &#39;28064.03c&#39;], dtype=object), array([&#39;6000.03c&#39;, &#39;27059.03c&#39;, &#39;24050.03c&#39;, &#39;24052.03c&#39;, &#39;24053.03c&#39;,
+       &#39;24054.03c&#39;, &#39;42092.03c&#39;, &#39;42094.03c&#39;, &#39;42095.03c&#39;, &#39;42096.03c&#39;,
+       &#39;42097.03c&#39;, &#39;42098.03c&#39;, &#39;42100.03c&#39;, &#39;23050.03c&#39;, &#39;23051.03c&#39;,
+       &#39;74180.03c&#39;, &#39;74182.03c&#39;, &#39;74183.03c&#39;, &#39;74184.03c&#39;, &#39;74186.03c&#39;,
+       &#39;26054.03c&#39;, &#39;26056.03c&#39;, &#39;26057.03c&#39;, &#39;26058.03c&#39;, &#39;25055.03c&#39;,
+       &#39;14028.03c&#39;, &#39;14029.03c&#39;, &#39;14030.03c&#39;, &#39;28058.03c&#39;, &#39;28060.03c&#39;,
+       &#39;28061.03c&#39;, &#39;28062.03c&#39;, &#39;28064.03c&#39;], dtype=object), array([&#39;6000.03c&#39;, &#39;27059.03c&#39;, &#39;24050.03c&#39;, &#39;24052.03c&#39;, &#39;24053.03c&#39;,
+       &#39;24054.03c&#39;, &#39;42092.03c&#39;, &#39;42094.03c&#39;, &#39;42095.03c&#39;, &#39;42096.03c&#39;,
+       &#39;42097.03c&#39;, &#39;42098.03c&#39;, &#39;42100.03c&#39;, &#39;23050.03c&#39;, &#39;23051.03c&#39;,
+       &#39;74180.03c&#39;, &#39;74182.03c&#39;, &#39;74183.03c&#39;, &#39;74184.03c&#39;, &#39;74186.03c&#39;,
+       &#39;26054.03c&#39;, &#39;26056.03c&#39;, &#39;26057.03c&#39;, &#39;26058.03c&#39;, &#39;25055.03c&#39;,
+       &#39;14028.03c&#39;, &#39;14029.03c&#39;, &#39;14030.03c&#39;, &#39;28058.03c&#39;, &#39;28060.03c&#39;,
+       &#39;28061.03c&#39;, &#39;28062.03c&#39;, &#39;28064.03c&#39;], dtype=object)], &#39;unc&#39;: [None, array([&#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;], dtype=object), array([&#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;], dtype=object), array([&#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;, &#39;None&#39;,
+       &#39;None&#39;], dtype=object)], &#39;temperatures&#39;: [array([ 300,  900, 1800])], &#39;pressures&#39;: [array([10000000., 11000000.])], &#39;reference&#39;: [None, &#39; NA-Examples\n&#39;, &#39; NA-Examples\n&#39;, &#39; NA-Examples\n&#39;], &#39;description&#39;: [&#39;This is an example&#39;, &#39; This is an example input file&#39;, &#39; This is an example input file&#39;, &#39; This is an example input file&#39;], &#39;_properties&#39;: [[&lt;snapReactors.containers.property.Constant object at 0x000002E67EA899C8&gt;, &lt;snapReactors.containers.property.Table object at 0x000002E67E6651C8&gt;, &lt;snapReactors.containers.property.Correlation object at 0x000002E67EA897C8&gt;], [&lt;snapReactors.containers.property.Constant object at 0x000002E67F53B908&gt;, &lt;snapReactors.containers.property.Table object at 0x000002E67F53B808&gt;, &lt;snapReactors.containers.property.Correlation object at 0x000002E67F53BA48&gt;], [&lt;snapReactors.containers.property.Constant object at 0x000002E67EA71D88&gt;, &lt;snapReactors.containers.property.Table object at 0x000002E67EA72608&gt;, &lt;snapReactors.containers.property.Correlation object at 0x000002E67EA72448&gt;], &lt;snapReactors.containers.property.Constant object at 0x000002E67F67D448&gt;]}
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
