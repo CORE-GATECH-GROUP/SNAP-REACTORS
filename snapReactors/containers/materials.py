@@ -211,11 +211,15 @@ class Material:
 
         Examples
         --------
-        >>> controlRod = Material(matName= "Boron Carbide", utype= "ABSOLUTE", 
+        >>> UC = Material(matName= "Boron Carbide", utype= "ABSOLUTE", 
                     ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
                     abundances= np.array(0.xxx, 0.yyy, 0.zzz),
-                    unc = np.array(xxx, yyy, zzz))
-        >>> controlRod.addproperty("tc")
+                    unc = np.array(xxx, yyy, zzz), description = "Example",
+                    reference = "NA-SR-XXXX")
+        >>> p1 = Constant(id='cv',  value=1, unit= "J/kg/K", unc=None, 
+                            ref=None, description=None)
+
+        >>> mat1.addproperty(p1)
 
         """
 
@@ -245,11 +249,16 @@ class Material:
 
         Examples
         --------
-        >>> UC = Material("UC", np.array([300, 900, 1800]))
-        >>> UC.addproperty("tc", np.array([15.0, 13.5, 9.0]))
-        >>> UC.getproperty("tc")
-        np.array([15.0, 13.5, 9.0])
+        >>> UC = Material(matName= "Boron Carbide", utype= "ABSOLUTE", 
+                    ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
+                    abundances= np.array(0.xxx, 0.yyy, 0.zzz),
+                    unc = np.array(xxx, yyy, zzz), description = "Example",
+                    reference = "NA-SR-XXXX")
+            p1 = Constant(id='cv',  value=1, unit= "J/kg/K", unc=None, 
+                            ref=None, description=None)
 
+        >>> mat1.addproperty(p1)
+        >>> Material.getproperty(mat1, "_properties")
         """
 
         if not isinstance(pty, str):
@@ -358,11 +367,6 @@ class Material:
 
         with open(filename) as filehandle:
             lines = filehandle.readlines()
-
-        # remove any empty lines in filename
-        #with open(filename, 'w') as filehandle:
-        #    lines = filter(lambda x: x.strip(), lines)
-        #    filehandle.writelines(lines)
 
         # read input file
         with open(filename, "r") as f:
@@ -485,8 +489,10 @@ class Composition(Material):
 
     Examples
     --------
-    >>> comp1 = Composition(Boron Carbide, 'ABSOLUTE', 'WEIGHT', [B-10], 
-                [1.0], [0], 'Taken from reference x', 'This is an example')
+    >>> mat2 = Composition('newmat', 'NONE', 'WEIGHT', np.array([]), 
+                            np.array([]), description='This example uses'
+                            'the Composition subcontainer')
+
     """
 
     def __init__(self, matName, utype, ctype, isotopes, abundances, unc=None,
