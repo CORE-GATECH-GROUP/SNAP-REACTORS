@@ -44,12 +44,12 @@ def test_material(setMaterial, setComposition):
     assert prdval == expval
     
     prdval = mat.abundances
-    expval = [np.array([1])]
-    assert prdval != expval
+    expval = [np.array([])]
+    assert np.testing.assert_array_equal(prdval, expval) is None
 
     prdval = mat.isotopes
-    expval = [np.array(["should be different"])]
-    assert prdval != expval
+    expval = [np.array([])]
+    assert np.testing.assert_array_equal(prdval, expval) is None
     
     prdval = mat.unc
     expval = [None]
@@ -89,13 +89,13 @@ def test_material(setMaterial, setComposition):
     expval = [CTYPE.WEIGHT]
     assert prdval == expval
     
-    prdval = comp.abundances
-    expval = [np.array([1])]
-    assert prdval != expval
+    prdval = mat.abundances
+    expval = [np.array([])]
+    assert np.testing.assert_array_equal(prdval, expval) is None
 
-    prdval = comp.isotopes
-    expval = [np.array(["should be different"])]
-    assert prdval != expval
+    prdval = mat.isotopes
+    expval = [np.array([])]
+    assert np.testing.assert_array_equal(prdval, expval) is None
     
     prdval = comp.unc
     expval = [None]
