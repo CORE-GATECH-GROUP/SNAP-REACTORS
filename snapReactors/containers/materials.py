@@ -351,7 +351,12 @@ class Material:
         TypeError
             If ``filename``, ``utype`` are not str
         OSError
-            "If ``filename`` is not found 
+            If ``filename`` is not found 
+        ValueError
+            If ``ctype``, ``numberOfIsotopes`` is not given for a material.
+        
+        Warnings
+            If 
         Examples
         --------
         >>> Mat1 = Material(matName= "Mat1", utype= "ABSOLUTE", 
@@ -375,17 +380,16 @@ class Material:
         firstState = True
         mp = None
 
-        for j, line in enumerate(data):
-
+        for i in range(0, len(data)):
+            line = data[i]
             if "Material Name" in line:
-                
                 if firstState:
                     firstState = False
                 else:
                     matpoints.append(mp)
 
                 mp = dict()
-                mp["matName"] = str(line.split(":")[-1])
+                mp["matName"] = [str(line.split(":")[-1]), i+1]
 
             if "ctype" in line:
                 ctype = str(line.split(":")[-1])
@@ -417,8 +421,8 @@ class Material:
                             mp[var] = np.zeros(isoNumber, dtype=float)
                     else:
                         mp[var] = np.zeros(isoNumber, dtype = float)
-                for k in range(isoNumber):
-                    line1 = data[j+k+2].split()
+                for k in range(0, isoNumber):
+                    line1 = data[i+k+2].split()
                     mp["isotopes"][k] = line1[0]
                     mp["abundances"][k] = float(line1[1])
                     if mp["utype"] == UTYPE.NONE:
@@ -433,25 +437,37 @@ class Material:
                 mp["description"] = str(line.split(":")[-1])
 
             if "Properties" in line:
-                indexBegin = j + 1
+                indexBegin = i + 1
 
             if "}\n" == line:
-                indexEnd = j 
+                indexEnd = i
                 mp["Properties"] = Property._propertyReader(data[indexBegin: 
                                                                     indexEnd])
 
         matpoints.append(mp)
-        for i in range(len(matpoints)):
-            self.matName.append(matpoints[i]["matName"])
-            self.utype.append(matpoints[i]["utype"])
-            self.ctype.append(matpoints[i]["ctype"])
-            self.abundances.append(matpoints[i]["abundances"])
-            self.isotopes.append(matpoints[i]["isotopes"])
-            self.unc.append(matpoints[i]["unc"])
-            self.reference.append(matpoints[i]["reference"])
-            self.description.append(matpoints[i]["description"])
-            self._properties.append(matpoints[i]["Properties"])
+        mats = [0]*len(matpoints)
 
+        for i in range(len(matpoints)):
+            id = matpoints[i]["matName"][0]
+            if "ctype" in matpoints[i]:
+                ctype = matpoints[i]["ctype"]
+            else:
+                raise ValueError("ctype not given for {} material @"
+                    " line: {}".format(
+                    matpoints[i]["matName"][0], matpoints[i]["matName"][1]))
+
+            # mats[i].matName.append(matpoints[i]["matName"])
+            # self.utype.append(matpoints[i]["utype"])
+            # self.ctype.append(matpoints[i]["ctype"])
+            # self.abundances.append(matpoints[i]["abundances"])
+            # self.isotopes.append(matpoints[i]["isotopes"])
+            # self.unc.append(matpoints[i]["unc"])
+            # self.reference.append(matpoints[i]["reference"])
+            # self.description.append(matpoints[i]["description"])
+            # self._properties.append(matpoints[i]["Properties"])
+
+            mats[i] = Material(id, utype )
+        return mats
 class Composition(Material):
     """A derivative of the Material container meant to represent the 
     composition of a material through isotopic abundance defintion. It 
@@ -560,3 +576,7 @@ class Materials:
 
     def __getitem__(self, pos):
         return self._materials[pos]
+
+mat1 = Material("newMat", 'NONE', 'WEIGHT', np.array([]), np.array([]), None, np.array([300, 900, 1800]), np.array([10E+6, 11E+6]), reference=None, description='This is an example')
+Material.readData(mat1, 'C:\\Users\\Owner\\Documents\\GitHub\\SNAP-REACTORS\\snapReactors\\jupyter_notebooks\\test.txt')
+print(mat1)

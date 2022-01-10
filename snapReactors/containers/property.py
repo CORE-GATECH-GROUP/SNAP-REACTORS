@@ -513,6 +513,7 @@ class Property:
 
                         if "type" in values[j]:  
                             value = values[j].split(":")[-1]
+                            value = [value, i+1]
                             key = "prop"+str(pcount)
                             input[key]["type"] = value
 
@@ -604,14 +605,19 @@ class Property:
         for i in range(0, len(properties)):
             properties[i] = input["prop"+str(i+1)]
             
-            if properties[i]["type"] == "const":
+            if properties[i]["type"][0] == "const":
                 id =properties[i]["id"]
                 val = float(properties[i]["value"][0][0])
-                unit = properties[i]["unit"]
-                if unit == "SI":
-                    unit  = ALLOWED_PROPERTIES[id].units.SI
+
+                if "unit" in properties[i]:
+                    unit = properties[i]["unit"]
+                    if unit == "SI":
+                        unit  = ALLOWED_PROPERTIES[id].units.SI
+                    else:
+                        unit  = ALLOWED_PROPERTIES[id].units.imperial
                 else:
-                    unit  = ALLOWED_PROPERTIES[id].units.imperial
+                    raise ValueError("units not given for property @ line: {}"
+                                            .format(properties[i]["type"][1]))
 
                 if "unc" in properties[i]:
                     unc = float(properties[i]["unc"][0][0])
@@ -626,14 +632,20 @@ class Property:
                 pty = Constant(id, val, unit, unc, ref)
                 properties[i] = pty
 
-            elif properties[i]["type"] == "table":
+            elif properties[i]["type"][0] == "table":
                 id =properties[i]["id"]
                 val = properties[i]["value"]
-                unit = properties[i]["unit"]
-                if unit == "SI":
-                    unit  = ALLOWED_PROPERTIES[id].units.SI
+                if "unit" in properties[i]:
+                    unit = properties[i]["unit"]
+                    if unit == "SI":
+                        unit  = ALLOWED_PROPERTIES[id].units.SI
+                    else:
+                        unit  = ALLOWED_PROPERTIES[id].units.imperial
                 else:
-                    unit  = ALLOWED_PROPERTIES[id].units.imperial
+                    raise ValueError("units not given for {} {} property @"
+                        " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]))
+
                 dep1  = properties[i]["dep1values"]
                 dep1unit = properties[i]["dep1unit"]
 
