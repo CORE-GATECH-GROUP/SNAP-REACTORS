@@ -8,19 +8,19 @@ Each material is defined individually. This functionality is envisioned to be
 executed at the start of the simulation.
 
 Created on Tue Oct 26 08:00:00 2020 @author: Dan Kotlyar
-Last updated on Thurs Jan 06 12:45:00 2022 @author: Sam Garcia
+Last updated on Mon Jan 10 05:04:00 2022 @author: Sam Garcia
 email: dan.kotlyar@me.gatech.edu, sgarcia9@wisc.edu
 """
 from snapReactors.functions.checkerrors import _isstr, _isarray,\
     _explengtharray, _isnonnegativearray, _isinstanceList
-
 from snapReactors.functions.parameters import ALLOWED_PROPERTIES
-
 from snapReactors.containers.property import Property
-
+from snapReactors.functions.warnings import InputFileSyntaxWarning
 from enum import Enum
 
 import os
+
+import warnings
 
 import numpy as np
 
@@ -119,7 +119,7 @@ class Material:
 
     def __init__(self, matName, utype, ctype, isotopes, abundances,
                  unc=None, temperatures=None, pressures=None, reference=None,
-                 description=None):
+                 description=None, _properties=None):
 
         # check that variables are of correct type (return TypeError if not)
         _isstr(matName, "Material name")
@@ -179,6 +179,7 @@ class Material:
         self.description = []
         self.description.append(description)
         self._properties = []
+        self._properties.append(_properties)
 
     def __str__(self):
         """Overwrites print method, prints all objects variables."""
@@ -377,19 +378,23 @@ class Material:
         with open(filename, "r") as f:
             data = f.readlines()
         matpoints = []
-        firstState = True
+        states = 0
         mp = None
 
         for i in range(0, len(data)):
             line = data[i]
             if "Material Name" in line:
-                if firstState:
-                    firstState = False
+                if states == 0:
+                    states += 1
                 else:
                     matpoints.append(mp)
+                    states += 1
 
                 mp = dict()
                 mp["matName"] = [str(line.split(":")[-1]), i+1]
+            if "Material Name" not in line & "description" in mp[0] & line != "\n":
+                raise TypeError("Material Name not given for new material @"
+                                "line {}".format(i))
 
             if "ctype" in line:
                 ctype = str(line.split(":")[-1])
@@ -409,6 +414,7 @@ class Material:
             
             if "Number of isotopes" in line:
                 isoNumber = int(line.split(":")[-1])
+                mp["isoNum"] = isoNumber
             
             if "Isotopic Definition" in line:
                 for var in ["isotopes", "abundances", "unc"]:
@@ -443,12 +449,15 @@ class Material:
                 indexEnd = i
                 mp["Properties"] = Property._propertyReader(data[indexBegin: 
                                                                     indexEnd])
-
+            
         matpoints.append(mp)
         mats = [0]*len(matpoints)
 
         for i in range(len(matpoints)):
-            id = matpoints[i]["matName"][0]
+
+            if "matName" in matpoints[i]:
+                matName = matpoints[i]["matName"][0]
+
             if "ctype" in matpoints[i]:
                 ctype = matpoints[i]["ctype"]
             else:
@@ -456,17 +465,55 @@ class Material:
                     " line: {}".format(
                     matpoints[i]["matName"][0], matpoints[i]["matName"][1]))
 
-            # mats[i].matName.append(matpoints[i]["matName"])
-            # self.utype.append(matpoints[i]["utype"])
-            # self.ctype.append(matpoints[i]["ctype"])
-            # self.abundances.append(matpoints[i]["abundances"])
-            # self.isotopes.append(matpoints[i]["isotopes"])
-            # self.unc.append(matpoints[i]["unc"])
-            # self.reference.append(matpoints[i]["reference"])
-            # self.description.append(matpoints[i]["description"])
-            # self._properties.append(matpoints[i]["Properties"])
+            if "utype" in matpoints[i]:
+                utype = matpoints[i]["utype"]
+                if utype == UTYPE.NONE:
+                    warnings.warn("Uncertainty for {} material is marked as" 
+                                    "none".format(matName), 
+                                    InputFileSyntaxWarning)
+            else:
+                raise ValueError("utype not given for {} material @"
+                    " line: {}".format(
+                    matpoints[i]["matName"][0], matpoints[i]["matName"][1]+1))
 
-            mats[i] = Material(id, utype )
+            if "isoNum" not in matpoints[i]:
+                raise ValueError("Number of isotopes not given for {}" 
+                 "material @ line: {}".format(
+                    matpoints[i]["matName"][0], matpoints[i]["matName"][1]))
+            
+            if "isotopes" in matpoints[i]:
+                isotopes = matpoints[i]["isotopes"]
+            
+            if "abundances" in matpoints[i]:
+                abundances = matpoints[i]["abundances"]
+            
+            if "unc" in matpoints[i]:
+                unc = matpoints[i]["unc"]
+
+            if "reference" in matpoints[i]:
+                reference = matpoints[i]["reference"]
+            else:
+                warnings.warn("Reference for material {} not" 
+                            "provided".format(matName), 
+                                    InputFileSyntaxWarning)                
+
+            if "description" in matpoints[i]:
+                description = matpoints[i]["description"]
+            else:
+                warnings.warn("Description for material {} not" 
+                            "provided".format(matName), 
+                                    InputFileSyntaxWarning)
+
+            if "properties" in matpoints:
+                properties = matpoints[i]["properties"]
+            else:
+                warnings.warn("Property/s for material {} are not" 
+                            "given".format(matName), 
+                                    InputFileSyntaxWarning)
+            mats[i] = Material(matName, utype, ctype, isotopes, abundances,
+                                unc, temperatures=None, pressures=None, 
+                                reference=reference, description=description,
+                                _properties=properties)
         return mats
 class Composition(Material):
     """A derivative of the Material container meant to represent the 
@@ -512,7 +559,7 @@ class Composition(Material):
     """
 
     def __init__(self, matName, utype, ctype, isotopes, abundances, unc=None,
-                 reference=None, description=None):
+                 reference=None, description=None, _properties=None):
 
         # check names are of correct type (return TypeError if not)
         _isarray(isotopes, "(Isotope name")
@@ -524,7 +571,8 @@ class Composition(Material):
             _isnonnegativearray(unc, "property value uncertainty/s")
 
         Material.__init__(self, matName, utype, ctype, isotopes, abundances,
-                          unc, reference=reference, description=description)
+                          unc, reference=reference, description=description,
+                          _properties=None)
 
 
 class Materials:
