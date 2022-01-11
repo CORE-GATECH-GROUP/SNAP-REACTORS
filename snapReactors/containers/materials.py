@@ -51,7 +51,7 @@ class CTYPE(Enum):
     """
     ATOMIC = 1
     WEIGHT = 2
-
+    RELATIVE = 3
 
 class Material:
     """A container to store the data for each material
@@ -132,8 +132,12 @@ class Material:
         # check that all values are positive (ValueError)
         _isnonnegativearray(abundances, "Abundances")
 
-        if not isinstance(unc, type(None)):
-            _isnonnegativearray(unc, "property value uncertainty/s")
+        if utype == "NONE":
+            if not isinstance(unc, type(None)):
+                _isarray(unc, "property value uncertainty/s")
+        else:    
+            if not isinstance(unc, type(None)):
+                _isnonnegativearray(unc, "property value uncertainty/s")
 
         if not isinstance(temperatures, type(None)):
             _isnonnegativearray(temperatures, "Temperatures dependency")
@@ -285,7 +289,7 @@ class Material:
 
         return list(ALLOWED_PROPERTIES)
 
-    def readData(self, filename):
+    def readData(filename):
         """Reads compositional data to save material data quickly. Furthemore,
         the formatting of input filename is assumed to have the following 
         formatting:
@@ -392,9 +396,9 @@ class Material:
 
                 mp = dict()
                 mp["matName"] = [str(line.split(":")[-1]), i+1]
-            if "Material Name" not in line & "description" in mp[0] & line != "\n":
-                raise TypeError("Material Name not given for new material @"
-                                "line {}".format(i))
+            #if ("Material Name" not in line) and ("description" in mp[0]) and (line != "\n"):
+            #    raise TypeError("Material Name not given for new material @"
+            #                    "line {}".format(i))
 
             if "ctype" in line:
                 ctype = str(line.split(":")[-1])
@@ -402,7 +406,7 @@ class Material:
                     raise KeyError("Composition Type {} is not an allowed" 
                                     "composition type: {}".format(ctype, 
                                                         CTYPE._member_names_))
-                mp["ctype"] = CTYPE[ctype.strip()]
+                mp["ctype"] = ctype.strip()
             
             if "utype" in line:
                 utype = str(line.split(":")[-1])
@@ -410,7 +414,7 @@ class Material:
                     raise KeyError("Uncertainty Type {} is not an allowed" 
                                     "uncertainty type: {}".format(utype, 
                                                         UTYPE._member_names_))
-                mp["utype"] = UTYPE[utype.strip()]
+                mp["utype"] = utype.strip()
             
             if "Number of isotopes" in line:
                 isoNumber = int(line.split(":")[-1])
@@ -421,7 +425,7 @@ class Material:
                     if var == "isotopes":
                         mp[var] = np.zeros(isoNumber, dtype=object)
                     elif var == "unc":
-                        if mp["utype"] == UTYPE.NONE:
+                        if mp["utype"] == "NONE":
                             mp[var] = np.zeros(isoNumber, dtype=object)
                         else:
                             mp[var] = np.zeros(isoNumber, dtype=float)
@@ -431,7 +435,7 @@ class Material:
                     line1 = data[i+k+2].split()
                     mp["isotopes"][k] = line1[0]
                     mp["abundances"][k] = float(line1[1])
-                    if mp["utype"] == UTYPE.NONE:
+                    if mp["utype"] == "NONE":
                         mp["unc"][k] = "None"
                     else:
                         mp["unc"][k] = float(line1[2])
@@ -447,7 +451,7 @@ class Material:
 
             if "}\n" == line:
                 indexEnd = i
-                mp["Properties"] = Property._propertyReader(data[indexBegin: 
+                mp["properties"] = Property._propertyReader(data[indexBegin: 
                                                                     indexEnd])
             
         matpoints.append(mp)
@@ -468,7 +472,7 @@ class Material:
             if "utype" in matpoints[i]:
                 utype = matpoints[i]["utype"]
                 if utype == UTYPE.NONE:
-                    warnings.warn("Uncertainty for {} material is marked as" 
+                    warnings.warn("Uncertainty for {} material is marked as " 
                                     "none".format(matName), 
                                     InputFileSyntaxWarning)
             else:
@@ -504,7 +508,7 @@ class Material:
                             "provided".format(matName), 
                                     InputFileSyntaxWarning)
 
-            if "properties" in matpoints:
+            if "properties" in matpoints[i]:
                 properties = matpoints[i]["properties"]
             else:
                 warnings.warn("Property/s for material {} are not" 
@@ -624,7 +628,3 @@ class Materials:
 
     def __getitem__(self, pos):
         return self._materials[pos]
-
-mat1 = Material("newMat", 'NONE', 'WEIGHT', np.array([]), np.array([]), None, np.array([300, 900, 1800]), np.array([10E+6, 11E+6]), reference=None, description='This is an example')
-Material.readData(mat1, 'C:\\Users\\Owner\\Documents\\GitHub\\SNAP-REACTORS\\snapReactors\\jupyter_notebooks\\test.txt')
-print(mat1)
