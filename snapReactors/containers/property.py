@@ -19,6 +19,8 @@ from snapReactors.functions.checkerrors import _isstr, _isarray,\
     _explengtharray, _isnonnegativearray, _isnumber, _isnonnegative
 
 from snapReactors.functions.parameters import ALLOWED_PROPERTIES
+from snapReactors.functions.warnings import InputFileSyntaxWarning
+import warnings
 
 from enum import Enum
 
@@ -465,7 +467,7 @@ class Property:
                 list1 = list1[0]
                     
             else:
-                list1[0][0] = float(list1[0][0])
+                list1[0][0] = list1[0][0]
                 
             list1 = np.array(list1)
 
@@ -488,7 +490,7 @@ class Property:
                     
         input["nprops"] = pcount
         
-        
+
         for i in range(0, pcount):
             key = "prop"+str(i+1)
             input[key] = dict()
@@ -505,17 +507,17 @@ class Property:
                         if "type" in values[j]:
                             pcount = pcount + 1
 
-                        if "id" in values[j]:  
-                            value = values[j].split(":")[-1]
-                            value = value.replace("\n", "")
-                            key = "prop"+str(pcount)
-                            input[key]["id"] = value
-
                         if "type" in values[j]:  
                             value = values[j].split(":")[-1]
                             value = [value, i+1]
                             key = "prop"+str(pcount)
                             input[key]["type"] = value
+
+                        if "id" in values[j]:  
+                            value = values[j].split(":")[-1]
+                            value = value.replace("\n", "")
+                            key = "prop"+str(pcount)
+                            input[key]["id"] = value
 
                         if "unit" == values[j].split(":")[0]:
                             value = values[j].split(":")[-1]
@@ -606,49 +608,119 @@ class Property:
             properties[i] = input["prop"+str(i+1)]
             
             if properties[i]["type"][0] == "const":
-                id =properties[i]["id"]
-                val = float(properties[i]["value"][0][0])
+                if "id" in properties[i]:
+                    id = properties[i]["id"]
+                else:
+                    raise ValueError("id not given for {} property @"
+                        " line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
+
+                if "value" in properties[i]:
+                    val = properties[i]["value"][0][0]
+                else:
+                    raise ValueError("values not given for {} property @"
+                        " line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
 
                 if "unit" in properties[i]:
                     unit = properties[i]["unit"]
-                    if unit == "SI":
-                        unit  = ALLOWED_PROPERTIES[id].units.SI
-                    else:
-                        unit  = ALLOWED_PROPERTIES[id].units.imperial
-                else:
-                    raise ValueError("units not given for property @ line: {}"
-                                            .format(properties[i]["type"][1]))
-
-                if "unc" in properties[i]:
-                    unc = float(properties[i]["unc"][0][0])
-                else:
-                    unc = None
-
-                if "ref" in properties[i]:
-                    ref = properties[i]["ref"]
-                else:
-                    ref = None
-
-                pty = Constant(id, val, unit, unc, ref)
-                properties[i] = pty
-
-            elif properties[i]["type"][0] == "table":
-                id =properties[i]["id"]
-                val = properties[i]["value"]
-                if "unit" in properties[i]:
-                    unit = properties[i]["unit"]
-                    if unit == "SI":
-                        unit  = ALLOWED_PROPERTIES[id].units.SI
-                    else:
-                        unit  = ALLOWED_PROPERTIES[id].units.imperial
                 else:
                     raise ValueError("units not given for {} {} property @"
                         " line: {}".format(properties[i]["id"], 
                         properties[i]["type"][0], properties[i]["type"][1]))
 
-                dep1  = properties[i]["dep1values"]
-                dep1unit = properties[i]["dep1unit"]
+                if "unc" in properties[i]:
+                    unc = properties[i]["unc"][0][0]
+                else:
+                    unc = None
+                    warnings.warn("uncertainty not given for {} {} property @"
+                                    " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]), 
+                                                    InputFileSyntaxWarning)
 
+                if "ref" in properties[i]:
+                    ref = properties[i]["ref"]
+                else:
+                    ref = None
+                    warnings.warn("reference not given for {} {} property @"
+                                    " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]), 
+                                                    InputFileSyntaxWarning)
+                try:
+                    if unit == "SI":
+                        unit  = ALLOWED_PROPERTIES[id].units.SI
+                    elif unit == "imperial":
+                        unit  = ALLOWED_PROPERTIES[id].units.imperial
+                    else:
+                        raise ValueError("Property units must be either SI "
+                            "or imperial @ line: {}"
+                                            .format(properties[i]["type"][1]))
+                except KeyError:
+                    raise KeyError("Property id not Allowed Properties @ "
+                                "line: {}".format(properties[i]["type"][1]))
+
+                try:
+                    val = float(val)
+                except ValueError:
+                    raise ValueError("Property value must be a number "
+                            " @ line: {}".format(properties[i]["type"][1]))
+
+                try:
+                    unc = float(unc)
+                except ValueError:
+                    raise ValueError("Property uncertainty must be a number "
+                            " @ line: {}".format(properties[i]["type"][1]))
+                            
+                                                
+                try:        
+                    pty = Constant(id, val, unit, unc, ref)
+                    properties[i] = pty
+                except ValueError as ve:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from ve
+                except TypeError as te:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from te
+                except KeyError as ke:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from ke
+                        
+            elif properties[i]["type"][0] == "table":
+                if "id" in properties[i]:
+                    id = properties[i]["id"]
+                else:
+                    raise ValueError("id not given for {} property @"
+                        " line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
+
+                if "value" in properties[i]:
+                    val = properties[i]["value"]
+                else:
+                    raise ValueError("values not given for {} property @"
+                        " line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
+
+                if "unit" in properties[i]:
+                    unit = properties[i]["unit"]
+                else:
+                    raise ValueError("units not given for {} {} property @"
+                        " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]))
+
+                if "dep1values" in properties[i]:
+                    dep1 = properties[i]["dep1values"]
+                else:
+                    raise ValueError("dependency 1 values not given for {} {}"
+                        " property @ line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]))
+
+                if "dep1unit" in properties[i]:
+                    dep1unit = properties[i]["dep1unit"]
+                else:
+                    raise ValueError("dependency 1 units not given for {} {}"
+                        " property @ line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]))
+            
                 if "dep2values" in properties[i]:
                     dep2 = properties[i]["dep2values"]
                 else:
@@ -663,53 +735,151 @@ class Property:
                     unc = properties[i]["unc"]
                 else:
                     unc = None
+                    warnings.warn("uncertainty not given for {} {} property @"
+                                    " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]), 
+                                                    InputFileSyntaxWarning) 
 
                 if "ref" in properties[i]:
                     ref = properties[i]["ref"]
                 else:
                     ref = None
+                    warnings.warn("reference not given for {} {} property @"
+                                    " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]), 
+                                                    InputFileSyntaxWarning)
 
-    
-                pty = Table(id, val, unit, dep1, dep1unit, dep2,
+                try:
+                    if unit == "SI":
+                        unit  = ALLOWED_PROPERTIES[id].units.SI
+                    elif unit == "imperial":
+                        unit  = ALLOWED_PROPERTIES[id].units.imperial
+                    else:
+                        raise ValueError("Property units must be either SI "
+                            "or imperial @ line: {}"
+                                            .format(properties[i]["type"][1]))
+                except KeyError:
+                    raise KeyError("Property id not Allowed Properties @ "
+                                "line: {}".format(properties[i]["type"][1]))
+
+                try:
+                    pty = Table(id, val, unit, dep1, dep1unit, dep2,
                                                         dep2unit, unc, ref)
-                properties[i] = pty
+                    properties[i] = pty
 
+                except ValueError as ve:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from ve
+                except TypeError as te:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from te
+                except KeyError as ke:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from ke
             else:
-                id =properties[i]["id"]
-                unit = properties[i]["unit"]
-                if unit == "SI":
-                    unit  = ALLOWED_PROPERTIES[id].units.SI
+                if "id" in properties[i]:
+                    id = properties[i]["id"]
                 else:
-                    unit  = ALLOWED_PROPERTIES[id].units.imperial
-                corr = properties[i]["corr"]
-                deps = properties[i]["deps"]
-                dep1unit = properties[i]["dep1unit"]
-                dep1range = properties[i]["dep1range"]
+                    raise ValueError("id not given for {} property @"
+                        " line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
+
+                if "unit" in properties[i]:
+                    unit = properties[i]["unit"]
+                else:
+                    raise ValueError("units not given for {} {} property @"
+                        " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]))
+
+                if "corr" in properties[i]:
+                    corr = properties[i]["corr"]
+                else:
+                    raise ValueError("correlation expression not given for {}"
+                    "property @ line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
+
+                if "deps" in properties[i]:
+                    deps = properties[i]["deps"]
+                else:
+                    raise ValueError("correlation dependents not given for {}"
+                    "property @ line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
+
+                if "dep1unit" in properties[i]:
+                    dep1unit = properties[i]["dep1unit"]
+                else:
+                    raise ValueError("dependency 1 units not given for {}"
+                    "property @ line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
+
+                if "dep1range" in properties[i]:
+                    dep1range = properties[i]["dep1range"]
+                else:
+                    raise ValueError("dependency 1 range not given for {}"
+                    "property @ line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
 
                 if "dep2range" in properties[i]:
                     dep2range = properties[i]["dep2range"]
                 else:
                     dep2range= None
-
+                    if (len(properties[i]["deps"].split(",")) == 2):
+                        raise ValueError("range not given for dependency 2 "
+                        "{} {} property @ line: {}".format(properties[i]["id"]
+                        ,properties[i]["type"][0], properties[i]["type"][1]))
+                                                    
                 if "dep2unit" in properties[i]:
                     dep2unit = properties[i]["dep2unit"]
                 else:
                     dep2unit = None
+                    if (len(properties[i]["deps"].split(",")) == 2):
+                        raise ValueError("units not given for dependency 2 "
+                        "{} {} property @ line: {}".format(properties[i]["id"]
+                        ,properties[i]["type"][0], properties[i]["type"][1]))
 
                 if "unc" in properties[i]:
                     unc = properties[i]["unc"]
                 else:
                     unc = None
+                    warnings.warn("uncertainty not given for {} {} property @"
+                                    " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]), 
+                                                    InputFileSyntaxWarning) 
 
                 if "ref" in properties[i]:
                     ref = properties[i]["ref"]
                 else:
                     ref = None
+                    warnings.warn("reference not given for {} {} property @"
+                                    " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]), 
+                                                    InputFileSyntaxWarning)
+                try:
+                    if unit == "SI":
+                        unit  = ALLOWED_PROPERTIES[id].units.SI
+                    elif unit == "imperial":
+                        unit  = ALLOWED_PROPERTIES[id].units.imperial
+                    else:
+                        raise ValueError("Property units must be either SI "
+                            "or imperial @ line: {}"
+                                            .format(properties[i]["type"][1]))
+                except KeyError:
+                    raise KeyError("Property id not Allowed Properties @ "
+                                "line: {}".format(properties[i]["type"][1]))
 
-                pty = Correlation(id, corr, deps, unit, dep1range, dep1unit,
-                                            dep2range, dep2unit, unc, ref)
-                properties[i] = pty
-
+                try:
+                    pty = Correlation(id, corr, deps, unit, dep1range, 
+                                     dep1unit, dep2range, dep2unit, unc, ref)
+                    properties[i] = pty
+                except ValueError as ve:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from ve
+                except TypeError as te:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from te
+                except KeyError as ke:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from ke
         return properties
 
 class Constant(Property):
