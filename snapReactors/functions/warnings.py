@@ -13,8 +13,9 @@ class InputFileSyntaxWarning(UserWarning):
     Warning to be used when dealing with inputfile syntax warnings.
     The warning can be used by importing
 
-    from serpentGenerator.functions.warnings import InputFileSyntaxWarning
+    >>> from serpentGenerator.functions.warnings import InputFileSyntaxWarning
+    >>> import warnings
 
-    warning.warn("warning message", InputFileSyntaxWarning)
+    >>> warnings.warn("warning message", InputFileSyntaxWarning)
     """
     pass
