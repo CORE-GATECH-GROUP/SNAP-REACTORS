@@ -406,8 +406,11 @@ class Material:
                     raise KeyError("Composition Type {} is not an allowed" 
                                     "composition type: {}".format(ctype, 
                                                         CTYPE._member_names_))
-                mp["ctype"] = ctype.strip()
-            
+                try:
+                    mp["ctype"] = ctype.strip()
+                except:
+                    raise ValueError("Material Name not given for material"
+                                    .format(i))
             if "utype" in line:
                 utype = str(line.split(":")[-1])
                 if utype.strip() not in UTYPE.__members__:
@@ -425,10 +428,15 @@ class Material:
                     if var == "isotopes":
                         mp[var] = np.zeros(isoNumber, dtype=object)
                     elif var == "unc":
-                        if mp["utype"] == "NONE":
-                            mp[var] = np.zeros(isoNumber, dtype=object)
-                        else:
-                            mp[var] = np.zeros(isoNumber, dtype=float)
+                        try:
+                            if mp["utype"] == "NONE":
+                                mp[var] = np.zeros(isoNumber, dtype=object)
+                            else:
+                                mp[var] = np.zeros(isoNumber, dtype=float)
+                        except:
+                            raise ValueError("utype not given for material {}" 
+                            "@ line: {}".format(
+                                mp["matName"][0], mp["matName"][1]+1))
                     else:
                         mp[var] = np.zeros(isoNumber, dtype = float)
                 for k in range(0, isoNumber):
@@ -628,3 +636,7 @@ class Materials:
 
     def __getitem__(self, pos):
         return self._materials[pos]
+
+if __name__ == "__main__":
+    mats = Material.readData('C:\\Users\\Samuel\\Documents\\GitHub\\SNAP-REACTORS\\snapReactors\\jupyter_notebooks\\test.txt')
+    foo = 1
