@@ -358,10 +358,12 @@ class Material:
         OSError
             If ``filename`` is not found 
         ValueError
-            If ``ctype``, ``numberOfIsotopes`` is not given for a material.
+            If ``matName``, ``ctype``, ``numberOfIsotopes``, ``utype`` is 
+            not given for a material.
         
         Warnings
-            If 
+            If ``utype`` is given as NONE and if ``reference``, 
+            ``description``, and ``properties`` are not given for a material.
         Examples
         --------
         >>> Mat1 = Material(matName= "Mat1", utype= "ABSOLUTE", 
