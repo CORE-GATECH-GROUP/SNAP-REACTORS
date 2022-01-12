@@ -358,19 +358,14 @@ class Material:
         OSError
             If ``filename`` is not found 
         ValueError
-            If ``matName``, ``ctype``, ``numberOfIsotopes``, ``utype`` is 
-            not given for a material.
-        
+            If ``matName``, ``ctype``, ``numberOfIsotopes``, ``utype``,
+            ``unc``, and ``abundance`` is not given for a material.
         Warnings
             If ``utype`` is given as NONE and if ``reference``, 
             ``description``, and ``properties`` are not given for a material.
         Examples
         --------
-        >>> Mat1 = Material(matName= "Mat1", utype= "ABSOLUTE", 
-                    ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
-                    abundances= np.array(0.xxx, 0.yyy, 0.zzz),
-                    unc = np.array(xxx, yyy, zzz))
-        >>> Material.readData(Mat1, file.i)
+        >>> mats = Material.readData('file.i')
             """
         _isstr(filename, "file name")
 
@@ -444,11 +439,21 @@ class Material:
                 for k in range(0, isoNumber):
                     line1 = data[i+k+2].split()
                     mp["isotopes"][k] = line1[0]
-                    mp["abundances"][k] = float(line1[1])
+                    try:
+                        mp["abundances"][k] = float(line1[1])
+                    except:
+                        raise ValueError("Incorrect input for abundance in "
+                        "material {} @ line {}"
+                        .format(mp["matName"][0],i+k+2))
                     if mp["utype"] == "NONE":
                         mp["unc"][k] = "None"
                     else:
-                        mp["unc"][k] = float(line1[2])
+                        try:
+                            mp["unc"][k] = float(line1[2])
+                        except:
+                            raise ValueError("Incorrect uncertainty input in "
+                        "material {} @ line {}"
+                        .format(mp["matName"][0], i+k+2))
             
             if "Reference" in line:
                 mp["reference"] = str(line.split(":")[-1])
