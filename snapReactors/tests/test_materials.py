@@ -55,14 +55,6 @@ def test_material(setMaterial, setComposition):
     prdval = mat.unc
     expval = [None]
     assert prdval == expval
-    
-    prdval = mat.temperatures
-    expval = [None]
-    assert prdval == expval
-    
-    prdval = mat.pressures
-    expval = [None]
-    assert prdval == expval
 
     prdval = mat.reference
     expval = ["NA-SR-3060"]
@@ -118,10 +110,10 @@ def test_errs_material(setMaterial):
     TypeError
         If ``matName``, ``reference``, ``description`` is not 
             str.
-        If ``temperatures``,``abundances``, ``unc``, ``pressures``, and
+        If ``abundances``, ``unc``,  and
         ``isotopes`` is not ndarray.
     ValueError
-        If ``temperatures``, ``abundances``, ``unc``, ``pressures``, `` are 
+        If  ``abundances``, ``unc`` are 
             not all positive.
     KeyError
         If ``utype`` and ``ctype`` are not within ``Enum.UTYPE`` and 
@@ -132,35 +124,35 @@ def test_errs_material(setMaterial):
     with pytest.raises(TypeError,
                        match="Material name must be string*"):
         Material(9999, 'NONE', 'WEIGHT', np.array([]), np.array([]), 
-                    None, None, None, reference="NA-SR-3060", 
+                    None, reference="NA-SR-3060", 
                     description='Testing')
 
     # utype is not a str
     with pytest.raises(TypeError,
                        match="Uncertainty Type must be string*"):
         Material('newmat', 1, 'WEIGHT', np.array([]), np.array([]), 
-                    None, None, None, reference="NA-SR-3060", 
+                    None, reference="NA-SR-3060", 
                     description='Testing')
 
     # ctype is not a str
     with pytest.raises(TypeError,
                        match="Composition Type must be string*"):
         Material('newmat', 'NONE', 1, np.array([]), np.array([]), 
-                    None, None, None, reference="NA-SR-3060", 
+                    None, reference="NA-SR-3060", 
                     description='Testing')
 
     # abundance is not ndarray
     with pytest.raises(TypeError,
                        match="Abundances must be a ndarray*"):
         Material('newmat', 'NONE', 'WEIGHT', np.array([]), 1, 
-                    None, None, None, reference="NA-SR-3060", 
+                    None, reference="NA-SR-3060", 
                     description='Testing')
     
     # isotopes is not ndarray
     with pytest.raises(TypeError,
                        match="Isotope Name must be a ndarray*"):
         Material('newmat', 'NONE', 'WEIGHT', 1, np.array([]), 
-                    None, None, None, reference="NA-SR-3060", 
+                    None, reference="NA-SR-3060", 
                     description='Testing')
     
     # unc is not ndarray 
@@ -168,30 +160,14 @@ def test_errs_material(setMaterial):
                        match="property value uncertainty/s must be a ndarray*"
                        ""):
         Material('newmat', 'RELATIVE', 'WEIGHT', np.array([]), np.array([]), 
-                    1, None, None, reference="NA-SR-3060", 
-                    description='Testing')
-    
-    # temperature is not ndarray
-    with pytest.raises(TypeError,
-                       match="Temperatures dependency must be a ndarray*"
-                       ""):
-        Material('newmat', 'NONE', 'WEIGHT', np.array([]), np.array([]), 
-                    None, 1, None, reference="NA-SR-3060", 
-                    description='Testing')
-
-    # pressure is not ndarray
-    with pytest.raises(TypeError,
-                       match="Pressures dependency must be a ndarray*"
-                       ""):
-        Material('newamt', 'NONE', 'WEIGHT', np.array([]), np.array([]), 
-                    None, None, 1, reference="NA-SR-3060", 
+                    1, reference="NA-SR-3060", 
                     description='Testing')
 
     # reference is not a string
     with pytest.raises(TypeError, 
                         match="Reference must be string*"):
         Material('newamt', 'NONE', 'WEIGHT', np.array([]), np.array([]), 
-                    None, None, None, reference=1, 
+                    None, reference=1, 
                     description='Testing')
     
     # description is not a string
@@ -199,7 +175,7 @@ def test_errs_material(setMaterial):
                         match="description of property/notes must be string*"
                         ""):
         Material('newamt', 'NONE', 'WEIGHT', np.array([]), np.array([]), 
-                    None, None, None, reference="NA-SR-3060", 
+                    None, reference="NA-SR-3060", 
                     description=1)
 
     # unc is not non-negative 
@@ -207,42 +183,28 @@ def test_errs_material(setMaterial):
                        match="property value uncertainty/s must be positive*"
                        ""):
         Material('newmat', 'RELATIVE', 'WEIGHT', np.array([]), np.array([]), 
-                    np.array([-1, -20]), None, None, reference="NA-SR-3060", 
+                    np.array([-1, -20]), reference="NA-SR-3060", 
                     description='Testing')
 
     # abundances is not non-negative
     with pytest.raises(ValueError,
                        match="Abundances must be positive*"):
         Material('newmat', 'NONE', 'WEIGHT', np.array([]), np.array([-1]), 
-                    None, None, None, reference="NA-SR-3060", 
-                    description='Testing')
-    
-    # temperature is not non-negative
-    with pytest.raises(ValueError,
-                       match="Temperatures dependency must be positive*"):
-        Material('newmat', 'NONE', 'WEIGHT', np.array([]), np.array([]), 
-                    None, np.array([-1]), None, reference="NA-SR-3060", 
-                    description='Testing')
-
-    # pressure is not non-negative
-    with pytest.raises(ValueError,
-                       match="Pressures dependency must be positive*"):
-        Material('newamt', 'NONE', 'WEIGHT', np.array([]), np.array([]), 
-                    None, None, np.array([-1]), reference="NA-SR-3060", 
+                    None, reference="NA-SR-3060", 
                     description='Testing')
 
     # utype must be within UTYPE.Enum
     with pytest.raises(KeyError,
                        match="Uncertainty Type Fractional is not*"):
         Material('newmat', 'Fractional', 'WEIGHT', np.array([]), np.array([]), 
-                    None, None, None, reference="NA-SR-3060", 
+                    None, reference="NA-SR-3060", 
                     description='Testing')
 
     # ctype is not a str
     with pytest.raises(KeyError,
                        match="Composition Type Volume is not*"):
         Material('newmat', 'NONE', 'Volume', np.array([]), np.array([]), 
-                    None, None, None, reference="NA-SR-3060", 
+                    None, reference="NA-SR-3060", 
                     description='Testing')
 
 
@@ -489,6 +451,8 @@ def test_addproperty(setMaterial, setPropertyList):
     mat.addproperty(plist)
     prdval = mat._properties
     expval = setPropertyList
+    print(prdval)
+    print(expval)
     assert prdval == expval
 
 
@@ -519,8 +483,8 @@ def setPropertyList():
 def setMaterial():
     """create a new material"""
     newmat = Material("newMat", 'NONE', 'WEIGHT', np.array([]), np.array([]), 
-                    None, None, None, reference="NA-SR-3060", 
-                    description='Testing')
+                    None, reference="NA-SR-3060", 
+                    description='Testing', _properties=None)
     return newmat
 
 @pytest.fixture()
@@ -528,5 +492,5 @@ def setComposition():
     """Create a new material through composition"""
     newcomp = Composition("newMat", 'NONE', 'WEIGHT', np.array([]), 
                     np.array([]), None, reference="NA-SR-3060", 
-                    description='Testing')
+                    description='Testing', _properties=None)
     return newcomp

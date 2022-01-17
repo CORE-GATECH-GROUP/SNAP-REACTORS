@@ -70,17 +70,12 @@ class Material:
         uncertainty value type i.e. Absolute, Relative, Percentage
     ctype : Enum.CTYPE
         composition value type i.e. a/o or w/o    
-    temperatures : ndarray
-        temperature points to be used for interpolation/extrapolation
     abundances : ndarray
         abundance value/s as they appear in reference & supplied unnormalized
     isotopes : str
         isotope name within a a component
     unc : ndarray or None
         uncertainty of value/s as they appear in reference
-    pressures : ndarray or None
-        Pressure points to be used for interpolation/extrapolation. A value
-        of ``None`` implies no properties are pressure dependent
     reference : str or None
         reference tag for material
     description : str or None
@@ -101,10 +96,10 @@ class Material:
     TypeError
         If ``matName``, ``reference``, ``description`` is not 
             str.
-        If ``temperatures``,``abundances``, ``unc``, ``pressures``, and
+        If ``abundances``, ``unc``,  and
         ``isotopes`` is not ndarray.
     ValueError
-        If ``temperatures``, ``abundances``, ``unc``, ``pressures``, `` are 
+        If ``abundances``, ``unc``, are 
             not all positive.
     KeyError
         If ``utype`` and ``ctype`` are not within ``Enum.UTYPE`` and 
@@ -118,7 +113,7 @@ class Material:
     """
 
     def __init__(self, matName, utype, ctype, isotopes, abundances,
-                 unc=None, temperatures=None, pressures=None, reference=None,
+                 unc=None, reference=None,
                  description=None, _properties=None):
 
         # check that variables are of correct type (return TypeError if not)
@@ -138,13 +133,6 @@ class Material:
         else:    
             if not isinstance(unc, type(None)):
                 _isnonnegativearray(unc, "property value uncertainty/s")
-
-        if not isinstance(temperatures, type(None)):
-            _isnonnegativearray(temperatures, "Temperatures dependency")
-
-        # check the pressure dependency type and values
-        if not isinstance(pressures, type(None)):
-            _isnonnegativearray(pressures, "Pressures dependency")
 
         if reference != None:
             _isstr(reference, "Reference")
@@ -174,10 +162,6 @@ class Material:
         self.isotopes.append(isotopes)
         self.unc = []
         self.unc.append(unc)
-        self.temperatures = []
-        self.temperatures.append(temperatures)
-        self.pressures = []
-        self.pressures.append(pressures)
         self.reference = []
         self.reference.append(reference)
         self.description = []
@@ -230,7 +214,10 @@ class Material:
 
         _isinstanceList(pty, Property, "List of properties")
         for i in range(0, len(pty)):
-            self._properties.append(pty[i])
+            if self._properties == [None]:
+                self._properties[0] = pty[i]
+            else:
+                self._properties.append(pty[i])
 
     def getproperty(self, pty):
         """Obtain the values for a certain property
@@ -530,7 +517,7 @@ class Material:
                             "given".format(matName), 
                                     InputFileSyntaxWarning)
             mats[i] = Material(matName, utype, ctype, isotopes, abundances,
-                                unc, temperatures=None, pressures=None, 
+                                unc, 
                                 reference=reference, description=description,
                                 _properties=properties)
         return mats
@@ -639,11 +626,7 @@ class Materials:
                 "Material {} already exists".format(material.matName))
 
         self.matNames.append(material.matName)
-        self._materials[material.matName] = material
+        self._materials[material.matName] = material 
 
     def __getitem__(self, pos):
         return self._materials[pos]
-
-if __name__ == "__main__":
-    mats = Material.readData('C:\\Users\\Samuel\\Documents\\GitHub\\SNAP-REACTORS\\snapReactors\\jupyter_notebooks\\test.txt')
-    foo = 1
