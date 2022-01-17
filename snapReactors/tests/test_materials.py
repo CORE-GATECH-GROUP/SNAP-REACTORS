@@ -16,15 +16,13 @@ email: dan.kotlyar@me.gatech.edu, sgarcia9@wisc.edu
 import pytest
 import numpy as np
 
-from snapReactors.containers.materials import CTYPE, UTYPE, Material, \
-    Composition
+from snapReactors.containers.materials import CTYPE, UTYPE, Material
 from snapReactors.functions.parameters import ALLOWED_PROPERTIES
 from snapReactors.containers.property import Constant, Table, Correlation
 
-def test_material(setMaterial, setComposition):
+def test_material(setMaterial):
     """check that values are assigned to the material container"""
     mat = setMaterial
-    comp = setComposition
 
     # Material definition
     # newmat = Material("newMat", 'NONE', 'WEIGHT', np.array([]), np.array([])
@@ -61,44 +59,6 @@ def test_material(setMaterial, setComposition):
     assert prdval == expval
 
     prdval = mat.description
-    expval = ["Testing"]
-    assert prdval == expval
-
-    # Material definition through Composition
-    # matComp =  Composition('newmat', 'NONE', 'WEIGHT', np.array([]), 
-    #                            np.array([]), None, reference = "NA-SR-3090",
-    #                           description='Testing')
-    # return matComp
-
-    prdval = comp.matName
-    expval = ["newMat"]
-    assert prdval == expval
-
-    prdval = comp.utype
-    expval = [UTYPE.NONE]
-    assert prdval == expval
-    
-    prdval = comp.ctype
-    expval = [CTYPE.WEIGHT]
-    assert prdval == expval
-    
-    prdval = mat.abundances
-    expval = [np.array([])]
-    assert np.testing.assert_array_equal(prdval, expval) is None
-
-    prdval = mat.isotopes
-    expval = [np.array([])]
-    assert np.testing.assert_array_equal(prdval, expval) is None
-    
-    prdval = comp.unc
-    expval = [None]
-    assert prdval == expval
-
-    prdval = comp.reference
-    expval = ["NA-SR-3060"]
-    assert prdval == expval
-
-    prdval = comp.description
     expval = ["Testing"]
     assert prdval == expval
 
@@ -206,111 +166,6 @@ def test_errs_material(setMaterial):
         Material('newmat', 'NONE', 'Volume', np.array([]), np.array([]), 
                     None, reference="NA-SR-3060", 
                     description='Testing')
-
-
-def test_errs_composition(setComposition):
-    """check that error are raised when a material container is defined
-
-    Raises
-    ------
-    TypeError 
-        If ``matName``, ``ctype``, ``utype``, ``isotopes``, ``ref``, 
-            ``description`` is not str
-        If ``abundances``, ``unc`` is not ndarray
-    ValueError
-        if ``unc``, ``abundances`` is not non-negative.
-    KeyError
-        If ``utype``, ``ctype`` is not within ``Enum.UTYPE`` and 
-            ``Enum.CTYPE``
-    """
-
-    # matName is not a string
-    with pytest.raises(TypeError,
-                       match="Material name must be string*"):
-        Composition(9999, 'NONE', 'WEIGHT', np.array([]), np.array([]), 
-                    None, reference="NA-SR-3060", 
-                    description='Testing')
-
-    # utype is not a str
-    with pytest.raises(TypeError,
-                       match="Uncertainty Type must be string*"):
-        Composition('newmat', 1, 'WEIGHT', np.array([]), np.array([]), 
-                    None, reference="NA-SR-3060", 
-                    description='Testing')
-
-    # ctype is not a str
-    with pytest.raises(TypeError,
-                       match="Composition Type must be string*"):
-        Composition('newmat', 'NONE', 1, np.array([]), np.array([]), 
-                    None, reference="NA-SR-3060", 
-                    description='Testing')
-
-    # abundance is not ndarray
-    with pytest.raises(TypeError,
-                       match="Abundances must be a ndarray*"):
-        Composition('newmat', 'NONE', 'WEIGHT', np.array([]), 1, 
-                    None, reference="NA-SR-3060", 
-                    description='Testing')
-    
-    # isotopes is not ndarray
-    with pytest.raises(TypeError,
-                       match="Isotope name must be a ndarray*"):
-        Composition('newmat', 'NONE', 'WEIGHT', 1, np.array([]), 
-                    None, reference="NA-SR-3060", 
-                    description='Testing')
-    
-    # unc is not ndarray 
-    with pytest.raises(TypeError,
-                       match="property value uncertainty/s must be a ndarray*"
-                       ""):
-        Composition('newmat', 'RELATIVE', 'WEIGHT', np.array([]), np.array([]) 
-                    , 1, reference="NA-SR-3060", 
-                    description='Testing')
-    
-    # reference is not a string
-    with pytest.raises(TypeError, 
-                        match="Reference must be string"):
-        Composition('newamt', 'NONE', 'WEIGHT', np.array([]), np.array([]), 
-                    None, reference=1, 
-                    description='Testing')
-    
-    # description is not a string
-    with pytest.raises(TypeError, 
-                        match="description of property/notes must be string*"
-                        ""):
-        Composition('newamt', 'NONE', 'WEIGHT', np.array([]), np.array([]), 
-                    None, reference="NA-SR-3060", 
-                    description=1)
-
-    # unc is not non-negative 
-    with pytest.raises(ValueError,
-                       match="property value uncertainty/s must be positive*"
-                       ""):
-        Composition('newmat', 'RELATIVE', 'WEIGHT', np.array([]), np.array([])
-                    , np.array([-1, -20]), reference="NA-SR-3060", 
-                    description='Testing')
-
-    # abundances is not non-negative
-    with pytest.raises(ValueError,
-                       match="Abundances must be positive*"):
-        Composition('newmat', 'NONE', 'WEIGHT', np.array([]), np.array([-1]), 
-                    None, reference="NA-SR-3060", 
-                    description='Testing')
-
-    # utype must be within UTYPE.Enum
-    with pytest.raises(KeyError,
-                       match="Uncertainty Type Fractional is not*"):
-        Composition('newmat', 'Fractional', 'WEIGHT', np.array([]), 
-                    np.array([]), None, reference="NA-SR-3060", 
-                    description='Testing')
-
-    # ctype is not a str
-    with pytest.raises(KeyError,
-                       match="Composition Type Volume is not*"):
-        Composition('newmat', 'NONE', 'Volume', np.array([]), np.array([]), 
-                    None, reference="NA-SR-3060", 
-                    description='Testing')
-
 
 def test_allowed_properties():
     """check that all properties are obtained"""
@@ -487,10 +342,3 @@ def setMaterial():
                     description='Testing', _properties=None)
     return newmat
 
-@pytest.fixture()
-def setComposition():
-    """Create a new material through composition"""
-    newcomp = Composition("newMat", 'NONE', 'WEIGHT', np.array([]), 
-                    np.array([]), None, reference="NA-SR-3060", 
-                    description='Testing', _properties=None)
-    return newcomp

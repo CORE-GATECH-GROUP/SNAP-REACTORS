@@ -521,66 +521,7 @@ class Material:
                                 reference=reference, description=description,
                                 _properties=properties)
         return mats
-class Composition(Material):
-    """A derivative of the Material container meant to represent the 
-    composition of a material through isotopic abundance defintion. It 
-    contains all the attributes of the Material container but with a simpler 
-    interface to define isotopic composition.
-
-    Attributes
-    ----------
-     utype : Enum.UTYPE
-        uncertainty type i.e. absolute, relative, percentage
-    ctype : Enum.CTYPE
-        composition type i.e. w/o or a/o
-    isotopes : str
-        isotope name within a a component
-    abundances : ndarray
-        abundance value/s as they appear in reference & supplied unnormalized
-    unc : ndarray
-        uncterainty of value/s as they appear in  reference
-    reference : str
-        material data reference tag
-    description : str
-        material description
-
-    Raises
-    ------
-    TypeError 
-        If ``ctype``, ``utype``, ``isotopes``, ``ref``, ``description`` is 
-            not str
-        If ``abundances``, ``unc`` is not ndarray
-    ValueError
-        if ``unc``, ``abundances`` is not non-negative.
-    KeyError
-        If ``utype``, ``ctype`` is not within ``Enum.UTYPE`` and 
-            ``Enum.CTYPE``
-
-    Examples
-    --------
-    >>> mat2 = Composition('newmat', 'NONE', 'WEIGHT', np.array([]), 
-                            np.array([]), description='This example uses'
-                            'the Composition subcontainer')
-
-    """
-
-    def __init__(self, matName, utype, ctype, isotopes, abundances, unc=None,
-                 reference=None, description=None, _properties=None):
-
-        # check names are of correct type (return TypeError if not)
-        _isarray(isotopes, "(Isotope name")
-
-        # check that all values are positive (ValueError)
-        _isnonnegativearray(abundances, "Abundances")
-
-        if not isinstance(unc, type(None)):
-            _isnonnegativearray(unc, "property value uncertainty/s")
-
-        Material.__init__(self, matName, utype, ctype, isotopes, abundances,
-                          unc, reference=reference, description=description,
-                          _properties=None)
-
-
+        
 class Materials:
     """A container to store the data for all material
 
