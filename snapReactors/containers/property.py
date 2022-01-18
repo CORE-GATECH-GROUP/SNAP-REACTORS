@@ -191,6 +191,24 @@ class Property:
     def __str__(self):
         """" Overwrites print method, prints all objects variables. """
         return str(vars(self))
+    
+    def __eq__(self, other):
+        if not isinstance(other, Property):
+            # don't attempt to compare against unrelated types
+            return False
+        return (self.id == other.id and self.dtype == other.dtype and
+                self.vtype == other.vtype and self.value == other.value and
+                self.valueUnit == other.valueUnit and self.unc == other.unc
+                and self.dependents == other.dependents and 
+                self.dependentsUnit == other.dependentsUnit and
+                self.description == other.description and 
+                self.ref == other.ref)
+    
+    def __hash__(self):
+        # necessary for instances to behave sanely in dicts and sets
+        return hash((self.id, self.dtype, self.vtype, self.value,
+                    self.valueUnit, self.unc, self.dependents, 
+                    self.dependentsUnit, self.description, self.ref))
 
     def _evalConstant(self):
         """" Evaluates constant for given dependencys """

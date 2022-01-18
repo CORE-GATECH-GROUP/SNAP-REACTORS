@@ -20,10 +20,10 @@ from snapReactors.containers.materials import CTYPE, UTYPE, Material
 from snapReactors.functions.parameters import ALLOWED_PROPERTIES
 from snapReactors.containers.property import Constant, Table, Correlation
 
-def test_material(setMaterial):
+def test_material(setMaterial, setMaterialProperties, setPropertyList):
     """check that values are assigned to the material container"""
     mat = setMaterial
-
+    matprop = setMaterialProperties
     # Material definition
     # newmat = Material("newMat", 'NONE', 'WEIGHT', np.array([]), np.array([])
     #                           , None, None, None, reference="NA-SR-3060", 
@@ -60,6 +60,21 @@ def test_material(setMaterial):
 
     prdval = mat.description
     expval = ["Testing"]
+    assert prdval == expval
+
+    prdval = mat._properties
+    expval = [None]
+    assert prdval == expval
+
+    # prdval1 = matprop._properties[0]
+    # expval1 = setPropertyList[0]
+    # assert prdval1 == expval1
+    # prdval2 = matprop._properties[1]
+    # expval2 =setPropertyList[1]
+    # assert prdval2 == expval2
+
+    prdval = matprop._properties
+    expval = setPropertyList
     assert prdval == expval
 
 def test_errs_material(setMaterial):
@@ -306,8 +321,6 @@ def test_addproperty(setMaterial, setPropertyList):
     mat.addproperty(plist)
     prdval = mat._properties
     expval = setPropertyList
-    print(prdval)
-    print(expval)
     assert prdval == expval
 
 
@@ -340,5 +353,16 @@ def setMaterial():
     newmat = Material("newMat", 'NONE', 'WEIGHT', np.array([]), np.array([]), 
                     None, reference="NA-SR-3060", 
                     description='Testing', _properties=None)
+    return newmat
+@pytest.fixture()
+def setMaterialProperties():
+    p1 = Constant(id='cv',  value=1, unit= "J/kg/K", unc=None, ref=None, 
+                    description=None)
+    p2 = Constant(id='cp',  value=1, unit= "J/kg/K", unc=None, ref=None, 
+                    description=None)
+    properties = [p1, p2]
+    newmat = Material("newMat", 'NONE', 'WEIGHT', np.array([]), np.array([]), 
+                    None, reference="NA-SR-3060", 
+                    description='Testing', _properties=properties)
     return newmat
 

@@ -301,6 +301,24 @@ class Material:
         """
 
         return list(ALLOWED_PROPERTIES)
+    
+    def __eq__(self, other):
+        if not isinstance(other, Material):
+            # don't attempt to compare against unrelated types
+            return False
+        return (self.matName == other.matName and self.utype == other.utype 
+                and self.ctype == other.ctype and 
+                self.abundances == other.abundances and
+                self.isotopes == other.isotopes and self.unc == other.unc and
+                self.reference == other.reference and 
+                self.description == other.description and
+                self._properties == other._properties)
+
+    def __hash__(self):
+        # necessary for instances to behave sanely in dicts and sets.
+        return hash((self.matName, self.utype, self.ctype, self.abundances,
+                self.isotopes, self.unc, self.reference, self.description,
+                self._properties))
 
     def readData(filename):
         """Reads compositional data to save material data quickly. Furthemore,
