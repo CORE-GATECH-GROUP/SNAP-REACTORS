@@ -15,66 +15,48 @@ from snapReactors.functions.checkerrors import _isinstanceList, _isstr
 
 from snapReactors.containers.materials import Material
 class Container:
-    """ Brief container description
+    """ A container to store the data for each component
 
-    Detailed container usage and workflow   
+    This container stores all the relevant information for a specific 
+    component. Multiple materials can be stored for each component.   
 
     Attributes
     ----------
-    All container object attributes should be listed here, along
-    with their corresponding type and decription. They should be
-    in the following format. 
-
-    attr1 : type of attr1
-        desctiption of attr1
-    attr2 : type of attr2
-        description of attr2
+    compName : str
+        name of component
+    _materials : list
+        list of materials of instance type Material
 
     Methods
     -------
-    All container object methods should be listed here, along
-    with their corresponding decription. They should be
-    in the following format. 
-
-    method1 : decription of function of method1
-    method2 : decription of function of method2
+    addmaterial: add materials to an already existing component
 
     Raises
     ------
-    All container object raised errors should be listed here,
-    along with their corresponding error type, and a description
-    of the conditions that cause the error.
-
-    error1 type
-        descriptions of conditions that cause error1 to be raised 
-    error2 type
-        descriptions of conditions that cause error2 to be raised 
+    TypeError
+        If ``matName`` is not str.
+        If ``_materials`` is not an ndarray of instance type Material.
 
     Examples
     --------
-    Brief examples of using the container and methods should be 
-    included here. Python code should be prefixed by '>>>' such
-    that upon documentation a distinction will be made from 
-    comments and code. An Example is shown below. 
+    >>> from snapReactors.containers.property import Constant
+    >>> from snapReactors.containers.materials import Material
 
-    >>> container1 = container(attr1, attr2)
-    >>> contaner1.method1(arg1, arg2)
+    >>> p1 = Constant('cv', 'THPHYS', 1, 'kg')
+
+    >>> boronCarbide = Material(matName= "Boron Carbide", utype= "ABSOLUTE", 
+                    ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
+                    abundances= np.array(0.xxx, 0.yyy, 0.zzz),
+                    unc = np.array(xxx, yyy, zzz), reference = NA-SR-6162, 
+                    description = "This is an example", _properties = p1)
+
+    >>> controlRod = Component(compName = "Control Rod", 
+                                _materials= boronCarbide)
     """
 
-    """ Initialization/Init function for container object. """
+
     def __init__(self, compName, _materials):
-        """ Before setting attributes you should make a check on the
-        given attributes types. For example if attr1 is an int and
-        attr2 is a boolean. Then the following would proceed.
 
-        >>> _isint(attr1, "attribute 1 name")
-        >>> _isbool(attr1, "attribute 2 name")
-
-        >>> self.attr1 = attr1
-        >>> self.attr2 = attr2
-
-
-        """
         # check that variables are of correct type (return TypeError if not)
         _isstr(compName, "Component Name")
         _isinstanceList(_materials, Material, "List of materials")
@@ -87,72 +69,47 @@ class Container:
         self._materials.append(_materials)
 
     def addmaterial(self, mtl):
-        """ Brief description of method
+        """ Add data for a list of materials
 
-        Detailed description of method use and workflow.
+        Values for a list of materials are added using the ``addmaterial`` 
+        method. These values must be of instance type Material.
 
 
         Parameters
         ----------
-        All parameters of the method should be listed here, along
-        with their corresponding type and decription. They should be
-        in the following format. 
-
-        arg1 : arg1 type
-            description of arg1
-        arg2 : arg2 type
-            description of arg2
-
-        Returns
-        -------
-        A decription of the returned data with their corresponding type/s
-        and description/s
-        
-        returned data type
-            returned data description
+        mtl : list
+            list of materials of instance type Material
 
         Raises
         ------
-        All method raised errors should be listed here,
-        along with their corresponding error type, and a description
-        of the conditions that cause the error.
-
-        error1 type
-            descriptions of conditions that cause error1 to be raised
-        error2 type
-            descriptions of conditions that cause error2 to be raised 
+        TypeError
+            If ``mtl`` is not an ndarray of instance type Material
 
         Examples
         --------
-        Brief examples of using the methods should be 
-        included here. Python code should be prefixed by '>>>' such
-        that upon documentation a distinction will be made from 
-        comments and code. An Example is shown below. 
+        >>> p1 = Constant('cv', 'THPHYS', 1, 'kg')
 
-        >>> container1 = container(attr1, attr2)
-        >>> value1 = contaner1.method1(arg1, arg2)
-        """
+        >>> boronCarbide = Material(matName= "Boron Carbide", utype= "ABSOLUTE", 
+        >>>            ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
+        >>>            abundances= np.array(0.xxx, 0.yyy, 0.zzz),
+        >>>            unc = np.array(xxx, yyy, zzz), reference = NA-SR-6162, 
+        >>>            description = "This is an example", _properties = p1)
 
-        """ Before working with function arguments you should make
-         a check on the given argument types. For example if arg1 
-         is an int and must be postive and arg2 is a 1darray attr2 
-         Then the following would proceed. Conditions that arent
-         checked through check error functions that would cause 
-         issues should be handled through raising manual errors.
+        >>> controlRod = Component(compName = "Control Rod", 
+        >>>                        _materials= boronCarbide)
+    
+        >>> p2 = Table('h', 'THPHYS', np.array([1, 2, 3, 4]), 'W/K*m^2', 
+        >>>     np.array([100, 200, 300, 400]), 'K', 
+        >>>     unc = np.array([.01, .01, .01, .01]))
 
-        >>> _isint(arg1, "arg 1 name")
-        >>> _ispostive(arg1, "arg 1 name")
-        >>> _is1darray(arg2, "arg 2 name)
-        """ 
-        """ if (condition):
-                raise error 
-        """
-        """
-        >>> # manipulation of variables
-        >>> # arg1 + arg2 
-        >>> # ...
-        >>> # ...
-        >>> return arg1 + arg2
+        >>> hasteB = Material(matName= "Hastelloy B", utype= "ABSOLUTE", 
+        >>>         ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
+        >>>        abundances= np.array(0.xxx, 0.yyy, 0.zzz),
+        >>>        unc = np.array(xxx, yyy, zzz), reference = NA-SR-6162, 
+        >>>        description = "Second Example", _properties = p2)
+
+        >>> controlRod.addmaterial([hasteB])
+
         """
         _isinstanceList(mtl, Material, "List of materials")
         self._materials.append(mtl)
