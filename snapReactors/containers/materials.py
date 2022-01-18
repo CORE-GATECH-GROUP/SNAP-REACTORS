@@ -80,8 +80,8 @@ class Material:
         reference tag for material
     description : str or None
         material description
-    filename : str or None
-        filename containing isotopic abundance data
+    _properties :  list
+        list of properties of instance type Property
 
     Methods
     -------
@@ -98,6 +98,7 @@ class Material:
             str.
         If ``abundances``, ``unc``,  and
         ``isotopes`` is not ndarray.
+        If ``_properties`` is not a list or variable of type Property
     ValueError
         If ``abundances``, ``unc``, are 
             not all positive.
@@ -106,10 +107,17 @@ class Material:
             ``Enum.CTYPE``, respectively.
     Examples
     --------
-    >>> controlRod = Material(matName= "Boron Carbide", utype= "ABSOLUTE", 
-                    ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
-                    abundances= np.array(0.xxx, 0.yyy, 0.zzz),
-                    unc = np.array(xxx, yyy, zzz))
+    >>> from snapReactors.containers.property import Constant
+    >>> from snapReactors.containers.materials import Material
+
+    >>> p1 = Constant('cv', 'THPHYS', 1, 'kg')
+
+    >>> boronCarbide = Material(matName= "Boron Carbide", utype= "ABSOLUTE", 
+    >>>            ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
+    >>>            abundances= np.array(0.xxx, 0.yyy, 0.zzz),
+    >>>            unc = np.array(xxx, yyy, zzz), reference = NA-SR-6162, 
+    >>>            description = "This is an example", _properties = p1)
+
     """
 
     def __init__(self, matName, utype, ctype, isotopes, abundances,
@@ -139,12 +147,23 @@ class Material:
 
         if description != None:
             _isstr(description, "description of property/notes")
+        
         if utype not in UTYPE.__members__:
             raise KeyError("Uncertainty Type {} is not an allowed uncertainty"
                            "type: {}".format(utype, UTYPE._member_names_))
+        
         if ctype not in CTYPE.__members__:
             raise KeyError("Composition Type {} is not an allowed composition"
                            "type: {}".format(ctype, CTYPE._member_names_))
+        
+        if _properties !=None:    
+            if isinstance(_properties, list):
+                _isinstanceList(_properties, Property, "List of properties")
+            else:
+                if not isinstance(_properties, Property):
+                    raise TypeError("Properties must be of type Property"
+                    " and not {}".format(type(_properties)))
+
         # Need to initialize all parameters in Material (i.e. matName, utype,
         # ctype, etc) as lists so that we can have nested numpy arrays of
         # different lengths within each parameter to allow for variance, i.e.
@@ -167,7 +186,12 @@ class Material:
         self.description = []
         self.description.append(description)
         self._properties = []
-        self._properties.append(_properties)
+        
+        if isinstance(_properties, list):
+            for i in range(0, len(_properties)):
+                self._properties.append(_properties[i])
+        else:
+            self._properties.append(_properties)
 
     def __str__(self):
         """Overwrites print method, prints all objects variables."""
@@ -200,11 +224,13 @@ class Material:
 
         Examples
         --------
-        >>> UC = Material(matName= "Boron Carbide", utype= "ABSOLUTE", 
-                    ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
-                    abundances= np.array(0.xxx, 0.yyy, 0.zzz),
-                    unc = np.array(xxx, yyy, zzz), description = "Example",
-                    reference = "NA-SR-XXXX")
+        >>> p1 = Constant('cv', 'THPHYS', 1, 'kg')
+
+        >>> boronCarbide = Material(matName= "Boron Carbide", utype= "ABSOLUTE", 
+        >>>            ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
+        >>>            abundances= np.array(0.xxx, 0.yyy, 0.zzz),
+        >>>            unc = np.array(xxx, yyy, zzz), reference = NA-SR-6162, 
+        >>>            description = "This is an example", _properties = p1)
         >>> p1 = Constant(id='cv',  value=1, unit= "J/kg/K", unc=None, 
                             ref=None, description=None)
 
@@ -380,9 +406,6 @@ class Material:
 
                 mp = dict()
                 mp["matName"] = [str(line.split(":")[-1]), i+1]
-            #if ("Material Name" not in line) and ("description" in mp[0]) and (line != "\n"):
-            #    raise TypeError("Material Name not given for new material @"
-            #                    "line {}".format(i))
 
             if "ctype" in line:
                 ctype = str(line.split(":")[-1])
