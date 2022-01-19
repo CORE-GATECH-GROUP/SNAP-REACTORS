@@ -350,27 +350,51 @@ class Material:
         Properties: {
         %property values for material
         %type = const, table, corr
-        %id = prop id
+        %id = property id
         %unit = SI or imperial
-        %value = either number for const or if array/ nd array use {} 
-        i.e. {1, 2, 3} or {{1, 2}, {3, 4}}
-        %must have a single space " " between keywords "type", "id", etc
-        %must have a ":" between keyword and value
+        %must have a ":" between keyword and value i.e "keyword: value"
+        %each keyword must on its own line i.e 
+        % keyword1: val1 
+        % keyword: val2
+        %array type inputs are denoted using "[]" i.e [1, 2] or [1 2] 
+        %multidimensional arrays can be denoted using the ";" matlab style i.e
+        % [1 2; 3 4] or [1, 2;
+        %                3, 4]
+        % or by using a newline i.e
+        %   [1 2
+             3 4] 
         %Supports comments by preceeding a line with "%"
-        %Examples are includes below
+        %Examples are included below
 
-        type:const id:cp unit:SI 
-        value:1 unc:.01 
+        type:const
+        id:cp
+        unit:SI 
+        value:[1]
+        unc:[.01]
 
-        type:table id:h unit:imperial ref:NAA-SR-6160 
-        dep1unit:K dep1values:{300,600,900} 
-        dep2unit:Pa dep2values:{16,32,48}
-        value:{{1,2,3},{4,5,6},{7,8,9}}
-        unc:{{.01,.01,.01},{.01,.01,.01},{.01,.01,.01}}
+        type:table 
+        id:h 
+        unit:imperial 
+        ref:NAA-SR-6160 
+        dep1unit:K 
+        dep1values: [1 2]
+        dep2unit:Pa 
+        dep2values: [.1 .2]
+        value: [1.1 2.1
+                3.1 4.1]
+        unc: [1 1
+            1 1]
 
-        type:corr id:r unit:SI ref:NAA-SR-3120
-        corr:T+P**2 deps:T,P dep1unit:K dep2unit:Pa
-        dep1range:{300,900} dep2range:{16,48}
+        type:corr
+        id:r 
+        unit:SI 
+        ref:NAA-SR-3120
+        corr:T+P**2
+        deps:T,P
+        dep1unit:K 
+        dep2unit:Pa
+        dep1range: [300,900] 
+        dep2range: [16,48]
         }
 
         Note that if uncertainties are indicated to not exist then the method
@@ -492,7 +516,7 @@ class Material:
             if "Properties" in line:
                 indexBegin = i + 1
 
-            if "}\n" == line:
+            if "}" in line:
                 indexEnd = i
                 mp["properties"] = Property._propertyReader(data[indexBegin: 
                                                                     indexEnd])

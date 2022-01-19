@@ -484,11 +484,13 @@ class Property:
                 arrayStr = np.matrix(arrayStr)
                 arrayStr = np.array(arrayStr)
 
-            if arrayStr.shape[0] == 1:
-                arrayStr = arrayStr[0]
-
             if((arrayStr.shape[0] == 1) & (arrayStr.shape[1] == 1)):
                 arrayStr = arrayStr[0][0]
+
+            elif arrayStr.shape[0] == 1:
+                arrayStr = arrayStr[0]
+            else:
+                pass
 
             return arrayStr
 
@@ -559,7 +561,7 @@ class Property:
                         key = "prop"+str(pcount)
                         input[key]["desc"] = value
 
-                    if "value:" in data[i]:  
+                    if "value" in data[i]:  
                         keyVal = "value"
                         
                     if "unc" in data[i]:  
@@ -638,7 +640,7 @@ class Property:
                                              properties[i]["type"][1]))
 
                 if "value" in properties[i]:
-                    val = properties[i]["value"][0][0]
+                    val = properties[i]["value"]
                 else:
                     raise ValueError("values not given for {} property @"
                         " line: {}".format(properties[i]["type"][0],
@@ -652,7 +654,7 @@ class Property:
                         properties[i]["type"][0], properties[i]["type"][1]))
 
                 if "unc" in properties[i]:
-                    unc = properties[i]["unc"][0][0]
+                    unc = properties[i]["unc"]
                 else:
                     unc = None
                     warnings.warn("uncertainty not given for {} {} property @"
