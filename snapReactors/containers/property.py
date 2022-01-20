@@ -19,6 +19,8 @@ from snapReactors.functions.checkerrors import _isstr, _isarray,\
     _explengtharray, _isnonnegativearray, _isnumber, _isnonnegative
 
 from snapReactors.functions.parameters import ALLOWED_PROPERTIES
+from snapReactors.functions.warnings import InputFileSyntaxWarning
+import warnings
 
 from enum import Enum
 
@@ -189,6 +191,24 @@ class Property:
     def __str__(self):
         """" Overwrites print method, prints all objects variables. """
         return str(vars(self))
+    
+    def __eq__(self, other):
+        if not isinstance(other, Property):
+            # don't attempt to compare against unrelated types
+            return False
+        return (self.id == other.id and self.dtype == other.dtype and
+                self.vtype == other.vtype and self.value == other.value and
+                self.valueUnit == other.valueUnit and self.unc == other.unc
+                and self.dependents == other.dependents and 
+                self.dependentsUnit == other.dependentsUnit and
+                self.description == other.description and 
+                self.ref == other.ref)
+    
+    def __hash__(self):
+        # necessary for instances to behave sanely in dicts and sets
+        return hash((self.id, self.dtype, self.vtype, self.value,
+                    self.valueUnit, self.unc, self.dependents, 
+                    self.dependentsUnit, self.description, self.ref))
 
     def _evalConstant(self):
         """" Evaluates constant for given dependencys """
@@ -435,192 +455,296 @@ class Property:
 
     @staticmethod
     def _propertyReader(data):
-        def _arrayStrParse(arrStr):
-            arrayType = ""
-            vals = arrStr.replace("{", "")
-            
-            if (vals[len(vals)-2] == "}"):
-                vals = vals[:len(vals)-2]
-                arrayType = "2D"
-            elif (vals[len(vals)-1] == "}"):
-                vals = vals[:len(vals)-1]
-                arrayType = "1D"
+        def _arrayStrParse(arrayCont):
+            arrayCont[-1] = arrayCont[-1].replace("\n", "")
+
+            tempBeg =  arrayCont[0].replace("\n", "")
+            tempBeg =  tempBeg.replace(" ", "")
+            tempEnd =  arrayCont[-1].replace(" ", "")
+            if tempEnd == "]":
+                arrayCont[-2] = arrayCont[-2].replace("\n", "")
+
+            if tempBeg == "[":
+                arrayCont[0] = arrayCont[0].replace("\n", "")               
+
+            arrayStr = ""
+            for i in range(0, len(arrayCont)):  
+                arrayCont[i] = arrayCont[i].replace(";;", ";")
+                arrayStr = arrayStr + arrayCont[i]
+
+            arrayStr = arrayStr.replace("[", "")
+            arrayStr = arrayStr.replace("]", "")
+
+            if ";" in arrayStr:
+                arrayStr = np.matrix(arrayStr)
+                arrayStr = np.array(arrayStr)
             else:
-                arrayType = "0D"
+                arrayStr = arrayStr.replace("\n", ";")
+                arrayStr = arrayStr.replace(",", " ")
+                arrayStr = np.matrix(arrayStr)
+                arrayStr = np.array(arrayStr)
 
-            vals = vals.split("},")
-            list1 = [0]*len(vals)
-            
-            for i in range(0, len(vals)):
-                list1[i] = vals[i].split(",")
+            if((arrayStr.shape[0] == 1) & (arrayStr.shape[1] == 1)):
+                arrayStr = arrayStr[0][0]
 
-            if (arrayType == "2D"):
-                for i in range(0, len(list1)):
-                    for j in range(0, len(list1[0])):
-                        list1[i][j] = float(list1[i][j])
-                
-            elif (arrayType == "1D"):
-                for i in range(0, len(list1[0])):
-                    list1[0][i] = float(list1[0][i])
-                    
+            elif arrayStr.shape[0] == 1:
+                arrayStr = arrayStr[0]
             else:
-                list1[0][0] = float(list1[0][0])
-                
-            list1 = np.array(list1)
+                pass
 
-            return list1
+            return arrayStr
 
         input = dict()
         pcount = 0
 
-
-        # with open(abs_path, "r") as f:
-        #     data = f.readlines()
         for i in range(0, len(data)):
             if (data[i][0] == "%"):
                 pass
             else:
-                values = data[i].split(" ")
-                for j in range(0, len(values)):
-                    if "type" in values[j]:
-                        pcount = pcount + 1
+                if "type" in data[i]:
+                    pcount = pcount + 1
                     
         input["nprops"] = pcount
         
-        
+
         for i in range(0, pcount):
             key = "prop"+str(i+1)
             input[key] = dict()
 
         
         pcount = 0
-        while (pcount < input["nprops"]):   
+        while (pcount < input["nprops"]):
+            first = False
+            bIdx = None
+            eIdx = None  
+            keyVal = ""
             for i in range(0, len(data)):
                 if (data[i][0] == "%"):
                     pass
                 else:
-                    values = data[i].split(" ")
-                    for j in range(0, len(values)):
-                        if "type" in values[j]:
-                            pcount = pcount + 1
+                    if "type" in data[i]:
+                        pcount = pcount + 1
 
-                        if "id" in values[j]:  
-                            value = values[j].split(":")[-1]
-                            value = value.replace("\n", "")
-                            key = "prop"+str(pcount)
-                            input[key]["id"] = value
+                    if "type" in data[i]:  
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        value = [value, i+1]
+                        key = "prop"+str(pcount)
+                        input[key]["type"] = value
 
-                        if "type" in values[j]:  
-                            value = values[j].split(":")[-1]
-                            key = "prop"+str(pcount)
-                            input[key]["type"] = value
+                    if "id" in data[i]:  
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        key = "prop"+str(pcount)
+                        input[key]["id"] = value
 
-                        if "unit" == values[j].split(":")[0]:
-                            value = values[j].split(":")[-1]
-                            value = value.replace("\n", "")
-                            key = "prop"+str(pcount)
-                            input[key]["unit"] = value
+                    if "unit" == data[i].split(":")[0]:
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        key = "prop"+str(pcount)
+                        input[key]["unit"] = value
 
-                        if "ref" in values[j]:  
-                            value = values[j].split(":")[-1]
-                            value = value.replace("\n", "")
-                            key = "prop"+str(pcount)
-                            input[key]["ref"] = value
+                    if "ref" in data[i]:  
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        key = "prop"+str(pcount)
+                        input[key]["ref"] = value
 
-                        if "desc" in values[j]:  
-                            value = values[j].split(":")[-1]
-                            value = value.replace("\n", "")
-                            key = "prop"+str(pcount)
-                            input[key]["desc"] = value
+                    if "desc" in data[i]:  
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        key = "prop"+str(pcount)
+                        input[key]["desc"] = value
 
-                        if "value:" in values[j]:  
-                            value = values[j].split(":")[-1]
-                            value = value.replace("\n", "")
-                            key = "prop"+str(pcount)
-                            input[key]["value"] = _arrayStrParse(value)
-                            
-                        if "unc" in values[j]:  
-                            value = values[j].split(":")[-1]
-                            value = value.replace("\n", "")
-                            key = "prop"+str(pcount)
-                            input[key]["unc"] = _arrayStrParse(value)
-        
-                        if "dep1unit" in values[j]:  
-                            value = values[j].split(":")[-1]
-                            value = value.replace("\n", "")
-                            key = "prop"+str(pcount)
-                            input[key]["dep1unit"] = value
+                    if "value" in data[i]:  
+                        keyVal = "value"
+                        
+                    if "unc" in data[i]:  
+                        keyVal = "unc"
+    
+                    if "dep1unit" in data[i]:  
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        key = "prop"+str(pcount)
+                        input[key]["dep1unit"] = value
 
-                        if "dep1values" in values[j]:  
-                            value = values[j].split(":")[-1]
-                            value = value.replace("\n", "")
-                            key = "prop"+str(pcount)
-                            vkey = "dep1values"
-                            input[key][vkey] = _arrayStrParse(value)
-                            
-                        if "dep2unit" in values[j]:  
-                            value = values[j].split(":")[-1]
-                            value = value.replace("\n", "")
-                            key = "prop"+str(pcount)
-                            input[key]["dep2unit"] = value
+                    if "dep1values" in data[i]:
+                        keyVal = "dep1values"
 
-                        if "dep2values" in values[j]:  
-                            value = values[j].split(":")[-1]
-                            value = value.replace("\n", "")
-                            key = "prop"+str(pcount)
-                            vkey = "dep2values"
-                            input[key][vkey] = _arrayStrParse(value)
-                            
-                        if "deps" in values[j]:  
-                            value = values[j].split(":")[-1]
-                            value = value.replace("\n", "")
-                            key = "prop"+str(pcount)
-                            value = sp.symbols(value)
-                            input[key]["deps"] = value
-                            
-                        if "dep1range" in values[j]:  
-                            value = values[j].split(":")[-1]
-                            value = value.replace("\n", "")
-                            pkey = "prop"+str(pcount)
-                            vkey = "dep1range"
-                            input[pkey][vkey] = _arrayStrParse(value)
-                            
-                        if "dep2range" in values[j]:  
-                            value = values[j].split(":")[-1]
-                            value = value.replace("\n", "")
-                            pkey = "prop"+str(pcount)
-                            vkey = "dep1range"
-                            input[key][vkey] = _arrayStrParse(value)
+                    if "dep2unit" in data[i]:  
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        key = "prop"+str(pcount)
+                        input[key]["dep2unit"] = value
+
+                    if "dep2values" in data[i]:  
+                        keyVal = "dep2values"
+
+                    if "corr" in data[i]:  
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        key = "prop"+str(pcount)
+                        # value = sp.symbols(value)
+                        input[key]["corr"] = value
+
+                    if "deps" in data[i]:  
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        key = "prop"+str(pcount)
+                        # value = sp.symbols(value)
+                        input[key]["deps"] = value
+                        
+                    if "dep1range" in data[i]:  
+                        keyVal = "dep1range"
+                        
+                    if "dep2range" in data[i]:  
+                        keyVal = "dep2range"
+
+
+                    if "[" in data[i]:
+                        if ":" in data[i]:
+                            data[i] = data[i].split(":")[-1]
+                        else:
+                            pass
+                        bIdx  = i
+                        first  = True
+                        
+                    if (("]" in data[i]) & first):
+                        first = False
+                        eIdx = i+1 
+                        arrayCont = _arrayStrParse(data[bIdx:eIdx])
+                        key = "prop"+str(pcount)
+                        vkey = keyVal
+                        input[key][vkey] = arrayCont
+                        keyVal = ""
 
         properties = [0]*input["nprops"]
         for i in range(0, len(properties)):
             properties[i] = input["prop"+str(i+1)]
             
-            if properties[i]["type"] == "const":
-                id =properties[i]["id"]
-                val = properties[i]["value"]
-                unit = properties[i]["unit"]
+            if properties[i]["type"][0] == "const":
+                if "id" in properties[i]:
+                    id = properties[i]["id"]
+                else:
+                    raise ValueError("id not given for {} property @"
+                        " line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
+
+                if "value" in properties[i]:
+                    val = properties[i]["value"]
+                else:
+                    raise ValueError("values not given for {} property @"
+                        " line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
+
+                if "unit" in properties[i]:
+                    unit = properties[i]["unit"]
+                else:
+                    raise ValueError("units not given for {} {} property @"
+                        " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]))
 
                 if "unc" in properties[i]:
                     unc = properties[i]["unc"]
                 else:
                     unc = None
+                    warnings.warn("uncertainty not given for {} {} property @"
+                                    " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]), 
+                                                    InputFileSyntaxWarning)
 
                 if "ref" in properties[i]:
                     ref = properties[i]["ref"]
                 else:
                     ref = None
+                    warnings.warn("reference not given for {} {} property @"
+                                    " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]), 
+                                                    InputFileSyntaxWarning)
+                try:
+                    if unit == "SI":
+                        unit  = ALLOWED_PROPERTIES[id].units.SI
+                    elif unit == "imperial":
+                        unit  = ALLOWED_PROPERTIES[id].units.imperial
+                    else:
+                        raise ValueError("Property units must be either SI "
+                            "or imperial @ line: {}"
+                                            .format(properties[i]["type"][1]))
+                except KeyError:
+                    raise KeyError("Property id not Allowed Properties @ "
+                                "line: {}".format(properties[i]["type"][1]))
 
-                pty = Constant(id, val, unit, unc, ref)
-                properties[i] = pty
+                try:
+                    val = float(val)
+                except ValueError:
+                    raise ValueError("Property value must be a number "
+                            " @ line: {}".format(properties[i]["type"][1]))
 
-            elif properties[i]["type"] == "table":
-                id =properties[i]["id"]
-                val = properties[i]["value"]
-                unit = properties[i]["unit"]
-                dep1  = properties[i]["dep1values"]
-                dep1unit = properties[i]["dep1unit"]
+                try:
+                    unc = float(unc)
+                except ValueError:
+                    raise ValueError("Property uncertainty must be a number "
+                            " @ line: {}".format(properties[i]["type"][1]))
+                            
+                                                
+                try:        
+                    pty = Constant(id, val, unit, unc, ref)
+                    properties[i] = pty
+                except ValueError as ve:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from ve
+                except TypeError as te:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from te
+                except KeyError as ke:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from ke
+                        
+            elif properties[i]["type"][0] == "table":
+                if "id" in properties[i]:
+                    id = properties[i]["id"]
+                else:
+                    raise ValueError("id not given for {} property @"
+                        " line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
 
+                if "value" in properties[i]:
+                    val = properties[i]["value"]
+                else:
+                    raise ValueError("values not given for {} property @"
+                        " line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
+
+                if "unit" in properties[i]:
+                    unit = properties[i]["unit"]
+                else:
+                    raise ValueError("units not given for {} {} property @"
+                        " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]))
+
+                if "dep1values" in properties[i]:
+                    dep1 = properties[i]["dep1values"]
+                else:
+                    raise ValueError("dependency 1 values not given for {} {}"
+                        " property @ line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]))
+
+                if "dep1unit" in properties[i]:
+                    dep1unit = properties[i]["dep1unit"]
+                else:
+                    raise ValueError("dependency 1 units not given for {} {}"
+                        " property @ line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]))
+            
                 if "dep2values" in properties[i]:
                     dep2 = properties[i]["dep2values"]
                 else:
@@ -635,49 +759,151 @@ class Property:
                     unc = properties[i]["unc"]
                 else:
                     unc = None
+                    warnings.warn("uncertainty not given for {} {} property @"
+                                    " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]), 
+                                                    InputFileSyntaxWarning) 
 
                 if "ref" in properties[i]:
                     ref = properties[i]["ref"]
                 else:
                     ref = None
+                    warnings.warn("reference not given for {} {} property @"
+                                    " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]), 
+                                                    InputFileSyntaxWarning)
 
-    
-                pty = Table(id, val, unit, dep1, dep1unit, dep2,
+                try:
+                    if unit == "SI":
+                        unit  = ALLOWED_PROPERTIES[id].units.SI
+                    elif unit == "imperial":
+                        unit  = ALLOWED_PROPERTIES[id].units.imperial
+                    else:
+                        raise ValueError("Property units must be either SI "
+                            "or imperial @ line: {}"
+                                            .format(properties[i]["type"][1]))
+                except KeyError:
+                    raise KeyError("Property id not Allowed Properties @ "
+                                "line: {}".format(properties[i]["type"][1]))
+
+                try:
+                    pty = Table(id, val, unit, dep1, dep1unit, dep2,
                                                         dep2unit, unc, ref)
-                properties[i] = pty
+                    properties[i] = pty
 
+                except ValueError as ve:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from ve
+                except TypeError as te:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from te
+                except KeyError as ke:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from ke
             else:
-                id =properties[i]["id"]
-                unit = properties[i]["unit"]
-                corr = properties[i]["corr"]
-                deps = properties[i]["deps"]
-                dep1unit = properties[i]["dep1unit"]
-                dep1range = properties[i]["dep1range"]
+                if "id" in properties[i]:
+                    id = properties[i]["id"]
+                else:
+                    raise ValueError("id not given for {} property @"
+                        " line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
 
-                if "dep2unit" in properties[i]:
+                if "unit" in properties[i]:
+                    unit = properties[i]["unit"]
+                else:
+                    raise ValueError("units not given for {} {} property @"
+                        " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]))
+
+                if "corr" in properties[i]:
+                    corr = properties[i]["corr"]
+                else:
+                    raise ValueError("correlation expression not given for {}"
+                    "property @ line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
+
+                if "deps" in properties[i]:
+                    deps = properties[i]["deps"]
+                else:
+                    raise ValueError("correlation dependents not given for {}"
+                    "property @ line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
+
+                if "dep1unit" in properties[i]:
+                    dep1unit = properties[i]["dep1unit"]
+                else:
+                    raise ValueError("dependency 1 units not given for {}"
+                    "property @ line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
+
+                if "dep1range" in properties[i]:
+                    dep1range = properties[i]["dep1range"]
+                else:
+                    raise ValueError("dependency 1 range not given for {}"
+                    "property @ line: {}".format(properties[i]["type"][0],
+                                             properties[i]["type"][1]))
+
+                if "dep2range" in properties[i]:
                     dep2range = properties[i]["dep2range"]
                 else:
                     dep2range= None
-
+                    if (len(properties[i]["deps"].split(",")) == 2):
+                        raise ValueError("range not given for dependency 2 "
+                        "{} {} property @ line: {}".format(properties[i]["id"]
+                        ,properties[i]["type"][0], properties[i]["type"][1]))
+                                                    
                 if "dep2unit" in properties[i]:
                     dep2unit = properties[i]["dep2unit"]
                 else:
                     dep2unit = None
+                    if (len(properties[i]["deps"].split(",")) == 2):
+                        raise ValueError("units not given for dependency 2 "
+                        "{} {} property @ line: {}".format(properties[i]["id"]
+                        ,properties[i]["type"][0], properties[i]["type"][1]))
 
                 if "unc" in properties[i]:
                     unc = properties[i]["unc"]
                 else:
                     unc = None
+                    warnings.warn("uncertainty not given for {} {} property @"
+                                    " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]), 
+                                                    InputFileSyntaxWarning) 
 
                 if "ref" in properties[i]:
                     ref = properties[i]["ref"]
                 else:
                     ref = None
+                    warnings.warn("reference not given for {} {} property @"
+                                    " line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]), 
+                                                    InputFileSyntaxWarning)
+                try:
+                    if unit == "SI":
+                        unit  = ALLOWED_PROPERTIES[id].units.SI
+                    elif unit == "imperial":
+                        unit  = ALLOWED_PROPERTIES[id].units.imperial
+                    else:
+                        raise ValueError("Property units must be either SI "
+                            "or imperial @ line: {}"
+                                            .format(properties[i]["type"][1]))
+                except KeyError:
+                    raise KeyError("Property id not Allowed Properties @ "
+                                "line: {}".format(properties[i]["type"][1]))
 
-                pty = Correlation(id, corr, deps, unit, dep1range, dep1unit,
-                                            dep2range, dep2unit, unc, ref)
-                properties[i] = pty
-
+                try:
+                    pty = Correlation(id, corr, deps, unit, dep1range, 
+                                     dep1unit, dep2range, dep2unit, unc, ref)
+                    properties[i] = pty
+                except ValueError as ve:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from ve
+                except TypeError as te:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from te
+                except KeyError as ke:
+                    raise Exception("Error For Property @ line: {} \n"
+                            .format(properties[i]["type"][1])) from ke
         return properties
 
 class Constant(Property):

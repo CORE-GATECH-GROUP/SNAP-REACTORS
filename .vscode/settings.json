@@ -1,3 +1,7 @@
 {
-    "editor.rulers": [76,77, 78, 79, 80]
+    "editor.rulers": [
+        78
+    ],
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
 }

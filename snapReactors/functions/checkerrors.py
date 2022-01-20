@@ -187,3 +187,10 @@ def _compare2lists(list1, list2, description1, description2):
     if list1 != list2:
         raise ValueError("{} {}\n is not equal to \n {} {}"
                          .format(description1, list1, description2, list2))
+
+def _isinstanceList(var, instance, description):
+    """checks if the variable of an ndarray of instance type"""
+    _islist(var, description)
+    if not all(isinstance(i, instance) for i in var):
+        raise TypeError("{} must be a list of {} type and not {}"
+                        .format(description, instance, var))
