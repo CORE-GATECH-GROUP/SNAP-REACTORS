@@ -13,7 +13,7 @@ email: sgarcia9@wisc.edu
 from snapReactors.functions.checkerrors import _isinstanceList, _isstr
 
 from snapReactors.containers.materials import Material
-class Container:
+class Component:
     """ A container to store the data for each component
 
     This container stores all the relevant information for a specific 
@@ -54,20 +54,19 @@ class Container:
     """
 
 
-    def __init__(self, compName, _materials):
+    def __init__(self, compName, _materials = None):
 
         # check that variables are of correct type (return TypeError if not)
         _isstr(compName, "Component Name")
-        _isinstanceList(_materials, Material, "List of materials")
-
         # initialize all parameters in Component as lists
-
-        self.compName = []
-        self.compName.append(compName)
+        self.id = compName
         self._materials = []
-        self._materials.append(_materials)
 
-    def addmaterial(self, mtl):
+        if not isinstance(_materials, type(None)):
+            _isinstanceList(_materials, Material, "List of materials")
+            self._materials.append(_materials)
+
+    def addMaterial(self, mtl):
         """ Add data for a list of materials
 
         Values for a list of materials are added using the ``addmaterial`` 
@@ -111,4 +110,5 @@ class Container:
 
         """
         _isinstanceList(mtl, Material, "List of materials")
-        self._materials.append(mtl)
+        for m in mtl:
+            self._materials.append(m)

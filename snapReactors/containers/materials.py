@@ -169,8 +169,8 @@ class Material:
         # different lengths within each parameter to allow for variance, i.e.
         # numpy is designed for multidimensional arrays whose individual array 
         # sizes can vary
-        self.matName = []
-        self.matName.append(matName)
+        self.matName = matName
+        # self.matName.append(matName)
         self.utype = []
         self.utype.append(UTYPE[utype])
         self.ctype = []
