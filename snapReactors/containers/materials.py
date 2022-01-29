@@ -170,28 +170,18 @@ class Material:
         # numpy is designed for multidimensional arrays whose individual array 
         # sizes can vary
         self.matName = matName
-        # self.matName.append(matName)
-        self.utype = []
-        self.utype.append(UTYPE[utype])
-        self.ctype = []
-        self.ctype.append(CTYPE[ctype])
-        self.abundances = []
-        self.abundances.append(abundances)
-        self.isotopes = []
-        self.isotopes.append(isotopes)
-        self.unc = []
-        self.unc.append(unc)
-        self.reference = []
-        self.reference.append(reference)
-        self.description = []
-        self.description.append(description)
+        self.utype = UTYPE[utype]
+        self.ctype = CTYPE[ctype]
+        self.abundances = abundances
+        self.isotopes = isotopes
+        self.unc = unc
+        self.reference = reference
+        self.description = description
         self._properties = []
         
         if isinstance(_properties, list):
             for i in range(0, len(_properties)):
                 self._properties.append(_properties[i])
-        else:
-            self._properties.append(_properties)
 
     def __str__(self):
         """Overwrites print method, prints all objects variables."""
