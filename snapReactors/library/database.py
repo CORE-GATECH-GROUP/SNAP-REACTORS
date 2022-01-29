@@ -9,7 +9,6 @@ Last updated on 2022-01-20 11:52:13 @author: Isaac Naupa, Sam Garcia
 email: iaguirre6@gatech.edu
 """
 
-from msilib.schema import Component
 from sympy.polys.specialpolys import dmp_fateman_poly_F_1
 from snapReactors.functions.checkerrors import (_isstr, _isarray,
     _explengtharray, _isnonnegativearray, _isnumber, _isnonnegative,
@@ -30,6 +29,10 @@ from sympy.parsing.sympy_parser import parse_expr
 import numpy as np
 import pandas as pa
 import numbers
+
+from snapReactors.containers.component import Component
+from snapReactors.containers.materials import Material
+from snapReactors.containers.materials import Property
 
 class Database:
     """A container to store the data for hdf5 files containing databse info.
@@ -82,16 +85,20 @@ class Database:
         #     self.reactors.append(h5reactors)
 
         with h5.File(self.filePath, "r") as h5file:
-            h5keys = list(h5file.keys())
-            h5components = list(np.zeros(len(h5keys)))
-            for componentId in h5keys:
-                materialIds = list(h5file[componentId].keys())
-                for materialId in materialIds:
-                    propertyIds = list(h5file[componentId][materialId].keys())
-                    for propertyId in propertyIds:
-                        pass
-                            
-            self.components.append(h5components)
+            compGroups = Database._getInnerGroups(h5file)
+            compContainers = [0]*len(compGroups)
+            for cdx, comp in enumerate(compGroups):
+                compContainers[cdx] = Database._createContainer(comp, Component)
+                matGroups = Database._getInnerGroups(comp)
+                matContainers = [0]*len(matGroups)
+                for mdx, mat in enumerate(matGroups):
+                    matContainers[mdx] = Database._createContainer(mat, Material)
+                    propGroups = Database._getInnerGroups(mat)
+                    propContainers = [0]*len(propGroups)
+                    for pdx, prop in enumerate(propGroups):
+                        propContainers[pdx] = Database._createContainer(prop, Property)
+
+            self.components.append(compContainers)
 
         #create general method that loops through a groups datasets and gets the dataset ids and datasets values
         #we will use this to create container objects
@@ -120,14 +127,63 @@ class Database:
 
         with h5.File(self.filePath, "w") as h5file:
             for kdx, k in enumerate(reactorComponents):
-                h5file.create_group(k.id, True)
+                componentGroup = h5file.create_group(k.id, True)
+                Database._createDatasets(componentGroup, k)
                 componentMaterials = reactorComponents[kdx]._materials
                 print(componentMaterials)
                 for mdx, m in enumerate(componentMaterials):
-                    h5file.create_group("/"+k.id +"/"+m.matName, True)
+                    materialGroup = h5file.create_group("/"+k.id +"/"+m.matName, True)
+                    Database._createDatasets(materialGroup, m)
                     materialProps = componentMaterials[mdx]._properties
                     for pdx, p in enumerate(materialProps):
-                        h5file.create_group("/"+k.id +"/"+m.matName +"/" +p.id, True)
+                        propertyGroup = h5file.create_group("/"+k.id +"/"+m.matName +"/" +p.id, True)
+                        Database._createDatasets(propertyGroup, p)
+
+    def _createContainer(group, type):
+        ids, vals = Database._getDatasets(group)
+        print(ids, vals)
+
+    def _getInnerGroups(group):
+        innerGroups = []
+        groupItems = list(group.items())
+        for i in range(0,len(groupItems)):
+            if isinstance(groupItems[i][1], h5._hl.group.Group):
+                innerGroups.append(groupItems[i][1]) 
+        return innerGroups
+
+    def _getDatasets(group):
+        datasetIds = []
+        datasetValues = []
+        groupItems = list(group.items())
+        for i in range(0,len(groupItems)):
+            if isinstance(groupItems[i][1], h5._hl.dataset.Dataset):
+                datasetIds.append(groupItems[i][0])
+                datasetValues.append(groupItems[i][1][()])
+        
+        return datasetIds, datasetValues
+
+    def _createDatasets(group, container):
+        attrs = list(vars(container).keys())
+        values = list(vars(container).values())
+
+        for i in range(0, len(attrs)):
+            if "_" in attrs[i]:
+                attrs.remove(attrs[i])
+                values.remove(values[i])
+        
+        for i in range(0, len(values)):
+            if isinstance(values[i], type(None)):
+                values[i] = np.nan
+
+
+        for i in range(0, len(attrs)):
+            if isinstance(values[i], str):
+                values[i] = values[i].encode()
+            if isinstance(values[i], Enum):
+                values[i] = values[i].value
+
+            print(attrs[i], values[i], type(values[i]))
+            group.create_dataset(attrs[i], data=values[i])
 
         #create general method that loops through a containers attributes and values and creates a dataset 
         #for each attribute and assigns the attributes value to the dataset
@@ -141,8 +197,7 @@ class Database:
                 print(sep,'-',key,':',obj[key])
                 Database.descend_obj(obj[key],sep=sep+'\t')
         elif type(obj)==h5._hl.dataset.Dataset:
-            for key in obj.attrs.keys():
-                print(sep+'\t','-',key,':',obj.attrs[key])
+            print(obj[()])
 
     def h5dump(path,group='/'):
         """
