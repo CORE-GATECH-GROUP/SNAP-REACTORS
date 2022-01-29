@@ -34,6 +34,17 @@ from snapReactors.containers.component import Component
 from snapReactors.containers.materials import Material
 from snapReactors.containers.materials import Property
 
+"""
+TODO: 
+    1. Enum Types support through HDf5 (Isaac)
+    2. Version, Date, Modification Integration into hdf5 file itself (Isaac)
+    3. Markdown file that updates with the Version, date, modications (Sam)
+    4. Update the manual in documentation to give small demonstration (Sam)
+        (basically whats in workstation.py)
+
+"""
+
+
 class Database:
     """A container to store the data for hdf5 files containing databse info.
 
@@ -97,9 +108,10 @@ class Database:
                     propContainers = [0]*len(propGroups)
                     for pdx, prop in enumerate(propGroups):
                         propContainers[pdx] = Database._createContainer(prop, Property)
+                    matContainers[mdx].addproperty(propContainers)
+                compContainers[cdx].addMaterial(matContainers)
 
-            self.components.append(compContainers)
-
+            self.addComponents(compContainers)
         #create general method that loops through a groups datasets and gets the dataset ids and datasets values
         #we will use this to create container objects
 
@@ -141,7 +153,26 @@ class Database:
 
     def _createContainer(group, type):
         ids, vals = Database._getDatasets(group)
-        print(ids, vals)
+        container = None
+        if type == Component:
+            container = Component("1")
+        elif type == Material:
+            container = Material("1", "NONE", "ATOMIC", np.array([]), np.array([]))
+        elif type == Property:
+            container = Property("cp", "NUMBER", "CONSTANT", np.array([1]), "J/kg/K")
+
+        for i in range(0, len(vals)):
+            if isinstance(vals[i], bytes):
+                vals[i] = vals[i].decode()
+            
+            if isinstance(vals[i], np.ndarray):
+                if h5.check_opaque_dtype(vals[i].dtype):
+                    vals[i] = None          
+
+        for i in range(0, len(ids)):
+            setattr(container, ids[i], vals[i])
+        
+        return container
 
     def _getInnerGroups(group):
         innerGroups = []
@@ -173,8 +204,8 @@ class Database:
         
         for i in range(0, len(values)):
             if isinstance(values[i], type(None)):
-                values[i] = np.nan
-
+                values[i] = np.array([np.nan])
+                values[i] = values[i].astype(h5.opaque_dtype(values[i].dtype))
 
         for i in range(0, len(attrs)):
             if isinstance(values[i], str):

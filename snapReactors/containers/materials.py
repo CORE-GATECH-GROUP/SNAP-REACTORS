@@ -163,6 +163,9 @@ class Material:
                 if not isinstance(_properties, Property):
                     raise TypeError("Properties must be of type Property"
                     " and not {}".format(type(_properties)))
+                    
+        if not isinstance(unc, type(None)):
+            _isarray(unc, "material unc")
 
         # Need to initialize all parameters in Material (i.e. matName, utype,
         # ctype, etc) as lists so that we can have nested numpy arrays of
@@ -465,11 +468,11 @@ class Material:
             if "Isotopic Definition" in line:
                 for var in ["isotopes", "abundances", "unc"]:
                     if var == "isotopes":
-                        mp[var] = np.zeros(isoNumber, dtype=object)
+                        mp[var] = np.zeros(isoNumber, dtype=float)
                     elif var == "unc":
                         try:
                             if mp["utype"] == "NONE":
-                                mp[var] = np.zeros(isoNumber, dtype=object)
+                                mp[var] = np.zeros(isoNumber, dtype=float)
                             else:
                                 mp[var] = np.zeros(isoNumber, dtype=float)
                         except:
@@ -488,7 +491,7 @@ class Material:
                         "material {} @ line {}"
                         .format(mp["matName"][0],i+k+2))
                     if mp["utype"] == "NONE":
-                        mp["unc"][k] = "None"
+                        mp["unc"] = None
                     else:
                         try:
                             mp["unc"][k] = float(line1[2])

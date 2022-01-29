@@ -18,6 +18,12 @@ version2 = "v2_test"
 
 test2 = Database(filePath=filePath, version=version2, date= "2022-01-25 15:20:25")
 test2._load()
+
+for i  in test2.components:
+    for j in i._materials:
+        print(j)
+        for k in j._properties:
+            print(k)
 # print(test2)
 
-Database.h5dump(filePath)
+# Database.h5dump(filePath)
