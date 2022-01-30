@@ -3,7 +3,6 @@
 A container to store and process the SNAP Reactors Database stored on HDF5 
 files.
 
-
 Created on 2022-01-20 11:52:02 @author: Isaac Naupa, Sam Garcia
 Last updated on 2022-01-20 11:52:13 @author: Isaac Naupa, Sam Garcia
 email: iaguirre6@gatech.edu
@@ -31,13 +30,13 @@ import pandas as pa
 import numbers
 
 from snapReactors.containers.component import Component
-from snapReactors.containers.materials import Material
-from snapReactors.containers.materials import Property
+from snapReactors.containers.materials import Material, CTYPE, UTYPE
+from snapReactors.containers.property import Property, DTYPE, VTYPE 
 
 """
 TODO: 
-    1. Enum Types support through HDf5 (Isaac)
-    2. Version, Date, Modification Integration into hdf5 file itself (Isaac)
+    DONE - 1. Enum Types support through HDf5
+    DONE - 2. Version, Date, Modification Integration into hdf5 file itself
     3. Markdown file that updates with the Version, date, modications (Sam)
     4. Update the manual in documentation to give small demonstration (Sam)
         (basically whats in workstation.py)
@@ -75,80 +74,46 @@ class Database:
             self.components.append(i)
 
     def _load(self):
-        # with h5.File(self.filePath, "r") as h5file:
-        #     h5keys = h5file.keys()
-        #     h5reactors = list(np.zeros(len(h5keys)))
-        #     for reactorId in h5keys:
-        #         print(reactorId)
-        #         reactorStateIds = reactorId.keys()
-        #         for reactorStateId in reactorStateIds:
-        #             print(reactorStateId)
-        #             componentIds = reactorStateId.keys()
-        #             for componentId in componentIds:
-        #                 print(componentId)
-        #                 materialIds = componentId.keys()
-        #                 for materialId in materialIds:
-        #                     print(materialId)
-        #                     propertyIds = materialId.keys()
-        #                     for propertyId in propertyIds:
-        #                         print(propertyId)
-                            
-        #     self.reactors.append(h5reactors)
-
         with h5.File(self.filePath, "r") as h5file:
             compGroups = Database._getInnerGroups(h5file)
             compContainers = [0]*len(compGroups)
             for cdx, comp in enumerate(compGroups):
-                compContainers[cdx] = Database._createContainer(comp, Component)
+                compContainers[cdx] = Database._createContainer(comp, 
+                                                                    Component)
                 matGroups = Database._getInnerGroups(comp)
                 matContainers = [0]*len(matGroups)
                 for mdx, mat in enumerate(matGroups):
-                    matContainers[mdx] = Database._createContainer(mat, Material)
+                    matContainers[mdx] = Database._createContainer(mat, 
+                                                                    Material)
                     propGroups = Database._getInnerGroups(mat)
                     propContainers = [0]*len(propGroups)
                     for pdx, prop in enumerate(propGroups):
-                        propContainers[pdx] = Database._createContainer(prop, Property)
+                        propContainers[pdx] = Database._createContainer(prop, 
+                                                                    Property)
                     matContainers[mdx].addproperty(propContainers)
                 compContainers[cdx].addMaterial(matContainers)
 
             self.addComponents(compContainers)
-        #create general method that loops through a groups datasets and gets the dataset ids and datasets values
-        #we will use this to create container objects
-
 
     def _write(self):
-        # h5reactors = list(np.zeros(len(self.reactors)))
-        # with h5.File(self.filePath, "w") as h5file:
-        #     for idx, i in enumerate(self.reactors):
-        #         h5reactors[idx] = h5file.create_group(i.id, True)
-        #         reactorStates = list(len(np.zeros(h5reactors[idx])))
-        #         for jdx, j in enumerate(reactorStates):
-        #             reactorStates[jdx] = h5reactors[i].create_group(j.id, True)
-        #             reactorComponents = list(len(np.zeros(reactorStates[jdx])))
-        #             for kdx, k in enumerate(reactorComponents):
-        #                 reactorComponents[kdx] = reactorStates[jdx].create_group(k.id, True)
-        #                 componentMaterials = list(len(np.zeros(reactorComponents[kdx])))
-        #                 for mdx, m in enumerate(componentMaterials):
-        #                     componentMaterials[mdx] = reactorComponents[kdx].create_group(m.id, True)
-        #                     materialProps = list(len(np.zeros(componentMaterials[mdx])))
-        #                     for pdx, p in enumerate(materialProps):
-        #                         materialProps[pdx] = componentMaterials[mdx].create_group(p.id, True)
-                                
-
         reactorComponents = self.components                      
 
         with h5.File(self.filePath, "w") as h5file:
+            h5file.attrs["version"] = self.version.encode()
+            h5file.attrs["date"] = self.date.encode()
             for kdx, k in enumerate(reactorComponents):
                 componentGroup = h5file.create_group(k.id, True)
                 Database._createDatasets(componentGroup, k)
                 componentMaterials = reactorComponents[kdx]._materials
                 print(componentMaterials)
                 for mdx, m in enumerate(componentMaterials):
-                    materialGroup = h5file.create_group("/"+k.id +"/"+m.matName, True)
+                    materialGroup = h5file.create_group("/"+k.id 
+                                                        +"/"+m.matName, True)
                     Database._createDatasets(materialGroup, m)
                     materialProps = componentMaterials[mdx]._properties
                     for pdx, p in enumerate(materialProps):
-                        propertyGroup = h5file.create_group("/"+k.id +"/"+m.matName +"/" +p.id, True)
+                        propertyGroup = h5file.create_group("/"+k.id +
+                                            "/"+m.matName +"/" +p.id, True)
                         Database._createDatasets(propertyGroup, p)
 
     def _createContainer(group, type):
@@ -156,10 +121,12 @@ class Database:
         container = None
         if type == Component:
             container = Component("1")
-        elif type == Material:
-            container = Material("1", "NONE", "ATOMIC", np.array([]), np.array([]))
+        elif type == Material:  
+            container = Material("1", "NONE", "ATOMIC", np.array([]), 
+                                                                np.array([]))
         elif type == Property:
-            container = Property("cp", "NUMBER", "CONSTANT", np.array([1]), "J/kg/K")
+            container = Property("cp", "NUMBER", "CONSTANT", np.array([1]),
+                                                                   "J/kg/K")
 
         for i in range(0, len(vals)):
             if isinstance(vals[i], bytes):
@@ -167,7 +134,20 @@ class Database:
             
             if isinstance(vals[i], np.ndarray):
                 if h5.check_opaque_dtype(vals[i].dtype):
-                    vals[i] = None          
+                    vals[i] = None
+
+            if (ids[i] == "dtype"):
+                vals[i] = DTYPE(vals[i])
+
+            if (ids[i] == "ctype"):
+                vals[i] = CTYPE(vals[i])
+
+            if (ids[i] == "vtype"):
+                vals[i] = VTYPE(vals[i]) 
+
+            if (ids[i] == "utype"):
+                vals[i] = UTYPE(vals[i])   
+  
 
         for i in range(0, len(ids)):
             setattr(container, ids[i], vals[i])
@@ -213,15 +193,12 @@ class Database:
             if isinstance(values[i], Enum):
                 values[i] = values[i].value
 
-            print(attrs[i], values[i], type(values[i]))
             group.create_dataset(attrs[i], data=values[i])
 
-        #create general method that loops through a containers attributes and values and creates a dataset 
-        #for each attribute and assigns the attributes value to the dataset
-
-    def descend_obj(obj,sep='\t'):
+    def _descend_obj(obj,sep='\t'):
         """
-        Iterate through groups in a HDF5 file and prints the groups and datasets names and datasets attributes
+        Iterate through groups in a HDF5 file and prints the groups and 
+        datasets names and datasets attributes
         """
         if type(obj) in [h5._hl.group.Group,h5._hl.files.File]:
             for key in obj.keys():
@@ -230,7 +207,7 @@ class Database:
         elif type(obj)==h5._hl.dataset.Dataset:
             print(obj[()])
 
-    def h5dump(path,group='/'):
+    def _h5dump(path,group='/'): 
         """
         print HDF5 file metadata
 
