@@ -1,18 +1,19 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Container Template &#8212; snapReactors 0.0.1 documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Manual Template" href="manualTemplate.html" />
@@ -33,7 +34,7 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="container-template">
+  <section id="container-template">
 <span id="id1"></span><h1>Container Template<a class="headerlink" href="#container-template" title="Permalink to this headline">¶</a></h1>
 <p>The general structure includes:</p>
 <ol class="arabic simple">
@@ -42,7 +43,7 @@
 <li><p>Init</p></li>
 <li><p>Methods</p></li>
 </ol>
-<div class="section" id="header">
+<section id="header">
 <h2>Header<a class="headerlink" href="#header" title="Permalink to this headline">¶</a></h2>
 <p>Describes container and contains authorship info</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Container name</span>
@@ -55,16 +56,16 @@
 <span class="sd">&quot;&quot;&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="imports">
+</section>
+<section id="imports">
 <h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
 <p>Contains all imports. Refere to <a class="reference internal" href="../codestyle.html#code-style"><span class="std std-ref">Coding Style</span></a> for importing customs</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Imports. For example, importing check error functions &quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">snapReactor.functions.checkerrors</span> <span class="k">import</span> <span class="p">(</span><span class="n">_isint</span><span class="p">,</span> <span class="n">_isbool</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">snapReactor.functions.checkerrors</span> <span class="kn">import</span> <span class="p">(</span><span class="n">_isint</span><span class="p">,</span> <span class="n">_isbool</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="init">
+</section>
+<section id="init">
 <h2>Init<a class="headerlink" href="#init" title="Permalink to this headline">¶</a></h2>
 <p>Describes container purpopose and gives detailed description of
 attributes, methods, errors, and examples</p>
@@ -116,7 +117,7 @@ attributes, methods, errors, and examples</p>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="sd">&quot;&quot;&quot; Initialization/Init function for container object. &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr1</span><span class="p">,</span> <span class="n">attr2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr1</span><span class="p">,</span> <span class="n">attr2</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Before setting attributes you should make a check on the</span>
 <span class="sd">        given attributes types. For example if attr1 is an int and</span>
 <span class="sd">        attr2 is a boolean. Then the following would proceed.</span>
@@ -128,8 +129,8 @@ attributes, methods, errors, and examples</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">attr2</span> <span class="o">=</span> <span class="n">attr2</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="methods">
+</section>
+<section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
 <p>Describes function purpopose and gives detailed description of
 parameters, errors, return data, and examples.</p>
@@ -200,8 +201,8 @@ parameters, errors, return data, and examples.</p>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -220,7 +221,7 @@ parameters, errors, return data, and examples.</p>
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../overview.html">Project Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributors.html">Developer Team</a></li>
@@ -249,12 +250,12 @@ parameters, errors, return data, and examples.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -271,7 +272,7 @@ parameters, errors, return data, and examples.</p>
       &copy;2021, Dan Kotlyar.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

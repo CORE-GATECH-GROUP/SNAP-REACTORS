@@ -269,7 +269,7 @@ class Database:
         if type(obj) in [h5._hl.group.Group,h5._hl.files.File]:
             for key in obj.keys():
                 print(sep,'-',key,':',obj[key])
-                Database.descend_obj(obj[key],sep=sep+'\t')
+                Database._descend_obj(obj[key],sep=sep+'\t')
         elif type(obj)==h5._hl.dataset.Dataset:
             print(obj[()])
 
@@ -280,4 +280,4 @@ class Database:
         group: you can give a specific group, defaults to the root group
         """
         with h5.File(path,'r') as f:
-            Database.descend_obj(f[group])
+            Database._descend_obj(f[group])
