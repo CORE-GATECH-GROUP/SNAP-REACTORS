@@ -5,7 +5,7 @@ files.
 
 Created on 2022-01-20 11:52:02 @author: Isaac Naupa, Sam Garcia
 Last updated on 2022-01-20 11:52:13 @author: Isaac Naupa, Sam Garcia
-email: iaguirre6@gatech.edu
+email: iaguirre6@gatech.edu, sgarcia9@wisc.edu
 """
 
 from sympy.polys.specialpolys import dmp_fateman_poly_F_1
@@ -28,6 +28,8 @@ from sympy.parsing.sympy_parser import parse_expr
 import numpy as np
 import pandas as pa
 import numbers
+from mdutils.mdutils import MdUtils
+import os.path
 
 from snapReactors.containers.component import Component
 from snapReactors.containers.materials import Material, CTYPE, UTYPE
@@ -115,6 +117,70 @@ class Database:
                         propertyGroup = h5file.create_group("/"+k.id +
                                             "/"+m.matName +"/" +p.id, True)
                         Database._createDatasets(propertyGroup, p)
+        
+        if os.path.exists('C:\\Users\\Sam\\Documents\\SNAP-REACTORS\\'
+                            'snapReactors\\library\\Database.md'):
+            with open('C:\\Users\\Sam\\Documents\\SNAP-REACTORS\\'
+                            'snapReactors\\library\\Database.md', 
+                            'r') as f:
+                data = f.readlines()
+            
+            tabLine = False
+            mdData = dict()
+            key = ['Date', 'Version', 'Modifications']
+            for var in key:
+                mdData[var] = list()
+
+            for i in range(0, len(data)):
+                line = data[i]
+                if 'Most Recent Version:' in line:
+                    oldVersion = line.split(':')[1]
+                if tabLine == True:
+                    for j,var in enumerate(key):
+                        mdData[var].append(line.split('|')[j+1])
+                    if mdData['Version'] == oldVersion:
+                        break
+                if '| :---: | :---: | :---: |' in line:
+                    tabLine = True
+        
+            mdData['Date'].append(self.date)
+            mdData['Version'].append(self.version)
+            mdData['Modifications'].append('The {} component is added.'
+                                            .format(self.components))
+
+            mdFile = MdUtils(file_name = 'Database', title = 'Database')
+            mdFile.new_line('Most Recent Version: {}'.format(self.version))
+            headers = key
+            for i in range(0,len(mdData['Date'])):
+                headers.extend([mdData['Date'][i], mdData['Version'][i], 
+                                mdData['Modifications'][i]])
+            mdFile.new_line()
+            mdFile.new_table(columns = 3, rows = len(mdData['Date'])+1, 
+                                text = headers, text_align='center')
+            mdFile.create_md_file()
+        else:
+            mdData = dict()
+            key = ['Date', 'Version', 'Modifications']
+            for var in key:
+                mdData[var] = list()
+            
+            mdData['Date'].append(self.date)
+            mdData['Version'].append(self.version)
+            mdData['Modifications'].append('The {} component is added which'
+                                            'is composed of x materials.'
+                                            .format(self.components
+                                                    ))
+
+            mdFile = MdUtils(file_name = 'Database', title = 'Database')
+            mdFile.new_line('Most Recent Version: {}'.format(self.version))
+            headers = key
+            for i in range(0,len(mdData['Date'])):
+                headers.extend([mdData['Date'][i], mdData['Version'][i], 
+                                mdData['Modifications'][i]])
+            mdFile.new_line()
+            mdFile.new_table(columns = 3, rows = len(mdData['Date'])+1, 
+                                text = headers, text_align='center')
+            mdFile.create_md_file()
 
     def _createContainer(group, type):
         ids, vals = Database._getDatasets(group)

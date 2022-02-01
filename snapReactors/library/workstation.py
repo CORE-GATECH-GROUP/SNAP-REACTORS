@@ -2,12 +2,12 @@ from snapReactors.library.database import Database
 from snapReactors.containers.component import Component
 from snapReactors.containers.materials import Material
 
-filePath = "C:\\Users\Owner\\Documents\\GitHub\\SNAP-REACTORS\\snapReactors\\jupyter_notebooks\\test1.hdf5"
+filePath = "C:\\Users\\Sam\\Documents\\SNAP-REACTORS\\snapReactors\\jupyter_notebooks\\test1.hdf5"
 version1 = "v1_test "
 test1  = Database(filePath=filePath, version=version1, date = "2022-01-25 15:19:53")
 
 c1 = Component("c1")
-c1.addMaterial(Material.readData("C:\\Users\Owner\\Documents\\GitHub\\SNAP-REACTORS\\snapReactors\\jupyter_notebooks\\test.txt"))
+c1.addMaterial(Material.readData("C:\\Users\\Sam\\Documents\\SNAP-REACTORS\\snapReactors\\jupyter_notebooks\\test.txt"))
 
 test1.addComponents([c1])
 print(test1)
