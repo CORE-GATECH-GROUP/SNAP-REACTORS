@@ -4,7 +4,7 @@ SNAP-REACTORS-DATABASE
 The proposed database is part of an International Reactor Physics Experiment Evaluation Project (IRPhEP).
 The benchmark evaluation based on data from the Systems for Nuclear Auxiliary Power (SNAP) [1] program.
 This database leverages the extensive experimental measurements accumulated over 15 years.
-The SNAP program shares many characteristics with today�s microreactors that include comparable power output, 
+The SNAP program shares many characteristics with today's microreactors that include comparable power output, 
 compact core design, representative physics phenomena (e.g. strong reflector effect),
 alkali metal heat removal working fluid and high-temperature solid moderators that are prone to hydrogen migration.
 
@@ -20,8 +20,8 @@ The SNAP-2 Experimental Reactor and Developmental Reactor were extensively teste
 This broad experience can serve as a solid technological base for the validation of advanced computational methods.
 
 A series of dry and wet critical experiments [2, 3] were conducted during the SNAP program:
--	Dry critical experiments � among others these include critical loadings, critical drum-reflectors configurations, and measurements of kinetic parameters.
--	Wet experiments � operational history with documented power and temperature profiles.
+-	Dry critical experiments - among others these include critical loadings, critical drum-reflectors configurations, and measurements of kinetic parameters.
+-	Wet experiments - operational history with documented power and temperature profiles.
 
 This project focuses on collecting and documenting engineering drawings, manufacturing records, 
 thermo-physical data measurements, systematic assessment of samples, 
