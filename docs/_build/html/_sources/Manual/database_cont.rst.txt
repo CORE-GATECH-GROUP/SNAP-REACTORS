@@ -49,10 +49,9 @@ Note that the database above has created the hdf5 file ``example.hdf5``
 but is still empty. To fill the database with data the following steps
 are taken:
 
-::
 
-   1. Add a Component object to the database variable `ex1`
-   2. Use the `_write()` function to write data in ex1 variable to `example..hdf5` database.
+1. Add a Component object to the database variable `ex1`
+2. Use the `_write()` function to write data in ex1 variable to `example..hdf5` database.
 
 .. code:: ipython3
 
