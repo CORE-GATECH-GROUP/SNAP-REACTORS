@@ -25,19 +25,6 @@ import h5py as h5
 import sympy as sp
 
 import numpy as np
-import fileinput
-
-
-
-"""
-TODO: 
-    DONE - 1. Enum Types support through HDf5
-    DONE - 2. Version, Date, Modification Integration into hdf5 file itself
-    3. Markdown file that updates with the Version, date, modications (Sam)
-    4. Update the manual in documentation to give small demonstration (Sam)
-        (basically whats in workstation.py)
-
-"""
 
 
 class Database:
