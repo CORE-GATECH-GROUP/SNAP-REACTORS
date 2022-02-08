@@ -12,28 +12,22 @@ from sympy.polys.specialpolys import dmp_fateman_poly_F_1
 from snapReactors.functions.checkerrors import (_isstr, _isarray,
     _explengtharray, _isnonnegativearray, _isnumber, _isnonnegative,
     _isinstanceList) 
-
 from snapReactors.functions.parameters import ALLOWED_PROPERTIES
 from snapReactors.functions.warnings import InputFileSyntaxWarning
-# from snapReactors.containers.component import Component
-import warnings
-
 from enum import Enum
+from snapReactors.containers.component import Component
+from snapReactors.containers.materials import Material, CTYPE, UTYPE
+from snapReactors.containers.property import Property, DTYPE, VTYPE 
+from mdutils.mdutils import MdUtils
+
 
 import h5py as h5
 import sympy as sp
 
-from sympy.parsing.sympy_parser import parse_expr 
-
 import numpy as np
-import pandas as pa
-import numbers
-from mdutils.mdutils import MdUtils
-import os.path
+import fileinput
 
-from snapReactors.containers.component import Component
-from snapReactors.containers.materials import Material, CTYPE, UTYPE
-from snapReactors.containers.property import Property, DTYPE, VTYPE 
+
 
 """
 TODO: 
@@ -117,13 +111,17 @@ class Database:
                         propertyGroup = h5file.create_group("/"+k.id +
                                             "/"+m.matName +"/" +p.id, True)
                         Database._createDatasets(propertyGroup, p)
-        
-        if os.path.exists('C:\\Users\\Sam\\Documents\\SNAP-REACTORS\\'
-                            'snapReactors\\library\\Database.md'):
-            with open('C:\\Users\\Sam\\Documents\\SNAP-REACTORS\\'
-                            'snapReactors\\library\\Database.md', 
-                            'r') as f:
-                data = f.readlines()
+        with open('..\\..\\README.md', 'r') as f:
+            data = f.readlines()
+            tabExist = False
+            f.close()
+
+        for i in range(0, len(data)):
+            if 'Database' in data[i]:
+                tabExist = True
+                break
+
+        if tabExist == True:
             
             tabLine = False
             mdData = dict()
@@ -157,7 +155,18 @@ class Database:
             mdFile.new_line()
             mdFile.new_table(columns = 3, rows = len(mdData['Date'])+1, 
                                 text = headers, text_align='center')
-            mdFile.create_md_file()
+            with open('..\\..\\README.md','w') as f:
+                for line in data:
+                    if 'Database\n' not in line:
+                        f.write(line)
+                    else:
+                        break
+            with open('..\\..\\README.md','a') as f:
+                f.write('Database\n'
+                        '--------')
+                f.write(mdFile.file_data_text)
+                f.close()
+                    
         else:
             mdData = dict()
             key = ['Date', 'Version', 'Modifications']
@@ -166,8 +175,7 @@ class Database:
             
             mdData['Date'].append(self.date)
             mdData['Version'].append(self.version)
-            mdData['Modifications'].append('The {} component is added which'
-                                            'is composed of x materials.'
+            mdData['Modifications'].append('The {} component is added.'
                                             .format(self.components
                                                     ))
 
@@ -180,7 +188,13 @@ class Database:
             mdFile.new_line()
             mdFile.new_table(columns = 3, rows = len(mdData['Date'])+1, 
                                 text = headers, text_align='center')
-            mdFile.create_md_file()
+            with open('..\\..\\README.md','a') as f:
+                f.write('\n\n\n\n'
+                        'Database\n'
+                        '--------')
+                f.write(mdFile.file_data_text)
+                f.close()
+            
 
     def _createContainer(group, type):
         ids, vals = Database._getDatasets(group)
