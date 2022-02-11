@@ -31,43 +31,38 @@ class ReactorState:
     with their corresponding type and decription. They should be
     in the following format. 
 
-    attr1 : type of attr1
-        desctiption of attr1
-    attr2 : type of attr2
-        description of attr2
+    id : str
+        name of reactor state
+    reference : str or None
+        reference tag for reactor state
+    description : str or None
+        description of reactor state and its purpose
+    _components : Component as single object or list or None
+        list or singular object of instance type Commponent
 
     Methods
     -------
-    All container object methods should be listed here, along
-    with their corresponding decription. They should be
-    in the following format. 
-
-    method1 : decription of function of method1
-    method2 : decription of function of method2
+    addComponent : add data for a specific component
 
     Raises
     ------
-    All container object raised errors should be listed here,
-    along with their corresponding error type, and a description
-    of the conditions that cause the error.
-
-    error1 type
-        descriptions of conditions that cause error1 to be raised 
-    error2 type
-        descriptions of conditions that cause error2 to be raised 
+    TyperError
+        If ``id``, ``reference``, ``description`` is not str.
+        If ``_components`` are not list or variable of instance type Component
 
     Examples
     --------
-    Brief examples of using the container and methods should be 
-    included here. Python code should be prefixed by '>>>' such
-    that upon documentation a distinction will be made from 
-    comments and code. An Example is shown below. 
+    >>> from snapReactors.containers.component import Component
+    >>> from snapReactors.containers.materials import Material
 
-    >>> container1 = container(attr1, attr2)
-    >>> contaner1.method1(arg1, arg2)
+    >>> c1 = Component("c1")
+    >>> c1.addMaterial(Material.readData('material_data.txt'))
+    >>> reference = NA-SR-XXXX
+    >>> description = 'Operating temperature and pressure are at cold start' 
+                        'conditions'
+    >>> rs1 = ReactorState('Cold Power', reference=reference, 
+                            description=description, _components=c1)
     """
-
-    """ Initialization/Init function for container object. """
     def __init__(self, id, reference=None, description=None, 
                 _components=None):
         foo = 1
@@ -95,8 +90,43 @@ class ReactorState:
 
     
     def addComponents(self, _components):
-        for i in _components:
-            self._components.append(i)
+        """Add data for a specific component
+        
+        Parameters
+        ----------
+        _components : list or variable of instance type Component
+        
+        Raises
+        -------
+        TypeError
+            If ``_components`` is not a list or variable of instance type
+            Component
+
+        Examples
+        --------
+        >>> from snapReactors.containers.component import Component
+        >>> from snapReactors.containers.materials import Material
+
+        >>> c1 = Component("c1")
+        >>> c1.addMaterial(Material.readData('material_data.txt'))
+        >>> reference = NA-SR-XXXX
+        >>> description = 'Operating temperature and pressure are at cold start' 
+                        'conditions'
+        >>> rs1 = ReactorState('Cold Power', reference=reference, 
+                            description=description, _components=None)  
+        >>> rs1.addComponent(c1) 
+        """
+        if isinstance(_components, list):
+            _isinstanceList(_components, Component, "List of properties")
+        else:
+            if not isinstance(_components, Component):
+                raise TypeError("Properties must be of type Property"
+                    " and not {}".format(type(_components)))
+        if isinstance(_components, list):
+            for i in _components:
+                self._components.append(i)
+        else:
+            self._components.append(_components)
     
     def __eq__(self, other):
         if not isinstance(other, ReactorState):
