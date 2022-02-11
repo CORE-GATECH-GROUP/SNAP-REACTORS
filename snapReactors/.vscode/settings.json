@@ -4,5 +4,5 @@
     ],
     "terminal.integrated.defaultProfile.windows": "Command Prompt",
     "jupyter.notebookFileRoot": "${workspaceFolder}",
-    "python.analysis.extraPaths": ["./SNAP-REACTORS"]
+    "python.analysis.extraPaths": ["C:/Users/sgarc/OneDrive/Documents/SNAP-REACTORS/"]
 }
