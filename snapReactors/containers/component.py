@@ -28,13 +28,13 @@ class Component:
 
     Methods
     -------
-    addmaterial: add materials to an already existing component
+    addMaterial: add materials to an already existing component
 
     Raises
     ------
     TypeError
         If ``matName`` is not str.
-        If ``_materials`` is not an ndarray of instance type Material.
+        If ``_materials`` is not a list of instance type Material.
 
     Examples
     --------

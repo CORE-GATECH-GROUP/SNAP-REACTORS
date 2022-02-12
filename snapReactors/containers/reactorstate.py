@@ -27,10 +27,6 @@ class ReactorState:
 
     Attributes
     ----------
-    All container object attributes should be listed here, along
-    with their corresponding type and decription. They should be
-    in the following format. 
-
     id : str
         name of reactor state
     reference : str or None
@@ -52,6 +48,7 @@ class ReactorState:
 
     Examples
     --------
+    >>> from snapReactors.container.reactorstate import ReactorState
     >>> from snapReactors.containers.component import Component
     >>> from snapReactors.containers.materials import Material
 
