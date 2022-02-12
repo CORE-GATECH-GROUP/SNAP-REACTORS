@@ -17,11 +17,20 @@ from snapReactors.functions.checkerrors import (_isstr, _isarray,
 from snapReactors.functions.parameters import ALLOWED_PROPERTIES
 from snapReactors.functions.warnings import InputFileSyntaxWarning
 from enum import Enum
-from snapReactors.containers.component import Component
+from snapReactors.containers.reactorstate import ReactorState
 from snapReactors.containers.materials import Material, CTYPE, UTYPE
 from snapReactors.containers.property import Property, DTYPE, VTYPE 
 import numpy as np
-class ReactorState:
+
+class LTYPE(Enum):
+    """An Enum to describe all options for a core lattice assembly type.
+    """
+    HEX = 1
+    SQUARE = 1
+
+
+
+class Reactor:
     """ A container to store component data to be evaluated at specific 
     temperature and pressures.   
 
@@ -63,33 +72,53 @@ class ReactorState:
     >>> rs1 = ReactorState('Cold Power', reference=reference, 
                             description=description, _components=c1)
     """
-    def __init__(self, id, reference=None, description=None, 
-                _components=None):
-        _isstr(id, "Reactor State Name")
-        if reference != None:
-            _isstr(reference, "Reference")
+    def __init__(self, id, ltype, rodNum, guideNum, instrumNum, thermalPower, 
+                electricPower, coolant, moderator, description=None, 
+                _reactorstates=None):
+        _isstr(id, "Reactor Experiment Name")
+        _isstr(coolant, "Coolant Material")
+        _isstr(moderator, "Moderating Material")
+
+        _isnonnegative(rodNum, "Number of fuel rods")
+        _isnonnegative(guideNum, "Number of guide tubes")
+        _isnonnegative(instrumNum, "Number of instrumentation rods")
+        _isnonnegative(thermalPower, "Nominal thermal power output")
+        _isnonnegative(electricPower, "Nominal electric power output")
         if description != None:
-            _isstr(description, "description of reactor state")
-        if _components !=None:    
-            if isinstance(_components, list):
-                _isinstanceList(_components, Component, "List of components")
+            _isstr(description, "Description of Reactor Experiment")
+
+        if ltype not in LTYPE.__members__:
+            raise KeyError("Assembly Lattice Type {} is not an allowed"
+                           "type: {}".format(ltype, LTYPE._member_names_))
+        
+        if _reactorstates !=None:    
+            if isinstance(_reactorstates, list):
+                _isinstanceList(_reactorstates, ReactorState, "List of"
+                 "reactor states")
             else:
-                if not isinstance(_components, Component):
-                    raise TypeError("Components must be of type Component"
-                    " and not {}".format(type(_components)))
+                if not isinstance(_reactorstates, ReactorState):
+                    raise TypeError("Reactor States must be of type"
+                     "ReactorState and not {}".format(type(_reactorstates)))
         self.id = id
-        self.reference = reference
+        self.ltype = LTYPE[ltype]
+        self.rodNum = rodNum
+        self.guideNum = guideNum
+        self.instrumNum = instrumNum
+        self.thermalPower = thermalPower
+        self.electricPower = electricPower
+        self.coolant = coolant
+        self.moderator = moderator
         self.description = description
-        self._components = []
-        if isinstance(_components, list):
-            for i in _components:
-                self._components.append(i)
+        self._reactorstates = []
+        if isinstance(_reactorstates, list):
+            for i in _reactorstates:
+                self._reactorstates.append(i)
         else:
-            self._components.append(_components)
+            self._reactorstates.append(_reactorstates)
 
     
-    def addComponents(self, _components):
-        """Add data for a specific component
+    def addReactorStates(self, _reactorstates):
+        """Add data for a specific reactor state
         
         Parameters
         ----------
@@ -115,27 +144,37 @@ class ReactorState:
                             description=description, _components=None)  
         >>> rs1.addComponent(c1) 
         """
-        if isinstance(_components, list):
-            _isinstanceList(_components, Component, "List of component")
+        if isinstance(_reactorstates, list):
+            _isinstanceList(_reactorstates, ReactorState, "List of reactor"
+            "states")
         else:
-            if not isinstance(_components, Component):
-                raise TypeError("Components must be of type Component"
-                    " and not {}".format(type(_components)))
-        if isinstance(_components, list):
-            for i in _components:
-                self._components.append(i)
+            if not isinstance(_reactorstates, ReactorState):
+                raise TypeError("Reactor states must be of type ReactorState"
+                    " and not {}".format(type(_reactorstates)))
+        if isinstance(_reactorstates, list):
+            for i in _reactorstates:
+                self._reactorstates.append(i)
         else:
-            self._components.append(_components)
+            self._reactorstates.append(_reactorstates)
     
     def __eq__(self, other):
-        if not isinstance(other, ReactorState):
+        if not isinstance(other, Reactor):
             # don't attempt to compare against unrelated types
             return False
-        return (self.id == other.id and self.reference == other.reference 
-                and self.description == other.description and 
-                self._components == other._components)
+        return (self.id == other.id and self.ltype == other.ltype  
+                and self.rodNum == other.rodNum and 
+                self.guideNum == other.guideNum and 
+                self.instrumNum == other.instrumNum and
+                self.thermalPower == other.thermalPower and
+                self.electricPower == other.electricPower and
+                self.coolant == other.coolant and 
+                self.moderator == other.moderator and
+                self.description == other.description and
+                self._reactorstates == other._reactorstates)
 
     def __hash__(self):
         # necessary for instances to behave sanely in dicts and sets.
-        return hash((self.id, self.reference, self.description,
-                self._components))
+        return hash((self.id, self.ltype, self.rodNum, self.guideNum,
+                     self.instrumNum, self.thermalPower, self.electricPower,
+                     self.coolant, self.moderator, self.description,
+                      self._reactorstates))

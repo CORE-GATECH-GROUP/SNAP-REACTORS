@@ -167,11 +167,6 @@ class Material:
         if not isinstance(unc, type(None)):
             _isarray(unc, "material unc")
 
-        # Need to initialize all parameters in Material (i.e. matName, utype,
-        # ctype, etc) as lists so that we can have nested numpy arrays of
-        # different lengths within each parameter to allow for variance, i.e.
-        # numpy is designed for multidimensional arrays whose individual array 
-        # sizes can vary
         self.matName = matName
         self.utype = UTYPE[utype]
         self.ctype = CTYPE[ctype]
