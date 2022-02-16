@@ -16,6 +16,7 @@ from snapReactors.functions.checkerrors import _isstr, _isarray,\
 from snapReactors.functions.parameters import ALLOWED_PROPERTIES
 from snapReactors.containers.property import Property
 from snapReactors.functions.warnings import InputFileSyntaxWarning
+from snapReactors.functions.utilities import createDictFromConatinerList
 from enum import Enum
 
 import os
@@ -64,7 +65,7 @@ class Material:
 
     Attributes
     ----------
-    matName : str
+    id : str
         name of the material
     utype : Enum.UTYPE
         uncertainty value type i.e. Absolute, Relative, Percentage
@@ -94,7 +95,7 @@ class Material:
     Raises
     ------
     TypeError
-        If ``matName``, ``reference``, ``description`` is not 
+        If ``id``, ``reference``, ``description`` is not 
             str.
         If ``abundances``, ``unc``,  and
         ``isotopes`` is not ndarray.
@@ -112,7 +113,7 @@ class Material:
 
     >>> p1 = Constant('cv', 'THPHYS', 1, 'kg')
 
-    >>> boronCarbide = Material(matName= "Boron Carbide", utype= "ABSOLUTE", 
+    >>> boronCarbide = Material(id= "Boron Carbide", utype= "ABSOLUTE", 
     >>>            ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
     >>>            abundances= np.array(0.xxx, 0.yyy, 0.zzz),
     >>>            unc = np.array(xxx, yyy, zzz), reference = NA-SR-6162, 
@@ -120,12 +121,12 @@ class Material:
 
     """
 
-    def __init__(self, matName, utype, ctype, isotopes, abundances,
+    def __init__(self, id, utype, ctype, isotopes, abundances,
                  unc=None, reference=None,
                  description=None, _properties=None):
 
         # check that variables are of correct type (return TypeError if not)
-        _isstr(matName, "Material name")
+        _isstr(id, "Material name")
         _isstr(utype, "Uncertainty Type")
         _isstr(ctype, "Composition Type")
 
@@ -167,7 +168,7 @@ class Material:
         if not isinstance(unc, type(None)):
             _isarray(unc, "material unc")
 
-        self.matName = matName
+        self.id = id
         self.utype = UTYPE[utype]
         self.ctype = CTYPE[ctype]
         self.abundances = abundances
@@ -176,11 +177,13 @@ class Material:
         self.reference = reference
         self.description = description
         self._properties = []
+        self._propertiesDict = {}
         
-        if isinstance(_properties, list):
+        if _isinstanceList(_properties, Property):
             for i in range(0, len(_properties)):
                 self._properties.append(_properties[i])
-
+            self._setPtyDict()
+            
     def __str__(self):
         """Overwrites print method, prints all objects variables."""
         return str(vars(self))
@@ -214,7 +217,7 @@ class Material:
         --------
         >>> p1 = Constant('cv', 'THPHYS', 1, 'kg')
 
-        >>> boronCarbide = Material(matName= "Boron Carbide", utype= "ABSOLUTE", 
+        >>> boronCarbide = Material(id= "Boron Carbide", utype= "ABSOLUTE", 
         >>>            ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
         >>>            abundances= np.array(0.xxx, 0.yyy, 0.zzz),
         >>>            unc = np.array(xxx, yyy, zzz), reference = NA-SR-6162, 
@@ -232,6 +235,10 @@ class Material:
                 self._properties[0] = pty[i]
             else:
                 self._properties.append(pty[i])
+        self._setPtyDict()
+
+    def _setPtyDict(self):
+        self._propertiesDict = createDictFromConatinerList(self._properties)
 
     def getproperty(self, pty):
         """Obtain the values for a certain property
@@ -255,7 +262,7 @@ class Material:
 
         Examples
         --------
-        >>> UC = Material(matName= "Boron Carbide", utype= "ABSOLUTE", 
+        >>> UC = Material(id= "Boron Carbide", utype= "ABSOLUTE", 
                     ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
                     abundances= np.array(0.xxx, 0.yyy, 0.zzz),
                     unc = np.array(xxx, yyy, zzz), description = "Example",
@@ -294,7 +301,7 @@ class Material:
         if not isinstance(other, Material):
             # don't attempt to compare against unrelated types
             return False
-        return (self.matName == other.matName and self.utype == other.utype 
+        return (self.id == other.id and self.utype == other.utype 
                 and self.ctype == other.ctype and 
                 self.abundances == other.abundances and
                 self.isotopes == other.isotopes and self.unc == other.unc and
@@ -304,7 +311,7 @@ class Material:
 
     def __hash__(self):
         # necessary for instances to behave sanely in dicts and sets.
-        return hash((self.matName, self.utype, self.ctype, self.abundances,
+        return hash((self.id, self.utype, self.ctype, self.abundances,
                 self.isotopes, self.unc, self.reference, self.description,
                 self._properties))
 
@@ -401,7 +408,7 @@ class Material:
         OSError
             If ``filename`` is not found 
         ValueError
-            If ``matName``, ``ctype``, ``numberOfIsotopes``, ``utype``,
+            If ``id``, ``ctype``, ``numberOfIsotopes``, ``utype``,
             ``unc``, and ``abundance`` is not given for a material.
         Warnings
             If ``utype`` is given as NONE and if ``reference``, 
@@ -435,7 +442,7 @@ class Material:
                     states += 1
 
                 mp = dict()
-                mp["matName"] = [str(line.split(":")[-1]), i+1]
+                mp["id"] = [str(line.split(":")[-1]).replace("\n", "").replace(" ", ""), i+1]
 
             if "ctype" in line:
                 ctype = str(line.split(":")[-1])
@@ -473,7 +480,7 @@ class Material:
                         except:
                             raise ValueError("utype not given for material {}" 
                             "@ line: {}".format(
-                                mp["matName"][0], mp["matName"][1]+1))
+                                mp["id"][0], mp["id"][1]+1))
                     else:
                         mp[var] = np.zeros(isoNumber, dtype = float)
                 for k in range(0, isoNumber):
@@ -484,7 +491,7 @@ class Material:
                     except:
                         raise ValueError("Incorrect input for abundance in "
                         "material {} @ line {}"
-                        .format(mp["matName"][0],i+k+2))
+                        .format(mp["id"][0],i+k+2))
                     if mp["utype"] == "NONE":
                         mp["unc"] = None
                     else:
@@ -493,7 +500,7 @@ class Material:
                         except:
                             raise ValueError("Incorrect uncertainty input in "
                         "material {} @ line {}"
-                        .format(mp["matName"][0], i+k+2))
+                        .format(mp["id"][0], i+k+2))
             
             if "Reference" in line:
                 mp["reference"] = str(line.split(":")[-1])
@@ -514,31 +521,31 @@ class Material:
 
         for i in range(len(matpoints)):
 
-            if "matName" in matpoints[i]:
-                matName = matpoints[i]["matName"][0]
+            if "id" in matpoints[i]:
+                id = matpoints[i]["id"][0]
 
             if "ctype" in matpoints[i]:
                 ctype = matpoints[i]["ctype"]
             else:
                 raise ValueError("ctype not given for {} material @"
                     " line: {}".format(
-                    matpoints[i]["matName"][0], matpoints[i]["matName"][1]))
+                    matpoints[i]["id"][0], matpoints[i]["id"][1]))
 
             if "utype" in matpoints[i]:
                 utype = matpoints[i]["utype"]
                 if utype == UTYPE.NONE:
                     warnings.warn("Uncertainty for {} material is marked as " 
-                                    "none".format(matName), 
+                                    "none".format(id), 
                                     InputFileSyntaxWarning)
             else:
                 raise ValueError("utype not given for {} material @"
                     " line: {}".format(
-                    matpoints[i]["matName"][0], matpoints[i]["matName"][1]+1))
+                    matpoints[i]["id"][0], matpoints[i]["id"][1]+1))
 
             if "isoNum" not in matpoints[i]:
                 raise ValueError("Number of isotopes not given for {}" 
                  "material @ line: {}".format(
-                    matpoints[i]["matName"][0], matpoints[i]["matName"][1]))
+                    matpoints[i]["id"][0], matpoints[i]["id"][1]))
             
             if "isotopes" in matpoints[i]:
                 isotopes = matpoints[i]["isotopes"]
@@ -553,23 +560,23 @@ class Material:
                 reference = matpoints[i]["reference"]
             else:
                 warnings.warn("Reference for material {} not" 
-                            "provided".format(matName), 
+                            "provided".format(id), 
                                     InputFileSyntaxWarning)                
 
             if "description" in matpoints[i]:
                 description = matpoints[i]["description"]
             else:
                 warnings.warn("Description for material {} not" 
-                            "provided".format(matName), 
+                            "provided".format(id), 
                                     InputFileSyntaxWarning)
 
             if "properties" in matpoints[i]:
                 properties = matpoints[i]["properties"]
             else:
                 warnings.warn("Property/s for material {} are not" 
-                            "given".format(matName), 
+                            "given".format(id), 
                                     InputFileSyntaxWarning)
-            mats[i] = Material(matName, utype, ctype, isotopes, abundances,
+            mats[i] = Material(id, utype, ctype, isotopes, abundances,
                                 unc, 
                                 reference=reference, description=description,
                                 _properties=properties)
@@ -580,7 +587,7 @@ class Materials:
 
     Attributes
     ----------
-    matNames : list of str
+    ids : list of str
         name of all the materials
 
     Methods
@@ -592,7 +599,7 @@ class Materials:
     def __init__(self):
         # Init to empty dictionary
         self._materials = {}
-        self.matNames = []  # names for all the materials in the container
+        self.ids = []  # names for all the materials in the container
 
     def addmat(self, material):
         """Add new material to the container
@@ -615,12 +622,12 @@ class Materials:
         if not isinstance(material, Material):
             raise TypeError("material must be a Material and"
                             "not {}".format(type(material)))
-        if material.matName in self.matNames:
+        if material.id in self.ids:
             raise KeyError(
-                "Material {} already exists".format(material.matName))
+                "Material {} already exists".format(material.id))
 
-        self.matNames.append(material.matName)
-        self._materials[material.matName] = material 
+        self.ids.append(material.id)
+        self._materials[material.id] = material 
 
     def __getitem__(self, pos):
         return self._materials[pos]
