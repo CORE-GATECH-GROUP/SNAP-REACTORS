@@ -19,7 +19,7 @@ from snapReactors.containers.component import Component
 from snapReactors.containers.materials import Material, CTYPE, UTYPE
 from snapReactors.containers.property import Property, DTYPE, VTYPE 
 from mdutils.mdutils import MdUtils
-
+from snapReactors.functions.utilities import createDictFromConatinerList
 
 import h5py as h5
 import sympy as sp
@@ -45,7 +45,9 @@ class Database:
         self.date = date
         self.reactors = [] #to be updated upon completion of reactor and 
         # and reactorState containers
-        self.components = []
+        self._components = []
+        self._componentsDict = {}
+        self.databaseDict = {}
 
     def __str__(self):
         """" Overwrites print method, prints all objects variables. """
@@ -54,7 +56,7 @@ class Database:
     def addComponents(self, components):
         # _isinstanceList(components, Component, "components for database")
         for i in components:
-            self.components.append(i)
+            self._components.append(i)
 
     def _load(self):
         with h5.File(self.filePath, "r") as h5file:
@@ -78,8 +80,10 @@ class Database:
 
             self.addComponents(compContainers)
 
+            self._setDict()
+
     def _write(self):
-        reactorComponents = self.components                      
+        reactorComponents = self._components                      
 
         with h5.File(self.filePath, "w") as h5file:
             h5file.attrs["version"] = self.version.encode()
@@ -91,12 +95,12 @@ class Database:
                 print(componentMaterials)
                 for mdx, m in enumerate(componentMaterials):
                     materialGroup = h5file.create_group("/"+k.id 
-                                                        +"/"+m.matName, True)
+                                                        +"/"+m.id, True)
                     Database._createDatasets(materialGroup, m)
                     materialProps = componentMaterials[mdx]._properties
                     for pdx, p in enumerate(materialProps):
                         propertyGroup = h5file.create_group("/"+k.id +
-                                            "/"+m.matName +"/" +p.id, True)
+                                            "/"+m.id +"/" +p.id, True)
                         Database._createDatasets(propertyGroup, p)
         with open('..\\..\\README.md', 'r') as f:
             data = f.readlines()
@@ -131,7 +135,7 @@ class Database:
             mdData['Date'].append(self.date)
             mdData['Version'].append(self.version)
             mdData['Modifications'].append('The {} component is added.'
-                                            .format(self.components))
+                                            .format(self._components))
 
             mdFile = MdUtils(file_name = 'Database', title = 'Database')
             mdFile.new_line('Most Recent Version: {}'.format(self.version))
@@ -163,7 +167,7 @@ class Database:
             mdData['Date'].append(self.date)
             mdData['Version'].append(self.version)
             mdData['Modifications'].append('The {} component is added.'
-                                            .format(self.components
+                                            .format(self._components
                                                     ))
 
             mdFile = MdUtils(file_name = 'Database', title = 'Database')
@@ -244,10 +248,19 @@ class Database:
         attrs = list(vars(container).keys())
         values = list(vars(container).values())
 
+        removeIdxs= []
+
         for i in range(0, len(attrs)):
             if "_" in attrs[i]:
-                attrs.remove(attrs[i])
-                values.remove(values[i])
+                removeIdxs.append(i)
+                # attrs.remove(attrs[i])
+                # values.remove(values[i])
+                # i = i -1
+
+        removeCount = 0
+        for i in range(0, len(removeIdxs)):
+            attrs.remove(attrs[removeIdxs[i] - removeCount])
+            removeCount = removeCount + 1
         
         for i in range(0, len(values)):
             if isinstance(values[i], type(None)):
@@ -282,3 +295,53 @@ class Database:
         """
         with h5.File(path,'r') as f:
             Database._descend_obj(f[group])
+
+    def _setDict(self):
+        # compDict = createDictFromConatinerList(self._components)
+        compDict = {}
+
+        matDicts = [0]*len(self._components)
+        for idx, comp in enumerate(self._components):
+            compDict[comp.id] = comp
+            matDicts[idx] = dict()
+            propDicts = [0]*len(self._components[idx]._materials)
+            for mdx, mat in enumerate(self._components[idx]._materials):
+                matDicts[idx][mat.id] = mat
+                propDicts[mdx] = dict()
+                for pdx, pty in enumerate(self._components[idx]._materials[mdx]._properties):
+                    propDicts[mdx][pty.id] = pty
+                matDicts[idx][mat.id+"Properties"] = propDicts[mdx]
+            compDict[comp.id+"Materials"] = matDicts[idx]
+
+        self.databaseDict = {"Components": compDict}
+
+    def find(self, path):
+        value = None
+        keys = path.split("\\")
+
+        if keys[-1] == "Components":
+            value = self.databaseDict["Components"]
+        elif keys[-2] == "Components":
+            value = self.databaseDict["Components"][keys[-1]]
+        elif keys[-1] == "Materials":
+            value = self.databaseDict["Components"][keys[-2]+"Materials"]
+        elif keys[-2] == "Materials":
+            value = self.databaseDict["Components"][keys[-3]+"Materials"][keys[-1]]
+        elif keys[-1] == "Properties":
+            value = self.databaseDict["Components"][keys[-4]+"Materials"][keys[-2]+"Properties"]
+        elif keys[-2] == "Properties":
+            value = self.databaseDict["Components"][keys[-5]+"Materials"][keys[-3]+"Properties"][keys[-1]]
+
+        return value
+
+    def map(self):
+        print("***----------------------Database Map---------------------***")
+        print("Components:")
+        for i in range(0, len(self._components)):
+            print(self._components[i].id)
+            print("\tMaterials:")
+            for j in range(0, len(self._components[i]._materials)):
+                print("\t"+self._components[i]._materials[j].id)
+                print("\t\tProperties:")
+                for k in range(0, len(self._components[i]._materials[j]._properties)):
+                    print("\t\t"+self._components[i]._materials[j]._properties[k].id)
