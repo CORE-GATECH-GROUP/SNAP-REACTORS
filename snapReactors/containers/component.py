@@ -11,7 +11,7 @@ email: sgarcia9@wisc.edu
 """
 
 from snapReactors.functions.checkerrors import _isinstanceList, _isstr
-
+from snapReactors.functions.utilities import createDictFromConatinerList
 from snapReactors.containers.materials import Material
 class Component:
     """ A container to store the data for each component
@@ -61,10 +61,16 @@ class Component:
         # initialize all parameters in Component as lists
         self.id = compName
         self._materials = []
+        self._materialsDict = {}
 
         if not isinstance(_materials, type(None)):
             _isinstanceList(_materials, Material, "List of materials")
-            self._materials.append(_materials)
+            for i in range(0, len(_materials)):
+                self._materials.append(_materials[i])
+            self._setMatDict()
+
+    def _setMatDict(self):
+        self._materialsDict = createDictFromConatinerList(self._materials)
 
     def addMaterial(self, mtl):
         """ Add data for a list of materials
@@ -87,8 +93,9 @@ class Component:
         --------
         >>> p1 = Constant('cv', 'THPHYS', 1, 'kg')
 
-        >>> boronCarbide = Material(matName= "Boron Carbide", utype= "ABSOLUTE", 
-        >>>            ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
+        >>> boronCarbide = Material(matName= "Boron Carbide",
+        >>>                                                 utype= "ABSOLUTE", 
+        >>>         ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
         >>>            abundances= np.array(0.xxx, 0.yyy, 0.zzz),
         >>>            unc = np.array(xxx, yyy, zzz), reference = NA-SR-6162, 
         >>>            description = "This is an example", _properties = p1)
@@ -112,3 +119,4 @@ class Component:
         _isinstanceList(mtl, Material, "List of materials")
         for m in mtl:
             self._materials.append(m)
+        self._setMatDict()
