@@ -38,8 +38,16 @@ class Database:
         database version i.e. v6.1
     date : str
         date database was created/modified.
+
+    Raises
+    ------
+    TypeError
+        If ``filePath``, ``version``, ``date`` are not str. 
     """
     def __init__(self, filePath, version, date):
+        _isstr(filePath, "database hdf5 file path")
+        _isstr(version, "database version")
+        _isstr(date, "database creation/modification date (include time)")       
         self.filePath = filePath
         self.version = version
         self.date = date
@@ -83,6 +91,7 @@ class Database:
             self._setDict()
 
     def _write(self):
+        self._setDict()
         reactorComponents = self._components                      
 
         with h5.File(self.filePath, "w") as h5file:
@@ -332,6 +341,13 @@ class Database:
             returns either a dictionary of containers or an individual 
             container depending on the path given.
 
+        Raises
+        ------
+        TypeError
+            If ``path`` is not a string.
+        KeyError
+            If ``path`` is not found in database.
+
         Examples
         --------
         >>> #Returns a dictionary with all components in the database
@@ -355,11 +371,16 @@ class Database:
         >>> print(ex2.find("Components\\c1\\Materials\\hasteC"))
         >>> print("\n")
         """
+        _isstr(path, "container/containers path")
         value = None
         keys = path.split("\\")
 
         if keys[-1] == "Components":
             value = self.databaseDict["Components"]
+        elif len(keys) == 1:
+            raise KeyError("The path given '{}' is not found in the database,"
+            " the current database has the following map \n {}"
+                                                    .format(path, self.map()))
         elif keys[-2] == "Components":
             value = self.databaseDict["Components"][keys[-1]]
         elif keys[-1] == "Materials":
@@ -396,3 +417,5 @@ class Database:
                     mapStr = mapStr + pid + "\n"
 
         return mapStr
+
+

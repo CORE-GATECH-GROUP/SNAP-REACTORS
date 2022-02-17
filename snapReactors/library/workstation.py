@@ -20,7 +20,7 @@ print(test1._components[0]._materials[0]._properties)
 test1._write()
 
 
-print(test1.map())
+# print(test1.map())
 
 version2 = "v3_test"
 
@@ -29,4 +29,5 @@ test2._load()
 
 comps = test2.find("Components\\c1\\Materials\\hasteC\\Properties")
 
-print(test2.map())
+print(test2.databaseDict)
+print(test1.map() == test2.map())
