@@ -307,7 +307,8 @@ class Database:
             for mdx, mat in enumerate(self._components[idx]._materials):
                 matDicts[idx][mat.id] = mat
                 propDicts[mdx] = dict()
-                for pdx, pty in enumerate(self._components[idx]._materials[mdx]._properties):
+                props = self._components[idx]._materials[mdx]._properties
+                for pdx, pty in enumerate(props):
                     propDicts[mdx][pty.id] = pty
                 matDicts[idx][mat.id+"Properties"] = propDicts[mdx]
             compDict[comp.id+"Materials"] = matDicts[idx]
@@ -315,6 +316,45 @@ class Database:
         self.databaseDict = {"Components": compDict}
 
     def find(self, path):
+        """
+        To navigate the database the ``find`` method is used.
+        It follows a similar convention to navigating groups in an hdf5 file
+        or a general directory structure.
+
+        Parameters
+        ----------
+        path: Str
+            path for specifying what is being searched for in the database
+        
+        Returns
+        -------
+        value: dict or container object
+            returns either a dictionary of containers or an individual 
+            container depending on the path given.
+
+        Examples
+        --------
+        >>> #Returns a dictionary with all components in the database
+        >>> print("Components")
+        >>> print(ex2.find("Components"))
+        >>> print("\n")
+
+        >>> #Returns a specific Component
+        >>> print("Component c1")
+        >>> print(ex2.find("Components\\c1"))
+        >>> print("\n")
+
+        >>> #Returns a dictionary with all materials for a specific component
+        >>> print("Component c1 Materials")
+        >>> print(ex2.find("Components\\c1\\Materials"))
+        >>> print("\n")
+
+
+        >>> #Returns a specific material container for a specific component
+        >>> print("Component c1 Material hasteC")
+        >>> print(ex2.find("Components\\c1\\Materials\\hasteC"))
+        >>> print("\n")
+        """
         value = None
         keys = path.split("\\")
 
@@ -325,22 +365,40 @@ class Database:
         elif keys[-1] == "Materials":
             value = self.databaseDict["Components"][keys[-2]+"Materials"]
         elif keys[-2] == "Materials":
-            value = self.databaseDict["Components"][keys[-3]+"Materials"][keys[-1]]
+            value = self.databaseDict["Components"][keys[-3]+
+                                                        "Materials"][keys[-1]]
         elif keys[-1] == "Properties":
-            value = self.databaseDict["Components"][keys[-4]+"Materials"][keys[-2]+"Properties"]
+            value = self.databaseDict["Components"][keys[-4]+
+                                           "Materials"][keys[-2]+"Properties"]
         elif keys[-2] == "Properties":
-            value = self.databaseDict["Components"][keys[-5]+"Materials"][keys[-3]+"Properties"][keys[-1]]
+            value = self.databaseDict["Components"][keys[-5]+
+                                 "Materials"][keys[-3]+"Properties"][keys[-1]]
+        else:
+            raise KeyError("The path given '{}' is not found in the database,"
+            " the current database has the following map \n {}"
+                                                    .format(path, self.map()))
 
         return value
 
     def map(self):
-        print("***----------------------Database Map---------------------***")
-        print("Components:")
+        """
+        The ``map`` function allows the user to get a visual structured
+        representation of the data in the stored in the database.
+        """
+        mapStr = ""
+        mapStr = mapStr + "***----------------------Database Map-----------"
+        "----------***\n"
+        mapStr = mapStr + "Components:\n"
         for i in range(0, len(self._components)):
-            print(self._components[i].id)
-            print("\tMaterials:")
+            mapStr = mapStr + self._components[i].id + "\n"
+            mapStr = mapStr + "\tMaterials:" + "\n"
             for j in range(0, len(self._components[i]._materials)):
-                print("\t"+self._components[i]._materials[j].id)
-                print("\t\tProperties:")
-                for k in range(0, len(self._components[i]._materials[j]._properties)):
-                    print("\t\t"+self._components[i]._materials[j]._properties[k].id)
+                mapStr = mapStr+"\t"+self._components[i]._materials[j].id+"\n"
+                mapStr = mapStr + "\t\tProperties:" + "\n"
+                for k in range(0, 
+                        len(self._components[i]._materials[j]._properties)):
+                    mapStr = mapStr + "\t\t" 
+                    pid = self._components[i]._materials[j]._properties[k].id
+                    mapStr = mapStr + pid + "\n"
+
+        return mapStr
