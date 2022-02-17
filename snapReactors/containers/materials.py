@@ -179,10 +179,11 @@ class Material:
         self._properties = []
         self._propertiesDict = {}
         
-        if _isinstanceList(_properties, Property):
-            for i in range(0, len(_properties)):
-                self._properties.append(_properties[i])
-            self._setPtyDict()
+        if not isinstance(_properties, type(None)):
+            if _isinstanceList(_properties, Property, "List of properties"):
+                for i in range(0, len(_properties)):
+                    self._properties.append(_properties[i])
+                self._setPtyDict()
             
     def __str__(self):
         """Overwrites print method, prints all objects variables."""

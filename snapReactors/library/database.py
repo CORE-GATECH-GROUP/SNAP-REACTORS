@@ -92,7 +92,6 @@ class Database:
                 componentGroup = h5file.create_group(k.id, True)
                 Database._createDatasets(componentGroup, k)
                 componentMaterials = reactorComponents[kdx]._materials
-                print(componentMaterials)
                 for mdx, m in enumerate(componentMaterials):
                     materialGroup = h5file.create_group("/"+k.id 
                                                         +"/"+m.id, True)
