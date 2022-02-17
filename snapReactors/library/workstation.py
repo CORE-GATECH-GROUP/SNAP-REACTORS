@@ -15,7 +15,12 @@ c2.addMaterial(Material.readData("C:\\Users\\user\\Documents\\Github\\SNAP-REACT
 test1.addComponents([c1, c2])
 # print(test1)
 
+print(test1._components[0]._materials[0]._properties)
+
 test1._write()
+
+
+print(test1.map())
 
 version2 = "v3_test"
 
@@ -24,25 +29,4 @@ test2._load()
 
 comps = test2.find("Components\\c1\\Materials\\hasteC\\Properties")
 
-test2.map()
-# comps = test2.find("Components\\c1\\Materials")
-# print(comps)
-
-# for i  in test2.components:
-#     for j in i._materials:
-#         print(j)
-#         for k in j._properties:
-#             print(k)
-
-# print("-----------------------------------------------------------\n")
-# for i  in test1.components:
-#     for j in i._materials:
-#         print(j)
-#         for k in j._properties:
-#             print(k)
-
-# print(test2)
-
-# Database._h5dump(filePath)
-
-
+print(test2.map())

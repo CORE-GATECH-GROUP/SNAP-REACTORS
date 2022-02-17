@@ -365,14 +365,11 @@ class Database:
         elif keys[-1] == "Materials":
             value = self.databaseDict["Components"][keys[-2]+"Materials"]
         elif keys[-2] == "Materials":
-            value = self.databaseDict["Components"][keys[-3]+
-                                                        "Materials"][keys[-1]]
+            value = self.databaseDict["Components"][keys[-3]+"Materials"][keys[-1]]
         elif keys[-1] == "Properties":
-            value = self.databaseDict["Components"][keys[-4]+
-                                           "Materials"][keys[-2]+"Properties"]
+            value = self.databaseDict["Components"][keys[-4]+"Materials"][keys[-2]+"Properties"]
         elif keys[-2] == "Properties":
-            value = self.databaseDict["Components"][keys[-5]+
-                                 "Materials"][keys[-3]+"Properties"][keys[-1]]
+            value = self.databaseDict["Components"][keys[-5]+"Materials"][keys[-3]+"Properties"][keys[-1]]
         else:
             raise KeyError("The path given '{}' is not found in the database,"
             " the current database has the following map \n {}"
@@ -385,9 +382,7 @@ class Database:
         The ``map`` function allows the user to get a visual structured
         representation of the data in the stored in the database.
         """
-        mapStr = ""
-        mapStr = mapStr + "***----------------------Database Map-----------"
-        "----------***\n"
+        mapStr = "***----------------------Database Map---------------------***\n"
         mapStr = mapStr + "Components:\n"
         for i in range(0, len(self._components)):
             mapStr = mapStr + self._components[i].id + "\n"
@@ -395,8 +390,7 @@ class Database:
             for j in range(0, len(self._components[i]._materials)):
                 mapStr = mapStr+"\t"+self._components[i]._materials[j].id+"\n"
                 mapStr = mapStr + "\t\tProperties:" + "\n"
-                for k in range(0, 
-                        len(self._components[i]._materials[j]._properties)):
+                for k in range(0, len(self._components[i]._materials[j]._properties)):
                     mapStr = mapStr + "\t\t" 
                     pid = self._components[i]._materials[j]._properties[k].id
                     mapStr = mapStr + pid + "\n"

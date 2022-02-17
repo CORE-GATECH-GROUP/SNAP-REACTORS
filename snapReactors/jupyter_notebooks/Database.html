@@ -14071,8 +14071,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c1</span> <span class="o">=</span> <span class="n">Component</span><span class="p">(</span><span class="s1">&#39;c1&#39;</span><span class="p">)</span>
+<span class="n">c2</span> <span class="o">=</span> <span class="n">Component</span><span class="p">(</span><span class="s1">&#39;c2&#39;</span><span class="p">)</span>
 <span class="n">c1</span><span class="o">.</span><span class="n">addMaterial</span><span class="p">(</span><span class="n">Material</span><span class="o">.</span><span class="n">readData</span><span class="p">(</span><span class="s2">&quot;test.txt&quot;</span><span class="p">))</span>
-<span class="n">ex1</span><span class="o">.</span><span class="n">addComponents</span><span class="p">([</span><span class="n">c1</span><span class="p">])</span>
+<span class="n">c2</span><span class="o">.</span><span class="n">addMaterial</span><span class="p">(</span><span class="n">Material</span><span class="o">.</span><span class="n">readData</span><span class="p">(</span><span class="s2">&quot;test.txt&quot;</span><span class="p">))</span>
+<span class="n">ex1</span><span class="o">.</span><span class="n">addComponents</span><span class="p">([</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">])</span>
 <span class="n">ex1</span><span class="o">.</span><span class="n">_write</span><span class="p">()</span>
 </pre></div>
 
@@ -14093,10 +14095,25 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>c:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\containers\property.py:672: InputFileSyntaxWarning: reference not given for cp const property @ line: 19
+<pre>C:\Users\user\Anaconda3\lib\site-packages\snapreactors-0.0.1-py3.7.egg\snapReactors\containers\property.py:672: InputFileSyntaxWarning: reference not given for cp const property @ line: 19
   InputFileSyntaxWarning)
-c:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\containers\property.py:871: InputFileSyntaxWarning: uncertainty not given for r corr property @ line: 38
+C:\Users\user\Anaconda3\lib\site-packages\snapreactors-0.0.1-py3.7.egg\snapReactors\containers\property.py:871: InputFileSyntaxWarning: uncertainty not given for r corr property @ line: 38
   InputFileSyntaxWarning)
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[&lt;snapReactors.containers.property.Constant object at 0x000001D7B998ED48&gt;, &lt;snapReactors.containers.property.Table object at 0x000001D7B8D4FB08&gt;, &lt;snapReactors.containers.property.Correlation object at 0x000001D7B99A96C8&gt;]
+[&lt;snapReactors.containers.property.Constant object at 0x000001D7B9B31BC8&gt;, &lt;snapReactors.containers.property.Table object at 0x000001D7B9B3E6C8&gt;, &lt;snapReactors.containers.property.Correlation object at 0x000001D7B9B3E8C8&gt;]
+[&lt;snapReactors.containers.property.Constant object at 0x000001D7B9B11F48&gt;, &lt;snapReactors.containers.property.Table object at 0x000001D7B9B44108&gt;, &lt;snapReactors.containers.property.Correlation object at 0x000001D7B9B441C8&gt;]
+[&lt;snapReactors.containers.property.Constant object at 0x000001D7B9B44B08&gt;, &lt;snapReactors.containers.property.Table object at 0x000001D7B9B490C8&gt;, &lt;snapReactors.containers.property.Correlation object at 0x000001D7B9B491C8&gt;]
 </pre>
 </div>
 </div>
@@ -14117,7 +14134,7 @@ c:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\containers\property.py
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ex1</span><span class="o">.</span><span class="n">map</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ex1</span><span class="o">.</span><span class="n">map</span><span class="p">())</span>
 </pre></div>
 
      </div>
@@ -14143,8 +14160,27 @@ c1
 	Materials:
 	hasteC
 		Properties:
+		cp
+		h
+		r
 	hasteB
 		Properties:
+		cp
+		h
+		r
+c2
+	Materials:
+	hasteC
+		Properties:
+		cp
+		h
+		r
+	hasteB
+		Properties:
+		cp
+		h
+		r
+
 </pre>
 </div>
 </div>
@@ -14175,6 +14211,7 @@ c1
 <span class="n">ex2</span><span class="o">.</span><span class="n">_load</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">ex2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ex2</span><span class="o">.</span><span class="n">map</span><span class="p">())</span>
 </pre></div>
 
@@ -14195,16 +14232,36 @@ c1
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{&#39;filePath&#39;: &#39;example.hdf5&#39;, &#39;version&#39;: &#39;v0.2.0&#39;, &#39;date&#39;: &#39;2022-01-31 15:32:13&#39;, &#39;reactors&#39;: [], &#39;_components&#39;: [&lt;snapReactors.containers.component.Component object at 0x0000027F7C323D48&gt;], &#39;_componentsDict&#39;: {}, &#39;databaseDict&#39;: {&#39;Components&#39;: {&#39;c1&#39;: &lt;snapReactors.containers.component.Component object at 0x0000027F7C323D48&gt;, &#39;c1Materials&#39;: {&#39;hasteC&#39;: &lt;snapReactors.containers.materials.Material object at 0x0000027F7C31D648&gt;, &#39;hasteCProperties&#39;: {}, &#39;hasteB&#39;: &lt;snapReactors.containers.materials.Material object at 0x0000027F7C31DC48&gt;, &#39;hasteBProperties&#39;: {}}}}}
+<pre>{&#39;filePath&#39;: &#39;example.hdf5&#39;, &#39;version&#39;: &#39;v0.2.0&#39;, &#39;date&#39;: &#39;2022-01-31 15:32:13&#39;, &#39;reactors&#39;: [], &#39;_components&#39;: [&lt;snapReactors.containers.component.Component object at 0x000001D7B9984F08&gt;, &lt;snapReactors.containers.component.Component object at 0x000001D7B9984D08&gt;], &#39;_componentsDict&#39;: {}, &#39;databaseDict&#39;: {&#39;Components&#39;: {&#39;c1&#39;: &lt;snapReactors.containers.component.Component object at 0x000001D7B9984F08&gt;, &#39;c1Materials&#39;: {&#39;hasteC&#39;: &lt;snapReactors.containers.materials.Material object at 0x000001D7B9AED6C8&gt;, &#39;hasteCProperties&#39;: {&#39;cp&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B09908&gt;, &#39;h&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B973F488&gt;, &#39;r&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7A7FA13C8&gt;}, &#39;hasteB&#39;: &lt;snapReactors.containers.materials.Material object at 0x000001D7B998E288&gt;, &#39;hasteBProperties&#39;: {&#39;cp&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B998E088&gt;, &#39;h&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9A7A648&gt;, &#39;r&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B3E648&gt;}}, &#39;c2&#39;: &lt;snapReactors.containers.component.Component object at 0x000001D7B9984D08&gt;, &#39;c2Materials&#39;: {&#39;hasteC&#39;: &lt;snapReactors.containers.materials.Material object at 0x000001D7B9B3E988&gt;, &#39;hasteCProperties&#39;: {&#39;cp&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B3E108&gt;, &#39;h&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B44F88&gt;, &#39;r&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B444C8&gt;}, &#39;hasteB&#39;: &lt;snapReactors.containers.materials.Material object at 0x000001D7B9B44308&gt;, &#39;hasteBProperties&#39;: {&#39;cp&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B44608&gt;, &#39;h&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B44288&gt;, &#39;r&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B116C8&gt;}}}}}
+
+
 ***----------------------Database Map---------------------***
 Components:
 c1
 	Materials:
 	hasteC
 		Properties:
+		cp
+		h
+		r
 	hasteB
 		Properties:
-None
+		cp
+		h
+		r
+c2
+	Materials:
+	hasteC
+		Properties:
+		cp
+		h
+		r
+	hasteB
+		Properties:
+		cp
+		h
+		r
+
 </pre>
 </div>
 </div>
@@ -14246,6 +14303,17 @@ It follows a similar convention to navigating groups in an hdf5 file or a genera
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Component c1 Material hasteC&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ex2</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;Components</span><span class="se">\\</span><span class="s2">c1</span><span class="se">\\</span><span class="s2">Materials</span><span class="se">\\</span><span class="s2">hasteC&quot;</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1">#Returns a dictionary with all properties for a specific material container for a specific component</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Component c1 Material hasteC Properties&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ex2</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;Components</span><span class="se">\\</span><span class="s2">c1</span><span class="se">\\</span><span class="s2">Materials</span><span class="se">\\</span><span class="s2">hasteC</span><span class="se">\\</span><span class="s2">Properties&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="c1">#Returns a specific property for a specific material container for a specific component</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Component c1 Material hasteC Property h&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ex2</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;Components</span><span class="se">\\</span><span class="s2">c1</span><span class="se">\\</span><span class="s2">Materials</span><span class="se">\\</span><span class="s2">hasteC</span><span class="se">\\</span><span class="s2">Properties</span><span class="se">\\</span><span class="s2">h&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14266,15 +14334,15 @@ It follows a similar convention to navigating groups in an hdf5 file or a genera
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Components
-{&#39;c1&#39;: &lt;snapReactors.containers.component.Component object at 0x0000027F7C24CD48&gt;, &#39;c1Materials&#39;: {&#39;hasteC&#39;: &lt;snapReactors.containers.materials.Material object at 0x0000027F7C323A08&gt;, &#39;hasteCProperties&#39;: {}, &#39;hasteB&#39;: &lt;snapReactors.containers.materials.Material object at 0x0000027F7C31FDC8&gt;, &#39;hasteBProperties&#39;: {}}}
+{&#39;c1&#39;: &lt;snapReactors.containers.component.Component object at 0x000001D7B9984F08&gt;, &#39;c1Materials&#39;: {&#39;hasteC&#39;: &lt;snapReactors.containers.materials.Material object at 0x000001D7B9AED6C8&gt;, &#39;hasteCProperties&#39;: {&#39;cp&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B09908&gt;, &#39;h&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B973F488&gt;, &#39;r&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7A7FA13C8&gt;}, &#39;hasteB&#39;: &lt;snapReactors.containers.materials.Material object at 0x000001D7B998E288&gt;, &#39;hasteBProperties&#39;: {&#39;cp&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B998E088&gt;, &#39;h&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9A7A648&gt;, &#39;r&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B3E648&gt;}}, &#39;c2&#39;: &lt;snapReactors.containers.component.Component object at 0x000001D7B9984D08&gt;, &#39;c2Materials&#39;: {&#39;hasteC&#39;: &lt;snapReactors.containers.materials.Material object at 0x000001D7B9B3E988&gt;, &#39;hasteCProperties&#39;: {&#39;cp&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B3E108&gt;, &#39;h&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B44F88&gt;, &#39;r&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B444C8&gt;}, &#39;hasteB&#39;: &lt;snapReactors.containers.materials.Material object at 0x000001D7B9B44308&gt;, &#39;hasteBProperties&#39;: {&#39;cp&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B44608&gt;, &#39;h&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B44288&gt;, &#39;r&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B116C8&gt;}}}
 
 
 Component c1
-&lt;snapReactors.containers.component.Component object at 0x0000027F7C24CD48&gt;
+&lt;snapReactors.containers.component.Component object at 0x000001D7B9984F08&gt;
 
 
 Component c1 Materials
-{&#39;hasteC&#39;: &lt;snapReactors.containers.materials.Material object at 0x0000027F7C323A08&gt;, &#39;hasteCProperties&#39;: {}, &#39;hasteB&#39;: &lt;snapReactors.containers.materials.Material object at 0x0000027F7C31FDC8&gt;, &#39;hasteBProperties&#39;: {}}
+{&#39;hasteC&#39;: &lt;snapReactors.containers.materials.Material object at 0x000001D7B9AED6C8&gt;, &#39;hasteCProperties&#39;: {&#39;cp&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B09908&gt;, &#39;h&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B973F488&gt;, &#39;r&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7A7FA13C8&gt;}, &#39;hasteB&#39;: &lt;snapReactors.containers.materials.Material object at 0x000001D7B998E288&gt;, &#39;hasteBProperties&#39;: {&#39;cp&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B998E088&gt;, &#39;h&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9A7A648&gt;, &#39;r&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B3E648&gt;}}
 
 
 Component c1 Material hasteC
@@ -14290,7 +14358,19 @@ Component c1 Material hasteC
        42095., 42096., 42097., 42098., 42100., 23050., 23051., 74180.,
        74182., 74183., 74184., 74186., 26054., 26056., 26057., 26058.,
        25055., 14028., 14029., 14030., 28058., 28060., 28061., 28062.,
-       28064.]), &#39;unc&#39;: None, &#39;reference&#39;: &#39; NA-Examples\n&#39;, &#39;description&#39;: &#39; This is an example input file\n&#39;, &#39;_properties&#39;: [], &#39;_propertiesDict&#39;: {}}
+       28064.]), &#39;unc&#39;: None, &#39;reference&#39;: &#39; NA-Examples\n&#39;, &#39;description&#39;: &#39; This is an example input file\n&#39;, &#39;_properties&#39;: [&lt;snapReactors.containers.property.Property object at 0x000001D7B9B09908&gt;, &lt;snapReactors.containers.property.Property object at 0x000001D7B973F488&gt;, &lt;snapReactors.containers.property.Property object at 0x000001D7A7FA13C8&gt;], &#39;_propertiesDict&#39;: {&#39;cp&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B09908&gt;, &#39;h&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B973F488&gt;, &#39;r&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7A7FA13C8&gt;}}
+
+
+Component c1 Material hasteC Properties
+{&#39;cp&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B9B09908&gt;, &#39;h&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7B973F488&gt;, &#39;r&#39;: &lt;snapReactors.containers.property.Property object at 0x000001D7A7FA13C8&gt;}
+
+
+Component c1 Material hasteC Property h
+{&#39;id&#39;: &#39;h&#39;, &#39;dtype&#39;: &lt;DTYPE.NDARRAY: 2&gt;, &#39;vtype&#39;: &lt;VTYPE.TABLE: 2&gt;, &#39;value&#39;: array([[1.1, 2.1],
+       [3.1, 4.1]]), &#39;valueUnit&#39;: &#39;BTU/hr/F/ft^2&#39;, &#39;unc&#39;: array([[1, 1],
+       [1, 1]]), &#39;dependents&#39;: array([[[1. , 2. ]],
+
+       [[0.1, 0.2]]]), &#39;dependentsUnit&#39;: &#39;K, Pa&#39;, &#39;description&#39;: None, &#39;ref&#39;: &#39;NAA-SR-6160&#39;, &#39;dependency1&#39;: array([1, 2]), &#39;dependency2&#39;: array([0.1, 0.2]), &#39;dependencyUnit1&#39;: &#39;K&#39;, &#39;dependencyUnit2&#39;: &#39;Pa&#39;}
 
 
 </pre>

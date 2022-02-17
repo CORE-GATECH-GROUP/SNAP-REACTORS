@@ -180,10 +180,10 @@ class Material:
         self._propertiesDict = {}
         
         if not isinstance(_properties, type(None)):
-            if _isinstanceList(_properties, Property, "List of properties"):
-                for i in range(0, len(_properties)):
-                    self._properties.append(_properties[i])
-                self._setPtyDict()
+            _isinstanceList(_properties, Property, "List of properties")
+            for i in range(0, len(_properties)):
+                self._properties.append(_properties[i])
+            self._setPtyDict()
             
     def __str__(self):
         """Overwrites print method, prints all objects variables."""
@@ -232,10 +232,7 @@ class Material:
 
         _isinstanceList(pty, Property, "List of properties")
         for i in range(0, len(pty)):
-            if self._properties == [None]:
-                self._properties[0] = pty[i]
-            else:
-                self._properties.append(pty[i])
+            self._properties.append(pty[i])
         self._setPtyDict()
 
     def _setPtyDict(self):
