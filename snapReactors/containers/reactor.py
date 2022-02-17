@@ -54,13 +54,10 @@ class Reactor:
         name of coolant material used in core
     moderator : str
         name of moderator material used in core
-    description : str
-        description of reactor design and its purpose
-    _reactorstates : list 
-        list of reactor states of instance type ReactorState
     description : str or None
-        description of reactor
-    _components : Component as single object or list or None
+        description of reactor design and its purpose
+    _reactorstates : list, var or None
+        list of reactor states of instance type ReactorState
 
     Methods
     -------
