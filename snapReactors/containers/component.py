@@ -71,6 +71,16 @@ class Component:
 
     def _setMatDict(self):
         self._materialsDict = createDictFromConatinerList(self._materials)
+    
+    def __eq__(self, other):
+        if not isinstance(other, Component):
+            # don't attempt to compare against unrelated types
+            return False
+        return (self.id == other.id and self._materials==other._materials)
+
+    def __hash__(self):
+        # necessary for instances to behave nicely in dicts and sets
+        return hash((self.id, self._materials, self._materialsDict))
 
     def addMaterial(self, mtl):
         """ Add data for a list of materials

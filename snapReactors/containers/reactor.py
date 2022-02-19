@@ -89,7 +89,7 @@ class Reactor:
                         'conditions'
     >>> rs1 = ReactorState('Cold Power', reference=reference, 
                             description=description, _components=c1)
-    >>> SNAP10 = Reactor(id = 'SNAP4', ltype = 'HEX', rodnum=583, guideNum=0,
+    >>> SNAP4 = Reactor(id = 'SNAP4', ltype = 'HEX', rodnum=583, guideNum=0,
                         instrumNum=0, thermalPower=12, electricPower=2,
                         coolant = 'Water', moderator = 'Water',
                         _reactorstates=rs1)
@@ -115,11 +115,11 @@ class Reactor:
         
         if _reactorstates !=None:    
             if isinstance(_reactorstates, list):
-                _isinstanceList(_reactorstates, ReactorState, "List of"
+                _isinstanceList(_reactorstates, ReactorState, "List of "
                  "reactor states")
             else:
                 if not isinstance(_reactorstates, ReactorState):
-                    raise TypeError("Reactor States must be of type"
+                    raise TypeError("Reactor States must be of type "
                      "ReactorState and not {}".format(type(_reactorstates)))
         self.id = id
         self.ltype = LTYPE[ltype]
@@ -132,11 +132,12 @@ class Reactor:
         self.moderator = moderator
         self.description = description
         self._reactorstates = []
-        if isinstance(_reactorstates, list):
-            for i in _reactorstates:
-                self._reactorstates.append(i)
-        else:
-            self._reactorstates.append(_reactorstates)
+        if not isinstance(_reactorstates, type(None)):
+            if isinstance(_reactorstates, list):
+                for i in _reactorstates:
+                    self._reactorstates.append(i)
+            else:
+                self._reactorstates.append(_reactorstates)
 
     
     def addReactorStates(self, _reactorstates):
@@ -167,7 +168,7 @@ class Reactor:
         >>> rs1.addComponent(c1) 
         """
         if isinstance(_reactorstates, list):
-            _isinstanceList(_reactorstates, ReactorState, "List of reactor"
+            _isinstanceList(_reactorstates, ReactorState, "List of reactor "
             "states")
         else:
             if not isinstance(_reactorstates, ReactorState):

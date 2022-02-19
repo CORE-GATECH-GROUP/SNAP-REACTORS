@@ -78,11 +78,12 @@ class ReactorState:
         self.reference = reference
         self.description = description
         self._components = []
-        if isinstance(_components, list):
-            for i in _components:
-                self._components.append(i)
-        else:
-            self._components.append(_components)
+        if not isinstance(_components, type(None)):
+            if isinstance(_components, list):
+                for i in _components:
+                    self._components.append(i)
+            else:
+                self._components.append(_components)
 
     
     def addComponents(self, _components):
