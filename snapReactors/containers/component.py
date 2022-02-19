@@ -120,3 +120,22 @@ class Component:
         for m in mtl:
             self._materials.append(m)
         self._setMatDict()
+
+        def evaluate(self, dependency1, dependency2):
+            """ evaluates all components materials properties for a given
+             dependency1 and/or dependency2 
+            
+            Attributes
+            ----------
+            dependency1 : number
+                value of dependency1
+            dependency2 : number
+                value of dependency1
+            """
+            evalProps = {}
+            for i in range(0, len(self._materials)):
+                evalProp = self._materials[i].evaluate(dependency1, 
+                                                                dependency2)
+                evalProps = evalProps[self._materials[i].id] = evalProp
+
+            return evalProps

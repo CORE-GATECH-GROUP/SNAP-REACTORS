@@ -579,6 +579,24 @@ class Material:
                                 reference=reference, description=description,
                                 _properties=properties)
         return mats
+
+    def evaluate(self, dependency1, dependency2):
+        """ evaluates all material properties for given dependency1 and/or
+        dependency2 
+        
+        Attributes
+        ----------
+        dependency1 : number
+            value of dependency1
+        dependency2 : number
+            value of dependency1
+        """
+        evalProps = {}
+        for i in range(0, len(self._properties)):
+            evalProp = self._properties[i].evaluate(dependency1, dependency2)
+            evalProps = evalProps[self._properties[i].id] = evalProp
+
+        return evalProps
         
 class Materials:
     """A container to store the data for all material
@@ -626,6 +644,9 @@ class Materials:
 
         self.ids.append(material.id)
         self._materials[material.id] = material 
+
+    
+
 
     def __getitem__(self, pos):
         return self._materials[pos]
