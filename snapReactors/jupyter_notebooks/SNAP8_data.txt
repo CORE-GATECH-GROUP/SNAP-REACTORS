@@ -37,22 +37,22 @@ Isotopic Definition:
 26057     1.38832E-02
 26058     1.84759E-03
 Properties : {
-    type:const
-    id:r
-    unit: SI
-    value:[7970]
-    unc: [0.1]
-    ref: https://www.azom.com/properties.aspx?ArticleID=863
-    descrption: Density of 316SS with uncertainties to indicate maximal and minimal ranges
+type:const
+id:r
+unit:SI
+value: [7970]
+unc: [0.1]
+ref: https://www.azom.com/properties.aspx?ArticleID=863
+descrption: Density of 316SS with uncertainties to indicate maximal and minimal ranges
 
-    type: table
-    id: sigma
-    unit: SI
-    dep1unit:K
-    dep1values:[873.15 973.15 1073.15 1173.15 1273.15]
-    value: [460E6 320E6 190E6 120E6 70E6]
-    ref: https://askzn.co.za/stainless-steel/tech-grade-316.htm
-    description: tensile strength of stainless steel tabulated against temperature
+type: table
+id: sigma
+unit: SI
+dep1unit:K
+dep1values:[873.15 973.15 1073.15 1173.15 1273.15]
+value: [460E6 320E6 190E6 120E6 70E6]
+ref: https://askzn.co.za/stainless-steel/tech-grade-316.htm
+description: tensile strength of stainless steel tabulated against temperature
 }
 Reference: https://www.azom.com/article.aspx?ArticleID=863
 Description: This is the calculated breakdown of 316 Stainless Steel
@@ -97,21 +97,21 @@ Isotopic Definition:
 29063     3.45750E-03
 29065     1.54250E-03
 Properties : {
-    type: table
-    id: alpha
-    unit: SI
-    dep1unit:K
-    dep1values:[366.15 477.15 589.15 700.15 811.15 922.15 1033.15 1144.15 1200.15]
-    value: [11.2E-06 12.0E-06 12.8E-06 13.2E-06 13.4E-06 14.1E-06 14.9E-06 15.9E-06 16.0E-06]
-    ref: www.hightempmetals.com/techdata/hitempHastC276data.php
-    description: coefficient of thermal expansion tabulated against temperature
+type: table
+id: alpha
+unit: SI
+dep1unit:K
+dep1values:[366.15 477.15 589.15 700.15 811.15 922.15 1033.15 1144.15 1200.15]
+value: [11.2E-06 12.0E-06 12.8E-06 13.2E-06 13.4E-06 14.1E-06 14.9E-06 15.9E-06 16.0E-06]
+ref: www.hightempmetals.com/techdata/hitempHastC276data.php
+description: coefficient of thermal expansion tabulated against temperature
 
-    type: const
-    id: E
-    unit: SI
-    value: [205E9]
-    ref: www.azom.com/article.aspx?ArticleID=7804m
-    description: tensile strength of stainless steel tabulated against temperature
+type: const
+id: E
+unit: SI
+value: [205E9]
+ref: www.azom.com/article.aspx?ArticleID=7804m
+description: tensile strength of stainless steel tabulated against temperature
 }
 Reference: https://www.haynesintl.com/docs/default-source/pdfs/new-alloy-brochures/corrosion-resistant-alloys/brochures/c-276.pdf?sfvrsn=6
 Description: This is the calculated breakdown of Hastelloy C-276
@@ -162,19 +162,19 @@ Isotopic Definition:
 22049     1.35250E-04
 22050     1.29500E-04
 Properties : {
-    type: const
-    id: sigma
-    unit: SI
-    value: [800E6]
-    ref: https://www.azom.com/article.aspx?ArticleID=7832
-    description: Tensile Strength of hasteloy N
+type: const
+id: sigma
+unit: SI
+value: [800E6]
+ref: https://www.azom.com/article.aspx?ArticleID=7832
+description: Tensile Strength of hasteloy N
 
-    type: const
-    id: r
-    unit: SI
-    value: [8860]
-    ref: https://www.azom.com/article.aspx?ArticleID=7832
-    description: density of hastelloy-n 
+type: const
+id: r
+unit: SI
+value: [8860]
+ref: https://www.azom.com/article.aspx?ArticleID=7832
+description: density of hastelloy-n 
 }
 Reference: http://haynesintl.com/docs/default-source/pdfs/new-alloy-brochures/corrosion-resistant-alloys/brochures/n-brochure.pdf?sfvrsn=18
 Description: This is the calculated breakdown of Hastelloy N
@@ -223,21 +223,21 @@ Isotopic Definition:
 40094     6.41283E-03
 40096     1.03314E-03
 Properties : {
-    type: table
-    id: alpha
-    unit: SI
-    dep1unit:K
-    dep1values:[373.15 473.15 573.15 673.15 773.15 873.15]
-    value: [7.7E-06 10.3E-06 9.9E-06 9.5E-06 9.4E-06 9.6E-06]
-    ref: NAA-SR-8617 Table 4.2.4 Page 4.4 (88 in pdf)
-    description: coefficient of linear thermal expansion tabulated against temperature
+type: table
+id: alpha
+unit: SI
+dep1unit:K
+dep1values:[373.15 473.15 573.15 673.15 773.15 873.15]
+value: [7.7E-06 10.3E-06 9.9E-06 9.5E-06 9.4E-06 9.6E-06]
+ref: NAA-SR-8617 Table 4.2.4 Page 4.4 (88 in pdf)
+description: coefficient of linear thermal expansion tabulated against temperature
 
-    type: const
-    id: r
-    unit: SI
-    value: [2800]
-    ref: NAA-SR-8617 Table 4.2.1 Page 4.3 (87 in pdf)
-    description: density of hastelloy-n 
+type: const
+id: r
+unit: SI
+value: [2800]
+ref: NAA-SR-8617 Table 4.2.1 Page 4.3 (87 in pdf)
+description: density of hastelloy-n 
 }
 Reference: "1964 S8ER hydrogen Coating" - table 2
 Description: This is the calculated breakdown of Ai-8763D, the ceramic coating
@@ -251,21 +251,21 @@ Isotopic Definition:
 8016      6.39680E-01
 4009      3.60320E-01
 Properties : {
-    type: const
-    id: tc
-    unit: SI
-    value: [257.5]
-    unc: [7.5]
-    ref: George Wypych, Handbook of Fillers (Fourth Edition), Table 2.1.19 BERYLLIUM OXIDE
-    description: thermal conductivity of beryllium oxide
+%type: const
+%id: tc
+%unit: SI
+%value: [257.5]
+%unc: [7.5]
+%ref: George Wypych, Handbook of Fillers (Fourth Edition), Table 2.1.19 BERYLLIUM OXIDE
+%description: thermal conductivity of beryllium oxide
 
-    type: const
-    id: r
-    unit: SI
-    value: [2930]
-    unc: [80]
-    ref: George Wypych, Handbook of Fillers (Fourth Edition), Table 2.1.19 BERYLLIUM OXIDE
-    description: density of beryllium oxide
+type: const
+id: r
+unit: SI
+value: [2930]
+unc: [80]
+ref: George Wypych, Handbook of Fillers (Fourth Edition), Table 2.1.19 BERYLLIUM OXIDE
+description: density of beryllium oxide
 }
 Reference: CIAAW
 Description: This is the calculated breakdown of beryllium oxide in its common form
@@ -278,20 +278,20 @@ Isotopic Definition:
 -------------------
 4009      1.00000E-00
 Properties : {
-    type: const
-    id: nu
-    unit: SI
-    value: [0.125]
-    unc: [0.055]
-    ref: https://www.azom.com/article.aspx?ArticleID=7646
-    description: thermal conductivity of beryllium oxide
+type: const
+id: nu
+unit: SI
+value: [0.125]
+unc: [0.055]
+ref: https://www.azom.com/article.aspx?ArticleID=7646
+description: Poisson's ratio of beryllium oxide
 
-    type: const
-    id: r
-    unit: SI
-    value: [1844]
-    ref: https://www.azom.com/article.aspx?ArticleID=7646
-    description: density of beryllium
+type: const
+id: r
+unit: SI
+value: [1844]
+ref: https://www.azom.com/article.aspx?ArticleID=7646
+description: density of beryllium
 }
 Reference: Be
 Description: This is the calculated breakdown of beryllium in its common form
@@ -307,23 +307,23 @@ Isotopic Definition:
 19040     9.12600E-05
 19041     5.24956E-02
 Properties : {
-    type: table
-    id: r
-    unit: SI
-    dep1unit:K
-    dep1values:[323.15 373.15 423.15 473.15 523.15 573.15 623.15 673.15 723.15 773.15 823.15 873.15 923.15 973.15 1023.15 1073.15 1123.15 1173.15]
-    value: [866.9 855.6 844.2 832.7 821.1 809.4 797.6 785.7 773.7 761.6 749.5 737.2 742.9 712.5 700.1 687.5 675.0 662.3]
-    ref: Sodium-NaK Engineering Handbook Volume I, Table 1.2 Page 17
-    description: density as a function of temperature
+type: table
+id: r
+unit: SI
+dep1unit:K
+dep1values:[323.15 373.15 423.15 473.15 523.15 573.15 623.15 673.15 723.15 773.15 823.15 873.15 923.15 973.15 1023.15 1073.15 1123.15 1173.15]
+value: [866.9 855.6 844.2 832.7 821.1 809.4 797.6 785.7 773.7 761.6 749.5 737.2 742.9 712.5 700.1 687.5 675.0 662.3]
+ref: Sodium-NaK Engineering Handbook Volume I, Table 1.2 Page 17
+description: density as a function of temperature
 
-    type: table
-    id: my
-    unit: SI
-    dep1unit:K
-    dep1values:[323.15 373.15 423.15 473.15 523.15 573.15 623.15 673.15 723.15 773.15 823.15 873.15 923.15 973.15 1023.15 1073.15 1123.15 1173.15]
-    value: [7.004E-4 5.333E-4 4.326E-4 3.663E-4 3.198E-4 2.856E-4 2.595E-4 2.389E-4 2.145E-4 1.964E-4 1.816E-4 1.693E-4 1.589E-4 1.499E-4 1.422E-4 1.355E-4 1.295E-4 1.242E-4]
-    ref: Sodium-NaK Engineering Handbook Volume I, Table 1.3 Page 26
-    description: viscosity as a function of temperature
+type: table
+id: my
+unit: SI
+dep1unit:K
+dep1values:[323.15 373.15 423.15 473.15 523.15 573.15 623.15 673.15 723.15 773.15 823.15 873.15 923.15 973.15 1023.15 1073.15 1123.15 1173.15]
+value: [7.004E-4 5.333E-4 4.326E-4 3.663E-4 3.198E-4 2.856E-4 2.595E-4 2.389E-4 2.145E-4 1.964E-4 1.816E-4 1.693E-4 1.589E-4 1.499E-4 1.422E-4 1.355E-4 1.295E-4 1.242E-4]
+ref: Sodium-NaK Engineering Handbook Volume I, Table 1.3 Page 26
+description: viscosity as a function of temperature
 }
 Reference: "1973 SNAP8 Summary.pdf"
 Description: This is the calculated breakdown of sodium potassium 78 eutectic
@@ -331,7 +331,7 @@ Description: This is the calculated breakdown of sodium potassium 78 eutectic
 Material Name: Sm2O3
 ctype: RELATIVE
 utype: NONE
-Number of isotopes: 
+Number of isotopes: 8
 Isotopic Definition:
 -------------------
 8016      1.37642E-01
@@ -343,19 +343,19 @@ Isotopic Definition:
 62152     2.30595E-01
 62154     1.96100E-01
 Properties : {
-    type: const
-    id: r
-    unit: SI
-    value: [8430]
-    ref: https://www.azonano.com/article.aspx?ArticleID=3402
-    description: density of samarium oxide
-    
-    type: const
-    id: nu
-    unit: SI
-    value: [0.32]
-    ref: https://materialsproject.org/materials/mp-218/
-    description: density of samarium oxide
+type: const
+id: r
+unit: SI
+value: [8430]
+ref: https://www.azonano.com/article.aspx?ArticleID=3402
+description: density of samarium oxide
+
+type: const
+id: nu
+unit: SI
+value: [0.32]
+ref: https://materialsproject.org/materials/mp-218/
+description: density of samarium oxide
 }
 Reference: Sm2O3
 Description: This is the calculated breakdown of samarium oxide in its common form
@@ -363,7 +363,7 @@ Description: This is the calculated breakdown of samarium oxide in its common fo
 Material Name: UZrH
 ctype: ATOMIC
 utype: NONE
-Number of isotopes:
+Number of isotopes: 8
 Isotopic Definition:
 --------------------
 1000    6.000E+22
@@ -375,13 +375,13 @@ Isotopic Definition:
 40094   6.295E+21
 40096   1.014E+21
 Properties : {
-    type: const
-    id: r
-    unit: SI
-    value: [6096.48]
-    unc: [60.965]
-    ref: Table 2 and Page 22 of AI-AEC-13070
-    description: total density of fuel
+type: const
+id: r
+unit: SI
+value: [6096.48]
+unc: [60.965]
+ref: Table 2 and Page 22 of AI-AEC-13070
+description: total density of fuel
 }
 Reference: Table 2 and Page 22 of AI-AEC-13070
 Description: Hydrided fuel in SNAP8. Atomic densities computed with using dimension and parameters found in Table 2 and Page 22
