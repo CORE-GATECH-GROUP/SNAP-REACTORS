@@ -522,6 +522,7 @@ class Property:
                 if (data[i][0] == "%"):
                     pass
                 else:
+                    
                     if "type" in data[i]:
                         pcount = pcount + 1
 
@@ -529,14 +530,16 @@ class Property:
                         value = data[i].split(":")[-1]
                         value = value.replace("\n", "")
                         value = value.replace(" ", "")
+                        value = value.replace("\t", "")
                         value = [value, i+1]
                         key = "prop"+str(pcount)
                         input[key]["type"] = value
 
-                    if "id" in data[i]:  
+                    if "id:" in data[i]:  
                         value = data[i].split(":")[-1]
                         value = value.replace("\n", "")
                         value = value.replace(" ", "")
+                        value = value.replace("\t", "")
                         key = "prop"+str(pcount)
                         input[key]["id"] = value
 
@@ -544,6 +547,8 @@ class Property:
                         value = data[i].split(":")[-1]
                         value = value.replace("\n", "")
                         value = value.replace(" ", "")
+                        value = value.replace("\t", "")
+
                         key = "prop"+str(pcount)
                         input[key]["unit"] = value
 
@@ -551,6 +556,8 @@ class Property:
                         value = data[i].split(":")[-1]
                         value = value.replace("\n", "")
                         value = value.replace(" ", "")
+                        value = value.replace("\t", "")
+
                         key = "prop"+str(pcount)
                         input[key]["ref"] = value
 
@@ -558,6 +565,8 @@ class Property:
                         value = data[i].split(":")[-1]
                         value = value.replace("\n", "")
                         value = value.replace(" ", "")
+                        value = value.replace("\t", "")
+
                         key = "prop"+str(pcount)
                         input[key]["desc"] = value
 
@@ -571,6 +580,7 @@ class Property:
                         value = data[i].split(":")[-1]
                         value = value.replace("\n", "")
                         value = value.replace(" ", "")
+                        value = value.replace("\t", "")
                         key = "prop"+str(pcount)
                         input[key]["dep1unit"] = value
 
@@ -581,6 +591,7 @@ class Property:
                         value = data[i].split(":")[-1]
                         value = value.replace("\n", "")
                         value = value.replace(" ", "")
+                        value = value.replace("\t", "")
                         key = "prop"+str(pcount)
                         input[key]["dep2unit"] = value
 
@@ -591,6 +602,7 @@ class Property:
                         value = data[i].split(":")[-1]
                         value = value.replace("\n", "")
                         value = value.replace(" ", "")
+                        value = value.replace("\t", "")
                         key = "prop"+str(pcount)
                         # value = sp.symbols(value)
                         input[key]["corr"] = value
@@ -599,6 +611,8 @@ class Property:
                         value = data[i].split(":")[-1]
                         value = value.replace("\n", "")
                         value = value.replace(" ", "")
+                        value = value.replace("\t", "")
+
                         key = "prop"+str(pcount)
                         # value = sp.symbols(value)
                         input[key]["deps"] = value
@@ -680,22 +694,24 @@ class Property:
                             "or imperial @ line: {}"
                                             .format(properties[i]["type"][1]))
                 except KeyError:
-                    raise KeyError("Property id not Allowed Properties @ "
-                                "line: {}".format(properties[i]["type"][1]))
+                    raise KeyError("Property id {} not Allowed Properties @ "
+                                "line: {}".format(properties[i]["id"], 
+                                        properties[i]["type"][1]))
 
                 try:
                     val = float(val)
-                except ValueError:
-                    raise ValueError("Property value must be a number "
+                except TypeError:
+                    raise TypeError("Property value must be a number "
                             " @ line: {}".format(properties[i]["type"][1]))
 
                 try:
-                    unc = float(unc)
-                except ValueError:
-                    raise ValueError("Property uncertainty must be a number "
-                            " @ line: {}".format(properties[i]["type"][1]))
-                            
-                                                
+                    if unc != None:
+                        unc = float(unc)
+                except TypeError:
+                    raise TypeError("{} {} Property uncertainty must be a" 
+                    "number @ line: {}".format(properties[i]["id"], 
+                        properties[i]["type"][0], properties[i]["type"][1]))
+                               
                 try:        
                     pty = Constant(id, val, unit, unc, ref)
                     properties[i] = pty

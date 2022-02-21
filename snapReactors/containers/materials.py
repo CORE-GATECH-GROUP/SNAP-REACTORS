@@ -462,7 +462,8 @@ class Material:
                 mp["utype"] = utype.strip()
             
             if "Number of isotopes" in line:
-                isoNumber = int(line.split(":")[-1])
+                isoNumberStr = line.split(":")[-1].replace("\n", "")
+                isoNumber = int(isoNumberStr)
                 mp["isoNum"] = isoNumber
             
             if "Isotopic Definition" in line:
