@@ -55,7 +55,10 @@ ALLOWED_PROPERTIES =\
      'alphaT': Property('Zero stress temperature', Units("K","F"), 
         Conversion("TBD", "TBD")), #Not sure how to implement
      'E': Property('Modulus of elasticity', Units("Pa","lb/in^2"), 
-        Conversion(0.000145038, 6894.74482549))}
+        Conversion(0.000145038, 6894.74482549)),
+     'sigma': Property('Tensile strength', Units("Pa","lb/in^2"), 
+        Conversion(0.000145038, 6894.74482549))
+        }
 
 # Conversion from SI to other units
 conversion = {}  # this will be completed in the future
