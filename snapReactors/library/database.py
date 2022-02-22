@@ -174,7 +174,7 @@ class Database:
             
             mdData['Date'].append(self.date)
             mdData['Version'].append(self.version)
-            mdData['Modifications'].append('The {} component is added.'
+            mdData['Modifications'].append('The {} component(s) were added.'
                                             .format(self._components
                                                     ))
 

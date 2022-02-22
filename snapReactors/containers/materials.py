@@ -52,7 +52,7 @@ class CTYPE(Enum):
     """
     ATOMIC = 1
     WEIGHT = 2
-    RELATIVE = 3
+    DENSITY = 3
 
 class Material:
     """A container to store the data for each material
