@@ -49,10 +49,15 @@ class CTYPE(Enum):
 
     The CTYPE Enum is used to organize properties to facilitate handling 
     of properties i.e. evaluation methods.
+
+    Note that ATOMIC and WEIGHT represent atomic and weight fractions, while 
+    A(W)DENSITY represents atomic densities in atoms/b-cm or mass densities in
+    g/cm^3
     """
     ATOMIC = 1
     WEIGHT = 2
-    DENSITY = 3
+    ADENSITY = 3
+    WDENSITY = 4
 
 class Material:
     """A container to store the data for each material
