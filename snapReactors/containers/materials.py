@@ -468,7 +468,7 @@ class Material:
                 mp["id"] = [str(line.split(":")[-1]).replace("\n", "").replace(" ", ""), i+1]
 
             if "ctype" in line:
-                ctype = str(line.split(":")[-1])
+                ctype = str(line.split(":")[-1]).replace("\n", "").replace(" ", "")
                 if ctype.strip() not in CTYPE.__members__:
                     raise KeyError("Composition Type {} is not an allowed" 
                                     "composition type: {}".format(ctype, 
@@ -479,7 +479,7 @@ class Material:
                     raise ValueError("Material Name not given for material"
                                     .format(i))
             if "utype" in line:
-                utype = str(line.split(":")[-1])
+                utype = str(line.split(":")[-1]).replace("\n", "").replace(" ", "")
                 if utype.strip() not in UTYPE.__members__:
                     raise KeyError("Uncertainty Type {} is not an allowed" 
                                     "uncertainty type: {}".format(utype, 
@@ -487,7 +487,7 @@ class Material:
                 mp["utype"] = utype.strip()
             
             if "Number of isotopes" in line:
-                isoNumberStr = line.split(":")[-1].replace("\n", "")
+                isoNumberStr = line.split(":")[-1].replace("\n", "").replace(" ", "")
                 isoNumber = int(isoNumberStr)
                 mp["isoNum"] = isoNumber
             

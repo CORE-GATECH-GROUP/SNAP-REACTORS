@@ -1,5 +1,5 @@
 Material Name: 316SS
-ctype: RELATIVE
+ctype: WDENSITY
 utype: NONE
 Number of isotopes: 32
 Isotopic Definition:
@@ -58,7 +58,7 @@ Reference: https://www.azom.com/article.aspx?ArticleID=863
 Description: This is the calculated breakdown of 316 Stainless Steel
 
 Material Name: hasteC
-ctype: RELATIVE
+ctype: WDENSITY
 utype: NONE
 Number of isotopes: 33
 Isotopic Definition:
@@ -117,7 +117,7 @@ Reference: https://www.haynesintl.com/docs/default-source/pdfs/new-alloy-brochur
 Description: This is the calculated breakdown of Hastelloy C-276
 
 Material Name: hasteN
-ctype: RELATIVE
+ctype: WDENSITY
 utype: NONE
 Number of isotopes: 39
 Isotopic Definition:
@@ -180,7 +180,7 @@ Reference: http://haynesintl.com/docs/default-source/pdfs/new-alloy-brochures/co
 Description: This is the calculated breakdown of Hastelloy N
 
 Material Name: AI8763D
-ctype: RELATIVE
+ctype: WDENSITY
 utype: NONE
 Number of isotopes: 37
 Isotopic Definition:
@@ -243,7 +243,7 @@ Reference: "1964 S8ER hydrogen Coating" - table 2
 Description: This is the calculated breakdown of Ai-8763D, the ceramic coating
 
 Material Name: BeO
-ctype: RELATIVE
+ctype: WDENSITY
 utype: NONE
 Number of isotopes: 2
 Isotopic Definition:
@@ -271,7 +271,7 @@ Reference: CIAAW
 Description: This is the calculated breakdown of beryllium oxide in its common form
 
 Material Name: Be
-ctype: RELATIVE
+ctype: WDENSITY
 utype: NONE
 Number of isotopes: 1
 Isotopic Definition:
@@ -297,7 +297,7 @@ Reference: Be
 Description: This is the calculated breakdown of beryllium in its common form
 
 Material Name: NaK
-ctype: RELATIVE
+ctype: WDENSITY
 utype: NONE
 Number of isotopes: 4
 Isotopic Definition:
@@ -329,7 +329,7 @@ Reference: "1973 SNAP8 Summary.pdf"
 Description: This is the calculated breakdown of sodium potassium 78 eutectic
 
 Material Name: Sm2O3
-ctype: RELATIVE
+ctype: WDENSITY
 utype: NONE
 Number of isotopes: 8
 Isotopic Definition:

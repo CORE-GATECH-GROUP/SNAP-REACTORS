@@ -8,7 +8,10 @@ Last updated on 2022-01-20 11:52:13 @author: Isaac Naupa, Sam Garcia
 email: iaguirre6@gatech.edu, sgarcia9@wisc.edu
 """
 
+import enum
+from fileinput import filename
 from sympy.polys.specialpolys import dmp_fateman_poly_F_1
+from snapReactors.containers.reactorstate import ReactorState
 from snapReactors.functions.checkerrors import (_isstr, _isarray,
     _explengtharray, _isnonnegativearray, _isnumber, _isnonnegative,
     _isinstanceList) 
@@ -16,6 +19,7 @@ from snapReactors.functions.parameters import ALLOWED_PROPERTIES
 from snapReactors.functions.warnings import InputFileSyntaxWarning
 from enum import Enum
 from snapReactors.containers.component import Component
+from snapReactors.containers.reactor import Reactor
 from snapReactors.containers.materials import Material, CTYPE, UTYPE
 from snapReactors.containers.property import Property, DTYPE, VTYPE 
 from mdutils.mdutils import MdUtils
@@ -51,7 +55,7 @@ class Database:
         self.filePath = filePath
         self.version = version
         self.date = date
-        self.reactors = [] #to be updated upon completion of reactor and 
+        self._reactors = [] #to be updated upon completion of reactor and 
         # and reactorState containers
         self._components = []
         self._componentsDict = {}
@@ -61,55 +65,124 @@ class Database:
         """" Overwrites print method, prints all objects variables. """
         return str(vars(self))
     
-    def addComponents(self, components):
-        # _isinstanceList(components, Component, "components for database")
-        for i in components:
-            self._components.append(i)
+    # def addComponents(self, components):
+    #     _isinstanceList(components, Component, "components for database")
+    #     for i in components:
+    #         self._components.append(i)
+
+    def addReactors(self, reactors):
+        _isinstanceList(reactors, Reactor, "components for database")
+        for i in reactors:
+            self._reactors.append(i)
 
     def _load(self):
         with h5.File(self.filePath, "r") as h5file:
-            compGroups = Database._getInnerGroups(h5file)
-            compContainers = [0]*len(compGroups)
-            for cdx, comp in enumerate(compGroups):
-                compContainers[cdx] = Database._createContainer(comp, 
-                                                                    Component)
-                matGroups = Database._getInnerGroups(comp)
-                matContainers = [0]*len(matGroups)
-                for mdx, mat in enumerate(matGroups):
-                    matContainers[mdx] = Database._createContainer(mat, 
-                                                                    Material)
-                    propGroups = Database._getInnerGroups(mat)
-                    propContainers = [0]*len(propGroups)
-                    for pdx, prop in enumerate(propGroups):
-                        propContainers[pdx] = Database._createContainer(prop, 
-                                                                    Property)
-                    matContainers[mdx].addproperty(propContainers)
-                compContainers[cdx].addMaterial(matContainers)
+            reactGroups = Database._getInnerGroups(h5file)
+            reactContainers = [0]*len(compGroups)
+            for rdx, react in enumerate(reactGroups):
+                reactContainers[rdx] = Database._createContainer(react, 
+                                                                    Reactor)
+                rsGroups = Database._getInnerGroups(rs)
+                rsContainers = [0]*len(compGroups)
+                for rsdx, rs in enumerate(rsGroups):
+                    rsContainers[rsdx] = Database._createContainer(rs, 
+                                                                        ReactorState)
+                    compGroups = Database._getInnerGroups(rs)
+                    compContainers = [0]*len(compGroups)
+                    for cdx, comp in enumerate(compGroups):
+                        compContainers[cdx] = Database._createContainer(comp, 
+                                                                            Component)
+                        matGroups = Database._getInnerGroups(comp)
+                        matContainers = [0]*len(matGroups)
+                        for mdx, mat in enumerate(matGroups):
+                            matContainers[mdx] = Database._createContainer(mat, 
+                                                                            Material)
+                            propGroups = Database._getInnerGroups(mat)
+                            propContainers = [0]*len(propGroups)
+                            for pdx, prop in enumerate(propGroups):
+                                propContainers[pdx] = Database._createContainer(prop, 
+                                                                            Property)
+                            matContainers[mdx].addproperty(propContainers)
+                        compContainers[cdx].addMaterial(matContainers)
+                    rsContainers[rsdx].addComponent(compContainers)
+                reactContainers[rdx].addReactorState(rsContainers)
 
-            self.addComponents(compContainers)
-
+            self.addReactors(reactContainers)
             self._setDict()
 
-    def _write(self):
-        self._setDict()
-        reactorComponents = self._components                      
+   
 
+
+    # def _load(self):
+    #     with h5.File(self.filePath, "r") as h5file:
+    #         compGroups = Database._getInnerGroups(h5file)
+    #         compContainers = [0]*len(compGroups)
+    #         for rsdx, rs in enumerate(rsGroups):
+
+    #         for cdx, comp in enumerate(compGroups):
+    #             compContainers[cdx] = Database._createContainer(comp, 
+    #                                                                 Component)
+    #             matGroups = Database._getInnerGroups(comp)
+    #             matContainers = [0]*len(matGroups)
+    #             for mdx, mat in enumerate(matGroups):
+    #                 matContainers[mdx] = Database._createContainer(mat, 
+    #                                                                 Material)
+    #                 propGroups = Database._getInnerGroups(mat)
+    #                 propContainers = [0]*len(propGroups)
+    #                 for pdx, prop in enumerate(propGroups):
+    #                     propContainers[pdx] = Database._createContainer(prop, 
+    #                                                                 Property)
+    #                 matContainers[mdx].addproperty(propContainers)
+    #             compContainers[cdx].addMaterial(matContainers)
+
+    #         self.addComponents(compContainers)
+
+    #         self._setDict()
+
+    def _write(self):
+        # self._setDict()
+        # reactorComponents = self._components                      
+
+        # with h5.File(self.filePath, "w") as h5file:
+        #     h5file.attrs["version"] = self.version.encode()
+        #     h5file.attrs["date"] = self.date.encode()
+        #     for kdx, k in enumerate(reactorComponents):
+        #         componentGroup = h5file.create_group(k.id, True)
+        #         Database._createDatasets(componentGroup, k)
+        #         componentMaterials = reactorComponents[kdx]._materials
+        #         for mdx, m in enumerate(componentMaterials):
+        #             materialGroup = h5file.create_group("/"+k.id 
+        #                                                 +"/"+m.id, True)
+        #             Database._createDatasets(materialGroup, m)
+        #             materialProps = componentMaterials[mdx]._properties
+        #             for pdx, p in enumerate(materialProps):
+        #                 propertyGroup = h5file.create_group("/"+k.id +
+        #                                     "/"+m.id +"/" +p.id, True)
+        #                 Database._createDatasets(propertyGroup, p)
+        self._setDict()
+        reactors = self._reactors
         with h5.File(self.filePath, "w") as h5file:
             h5file.attrs["version"] = self.version.encode()
             h5file.attrs["date"] = self.date.encode()
-            for kdx, k in enumerate(reactorComponents):
-                componentGroup = h5file.create_group(k.id, True)
-                Database._createDatasets(componentGroup, k)
-                componentMaterials = reactorComponents[kdx]._materials
-                for mdx, m in enumerate(componentMaterials):
-                    materialGroup = h5file.create_group("/"+k.id 
-                                                        +"/"+m.id, True)
-                    Database._createDatasets(materialGroup, m)
-                    materialProps = componentMaterials[mdx]._properties
-                    for pdx, p in enumerate(materialProps):
-                        propertyGroup = h5file.create_group("/"+k.id +
-                                            "/"+m.id +"/" +p.id, True)
-                        Database._createDatasets(propertyGroup, p)
+            for rdx, r in enumerate(reactors):
+                rGroup = h5file.create_group(r.id, True)
+                Database._createDatasets(rGroup, r)
+                reactorStates = reactors[rdx]._reactorstates
+                for rsdx, rs in enumerate(reactorStates):
+                    rsGroup = h5file.create_group("/"+r.id +"/"+rs.id, True)
+                    Database._createDatasets(rsGroup, rs)
+                    stateComponents = reactorStates[rsdx]._components
+                    for kdx, k in enumerate(stateComponents):
+                        componentGroup = h5file.create_group("/"+r.id +"/"+rs.id+"/"+k.id, True)
+                        Database._createDatasets(componentGroup, k)
+                        componentMaterials = stateComponents[kdx]._materials
+                        for mdx, m in enumerate(componentMaterials):
+                            materialGroup = h5file.create_group("/"+r.id +"/"+rs.id+"/"+k.id+"/"+m.id, True)
+                            Database._createDatasets(materialGroup, m)
+                            materialProps = componentMaterials[mdx]._properties
+                            for pdx, p in enumerate(materialProps):
+                                propertyGroup = h5file.create_group("/"+r.id +"/"+rs.id+"/"+k.id +"/"+m.id +"/" +p.id, True)
+                                Database._createDatasets(propertyGroup, p)
         with open('..\\..\\README.md', 'r') as f:
             data = f.readlines()
             tabExist = False
@@ -206,6 +279,13 @@ class Database:
         elif type == Property:
             container = Property("cp", "NUMBER", "CONSTANT", np.array([1]),
                                                                    "J/kg/K")
+        elif type == ReactorState:
+            container = ReactorState("1")
+        elif type == Reactor:
+            container = Reactor(id = 'SNAP4', ltype = 'HEX', rodNum=583, guideNum=0,
+                        instrumNum=0, thermalPower=12, electricPower=2,
+                        coolant = 'Water', moderator = 'Water', 
+                        description = '500 Watt microreactor developed for space deployment')
 
         for i in range(0, len(vals)):
             if isinstance(vals[i], bytes):
@@ -305,24 +385,32 @@ class Database:
             Database._descend_obj(f[group])
 
     def _setDict(self):
-        # compDict = createDictFromConatinerList(self._components)
-        compDict = {}
+        reactDict = {}
+        rsDicts = [0]*len(self._reactors)
+        for rdx, r in enumerate(self._reactors):
+            reactDict[r.id] = r
+            rsDicts[rdx] = dict()
+            compDicts = [0]*len(self._reactors[rdx]._reactorstates)
+            for rsdx, rs in enumerate(self._reactors[rdx]._reactorstates):
+                rsDicts[rdx][rs.id] = rs
+                compDicts[rsdx] = dict()
+                matDicts = [0]*len(self._reactors[rdx]._reactorstates[rsdx]._components)
+                for idx, comp in enumerate(self._reactors[rdx]._reactorstates[rsdx]._components):
+                    compDicts[rsdx][comp.id] = comp
+                    matDicts[idx] = dict()
+                    propDicts = [0]*len(self._reactors[rdx]._reactorstates[rsdx]._components[idx]._materials)
+                    for mdx, mat in enumerate(self._reactors[rdx]._reactorstates[rsdx]._components[idx]._materials):
+                        matDicts[idx][mat.id] = mat
+                        propDicts[mdx] = dict()
+                        props = self._reactors[rdx]._reactorstates[rsdx]._components[idx]._materials[mdx]._properties
+                        for pdx, pty in enumerate(props):
+                            propDicts[mdx][pty.id] = pty
+                        matDicts[idx][mat.id+"Properties"] = propDicts[mdx]
+                    compDicts[rsdx][comp.id+"Materials"] = matDicts[idx]
+                rsDicts[rsdx][rs.id+"Components"] = compDicts[rsdx]
+            reactDict[r.id+"States"] = rsDicts[rdx]
 
-        matDicts = [0]*len(self._components)
-        for idx, comp in enumerate(self._components):
-            compDict[comp.id] = comp
-            matDicts[idx] = dict()
-            propDicts = [0]*len(self._components[idx]._materials)
-            for mdx, mat in enumerate(self._components[idx]._materials):
-                matDicts[idx][mat.id] = mat
-                propDicts[mdx] = dict()
-                props = self._components[idx]._materials[mdx]._properties
-                for pdx, pty in enumerate(props):
-                    propDicts[mdx][pty.id] = pty
-                matDicts[idx][mat.id+"Properties"] = propDicts[mdx]
-            compDict[comp.id+"Materials"] = matDicts[idx]
-
-        self.databaseDict = {"Components": compDict}
+        self.databaseDict = {"Reactors": reactDict}
 
     def find(self, path):
         """
@@ -374,28 +462,54 @@ class Database:
         _isstr(path, "container/containers path")
         value = None
         keys = path.split("\\")
-
-        if keys[-1] == "Components":
-            value = self.databaseDict["Components"]
+        # if keys[-1] == "Components":
+        #     value = self.databaseDict["Components"]
+        # elif len(keys) == 1:
+        #     raise KeyError("The path given '{}' is not found in the database,"
+        #     " the current database has the following map \n {}"
+        #                                             .format(path, self.map()))
+        # elif keys[-2] == "Components":
+        #     value = self.databaseDict["Components"][keys[-1]]
+        # elif keys[-1] == "Materials":
+        #     value = self.databaseDict["Components"][keys[-2]+"Materials"]
+        # elif keys[-2] == "Materials":
+        #     value = self.databaseDict["Components"][keys[-3]+"Materials"][keys[-1]]
+        # elif keys[-1] == "Properties":
+        #     value = self.databaseDict["Components"][keys[-4]+"Materials"][keys[-2]+"Properties"]
+        # elif keys[-2] == "Properties":
+        #     value = self.databaseDict["Components"][keys[-5]+"Materials"][keys[-3]+"Properties"][keys[-1]]
+        # else:
+        #     raise KeyError("The path given '{}' is not found in the database,"
+        #     " the current database has the following map \n {}"
+        #                                             .format(path, self.map()))
+        if keys[-1] == "Reactors":
+            value = self.databaseDict["Reactors"]
         elif len(keys) == 1:
             raise KeyError("The path given '{}' is not found in the database,"
             " the current database has the following map \n {}"
                                                     .format(path, self.map()))
+        elif keys[-2] == "Reactors":
+            value = self.databaseDict["Reactors"][keys[-1]]
+        elif keys[-1] == "States":
+            value = self.databaseDict["Reactors"][keys[-2]+"States"]
+        elif keys[-2] == "States":
+            value = self.databaseDict["Reactors"][keys[-3]+"States"][keys[-1]]
+        elif keys[-1] == "Components":
+            value = self.databaseDict["Reactors"][keys[-4]+"States"][keys[-2]+"Components"]
         elif keys[-2] == "Components":
-            value = self.databaseDict["Components"][keys[-1]]
+            value = self.databaseDict["Reactors"][keys[-5]+"States"][keys[-3]+"Components"][keys[-1]]
         elif keys[-1] == "Materials":
-            value = self.databaseDict["Components"][keys[-2]+"Materials"]
+            value = self.databaseDict["Reactors"][keys[-6]+"States"][keys[-4]+"Components"][keys[-2]+"Materials"]
         elif keys[-2] == "Materials":
-            value = self.databaseDict["Components"][keys[-3]+"Materials"][keys[-1]]
+            value = self.databaseDict["Reactors"][keys[-7]+"States"][keys[-5]+"Components"][keys[-3]+"Materials"][keys[-1]]
         elif keys[-1] == "Properties":
-            value = self.databaseDict["Components"][keys[-4]+"Materials"][keys[-2]+"Properties"]
+            value = self.databaseDict["Reactors"][keys[-8]+"States"][keys[-6]+"Components"][keys[-4]+"Materials"][keys[-2]+"Properties"]
         elif keys[-2] == "Properties":
-            value = self.databaseDict["Components"][keys[-5]+"Materials"][keys[-3]+"Properties"][keys[-1]]
+            value = self.databaseDict["Reactors"][keys[-9]+"States"][keys[-7]+"Components"][keys[-5]+"Materials"][keys[-3]+"Properties"][keys[-1]]
         else:
             raise KeyError("The path given '{}' is not found in the database,"
             " the current database has the following map \n {}"
                                                     .format(path, self.map()))
-
         return value
 
     def map(self):
@@ -403,19 +517,45 @@ class Database:
         The ``map`` function allows the user to get a visual structured
         representation of the data in the stored in the database.
         """
-        mapStr = "***----------------------Database Map---------------------***\n"
-        mapStr = mapStr + "Components:\n"
-        for i in range(0, len(self._components)):
-            mapStr = mapStr + self._components[i].id + "\n"
-            mapStr = mapStr + "\tMaterials:" + "\n"
-            for j in range(0, len(self._components[i]._materials)):
-                mapStr = mapStr+"\t"+self._components[i]._materials[j].id+"\n"
-                mapStr = mapStr + "\t\tProperties:" + "\n"
-                for k in range(0, len(self._components[i]._materials[j]._properties)):
-                    mapStr = mapStr + "\t\t" 
-                    pid = self._components[i]._materials[j]._properties[k].id
-                    mapStr = mapStr + pid + "\n"
+        mapStr = \
+        "***----------------------------------------------------------***\n"+\
+        "\t\t\t\t\t\tDatabase Map\n" + \
+        "***----------------------------------------------------------***\n"
+        mapStr = mapStr + "Reactors:\n"
+        for r in range(0, len(self._reactors)):
+            mapStr = mapStr + self._reactors[r].id + "\n"
+            mapStr = mapStr + "\tStates:" + "\n"
+            for rs in range(0, len(self._reactors[r]._reactorstates)):
+                mapStr = mapStr + "\t"+ self._reactors[r]._reactorstates[rs].id + "\n"
+                mapStr = mapStr + "\t\tComponents:" + "\n"
+                for i in range(0, len(self._reactors[r]._reactorstates[rs]._components)):
+                    mapStr = mapStr +"\t\t"+ self._reactors[r]._reactorstates[rs]._components[i].id + "\n"
+                    mapStr = mapStr + "\t\t\tMaterials:" + "\n"
+                    for j in range(0, len(self._reactors[r]._reactorstates[rs]._components[i]._materials)):
+                        mapStr = mapStr+"\t\t\t"+self._reactors[r]._reactorstates[rs]._components[i]._materials[j].id+"\n"
+                        mapStr = mapStr + "\t\t\t\tProperties:" + "\n"
+                        for k in range(0, len(self._reactors[r]._reactorstates[rs]._components[i]._materials[j]._properties)):
+                            mapStr = mapStr + "\t\t\t\t" 
+                            pid = self._reactors[r]._reactorstates[rs]._components[i]._materials[j]._properties[k].id
+                            mapStr = mapStr + pid + "\n"
 
         return mapStr
+    
+    def _databaseStatus(self):
+        fileNameStr = ".\\database_status_"+self.version+self.date+".txt"
+        fileNameStr = fileNameStr.replace(" ", "_").replace(":", "-")
+        text_file = open(fileNameStr, "w")
+        datbaseInfoStr = \
+        "***----------------------------------------------------------***\n"+\
+        "\t\t\t\t\t\tDatabase Info\n" + \
+        "***----------------------------------------------------------***\n"
+        datbaseInfoStr = datbaseInfoStr + "Database Filepath: " + self.filePath +"\n"
+        datbaseInfoStr = datbaseInfoStr + "Database Version: " + self.version +"\n"
+        datbaseInfoStr = datbaseInfoStr + "Database Most Recent Modification Date/Time: " + self.date +"\n\n"
+
+        fileStr = datbaseInfoStr + self.map()
+        text_file.write(fileStr)
+        text_file.close()
+        return
 
 

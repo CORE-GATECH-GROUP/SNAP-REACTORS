@@ -1,5 +1,5 @@
 Material Name: hasteC
-ctype: RELATIVE
+ctype: WDENSITY
 utype: NONE
 Number of isotopes: 33
 Isotopic Definition:
@@ -91,7 +91,7 @@ Reference: NA-Examples
 Description: This is an example input file
 
 Material Name: hasteB
-ctype: RELATIVE
+ctype: WDENSITY
 utype: NONE
 Number of isotopes: 33
 Isotopic Definition:
