@@ -556,6 +556,6 @@ class Database:
         fileStr = datbaseInfoStr + self.map()
         text_file.write(fileStr)
         text_file.close()
-        return
+        return fileStr
 
 

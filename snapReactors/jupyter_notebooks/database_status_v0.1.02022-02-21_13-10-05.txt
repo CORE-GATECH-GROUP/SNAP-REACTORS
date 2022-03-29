@@ -1,0 +1,96 @@
+***----------------------------------------------------------***
+						Database Info
+***----------------------------------------------------------***
+Database Filepath: SNAP_Database.hdf5
+Database Version: v0.1.0
+Database Most Recent Modification Date/Time: 2022-02-21 13:10:05
+
+***----------------------------------------------------------***
+						Database Map
+***----------------------------------------------------------***
+Reactors:
+SNAP8ER
+	States:
+	Cold Power
+		Components:
+		Reactor Vessel
+			Materials:
+			316SS
+				Properties:
+				r
+				sigma
+		Upper Grid Plate
+			Materials:
+			316SS
+				Properties:
+				r
+				sigma
+		Lower Grid Plate
+			Materials:
+			hasteC
+				Properties:
+				alpha
+				E
+		Fuel Rod
+			Materials:
+			hasteC
+				Properties:
+				alpha
+				E
+			hasteN
+				Properties:
+				sigma
+				r
+			AI8763D
+				Properties:
+				alpha
+				r
+			UZrH
+				Properties:
+				r
+		Burnable Poison Fuel Rod
+			Materials:
+			hasteC
+				Properties:
+				alpha
+				E
+			hasteN
+				Properties:
+				sigma
+				r
+			AI8763D
+				Properties:
+				alpha
+				r
+			Sm2O3
+				Properties:
+				r
+				nu
+			UZrH
+				Properties:
+				r
+		Internal Reflector
+			Materials:
+			hasteN
+				Properties:
+				sigma
+				r
+			BeO
+				Properties:
+				r
+		Reflector Control Drum
+			Materials:
+			hasteN
+				Properties:
+				sigma
+				r
+			Be
+				Properties:
+				nu
+				r
+		Molten Salt Coolant
+			Materials:
+			NaK
+				Properties:
+				r
+				my
