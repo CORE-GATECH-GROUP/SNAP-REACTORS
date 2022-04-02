@@ -296,8 +296,11 @@ surf sDrum4 cyl -11.9860  20.7604 11.9126 -18.3769 18.3769
 surf sDrum5 cyl -11.9860 -20.7604 11.9126 -18.3769 18.3769
 surf sDrum6 cyl  11.9860 -20.7604 11.9126 -18.3769 18.3769  
 % --- Hexagonal surfrace for reflector core boundaries, 9.352in OD + 0.0818 reflector radial thickness at thinnest point
-%     + 4.68 drum radius =23.972012 cm radial distance flat to flat x-hexagonal (NAA-SR-9642, pg. 13) 
-surf S8 hexxprism 0.0 0.0 23.972012 -18.3769 18.3769
+%     + 4.68 drum radius =23.972012 cm radial distance flat to flat x-hexagonal (NAA-SR-9642, pg. 13)
+%     Note that the actual thickest portion of the drum is noted as 3 inches which makes the half distance from flat point
+%     to flat point 9.352 OD + 0.0818 + 3 in drum thickness = 19.704812 cm distance flat to flat x-hexagonal (AI-AEC-13070 
+%     Table 2 Sheet 2 of 4) 
+surf S8 hexxprism 0.0 0.0 19.704812 -18.3769 18.3769
 % --------------------- 
 % Cell Definitions 
 % ---------------------  
