@@ -2,12 +2,14 @@
 
 /*
 General comments: 
-The internal BeO reflectors did not get added, nor did the external Be reflector drums.
-The core is completely filled in with fuel pins, no lucite dummy pins were added.
-Experiment done as dry critical, and at room temperature (300K). 
-Additionally, materials definitions were added since naturally occuring elements are not 
-tracked within HPC libraries. Lastly, axial depth was added to reactor to accurately model 
-core physics a bit more. 
+The internal reflector and control drums have been added to the core 
+with some initial k-calculations with control drums fully rotated in
+and at room temperature. The results yielded values ~1.09 which are 
+to be expected given that the safety mechanisms control reactivity 
+by facing away from the core. Next steps are to run calculations at
+different temperatures to get reactivity coefficient values and compare
+to SNAP8ER recorded data. Serpent has branch calculations that can be
+ran, python script to process data should be made at some point. 
 */
 
 % --- Problem title:
@@ -284,7 +286,7 @@ intatm
 surf S5 cyl 0.0 0.0 11.87704 -18.3769 18.3769
 surf S6 pz -18.3769
 surf S7 pz 18.3769
-surf SCube cube  0.0 0.0 0.0 100.0
+surf SCube cube  0.0 0.0 0.0 50.0
 
 % --- surfaces for drums 
 surf sDrum1 cyl  23.972012 0.0 11.9126 -18.3769 18.3769
@@ -312,16 +314,6 @@ cell cLP0 2 fill pLuc S6 -S7
 %     He space is part of universe "3"
 cell cHe0 3 fill pHe S6 -S7
 
-% --- Defining cells to create control drum
-cell cDrums1 drum Be -sDrum1 -S8
-cell cDrums2 drum Be -sDrum2 -S8
-cell cDrums3 drum Be -sDrum3 -S8
-cell cDrums4 drum Be -sDrum4 -S8
-cell cDrums5 drum Be -sDrum5 -S8
-cell cDrums6 drum Be -sDrum6 -S8
-cell internRef drum BeO sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5 -S8
-cell drumoutside drum outside S8
-% cell cDrumsoutside drum outside sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5 
 % --- Latice x-type hexagonal, pitch = 0.57in (NAA-SR-9642, pg. 19)
 %     Lattice universe is part of universe "core"
 % lat Uni Type x_o y_o UNI
@@ -347,29 +339,37 @@ lat lattice 2 0.0 0.0 21 21 1.4478
                                     3 3 3 1 1 1 1 1 1 1 3 3 3 3 3 3 3 3 3 3 3 % bottom row, 7 are inside, starting in position 4
                                       3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
                                         3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-
-% --- These cell define the reactor i.e. cutting off the "core"
-%     universe with cylindrical boundaries, note that no reflectors 
-%     have been added at this point
-cell cRadialCore        core fill lattice   -S5
+% --- These cells define the reactor i.e. cutting off the "core"
+%     universe with cylindrical boundaries
+cell cRadialCore  core fill lattice   -S5
+cell cDrums1      core  Be -sDrum1 -S8
+cell cDrums2      core  Be -sDrum2 -S8
+cell cDrums3      core  Be -sDrum3 -S8
+cell cDrums4      core  Be -sDrum4 -S8
+cell cDrums5      core  Be -sDrum5 -S8
+cell cDrums6      core  Be -sDrum6 -S8
+cell cinternRef   core  BeO sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5 -S8
+cell cdrumoutside core  intatm S8
+%  ------- This lines were of the older model -------
+%cell cDrumsoutside drum outside sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5
 %cell cRadialOutside0   reactor outside      S5  
 %cell cRadialOutside1   reactor outside     -S5  -S6
 %cell cRadialOutside2   reactor outside     -S5   S7
 % --- These cells defines the contents located outside the reactor core
 %     but within the vessel
-cell cHexVessel     vessel fill core -S8
-cell cHexDrum       vessel fill drum -S8
-cell cHexOutside0   vessel outside S8
+%cell cHexVessel     vessel fill core -S8
+%cell cHexDrum       vessel fill drum -S8
+%cell cHexOutside0   vessel outside S8
 %cell cHexOutside1   vessel outside -S8 -S6
 %cell cHexOutside2   vessel outside -S8  S7
 
-% --- Cell cIN  is filled with universe "reactor", also its important to keep in mind that
+% --- Cell cIN  is filled with universe "core", also its important to keep in mind that
 %     the "0" universe is the universe for which outside needs to be defined.
-%     although this is not strictly true based on serpent-2 documentation but based on 
-%     part of the output given when running this model.
-cell cIN 0 fill vessel -SCube     
+%     Serpent gives the warning that the  '0' universe should be the only one defining outside
+%     although this is not strictly true based on serpent-2 documentation. 
+cell cIN 0 fill core -SCube     
 
-% --- Cell cOUT  is defined as everythin outside the cubic cell
+% --- Cell cOUT  is defined as everything outside the cubic cell
 cell cOUT 0 outside SCube
 
 % ------------------------------------------------------------
@@ -384,7 +384,7 @@ set bc 1
 
 % --- Neutron population: 10000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 1000 60 20
+set pop 1000 40 20
 
 % --- XY-plot (3), which is 700 by 700 pixels and covers the whole geometry
 
