@@ -175,6 +175,15 @@ unit: SI
 value: [8860]
 ref: https://www.azom.com/article.aspx?ArticleID=7832
 description: density of hastelloy-n 
+
+type: table
+id: alpha
+unit: SI
+dep1unit:K
+dep1values:[283.234 302.585 330.772 358.941 385.789 419.191 442.770 475.504 517.728 555.037 597.588 634.559 676.439 714.716 755.945 796.179 830.862 885.890 935.932 994.146 1032.396 1070.001]
+value: [0.00008 0.00016 0.00037 0.00065 0.00097 0.00134 0.00159 0.00201 0.00256 0.00307 0.00363 0.00419 0.00481 0.00539 0.00599 0.00663 0.00713 0.00804 0.00886 0.00983 0.01053 0.01118]
+ref: NAA-SR-6047, Figure 9
+description: coefficient of linear thermal expansion tabulated against temperature, extracted via MATLAB's GRABIT add-on
 }
 Reference: http://haynesintl.com/docs/default-source/pdfs/new-alloy-brochures/corrosion-resistant-alloys/brochures/n-brochure.pdf?sfvrsn=18
 Description: This is the calculated breakdown of Hastelloy N
@@ -251,13 +260,13 @@ Isotopic Definition:
 8016      6.39680E-01
 4009      3.60320E-01
 Properties : {
-%type: const
-%id: tc
-%unit: SI
-%value: [257.5]
-%unc: [7.5]
-%ref: George Wypych, Handbook of Fillers (Fourth Edition), Table 2.1.19 BERYLLIUM OXIDE
-%description: thermal conductivity of beryllium oxide
+type: const
+id: tc
+unit: SI
+value: [257.5]
+unc: [7.5]
+ref: George Wypych, Handbook of Fillers (Fourth Edition), Table 2.1.19 BERYLLIUM OXIDE
+description: thermal conductivity of beryllium oxide
 
 type: const
 id: r
@@ -266,6 +275,15 @@ value: [2930]
 unc: [80]
 ref: George Wypych, Handbook of Fillers (Fourth Edition), Table 2.1.19 BERYLLIUM OXIDE
 description: density of beryllium oxide
+
+type: table
+id: alpha
+unit: SI
+dep1values:[293.15 373.15 473.15 573.15 673.15 773.15 873.15 973.15 1073.15 1173.15 1273.15 1373.15]
+value: [4.99E-6 6.33E-6 7.55E-6 8.36E-6 8.93E-6 9.37E-6 9.83E-6 10.23E-6 10.62E-6 11.02E-6 11.41E-6 11.81E-6]
+unc: [4.0 3.2 2.7 2.4 2.2 1.6 1.5 1.5 1.4 1.4 1.3 1.3]
+ref: Thermal Expansion of Beryllium Oxide in the Temperature Interval 20–1550°C, Yu. M. Kozlovskii and S. V. Stankus, Table 2
+description: Thermal expansion of BeO as a function of temperature, note uncertainty is given in percentages
 }
 Reference: CIAAW
 Description: This is the calculated breakdown of beryllium oxide in its common form
@@ -292,6 +310,14 @@ unit: SI
 value: [1844]
 ref: https://www.azom.com/article.aspx?ArticleID=7646
 description: density of beryllium
+
+type: table
+id: alpha
+unit: SI
+dep1values:[279.300 292.090 314.714 314.712 340.592 371.048 408.037 445.684 473.832 500.666 529.125 560.194 613.509 666.481 712.900 758.984 813.806 862.824 912.171 962.817 1006.601 1051.353 1068.993]
+value: [0.00006 0.00012 0.00024 0.00025 0.00049 0.00082 0.00130 0.00177 0.00214 0.00252 0.00297 0.00349 0.00435 0.00527 0.00614 0.00704 0.00813 0.00912 0.01010 0.01115 0.01205 0.01303 0.01342]
+ref: NAA-SR-6047, Figure 9
+description: Thermal expansion of BeO as a function of temperature, data extracted via MATLAB's GRABIT add-on
 }
 Reference: Be
 Description: This is the calculated breakdown of beryllium in its common form
@@ -382,6 +408,15 @@ value: [6096.48]
 unc: [60.965]
 ref: Table 2 and Page 22 of AI-AEC-13070
 description: total density of fuel
+
+type: table
+id: alpha
+unit: SI
+dep1unit:K
+dep1values:[302.328 312.860 330.686 342.818 362.450 387.077 402.068 430.622 454.891 482.015 508.066 541.614 523.411 562.668 580.868 604.422 620.479 639.036 658.662 675.077 690.777 707.548 726.460 747.154 766.778 781.230 796.929 811.556 833.321 853.658 872.567 893.617 910.742 929.296 946.777 957.837 972.108 980.668 989.588 999.579 1007.784 1013.493]
+value: [0.00005 0.00013 0.00025 0.00030 0.00041 0.00060 0.00071 0.00091 0.00113 0.00137 0.00163 0.00194 0.00179 0.00218 0.00236 0.00259 0.00279 0.00299 0.00323 0.00341 0.00362 0.00383 0.00406 0.00436 0.00462 0.00479 0.00503 0.00526 0.00557 0.00587 0.00616 0.00647 0.00673 0.00700 0.00729 0.00746 0.00768 0.00786 0.00798 0.00812 0.00826 0.00833]
+ref: NAA-SR-6057 Figure 2
+description: Thermal expansion of UZrH fuel as a function of temperature, data extracted using MATLABS GRABIT add-on
 }
 Reference: Table 2 and Page 22 of AI-AEC-13070
 Description: Hydrided fuel in SNAP8. Atomic densities computed with using dimension and parameters found in Table 2 and Page 22
