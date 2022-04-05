@@ -22,9 +22,8 @@ from snapReactors.containers.component import Component
 from snapReactors.containers.reactor import Reactor
 from snapReactors.containers.materials import Material, CTYPE, UTYPE
 from snapReactors.containers.property import Property, DTYPE, VTYPE 
-from mdutils.mdutils import MdUtils
 from snapReactors.functions.utilities import createDictFromConatinerList
-
+from mdutils.mdutils import MdUtils
 import h5py as h5
 import sympy as sp
 import copy
@@ -558,40 +557,55 @@ class Database:
             for rs in range(0, len(self._reactors[r]._reactorstates)):
                 # mapStr = mapStr + "\t"+ self._reactors[r]._reactorstates[rs].id + "\n"
                 # mapStr = mapStr + "\t\tComponents:" + "\n"
-                verCompStr = \
-                "***----------------------------------------------------------***\n"+\
-                "\t\t\t\t\t\tVerified Components\n" + \
-                "***----------------------------------------------------------***\n"
-                unverCompStr = \
-                "***----------------------------------------------------------***\n"+\
-                "\t\t\t\t\t\tUnverified Components\n" + \
-                "***----------------------------------------------------------***\n"
+                verCompStr = ""
+                # verCompStr = \
+                # "***----------------------------------------------------------***\n"+\
+                # "\t\t\t\t\t\tVerified Components\n" + \
+                # "***----------------------------------------------------------***\n"
+                unverCompStr = ""
+                # unverCompStr = \
+                # "***----------------------------------------------------------***\n"+\
+                # "\t\t\t\t\t\tUnverified Components\n" + \
+                # "***----------------------------------------------------------***\n"
                 for i in range(0, len(self._reactors[r]._reactorstates[rs]._components)):
-                    if self._reactors[r]._reactorstates[rs]._components[i].isVerified:
-                        verCompStr = verCompStr + self._reactors[r]._reactorstates[rs]._components[i].id + "\n"
-                    else:
-                        unverCompStr = unverCompStr + self._reactors[r]._reactorstates[rs]._components[i].id + "\n"
+                #     if self._reactors[r]._reactorstates[rs]._components[i].isVerified:
+                #         verCompStr = verCompStr + self._reactors[r]._reactorstates[rs]._components[i].id + "\n"
+                #     else:
+                #         unverCompStr = unverCompStr + self._reactors[r]._reactorstates[rs]._components[i].id + "\n"
+                    verMatStr = \
+                    "***----------------------------------------------------------***\n"+\
+                    "\t\t\t\t\t\t" + self._reactors[r]._reactorstates[rs]._components[i].id +" Verified Materials\n" + \
+                    "***----------------------------------------------------------***\n"
+                    unverMatStr = \
+                    "***----------------------------------------------------------***\n"+\
+                    "\t\t\t\t\t\t" + self._reactors[r]._reactorstates[rs]._components[i].id +" Unverified Materials\n" + \
+                    "***----------------------------------------------------------***\n"
+                    for j in range(0, len(self._reactors[r]._reactorstates[rs]._components[i]._materials)):
+                        if self._reactors[r]._reactorstates[rs]._components[i]._materials[j].isVerified:
+                            verMatStr = verMatStr + self._reactors[r]._reactorstates[rs]._components[i]._materials[j].id+ " " + self._reactors[r]._reactorstates[rs]._components[i]._materials[j].referenceCalcFile + "\n"
+                        else:
+                            unverMatStr = unverMatStr + self._reactors[r]._reactorstates[rs]._components[i]._materials[j].id +"\n"
+                        collPropStr = \
+                        "***----------------------------------------------------------***\n"+\
+                        "\t\t\t\t\t\t" + self._reactors[r]._reactorstates[rs]._components[i]._materials[j].id +" Collected Properties\n" + \
+                        "***----------------------------------------------------------***\n"
+                        uncollPropStr = \
+                        "***----------------------------------------------------------***\n"+\
+                        "\t\t\t\t\t\t" + self._reactors[r]._reactorstates[rs]._components[i]._materials[j].id +" Uncollected Properties\n" + \
+                        "***----------------------------------------------------------***\n"
+                        copiedProps = copy.deepcopy(ALLOWED_PROPERTIES)
+                        for k in range(0, len(self._reactors[r]._reactorstates[rs]._components[i]._materials[j]._properties)):
+                            collPropStr = collPropStr + self._reactors[r]._reactorstates[rs]._components[i]._materials[j]._properties[k].id + "\n"
+                            copiedProps.pop(self._reactors[r]._reactorstates[rs]._components[i]._materials[j]._properties[k].id)
+                        for key in copiedProps:
+                            uncollPropStr = uncollPropStr + key +"\n"
+                        unverMatStr = unverMatStr + collPropStr + uncollPropStr
 
-        # verMatStr = \
-        # "***----------------------------------------------------------***\n"+\
-        # "\t\t\t\t\t\tVerified Materials\n" + \
-        # "***----------------------------------------------------------***\n"
-        # verMatStr = verMatStr + 1
-    
-        # unverMatStr = \
-        # "***----------------------------------------------------------***\n"+\
-        # "\t\t\t\t\t\tUnverified Materials\n" + \
-        # "***----------------------------------------------------------***\n"
-        # unverMatStr = unverMatStr + 1
-                    # mapStr = mapStr +"\t\t"+ self._reactors[r]._reactorstates[rs]._components[i].id + "\n"
-                    # mapStr = mapStr + "\t\t\tMaterials:" + "\n"
-                    # for j in range(0, len(self._reactors[r]._reactorstates[rs]._components[i]._materials)):
-                    #     mapStr = mapStr+"\t\t\t"+self._reactors[r]._reactorstates[rs]._components[i]._materials[j].id+"\n"
-                    #     mapStr = mapStr + "\t\t\t\tProperties:" + "\n"
-                    #     for k in range(0, len(self._reactors[r]._reactorstates[rs]._components[i]._materials[j]._properties)):
-                    #         mapStr = mapStr + "\t\t\t\t" 
-                    #         pid = self._reactors[r]._reactorstates[rs]._components[i]._materials[j]._properties[k].id
-                    #         mapStr = mapStr + pid + "\n"
+
+                    verCompStr = verCompStr + verMatStr
+                    unverCompStr = unverCompStr + unverMatStr
+                        # mapStr = mapStr+"\t\t\t"+self._reactors[r]._reactorstates[rs]._components[i]._materials[j].id+"\n"
+                        # mapStr = mapStr + "\t\t\t\tProperties:" + "\n"
 
         return verCompStr + unverCompStr
     
