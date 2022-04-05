@@ -5,7 +5,6 @@ from snapReactors.containers.materials import Material
 from snapReactors.containers.reactorstate import ReactorState
 from snapReactors.containers.reactor import Reactor
 
-# %%
 filePath = "C:\\Users\\user\\Documents\\Github\\SNAP-REACTORS\\snapReactors\\jupyter_notebooks\\test1.hdf5"
 version1 = "v2_test "
 test1  = Database(filePath=filePath, version=version1, date = "2022-01-25 15:19:53")
@@ -28,5 +27,4 @@ _reactorstates=coldCore)
 test1.addReactors([SNAP8])
 test1._write()
 test1._databaseStatus()
-
 # %%

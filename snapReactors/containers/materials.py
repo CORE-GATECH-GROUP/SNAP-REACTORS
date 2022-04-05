@@ -128,8 +128,8 @@ class Material:
 
     def __init__(self, id, utype, ctype, isotopes, abundances,
                  unc=None, reference=None,
-                 description=None, _properties=None, _referenceCalcFile=None,
-                 _isverified=None):
+                 description=None, _properties=None, referenceCalcFile=None,
+                 isVerified=None):
 
         # check that variables are of correct type (return TypeError if not)
         _isstr(id, "Material name")
@@ -174,14 +174,14 @@ class Material:
         if not isinstance(unc, type(None)):
             _isarray(unc, "material unc")
             
-        if _referenceCalcFile!=None:
-            if not os.path.isfile(_referenceCalcFile):
-                raise OSError("Filename {} is not found".format(_referenceCalcFile))
+        if referenceCalcFile!=None:
+            if not os.path.isfile(referenceCalcFile):
+                raise OSError("Filename {} is not found".format(referenceCalcFile))
             else:
-                if _isverified!=None:
-                    _isstr(_isverified, 'Verifier Name')
+                if isVerified!=None:
+                    _isstr(isVerified, 'Verifier Name')
         else:
-            _isverified=None
+            isVerified=None
 
         self.id = id
         self.utype = UTYPE[utype]
@@ -193,8 +193,8 @@ class Material:
         self.description = description
         self._properties = []
         self._propertiesDict = {}
-        self._referenceCalcFile = _referenceCalcFile
-        self._isverified = _isverified
+        self.referenceCalcFile = referenceCalcFile
+        self.isVerified = isVerified
         
         if not isinstance(_properties, type(None)):
             _isinstanceList(_properties, Property, "List of properties")
@@ -206,13 +206,13 @@ class Material:
         """Overwrites print method, prints all objects variables."""
         return str(vars(self))
 
-    def _isVerified(self,_referenceCalcFile, _isverified):
-        if not os.path.isfile(_referenceCalcFile):
-            raise OSError("Filename {} is not found".format(_referenceCalcFile))
+    def _setIsVerified(self,referenceCalcFile, isVerified):
+        if not os.path.isfile(referenceCalcFile):
+            raise OSError("Filename {} is not found".format(referenceCalcFile))
         else:
-            _isstr(_isverified, 'Verifier Name')
-        self._referenceCalcFile = _referenceCalcFile
-        self._isverified = _isverified
+            _isstr(isVerified, 'Verifier Name')
+        self.referenceCalcFile = referenceCalcFile
+        self.isVerified = isVerified
 
     def addproperty(self, pty):
         """Add data for a specific property

@@ -27,7 +27,7 @@ from snapReactors.functions.utilities import createDictFromConatinerList
 
 import h5py as h5
 import sympy as sp
-
+import copy
 import numpy as np
 
 
@@ -333,22 +333,33 @@ class Database:
         return datasetIds, datasetValues
 
     def _createDatasets(group, container):
-        attrs = list(vars(container).keys())
-        values = list(vars(container).values())
+        containerDict = copy.deepcopy(vars(container))
 
-        removeIdxs= []
+        for key in list(containerDict):
+            if "_" in key:
+                containerDict.pop(key)
+                
+        
+        attrs = list(containerDict.keys())
+        values = list(containerDict.values())
 
-        for i in range(0, len(attrs)):
-            if "_" in attrs[i]:
-                removeIdxs.append(i)
-                # attrs.remove(attrs[i])
-                # values.remove(values[i])
-                # i = i -1
 
-        removeCount = 0
-        for i in range(0, len(removeIdxs)):
-            attrs.remove(attrs[removeIdxs[i] - removeCount])
-            removeCount = removeCount + 1
+        # removeIdxs= []
+
+        # for i in range(0, len(attrs)):
+        #     if "_" in attrs[i]:
+        #         removeIdxs.append(i)
+        #         # attrs.remove(attrs[i])
+        #         # values.remove(values[i])
+        #         # i = i -1
+
+        # removeCount = 0
+        # for i in range(0, len(removeIdxs)):
+        #     print(attrs[removeIdxs[i] - removeCount], values[removeIdxs[i] - removeCount] )
+        #     attrs.remove(attrs[removeIdxs[i] - removeCount])
+        #     values.remove(values[removeIdxs[i] - removeCount])
+
+        #     removeCount = removeCount + 1
         
         for i in range(0, len(values)):
             if isinstance(values[i], type(None)):
@@ -360,7 +371,6 @@ class Database:
                 values[i] = values[i].encode()
             if isinstance(values[i], Enum):
                 values[i] = values[i].value
-
             group.create_dataset(attrs[i], data=values[i])
 
     def _descend_obj(obj,sep='\t'):
@@ -540,6 +550,50 @@ class Database:
                             mapStr = mapStr + pid + "\n"
 
         return mapStr
+
+    def _verfiedStatus(self): 
+        for r in range(0, len(self._reactors)):
+            # mapStr = mapStr + self._reactors[r].id + "\n"
+            # mapStr = mapStr + "\tStates:" + "\n"
+            for rs in range(0, len(self._reactors[r]._reactorstates)):
+                # mapStr = mapStr + "\t"+ self._reactors[r]._reactorstates[rs].id + "\n"
+                # mapStr = mapStr + "\t\tComponents:" + "\n"
+                verCompStr = \
+                "***----------------------------------------------------------***\n"+\
+                "\t\t\t\t\t\tVerified Components\n" + \
+                "***----------------------------------------------------------***\n"
+                unverCompStr = \
+                "***----------------------------------------------------------***\n"+\
+                "\t\t\t\t\t\tUnverified Components\n" + \
+                "***----------------------------------------------------------***\n"
+                for i in range(0, len(self._reactors[r]._reactorstates[rs]._components)):
+                    if self._reactors[r]._reactorstates[rs]._components[i].isVerified:
+                        verCompStr = verCompStr + self._reactors[r]._reactorstates[rs]._components[i].id + "\n"
+                    else:
+                        unverCompStr = unverCompStr + self._reactors[r]._reactorstates[rs]._components[i].id + "\n"
+
+        # verMatStr = \
+        # "***----------------------------------------------------------***\n"+\
+        # "\t\t\t\t\t\tVerified Materials\n" + \
+        # "***----------------------------------------------------------***\n"
+        # verMatStr = verMatStr + 1
+    
+        # unverMatStr = \
+        # "***----------------------------------------------------------***\n"+\
+        # "\t\t\t\t\t\tUnverified Materials\n" + \
+        # "***----------------------------------------------------------***\n"
+        # unverMatStr = unverMatStr + 1
+                    # mapStr = mapStr +"\t\t"+ self._reactors[r]._reactorstates[rs]._components[i].id + "\n"
+                    # mapStr = mapStr + "\t\t\tMaterials:" + "\n"
+                    # for j in range(0, len(self._reactors[r]._reactorstates[rs]._components[i]._materials)):
+                    #     mapStr = mapStr+"\t\t\t"+self._reactors[r]._reactorstates[rs]._components[i]._materials[j].id+"\n"
+                    #     mapStr = mapStr + "\t\t\t\tProperties:" + "\n"
+                    #     for k in range(0, len(self._reactors[r]._reactorstates[rs]._components[i]._materials[j]._properties)):
+                    #         mapStr = mapStr + "\t\t\t\t" 
+                    #         pid = self._reactors[r]._reactorstates[rs]._components[i]._materials[j]._properties[k].id
+                    #         mapStr = mapStr + pid + "\n"
+
+        return verCompStr + unverCompStr
     
     def _databaseStatus(self):
         fileNameStr = ".\\database_status_"+self.version+self.date+".txt"
@@ -554,6 +608,9 @@ class Database:
         datbaseInfoStr = datbaseInfoStr + "Database Most Recent Modification Date/Time: " + self.date +"\n\n"
 
         fileStr = datbaseInfoStr + self.map()
+
+        fileStr = fileStr + self._verfiedStatus()
+
         text_file.write(fileStr)
         text_file.close()
         return fileStr

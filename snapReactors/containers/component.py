@@ -62,6 +62,7 @@ class Component:
         self.id = compName
         self._materials = []
         self._materialsDict = {}
+        self.isVerified = False
 
         if not isinstance(_materials, type(None)):
             _isinstanceList(_materials, Material, "List of materials")
