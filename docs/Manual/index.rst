@@ -12,14 +12,18 @@ Add/Edit Data
 
 Multiple containers exist to enable easy addition and edit of data
 
-	1. :ref:`Material Container <material_cont>`: define a single or multiple ``TransmutationData`` containers.
-	2. Component Container
-	3. Other containers
-	
+    1. :ref:`Property Container <property>`
+    2. :ref:`Material Container <materials>`
+    3. :ref:`Component Container <components>`
+    4. :ref:`ReactorState Container <reactorState>`
+    5. :ref:`Reactor Container <reactor>`
+    6. :ref:`Database Container <database_cont>`
+    
+
 Feeding in Properties
 ---------------------
-	1. :ref:`Database Container <database_cont>`
-	
+    1. :ref:`Memory Based Approach <database_cont>`
+    2. :ref:`Input File Based Approach <database_cont>`
 
 Obtain and Process Data
 -----------------------
@@ -53,7 +57,7 @@ The following sub-sections describe the data stored on each container:
    :hidden:
    :caption: Contents:
 
-   material_cont.rst
+   materials.rst
    database_cont.rst
 
 

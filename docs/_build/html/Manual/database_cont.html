@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Examples" href="../Examples/index.html" />
-    <link rel="prev" title="Data Generation" href="material_cont.html" />
+    <link rel="prev" title="Materials Container" href="materials.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -46,7 +46,7 @@ from an hdf5 database.</p></li>
 description of what modifications were made.</p></li>
 </ul>
 <section id="code">
-<h2>Code:<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">snapReactors.library.database</span> <span class="kn">import</span> <span class="n">Database</span>
 <span class="kn">from</span> <span class="nn">snapReactors.containers.component</span> <span class="kn">import</span> <span class="n">Component</span>
 <span class="kn">from</span> <span class="nn">snapReactors.containers.materials</span> <span class="kn">import</span> <span class="n">Material</span>
@@ -90,7 +90,7 @@ are taken:</p>
 <span class="n">Database</span><span class="o">.</span><span class="n">_h5dump</span><span class="p">(</span><span class="s1">&#39;example.hdf5&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<pre class="literal-block">[&lt;snapReactors.containers.materials.Material object at 0x0000024551B33460&gt;, &lt;snapReactors.containers.materials.Material object at 0x0000024551B33520&gt;]
+<pre class="literal-block">[&lt;snapReactors.containers.materials.Material object at 0x000001B7E0C9C280&gt;, &lt;snapReactors.containers.materials.Material object at 0x000001B7E0C9CD90&gt;]
      - c1 : &lt;HDF5 group &quot;/c1&quot; (3 members)&gt;
              - id : &lt;HDF5 dataset &quot;id&quot;: shape (), type &quot;<a href="#id1"><span class="problematic" id="id2">|</span></a>O&quot;&gt;
 b'c1'
@@ -406,7 +406,7 @@ etc).</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">ex2</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;filePath&#39;</span><span class="p">:</span> <span class="s1">&#39;example.hdf5&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;v0.2.0&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="s1">&#39;2022-01-31 15:32:13&#39;</span><span class="p">,</span> <span class="s1">&#39;reactors&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;components&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">snapReactors</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">component</span><span class="o">.</span><span class="n">Component</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x000002454E1B7250</span><span class="o">&gt;</span><span class="p">]}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;filePath&#39;</span><span class="p">:</span> <span class="s1">&#39;example.hdf5&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;v0.2.0&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="s1">&#39;2022-01-31 15:32:13&#39;</span><span class="p">,</span> <span class="s1">&#39;reactors&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;components&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">snapReactors</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">component</span><span class="o">.</span><span class="n">Component</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x000001B7DD23F0D0</span><span class="o">&gt;</span><span class="p">]}</span>
 </pre></div>
 </div>
 </section>
@@ -435,7 +435,7 @@ the bottom of README.md. An example is shown below:</p>
 
 
 <h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">**CONTENTS**:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Project Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributors.html">Developer Team</a></li>
@@ -452,7 +452,7 @@ the bottom of README.md. An example is shown below:</p>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="index.html">User’s Manual</a><ul>
-      <li>Previous: <a href="material_cont.html" title="previous chapter">Data Generation</a></li>
+      <li>Previous: <a href="materials.html" title="previous chapter">Materials Container</a></li>
       <li>Next: <a href="../Examples/index.html" title="next chapter">Examples</a></li>
   </ul></li>
   </ul></li>

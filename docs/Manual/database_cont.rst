@@ -64,6 +64,7 @@ are taken:
 
 
 .. parsed-literal::
+
     [<snapReactors.containers.materials.Material object at 0x000001B7E0C9C280>, <snapReactors.containers.materials.Material object at 0x000001B7E0C9CD90>]
     	 - c1 : <HDF5 group "/c1" (3 members)>
     		 - id : <HDF5 dataset "id": shape (), type "|O">
@@ -365,7 +366,6 @@ are taken:
     				 - dependencyUnit2 : <HDF5 dataset "dependencyUnit2": shape (), type "|O">
     b'Pa'
     
-
 Loading data from existing database
 -----------------------------------
 

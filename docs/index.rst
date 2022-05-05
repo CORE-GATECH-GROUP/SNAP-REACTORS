@@ -15,7 +15,7 @@ Python package to interact with ....
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contents:
+   :caption: **CONTENTS**:
    
    overview
    contributors
