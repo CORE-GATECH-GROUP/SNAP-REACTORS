@@ -2,14 +2,12 @@
 
 /*
 General comments: 
-The internal reflector and control drums have been added to the core 
-with some initial k-calculations with control drums fully rotated in
-and at room temperature. The results yielded values ~1.09 which are 
-to be expected given that the safety mechanisms control reactivity 
-by facing away from the core. Next steps are to run calculations at
-different temperatures to get reactivity coefficient values and compare
-to SNAP8ER recorded data. Serpent has branch calculations that can be
-ran, python script to process data should be made at some point. 
+Internal reflectors within core have been added, thus upper and
+lower grid spaces must be added next as well as the concrete vessel
+unit. It would seem that the addition of the reflectors leave reactivity 
+value substantially higher at around 1.12, while the reported value 
+in documentation is about 1.083. I'm not sure where this additional portion of reactivity
+is being found in, but the geomeetry itself is right with what's seen in documentation. 
 */
 
 % --- Problem title:
@@ -19,7 +17,7 @@ set title "SNAP 8"
 % --- Cross section library file path:
 
 set acelib "/hpc-common/data/serpent/xsdata/endfb71_edep/endfb71_edep.xsdata"
-
+% therm ZrH1  "/hpc-common/data/serpent/xsdata/endfb71_edep/zrh_EDF71.ace" 
 % --- Decay and fission yield libraries:
 
 set declib "/hpc-common/data/serpent/xsdata/sss_endfb7.dec"
@@ -33,8 +31,19 @@ set nfylib "/hpc-common/data/serpent/xsdata/sss_endfb7.nfy"
 
 % --- UZr-H fuel, average initial enrichment 93.15% (NAA-SR-9642, pg. 14):
 %   Moderator scattering did not work, ENDFB8 data did not run with Serpent 1.1.7
+% note that 0.06c is at a higher temperature and original density is 6.0968
+mat UZrH -6.0968   %moder ZrH1 1001  %moder ZrH2 40000
+ 1001.03c   6.000E-2
+ 1002.03c   8.700E-6
+92235.03c   1.455E-3
+92238.03c   1.057E-4
+40090.03c   1.864E-2
+40091.03c   4.064E-3
+40092.03c   6.212E-3
+40094.03c   6.295E-3
+40096.03c   1.014E-3 %Zr abundances based off of https://www.ciaaw.org/zirconium.htm
 
-mat UZrH sum    %moder ZrH1 1001 moder ZrH2 40000
+mat UZrH_dens -5.9562    %moder ZrH1 1001 moder ZrH2 40000
  1001.03c   6.000E-2
  1002.03c   8.700E-6
 92235.03c   1.455E-3
@@ -249,6 +258,11 @@ mat ceramic   sum
 mat intatm  -1.574E-5   % g/cm^3
 2004.03c    -1.0
 
+mat nak  -0.880
+11023.03c     -2.20000E-01
+19039.03c    -7.27413E-01
+19040.03c    -9.12600E-05
+19041.03c    -5.24956E-02
 % ------------------------------------------------------------
 
 /************************
@@ -265,17 +279,24 @@ pin pFuel
 UZrH     0.695325
 ceramic  0.6985
 hasteN   0.7112
-intatm
+nak
 
 % --- Dummy Lucite Pin (same size as fuel pin, 0.56in OD)
 pin pLuc
 lucite   0.7112
-intatm
+nak
 
 % --- Empty (He) Space
 pin pHe
 intatm
 
+% --- NaK Space
+pin pNaK
+nak
+
+% --- Beryllium Space
+pin pBe
+Be
 % --------------------- 
 % Surface Definitions 
 % ---------------------
@@ -286,7 +307,7 @@ intatm
 surf S5 cyl 0.0 0.0 11.87704 -18.3769 18.3769
 surf S6 pz -18.3769
 surf S7 pz 18.3769
-surf SCube cube  0.0 0.0 0.0 50.0
+surf SCube cube  0.0 0.0 0.0 22.9
 
 % --- surfaces for drums 
 surf sDrum1 cyl  23.972012 0.0 11.9126 -18.3769 18.3769
@@ -294,7 +315,16 @@ surf sDrum2 cyl -23.972012 0.0 11.9126 -18.3769 18.3769
 surf sDrum3 cyl  11.9860  20.7604 11.9126 -18.3769 18.3769
 surf sDrum4 cyl -11.9860  20.7604 11.9126 -18.3769 18.3769
 surf sDrum5 cyl -11.9860 -20.7604 11.9126 -18.3769 18.3769
-surf sDrum6 cyl  11.9860 -20.7604 11.9126 -18.3769 18.3769  
+surf sDrum6 cyl  11.9860 -20.7604 11.9126 -18.3769 18.3769 
+
+% --- surfaces for internal reflectors
+surf srefl1 plane  0      10.8668 0 118.0885
+surf srefl2 plane -9.4109  5.4334 0 118.0885
+surf srefl3 plane -9.4109 -5.4334 0 118.0885 
+surf srefl4 plane  0     -10.8668 0 118.0885
+surf srefl5 plane  9.4109 -5.4334 0 118.0885
+surf srefl6 plane  9.4109  5.4334 0 118.0885
+
 % --- Hexagonal surfrace for reflector core boundaries, 9.352in OD + 0.0818 reflector radial thickness at thinnest point
 %     + 4.68 drum radius =23.972012 cm radial distance flat to flat x-hexagonal (NAA-SR-9642, pg. 13)
 %     Note that the actual thickest portion of the drum is noted as 3 inches which makes the half distance from flat point
@@ -313,10 +343,13 @@ cell cFP0 1 fill pFuel S6 -S7
 %     lucite pins are part of universe "2"
 cell cLP0 2 fill pLuc S6 -S7
 
-% --- Defining cells to create 3D universe for He pins
-%     He space is part of universe "3"
-cell cHe0 3 fill pHe S6 -S7
+% --- Defining cells to create 3D universe for NaK pins
+%     NaK space is part of universe "3"
+cell cNaK 3 fill pNaK S6 -S7
 
+% --- Defining cells to create 3d universe for Be pins to simulate 
+%     internal Be near core
+cell cBe 4 fill pBe S6 -S7
 % --- Latice x-type hexagonal, pitch = 0.57in (NAA-SR-9642, pg. 19)
 %     Lattice universe is part of universe "core"
 % lat Uni Type x_o y_o UNI
@@ -344,15 +377,21 @@ lat lattice 2 0.0 0.0 21 21 1.4478
                                         3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 % --- These cells define the reactor i.e. cutting off the "core"
 %     universe with cylindrical boundaries
-cell cRadialCore  core fill lattice   -S5
+cell cRadialCore  core fill lattice   -S5 -srefl1 -srefl2 -srefl3 -srefl4 -srefl5 -srefl6
+cell cCoreRefl1   core  BeO srefl1 -S5
+cell cCoreRefl2   core  BeO srefl2 -S5
+cell cCoreRefl3   core  BeO srefl3 -S5
+cell cCoreRefl4   core  BeO srefl4 -S5
+cell cCoreRefl5   core  BeO srefl5 -S5
+cell cCoreRefl6   core  BeO srefl6 -S5 
 cell cDrums1      core  Be -sDrum1 -S8
 cell cDrums2      core  Be -sDrum2 -S8
 cell cDrums3      core  Be -sDrum3 -S8
 cell cDrums4      core  Be -sDrum4 -S8
 cell cDrums5      core  Be -sDrum5 -S8
 cell cDrums6      core  Be -sDrum6 -S8
-cell cinternRef   core  BeO sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5 -S8
-cell cdrumoutside core  intatm S8
+cell cinternRef   core  Be sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5 -S8
+cell cdrumoutside core  void  S8
 %  ------- This lines were of the older model -------
 %cell cDrumsoutside drum outside sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5
 %cell cRadialOutside0   reactor outside      S5  
@@ -387,7 +426,7 @@ set bc 1
 
 % --- Neutron population: 10000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 1000 40 20
+set pop 10000 60 20
 
 % --- XY-plot (3), which is 700 by 700 pixels and covers the whole geometry
 
@@ -397,3 +436,7 @@ plot 11 1000 1000
 % --- XY-meshplot (3), which is 700 by 700 pixels and covers the whole geometry
 
 mesh 3 900 900
+%branch Fhi  stp UZrH -6.0968 600
+%branch dens repm UZrH UZrH_dens
+%set power 1000 
+%dep daystep 10 20 30
