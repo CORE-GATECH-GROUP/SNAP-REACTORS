@@ -185,7 +185,7 @@ mat lucite   -1.19
 %6013.03c     -0.0064183736
 8016.03c     -0.319614  %O16
 
-% --- Be       https://en.wikipedia.org/wiki/Beryllium
+% --- Be     
 %  needed for External reflectors (NAA-SR-9642, pg. 14)
 
 mat Be       -1.85
@@ -279,7 +279,8 @@ pin pFuel
 UZrH     0.695325
 ceramic  0.6985
 hasteN   0.7112
-nak
+void
+%intatm
 
 % --- Dummy Lucite Pin (same size as fuel pin, 0.56in OD)
 pin pLuc
@@ -297,6 +298,28 @@ nak
 % --- Beryllium Space
 pin pBe
 Be
+
+% --- Upper Grid Plating
+pin SS
+ss316
+
+% --- Upper Grid Holes
+pin pSS
+void 0.1984
+ss316
+
+% --- Lower Grid Plating
+pin Hc
+hasteC
+
+% --- Lower Grid Holes
+pin pHc
+void 0.15875
+hasteC 
+
+% --- void Pin
+pin pvoid
+void
 % --------------------- 
 % Surface Definitions 
 % ---------------------
@@ -307,16 +330,43 @@ Be
 surf S5 cyl 0.0 0.0 11.87704 -18.3769 18.3769
 surf S6 pz -18.3769
 surf S7 pz 18.3769
+surf SUG cyl 0.0 0.0 11.87704  18.3769  19.2500 % for upper grid plate
+surf SLG cyl 0.0 0.0 11.87704 -19.1707 -18.3769 % for lower grid plate
+surf S10 pz 19.2500
+surf S11 pz -19.1707
 surf SCube cube  0.0 0.0 0.0 22.9
 
 % --- surfaces for drums 
 surf sDrum1 cyl  23.972012 0.0 11.9126 -18.3769 18.3769
-surf sDrum2 cyl -23.972012 0.0 11.9126 -18.3769 18.3769
-surf sDrum3 cyl  11.9860  20.7604 11.9126 -18.3769 18.3769
-surf sDrum4 cyl -11.9860  20.7604 11.9126 -18.3769 18.3769
+surf sDrum4 cyl -23.972012 0.0 11.9126 -18.3769 18.3769
+surf sDrum2 cyl  11.9860  20.7604 11.9126 -18.3769 18.3769
+surf sDrum3 cyl -11.9860  20.7604 11.9126 -18.3769 18.3769
 surf sDrum5 cyl -11.9860 -20.7604 11.9126 -18.3769 18.3769
 surf sDrum6 cyl  11.9860 -20.7604 11.9126 -18.3769 18.3769 
-
+ % Note that shims go in order from outside to inside A->C->B
+surf sShimZ1 pz  15.24
+surf sShimZ2 pz -15.24
+% --- surfaces for A shims
+surf sShimA1 plane  17.7998 0       0 316.8333
+surf sShimA2 plane  8.8999  15.4151 0 316.8333
+surf sShimA3 plane -8.8999  15.4151 0 316.8333
+surf sShimA4 plane -17.7998 0       0 316.8333
+surf sShimA5 plane -8.8999 -15.4151 0 316.8333
+surf sShimA6 plane  8.8999 -15.4151 0 316.8333
+% --- surfaces for C shims
+surf sShimC1 plane  14.9296  0       0 228.8933
+surf sShimC2 plane   7.4648  12.9294 0 228.8933
+surf sShimC3 plane  -7.4648  12.9294 0 228.8933
+surf sShimC4 plane -14.9296  0       0 228.8933
+surf sShimC5 plane  -7.4648 -12.9294 0 228.8933
+surf sShimC6 plane   7.4648 -12.9294 0 228.8933
+% --- surfaces for B shims
+surf sShimB1 plane  12.6944   0      0 161.1481
+surf sShimB2 plane   6.3472  10.9937 0 161.1481
+surf sShimB3 plane  -6.3472  10.9937 0 161.1481
+surf sShimB4 plane -12.6944   0      0 161.1481
+surf sShimB5 plane  -6.3472 -10.9937 0 161.1481
+surf sShimB6 plane   6.3472 -10.9937 0 161.1481
 % --- surfaces for internal reflectors
 surf srefl1 plane  0      10.8668 0 118.0885
 surf srefl2 plane -9.4109  5.4334 0 118.0885
@@ -345,11 +395,26 @@ cell cLP0 2 fill pLuc S6 -S7
 
 % --- Defining cells to create 3D universe for NaK pins
 %     NaK space is part of universe "3"
-cell cNaK 3 fill pNaK S6 -S7
+%     this is made as void for now to simulate dry experiment
+%     i.e. no liquid metal running through core
+cell cNaK 3 fill pvoid S6 -S7
 
 % --- Defining cells to create 3d universe for Be pins to simulate 
 %     internal Be near core
 cell cBe 4 fill pBe S6 -S7
+
+% --- Defining cells to create 3d universe for upper plating 
+cell cSSp 5 fill SS S7 -S10
+
+% --- Defining cells to create 3d universe for upper plate holes    
+cell cSS 6 fill pSS S7 -S10
+
+% --- Defining cells to create 3d universe for lower plating
+cell cHcp 7 fill Hc S11 -S6
+
+% --- Defining cells to create 3d universe for lower plate holes
+cell cHc 8 fill pHc S11 -S6
+
 % --- Latice x-type hexagonal, pitch = 0.57in (NAA-SR-9642, pg. 19)
 %     Lattice universe is part of universe "core"
 % lat Uni Type x_o y_o UNI
@@ -375,35 +440,99 @@ lat lattice 2 0.0 0.0 21 21 1.4478
                                     3 3 3 1 1 1 1 1 1 1 3 3 3 3 3 3 3 3 3 3 3 % bottom row, 7 are inside, starting in position 4
                                       3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
                                         3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+lat ugridplate 2 0.0 0.0 21 21 1.4478
+5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+  5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+    5 5 5 5 5 5 5 5 5 5 5 6 6 6 6 6 6 6 5 5 5 % top row, 7 inside, ending in position 4
+      5 5 5 5 5 5 5 5 5 6 6 6 6 6 6 6 6 6 6 5 5 % 60 inside, ending in position 5
+        5 5 5 5 5 5 5 5 6 6 6 6 6 6 6 6 6 6 6 5 5 % 66 inside, ending in position 5
+          5 5 5 5 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 5 5 % 62 inside, ending in position 5
+            5 5 5 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 5 5 % 65 inside, ending in position 5
+              5 5 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 5 5 % 64 inside, ending in position 5
+                5 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 5 5 % 65 inside, ending in position 5
+                  5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 5 5 % 66 inside, ending in position 5
+                    5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 5 5 5 % middle row, 65 inside, starting in position 4
+                      5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 5 5 5 % 65 inside, starting in position 5
+                        5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 5 5 5 5 % 64 inside, starting in position 5
+                          5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 5 5 5 5 5 % 65 inside, starting in position 5
+                            5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 5 5 5 5 5 5 % 62 inside, starting in position 5
+                              5 5 6 6 6 6 6 6 6 6 6 6 6 6 5 5 5 5 5 5 5 % 66 inside, starting in position 5
+                                5 5 6 6 6 6 6 6 6 6 6 6 6 5 5 5 5 5 5 5 5 % 60 inside, starting in position 5
+                                  5 5 6 6 6 6 6 6 6 6 6 6 5 5 5 5 5 5 5 5 5 % 9 inside, starting in position 5
+                                    5 5 5 6 6 6 6 6 6 6 5 5 5 5 5 5 5 5 5 5 5 % bottom row, 7 are inside, starting in position 4
+                                      5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+                                        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+lat lgridplate 2 0.0 0.0 21 21 1.4478
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
+  7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
+    7 7 7 7 7 7 7 7 7 7 7 8 8 8 8 8 8 8 7 7 7 % top row, 7 inside, ending in position 4
+      7 7 7 7 7 7 7 7 7 8 8 8 8 8 8 8 8 8 8 7 7 % 80 inside, ending in position 7
+        7 7 7 7 7 7 7 7 8 8 8 8 8 8 8 8 8 8 8 7 7 % 88 inside, ending in position 7
+          7 7 7 7 7 7 7 8 8 8 8 8 8 8 8 8 8 8 8 7 7 % 82 inside, ending in position 7
+            7 7 7 7 7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 7 7 % 87 inside, ending in position 7
+              7 7 7 7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 8 7 7 % 84 inside, ending in position 7
+                7 7 7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 7 7 % 85 inside, ending in position 7
+                  7 7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 7 7 % 86 inside, ending in position 7
+                    7 7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 7 7 7 % middle row, 85 inside, starting in position 4
+                      7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 7 7 7 % 85 inside, starting in position 7
+                        7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 7 7 7 7 % 84 inside, starting in position 7
+                          7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 8 7 7 7 7 7 % 87 inside, starting in position 7
+                            7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 7 7 7 7 7 7 % 82 inside, starting in position 7
+                              7 7 8 8 8 8 8 8 8 8 8 8 8 8 7 7 7 7 7 7 7 % 88 inside, starting in position 7
+                                7 7 8 8 8 8 8 8 8 8 8 8 8 7 7 7 7 7 7 7 7 % 80 inside, starting in position 7
+                                  7 7 8 8 8 8 8 8 8 8 8 8 7 7 7 7 7 7 7 7 7 % 9 inside, starting in position 7
+                                    7 7 7 8 8 8 8 8 8 8 7 7 7 7 7 7 7 7 7 7 7 % bottom row, 7 are inside, starting in position 4
+                                      7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
+                                        7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
 % --- These cells define the reactor i.e. cutting off the "core"
 %     universe with cylindrical boundaries
 cell cRadialCore  core fill lattice   -S5 -srefl1 -srefl2 -srefl3 -srefl4 -srefl5 -srefl6
-cell cCoreRefl1   core  BeO srefl1 -S5
-cell cCoreRefl2   core  BeO srefl2 -S5
-cell cCoreRefl3   core  BeO srefl3 -S5
-cell cCoreRefl4   core  BeO srefl4 -S5
-cell cCoreRefl5   core  BeO srefl5 -S5
-cell cCoreRefl6   core  BeO srefl6 -S5 
-cell cDrums1      core  Be -sDrum1 -S8
-cell cDrums2      core  Be -sDrum2 -S8
-cell cDrums3      core  Be -sDrum3 -S8
-cell cDrums4      core  Be -sDrum4 -S8
-cell cDrums5      core  Be -sDrum5 -S8
-cell cDrums6      core  Be -sDrum6 -S8
-cell cinternRef   core  Be sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5 -S8
-cell cdrumoutside core  void  S8
-%  ------- This lines were of the older model -------
-%cell cDrumsoutside drum outside sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5
-%cell cRadialOutside0   reactor outside      S5  
-%cell cRadialOutside1   reactor outside     -S5  -S6
-%cell cRadialOutside2   reactor outside     -S5   S7
-% --- These cells defines the contents located outside the reactor core
-%     but within the vessel
-%cell cHexVessel     vessel fill core -S8
-%cell cHexDrum       vessel fill drum -S8
-%cell cHexOutside0   vessel outside S8
-%cell cHexOutside1   vessel outside -S8 -S6
-%cell cHexOutside2   vessel outside -S8  S7
+cell cInternRefl1   core  BeO srefl1 -S5
+cell cInternRefl2   core  BeO srefl2 -S5
+cell cInternRefl3   core  BeO srefl3 -S5
+cell cInternRefl4   core  BeO srefl4 -S5
+cell cInternRefl5   core  BeO srefl5 -S5
+cell cInternRefl6   core  BeO srefl6 -S5
+% --- Drum1 definitions 
+cell cDrums1 core Be (-sDrum1 sShimZ1 -S8):(-sDrum1 -sShimZ2 -S8):(-sDrum1 -sShimB1 -S8)
+cell cShimB1 core Be sShimB1 -sShimC1 -sShimZ1 sShimZ2 -sDrum1
+cell cShimC1 core void sShimC1 -sShimA1 -sShimZ1 sShimZ2 -sDrum1
+cell cShimA1 core Be sShimA1 -S8 -sShimZ1 sShimZ2 -sDrum1
+% --- Drum2 definitions
+%cell cDrums2 core Be -sDrum2 -S8 
+cell cDrums2 core Be (-sDrum2 sShimZ1 -S8):(-sDrum2 -sShimZ2 -S8):(-sDrum2 -sShimB2 -S8)
+cell cShimB2 core void sShimB2 -sShimC2 -sShimZ1 sShimZ2 -sDrum2
+cell cShimC2 core Be sShimC2 -sShimA2 -sShimZ1 sShimZ2 -sDrum2
+cell cShimA2 core Be sShimA2 -S8 -sShimZ1 sShimZ2 -sDrum2
+% --- Drum3 definitions
+%cell cDrums3 core Be -sDrum3 -S8
+cell cDrums3 core Be (-sDrum3 sShimZ1 -S8):(-sDrum3 -sShimZ2 -S8):(-sDrum3 -sShimB3 -S8)
+cell cShimB3 core void sShimB3 -sShimC3 -sShimZ1 sShimZ2 -sDrum3
+cell cShimC3 core Be sShimC3 -sShimA3 -sShimZ1 sShimZ2 -sDrum3
+cell cShimA3 core Be sShimA3 -S8 -sShimZ1 sShimZ2 -sDrum3
+% --- Drum4 definitions
+%cell cDrums4 core Be -sDrum4 -S8
+cell cDrums4 core Be (-sDrum4 sShimZ1 -S8):(-sDrum4 -sShimZ2 -S8):(-sDrum4 -sShimB4 -S8)
+cell cShimB4 core void sShimB4 -sShimC4 -sShimZ1 sShimZ2 -sDrum4
+cell cShimC4 core Be sShimC4 -sShimA4 -sShimZ1 sShimZ2 -sDrum4
+cell cShimA4 core Be sShimA4 -S8 -sShimZ1 sShimZ2 -sDrum4
+% --- Drum5 definitions
+%cell cDrums5 core Be -sDrum5 -S8
+cell cDrums5 core Be (-sDrum5 sShimZ1 -S8):(-sDrum5 -sShimZ2 -S8):(-sDrum5 -sShimB5 -S8)
+cell cShimB5 core void sShimB5 -sShimC5 -sShimZ1 sShimZ2 -sDrum5
+cell cShimC5 core Be sShimC5 -sShimA5 -sShimZ1 sShimZ2 -sDrum5
+cell cShimA5 core Be sShimA5 -S8 -sShimZ1 sShimZ2 -sDrum5
+% --- Drum6 definitions
+%cell cDrums6 core Be -sDrum6 -S8
+cell cDrums6 core Be (-sDrum6 sShimZ1 -S8):(-sDrum6 -sShimZ2 -S8):(-sDrum6 -sShimB6 -S8)
+cell cShimB6 core void sShimB6 -sShimC6 -sShimZ1 sShimZ2 -sDrum6
+cell cShimC6 core Be sShimC6 -sShimA6 -sShimZ1 sShimZ2 -sDrum6
+cell cShimA6 core Be sShimA6 -S8 -sShimZ1 sShimZ2 -sDrum6
+% --- Misc. Definitions
+cell cStationaryRef   core  Be sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5 -S8
+cell cUpperGrid core fill ugridplate -SUG
+cell cLowerGrid core fill lgridplate -SLG
+cell cDrumOutside core  void  S8 SUG SLG
 
 % --- Cell cIN  is filled with universe "core", also its important to keep in mind that
 %     the "0" universe is the universe for which outside needs to be defined.
@@ -424,13 +553,13 @@ cell cOUT 0 outside SCube
 
 set bc 1
 
-% --- Neutron population: 10000 neutrons per cycle, 60 active / 20 inactive cycles
+% --- Neutron population: 100000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 10000 60 20
+set pop 1000 60 20
 
-% --- XY-plot (3), which is 700 by 700 pixels and covers the whole geometry
+% --- XY-plot (3)
 
-plot 31 1000 1000 
+plot 31 1000 1000  %-19.0 
 plot 21 1000 1000
 plot 11 1000 1000
 % --- XY-meshplot (3), which is 700 by 700 pixels and covers the whole geometry
