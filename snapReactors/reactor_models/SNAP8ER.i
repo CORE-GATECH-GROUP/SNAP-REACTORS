@@ -285,7 +285,8 @@ void
 % --- Dummy Lucite Pin (same size as fuel pin, 0.56in OD)
 pin pLuc
 lucite   0.7112
-nak
+void
+%nak
 
 % --- Empty (He) Space
 pin pHe
@@ -440,6 +441,28 @@ lat lattice 2 0.0 0.0 21 21 1.4478
                                     3 3 3 1 1 1 1 1 1 1 3 3 3 3 3 3 3 3 3 3 3 % bottom row, 7 are inside, starting in position 4
                                       3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
                                         3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+lat C1critload 2 0.0 0.0 21 21 1.4478
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+  3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+    3 3 3 3 3 3 3 3 3 3 3 1 1 1 1 1 1 1 3 3 3 % top row, 7 inside, ending in position 4
+      3 3 3 3 3 3 3 3 3 2 1 1 1 1 1 1 1 1 1 3 3 % 10 inside, ending in position 3
+        3 3 3 3 3 3 3 3 2 2 1 1 1 1 1 1 1 1 1 3 3 % 11 inside, ending in position 3
+          3 3 3 3 3 3 3 2 2 1 1 1 1 1 1 1 1 1 1 3 3 % 12 inside, ending in position 3
+            3 3 3 3 3 3 2 2 1 1 1 1 1 1 1 1 1 1 1 3 3 % 13 inside, ending in position 3
+              3 3 3 3 3 2 2 1 1 1 1 1 1 1 1 1 1 1 1 3 3 % 14 inside, ending in position 3
+                3 3 3 3 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1 3 3 % 15 inside, ending in position 3
+                  3 3 3 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 3 3 % 16 inside, ending in position 3
+                    3 3 3 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 3 3 3 % middle row, 15 inside, starting in position 4
+                      3 3 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 3 3 3 % 15 inside, starting in position 3
+                        3 3 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 3 3 3 3 % 14 inside, starting in position 3
+                          3 3 2 2 1 1 1 1 1 1 1 1 1 1 1 1 3 3 3 3 3 % 13 inside, starting in position 3
+                            3 3 2 1 1 1 1 1 1 1 1 1 1 1 1 3 3 3 3 3 3 % 12 inside, starting in position 3
+                              3 3 2 2 1 1 1 1 1 1 1 1 1 1 3 3 3 3 3 3 3 % 11 inside, starting in position 3
+                                3 3 2 2 1 1 1 1 1 1 1 1 1 3 3 3 3 3 3 3 3 % 10 inside, starting in position 3
+                                  3 3 2 2 2 2 2 2 2 2 1 1 3 3 3 3 3 3 3 3 3 % 9 inside, starting in position 3
+                                    3 3 3 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 % bottom row, 7 are inside, starting in position 4
+                                      3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+                                        3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 lat ugridplate 2 0.0 0.0 21 21 1.4478
 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
   5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
@@ -486,7 +509,7 @@ lat lgridplate 2 0.0 0.0 21 21 1.4478
                                         7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
 % --- These cells define the reactor i.e. cutting off the "core"
 %     universe with cylindrical boundaries
-cell cRadialCore  core fill lattice   -S5 -srefl1 -srefl2 -srefl3 -srefl4 -srefl5 -srefl6
+cell cRadialCore  core fill C1critload   -S5 -srefl1 -srefl2 -srefl3 -srefl4 -srefl5 -srefl6
 cell cInternRefl1   core  BeO srefl1 -S5
 cell cInternRefl2   core  BeO srefl2 -S5
 cell cInternRefl3   core  BeO srefl3 -S5
@@ -494,55 +517,66 @@ cell cInternRefl4   core  BeO srefl4 -S5
 cell cInternRefl5   core  BeO srefl5 -S5
 cell cInternRefl6   core  BeO srefl6 -S5
 % --- Drum1 definitions 
-cell cDrums1 core Be (-sDrum1 sShimZ1 -S8):(-sDrum1 -sShimZ2 -S8):(-sDrum1 -sShimB1 -S8)
-cell cShimB1 core Be sShimB1 -sShimC1 -sShimZ1 sShimZ2 -sDrum1
-cell cShimC1 core void sShimC1 -sShimA1 -sShimZ1 sShimZ2 -sDrum1
-cell cShimA1 core Be sShimA1 -S8 -sShimZ1 sShimZ2 -sDrum1
+cell cDrums1 drum1 Be (-sDrum1 sShimZ1 -S8):(-sDrum1 -sShimZ2 -S8):(-sDrum1 -sShimB1 -S8)
+cell cShimB1 drum1 Be sShimB1 -sShimC1 -sShimZ1 sShimZ2 -sDrum1
+cell cShimC1 drum1 Be sShimC1 -sShimA1 -sShimZ1 sShimZ2 -sDrum1
+cell cShimA1 drum1 Be sShimA1 -S8 -sShimZ1 sShimZ2 -sDrum1
 % --- Drum2 definitions
 %cell cDrums2 core Be -sDrum2 -S8 
-cell cDrums2 core Be (-sDrum2 sShimZ1 -S8):(-sDrum2 -sShimZ2 -S8):(-sDrum2 -sShimB2 -S8)
-cell cShimB2 core void sShimB2 -sShimC2 -sShimZ1 sShimZ2 -sDrum2
-cell cShimC2 core Be sShimC2 -sShimA2 -sShimZ1 sShimZ2 -sDrum2
-cell cShimA2 core Be sShimA2 -S8 -sShimZ1 sShimZ2 -sDrum2
+cell cDrums2 drum2 Be (-sDrum2 sShimZ1 -S8):(-sDrum2 -sShimZ2 -S8):(-sDrum2 -sShimB2 -S8)
+cell cShimB2 drum2 Be sShimB2 -sShimC2 -sShimZ1 sShimZ2 -sDrum2
+cell cShimC2 drum2 Be sShimC2 -sShimA2 -sShimZ1 sShimZ2 -sDrum2
+cell cShimA2 drum2 Be sShimA2 -S8 -sShimZ1 sShimZ2 -sDrum2
 % --- Drum3 definitions
 %cell cDrums3 core Be -sDrum3 -S8
-cell cDrums3 core Be (-sDrum3 sShimZ1 -S8):(-sDrum3 -sShimZ2 -S8):(-sDrum3 -sShimB3 -S8)
-cell cShimB3 core void sShimB3 -sShimC3 -sShimZ1 sShimZ2 -sDrum3
-cell cShimC3 core Be sShimC3 -sShimA3 -sShimZ1 sShimZ2 -sDrum3
-cell cShimA3 core Be sShimA3 -S8 -sShimZ1 sShimZ2 -sDrum3
+cell cDrums3 drum3 Be (-sDrum3 sShimZ1 -S8):(-sDrum3 -sShimZ2 -S8):(-sDrum3 -sShimB3 -S8)
+cell cShimB3 drum3 Be sShimB3 -sShimC3 -sShimZ1 sShimZ2 -sDrum3
+cell cShimC3 drum3 Be sShimC3 -sShimA3 -sShimZ1 sShimZ2 -sDrum3
+cell cShimA3 drum3 Be sShimA3 -S8 -sShimZ1 sShimZ2 -sDrum3
 % --- Drum4 definitions
 %cell cDrums4 core Be -sDrum4 -S8
-cell cDrums4 core Be (-sDrum4 sShimZ1 -S8):(-sDrum4 -sShimZ2 -S8):(-sDrum4 -sShimB4 -S8)
-cell cShimB4 core void sShimB4 -sShimC4 -sShimZ1 sShimZ2 -sDrum4
-cell cShimC4 core Be sShimC4 -sShimA4 -sShimZ1 sShimZ2 -sDrum4
-cell cShimA4 core Be sShimA4 -S8 -sShimZ1 sShimZ2 -sDrum4
+cell cDrums4 drum4 Be (-sDrum4 sShimZ1 -S8):(-sDrum4 -sShimZ2 -S8):(-sDrum4 -sShimB4 -S8)
+cell cShimB4 drum4 Be sShimB4 -sShimC4 -sShimZ1 sShimZ2 -sDrum4
+cell cShimC4 drum4 Be sShimC4 -sShimA4 -sShimZ1 sShimZ2 -sDrum4
+cell cShimA4 drum4 Be sShimA4 -S8 -sShimZ1 sShimZ2 -sDrum4
 % --- Drum5 definitions
 %cell cDrums5 core Be -sDrum5 -S8
-cell cDrums5 core Be (-sDrum5 sShimZ1 -S8):(-sDrum5 -sShimZ2 -S8):(-sDrum5 -sShimB5 -S8)
-cell cShimB5 core void sShimB5 -sShimC5 -sShimZ1 sShimZ2 -sDrum5
-cell cShimC5 core Be sShimC5 -sShimA5 -sShimZ1 sShimZ2 -sDrum5
-cell cShimA5 core Be sShimA5 -S8 -sShimZ1 sShimZ2 -sDrum5
+cell cDrums5 drum5 Be (-sDrum5 sShimZ1 -S8):(-sDrum5 -sShimZ2 -S8):(-sDrum5 -sShimB5 -S8)
+cell cShimB5 drum5 Be sShimB5 -sShimC5 -sShimZ1 sShimZ2 -sDrum5
+cell cShimC5 drum5 Be sShimC5 -sShimA5 -sShimZ1 sShimZ2 -sDrum5
+cell cShimA5 drum5 Be sShimA5 -S8 -sShimZ1 sShimZ2 -sDrum5
 % --- Drum6 definitions
 %cell cDrums6 core Be -sDrum6 -S8
-cell cDrums6 core Be (-sDrum6 sShimZ1 -S8):(-sDrum6 -sShimZ2 -S8):(-sDrum6 -sShimB6 -S8)
-cell cShimB6 core void sShimB6 -sShimC6 -sShimZ1 sShimZ2 -sDrum6
-cell cShimC6 core Be sShimC6 -sShimA6 -sShimZ1 sShimZ2 -sDrum6
-cell cShimA6 core Be sShimA6 -S8 -sShimZ1 sShimZ2 -sDrum6
-% --- Misc. Definitions
-cell cStationaryRef   core  Be sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5 -S8
-cell cUpperGrid core fill ugridplate -SUG
-cell cLowerGrid core fill lgridplate -SLG
-cell cDrumOutside core  void  S8 SUG SLG
+cell cDrums6 drum6 Be (-sDrum6 sShimZ1 -S8):(-sDrum6 -sShimZ2 -S8):(-sDrum6 -sShimB6 -S8)
+cell cShimB6 drum6 Be sShimB6 -sShimC6 -sShimZ1 sShimZ2 -sDrum6
+cell cShimC6 drum6 Be sShimC6 -sShimA6 -sShimZ1 sShimZ2 -sDrum6
+cell cShimA6 drum6 Be sShimA6 -S8 -sShimZ1 sShimZ2 -sDrum6
+% --- stationary reflector
+%cell cStationaryRef   statref  Be sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5 -S8
+% --- fill definitions
+cell cCore reactor fill core -S5
+cell cDrum1 reactor fill drum1 -sDrum1 -S8
+cell cDrum2 reactor fill drum2 -sDrum2 -S8
+cell cDrum3 reactor fill drum3 -sDrum3 -S8
+cell cDrum4 reactor fill drum4 -sDrum4 -S8
+cell cDrum5 reactor fill drum5 -sDrum5 -S8
+cell cDrum6 reactor fill drum6 -sDrum6 -S8
+cell cStationaryRef reactor Be sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5 -S8 
+cell cUpperGrid reactor fill ugridplate -SUG
+cell cLowerGrid reactor fill lgridplate -SLG
+cell cDrumOutside reactor  void  S8 SUG SLG
 
 % --- Cell cIN  is filled with universe "core", also its important to keep in mind that
 %     the "0" universe is the universe for which outside needs to be defined.
 %     Serpent gives the warning that the  '0' universe should be the only one defining outside
 %     although this is not strictly true based on serpent-2 documentation. 
-cell cIN 0 fill core -SCube     
+cell cIN 0 fill reactor -SCube     
 
 % --- Cell cOUT  is defined as everything outside the cubic cell
 cell cOUT 0 outside SCube
 
+trans U core rot 0 0 0 0 0 1 30
+%trans U drum6 rot 11.9860 -20.7604 0 0 0 1 -105 
 % ------------------------------------------------------------
 
 /******************
@@ -555,7 +589,7 @@ set bc 1
 
 % --- Neutron population: 100000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 1000 60 20
+set pop 1000000 60 20
 
 % --- XY-plot (3)
 
