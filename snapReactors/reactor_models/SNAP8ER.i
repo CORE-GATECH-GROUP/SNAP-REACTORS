@@ -2,12 +2,13 @@
 
 /*
 General comments: 
-Internal reflectors within core have been added, thus upper and
-lower grid spaces must be added next as well as the concrete vessel
-unit. It would seem that the addition of the reflectors leave reactivity 
-value substantially higher at around 1.12, while the reported value 
-in documentation is about 1.083. I'm not sure where this additional portion of reactivity
-is being found in, but the geomeetry itself is right with what's seen in documentation. 
+Core Modeling completed to allow for preliminary dry critical configuration 
+comparison with NAA-SR-9642. Work so far indicates that excess reactivity is 100x greater
+than what is seen in Table 2 configuration C-1. Documentation reads that thin layer of 
+poison was added to fuel rods during cry critical configuration. This becomes clear when 
+observing the C-3 configuration, and as a result that configuration will be used for debugging purposes.
+Next change will be to control drum elements since thicknesses were misinterpreted in earlier
+models, especially in regard to ABC shims. This is likely the last source of descrepancy (fingers crossed).
 */
 
 % --- Problem title:
@@ -271,20 +272,30 @@ mat nak  -0.880
 % --------------------- 
 % Fuel Pin Definitions 
 % ---------------------  
-% --- Fuel Pin (0.56in OD, 0.01in Hastelloy N clad, 0.0025in Ceramic Coating, Rest fuel)
+% --- Fuel Pin (0.56in OD, 0.01in Hastelloy N clad, 0.0022in Ceramic Coating, 0.0016 He gap but note He gap is an average,
+to compute the thickness of Sm2O3 poisoning the total weight of SM2O3 was used as standard rather than gap).
 % Ceramic thickness can be found here: SNAP and Al Fuel Summary Report, pg. 4
 % Other dimensions: NAA-SR-9642, pg. 19
 
 pin pFuel
-UZrH     0.695325
-ceramic  0.6985
+UZrH     0.67564
+ceramic  0.681228
+%Sm2O3    0.681736
+Sm2O3    0.681259
+intatm   0.6858
 hasteN   0.7112
 void
+%UZrH     0.695325
+%ceramic  0.6985
+%hasteN   0.7112
+%void
 %intatm
 
 % --- Dummy Lucite Pin (same size as fuel pin, 0.56in OD)
 pin pLuc
-lucite   0.7112
+lucite   0.695325
+ceramic 0.6985
+hasteN 0.7112
 void
 %nak
 
@@ -509,7 +520,7 @@ lat lgridplate 2 0.0 0.0 21 21 1.4478
                                         7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
 % --- These cells define the reactor i.e. cutting off the "core"
 %     universe with cylindrical boundaries
-cell cRadialCore  core fill C1critload   -S5 -srefl1 -srefl2 -srefl3 -srefl4 -srefl5 -srefl6
+cell cRadialCore  core fill lattice -S5 -srefl1 -srefl2 -srefl3 -srefl4 -srefl5 -srefl6
 cell cInternRefl1   core  BeO srefl1 -S5
 cell cInternRefl2   core  BeO srefl2 -S5
 cell cInternRefl3   core  BeO srefl3 -S5
@@ -518,39 +529,39 @@ cell cInternRefl5   core  BeO srefl5 -S5
 cell cInternRefl6   core  BeO srefl6 -S5
 % --- Drum1 definitions 
 cell cDrums1 drum1 Be (-sDrum1 sShimZ1 -S8):(-sDrum1 -sShimZ2 -S8):(-sDrum1 -sShimB1 -S8)
-cell cShimB1 drum1 Be sShimB1 -sShimC1 -sShimZ1 sShimZ2 -sDrum1
+cell cShimB1 drum1 void sShimB1 -sShimC1 -sShimZ1 sShimZ2 -sDrum1
 cell cShimC1 drum1 Be sShimC1 -sShimA1 -sShimZ1 sShimZ2 -sDrum1
-cell cShimA1 drum1 Be sShimA1 -S8 -sShimZ1 sShimZ2 -sDrum1
+cell cShimA1 drum1 void sShimA1 -S8 -sShimZ1 sShimZ2 -sDrum1
 % --- Drum2 definitions
 %cell cDrums2 core Be -sDrum2 -S8 
 cell cDrums2 drum2 Be (-sDrum2 sShimZ1 -S8):(-sDrum2 -sShimZ2 -S8):(-sDrum2 -sShimB2 -S8)
-cell cShimB2 drum2 Be sShimB2 -sShimC2 -sShimZ1 sShimZ2 -sDrum2
+cell cShimB2 drum2 void sShimB2 -sShimC2 -sShimZ1 sShimZ2 -sDrum2
 cell cShimC2 drum2 Be sShimC2 -sShimA2 -sShimZ1 sShimZ2 -sDrum2
-cell cShimA2 drum2 Be sShimA2 -S8 -sShimZ1 sShimZ2 -sDrum2
+cell cShimA2 drum2 void sShimA2 -S8 -sShimZ1 sShimZ2 -sDrum2
 % --- Drum3 definitions
 %cell cDrums3 core Be -sDrum3 -S8
 cell cDrums3 drum3 Be (-sDrum3 sShimZ1 -S8):(-sDrum3 -sShimZ2 -S8):(-sDrum3 -sShimB3 -S8)
-cell cShimB3 drum3 Be sShimB3 -sShimC3 -sShimZ1 sShimZ2 -sDrum3
+cell cShimB3 drum3 void sShimB3 -sShimC3 -sShimZ1 sShimZ2 -sDrum3
 cell cShimC3 drum3 Be sShimC3 -sShimA3 -sShimZ1 sShimZ2 -sDrum3
-cell cShimA3 drum3 Be sShimA3 -S8 -sShimZ1 sShimZ2 -sDrum3
+cell cShimA3 drum3 void sShimA3 -S8 -sShimZ1 sShimZ2 -sDrum3
 % --- Drum4 definitions
 %cell cDrums4 core Be -sDrum4 -S8
 cell cDrums4 drum4 Be (-sDrum4 sShimZ1 -S8):(-sDrum4 -sShimZ2 -S8):(-sDrum4 -sShimB4 -S8)
-cell cShimB4 drum4 Be sShimB4 -sShimC4 -sShimZ1 sShimZ2 -sDrum4
+cell cShimB4 drum4 void sShimB4 -sShimC4 -sShimZ1 sShimZ2 -sDrum4
 cell cShimC4 drum4 Be sShimC4 -sShimA4 -sShimZ1 sShimZ2 -sDrum4
-cell cShimA4 drum4 Be sShimA4 -S8 -sShimZ1 sShimZ2 -sDrum4
+cell cShimA4 drum4 void sShimA4 -S8 -sShimZ1 sShimZ2 -sDrum4
 % --- Drum5 definitions
 %cell cDrums5 core Be -sDrum5 -S8
 cell cDrums5 drum5 Be (-sDrum5 sShimZ1 -S8):(-sDrum5 -sShimZ2 -S8):(-sDrum5 -sShimB5 -S8)
-cell cShimB5 drum5 Be sShimB5 -sShimC5 -sShimZ1 sShimZ2 -sDrum5
+cell cShimB5 drum5 void sShimB5 -sShimC5 -sShimZ1 sShimZ2 -sDrum5
 cell cShimC5 drum5 Be sShimC5 -sShimA5 -sShimZ1 sShimZ2 -sDrum5
-cell cShimA5 drum5 Be sShimA5 -S8 -sShimZ1 sShimZ2 -sDrum5
+cell cShimA5 drum5 void sShimA5 -S8 -sShimZ1 sShimZ2 -sDrum5
 % --- Drum6 definitions
 %cell cDrums6 core Be -sDrum6 -S8
 cell cDrums6 drum6 Be (-sDrum6 sShimZ1 -S8):(-sDrum6 -sShimZ2 -S8):(-sDrum6 -sShimB6 -S8)
-cell cShimB6 drum6 Be sShimB6 -sShimC6 -sShimZ1 sShimZ2 -sDrum6
+cell cShimB6 drum6 void sShimB6 -sShimC6 -sShimZ1 sShimZ2 -sDrum6
 cell cShimC6 drum6 Be sShimC6 -sShimA6 -sShimZ1 sShimZ2 -sDrum6
-cell cShimA6 drum6 Be sShimA6 -S8 -sShimZ1 sShimZ2 -sDrum6
+cell cShimA6 drum6 void sShimA6 -S8 -sShimZ1 sShimZ2 -sDrum6
 % --- stationary reflector
 %cell cStationaryRef   statref  Be sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5 -S8
 % --- fill definitions
@@ -589,7 +600,7 @@ set bc 1
 
 % --- Neutron population: 100000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 1000000 60 20
+set pop 100000 60 20
 
 % --- XY-plot (3)
 
@@ -599,6 +610,7 @@ plot 11 1000 1000
 % --- XY-meshplot (3), which is 700 by 700 pixels and covers the whole geometry
 
 mesh 3 900 900
+mesh 2 900 900
 %branch Fhi  stp UZrH -6.0968 600
 %branch dens repm UZrH UZrH_dens
 %set power 1000 
