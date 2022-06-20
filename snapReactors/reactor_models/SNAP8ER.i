@@ -4,11 +4,13 @@
 General comments: 
 Core Modeling completed to allow for preliminary dry critical configuration 
 comparison with NAA-SR-9642. Work so far indicates that excess reactivity is 100x greater
-than what is seen in Table 2 configuration C-1. Documentation reads that thin layer of 
-poison was added to fuel rods during cry critical configuration. This becomes clear when 
-observing the C-3 configuration, and as a result that configuration will be used for debugging purposes.
-Next change will be to control drum elements since thicknesses were misinterpreted in earlier
-models, especially in regard to ABC shims. This is likely the last source of descrepancy (fingers crossed).
+than what is seen in Table 2 configuration C-1. Unsure of where the extreme discrepancy
+is coming from, likely a missed comment in documentation regarding which control
+elements were in place during the critical configuration. Assuming a total excess reactivity 
+of 8.7% it doesn't make sense that after effectively removing ~38 pins one would only be left
+with 9.7 cents of excess. There must have been some control drum that was entirely rotated out,
+it would make sense that it would have to be a drum on the opposite side of where the lucite region
+is located. 
 */
 
 % --- Problem title:
@@ -272,8 +274,7 @@ mat nak  -0.880
 % --------------------- 
 % Fuel Pin Definitions 
 % ---------------------  
-% --- Fuel Pin (0.56in OD, 0.01in Hastelloy N clad, 0.0022in Ceramic Coating, 0.0016 He gap but note He gap is an average,
-to compute the thickness of Sm2O3 poisoning the total weight of SM2O3 was used as standard rather than gap).
+% --- Fuel Pin (0.56in OD, 0.01in Hastelloy N clad, 0.0022in Ceramic Coating, 0.0016 He gap)
 % Ceramic thickness can be found here: SNAP and Al Fuel Summary Report, pg. 4
 % Other dimensions: NAA-SR-9642, pg. 19
 
@@ -281,7 +282,7 @@ pin pFuel
 UZrH     0.67564
 ceramic  0.681228
 %Sm2O3    0.681736
-Sm2O3    0.681259
+Sm2O3    0.6812587
 intatm   0.6858
 hasteN   0.7112
 void
@@ -346,6 +347,8 @@ surf SUG cyl 0.0 0.0 11.87704  18.3769  19.2500 % for upper grid plate
 surf SLG cyl 0.0 0.0 11.87704 -19.1707 -18.3769 % for lower grid plate
 surf S10 pz 19.2500
 surf S11 pz -19.1707
+%surf S12 cyl 0.0 0.0 11.71829 -18.0594 17.7419
+surf S12 cyl 0.0 0.0 11.71829 -18.3769 18.3769
 surf SCube cube  0.0 0.0 0.0 22.9
 
 % --- surfaces for drums 
@@ -354,31 +357,38 @@ surf sDrum4 cyl -23.972012 0.0 11.9126 -18.3769 18.3769
 surf sDrum2 cyl  11.9860  20.7604 11.9126 -18.3769 18.3769
 surf sDrum3 cyl -11.9860  20.7604 11.9126 -18.3769 18.3769
 surf sDrum5 cyl -11.9860 -20.7604 11.9126 -18.3769 18.3769
-surf sDrum6 cyl  11.9860 -20.7604 11.9126 -18.3769 18.3769 
- % Note that shims go in order from outside to inside A->C->B
+surf sDrum6 cyl  11.9860 -20.7604 11.9126 -18.3769 18.3769
+% --- Cutoff at the end of hexagonal vertex for drums
+surf sCut1 plane     0       20.9     0 436.81
+surf sCut2 plane   -18.0999  10.450   0 436.81
+surf sCut3 plane   -18.0999 -10.450   0 436.81
+surf sCut4 plane     0      -20.9     0 436.81
+surf sCut5 plane    18.0999 -10.45    0 436.81
+surf sCut6 plane    18.0999  10.45    0 436.81 
+ % Note that shims go in order from outside to inside B->A
 surf sShimZ1 pz  15.24
 surf sShimZ2 pz -15.24
-% --- surfaces for A shims
-surf sShimA1 plane  17.7998 0       0 316.8333
-surf sShimA2 plane  8.8999  15.4151 0 316.8333
-surf sShimA3 plane -8.8999  15.4151 0 316.8333
-surf sShimA4 plane -17.7998 0       0 316.8333
-surf sShimA5 plane -8.8999 -15.4151 0 316.8333
-surf sShimA6 plane  8.8999 -15.4151 0 316.8333
-% --- surfaces for C shims
-surf sShimC1 plane  14.9296  0       0 228.8933
-surf sShimC2 plane   7.4648  12.9294 0 228.8933
-surf sShimC3 plane  -7.4648  12.9294 0 228.8933
-surf sShimC4 plane -14.9296  0       0 228.8933
-surf sShimC5 plane  -7.4648 -12.9294 0 228.8933
-surf sShimC6 plane   7.4648 -12.9294 0 228.8933
+% --- surfaces for empty shims
+surf sShimE1 plane  17.8206  0       0 317.5752
+surf sShimE2 plane   8.9103  15.4331 0 317.5752
+surf sShimE3 plane  -8.9103  15.4331 0 317.5752
+surf sShimE4 plane -17.8206  0       0 317.5752
+surf sShimE5 plane  -8.9103 -15.4331 0 317.5752
+surf sShimE6 plane   8.9103 -15.4331 0 317.5752
+% --- surfaces for A  shims
+%surf sShimA1 plane  19.7002  0       0 388.0995
+%surf sShimA2 plane   9.8501  17.0609 0 388.0995
+%surf sShimA3 plane  -9.8501  17.0609 0 388.0995
+%surf sShimA4 plane -19.7002  0       0 388.0995
+%surf sShimA5 plane  -9.8501 -17.0609 0 388.0995
+%surf sShimA6 plane   9.8501 -17.0609 0 388.0995
 % --- surfaces for B shims
-surf sShimB1 plane  12.6944   0      0 161.1481
-surf sShimB2 plane   6.3472  10.9937 0 161.1481
-surf sShimB3 plane  -6.3472  10.9937 0 161.1481
-surf sShimB4 plane -12.6944   0      0 161.1481
-surf sShimB5 plane  -6.3472 -10.9937 0 161.1481
-surf sShimB6 plane   6.3472 -10.9937 0 161.1481
+%surf sShimB1 plane  21.4782   0      0 461.3148
+%surf sShimB2 plane  10.7391  18.6007 0 461.3148
+%surf sShimB3 plane -10.7391  18.6007 0 461.3148
+%surf sShimB4 plane -21.4782   0      0 461.3148
+%surf sShimB5 plane -10.7391 -18.6007 0 461.3148
+%surf sShimB6 plane  10.7391 -18.6007 0 461.3148
 % --- surfaces for internal reflectors
 surf srefl1 plane  0      10.8668 0 118.0885
 surf srefl2 plane -9.4109  5.4334 0 118.0885
@@ -392,7 +402,7 @@ surf srefl6 plane  9.4109  5.4334 0 118.0885
 %     Note that the actual thickest portion of the drum is noted as 3 inches which makes the half distance from flat point
 %     to flat point 9.352 OD + 0.0818 + 3 in drum thickness = 19.704812 cm distance flat to flat x-hexagonal (AI-AEC-13070 
 %     Table 2 Sheet 2 of 4) 
-surf S8 hexxprism 0.0 0.0 19.704812 -18.3769 18.3769
+surf S8 hexxprism 0.0 0.0 19.7002 -18.3769 18.3769
 % --------------------- 
 % Cell Definitions 
 % ---------------------  
@@ -520,54 +530,56 @@ lat lgridplate 2 0.0 0.0 21 21 1.4478
                                         7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
 % --- These cells define the reactor i.e. cutting off the "core"
 %     universe with cylindrical boundaries
-cell cRadialCore  core fill lattice -S5 -srefl1 -srefl2 -srefl3 -srefl4 -srefl5 -srefl6
-cell cInternRefl1   core  BeO srefl1 -S5
-cell cInternRefl2   core  BeO srefl2 -S5
-cell cInternRefl3   core  BeO srefl3 -S5
-cell cInternRefl4   core  BeO srefl4 -S5
-cell cInternRefl5   core  BeO srefl5 -S5
-cell cInternRefl6   core  BeO srefl6 -S5
+cell cRadialCore  core fill lattice -S12 -srefl1 -srefl2 -srefl3 -srefl4 -srefl5 -srefl6
+cell cInternRefl1   core  BeO srefl1 -S12
+cell cInternRefl2   core  BeO srefl2 -S12
+cell cInternRefl3   core  BeO srefl3 -S12
+cell cInternRefl4   core  BeO srefl4 -S12
+cell cInternRefl5   core  BeO srefl5 -S12
+cell cInternRefl6   core  BeO srefl6 -S12
 % --- Drum1 definitions 
-cell cDrums1 drum1 Be (-sDrum1 sShimZ1 -S8):(-sDrum1 -sShimZ2 -S8):(-sDrum1 -sShimB1 -S8)
-cell cShimB1 drum1 void sShimB1 -sShimC1 -sShimZ1 sShimZ2 -sDrum1
-cell cShimC1 drum1 Be sShimC1 -sShimA1 -sShimZ1 sShimZ2 -sDrum1
-cell cShimA1 drum1 void sShimA1 -S8 -sShimZ1 sShimZ2 -sDrum1
+cell cDrums1 drum1 Be (-sDrum1 sShimZ1 -S8 ):(-sDrum1 -sShimZ2 -S8):(-sDrum1 -sShimE1 -S8 )
+cell cShimA1 drum1 Be sShimE1 -S8 -sShimZ1 sShimZ2 -sDrum1
+%cell cShimB1 drum1 Be sShimC1 -sShimA1 -sShimZ1 sShimZ2 -sDrum1
+%cell cCut1 drum1 void sShimA1 -S8 -sShimZ1 sShimZ2 -sDrum1
 % --- Drum2 definitions
 %cell cDrums2 core Be -sDrum2 -S8 
-cell cDrums2 drum2 Be (-sDrum2 sShimZ1 -S8):(-sDrum2 -sShimZ2 -S8):(-sDrum2 -sShimB2 -S8)
-cell cShimB2 drum2 void sShimB2 -sShimC2 -sShimZ1 sShimZ2 -sDrum2
-cell cShimC2 drum2 Be sShimC2 -sShimA2 -sShimZ1 sShimZ2 -sDrum2
-cell cShimA2 drum2 void sShimA2 -S8 -sShimZ1 sShimZ2 -sDrum2
+cell cDrums2 drum2 Be (-sDrum2 sShimZ1 -S8):(-sDrum2 -sShimZ2 -S8):(-sDrum2 -sShimE2 -S8) 
+cell cShimA2 drum2 Be sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 
+%cell cShimA2 drum2 Be sShimC2 -sShimA2 -sShimZ1 sShimZ2 -sDrum2
+%cell cCutD2 drum2 void  -S8 sCut1 sCut6 -sDrum2
 % --- Drum3 definitions
 %cell cDrums3 core Be -sDrum3 -S8
-cell cDrums3 drum3 Be (-sDrum3 sShimZ1 -S8):(-sDrum3 -sShimZ2 -S8):(-sDrum3 -sShimB3 -S8)
-cell cShimB3 drum3 void sShimB3 -sShimC3 -sShimZ1 sShimZ2 -sDrum3
-cell cShimC3 drum3 Be sShimC3 -sShimA3 -sShimZ1 sShimZ2 -sDrum3
-cell cShimA3 drum3 void sShimA3 -S8 -sShimZ1 sShimZ2 -sDrum3
+cell cDrums3 drum3 Be (-sDrum3 sShimZ1 -S8):(-sDrum3 -sShimZ2 -S8):(-sDrum3 -sShimE3 -S8)
+cell cShimA3 drum3 Be sShimE3 -S8 -sShimZ1 sShimZ2 -sDrum3
+%cell cShimA3 drum3 Be sShimC3 -sShimA3 -sShimZ1 sShimZ2 -sDrum3
+%cell cShimB3 drum3 void sShimA3 -S8 -sShimZ1 sShimZ2 -sDrum3
 % --- Drum4 definitions
 %cell cDrums4 core Be -sDrum4 -S8
-cell cDrums4 drum4 Be (-sDrum4 sShimZ1 -S8):(-sDrum4 -sShimZ2 -S8):(-sDrum4 -sShimB4 -S8)
-cell cShimB4 drum4 void sShimB4 -sShimC4 -sShimZ1 sShimZ2 -sDrum4
-cell cShimC4 drum4 Be sShimC4 -sShimA4 -sShimZ1 sShimZ2 -sDrum4
-cell cShimA4 drum4 void sShimA4 -S8 -sShimZ1 sShimZ2 -sDrum4
+cell cDrums4 drum4 Be (-sDrum4 sShimZ1 -S8):(-sDrum4 -sShimZ2 -S8):(-sDrum4 -sShimE4 -S8)
+cell cShimA4 drum4 Be sShimE4 -S8 -sShimZ1 sShimZ2 -sDrum4
+%cell cShimA4 drum4 Be sShimC4 -sShimA4 -sShimZ1 sShimZ2 -sDrum4
+%cell cShimB4 drum4 void sShimA4 -S8 -sShimZ1 sShimZ2 -sDrum4
 % --- Drum5 definitions
 %cell cDrums5 core Be -sDrum5 -S8
-cell cDrums5 drum5 Be (-sDrum5 sShimZ1 -S8):(-sDrum5 -sShimZ2 -S8):(-sDrum5 -sShimB5 -S8)
-cell cShimB5 drum5 void sShimB5 -sShimC5 -sShimZ1 sShimZ2 -sDrum5
-cell cShimC5 drum5 Be sShimC5 -sShimA5 -sShimZ1 sShimZ2 -sDrum5
-cell cShimA5 drum5 void sShimA5 -S8 -sShimZ1 sShimZ2 -sDrum5
+cell cDrums5 drum5 Be (-sDrum5 sShimZ1 -S8):(-sDrum5 -sShimZ2 -S8):(-sDrum5 -sShimE5 -S8)
+cell cShimA5 drum5 Be sShimE5 -S8 -sShimZ1 sShimZ2 -sDrum5
+%cell cShimA5 drum5 Be sShimC5 -sShimA5 -sShimZ1 sShimZ2 -sDrum5
+%cell cShimB5 drum5 void sShimA5 -S8 -sShimZ1 sShimZ2 -sDrum5
 % --- Drum6 definitions
 %cell cDrums6 core Be -sDrum6 -S8
-cell cDrums6 drum6 Be (-sDrum6 sShimZ1 -S8):(-sDrum6 -sShimZ2 -S8):(-sDrum6 -sShimB6 -S8)
-cell cShimB6 drum6 void sShimB6 -sShimC6 -sShimZ1 sShimZ2 -sDrum6
-cell cShimC6 drum6 Be sShimC6 -sShimA6 -sShimZ1 sShimZ2 -sDrum6
-cell cShimA6 drum6 void sShimA6 -S8 -sShimZ1 sShimZ2 -sDrum6
+cell cDrums6 drum6 Be (-sDrum6 sShimZ1 -S8):(-sDrum6 -sShimZ2 -S8):(-sDrum6 -sShimE6 -S8)
+cell cShimA6 drum6 Be sShimE6 -S8 -sShimZ1 sShimZ2 -sDrum6
+%cell cShimA6 drum6 Be sShimC6 -sShimA6 -sShimZ1 sShimZ2 -sDrum6
+%cell cShimB6 drum6 void sShimA6 -S8 -sShimZ1 sShimZ2 -sDrum6
 % --- stationary reflector
 %cell cStationaryRef   statref  Be sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5 -S8
 % --- fill definitions
-cell cCore reactor fill core -S5
+cell cCore reactor fill core -S12
+cell cCoreWall reactor  ss316 S12 -S5
 cell cDrum1 reactor fill drum1 -sDrum1 -S8
 cell cDrum2 reactor fill drum2 -sDrum2 -S8
+%cell cCutD2 reactor void -S8 sCut1 -sDrum2 
 cell cDrum3 reactor fill drum3 -sDrum3 -S8
 cell cDrum4 reactor fill drum4 -sDrum4 -S8
 cell cDrum5 reactor fill drum5 -sDrum5 -S8
@@ -575,7 +587,7 @@ cell cDrum6 reactor fill drum6 -sDrum6 -S8
 cell cStationaryRef reactor Be sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5 -S8 
 cell cUpperGrid reactor fill ugridplate -SUG
 cell cLowerGrid reactor fill lgridplate -SLG
-cell cDrumOutside reactor  void  S8 SUG SLG
+cell cDrumOutside reactor  void S8  SUG SLG 
 
 % --- Cell cIN  is filled with universe "core", also its important to keep in mind that
 %     the "0" universe is the universe for which outside needs to be defined.
@@ -600,7 +612,7 @@ set bc 1
 
 % --- Neutron population: 100000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 100000 60 20
+set pop 1000 60 20
 
 % --- XY-plot (3)
 
