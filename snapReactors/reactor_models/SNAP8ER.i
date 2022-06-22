@@ -30,7 +30,7 @@ set nfylib "/hpc-common/data/serpent/xsdata/sss_endfb7.nfy"
 % --- UZr-H fuel, average initial enrichment 93.15% (NAA-SR-9642, pg. 14):
 %   Moderator scattering did not work, ENDFB8 data did not run with Serpent 1.1.7
 % note that 0.06c is at a higher temperature and original density is 6.0968
-mat UZrH -6.0968   %moder ZrH1 1001  %moder ZrH2 40000
+mat UZrH -6.06   %moder ZrH1 1001  %moder ZrH2 40000
  1001.03c   6.000E-2
  1002.03c   8.700E-6
 92235.03c   1.455E-3
@@ -342,7 +342,7 @@ surf SUG cyl 0.0 0.0 11.87704  18.3769  19.2500 % for upper grid plate
 surf SLG cyl 0.0 0.0 11.87704 -19.1707 -18.3769 % for lower grid plate
 surf S10 pz 19.2500
 surf S11 pz -19.1707
-%surf S12 cyl 0.0 0.0 11.71829 -18.0594 17.7419
+surf S13 cyl 0.0 0.0 11.93 -18.3769 18.3769
 surf S12 cyl 0.0 0.0 11.71829 -18.3769 18.3769
 surf SCube cube  0.0 0.0 0.0 22.9
 
@@ -353,6 +353,13 @@ surf sDrum2 cyl  11.9860  20.7604 11.9126 -18.3769 18.3769
 surf sDrum3 cyl -11.9860  20.7604 11.9126 -18.3769 18.3769
 surf sDrum5 cyl -11.9860 -20.7604 11.9126 -18.3769 18.3769
 surf sDrum6 cyl  11.9860 -20.7604 11.9126 -18.3769 18.3769
+% --- surfaces for void near drums
+surf sVDrum1 cyl  23.972012 0.0    11.95 -18.3769 18.3769
+surf sVDrum4 cyl -23.972012 0.0    11.95 -18.3769 18.3769
+surf sVDrum2 cyl  11.9860  20.7604 11.95 -18.3769 18.3769
+surf sVDrum3 cyl -11.9860  20.7604 11.95 -18.3769 18.3769
+surf sVDrum5 cyl -11.9860 -20.7604 11.95 -18.3769 18.3769
+surf sVDrum6 cyl  11.9860 -20.7604 11.95 -18.3769 18.3769 
 % --- Cutoff at the end of hexagonal vertex for drums
 surf sCut1 plane     0       20.9     0 436.81
 surf sCut2 plane   -18.0999  10.450   0 436.81
@@ -360,7 +367,14 @@ surf sCut3 plane   -18.0999 -10.450   0 436.81
 surf sCut4 plane     0      -20.9     0 436.81
 surf sCut5 plane    18.0999 -10.45    0 436.81
 surf sCut6 plane    18.0999  10.45    0 436.81 
- % Note that shims go in order from outside to inside B->A
+% --- Cutoff for stationary reflectors
+surf sStatCut1 plane     0       18.9     0 357.21
+surf sStatCut2 plane   -16.3679   9.450   0 357.21
+surf sStatCut3 plane   -16.3679  -9.450   0 357.21
+surf sStatCut4 plane     0      -18.9     0 357.21
+surf sStatCut5 plane    16.3679  -9.45    0 357.21
+surf sStatCut6 plane    16.3679   9.45    0 357.21
+% Note that shims go in order from outside to inside B->A
 surf sShimZ1 pz  15.24
 surf sShimZ2 pz -15.24
 % --- surfaces for empty shims
@@ -534,42 +548,42 @@ cell cInternRefl5   core  BeO srefl5 -S12
 cell cInternRefl6   core  BeO srefl6 -S12
 % --- Drum1 definitions 
 cell cDrums1 drum1 Be (-sDrum1 sShimZ1 -S8 -sCut6 -sCut5):(-sDrum1 -sShimZ2 -S8 -sCut6 -sCut5):(-sDrum1 -sShimE1 -S8 -sCut6 -sCut5)
-cell cShimA1 drum1 Be sShimE1 -S8 -sShimZ1 sShimZ2 -sDrum1 -sCut5 -sCut6
+cell cShimA1 drum1 void sShimE1 -S8 -sShimZ1 sShimZ2 -sDrum1 -sCut5 -sCut6
 %cell cShimB1 drum1 Be sShimC1 -sShimA1 -sShimZ1 sShimZ2 -sDrum1
 cell cCutD11 drum1 void -S8 sCut5 -sDrum1
 cell cCutD12 drum1 void -S8 sCut6 -sDrum1
 % --- Drum2 definitions
 %cell cDrums2 core Be -sDrum2 -S8 
 cell cDrums2 drum2 Be (-sDrum2 sShimZ1 -S8 -sCut1 -sCut6):(-sDrum2 -sShimZ2 -S8 -sCut1 -sCut6):(-sDrum2 -sShimE2 -S8 -sCut1 -sCut6)  
-cell cShimA2 drum2 Be sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 -sCut1 -sCut6
+cell cShimA2 drum2 void sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 -sCut1 -sCut6
 %cell cShimB2 drum2 Be sShimC2 -sShimA2 -sShimZ1 sShimZ2 -sDrum2
 cell cCutD21 drum2 void  -S8 sCut1 -sDrum2
 cell cCutD22 drum2 void -S8 sCut6 -sDrum2
 % --- Drum3 definitions
 %cell cDrums3 core Be -sDrum3 -S8
 cell cDrums3 drum3 Be (-sDrum3 sShimZ1 -S8 -sCut1 -sCut2):(-sDrum3 -sShimZ2 -S8 -sCut1 -sCut2):(-sDrum3 -sShimE3 -S8 -sCut1 -sCut2)
-cell cShimA3 drum3 Be sShimE3 -S8 -sShimZ1 sShimZ2 -sDrum3 -sCut1 -sCut2
+cell cShimA3 drum3 void sShimE3 -S8 -sShimZ1 sShimZ2 -sDrum3 -sCut1 -sCut2
 %cell cShimB3 drum3 Be sShimC3 -sShimA3 -sShimZ1 sShimZ2 -sDrum3
 cell cCutD31 drum3 void -S8 sCut2 -sDrum3
 cell cCutD32 drum3 void -S8 sCut1 -sDrum3
 % --- Drum4 definitions
 %cell cDrums4 core Be -sDrum4 -S8
 cell cDrums4 drum4 Be (-sDrum4 sShimZ1 -S8 -sCut2 -sCut3):(-sDrum4 -sShimZ2 -S8 -sCut2 -sCut3):(-sDrum4 -sShimE4 -S8 -sCut2 -sCut3)
-cell cShimA4 drum4 Be sShimE4 -S8 -sShimZ1 sShimZ2 -sDrum4 -sCut2 -sCut3
+cell cShimA4 drum4 void sShimE4 -S8 -sShimZ1 sShimZ2 -sDrum4 -sCut2 -sCut3
 %cell cShimB4 drum4 Be sShimC4 -sShimA4 -sShimZ1 sShimZ2 -sDrum4
 cell cCutD41 drum4 void -S8 sCut3 -sDrum4
 cell cCutD42 drum4 void -S8 sCut2 -sDrum4
 % --- Drum5 definitions
 %cell cDrums5 core Be -sDrum5 -S8
 cell cDrums5 drum5 Be (-sDrum5 sShimZ1 -S8 -sCut3 -sCut4):(-sDrum5 -sShimZ2 -S8 -sCut3 -sCut4):(-sDrum5 -sShimE5 -S8 -sCut3 -sCut4)
-cell cShimA5 drum5 Be sShimE5 -S8 -sShimZ1 sShimZ2 -sDrum5 -sCut3 -sCut4
+cell cShimA5 drum5 void sShimE5 -S8 -sShimZ1 sShimZ2 -sDrum5 -sCut3 -sCut4
 %cell cShimA5 drum5 Be sShimC5 -sShimA5 -sShimZ1 sShimZ2 -sDrum5
 cell cCutD51 drum5 void -S8 sCut4 -sDrum5
 cell cCutD52 drum5 void -S8 sCut3 -sDrum5
 % --- Drum6 definitions
 %cell cDrums6 core Be -sDrum6 -S8
 cell cDrums6 drum6 Be (-sDrum6 sShimZ1 -S8 -sCut4 -sCut5):(-sDrum6 -sShimZ2 -S8 -sCut4 -sCut5):(-sDrum6 -sShimE6 -S8 -sCut4 -sCut5)
-cell cShimA6 drum6 Be sShimE6 -S8 -sShimZ1 sShimZ2 -sDrum6 -sCut4 -sCut5
+cell cShimA6 drum6 void sShimE6 -S8 -sShimZ1 sShimZ2 -sDrum6 -sCut4 -sCut5
 %cell cShimA6 drum6 Be sShimC6 -sShimA6 -sShimZ1 sShimZ2 -sDrum6
 cell cCutD61 drum6 void -S8 sCut5 -sDrum6
 cell cCutD62 drum6 void -S8 sCut4 -sDrum6
@@ -578,18 +592,24 @@ cell cCore reactor fill core -S12
 cell cCoreWall reactor  ss316 S12 -S5
 cell cDrum1 reactor fill drum1 -sDrum1 -S8
 cell cDrum2 reactor fill drum2 -sDrum2 -S8
-%cell cCutD2 reactor void -S8 sCut1 -sDrum2 
 cell cDrum3 reactor fill drum3 -sDrum3 -S8
 cell cDrum4 reactor fill drum4 -sDrum4 -S8
 cell cDrum5 reactor fill drum5 -sDrum5 -S8
 cell cDrum6 reactor fill drum6 -sDrum6 -S8
-cell cStationaryRef reactor Be sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S5 -S8 -sCut1 -sCut2 -sCut3 -sCut4 -sCut5 -sCut6
-cell cStatRefVoid1 reactor void sDrum2 sDrum3 S5 -S8 sCut1
-cell cStatRefVoid2 reactor void sDrum3 sDrum4 S5 -S8 sCut2
-cell cStatRefVoid3 reactor void sDrum4 sDrum5 S5 -S8 sCut3
-cell cStatRefVoid4 reactor void sDrum5 sDrum6 S5 -S8 sCut4
-cell cStatRefVoid5 reactor void sDrum6 sDrum1 S5 -S8 sCut5
-cell cStatRefVoid6 reactor void sDrum1 sDrum2 S5 -S8 sCut6
+cell cStationaryRef reactor Be sVDrum1 sVDrum2 sVDrum3 sVDrum4 sVDrum5 sVDrum6 S13 -S8 -sStatCut1 -sStatCut2 -sStatCut3 -sStatCut4 -sStatCut5 -sStatCut6
+cell cStatRefVoid1 reactor void sDrum2 sDrum3 S13 -S8 sStatCut1
+cell cStatRefVoid2 reactor void sDrum3 sDrum4 S13 -S8 sStatCut2
+cell cStatRefVoid3 reactor void sDrum4 sDrum5 S13 -S8 sStatCut3
+cell cStatRefVoid4 reactor void sDrum5 sDrum6 S13 -S8 sStatCut4
+cell cStatRefVoid5 reactor void sDrum6 sDrum1 S13 -S8 sStatCut5
+cell cStatRefVoid6 reactor void sDrum1 sDrum2 S13 -S8 sStatCut6
+cell cStatRefVoid7 reactor void S5 -S13
+cell cDrumvoid1 reactor void sDrum1 -sVDrum1 -S8 -sStatCut5 -sStatCut6 
+cell cDrumvoid2 reactor void sDrum2 -sVDrum2 -S8 -sStatCut6 -sStatCut1
+cell cDrumvoid3 reactor void sDrum3 -sVDrum3 -S8 -sStatCut1 -sStatCut2
+cell cDrumvoid4 reactor void sDrum4 -sVDrum4 -S8 -sStatCut2 -sStatCut3
+cell cDrumvoid5 reactor void sDrum5 -sVDrum5 -S8 -sStatCut3 -sStatCut4
+cell cDrumvoid6 reactor void sDrum6 -sVDrum6 -S8 -sStatCut4 -sStatCut5
 cell cUpperGrid reactor fill ugridplate -SUG
 cell cLowerGrid reactor fill lgridplate -SLG
 cell cDrumOutside reactor  void S8  SUG SLG 
@@ -617,14 +637,14 @@ set bc 1
 
 % --- Neutron population: 100000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 1000 60 20
+set pop 100000 60 20
 
 % --- XY-plot (3)
 
 plot 31 1000 1000  %-19.0 
-plot 31 1000 1000 17.0 
-%plot 21 1000 1000
-%plot 11 1000 1000
+%plot 31 1000 1000 17.0 
+plot 21 1000 1000
+plot 11 1000 1000
 % --- XY-meshplot (3), which is 700 by 700 pixels and covers the whole geometry
 
 mesh 3 900 900
