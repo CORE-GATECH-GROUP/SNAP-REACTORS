@@ -405,7 +405,30 @@ surf srefl3 plane -9.4109 -5.4334 0 118.0885
 surf srefl4 plane  0     -10.8668 0 118.0885
 surf srefl5 plane  9.4109 -5.4334 0 118.0885
 surf srefl6 plane  9.4109  5.4334 0 118.0885
-
+% --- Begin Surface Definitions for Housing --- %
+surf sHouseZ1 pz  18.21815  
+surf sHouseZ2 pz -18.21815
+surf sHouseZ3 pz  15.39875 
+surf sHouseZ4 pz -15.39875
+surf sHouseD1 cyl  23.972012 0.0    11.75385 -18.3769 18.3769
+surf sHouseD4 cyl -23.972012 0.0    11.75385 -18.3769 18.3769
+surf sHouseD2 cyl  11.9860  20.7604 11.75385 -18.3769 18.3769
+surf sHouseD3 cyl -11.9860  20.7604 11.75385 -18.3769 18.3769
+surf sHouseD5 cyl -11.9860 -20.7604 11.75385 -18.3769 18.3769
+surf sHouseD6 cyl  11.9860 -20.7604 11.75385 -18.3769 18.3769
+surf sHouseE1 plane  17.6619  0       0 311.9409
+surf sHouseE2 plane   8.8309  15.2956 0 311.9409
+surf sHouseE3 plane  -8.8309  15.2956 0 311.9409
+surf sHouseE4 plane -17.6619  0       0 311.9409
+surf sHouseE5 plane  -8.8309 -15.2956 0 311.9409
+surf sHouseE6 plane   8.8309 -15.2956 0 311.9409
+surf sHCut1 plane     0       20.7413  0 430.1995
+surf sHCut2 plane   -17.9624  10.3706  0 430.1995
+surf sHCut3 plane   -17.9624 -10.3706  0 430.1995
+surf sHCut4 plane     0      -20.741   0 430.1995
+surf sHCut5 plane    17.9624 -10.3706  0 430.1995
+surf sHCut6 plane    17.9624  10.3706  0 430.1995
+surf S8House hexxprism 0.0 0.0 19.54145 -18.3769 18.3769
 % --- Hexagonal surfrace for reflector core boundaries, 9.352in OD + 0.0818 reflector radial thickness at thinnest point
 %     + 4.68 drum radius =23.972012 cm radial distance flat to flat x-hexagonal (NAA-SR-9642, pg. 13)
 %     Note that the actual thickest portion of the drum is noted as 3 inches which makes the half distance from flat point
@@ -547,7 +570,9 @@ cell cInternRefl4   core  BeO srefl4 -S12
 cell cInternRefl5   core  BeO srefl5 -S12
 cell cInternRefl6   core  BeO srefl6 -S12
 % --- Drum1 definitions 
-cell cDrums1 drum1 Be (-sDrum1 sShimZ1 -S8 -sCut6 -sCut5):(-sDrum1 -sShimZ2 -S8 -sCut6 -sCut5):(-sDrum1 -sShimE1 -S8 -sCut6 -sCut5)
+%cell cDrums1 drum1 Be (-sDrum1 sShimZ1 -S8 -sCut6 -sCut5):(-sDrum1 -sShimZ2 -S8 -sCut6 -sCut5):(-sDrum1 -sShimE1 -S8 -sCut6 -sCut5)
+cell cHouse1 drum1 ss316 (-sDrum1 -S8 sHouseZ1 -sCut6 -sCut5):(-sDrum1 -S8 -sHouseZ2 -sCut6 -sCut5):(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 -sShimE1):(-S8 S8House -sDrum1 sShimZ1 -sCut6 -sCut5):(-S8 S8House -sDrum1 -sShimZ2 -sCut6 -sCut5):(-sDrum1 -S8 sShimZ1 -sHouseZ3 sHouseE1 -sCut6 -sCut5):(-sDrum1 -S8 -sShimZ2 sHouseZ4 sHouseE1 -sCut6 -sCut5):(-sDrum1 -S8 sHouseE1 -sShimE1 -sHouseZ3 sHouseZ4 -sCut6 -sCut5):(-sDrum1 -S8 -sCut6 sHCut6 sShimZ1):(-sDrum1 -S8 -sCut6 sHCut6 -sShimZ2):(-sDrum1 -S8 -sCut5 sHCut5 sShimZ1):(-sDrum1 -S8 -sCut5 sHCut5 -sShimZ2):(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 sShimZ1):(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 -sShimZ2)
+cell cDrums1 drum1 Be (-sHouseE1 -sHouseD1 -sHouseZ3 sHouseZ4):(-sHouseD1 -S8House -sHouseZ1 sHouseZ3 -sHCut5 -sHCut6):(-sHouseD1 -S8House sHouseZ2 -sHouseZ4 -sHCut5 -sHCut6)
 cell cShimA1 drum1 void sShimE1 -S8 -sShimZ1 sShimZ2 -sDrum1 -sCut5 -sCut6
 %cell cShimB1 drum1 Be sShimC1 -sShimA1 -sShimZ1 sShimZ2 -sDrum1
 cell cCutD11 drum1 void -S8 sCut5 -sDrum1
@@ -555,7 +580,7 @@ cell cCutD12 drum1 void -S8 sCut6 -sDrum1
 % --- Drum2 definitions
 %cell cDrums2 core Be -sDrum2 -S8 
 cell cDrums2 drum2 Be (-sDrum2 sShimZ1 -S8 -sCut1 -sCut6):(-sDrum2 -sShimZ2 -S8 -sCut1 -sCut6):(-sDrum2 -sShimE2 -S8 -sCut1 -sCut6)  
-cell cShimA2 drum2 void sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 -sCut1 -sCut6
+cell cShimA2 drum2 Be sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 -sCut1 -sCut6
 %cell cShimB2 drum2 Be sShimC2 -sShimA2 -sShimZ1 sShimZ2 -sDrum2
 cell cCutD21 drum2 void  -S8 sCut1 -sDrum2
 cell cCutD22 drum2 void -S8 sCut6 -sDrum2
@@ -637,14 +662,15 @@ set bc 1
 
 % --- Neutron population: 100000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 100000 60 20
+set pop 1000 60 20
 
 % --- XY-plot (3)
 
 plot 31 1000 1000  %-19.0 
-%plot 31 1000 1000 17.0 
+plot 31 1000 1000  17.0 
+plot 31 1000 1000 -17.0
 plot 21 1000 1000
-plot 11 1000 1000
+%plot 11 1000 1000
 % --- XY-meshplot (3), which is 700 by 700 pixels and covers the whole geometry
 
 mesh 3 900 900
