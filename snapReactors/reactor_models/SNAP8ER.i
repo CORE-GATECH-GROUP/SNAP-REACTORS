@@ -570,44 +570,67 @@ cell cInternRefl4   core  BeO srefl4 -S12
 cell cInternRefl5   core  BeO srefl5 -S12
 cell cInternRefl6   core  BeO srefl6 -S12
 % --- Drum1 definitions 
-%cell cDrums1 drum1 Be (-sDrum1 sShimZ1 -S8 -sCut6 -sCut5):(-sDrum1 -sShimZ2 -S8 -sCut6 -sCut5):(-sDrum1 -sShimE1 -S8 -sCut6 -sCut5)
-cell cHouse1 drum1 ss316 (-sDrum1 -S8 sHouseZ1 -sCut6 -sCut5):(-sDrum1 -S8 -sHouseZ2 -sCut6 -sCut5):(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 -sShimE1):(-S8 S8House -sDrum1 sShimZ1 -sCut6 -sCut5):(-S8 S8House -sDrum1 -sShimZ2 -sCut6 -sCut5):(-sDrum1 -S8 sShimZ1 -sHouseZ3 sHouseE1 -sCut6 -sCut5):(-sDrum1 -S8 -sShimZ2 sHouseZ4 sHouseE1 -sCut6 -sCut5):(-sDrum1 -S8 sHouseE1 -sShimE1 -sHouseZ3 sHouseZ4 -sCut6 -sCut5):(-sDrum1 -S8 -sCut6 sHCut6 sShimZ1):(-sDrum1 -S8 -sCut6 sHCut6 -sShimZ2):(-sDrum1 -S8 -sCut5 sHCut5 sShimZ1):(-sDrum1 -S8 -sCut5 sHCut5 -sShimZ2):(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 sShimZ1):(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 -sShimZ2)
+cell cHouse1 drum1 ss316 (-sDrum1 -S8 sHouseZ1 -sCut6 -sCut5):(-sDrum1 -S8 -sHouseZ2 -sCut6 -sCut5):(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 -sShimE1):
+(-S8 S8House -sDrum1 sShimZ1 -sCut6 -sCut5):(-S8 S8House -sDrum1 -sShimZ2 -sCut6 -sCut5):(-sDrum1 -S8 sShimZ1 -sHouseZ3 sHouseE1 -sCut6 -sCut5):
+(-sDrum1 -S8 -sShimZ2 sHouseZ4 sHouseE1 -sCut6 -sCut5):(-sDrum1 -S8 sHouseE1 -sShimE1 -sHouseZ3 sHouseZ4 -sCut6 -sCut5):(-sDrum1 -S8 -sCut6 sHCut6 sShimZ1):
+(-sDrum1 -S8 -sCut6 sHCut6 -sShimZ2):(-sDrum1 -S8 -sCut5 sHCut5 sShimZ1):(-sDrum1 -S8 -sCut5 sHCut5 -sShimZ2):(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 sShimZ1):
+(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 -sShimZ2)
 cell cDrums1 drum1 Be (-sHouseE1 -sHouseD1 -sHouseZ3 sHouseZ4):(-sHouseD1 -S8House -sHouseZ1 sHouseZ3 -sHCut5 -sHCut6):(-sHouseD1 -S8House sHouseZ2 -sHouseZ4 -sHCut5 -sHCut6)
 cell cShimA1 drum1 void sShimE1 -S8 -sShimZ1 sShimZ2 -sDrum1 -sCut5 -sCut6
 %cell cShimB1 drum1 Be sShimC1 -sShimA1 -sShimZ1 sShimZ2 -sDrum1
 cell cCutD11 drum1 void -S8 sCut5 -sDrum1
 cell cCutD12 drum1 void -S8 sCut6 -sDrum1
 % --- Drum2 definitions
-%cell cDrums2 core Be -sDrum2 -S8 
-cell cDrums2 drum2 Be (-sDrum2 sShimZ1 -S8 -sCut1 -sCut6):(-sDrum2 -sShimZ2 -S8 -sCut1 -sCut6):(-sDrum2 -sShimE2 -S8 -sCut1 -sCut6)  
-cell cShimA2 drum2 Be sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 -sCut1 -sCut6
+cell cHouse2 drum2 ss316 (-sDrum2 -S8 sHouseZ1 -sCut6 -sCut1):(-sDrum2 -S8 -sHouseZ2 -sCut6 -sCut1):(-sDrum2 -S8 sHouseD2 -sCut6 -sCut1 -sShimE2):
+(-S8 S8House -sDrum2 sShimZ1 -sCut6 -sCut1):(-S8 S8House -sDrum2 -sShimZ2 -sCut6 -sCut1):(-sDrum2 -S8 sShimZ1 -sHouseZ3 sHouseE2 -sCut6 -sCut1):
+(-sDrum2 -S8 -sShimZ2 sHouseZ4 sHouseE2 -sCut6 -sCut1):(-sDrum2 -S8 sHouseE2 -sShimE2 -sHouseZ3 sHouseZ4 -sCut6 -sCut1):(-sDrum2 -S8 -sCut6 sHCut6 sShimZ1):
+(-sDrum2 -S8 -sCut6 sHCut6 -sShimZ2):(-sDrum2 -S8 -sCut1 sHCut1 sShimZ1):(-sDrum2 -S8 -sCut1 sHCut1 -sShimZ2):(-sDrum2 -S8 sHouseD2 -sCut6 -sCut1 sShimZ1):
+(-sDrum2 -S8 sHouseD2 -sCut6 -sCut1 -sShimZ2)
+cell cDrums2 drum2 Be (-sHouseE2 -sHouseD2 -sHouseZ3 sHouseZ4):(-sHouseD2 -S8House -sHouseZ1 sHouseZ3 -sHCut1 -sHCut6):(-sHouseD2 -S8House sHouseZ2 -sHouseZ4 -sHCut1 -sHCut6)
+cell cShimA2 drum2 void sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 -sCut1 -sCut6
 %cell cShimB2 drum2 Be sShimC2 -sShimA2 -sShimZ1 sShimZ2 -sDrum2
 cell cCutD21 drum2 void  -S8 sCut1 -sDrum2
 cell cCutD22 drum2 void -S8 sCut6 -sDrum2
 % --- Drum3 definitions
-%cell cDrums3 core Be -sDrum3 -S8
-cell cDrums3 drum3 Be (-sDrum3 sShimZ1 -S8 -sCut1 -sCut2):(-sDrum3 -sShimZ2 -S8 -sCut1 -sCut2):(-sDrum3 -sShimE3 -S8 -sCut1 -sCut2)
+cell cHouse3 drum3 ss316 (-sDrum3 -S8 sHouseZ1 -sCut2 -sCut1):(-sDrum3 -S8 -sHouseZ2 -sCut2 -sCut1):(-sDrum3 -S8 sHouseD3 -sCut2 -sCut1 -sShimE3):
+(-S8 S8House -sDrum3 sShimZ1 -sCut2 -sCut1):(-S8 S8House -sDrum3 -sShimZ2 -sCut2 -sCut1):(-sDrum3 -S8 sShimZ1 -sHouseZ3 sHouseE3 -sCut2 -sCut1):
+(-sDrum3 -S8 -sShimZ2 sHouseZ4 sHouseE3 -sCut2 -sCut1):(-sDrum3 -S8 sHouseE3 -sShimE3 -sHouseZ3 sHouseZ4 -sCut2 -sCut1):(-sDrum3 -S8 -sCut2 sHCut2 sShimZ1):
+(-sDrum3 -S8 -sCut2 sHCut2 -sShimZ2):(-sDrum3 -S8 -sCut1 sHCut1 sShimZ1):(-sDrum3 -S8 -sCut1 sHCut1 -sShimZ2):(-sDrum3 -S8 sHouseD3 -sCut2 -sCut1 sShimZ1):
+(-sDrum3 -S8 sHouseD3 -sCut2 -sCut1 -sShimZ2)
+cell cDrums3 drum3 Be (-sHouseE3 -sHouseD3 -sHouseZ3 sHouseZ4):(-sHouseD3 -S8House -sHouseZ1 sHouseZ3 -sHCut1 -sHCut2):(-sHouseD3 -S8House sHouseZ2 -sHouseZ4 -sHCut1 -sHCut2)
 cell cShimA3 drum3 void sShimE3 -S8 -sShimZ1 sShimZ2 -sDrum3 -sCut1 -sCut2
 %cell cShimB3 drum3 Be sShimC3 -sShimA3 -sShimZ1 sShimZ2 -sDrum3
 cell cCutD31 drum3 void -S8 sCut2 -sDrum3
 cell cCutD32 drum3 void -S8 sCut1 -sDrum3
 % --- Drum4 definitions
-%cell cDrums4 core Be -sDrum4 -S8
-cell cDrums4 drum4 Be (-sDrum4 sShimZ1 -S8 -sCut2 -sCut3):(-sDrum4 -sShimZ2 -S8 -sCut2 -sCut3):(-sDrum4 -sShimE4 -S8 -sCut2 -sCut3)
+cell cHouse4 drum4 ss316 (-sDrum4 -S8 sHouseZ1 -sCut2 -sCut3):(-sDrum4 -S8 -sHouseZ2 -sCut2 -sCut3):(-sDrum4 -S8 sHouseD4 -sCut2 -sCut3 -sShimE4):
+(-S8 S8House -sDrum4 sShimZ1 -sCut2 -sCut3):(-S8 S8House -sDrum4 -sShimZ2 -sCut2 -sCut3):(-sDrum4 -S8 sShimZ1 -sHouseZ3 sHouseE4 -sCut2 -sCut3):
+(-sDrum4 -S8 -sShimZ2 sHouseZ4 sHouseE4 -sCut2 -sCut3):(-sDrum4 -S8 sHouseE4 -sShimE4 -sHouseZ3 sHouseZ4 -sCut2 -sCut3):(-sDrum4 -S8 -sCut2 sHCut2 sShimZ1):
+(-sDrum4 -S8 -sCut2 sHCut2 -sShimZ2):(-sDrum4 -S8 -sCut3 sHCut3 sShimZ1):(-sDrum4 -S8 -sCut3 sHCut3 -sShimZ2):(-sDrum4 -S8 sHouseD4 -sCut2 -sCut3 sShimZ1):
+(-sDrum4 -S8 sHouseD4 -sCut2 -sCut3 -sShimZ2)
+cell cDrums4 drum4 Be (-sHouseE4 -sHouseD4 -sHouseZ3 sHouseZ4):(-sHouseD4 -S8House -sHouseZ1 sHouseZ3 -sHCut3 -sHCut2):(-sHouseD4 -S8House sHouseZ2 -sHouseZ4 -sHCut3 -sHCut2)
 cell cShimA4 drum4 void sShimE4 -S8 -sShimZ1 sShimZ2 -sDrum4 -sCut2 -sCut3
 %cell cShimB4 drum4 Be sShimC4 -sShimA4 -sShimZ1 sShimZ2 -sDrum4
 cell cCutD41 drum4 void -S8 sCut3 -sDrum4
 cell cCutD42 drum4 void -S8 sCut2 -sDrum4
 % --- Drum5 definitions
-%cell cDrums5 core Be -sDrum5 -S8
-cell cDrums5 drum5 Be (-sDrum5 sShimZ1 -S8 -sCut3 -sCut4):(-sDrum5 -sShimZ2 -S8 -sCut3 -sCut4):(-sDrum5 -sShimE5 -S8 -sCut3 -sCut4)
+cell cHouse5 drum5 ss316 (-sDrum5 -S8 sHouseZ1 -sCut4 -sCut3):(-sDrum5 -S8 -sHouseZ2 -sCut4 -sCut3):(-sDrum5 -S8 sHouseD5 -sCut4 -sCut3 -sShimE5):
+(-S8 S8House -sDrum5 sShimZ1 -sCut4 -sCut3):(-S8 S8House -sDrum5 -sShimZ2 -sCut4 -sCut3):(-sDrum5 -S8 sShimZ1 -sHouseZ3 sHouseE5 -sCut4 -sCut3):
+(-sDrum5 -S8 -sShimZ2 sHouseZ4 sHouseE5 -sCut4 -sCut3):(-sDrum5 -S8 sHouseE5 -sShimE5 -sHouseZ3 sHouseZ4 -sCut4 -sCut3):(-sDrum5 -S8 -sCut4 sHCut4 sShimZ1):
+(-sDrum5 -S8 -sCut4 sHCut4 -sShimZ2):(-sDrum5 -S8 -sCut3 sHCut3 sShimZ1):(-sDrum5 -S8 -sCut3 sHCut3 -sShimZ2):(-sDrum5 -S8 sHouseD5 -sCut4 -sCut3 sShimZ1):
+(-sDrum5 -S8 sHouseD5 -sCut4 -sCut3 -sShimZ2)
+cell cDrums5 drum5 Be (-sHouseE5 -sHouseD5 -sHouseZ3 sHouseZ4):(-sHouseD5 -S8House -sHouseZ1 sHouseZ3 -sHCut3 -sHCut4):(-sHouseD5 -S8House sHouseZ2 -sHouseZ4 -sHCut3 -sHCut4)
 cell cShimA5 drum5 void sShimE5 -S8 -sShimZ1 sShimZ2 -sDrum5 -sCut3 -sCut4
 %cell cShimA5 drum5 Be sShimC5 -sShimA5 -sShimZ1 sShimZ2 -sDrum5
 cell cCutD51 drum5 void -S8 sCut4 -sDrum5
 cell cCutD52 drum5 void -S8 sCut3 -sDrum5
 % --- Drum6 definitions
-%cell cDrums6 core Be -sDrum6 -S8
-cell cDrums6 drum6 Be (-sDrum6 sShimZ1 -S8 -sCut4 -sCut5):(-sDrum6 -sShimZ2 -S8 -sCut4 -sCut5):(-sDrum6 -sShimE6 -S8 -sCut4 -sCut5)
+cell cHouse6 drum6 ss316 (-sDrum6 -S8 sHouseZ1 -sCut4 -sCut5):(-sDrum6 -S8 -sHouseZ2 -sCut4 -sCut5):(-sDrum6 -S8 sHouseD6 -sCut4 -sCut5 -sShimE6):
+(-S8 S8House -sDrum6 sShimZ1 -sCut4 -sCut5):(-S8 S8House -sDrum6 -sShimZ2 -sCut4 -sCut5):(-sDrum6 -S8 sShimZ1 -sHouseZ3 sHouseE6 -sCut4 -sCut5):
+(-sDrum6 -S8 -sShimZ2 sHouseZ4 sHouseE6 -sCut4 -sCut5):(-sDrum6 -S8 sHouseE6 -sShimE6 -sHouseZ3 sHouseZ4 -sCut4 -sCut5):(-sDrum6 -S8 -sCut4 sHCut4 sShimZ1):
+(-sDrum6 -S8 -sCut4 sHCut4 -sShimZ2):(-sDrum6 -S8 -sCut5 sHCut5 sShimZ1):(-sDrum6 -S8 -sCut5 sHCut5 -sShimZ2):(-sDrum6 -S8 sHouseD6 -sCut4 -sCut5 sShimZ1):
+(-sDrum6 -S8 sHouseD6 -sCut4 -sCut5 -sShimZ2)
+cell cDrums6 drum6 Be (-sHouseE6 -sHouseD6 -sHouseZ3 sHouseZ4):(-sHouseD6 -S8House -sHouseZ1 sHouseZ3 -sHCut5 -sHCut4):(-sHouseD6 -S8House sHouseZ2 -sHouseZ4 -sHCut5 -sHCut4)
 cell cShimA6 drum6 void sShimE6 -S8 -sShimZ1 sShimZ2 -sDrum6 -sCut4 -sCut5
 %cell cShimA6 drum6 Be sShimC6 -sShimA6 -sShimZ1 sShimZ2 -sDrum6
 cell cCutD61 drum6 void -S8 sCut5 -sDrum6
@@ -662,7 +685,7 @@ set bc 1
 
 % --- Neutron population: 100000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 1000 60 20
+set pop 100000 60 20
 
 % --- XY-plot (3)
 
