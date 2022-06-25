@@ -342,8 +342,9 @@ surf SUG cyl 0.0 0.0 11.87704  18.3769  19.2500 % for upper grid plate
 surf SLG cyl 0.0 0.0 11.87704 -19.1707 -18.3769 % for lower grid plate
 surf S10 pz 19.2500
 surf S11 pz -19.1707
+surf S12 cyl 0.0 0.0 11.718036 -18.3769 18.3769
 surf S13 cyl 0.0 0.0 11.93 -18.3769 18.3769
-surf S12 cyl 0.0 0.0 11.71829 -18.3769 18.3769
+surf S14 cyl 0.0 0.0 11.6926 -18.3769 18.3769 
 surf SCube cube  0.0 0.0 0.0 22.9
 
 % --- surfaces for drums 
@@ -399,15 +400,15 @@ surf sShimE6 plane   8.9103 -15.4331 0 317.5752
 %surf sShimB5 plane -10.7391 -18.6007 0 461.3148
 %surf sShimB6 plane  10.7391 -18.6007 0 461.3148
 % --- surfaces for internal reflectors
-surf srefl1 plane  0      10.8668 0 118.0885
-surf srefl2 plane -9.4109  5.4334 0 118.0885
-surf srefl3 plane -9.4109 -5.4334 0 118.0885 
-surf srefl4 plane  0     -10.8668 0 118.0885
-surf srefl5 plane  9.4109 -5.4334 0 118.0885
-surf srefl6 plane  9.4109  5.4334 0 118.0885
+surf srefl1 plane  0      11.0668 0 122.4736
+surf srefl2 plane -9.5841  5.5334 0 122.4736
+surf srefl3 plane -9.5841 -5.5334 0 122.4736 
+surf srefl4 plane  0     -11.0668 0 122.4736
+surf srefl5 plane  9.5841 -5.5334 0 122.4736
+surf srefl6 plane  9.5841  5.5334 0 122.4736
 % --- Begin Surface Definitions for Housing --- %
-surf sHouseZ1 pz  18.21815  
-surf sHouseZ2 pz -18.21815
+surf sHouseZ1 pz  18.3515  
+surf sHouseZ2 pz -18.3515
 surf sHouseZ3 pz  15.39875 
 surf sHouseZ4 pz -15.39875
 surf sHouseD1 cyl  23.972012 0.0    11.75385 -18.3769 18.3769
@@ -429,6 +430,12 @@ surf sHCut4 plane     0      -20.741   0 430.1995
 surf sHCut5 plane    17.9624 -10.3706  0 430.1995
 surf sHCut6 plane    17.9624  10.3706  0 430.1995
 surf S8House hexxprism 0.0 0.0 19.54145 -18.3769 18.3769
+surf sHrefl1 plane  0      11.0414 0 121.9121
+surf sHrefl2 plane -9.5621  5.5207 0 121.9121
+surf sHrefl3 plane -9.5621 -5.5207 0 121.9121
+surf sHrefl4 plane  0     -11.0414 0 121.9121
+surf sHrefl5 plane  9.5621 -5.5207 0 121.9121
+surf sHrefl6 plane  9.5621  5.5207 0 121.9121
 % --- Hexagonal surfrace for reflector core boundaries, 9.352in OD + 0.0818 reflector radial thickness at thinnest point
 %     + 4.68 drum radius =23.972012 cm radial distance flat to flat x-hexagonal (NAA-SR-9642, pg. 13)
 %     Note that the actual thickest portion of the drum is noted as 3 inches which makes the half distance from flat point
@@ -562,15 +569,23 @@ lat lgridplate 2 0.0 0.0 21 21 1.4478
                                         7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
 % --- These cells define the reactor i.e. cutting off the "core"
 %     universe with cylindrical boundaries
-cell cRadialCore  core fill lattice -S12 -srefl1 -srefl2 -srefl3 -srefl4 -srefl5 -srefl6
-cell cInternRefl1   core  BeO srefl1 -S12
-cell cInternRefl2   core  BeO srefl2 -S12
-cell cInternRefl3   core  BeO srefl3 -S12
-cell cInternRefl4   core  BeO srefl4 -S12
-cell cInternRefl5   core  BeO srefl5 -S12
-cell cInternRefl6   core  BeO srefl6 -S12
+cell cRadialCore  core fill lattice -S12 -sHrefl1 -sHrefl2 -sHrefl3 -sHrefl4 -sHrefl5 -sHrefl6
+%%
+cell cInternRefl1   core  BeO  srefl1 -S14 -sHouseZ1 sHouseZ2
+cell cInternRefl2   core  BeO  srefl2 -S14 -sHouseZ1 sHouseZ2
+cell cInternRefl3   core  BeO  srefl3 -S14 -sHouseZ1 sHouseZ2
+cell cInternRefl4   core  BeO  srefl4 -S14 -sHouseZ1 sHouseZ2
+cell cInternRefl5   core  BeO  srefl5 -S14 -sHouseZ1 sHouseZ2
+cell cInternRefl6   core  BeO  srefl6 -S14 -sHouseZ1 sHouseZ2
+cell cHouseRefl1    core hasteN (sHrefl1 -srefl1 -S12):(S14 -S12 srefl1):(sHouseZ1 -S12 sHrefl1):(-sHouseZ2 -S12 sHrefl1)
+cell cHouseRefl2    core hasteN (sHrefl2 -srefl2 -S12):(S14 -S12 srefl2):(sHouseZ1 -S12 sHrefl2):(-sHouseZ2 -S12 sHrefl2)
+cell cHouseRefl3    core hasteN (sHrefl3 -srefl3 -S12):(S14 -S12 srefl3):(sHouseZ1 -S12 sHrefl3):(-sHouseZ2 -S12 sHrefl3)
+cell cHouseRefl4    core hasteN (sHrefl4 -srefl4 -S12):(S14 -S12 srefl4):(sHouseZ1 -S12 sHrefl4):(-sHouseZ2 -S12 sHrefl4)
+cell cHouseRefl5    core hasteN (sHrefl5 -srefl5 -S12):(sHouseZ1 -S12 sHrefl5):(-sHouseZ2 -S12 sHrefl5):(S14 -S12 srefl5)
+cell cHouseRefl6    core hasteN (sHrefl6 -srefl6 -S12):(S14 -S12 srefl6):(sHouseZ1 -S12 sHrefl6):(-sHouseZ2 -S12 sHrefl6)
+
 % --- Drum1 definitions 
-cell cHouse1 drum1 ss316 (-sDrum1 -S8 sHouseZ1 -sCut6 -sCut5):(-sDrum1 -S8 -sHouseZ2 -sCut6 -sCut5):(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 -sShimE1):
+cell cHouse1 drum1 Be (-sDrum1 -S8 sHouseZ1 -sCut6 -sCut5):(-sDrum1 -S8 -sHouseZ2 -sCut6 -sCut5):(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 -sShimE1):
 (-S8 S8House -sDrum1 sShimZ1 -sCut6 -sCut5):(-S8 S8House -sDrum1 -sShimZ2 -sCut6 -sCut5):(-sDrum1 -S8 sShimZ1 -sHouseZ3 sHouseE1 -sCut6 -sCut5):
 (-sDrum1 -S8 -sShimZ2 sHouseZ4 sHouseE1 -sCut6 -sCut5):(-sDrum1 -S8 sHouseE1 -sShimE1 -sHouseZ3 sHouseZ4 -sCut6 -sCut5):(-sDrum1 -S8 -sCut6 sHCut6 sShimZ1):
 (-sDrum1 -S8 -sCut6 sHCut6 -sShimZ2):(-sDrum1 -S8 -sCut5 sHCut5 sShimZ1):(-sDrum1 -S8 -sCut5 sHCut5 -sShimZ2):(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 sShimZ1):
@@ -581,7 +596,7 @@ cell cShimA1 drum1 void sShimE1 -S8 -sShimZ1 sShimZ2 -sDrum1 -sCut5 -sCut6
 cell cCutD11 drum1 void -S8 sCut5 -sDrum1
 cell cCutD12 drum1 void -S8 sCut6 -sDrum1
 % --- Drum2 definitions
-cell cHouse2 drum2 ss316 (-sDrum2 -S8 sHouseZ1 -sCut6 -sCut1):(-sDrum2 -S8 -sHouseZ2 -sCut6 -sCut1):(-sDrum2 -S8 sHouseD2 -sCut6 -sCut1 -sShimE2):
+cell cHouse2 drum2 Be (-sDrum2 -S8 sHouseZ1 -sCut6 -sCut1):(-sDrum2 -S8 -sHouseZ2 -sCut6 -sCut1):(-sDrum2 -S8 sHouseD2 -sCut6 -sCut1 -sShimE2):
 (-S8 S8House -sDrum2 sShimZ1 -sCut6 -sCut1):(-S8 S8House -sDrum2 -sShimZ2 -sCut6 -sCut1):(-sDrum2 -S8 sShimZ1 -sHouseZ3 sHouseE2 -sCut6 -sCut1):
 (-sDrum2 -S8 -sShimZ2 sHouseZ4 sHouseE2 -sCut6 -sCut1):(-sDrum2 -S8 sHouseE2 -sShimE2 -sHouseZ3 sHouseZ4 -sCut6 -sCut1):(-sDrum2 -S8 -sCut6 sHCut6 sShimZ1):
 (-sDrum2 -S8 -sCut6 sHCut6 -sShimZ2):(-sDrum2 -S8 -sCut1 sHCut1 sShimZ1):(-sDrum2 -S8 -sCut1 sHCut1 -sShimZ2):(-sDrum2 -S8 sHouseD2 -sCut6 -sCut1 sShimZ1):
@@ -592,7 +607,7 @@ cell cShimA2 drum2 void sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 -sCut1 -sCut6
 cell cCutD21 drum2 void  -S8 sCut1 -sDrum2
 cell cCutD22 drum2 void -S8 sCut6 -sDrum2
 % --- Drum3 definitions
-cell cHouse3 drum3 ss316 (-sDrum3 -S8 sHouseZ1 -sCut2 -sCut1):(-sDrum3 -S8 -sHouseZ2 -sCut2 -sCut1):(-sDrum3 -S8 sHouseD3 -sCut2 -sCut1 -sShimE3):
+cell cHouse3 drum3 Be (-sDrum3 -S8 sHouseZ1 -sCut2 -sCut1):(-sDrum3 -S8 -sHouseZ2 -sCut2 -sCut1):(-sDrum3 -S8 sHouseD3 -sCut2 -sCut1 -sShimE3):
 (-S8 S8House -sDrum3 sShimZ1 -sCut2 -sCut1):(-S8 S8House -sDrum3 -sShimZ2 -sCut2 -sCut1):(-sDrum3 -S8 sShimZ1 -sHouseZ3 sHouseE3 -sCut2 -sCut1):
 (-sDrum3 -S8 -sShimZ2 sHouseZ4 sHouseE3 -sCut2 -sCut1):(-sDrum3 -S8 sHouseE3 -sShimE3 -sHouseZ3 sHouseZ4 -sCut2 -sCut1):(-sDrum3 -S8 -sCut2 sHCut2 sShimZ1):
 (-sDrum3 -S8 -sCut2 sHCut2 -sShimZ2):(-sDrum3 -S8 -sCut1 sHCut1 sShimZ1):(-sDrum3 -S8 -sCut1 sHCut1 -sShimZ2):(-sDrum3 -S8 sHouseD3 -sCut2 -sCut1 sShimZ1):
@@ -603,7 +618,7 @@ cell cShimA3 drum3 void sShimE3 -S8 -sShimZ1 sShimZ2 -sDrum3 -sCut1 -sCut2
 cell cCutD31 drum3 void -S8 sCut2 -sDrum3
 cell cCutD32 drum3 void -S8 sCut1 -sDrum3
 % --- Drum4 definitions
-cell cHouse4 drum4 ss316 (-sDrum4 -S8 sHouseZ1 -sCut2 -sCut3):(-sDrum4 -S8 -sHouseZ2 -sCut2 -sCut3):(-sDrum4 -S8 sHouseD4 -sCut2 -sCut3 -sShimE4):
+cell cHouse4 drum4 Be (-sDrum4 -S8 sHouseZ1 -sCut2 -sCut3):(-sDrum4 -S8 -sHouseZ2 -sCut2 -sCut3):(-sDrum4 -S8 sHouseD4 -sCut2 -sCut3 -sShimE4):
 (-S8 S8House -sDrum4 sShimZ1 -sCut2 -sCut3):(-S8 S8House -sDrum4 -sShimZ2 -sCut2 -sCut3):(-sDrum4 -S8 sShimZ1 -sHouseZ3 sHouseE4 -sCut2 -sCut3):
 (-sDrum4 -S8 -sShimZ2 sHouseZ4 sHouseE4 -sCut2 -sCut3):(-sDrum4 -S8 sHouseE4 -sShimE4 -sHouseZ3 sHouseZ4 -sCut2 -sCut3):(-sDrum4 -S8 -sCut2 sHCut2 sShimZ1):
 (-sDrum4 -S8 -sCut2 sHCut2 -sShimZ2):(-sDrum4 -S8 -sCut3 sHCut3 sShimZ1):(-sDrum4 -S8 -sCut3 sHCut3 -sShimZ2):(-sDrum4 -S8 sHouseD4 -sCut2 -sCut3 sShimZ1):
@@ -614,7 +629,7 @@ cell cShimA4 drum4 void sShimE4 -S8 -sShimZ1 sShimZ2 -sDrum4 -sCut2 -sCut3
 cell cCutD41 drum4 void -S8 sCut3 -sDrum4
 cell cCutD42 drum4 void -S8 sCut2 -sDrum4
 % --- Drum5 definitions
-cell cHouse5 drum5 ss316 (-sDrum5 -S8 sHouseZ1 -sCut4 -sCut3):(-sDrum5 -S8 -sHouseZ2 -sCut4 -sCut3):(-sDrum5 -S8 sHouseD5 -sCut4 -sCut3 -sShimE5):
+cell cHouse5 drum5 Be (-sDrum5 -S8 sHouseZ1 -sCut4 -sCut3):(-sDrum5 -S8 -sHouseZ2 -sCut4 -sCut3):(-sDrum5 -S8 sHouseD5 -sCut4 -sCut3 -sShimE5):
 (-S8 S8House -sDrum5 sShimZ1 -sCut4 -sCut3):(-S8 S8House -sDrum5 -sShimZ2 -sCut4 -sCut3):(-sDrum5 -S8 sShimZ1 -sHouseZ3 sHouseE5 -sCut4 -sCut3):
 (-sDrum5 -S8 -sShimZ2 sHouseZ4 sHouseE5 -sCut4 -sCut3):(-sDrum5 -S8 sHouseE5 -sShimE5 -sHouseZ3 sHouseZ4 -sCut4 -sCut3):(-sDrum5 -S8 -sCut4 sHCut4 sShimZ1):
 (-sDrum5 -S8 -sCut4 sHCut4 -sShimZ2):(-sDrum5 -S8 -sCut3 sHCut3 sShimZ1):(-sDrum5 -S8 -sCut3 sHCut3 -sShimZ2):(-sDrum5 -S8 sHouseD5 -sCut4 -sCut3 sShimZ1):
@@ -625,7 +640,7 @@ cell cShimA5 drum5 void sShimE5 -S8 -sShimZ1 sShimZ2 -sDrum5 -sCut3 -sCut4
 cell cCutD51 drum5 void -S8 sCut4 -sDrum5
 cell cCutD52 drum5 void -S8 sCut3 -sDrum5
 % --- Drum6 definitions
-cell cHouse6 drum6 ss316 (-sDrum6 -S8 sHouseZ1 -sCut4 -sCut5):(-sDrum6 -S8 -sHouseZ2 -sCut4 -sCut5):(-sDrum6 -S8 sHouseD6 -sCut4 -sCut5 -sShimE6):
+cell cHouse6 drum6 Be (-sDrum6 -S8 sHouseZ1 -sCut4 -sCut5):(-sDrum6 -S8 -sHouseZ2 -sCut4 -sCut5):(-sDrum6 -S8 sHouseD6 -sCut4 -sCut5 -sShimE6):
 (-S8 S8House -sDrum6 sShimZ1 -sCut4 -sCut5):(-S8 S8House -sDrum6 -sShimZ2 -sCut4 -sCut5):(-sDrum6 -S8 sShimZ1 -sHouseZ3 sHouseE6 -sCut4 -sCut5):
 (-sDrum6 -S8 -sShimZ2 sHouseZ4 sHouseE6 -sCut4 -sCut5):(-sDrum6 -S8 sHouseE6 -sShimE6 -sHouseZ3 sHouseZ4 -sCut4 -sCut5):(-sDrum6 -S8 -sCut4 sHCut4 sShimZ1):
 (-sDrum6 -S8 -sCut4 sHCut4 -sShimZ2):(-sDrum6 -S8 -sCut5 sHCut5 sShimZ1):(-sDrum6 -S8 -sCut5 sHCut5 -sShimZ2):(-sDrum6 -S8 sHouseD6 -sCut4 -sCut5 sShimZ1):
