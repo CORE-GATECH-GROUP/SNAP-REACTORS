@@ -95,7 +95,7 @@ mat hasteC    sum
 % --- Hastelloy N   https://www.haynesintl.com/alloys/alloy-portfolio_/Corrosion-resistant-Alloys/hastelloy-n-alloy/nominal-composition
 %   needed for clad for internal reflectors, clad for fuel elements, (NAA-SR-9642, pg. 14)
 
-mat hasteN   sum
+mat hasteN   sum rgb 100 100 100
 28058.03c     -4.70343E-01
 28060.03c     -1.81175E-01
 28061.03c     -7.87557E-03
@@ -135,7 +135,6 @@ mat hasteN   sum
 22048.03c     -1.84300E-03
 22049.03c     -1.35250E-04
 22050.03c     -1.29500E-04
-
 % --- Type 316 SS  https://tubingchina.com/316-316L-Stainless-Steel-Tube-Pipe-Tubing.htm
 %   needed for upper grid plate, core tie rods, coolant flow baffle, reactor vessel (NAA-SR-9642, pg. 14)
 
@@ -385,20 +384,20 @@ surf sShimE3 plane  -8.9103  15.4331 0 317.5752
 surf sShimE4 plane -17.8206  0       0 317.5752
 surf sShimE5 plane  -8.9103 -15.4331 0 317.5752
 surf sShimE6 plane   8.9103 -15.4331 0 317.5752
-% --- surfaces for A  shims
-%surf sShimA1 plane  19.7002  0       0 388.0995
-%surf sShimA2 plane   9.8501  17.0609 0 388.0995
-%surf sShimA3 plane  -9.8501  17.0609 0 388.0995
-%surf sShimA4 plane -19.7002  0       0 388.0995
-%surf sShimA5 plane  -9.8501 -17.0609 0 388.0995
-%surf sShimA6 plane   9.8501 -17.0609 0 388.0995
 % --- surfaces for B shims
-%surf sShimB1 plane  21.4782   0      0 461.3148
-%surf sShimB2 plane  10.7391  18.6007 0 461.3148
-%surf sShimB3 plane -10.7391  18.6007 0 461.3148
-%surf sShimB4 plane -21.4782   0      0 461.3148
-%surf sShimB5 plane -10.7391 -18.6007 0 461.3148
-%surf sShimB6 plane  10.7391 -18.6007 0 461.3148
+%surf sShimB1 plane  21.9354   0      0 481.1618
+%surf sShimB2 plane  10.9677  18.9966 0 481.1618
+%surf sShimB3 plane -10.9677  18.9966 0 481.1618
+%surf sShimB4 plane -21.9354   0      0 481.1618
+%surf sShimB5 plane -10.9677 -18.9966 0 481.1618
+%surf sShimB6 plane  10.9677 -18.9966 0 481.1618
+%--- BEGIN CUBOID DEFINITIONS
+surf sCuboid1 cuboid 19.7002 21.9354 -7.712 7.712 -18.3769 18.3769
+surf sCuboid2 cuboid 19.7002 21.9354 -7.712 7.712 -18.3769 18.3769
+surf sCuboid3 cuboid 19.7002 21.9354 -7.712 7.712 -18.3769 18.3769
+surf sCuboid4 cuboid 19.7002 21.9354 -7.712 7.712 -18.3769 18.3769
+surf sCuboid5 cuboid 19.7002 21.9354 -7.712 7.712 -18.3769 18.3769
+surf sCuboid6 cuboid 19.7002 21.9354 -7.712 7.712 -18.3769 18.3769
 % --- surfaces for internal reflectors
 surf srefl1 plane  0      11.0668 0 122.4736
 surf srefl2 plane -9.5841  5.5334 0 122.4736
@@ -675,7 +674,13 @@ cell cDrumvoid5 reactor void sDrum5 -sVDrum5 -S8 -sStatCut3 -sStatCut4
 cell cDrumvoid6 reactor void sDrum6 -sVDrum6 -S8 -sStatCut4 -sStatCut5
 cell cUpperGrid reactor fill ugridplate -SUG
 cell cLowerGrid reactor fill lgridplate -SLG
-cell cDrumOutside reactor  void S8  SUG SLG 
+cell cCuboid1 reactor Be -sCuboid1
+cell cCuboid2 reactor Be -sCuboid2
+cell cCuboid3 reactor Be -sCuboid3
+cell cCuboid4 reactor Be -sCuboid4
+cell cCuboid5 reactor Be -sCuboid5
+cell cCuboid6 reactor Be -sCuboid6
+cell cDrumOutside reactor  void S8  SUG SLG sCuboid1 sCuboid2 sCuboid3 sCuboid4 sCuboid5 sCuboid6 
 
 % --- Cell cIN  is filled with universe "core", also its important to keep in mind that
 %     the "0" universe is the universe for which outside needs to be defined.
@@ -687,7 +692,12 @@ cell cIN 0 fill reactor -SCube
 cell cOUT 0 outside SCube
 
 trans U core rot 0 0 0 0 0 1 30
-%trans U drum6 rot 11.9860 -20.7604 0 0 0 1 -105 
+trans S sCuboid2 rot 0.0 0.0 0.0 0.0 0.0 1.0 60
+trans S sCuboid3 rot 0.0 0.0 0.0 0.0 0.0 1.0 120
+trans S sCuboid4 rot 0.0 0.0 0.0 0.0 0.0 1.0 180
+trans S sCuboid5 rot 0.0 0.0 0.0 0.0 0.0 1.0 240
+trans S sCuboid6 rot 0.0 0.0 0.0 0.0 0.0 1.0 300
+
 % ------------------------------------------------------------
 
 /******************
