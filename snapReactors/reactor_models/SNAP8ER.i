@@ -185,7 +185,7 @@ mat lucite   -1.19
 % --- Be     
 %  needed for External reflectors (NAA-SR-9642, pg. 14)
 
-mat Be       -1.85
+mat Be       -1.84
 4009.03c     -1.00      %Be9
 
 % --- BeO
@@ -294,9 +294,10 @@ hasteN 0.7112
 void
 %nak
 
-% --- Empty (He) Space
-pin pHe
-intatm
+% --- HasteN Caps
+pin pHasteN
+hasteN 0.7112
+void
 
 % --- NaK Space
 pin pNaK
@@ -344,6 +345,8 @@ surf S11 pz -19.1707
 surf S12 cyl 0.0 0.0 11.718036 -18.3769 18.3769
 surf S13 cyl 0.0 0.0 11.93 -18.3769 18.3769
 surf S14 cyl 0.0 0.0 11.6926 -18.3769 18.3769 
+surf sUcap pz  18.1737 
+surf sLcap pz -17.4371
 surf SCube cube  0.0 0.0 0.0 22.9
 
 % --- surfaces for drums 
@@ -447,11 +450,15 @@ surf S8 hexxprism 0.0 0.0 19.7002 -18.3769 18.3769
 
 % --- Defining cells to create 3D universe for fuel pins
 %     fuel pins are part of universe "1"
-cell cFP0 1 fill pFuel S6 -S7
+cell cFP0 1 fill pFuel sLcap -sUcap
+cell cFP1 1 fill pHasteN sUcap -S7
+cell cFP2 1 fill pHasteN -sLcap S6 
 
 % --- Defining cells to create 3D universe for lucite pins
 %     lucite pins are part of universe "2"
-cell cLP0 2 fill pLuc S6 -S7
+cell cLP0 2 fill pLuc sLcap -sUcap
+cell cLP1 2 fill pHasteN sUcap -S7
+cell cLP2 2 fill pHasteN -sLcap S6
 
 % --- Defining cells to create 3D universe for NaK pins
 %     NaK space is part of universe "3"
@@ -754,13 +761,13 @@ set bc 1
 
 % --- Neutron population: 100000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 100000 60 20
+set pop 1000 60 20
 
 % --- XY-plot (3)
 
 plot 31 1000 1000  %-19.0 
-plot 31 1000 1000  17.0 
-plot 31 1000 1000 -17.0
+plot 31 1000 1000  18.2 
+plot 31 1000 1000 -17.8
 plot 21 1000 1000
 %plot 11 1000 1000
 % --- XY-meshplot (3), which is 700 by 700 pixels and covers the whole geometry
