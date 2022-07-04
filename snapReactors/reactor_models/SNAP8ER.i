@@ -15,7 +15,7 @@ set title "SNAP 8"
 % --- Cross section library file path:
 
 set acelib "/hpc-common/data/serpent/xsdata/endfb71_edep/endfb71_edep.xsdata"
-% therm ZrH1  "/hpc-common/data/serpent/xsdata/endfb71_edep/zrh_EDF71.ace" 
+% therm ZrH1i  "/hpc-common/data/serpent/xsdata/endfb71_edep/zrh_EDF71.ace/zrh.03t" 
 % --- Decay and fission yield libraries:
 
 set declib "/hpc-common/data/serpent/xsdata/sss_endfb7.dec"
@@ -28,20 +28,22 @@ set nfylib "/hpc-common/data/serpent/xsdata/sss_endfb7.nfy"
  ************************/
 
 % --- UZr-H fuel, average initial enrichment 93.15% (NAA-SR-9642, pg. 14):
-%   Moderator scattering did not work, ENDFB8 data did not run with Serpent 1.1.7
-% note that 0.06c is at a higher temperature and original density is 6.0968
-mat UZrH -6.06   %moder ZrH1 1001  %moder ZrH2 40000
- 1001.03c   6.000E-2
- 1002.03c   8.700E-6
-92235.03c   1.455E-3
-92238.03c   1.057E-4
-40090.03c   1.864E-2
-40091.03c   4.064E-3
-40092.03c   6.212E-3
-40094.03c   6.295E-3
-40096.03c   1.014E-3 %Zr abundances based off of https://www.ciaaw.org/zirconium.htm
+% Note that this material composition is specific to dry critical experiment
+% there are some descrepancies found within the S8 Summary Report (AI-AEC-13070)
+mat UZrH -6.06 % moder zrh.03t 1001  %moder ZrH2 40000
+ 1001.03c   5.960E-2
+ 1002.03c   8.790E-6
+92235.03c   1.430E-3
+92238.03c   1.040E-4
+40090.03c   1.830E-2
+40091.03c   4.000E-3
+40092.03c   6.110E-3
+40094.03c   6.190E-3
+40096.03c   9.980E-4 %Zr abundances based off of https://www.ciaaw.org/zirconium.htm
 
-mat UZrH_dens -5.9562    %moder ZrH1 1001 moder ZrH2 40000
+% This was computed using data found from AI-AEC-13070, where the U-235 loading was 6.56 kg
+% versus the dry experiments being 6.44
+mat UZrH_Summary -6.09    %moder ZrH1 1001 moder ZrH2 40000
  1001.03c   6.000E-2
  1002.03c   8.700E-6
 92235.03c   1.455E-3
@@ -54,6 +56,7 @@ mat UZrH_dens -5.9562    %moder ZrH1 1001 moder ZrH2 40000
 
 %therm ZrH1 h-zrh.40t
 %therm ZrH2 zr-zrh.40t
+
 
 % --- Hastelloy C   https://tubingchina.com/Chemical-Composition-of-Hastelloy-Alloy.htm
 %   needed for lower grid plate (NAA-SR-9642, pg. 14)
@@ -260,6 +263,23 @@ mat nak  -0.880
 19039.03c    -7.27413E-01
 19040.03c    -9.12600E-05
 19041.03c    -5.24956E-02
+
+mat air -1.225E-3
+7014.03c  -7.52E-1
+7015.03c  -2.87E-3
+8016.03c  -2.31E-1
+8017.03c  -8.56E-5
+%8018.03c  -4.33E-4
+18036.03c -2.67E-4
+18038.03c -5.54E-4
+18040.03c -1.21E-2
+
+ 
+mix reflMix 
+ss316 0.191
+hasteN 0.042
+BeO 0.410
+intatm 0.357
 % ------------------------------------------------------------
 
 /************************
@@ -279,7 +299,7 @@ ceramic  0.681228
 Sm2O3    0.6812587
 intatm   0.6858
 hasteN   0.7112
-void
+air
 %UZrH     0.695325
 %ceramic  0.6985
 %hasteN   0.7112
@@ -291,13 +311,13 @@ pin pLuc
 lucite   0.695325
 ceramic 0.6985
 hasteN 0.7112
-void
+air
 %nak
 
 % --- HasteN Caps
 pin pHasteN
 hasteN 0.7112
-void
+air
 
 % --- NaK Space
 pin pNaK
@@ -313,7 +333,7 @@ ss316
 
 % --- Upper Grid Holes
 pin pSS
-void 0.1984
+air 0.1984
 ss316
 
 % --- Lower Grid Plating
@@ -322,12 +342,12 @@ hasteC
 
 % --- Lower Grid Holes
 pin pHc
-void 0.15875
+air 0.15875
 hasteC 
 
 % --- void Pin
 pin pvoid
-void
+air
 % --------------------- 
 % Surface Definitions 
 % ---------------------
@@ -619,20 +639,20 @@ lat lgridplate 2 0.0 0.0 21 21 1.4478
                                         7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
 % --- These cells define the reactor i.e. cutting off the "core"
 %     universe with cylindrical boundaries
-cell cRadialCore  core fill C4critload -S12 -sHrefl1 -sHrefl2 -sHrefl3 -sHrefl4 -sHrefl5 -sHrefl6
+cell cRadialCore  core fill lattice -S12 -sHrefl1 -sHrefl2 -sHrefl3 -sHrefl4 -sHrefl5 -sHrefl6
 %%
-cell cInternRefl1   core  BeO  srefl1 -S14 -sHouseZ1 sHouseZ2
-cell cInternRefl2   core  BeO  srefl2 -S14 -sHouseZ1 sHouseZ2
-cell cInternRefl3   core  BeO  srefl3 -S14 -sHouseZ1 sHouseZ2
-cell cInternRefl4   core  BeO  srefl4 -S14 -sHouseZ1 sHouseZ2
-cell cInternRefl5   core  BeO  srefl5 -S14 -sHouseZ1 sHouseZ2
-cell cInternRefl6   core  BeO  srefl6 -S14 -sHouseZ1 sHouseZ2
-cell cHouseRefl1    core hasteN (sHrefl1 -srefl1 -S12):(S14 -S12 srefl1):(sHouseZ1 -S12 sHrefl1):(-sHouseZ2 -S12 sHrefl1)
-cell cHouseRefl2    core hasteN (sHrefl2 -srefl2 -S12):(S14 -S12 srefl2):(sHouseZ1 -S12 sHrefl2):(-sHouseZ2 -S12 sHrefl2)
-cell cHouseRefl3    core hasteN (sHrefl3 -srefl3 -S12):(S14 -S12 srefl3):(sHouseZ1 -S12 sHrefl3):(-sHouseZ2 -S12 sHrefl3)
-cell cHouseRefl4    core hasteN (sHrefl4 -srefl4 -S12):(S14 -S12 srefl4):(sHouseZ1 -S12 sHrefl4):(-sHouseZ2 -S12 sHrefl4)
-cell cHouseRefl5    core hasteN (sHrefl5 -srefl5 -S12):(sHouseZ1 -S12 sHrefl5):(-sHouseZ2 -S12 sHrefl5):(S14 -S12 srefl5)
-cell cHouseRefl6    core hasteN (sHrefl6 -srefl6 -S12):(S14 -S12 srefl6):(sHouseZ1 -S12 sHrefl6):(-sHouseZ2 -S12 sHrefl6)
+cell cInternRefl1   core  reflMix  srefl1 -S14 -sHouseZ1 sHouseZ2
+cell cInternRefl2   core  reflMix  srefl2 -S14 -sHouseZ1 sHouseZ2
+cell cInternRefl3   core  reflMix  srefl3 -S14 -sHouseZ1 sHouseZ2
+cell cInternRefl4   core  reflMix  srefl4 -S14 -sHouseZ1 sHouseZ2
+cell cInternRefl5   core  reflMix  srefl5 -S14 -sHouseZ1 sHouseZ2
+cell cInternRefl6   core  reflMix  srefl6 -S14 -sHouseZ1 sHouseZ2
+cell cHouseRefl1    core reflMix (sHrefl1 -srefl1 -S12):(S14 -S12 srefl1):(sHouseZ1 -S12 sHrefl1):(-sHouseZ2 -S12 sHrefl1)
+cell cHouseRefl2    core reflMix (sHrefl2 -srefl2 -S12):(S14 -S12 srefl2):(sHouseZ1 -S12 sHrefl2):(-sHouseZ2 -S12 sHrefl2)
+cell cHouseRefl3    core reflMix (sHrefl3 -srefl3 -S12):(S14 -S12 srefl3):(sHouseZ1 -S12 sHrefl3):(-sHouseZ2 -S12 sHrefl3)
+cell cHouseRefl4    core reflMix (sHrefl4 -srefl4 -S12):(S14 -S12 srefl4):(sHouseZ1 -S12 sHrefl4):(-sHouseZ2 -S12 sHrefl4)
+cell cHouseRefl5    core reflMix (sHrefl5 -srefl5 -S12):(sHouseZ1 -S12 sHrefl5):(-sHouseZ2 -S12 sHrefl5):(S14 -S12 srefl5)
+cell cHouseRefl6    core reflMix (sHrefl6 -srefl6 -S12):(S14 -S12 srefl6):(sHouseZ1 -S12 sHrefl6):(-sHouseZ2 -S12 sHrefl6)
 
 % --- Drum1 definitions 
 cell cHouse1 drum1 Be (-sDrum1 -S8 sHouseZ1 -sCut6 -sCut5):(-sDrum1 -S8 -sHouseZ2 -sCut6 -sCut5):(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 -sShimE1):
@@ -641,7 +661,7 @@ cell cHouse1 drum1 Be (-sDrum1 -S8 sHouseZ1 -sCut6 -sCut5):(-sDrum1 -S8 -sHouseZ
 (-sDrum1 -S8 -sCut6 sHCut6 -sShimZ2):(-sDrum1 -S8 -sCut5 sHCut5 sShimZ1):(-sDrum1 -S8 -sCut5 sHCut5 -sShimZ2):(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 sShimZ1):
 (-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 -sShimZ2)
 cell cDrums1 drum1 Be (-sHouseE1 -sHouseD1 -sHouseZ3 sHouseZ4):(-sHouseD1 -S8House -sHouseZ1 sHouseZ3 -sHCut5 -sHCut6):(-sHouseD1 -S8House sHouseZ2 -sHouseZ4 -sHCut5 -sHCut6)
-cell cShimA1 drum1 Be sShimE1 -S8 -sShimZ1 sShimZ2 -sDrum1 -sCut5 -sCut6
+cell cShimA1 drum1 void sShimE1 -S8 -sShimZ1 sShimZ2 -sDrum1 -sCut5 -sCut6
 %cell cShimB1 drum1 Be sShimC1 -sShimA1 -sShimZ1 sShimZ2 -sDrum1
 cell cCutD11 drum1 void -S8 sCut5 -sDrum1
 cell cCutD12 drum1 void -S8 sCut6 -sDrum1
@@ -652,7 +672,7 @@ cell cHouse2 drum2 Be (-sDrum2 -S8 sHouseZ1 -sCut6 -sCut1):(-sDrum2 -S8 -sHouseZ
 (-sDrum2 -S8 -sCut6 sHCut6 -sShimZ2):(-sDrum2 -S8 -sCut1 sHCut1 sShimZ1):(-sDrum2 -S8 -sCut1 sHCut1 -sShimZ2):(-sDrum2 -S8 sHouseD2 -sCut6 -sCut1 sShimZ1):
 (-sDrum2 -S8 sHouseD2 -sCut6 -sCut1 -sShimZ2)
 cell cDrums2 drum2 Be (-sHouseE2 -sHouseD2 -sHouseZ3 sHouseZ4):(-sHouseD2 -S8House -sHouseZ1 sHouseZ3 -sHCut1 -sHCut6):(-sHouseD2 -S8House sHouseZ2 -sHouseZ4 -sHCut1 -sHCut6)
-cell cShimA2 drum2 Be sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 -sCut1 -sCut6
+cell cShimA2 drum2 void sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 -sCut1 -sCut6
 %cell cShimB2 drum2 Be sShimC2 -sShimA2 -sShimZ1 sShimZ2 -sDrum2
 cell cCutD21 drum2 void  -S8 sCut1 -sDrum2
 cell cCutD22 drum2 void -S8 sCut6 -sDrum2
@@ -663,7 +683,7 @@ cell cHouse3 drum3 Be (-sDrum3 -S8 sHouseZ1 -sCut2 -sCut1):(-sDrum3 -S8 -sHouseZ
 (-sDrum3 -S8 -sCut2 sHCut2 -sShimZ2):(-sDrum3 -S8 -sCut1 sHCut1 sShimZ1):(-sDrum3 -S8 -sCut1 sHCut1 -sShimZ2):(-sDrum3 -S8 sHouseD3 -sCut2 -sCut1 sShimZ1):
 (-sDrum3 -S8 sHouseD3 -sCut2 -sCut1 -sShimZ2)
 cell cDrums3 drum3 Be (-sHouseE3 -sHouseD3 -sHouseZ3 sHouseZ4):(-sHouseD3 -S8House -sHouseZ1 sHouseZ3 -sHCut1 -sHCut2):(-sHouseD3 -S8House sHouseZ2 -sHouseZ4 -sHCut1 -sHCut2)
-cell cShimA3 drum3 Be sShimE3 -S8 -sShimZ1 sShimZ2 -sDrum3 -sCut1 -sCut2
+cell cShimA3 drum3 void sShimE3 -S8 -sShimZ1 sShimZ2 -sDrum3 -sCut1 -sCut2
 %cell cShimB3 drum3 Be sShimC3 -sShimA3 -sShimZ1 sShimZ2 -sDrum3
 cell cCutD31 drum3 void -S8 sCut2 -sDrum3
 cell cCutD32 drum3 void -S8 sCut1 -sDrum3
@@ -674,7 +694,7 @@ cell cHouse4 drum4 Be (-sDrum4 -S8 sHouseZ1 -sCut2 -sCut3):(-sDrum4 -S8 -sHouseZ
 (-sDrum4 -S8 -sCut2 sHCut2 -sShimZ2):(-sDrum4 -S8 -sCut3 sHCut3 sShimZ1):(-sDrum4 -S8 -sCut3 sHCut3 -sShimZ2):(-sDrum4 -S8 sHouseD4 -sCut2 -sCut3 sShimZ1):
 (-sDrum4 -S8 sHouseD4 -sCut2 -sCut3 -sShimZ2)
 cell cDrums4 drum4 Be (-sHouseE4 -sHouseD4 -sHouseZ3 sHouseZ4):(-sHouseD4 -S8House -sHouseZ1 sHouseZ3 -sHCut3 -sHCut2):(-sHouseD4 -S8House sHouseZ2 -sHouseZ4 -sHCut3 -sHCut2)
-cell cShimA4 drum4 Be sShimE4 -S8 -sShimZ1 sShimZ2 -sDrum4 -sCut2 -sCut3
+cell cShimA4 drum4 void sShimE4 -S8 -sShimZ1 sShimZ2 -sDrum4 -sCut2 -sCut3
 %cell cShimB4 drum4 Be sShimC4 -sShimA4 -sShimZ1 sShimZ2 -sDrum4
 cell cCutD41 drum4 void -S8 sCut3 -sDrum4
 cell cCutD42 drum4 void -S8 sCut2 -sDrum4
@@ -685,7 +705,7 @@ cell cHouse5 drum5 Be (-sDrum5 -S8 sHouseZ1 -sCut4 -sCut3):(-sDrum5 -S8 -sHouseZ
 (-sDrum5 -S8 -sCut4 sHCut4 -sShimZ2):(-sDrum5 -S8 -sCut3 sHCut3 sShimZ1):(-sDrum5 -S8 -sCut3 sHCut3 -sShimZ2):(-sDrum5 -S8 sHouseD5 -sCut4 -sCut3 sShimZ1):
 (-sDrum5 -S8 sHouseD5 -sCut4 -sCut3 -sShimZ2)
 cell cDrums5 drum5 Be (-sHouseE5 -sHouseD5 -sHouseZ3 sHouseZ4):(-sHouseD5 -S8House -sHouseZ1 sHouseZ3 -sHCut3 -sHCut4):(-sHouseD5 -S8House sHouseZ2 -sHouseZ4 -sHCut3 -sHCut4)
-cell cShimA5 drum5 Be sShimE5 -S8 -sShimZ1 sShimZ2 -sDrum5 -sCut3 -sCut4
+cell cShimA5 drum5 void sShimE5 -S8 -sShimZ1 sShimZ2 -sDrum5 -sCut3 -sCut4
 %cell cShimA5 drum5 Be sShimC5 -sShimA5 -sShimZ1 sShimZ2 -sDrum5
 cell cCutD51 drum5 void -S8 sCut4 -sDrum5
 cell cCutD52 drum5 void -S8 sCut3 -sDrum5
@@ -696,7 +716,7 @@ cell cHouse6 drum6 Be (-sDrum6 -S8 sHouseZ1 -sCut4 -sCut5):(-sDrum6 -S8 -sHouseZ
 (-sDrum6 -S8 -sCut4 sHCut4 -sShimZ2):(-sDrum6 -S8 -sCut5 sHCut5 sShimZ1):(-sDrum6 -S8 -sCut5 sHCut5 -sShimZ2):(-sDrum6 -S8 sHouseD6 -sCut4 -sCut5 sShimZ1):
 (-sDrum6 -S8 sHouseD6 -sCut4 -sCut5 -sShimZ2)
 cell cDrums6 drum6 Be (-sHouseE6 -sHouseD6 -sHouseZ3 sHouseZ4):(-sHouseD6 -S8House -sHouseZ1 sHouseZ3 -sHCut5 -sHCut4):(-sHouseD6 -S8House sHouseZ2 -sHouseZ4 -sHCut5 -sHCut4)
-cell cShimA6 drum6 Be sShimE6 -S8 -sShimZ1 sShimZ2 -sDrum6 -sCut4 -sCut5
+cell cShimA6 drum6 void sShimE6 -S8 -sShimZ1 sShimZ2 -sDrum6 -sCut4 -sCut5
 %cell cShimA6 drum6 Be sShimC6 -sShimA6 -sShimZ1 sShimZ2 -sDrum6
 cell cCutD61 drum6 void -S8 sCut5 -sDrum6
 cell cCutD62 drum6 void -S8 sCut4 -sDrum6
@@ -725,12 +745,12 @@ cell cDrumvoid5 reactor void sDrum5 -sVDrum5 -S8 -sStatCut3 -sStatCut4
 cell cDrumvoid6 reactor void sDrum6 -sVDrum6 -S8 -sStatCut4 -sStatCut5
 cell cUpperGrid reactor fill ugridplate -SUG
 cell cLowerGrid reactor fill lgridplate -SLG
-cell cCuboid1 reactor Be -sCuboid1
-cell cCuboid2 reactor Be -sCuboid2
-cell cCuboid3 reactor Be -sCuboid3
-cell cCuboid4 reactor Be -sCuboid4
-cell cCuboid5 reactor Be -sCuboid5
-cell cCuboid6 reactor Be -sCuboid6
+cell cCuboid1 reactor void -sCuboid1
+cell cCuboid2 reactor void -sCuboid2
+cell cCuboid3 reactor void -sCuboid3
+cell cCuboid4 reactor void -sCuboid4
+cell cCuboid5 reactor void -sCuboid5
+cell cCuboid6 reactor void -sCuboid6
 cell cDrumOutside reactor  void S8  SUG SLG sCuboid1 sCuboid2 sCuboid3 sCuboid4 sCuboid5 sCuboid6 
 
 % --- Cell cIN  is filled with universe "core", also its important to keep in mind that
@@ -748,7 +768,7 @@ trans S sCuboid3 rot 0.0 0.0 0.0 0.0 0.0 1.0 120
 trans S sCuboid4 rot 0.0 0.0 0.0 0.0 0.0 1.0 180
 trans S sCuboid5 rot 0.0 0.0 0.0 0.0 0.0 1.0 240
 trans S sCuboid6 rot 0.0 0.0 0.0 0.0 0.0 1.0 300
-
+trans S cCuboid5 rot -10.4809 -18.0287 0.0 0.0 0.0 1.0 105 
 % ------------------------------------------------------------
 
 /******************
@@ -761,7 +781,7 @@ set bc 1
 
 % --- Neutron population: 100000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 1000 60 20
+set pop 100000 100 40
 
 % --- XY-plot (3)
 
