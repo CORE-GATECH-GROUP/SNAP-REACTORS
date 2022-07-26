@@ -1,11 +1,9 @@
 % --- SNAP 8 Core Model ---------
 
 /*
-General comments: 
-Core Modeling completed to allow for preliminary dry critical configuration 
-comparison with NAA-SR-9642. Work total excess reactivity is 5.7%, this was done
-via implementing SS316 layering in core cylinder, Sm2O3 poisoning in fuel, and 
-removal of hexagonal vertices in reflector material. 
+General comments: Current changes are looking to swap the way Bshims are defined to allower for easier rotation. 
+The void region is the final region that must be adjusted. Also not sure if this will make the file easier but
+this is one method that comes to mind. More to do later. 
 */
 
 % --- Problem title:
@@ -421,6 +419,27 @@ surf sCuboid3 cuboid 19.7002 21.9354 -7.712 7.712 -15.24 15.24
 surf sCuboid4 cuboid 19.7002 21.9354 -7.712 7.712 -15.24 15.24
 surf sCuboid5 cuboid 19.7002 21.9354 -7.712 7.712 -15.24 15.24
 surf sCuboid6 cuboid 19.7002 21.9354 -7.712 7.712 -15.24 15.24
+%--- begin B shim definitions ---%
+surf sBY11 plane   0.0      7.7120 0.0 59.4749
+surf sBY12 plane  -6.6788   3.8560 0.0 59.4749
+surf sBY13 plane  -6.6788  -3.8560 0.0 59.4749
+surf sBY21 plane   0.0     -7.7120 0.0 59.4749
+surf sBY22 plane   6.6788  -3.8560 0.0 59.4749
+surf sBY23 plane   6.6788   3.8560 0.0 59.4749
+surf sBX11  plane  21.9354   0.0    0.0 481.1618
+surf sBX12  plane  10.9677  18.9966 0.0 481.1618
+surf sBX13  plane -10.9677  18.9966 0.0 481.1618
+surf sBX14  plane -21.9354   0.0    0.0 481.1618
+surf sBX15  plane -10.9677 -18.9966 0.0 481.1618
+surf sBX16  plane  10.9677 -18.9966 0.0 481.1618
+%surf sBX21  plane  19.7002   0.0    0.0 388.0979
+surf sBX21 px 19.7002
+surf sBX22  plane   9.8501  17.0609 0.0 388.0979
+surf sBX23  plane  -9.8501  17.0609 0.0 388.0979
+%surf sBX24  plane -19.7002   0.0    0.0 388.0979
+surf sBX24 px -19.7002
+surf sBX25  plane  -9.8501 -17.0609 0.0 388.0979
+surf sBX26  plane   9.8501 -17.0609 0.0 388.0979 
 % --- surfaces for internal reflectors
 surf srefl1 plane  0      11.0668 0 122.4736
 surf srefl2 plane -9.5841  5.5334 0 122.4736
@@ -463,7 +482,7 @@ surf sHrefl6 plane  9.5621  5.5207 0 121.9121
 %     Note that the actual thickest portion of the drum is noted as 3 inches which makes the half distance from flat point
 %     to flat point 9.352 OD + 0.0818 + 3 in drum thickness = 19.704812 cm distance flat to flat x-hexagonal (AI-AEC-13070 
 %     Table 2 Sheet 2 of 4) 
-surf S8 hexxprism 0.0 0.0 19.7002 -18.3769 18.3769
+surf S8 hexxprism 0.0 0.0 19.7002 -18.3769 18.3769% 19.7002 -18.3769 18.3769
 % --------------------- 
 % Cell Definitions 
 % ---------------------  
@@ -745,13 +764,14 @@ cell cDrumvoid5 reactor void sDrum5 -sVDrum5 -S8 -sStatCut3 -sStatCut4
 cell cDrumvoid6 reactor void sDrum6 -sVDrum6 -S8 -sStatCut4 -sStatCut5
 cell cUpperGrid reactor fill ugridplate -SUG
 cell cLowerGrid reactor fill lgridplate -SLG
-cell cCuboid1 reactor Be -sCuboid1
-cell cCuboid2 reactor Be -sCuboid2
-cell cCuboid3 reactor Be -sCuboid3
-cell cCuboid4 reactor Be -sCuboid4
-cell cCuboid5 reactor Be -sCuboid5
-cell cCuboid6 reactor Be -sCuboid6
-cell cDrumOutside reactor  void S8  SUG SLG sCuboid1 sCuboid2 sCuboid3 sCuboid4 sCuboid5 sCuboid6 
+%cell cCuboid1 reactor Be -sBY11 -sBY21 -sBX11 S8 -sShimZ1 sShimZ2
+cell cCuboid1 reactor Be -sBY11 -sBY21 -sBX11 sBX21 -sShimZ1 sShimZ2
+cell cCuboid2 reactor Be -sBY12 -sBY22 -sBX12 sBX22 -sShimZ1 sShimZ2
+cell cCuboid3 reactor Be -sBY13 -sBY23 -sBX13 sBX23 -sShimZ1 sShimZ2
+cell cCuboid4 reactor Be -sBY11 -sBY21 -sBX14 -sBX24 -sShimZ1 sShimZ2
+cell cCuboid5 reactor Be -sBY12 -sBY22 -sBX15 sBX25 -sShimZ1 sShimZ2
+cell cCuboid6 reactor Be -sBY13 -sBY23 -sBX16 sBX26 -sShimZ1 sShimZ2
+cell cDrumVoid reactor  void (sBX11:sBX12:sBX13:sBX14:sBX15:sBX16):(S7 SUG):(-S6 SLG):(sBY11 -sBX11 sBX21):(sBY21 -sBX11 sBX21):(sShimZ1 -sBX11 sBX21):(-sShimZ2 -sBX11 sBX21):(sBY12 -sBX12 sBX22):(sBY22 -sBX12 sBX22):(sShimZ1 -sBX12 sBX22):(-sShimZ2 -sBX12 sBX22):(sBY13 -sBX13 sBX23):(sBY23 -sBX13 sBX23):(sShimZ1 -sBX13 sBX23):(-sShimZ2 -sBX13 sBX23):(sBY11 -sBX14 -sBX24):(sBY21 -sBX14 -sBX24):(sShimZ1 -sBX14 -sBX24):(-sShimZ2 -sBX14 -sBX24):(sBY12 -sBX15 sBX25):(sBY22 -sBX15 sBX25):(sShimZ1 -sBX15 sBX25):(-sShimZ2 -sBX15 sBX25):(sBY13 -sBX16 sBX26):(sBY23 -sBX16 sBX26):(sShimZ1 -sBX16 sBX26):(-sShimZ2 -sBX16 sBX26)
 
 % --- Cell cIN  is filled with universe "core", also its important to keep in mind that
 %     the "0" universe is the universe for which outside needs to be defined.
@@ -763,12 +783,12 @@ cell cIN 0 fill reactor -SCube
 cell cOUT 0 outside SCube
 
 trans U core rot 0 0 0 0 0 1 30
-trans S sCuboid2 rot 0.0 0.0 0.0 0.0 0.0 1.0 60
-trans S sCuboid3 rot 0.0 0.0 0.0 0.0 0.0 1.0 120
-trans S sCuboid4 rot 0.0 0.0 0.0 0.0 0.0 1.0 180
-trans S sCuboid5 rot 0.0 0.0 0.0 0.0 0.0 1.0 240
-trans S sCuboid6 rot 0.0 0.0 0.0 0.0 0.0 1.0 300
-trans S cCuboid5 rot -10.4809 -18.0287 0.0 0.0 0.0 1.0 105 
+%trans S sCuboid2 rot 0.0 0.0 0.0 0.0 0.0 1.0 60
+%trans S sCuboid3 rot 0.0 0.0 0.0 0.0 0.0 1.0 120
+%trans S sCuboid4 rot 0.0 0.0 0.0 0.0 0.0 1.0 180
+%trans S sCuboid5 rot 0.0 0.0 0.0 0.0 0.0 1.0 240
+%trans S sCuboid6 rot 0.0 0.0 0.0 0.0 0.0 1.0 300
+%trans S cCuboid5 rot -10.4809 -18.0287 0.0 0.0 0.0 1.0 105 
 % ------------------------------------------------------------
 
 /******************
@@ -781,7 +801,7 @@ set bc 1
 
 % --- Neutron population: 100000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 10000 100 40
+set pop 1000000 100 40
 
 % --- XY-plot (3)
 
