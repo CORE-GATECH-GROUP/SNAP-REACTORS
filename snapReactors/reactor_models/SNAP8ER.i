@@ -292,17 +292,11 @@ intatm 0.357
 
 pin pFuel
 UZrH     0.67564
-ceramic  0.681228
-%Sm2O3    0.681736
-Sm2O3    0.6812587
-intatm   0.6858
-hasteN   0.7112
+intatm  0.68272
+ceramic 0.68830
+Sm2O3 0.68834
+hasteN 0.71374
 air
-%UZrH     0.695325
-%ceramic  0.6985
-%hasteN   0.7112
-%void
-%intatm
 
 % --- Dummy Lucite Pin (same size as fuel pin, 0.56in OD)
 pin pLuc
@@ -342,7 +336,9 @@ hasteC
 pin pHc
 air 0.15875
 hasteC 
-
+% --- Upper poisoning
+pin pPoison
+Sm2O3
 % --- void Pin
 pin pvoid
 air
@@ -365,6 +361,9 @@ surf S13 cyl 0.0 0.0 11.93 -18.3769 18.3769
 surf S14 cyl 0.0 0.0 11.6926 -18.3769 18.3769 
 surf sUcap pz  18.1737 
 surf sLcap pz -17.4371
+surf sUpoison pz 18.1483
+surf sUclad pz 18.148395
+surf sLclad pz -17.4117
 surf SCube cube  0.0 0.0 0.0 22.9
 
 % --- surfaces for drums 
@@ -489,9 +488,13 @@ surf S8 hexxprism 0.0 0.0 19.7002 -18.3769 18.3769% 19.7002 -18.3769 18.3769
 
 % --- Defining cells to create 3D universe for fuel pins
 %     fuel pins are part of universe "1"
-cell cFP0 1 fill pFuel sLcap -sUcap
-cell cFP1 1 fill pHasteN sUcap -S7
-cell cFP2 1 fill pHasteN -sLcap S6 
+cell cFP0 1 fill pFuel sLclad -sUpoison
+cell cFP1 1 fill pHasteN -sLclad sLcap
+cell cFP2 1 fill pHasteN -sLcap S6
+cell cFP3 1 fill pPoison sUpoison -sUclad
+cell cFP4 1 fill pHasteN sUclad -sUcap
+cell cFP5 1 fill pHasteN sUcap -S7
+
 
 % --- Defining cells to create 3D universe for lucite pins
 %     lucite pins are part of universe "2"
@@ -658,7 +661,7 @@ lat lgridplate 2 0.0 0.0 21 21 1.4478
                                         7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
 % --- These cells define the reactor i.e. cutting off the "core"
 %     universe with cylindrical boundaries
-cell cRadialCore  core fill C4critload -S12 -sHrefl1 -sHrefl2 -sHrefl3 -sHrefl4 -sHrefl5 -sHrefl6
+cell cRadialCore  core fill lattice -S12 -sHrefl1 -sHrefl2 -sHrefl3 -sHrefl4 -sHrefl5 -sHrefl6
 %%
 cell cInternRefl1   core  reflMix  srefl1 -S14 -sHouseZ1 sHouseZ2
 cell cInternRefl2   core  reflMix  srefl2 -S14 -sHouseZ1 sHouseZ2
@@ -680,8 +683,7 @@ cell cHouse1 drum1 Be (-sDrum1 -S8 sHouseZ1 -sCut6 -sCut5):(-sDrum1 -S8 -sHouseZ
 (-sDrum1 -S8 -sCut6 sHCut6 -sShimZ2):(-sDrum1 -S8 -sCut5 sHCut5 sShimZ1):(-sDrum1 -S8 -sCut5 sHCut5 -sShimZ2):(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 sShimZ1):
 (-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 -sShimZ2)
 cell cDrums1 drum1 Be (-sHouseE1 -sHouseD1 -sHouseZ3 sHouseZ4):(-sHouseD1 -S8House -sHouseZ1 sHouseZ3 -sHCut5 -sHCut6):(-sHouseD1 -S8House sHouseZ2 -sHouseZ4 -sHCut5 -sHCut6)
-cell cShimA1 drum1 Be sShimE1 -S8 -sShimZ1 sShimZ2 -sDrum1 -sCut5 -sCut6
-%cell cShimB1 drum1 Be sShimC1 -sShimA1 -sShimZ1 sShimZ2 -sDrum1
+cell cShimA1 drum1 void sShimE1 -S8 -sShimZ1 sShimZ2 -sDrum1 -sCut5 -sCut6
 cell cCutD11 drum1 void -S8 sCut5 -sDrum1
 cell cCutD12 drum1 void -S8 sCut6 -sDrum1
 % --- Drum2 definitions
@@ -691,8 +693,7 @@ cell cHouse2 drum2 Be (-sDrum2 -S8 sHouseZ1 -sCut6 -sCut1):(-sDrum2 -S8 -sHouseZ
 (-sDrum2 -S8 -sCut6 sHCut6 -sShimZ2):(-sDrum2 -S8 -sCut1 sHCut1 sShimZ1):(-sDrum2 -S8 -sCut1 sHCut1 -sShimZ2):(-sDrum2 -S8 sHouseD2 -sCut6 -sCut1 sShimZ1):
 (-sDrum2 -S8 sHouseD2 -sCut6 -sCut1 -sShimZ2)
 cell cDrums2 drum2 Be (-sHouseE2 -sHouseD2 -sHouseZ3 sHouseZ4):(-sHouseD2 -S8House -sHouseZ1 sHouseZ3 -sHCut1 -sHCut6):(-sHouseD2 -S8House sHouseZ2 -sHouseZ4 -sHCut1 -sHCut6)
-cell cShimA2 drum2 Be sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 -sCut1 -sCut6
-%cell cShimB2 drum2 Be sShimC2 -sShimA2 -sShimZ1 sShimZ2 -sDrum2
+cell cShimA2 drum2 void sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 -sCut1 -sCut6
 cell cCutD21 drum2 void  -S8 sCut1 -sDrum2
 cell cCutD22 drum2 void -S8 sCut6 -sDrum2
 % --- Drum3 definitions
@@ -702,8 +703,7 @@ cell cHouse3 drum3 Be (-sDrum3 -S8 sHouseZ1 -sCut2 -sCut1):(-sDrum3 -S8 -sHouseZ
 (-sDrum3 -S8 -sCut2 sHCut2 -sShimZ2):(-sDrum3 -S8 -sCut1 sHCut1 sShimZ1):(-sDrum3 -S8 -sCut1 sHCut1 -sShimZ2):(-sDrum3 -S8 sHouseD3 -sCut2 -sCut1 sShimZ1):
 (-sDrum3 -S8 sHouseD3 -sCut2 -sCut1 -sShimZ2)
 cell cDrums3 drum3 Be (-sHouseE3 -sHouseD3 -sHouseZ3 sHouseZ4):(-sHouseD3 -S8House -sHouseZ1 sHouseZ3 -sHCut1 -sHCut2):(-sHouseD3 -S8House sHouseZ2 -sHouseZ4 -sHCut1 -sHCut2)
-cell cShimA3 drum3 Be sShimE3 -S8 -sShimZ1 sShimZ2 -sDrum3 -sCut1 -sCut2
-%cell cShimB3 drum3 Be sShimC3 -sShimA3 -sShimZ1 sShimZ2 -sDrum3
+cell cShimA3 drum3 void sShimE3 -S8 -sShimZ1 sShimZ2 -sDrum3 -sCut1 -sCut2
 cell cCutD31 drum3 void -S8 sCut2 -sDrum3
 cell cCutD32 drum3 void -S8 sCut1 -sDrum3
 % --- Drum4 definitions
@@ -713,8 +713,7 @@ cell cHouse4 drum4 Be (-sDrum4 -S8 sHouseZ1 -sCut2 -sCut3):(-sDrum4 -S8 -sHouseZ
 (-sDrum4 -S8 -sCut2 sHCut2 -sShimZ2):(-sDrum4 -S8 -sCut3 sHCut3 sShimZ1):(-sDrum4 -S8 -sCut3 sHCut3 -sShimZ2):(-sDrum4 -S8 sHouseD4 -sCut2 -sCut3 sShimZ1):
 (-sDrum4 -S8 sHouseD4 -sCut2 -sCut3 -sShimZ2)
 cell cDrums4 drum4 Be (-sHouseE4 -sHouseD4 -sHouseZ3 sHouseZ4):(-sHouseD4 -S8House -sHouseZ1 sHouseZ3 -sHCut3 -sHCut2):(-sHouseD4 -S8House sHouseZ2 -sHouseZ4 -sHCut3 -sHCut2)
-cell cShimA4 drum4 Be sShimE4 -S8 -sShimZ1 sShimZ2 -sDrum4 -sCut2 -sCut3
-%cell cShimB4 drum4 Be sShimC4 -sShimA4 -sShimZ1 sShimZ2 -sDrum4
+cell cShimA4 drum4 void sShimE4 -S8 -sShimZ1 sShimZ2 -sDrum4 -sCut2 -sCut3
 cell cCutD41 drum4 void -S8 sCut3 -sDrum4
 cell cCutD42 drum4 void -S8 sCut2 -sDrum4
 % --- Drum5 definitions
@@ -724,8 +723,7 @@ cell cHouse5 drum5 Be (-sDrum5 -S8 sHouseZ1 -sCut4 -sCut3):(-sDrum5 -S8 -sHouseZ
 (-sDrum5 -S8 -sCut4 sHCut4 -sShimZ2):(-sDrum5 -S8 -sCut3 sHCut3 sShimZ1):(-sDrum5 -S8 -sCut3 sHCut3 -sShimZ2):(-sDrum5 -S8 sHouseD5 -sCut4 -sCut3 sShimZ1):
 (-sDrum5 -S8 sHouseD5 -sCut4 -sCut3 -sShimZ2)
 cell cDrums5 drum5 Be (-sHouseE5 -sHouseD5 -sHouseZ3 sHouseZ4):(-sHouseD5 -S8House -sHouseZ1 sHouseZ3 -sHCut3 -sHCut4):(-sHouseD5 -S8House sHouseZ2 -sHouseZ4 -sHCut3 -sHCut4)
-cell cShimA5 drum5 Be sShimE5 -S8 -sShimZ1 sShimZ2 -sDrum5 -sCut3 -sCut4
-%cell cShimA5 drum5 Be sShimC5 -sShimA5 -sShimZ1 sShimZ2 -sDrum5
+cell cShimA5 drum5 void sShimE5 -S8 -sShimZ1 sShimZ2 -sDrum5 -sCut3 -sCut4
 cell cCutD51 drum5 void -S8 sCut4 -sDrum5
 cell cCutD52 drum5 void -S8 sCut3 -sDrum5
 % --- Drum6 definitions
@@ -735,8 +733,7 @@ cell cHouse6 drum6 Be (-sDrum6 -S8 sHouseZ1 -sCut4 -sCut5):(-sDrum6 -S8 -sHouseZ
 (-sDrum6 -S8 -sCut4 sHCut4 -sShimZ2):(-sDrum6 -S8 -sCut5 sHCut5 sShimZ1):(-sDrum6 -S8 -sCut5 sHCut5 -sShimZ2):(-sDrum6 -S8 sHouseD6 -sCut4 -sCut5 sShimZ1):
 (-sDrum6 -S8 sHouseD6 -sCut4 -sCut5 -sShimZ2)
 cell cDrums6 drum6 Be (-sHouseE6 -sHouseD6 -sHouseZ3 sHouseZ4):(-sHouseD6 -S8House -sHouseZ1 sHouseZ3 -sHCut5 -sHCut4):(-sHouseD6 -S8House sHouseZ2 -sHouseZ4 -sHCut5 -sHCut4)
-cell cShimA6 drum6 Be sShimE6 -S8 -sShimZ1 sShimZ2 -sDrum6 -sCut4 -sCut5
-%cell cShimA6 drum6 Be sShimC6 -sShimA6 -sShimZ1 sShimZ2 -sDrum6
+cell cShimA6 drum6 void sShimE6 -S8 -sShimZ1 sShimZ2 -sDrum6 -sCut4 -sCut5
 cell cCutD61 drum6 void -S8 sCut5 -sDrum6
 cell cCutD62 drum6 void -S8 sCut4 -sDrum6
 % --- fill definitions
@@ -764,13 +761,12 @@ cell cDrumvoid5 reactor void sDrum5 -sVDrum5 -S8 -sStatCut3 -sStatCut4
 cell cDrumvoid6 reactor void sDrum6 -sVDrum6 -S8 -sStatCut4 -sStatCut5
 cell cUpperGrid reactor fill ugridplate -SUG
 cell cLowerGrid reactor fill lgridplate -SLG
-%cell cCuboid1 reactor Be -sBY11 -sBY21 -sBX11 S8 -sShimZ1 sShimZ2
-cell cCuboid1 reactor Be -sBY11 -sBY21 -sBX11 sBX21 -sShimZ1 sShimZ2
-cell cCuboid2 reactor Be -sBY12 -sBY22 -sBX12 sBX22 -sShimZ1 sShimZ2
-cell cCuboid3 reactor Be -sBY13 -sBY23 -sBX13 sBX23 -sShimZ1 sShimZ2
-cell cCuboid4 reactor Be -sBY11 -sBY21 -sBX14 -sBX24 -sShimZ1 sShimZ2
-cell cCuboid5 reactor Be -sBY12 -sBY22 -sBX15 sBX25 -sShimZ1 sShimZ2
-cell cCuboid6 reactor Be -sBY13 -sBY23 -sBX16 sBX26 -sShimZ1 sShimZ2
+cell cShimB1 reactor void -sBY11 -sBY21 -sBX11 sBX21 -sShimZ1 sShimZ2
+cell cShimB2 reactor void -sBY12 -sBY22 -sBX12 sBX22 -sShimZ1 sShimZ2
+cell cShimB3 reactor void -sBY13 -sBY23 -sBX13 sBX23 -sShimZ1 sShimZ2
+cell cShimB4 reactor void -sBY11 -sBY21 -sBX14 -sBX24 -sShimZ1 sShimZ2
+cell cShimB5 reactor void -sBY12 -sBY22 -sBX15 sBX25 -sShimZ1 sShimZ2
+cell cShimB6 reactor void -sBY13 -sBY23 -sBX16 sBX26 -sShimZ1 sShimZ2
 cell cDrumVoid reactor  void (sBX11:sBX12:sBX13:sBX14:sBX15:sBX16):(S7 SUG):(-S6 SLG):(sBY11 -sBX11 sBX21):(sBY21 -sBX11 sBX21):(sShimZ1 -sBX11 sBX21):(-sShimZ2 -sBX11 sBX21):(sBY12 -sBX12 sBX22):(sBY22 -sBX12 sBX22):(sShimZ1 -sBX12 sBX22):(-sShimZ2 -sBX12 sBX22):(sBY13 -sBX13 sBX23):(sBY23 -sBX13 sBX23):(sShimZ1 -sBX13 sBX23):(-sShimZ2 -sBX13 sBX23):(sBY11 -sBX14 -sBX24):(sBY21 -sBX14 -sBX24):(sShimZ1 -sBX14 -sBX24):(-sShimZ2 -sBX14 -sBX24):(sBY12 -sBX15 sBX25):(sBY22 -sBX15 sBX25):(sShimZ1 -sBX15 sBX25):(-sShimZ2 -sBX15 sBX25):(sBY13 -sBX16 sBX26):(sBY23 -sBX16 sBX26):(sShimZ1 -sBX16 sBX26):(-sShimZ2 -sBX16 sBX26)
 
 % --- Cell cIN  is filled with universe "core", also its important to keep in mind that
@@ -782,13 +778,7 @@ cell cIN 0 fill reactor -SCube
 % --- Cell cOUT  is defined as everything outside the cubic cell
 cell cOUT 0 outside SCube
 
-trans U core rot 0 0 0 0 0 1 30
-%trans S sCuboid2 rot 0.0 0.0 0.0 0.0 0.0 1.0 60
-%trans S sCuboid3 rot 0.0 0.0 0.0 0.0 0.0 1.0 120
-%trans S sCuboid4 rot 0.0 0.0 0.0 0.0 0.0 1.0 180
-%trans S sCuboid5 rot 0.0 0.0 0.0 0.0 0.0 1.0 240
-%trans S sCuboid6 rot 0.0 0.0 0.0 0.0 0.0 1.0 300
-%trans S cCuboid5 rot -10.4809 -18.0287 0.0 0.0 0.0 1.0 105 
+trans U core rot 0 0 0 0 0 1 30 
 % ------------------------------------------------------------
 
 /******************
