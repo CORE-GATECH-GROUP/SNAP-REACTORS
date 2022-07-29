@@ -364,7 +364,7 @@ surf sLcap pz -17.4371
 surf sUpoison pz 18.1483
 surf sUclad pz 18.148395
 surf sLclad pz -17.4117
-surf SCube cube  0.0 0.0 0.0 22.9
+surf SCube cube  0.0 0.0 0.0 25.0
 
 % --- surfaces for drums 
 surf sDrum1 cyl  23.972012 0.0 11.9126 -18.3769 18.3769
@@ -404,27 +404,13 @@ surf sShimE3 plane  -8.9103  15.4331 0 317.5752
 surf sShimE4 plane -17.8206  0       0 317.5752
 surf sShimE5 plane  -8.9103 -15.4331 0 317.5752
 surf sShimE6 plane   8.9103 -15.4331 0 317.5752
-% --- surfaces for B shims
-%surf sShimB1 plane  21.9354   0      0 481.1618
-%surf sShimB2 plane  10.9677  18.9966 0 481.1618
-%surf sShimB3 plane -10.9677  18.9966 0 481.1618
-%surf sShimB4 plane -21.9354   0      0 481.1618
-%surf sShimB5 plane -10.9677 -18.9966 0 481.1618
-%surf sShimB6 plane  10.9677 -18.9966 0 481.1618
-%--- BEGIN CUBOID DEFINITIONS
-surf sCuboid1 cuboid 19.7002 21.9354 -7.712 7.712 -15.24 15.24
-surf sCuboid2 cuboid 19.7002 21.9354 -7.712 7.712 -15.24 15.24
-surf sCuboid3 cuboid 19.7002 21.9354 -7.712 7.712 -15.24 15.24
-surf sCuboid4 cuboid 19.7002 21.9354 -7.712 7.712 -15.24 15.24
-surf sCuboid5 cuboid 19.7002 21.9354 -7.712 7.712 -15.24 15.24
-surf sCuboid6 cuboid 19.7002 21.9354 -7.712 7.712 -15.24 15.24
 %--- begin B shim definitions ---%
-surf sBY11 plane   0.0      7.7120 0.0 59.4749
-surf sBY12 plane  -6.6788   3.8560 0.0 59.4749
-surf sBY13 plane  -6.6788  -3.8560 0.0 59.4749
-surf sBY21 plane   0.0     -7.7120 0.0 59.4749
-surf sBY22 plane   6.6788  -3.8560 0.0 59.4749
-surf sBY23 plane   6.6788   3.8560 0.0 59.4749
+surf sBY11 plane   0.0       10.200 0.0 104.040
+surf sBY12 plane  -8.8335     5.100 0.0 104.040
+surf sBY13 plane  -8.8335    -5.100 0.0 104.040
+surf sBY21 plane   0.0      -10.200 0.0 104.040
+surf sBY22 plane   8.8335    -5.100 0.0 104.040
+surf sBY23 plane   8.8335     5.100 0.0 104.040
 surf sBX11  plane  21.9354   0.0    0.0 481.1618
 surf sBX12  plane  10.9677  18.9966 0.0 481.1618
 surf sBX13  plane -10.9677  18.9966 0.0 481.1618
@@ -439,6 +425,12 @@ surf sBX23  plane  -9.8501  17.0609 0.0 388.0979
 surf sBX24 px -19.7002
 surf sBX25  plane  -9.8501 -17.0609 0.0 388.0979
 surf sBX26  plane   9.8501 -17.0609 0.0 388.0979 
+surf sBcut1 plane   0.0     22.5  0.0 506.250
+surf sBcut2 plane -19.4856  11.25 0.0 506.250
+surf sBcut3 plane -19.4856 -11.25 0.0 506.250
+surf sBcut4 plane   0.0    -22.5  0.0 506.250
+surf sBcut5 plane  19.4856 -11.25 0.0 506.250
+surf sBcut6 plane  19.4856  11.25 0.0 506.250
 % --- surfaces for internal reflectors
 surf srefl1 plane  0      11.0668 0 122.4736
 surf srefl2 plane -9.5841  5.5334 0 122.4736
@@ -677,65 +669,59 @@ cell cHouseRefl5    core reflMix (sHrefl5 -srefl5 -S12):(sHouseZ1 -S12 sHrefl5):
 cell cHouseRefl6    core reflMix (sHrefl6 -srefl6 -S12):(S14 -S12 srefl6):(sHouseZ1 -S12 sHrefl6):(-sHouseZ2 -S12 sHrefl6)
 
 % --- Drum1 definitions 
-cell cHouse1 drum1 Be (-sDrum1 -S8 sHouseZ1 -sCut6 -sCut5):(-sDrum1 -S8 -sHouseZ2 -sCut6 -sCut5):(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 -sShimE1):
-(-S8 S8House -sDrum1 sShimZ1 -sCut6 -sCut5):(-S8 S8House -sDrum1 -sShimZ2 -sCut6 -sCut5):(-sDrum1 -S8 sShimZ1 -sHouseZ3 sHouseE1 -sCut6 -sCut5):
-(-sDrum1 -S8 -sShimZ2 sHouseZ4 sHouseE1 -sCut6 -sCut5):(-sDrum1 -S8 sHouseE1 -sShimE1 -sHouseZ3 sHouseZ4 -sCut6 -sCut5):(-sDrum1 -S8 -sCut6 sHCut6 sShimZ1):
-(-sDrum1 -S8 -sCut6 sHCut6 -sShimZ2):(-sDrum1 -S8 -sCut5 sHCut5 sShimZ1):(-sDrum1 -S8 -sCut5 sHCut5 -sShimZ2):(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 sShimZ1):
-(-sDrum1 -S8 sHouseD1 -sCut6 -sCut5 -sShimZ2)
-cell cDrums1 drum1 Be (-sHouseE1 -sHouseD1 -sHouseZ3 sHouseZ4):(-sHouseD1 -S8House -sHouseZ1 sHouseZ3 -sHCut5 -sHCut6):(-sHouseD1 -S8House sHouseZ2 -sHouseZ4 -sHCut5 -sHCut6)
-cell cShimA1 drum1 void sShimE1 -S8 -sShimZ1 sShimZ2 -sDrum1 -sCut5 -sCut6
-cell cCutD11 drum1 void -S8 sCut5 -sDrum1
-cell cCutD12 drum1 void -S8 sCut6 -sDrum1
+cell cDrums1 drum1 Be (-sDrum1 -S8 sShimZ1 -sCut6 -sCut5 -sBY11 -sBY21):(-sDrum1 -sShimE1 -sShimZ1 sShimZ2 -sCut6 -sCut5 -sBY11 -sBY21):(-sDrum1 -S8 -sShimZ2 -sCut6 -sCut5 -sBY11 -sBY21)
+cell cShimA1 drum1 Be sShimE1 -S8 -sShimZ1 sShimZ2 -sDrum1 -sBY21 -sBY11%-sCut6
+cell cCutD11 drum1 void -S8 sBY21 -sDrum1
+cell cCutD12 drum1 void -S8 sBY11 -sDrum1
+cell cCutD13 drum1 void -S8 -sBY11 sCut6 sShimZ1
+cell cCutD14 drum1 void -S8 -sBY21 sCut5 sShimZ1
+cell cCutD15 drum1 void -S8 -sBY11 sCut6 -sShimZ2
+cell cCutD16 drum1 void -S8 -sBY21 sCut5 -sShimZ2
 % --- Drum2 definitions
-cell cHouse2 drum2 Be (-sDrum2 -S8 sHouseZ1 -sCut6 -sCut1):(-sDrum2 -S8 -sHouseZ2 -sCut6 -sCut1):(-sDrum2 -S8 sHouseD2 -sCut6 -sCut1 -sShimE2):
-(-S8 S8House -sDrum2 sShimZ1 -sCut6 -sCut1):(-S8 S8House -sDrum2 -sShimZ2 -sCut6 -sCut1):(-sDrum2 -S8 sShimZ1 -sHouseZ3 sHouseE2 -sCut6 -sCut1):
-(-sDrum2 -S8 -sShimZ2 sHouseZ4 sHouseE2 -sCut6 -sCut1):(-sDrum2 -S8 sHouseE2 -sShimE2 -sHouseZ3 sHouseZ4 -sCut6 -sCut1):(-sDrum2 -S8 -sCut6 sHCut6 sShimZ1):
-(-sDrum2 -S8 -sCut6 sHCut6 -sShimZ2):(-sDrum2 -S8 -sCut1 sHCut1 sShimZ1):(-sDrum2 -S8 -sCut1 sHCut1 -sShimZ2):(-sDrum2 -S8 sHouseD2 -sCut6 -sCut1 sShimZ1):
-(-sDrum2 -S8 sHouseD2 -sCut6 -sCut1 -sShimZ2)
-cell cDrums2 drum2 Be (-sHouseE2 -sHouseD2 -sHouseZ3 sHouseZ4):(-sHouseD2 -S8House -sHouseZ1 sHouseZ3 -sHCut1 -sHCut6):(-sHouseD2 -S8House sHouseZ2 -sHouseZ4 -sHCut1 -sHCut6)
-cell cShimA2 drum2 void sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 -sCut1 -sCut6
-cell cCutD21 drum2 void  -S8 sCut1 -sDrum2
-cell cCutD22 drum2 void -S8 sCut6 -sDrum2
+cell cDrums2 drum2 Be (-sDrum2 -S8 sShimZ1 -sCut6 -sCut1 -sBY12 -sBY22):(-sDrum2 -sShimE2 -sShimZ1 sShimZ2 -sCut6 -sCut1 -sBY12 -sBY22):(-sDrum2 -S8 -sShimZ2 -sCut6 -sCut1 -sBY12 -sBY22)
+cell cShimA2 drum2 Be sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 -sBY22 -sBY12
+cell cCutD21 drum2 void  -S8 sBY22 -sDrum2
+cell cCutD22 drum2 void -S8 sBY12 -sDrum2
+cell cCutD23 drum2 void -S8 -sBY12 sCut1 sShimZ1
+cell cCutD24 drum2 void -S8 -sBY22 sCut6 sShimZ1
+cell cCutD25 drum2 void -S8 -sBY12 sCut1 -sShimZ2
+cell cCutD26 drum2 void -S8 -sBY22 sCut6 -sShimZ2
 % --- Drum3 definitions
-cell cHouse3 drum3 Be (-sDrum3 -S8 sHouseZ1 -sCut2 -sCut1):(-sDrum3 -S8 -sHouseZ2 -sCut2 -sCut1):(-sDrum3 -S8 sHouseD3 -sCut2 -sCut1 -sShimE3):
-(-S8 S8House -sDrum3 sShimZ1 -sCut2 -sCut1):(-S8 S8House -sDrum3 -sShimZ2 -sCut2 -sCut1):(-sDrum3 -S8 sShimZ1 -sHouseZ3 sHouseE3 -sCut2 -sCut1):
-(-sDrum3 -S8 -sShimZ2 sHouseZ4 sHouseE3 -sCut2 -sCut1):(-sDrum3 -S8 sHouseE3 -sShimE3 -sHouseZ3 sHouseZ4 -sCut2 -sCut1):(-sDrum3 -S8 -sCut2 sHCut2 sShimZ1):
-(-sDrum3 -S8 -sCut2 sHCut2 -sShimZ2):(-sDrum3 -S8 -sCut1 sHCut1 sShimZ1):(-sDrum3 -S8 -sCut1 sHCut1 -sShimZ2):(-sDrum3 -S8 sHouseD3 -sCut2 -sCut1 sShimZ1):
-(-sDrum3 -S8 sHouseD3 -sCut2 -sCut1 -sShimZ2)
-cell cDrums3 drum3 Be (-sHouseE3 -sHouseD3 -sHouseZ3 sHouseZ4):(-sHouseD3 -S8House -sHouseZ1 sHouseZ3 -sHCut1 -sHCut2):(-sHouseD3 -S8House sHouseZ2 -sHouseZ4 -sHCut1 -sHCut2)
-cell cShimA3 drum3 void sShimE3 -S8 -sShimZ1 sShimZ2 -sDrum3 -sCut1 -sCut2
-cell cCutD31 drum3 void -S8 sCut2 -sDrum3
-cell cCutD32 drum3 void -S8 sCut1 -sDrum3
+cell cDrums3 drum3 Be (-sDrum3 -S8 sShimZ1 -sCut1 -sCut2 -sBY13 -sBY23):(-sDrum3 -sShimE3 -sShimZ1 sShimZ2 -sCut1 -sCut2 -sBY13 -sBY23):(-sDrum3 -S8 -sShimZ2 -sCut1 -sCut2 -sBY13 -sBY23)
+cell cShimA3 drum3 Be sShimE3 -S8 -sShimZ1 sShimZ2 -sDrum3 -sBY23 -sBY13
+cell cCutD31 drum3 void -S8 sBY23 -sDrum3
+cell cCutD32 drum3 void -S8 sBY13 -sDrum3
+cell cCutD33 drum3 void -S8 -sBY13 sCut2 sShimZ1
+cell cCutD34 drum3 void -S8 -sBY23 sCut1 sShimZ1
+cell cCutD35 drum3 void -S8 -sBY13 sCut2 -sShimZ2
+cell cCutD36 drum3 void -S8 -sBY23 sCut1 -sShimZ2
 % --- Drum4 definitions
-cell cHouse4 drum4 Be (-sDrum4 -S8 sHouseZ1 -sCut2 -sCut3):(-sDrum4 -S8 -sHouseZ2 -sCut2 -sCut3):(-sDrum4 -S8 sHouseD4 -sCut2 -sCut3 -sShimE4):
-(-S8 S8House -sDrum4 sShimZ1 -sCut2 -sCut3):(-S8 S8House -sDrum4 -sShimZ2 -sCut2 -sCut3):(-sDrum4 -S8 sShimZ1 -sHouseZ3 sHouseE4 -sCut2 -sCut3):
-(-sDrum4 -S8 -sShimZ2 sHouseZ4 sHouseE4 -sCut2 -sCut3):(-sDrum4 -S8 sHouseE4 -sShimE4 -sHouseZ3 sHouseZ4 -sCut2 -sCut3):(-sDrum4 -S8 -sCut2 sHCut2 sShimZ1):
-(-sDrum4 -S8 -sCut2 sHCut2 -sShimZ2):(-sDrum4 -S8 -sCut3 sHCut3 sShimZ1):(-sDrum4 -S8 -sCut3 sHCut3 -sShimZ2):(-sDrum4 -S8 sHouseD4 -sCut2 -sCut3 sShimZ1):
-(-sDrum4 -S8 sHouseD4 -sCut2 -sCut3 -sShimZ2)
-cell cDrums4 drum4 Be (-sHouseE4 -sHouseD4 -sHouseZ3 sHouseZ4):(-sHouseD4 -S8House -sHouseZ1 sHouseZ3 -sHCut3 -sHCut2):(-sHouseD4 -S8House sHouseZ2 -sHouseZ4 -sHCut3 -sHCut2)
-cell cShimA4 drum4 void sShimE4 -S8 -sShimZ1 sShimZ2 -sDrum4 -sCut2 -sCut3
-cell cCutD41 drum4 void -S8 sCut3 -sDrum4
-cell cCutD42 drum4 void -S8 sCut2 -sDrum4
+cell cDrums4 drum4 Be (-sDrum4 -S8 sShimZ1 -sCut2 -sCut3 -sBY11 -sBY21):(-sDrum4 -sShimE4 -sShimZ1 sShimZ2 -sCut2 -sCut3 -sBY11 -sBY21):(-sDrum4 -S8 -sShimZ2 -sCut2 -sCut3 -sBY11 -sBY21)
+cell cShimA4 drum4 Be sShimE4 -S8 -sShimZ1 sShimZ2 -sDrum4 -sBY21 -sBY11
+cell cCutD41 drum4 void -S8 sBY21 -sDrum4
+cell cCutD42 drum4 void -S8 sBY11 -sDrum4
+cell cCutD43 drum4 void -S8 -sBY11 sCut2 sShimZ1
+cell cCutD44 drum4 void -S8 -sBY21 sCut3 sShimZ1
+cell cCutD45 drum4 void -S8 -sBY11 sCut2 -sShimZ2
+cell cCutD46 drum4 void -S8 -sBY21 sCut3 -sShimZ2
 % --- Drum5 definitions
-cell cHouse5 drum5 Be (-sDrum5 -S8 sHouseZ1 -sCut4 -sCut3):(-sDrum5 -S8 -sHouseZ2 -sCut4 -sCut3):(-sDrum5 -S8 sHouseD5 -sCut4 -sCut3 -sShimE5):
-(-S8 S8House -sDrum5 sShimZ1 -sCut4 -sCut3):(-S8 S8House -sDrum5 -sShimZ2 -sCut4 -sCut3):(-sDrum5 -S8 sShimZ1 -sHouseZ3 sHouseE5 -sCut4 -sCut3):
-(-sDrum5 -S8 -sShimZ2 sHouseZ4 sHouseE5 -sCut4 -sCut3):(-sDrum5 -S8 sHouseE5 -sShimE5 -sHouseZ3 sHouseZ4 -sCut4 -sCut3):(-sDrum5 -S8 -sCut4 sHCut4 sShimZ1):
-(-sDrum5 -S8 -sCut4 sHCut4 -sShimZ2):(-sDrum5 -S8 -sCut3 sHCut3 sShimZ1):(-sDrum5 -S8 -sCut3 sHCut3 -sShimZ2):(-sDrum5 -S8 sHouseD5 -sCut4 -sCut3 sShimZ1):
-(-sDrum5 -S8 sHouseD5 -sCut4 -sCut3 -sShimZ2)
-cell cDrums5 drum5 Be (-sHouseE5 -sHouseD5 -sHouseZ3 sHouseZ4):(-sHouseD5 -S8House -sHouseZ1 sHouseZ3 -sHCut3 -sHCut4):(-sHouseD5 -S8House sHouseZ2 -sHouseZ4 -sHCut3 -sHCut4)
-cell cShimA5 drum5 void sShimE5 -S8 -sShimZ1 sShimZ2 -sDrum5 -sCut3 -sCut4
-cell cCutD51 drum5 void -S8 sCut4 -sDrum5
-cell cCutD52 drum5 void -S8 sCut3 -sDrum5
+cell cDrums5 drum5 Be (-sDrum5 -S8 sShimZ1 -sCut3 -sCut4 -sBY12 -sBY22):(-sDrum5 -sShimE5 -sShimZ1 sShimZ2 -sCut3 -sCut4 -sBY12 -sBY22):(-sDrum5 -S8 -sShimZ2 -sCut3 -sCut4 -sBY12 -sBY22)
+cell cShimA5 drum5 Be sShimE5 -S8 -sShimZ1 sShimZ2 -sDrum5 -sBY22 -sBY12
+cell cCutD51 drum5 void -S8 sBY22 -sDrum5
+cell cCutD52 drum5 void -S8 sBY12 -sDrum5
+cell cCutD53 drum5 void -S8 -sBY12 sCut3 sShimZ1
+cell cCutD54 drum5 void -S8 -sBY22 sCut4 sShimZ1
+cell cCutD55 drum5 void -S8 -sBY12 sCut3 -sShimZ2
+cell cCutD56 drum5 void -S8 -sBY22 sCut4 -sShimZ2
 % --- Drum6 definitions
-cell cHouse6 drum6 Be (-sDrum6 -S8 sHouseZ1 -sCut4 -sCut5):(-sDrum6 -S8 -sHouseZ2 -sCut4 -sCut5):(-sDrum6 -S8 sHouseD6 -sCut4 -sCut5 -sShimE6):
-(-S8 S8House -sDrum6 sShimZ1 -sCut4 -sCut5):(-S8 S8House -sDrum6 -sShimZ2 -sCut4 -sCut5):(-sDrum6 -S8 sShimZ1 -sHouseZ3 sHouseE6 -sCut4 -sCut5):
-(-sDrum6 -S8 -sShimZ2 sHouseZ4 sHouseE6 -sCut4 -sCut5):(-sDrum6 -S8 sHouseE6 -sShimE6 -sHouseZ3 sHouseZ4 -sCut4 -sCut5):(-sDrum6 -S8 -sCut4 sHCut4 sShimZ1):
-(-sDrum6 -S8 -sCut4 sHCut4 -sShimZ2):(-sDrum6 -S8 -sCut5 sHCut5 sShimZ1):(-sDrum6 -S8 -sCut5 sHCut5 -sShimZ2):(-sDrum6 -S8 sHouseD6 -sCut4 -sCut5 sShimZ1):
-(-sDrum6 -S8 sHouseD6 -sCut4 -sCut5 -sShimZ2)
-cell cDrums6 drum6 Be (-sHouseE6 -sHouseD6 -sHouseZ3 sHouseZ4):(-sHouseD6 -S8House -sHouseZ1 sHouseZ3 -sHCut5 -sHCut4):(-sHouseD6 -S8House sHouseZ2 -sHouseZ4 -sHCut5 -sHCut4)
-cell cShimA6 drum6 void sShimE6 -S8 -sShimZ1 sShimZ2 -sDrum6 -sCut4 -sCut5
-cell cCutD61 drum6 void -S8 sCut5 -sDrum6
-cell cCutD62 drum6 void -S8 sCut4 -sDrum6
+cell cDrums6 drum6 Be (-sDrum6 -S8 sShimZ1 -sCut4 -sCut5 -sBY13 -sBY23):(-sDrum6 -sShimE6 -sShimZ1 sShimZ2 -sCut4 -sCut5 -sBY13 -sBY23):(-sDrum6 -S8 -sShimZ2 -sCut4 -sCut5 -sBY13 -sBY23)
+cell cShimA6 drum6 Be sShimE6 -S8 -sShimZ1 sShimZ2 -sDrum6 -sBY23 -sBY13
+cell cCutD61 drum6 void -S8 sBY23 -sDrum6
+cell cCutD62 drum6 void -S8 sBY13 -sDrum6
+cell cCutD63 drum6 void -S8 -sBY13 sCut4 sShimZ1
+cell cCutD64 drum6 void -S8 -sBY23 sCut5 sShimZ1
+cell cCutD65 drum6 void -S8 -sBY13 sCut4 -sShimZ2
+cell cCutD66 drum6 void -S8 -sBY23 sCut5 -sShimZ2
 % --- fill definitions
 cell cCore reactor fill core -S12
 cell cCoreWall reactor  ss316 S12 -S5
@@ -761,14 +747,31 @@ cell cDrumvoid5 reactor void sDrum5 -sVDrum5 -S8 -sStatCut3 -sStatCut4
 cell cDrumvoid6 reactor void sDrum6 -sVDrum6 -S8 -sStatCut4 -sStatCut5
 cell cUpperGrid reactor fill ugridplate -SUG
 cell cLowerGrid reactor fill lgridplate -SLG
-cell cShimB1 reactor void -sBY11 -sBY21 -sBX11 sBX21 -sShimZ1 sShimZ2
-cell cShimB2 reactor void -sBY12 -sBY22 -sBX12 sBX22 -sShimZ1 sShimZ2
-cell cShimB3 reactor void -sBY13 -sBY23 -sBX13 sBX23 -sShimZ1 sShimZ2
-cell cShimB4 reactor void -sBY11 -sBY21 -sBX14 -sBX24 -sShimZ1 sShimZ2
-cell cShimB5 reactor void -sBY12 -sBY22 -sBX15 sBX25 -sShimZ1 sShimZ2
-cell cShimB6 reactor void -sBY13 -sBY23 -sBX16 sBX26 -sShimZ1 sShimZ2
-cell cDrumVoid reactor  void (sBX11:sBX12:sBX13:sBX14:sBX15:sBX16):(S7 SUG):(-S6 SLG):(sBY11 -sBX11 sBX21):(sBY21 -sBX11 sBX21):(sShimZ1 -sBX11 sBX21):(-sShimZ2 -sBX11 sBX21):(sBY12 -sBX12 sBX22):(sBY22 -sBX12 sBX22):(sShimZ1 -sBX12 sBX22):(-sShimZ2 -sBX12 sBX22):(sBY13 -sBX13 sBX23):(sBY23 -sBX13 sBX23):(sShimZ1 -sBX13 sBX23):(-sShimZ2 -sBX13 sBX23):(sBY11 -sBX14 -sBX24):(sBY21 -sBX14 -sBX24):(sShimZ1 -sBX14 -sBX24):(-sShimZ2 -sBX14 -sBX24):(sBY12 -sBX15 sBX25):(sBY22 -sBX15 sBX25):(sShimZ1 -sBX15 sBX25):(-sShimZ2 -sBX15 sBX25):(sBY13 -sBX16 sBX26):(sBY23 -sBX16 sBX26):(sShimZ1 -sBX16 sBX26):(-sShimZ2 -sBX16 sBX26)
-
+cell cShimB1 reactor Be -sBY11 -sBY21 -sBX11 sBX21 -sShimZ1 sShimZ2  -sBcut5 -sBcut6
+cell cShimB2 reactor Be -sBY12 -sBY22 -sBX12 sBX22 -sShimZ1 sShimZ2  -sBcut1 -sBcut6
+cell cShimB3 reactor Be -sBY13 -sBY23 -sBX13 sBX23 -sShimZ1 sShimZ2  -sBcut2 -sBcut1
+cell cShimB4 reactor Be -sBY11 -sBY21 -sBX14 -sBX24 -sShimZ1 sShimZ2 -sBcut3 -sBcut2
+cell cShimB5 reactor Be -sBY12 -sBY22 -sBX15 sBX25 -sShimZ1 sShimZ2  -sBcut4 -sBcut3
+cell cShimB6 reactor Be -sBY13 -sBY23 -sBX16 sBX26 -sShimZ1 sShimZ2  -sBcut5 -sBcut4
+cell cSBVoid1 reactor void (sBcut5 -sBY21 -sBX11 -S7):(-sBY11 -sBY21 -sBX11 sBX21 sShimZ1 -sBcut5 -sBcut6 -S7):(-sBY11 -sBY21 -sBX11 sBX21 -sShimZ2 -sBcut5 -sBcut6 S6)
+cell cSBVoid2 reactor void sBcut6 -sBY11 -sBX11 -S7 S6
+cell cSBVoid3 reactor void (sBcut6 -sBY22 -sBX12 -S7 S6):(-sBY12 -sBY22 -sBX12 sBX22 sShimZ1 -sBcut1 -sBcut6 -S7):(-sBY12 -sBY22 -sBX12 sBX22 -sShimZ2 -sBcut1 -sBcut6 S6)
+cell cSBVoid4 reactor void sBcut1 -sBY12 -sBX12 -S7 S6 
+cell cSBVoid5 reactor void (sBcut1 -sBY23 -sBX13 -S7 S6):(-sBY13 -sBY23 -sBX13 sBX23 sShimZ1 -sBcut1 -sBcut2 -S7):(-sBY13 -sBY23 -sBX13 sBX23 -sShimZ2 -sBcut1 -sBcut2 S6)
+cell cSBVoid6 reactor void sBcut2 -sBY13 -sBX13 -S7 S6
+cell cSBVoid7 reactor void (sBcut2 -sBY11 -sBX14 -S7 S6):(-sBY11 -sBY21 -sBX14 -sBX24 sShimZ1 -sBcut3 -sBcut2 -S7):(-sBY11 -sBY21 -sBX14 -sBX24 -sShimZ2 -sBcut3 -sBcut2 S6)
+cell cSBVoid8 reactor void sBcut3 -sBY21 -sBX14 -S7 S6
+cell cSBVoid10 reactor void (sBcut3 -sBY12 -sBX15 -S7 S6):(-sBY12 -sBY22 -sBX15 sBX25 sShimZ1 -sBcut4 -sBcut3 -S7):(-sBY12 -sBY22 -sBX15 sBX25 -sShimZ2 -sBcut4 -sBcut3 S6)
+cell cSBVoid11 reactor void sBcut4 -sBY22 -sBX15 -S7 S6
+cell cSBVoid12 reactor void (sBcut4 -sBY13 -sBX16 -S7 S6):(-sBY13 -sBY23 -sBX16 sBX26 sShimZ1 -sBcut5 -sBcut4 -S7):(-sBY13 -sBY23 -sBX16 sBX26 -sShimZ2 -sBcut5 -sBcut4 S6)
+cell cSBVoid13 reactor void sBcut5 -sBY23 -sBX16 -S7 S6
+cell cHexVoid reactor  void (sBX11:sBX12:sBX13:sBX14:sBX15:sBX16):(S7 SUG):(-S6 SLG)
+cell cCornerVoid1 reactor void S8 sBY11 sBY22 -sBX11 -sBX12
+cell cCornerVoid2 reactor void S8 sBY12 sBY23 -sBX12 -sBX13
+cell cCornerVoid3 reactor void S8 sBY13 sBY11 -sBX13 -sBX14
+cell cCornerVoid4 reactor void S8 sBY21 sBY12 -sBX14 -sBX15
+cell cCornerVoid5 reactor void S8 sBY22 sBY13 -sBX15 -sBX16
+cell cCornerVoid6 reactor void S8 sBY21 sBY23 -sBX16 -sBX11
 % --- Cell cIN  is filled with universe "core", also its important to keep in mind that
 %     the "0" universe is the universe for which outside needs to be defined.
 %     Serpent gives the warning that the  '0' universe should be the only one defining outside
@@ -791,7 +794,7 @@ set bc 1
 
 % --- Neutron population: 100000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 1000000 100 40
+set pop 10000 100 40
 
 % --- XY-plot (3)
 
