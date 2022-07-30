@@ -431,6 +431,18 @@ surf sBcut3 plane -19.4856 -11.25 0.0 506.250
 surf sBcut4 plane   0.0    -22.5  0.0 506.250
 surf sBcut5 plane  19.4856 -11.25 0.0 506.250
 surf sBcut6 plane  19.4856  11.25 0.0 506.250
+surf sShaftCut11 plane -0.4226  0.9063 0.0 -6.9
+surf sShaftCut12 plane -0.9962  0.0872 0.0 -6.9
+surf sShaftCut13 plane -0.5736 -0.8191 0.0 -6.9
+surf sShaftCut14 plane  0.4226 -0.9063 0.0 -6.9
+surf sShaftCut15 plane  0.9962 -0.0872 0.0 -6.9
+surf sShaftCut16 plane  0.5736  0.8191 0.0 -6.9
+surf sShaftCut21 plane  0.4226  0.9063 0.0 6.9
+surf sShaftCut22 plane -0.5736  0.8191 0.0 6.9
+surf sShaftCut23 plane -0.9962 -0.0872 0.0 6.9
+surf sShaftCut24 plane -0.4226 -0.9063 0.0 6.9
+surf sShaftCut25 plane  0.5736 -0.8191 0.0 6.9
+surf sShaftCut26 plane  0.9962  0.0872 0.0 6.9
 % --- surfaces for internal reflectors
 surf srefl1 plane  0      11.0668 0 122.4736
 surf srefl2 plane -9.5841  5.5334 0 122.4736
@@ -747,12 +759,24 @@ cell cDrumvoid5 reactor void sDrum5 -sVDrum5 -S8 -sStatCut3 -sStatCut4
 cell cDrumvoid6 reactor void sDrum6 -sVDrum6 -S8 -sStatCut4 -sStatCut5
 cell cUpperGrid reactor fill ugridplate -SUG
 cell cLowerGrid reactor fill lgridplate -SLG
-cell cShimB1 reactor Be -sBY11 -sBY21 -sBX11 sBX21 -sShimZ1 sShimZ2  -sBcut5 -sBcut6
-cell cShimB2 reactor Be -sBY12 -sBY22 -sBX12 sBX22 -sShimZ1 sShimZ2  -sBcut1 -sBcut6
-cell cShimB3 reactor Be -sBY13 -sBY23 -sBX13 sBX23 -sShimZ1 sShimZ2  -sBcut2 -sBcut1
-cell cShimB4 reactor Be -sBY11 -sBY21 -sBX14 -sBX24 -sShimZ1 sShimZ2 -sBcut3 -sBcut2
-cell cShimB5 reactor Be -sBY12 -sBY22 -sBX15 sBX25 -sShimZ1 sShimZ2  -sBcut4 -sBcut3
-cell cShimB6 reactor Be -sBY13 -sBY23 -sBX16 sBX26 -sShimZ1 sShimZ2  -sBcut5 -sBcut4
+cell cShimB11 reactor Be -sBY11 -sBY21 -sBX11 sBX21 -sShimZ1 sShimZ2  -sBcut5 -sBcut6 sShaftCut11
+cell cShimB21 reactor Be -sBY11 -sBY21 -sBX11 sBX21 -sShimZ1 sShimZ2  -sBcut5 -sBcut6 -sShaftCut21
+cell cShimB12 reactor Be -sBY12 -sBY22 -sBX12 sBX22 -sShimZ1 sShimZ2  -sBcut1 -sBcut6 sShaftCut12
+cell cShimB22 reactor Be -sBY12 -sBY22 -sBX12 sBX22 -sShimZ1 sShimZ2  -sBcut1 -sBcut6 -sShaftCut22
+cell cShimB13 reactor Be -sBY13 -sBY23 -sBX13 sBX23 -sShimZ1 sShimZ2  -sBcut2 -sBcut1 sShaftCut13
+cell cShimB23 reactor Be -sBY13 -sBY23 -sBX13 sBX23 -sShimZ1 sShimZ2  -sBcut2 -sBcut1 -sShaftCut23
+cell cShimB14 reactor Be -sBY11 -sBY21 -sBX14 -sBX24 -sShimZ1 sShimZ2 -sBcut3 -sBcut2 sShaftCut14
+cell cShimB24 reactor Be -sBY11 -sBY21 -sBX14 -sBX24 -sShimZ1 sShimZ2 -sBcut3 -sBcut2 -sShaftCut24
+cell cShimB15 reactor Be -sBY12 -sBY22 -sBX15 sBX25 -sShimZ1 sShimZ2  -sBcut4 -sBcut3 sShaftCut15
+cell cShimB25 reactor Be -sBY12 -sBY22 -sBX15 sBX25 -sShimZ1 sShimZ2  -sBcut4 -sBcut3 -sShaftCut25
+cell cShimB16 reactor Be -sBY13 -sBY23 -sBX16 sBX26 -sShimZ1 sShimZ2  -sBcut5 -sBcut4 sShaftCut16
+cell cShimB26 reactor Be -sBY13 -sBY23 -sBX16 sBX26 -sShimZ1 sShimZ2  -sBcut5 -sBcut4 -sShaftCut26
+cell cShaftVoid1 reactor void -sShaftCut11 sShaftCut21 -sBX11 sBX21 -sShimZ1 sShimZ2
+cell cShaftVoid2 reactor void -sShaftCut12 sShaftCut22 -sBX12 sBX22 -sShimZ1 sShimZ2
+cell cShaftVoid3 reactor void -sShaftCut13 sShaftCut23 -sBX13 sBX23 -sShimZ1 sShimZ2
+cell cShaftVoid4 reactor void -sShaftCut14 sShaftCut24 -sBX14 -sBX24 -sShimZ1 sShimZ2
+cell cShaftVoid5 reactor void -sShaftCut15 sShaftCut25 -sBX15 sBX25 -sShimZ1 sShimZ2
+cell cShaftVoid6 reactor void -sShaftCut16 sShaftCut26 -sBX16 sBX26 -sShimZ1 sShimZ2
 cell cSBVoid1 reactor void (sBcut5 -sBY21 -sBX11 -S7):(-sBY11 -sBY21 -sBX11 sBX21 sShimZ1 -sBcut5 -sBcut6 -S7):(-sBY11 -sBY21 -sBX11 sBX21 -sShimZ2 -sBcut5 -sBcut6 S6)
 cell cSBVoid2 reactor void sBcut6 -sBY11 -sBX11 -S7 S6
 cell cSBVoid3 reactor void (sBcut6 -sBY22 -sBX12 -S7 S6):(-sBY12 -sBY22 -sBX12 sBX22 sShimZ1 -sBcut1 -sBcut6 -S7):(-sBY12 -sBY22 -sBX12 sBX22 -sShimZ2 -sBcut1 -sBcut6 S6)
