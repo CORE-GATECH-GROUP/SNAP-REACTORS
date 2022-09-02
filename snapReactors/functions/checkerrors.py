@@ -43,6 +43,11 @@ def _isbool(var, description):
         raise TypeError("{} must be bool and not {}"
                         .format(description, var))
 
+def _isdict(var, description):
+    """checks if the variable of boolean type"""
+    if not isinstance(var, dict):
+        raise TypeError("{} must 1be bool and not {}"
+                        .format(description, var))
 
 def _islist(var, description):
     """checks if the variable of list type"""

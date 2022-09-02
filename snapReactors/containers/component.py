@@ -54,15 +54,17 @@ class Component:
     """
 
 
-    def __init__(self, compName, _materials = None):
+    def __init__(self, compName, _materials = None, _dimensions = None, description = None):
 
         # check that variables are of correct type (return TypeError if not)
         _isstr(compName, "Component Name")
         # initialize all parameters in Component as lists
         self.id = compName
-        self._materials = []
+        self._materials = _materials
         self._materialsDict = {}
         self.isVerified = False
+        self.description = description
+        self._dimensions = _dimensions
 
         if not isinstance(_materials, type(None)):
             _isinstanceList(_materials, Material, "List of materials")

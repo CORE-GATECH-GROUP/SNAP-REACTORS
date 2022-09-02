@@ -15,9 +15,15 @@ email: dan.kotlyar@me.gatech.edu
 
 from collections import namedtuple
 Property = namedtuple("property", ["description", "units", "conversion"])
-Units = namedtuple("units", ["SI", "imperial"])
-Conversion = namedtuple("conversion", ["S2I","I2S"]) #S2I = SI to Imperial, 
-#I2S = Imperial to SI
+Dimension = namedtuple("dimension", ["description", "units", "conversion"])
+
+PUnits = namedtuple("units", ["SI", "imperial"])
+DUnits = namedtuple("units", ["SI", "imperial", "Serpent"])
+PConversion = namedtuple("conversion", ["S2I","I2S"]) #S2I = SI to Imperial, 
+#I2S = Imperial to SI, #S2SERP SI to Serpent
+
+DConversion = namedtuple("conversion", ["S2I","I2S","S2SERP"]) #S2I = SI to Imperial, 
+#I2S = Imperial to SI, #S2SERP SI to Serpent
 
 # General structure of the OUTPUT_PARAMETERS is
 # {parameter : (description, Units(SI, CGS))}
@@ -25,42 +31,88 @@ Conversion = namedtuple("conversion", ["S2I","I2S"]) #S2I = SI to Imperial,
 
 # General structure of the ALLOWED_PROPERTIES is
 # {property : (description, units)}
+
+def __faren_kelvin(tempFaren):
+   tempKelvin = (tempFaren - 32)*(5/9) + 273.15 
+   # (32°F − 32) × 5/9 + 273.15 = 273.15K
+   return tempKelvin
+
+def __kelvin_faren(tempKelvin):
+   tempFaren = (tempKelvin - 273.15)*(9/5) + 32 
+   # (0K − 273.15) × 9/5 + 32 = -459.7°F
+   return tempFaren
+
+   return
 ALLOWED_PROPERTIES =\
     {'cp': Property('heat capacity (constant pressure)', 
-        Units("J/kg/K","BTU/lb/F"), Conversion(0.0002, 5000)),
+        PUnits("J/kg/K","BTU/lb/F"), PConversion(0.0002, 5000)),
      'cv': Property('heat capacity (constant volume)', 
-        Units("J/kg/K","BTU/lb/F"), Conversion(0.0002, 5000)),
-     'g': Property('Gamma=Cp/Cv', Units("Dimensionless","Dimensionless"),
-         Conversion(1, 1)),
-     'h': Property('Enthalpy', Units("W/K/m^2","BTU/hr/F/ft^2"), 
-        Conversion(.1761, 5.67859)),
-     'my': Property('Viscosity', Units("kg/m/s","lb/ft/hr"), 
-        Conversion(2419.0883293091, 0.00041337887)),
+        PUnits("J/kg/K","BTU/lb/F"), PConversion(0.0002, 5000)),
+     'g': Property('Gamma=Cp/Cv', PUnits("Dimensionless","Dimensionless"),
+         PConversion(1, 1)),
+     'h': Property('Enthalpy', PUnits("W/K/m^2","BTU/hr/F/ft^2"), 
+        PConversion(.1761, 5.67859)),
+     'my': Property('Viscosity', PUnits("kg/m/s","lb/ft/hr"), 
+        PConversion(2419.0883293091, 0.00041337887)),
      'pr': Property('Prandtl Number', 
-        Units("Dimensionless","Dimensionless"), Conversion(1, 1)),
+        PUnits("Dimensionless","Dimensionless"), PConversion(1, 1)),
      'mol': Property('Mole fraction', 
-        Units("Dimensionless","Dimensionless"), Conversion(1, 1)),
-     'r': Property('Density',  Units("kg/m^3","lb/ft^3"), 
-        Conversion(0.062428, 16.0184532582)),
-     's': Property('Entropy', Units("J/kg/K","BTU/lb/F"), 
-        Conversion(0.0002, 5000)),
-     'tc': Property('Thermal Conductivity', Units("W/m/K","BTU/ft/F/hr"),
-        Conversion(0.5781759824, 1.72957720563)),
-     'v': Property('Sonic Velocity', Units("m/s","ft/hr"),
-        Conversion(11811, 0.00008466683)),
+        PUnits("Dimensionless","Dimensionless"), PConversion(1, 1)),
+     'r': Property('Density',  PUnits("kg/m^3","lb/ft^3"), 
+        PConversion(0.062428, 16.0184532582)),
+     's': Property('Entropy', PUnits("J/kg/K","BTU/lb/F"), 
+        PConversion(0.0002, 5000)),
+     'tc': Property('Thermal Conductivity', PUnits("W/m/K","BTU/ft/F/hr"),
+        PConversion(0.5781759824, 1.72957720563)),
+     'v': Property('Sonic Velocity', PUnits("m/s","ft/hr"),
+        PConversion(11811, 0.00008466683)),
      'nu': Property('Poisson\'s ratio', 
-        Units("Dimensionless","Dimensionless"), Conversion(1, 1)),
+        PUnits("Dimensionless","Dimensionless"), PConversion(1, 1)),
      'alpha': Property('Coefficient of thermal expansion', 
-        Units("m/m/K","ft/ft/F"), Conversion(0.555555556, 1.79999999856)),
-     'alphaT': Property('Zero stress temperature', Units("K","F"), 
-        Conversion("TBD", "TBD")), #Not sure how to implement
-     'E': Property('Modulus of elasticity', Units("Pa","lb/in^2"), 
-        Conversion(0.000145038, 6894.74482549)),
-     'sigma': Property('Tensile strength', Units("Pa","lb/in^2"), 
-        Conversion(0.000145038, 6894.74482549))
+        PUnits("m/m/K","ft/ft/F"), PConversion(0.555555556, 1.79999999856)),
+     'alphaT': Property('Zero stress temperature', PUnits("K","F"), 
+        PConversion(__kelvin_faren, __faren_kelvin,)),
+     'E': Property('Modulus of elasticity', PUnits("Pa","lb/in^2"), 
+        PConversion(0.000145038, 6894.74482549)),
+     'sigma': Property('Tensile strength', PUnits("Pa","lb/in^2"), 
+        PConversion(0.000145038, 6894.74482549))
         }
 
-# Conversion from SI to other units
-conversion = {}  # this will be completed in the future
+# S2I CONVERSION FACTORS
+METERS_FEET = 3.28084
+FEET_METERS = 1/METERS_FEET
+METERSAREA_FEETAREA = 10.7639
+FEETAREA_METERSAREA = 1/METERSAREA_FEETAREA
+METERSVOLUME_FEETVOLUME = 35.3147
+FEETVOLUME_METERSVOLUME = 1/METERSVOLUME_FEETVOLUME
+
+#S2SERP CONVERSION FACTORS
+KGM3_GCM3 = 1/1000
+M_CM = 100
+
+
+ALLOWED_DIMENSIONS =\
+   {'fuel_radius': Dimension('fuel radius', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'diffusion_barrier_radius': Dimension('diffusion barrier radius', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'gap_radius': Dimension('gap radius', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'clad_radius': Dimension('fuel radius', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'poison_coating_radius': Dimension('poison coating radius', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'lattice_pitch': Dimension('lattice pitch (fuel element pitch)', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'assembly_pitch': Dimension('assembly pitch', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'upper_gridplate_thickness': Dimension('upper gridplate thickness', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'lower_gridplate_thickness': Dimension('lower gridplate thickness', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'core_equivalent_radius': Dimension('core equivalent radius', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   }
+
 
 

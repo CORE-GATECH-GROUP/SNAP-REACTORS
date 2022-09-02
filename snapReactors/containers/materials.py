@@ -583,13 +583,16 @@ class Material:
             if "reference" in matpoints[i]:
                 reference = matpoints[i]["reference"]
             else:
+                reference = None
                 warnings.warn("Reference for material {} not" 
                             "provided".format(id), 
-                                    InputFileSyntaxWarning)                
+                                    InputFileSyntaxWarning)
+
 
             if "description" in matpoints[i]:
                 description = matpoints[i]["description"]
             else:
+                description = None
                 warnings.warn("Description for material {} not" 
                             "provided".format(id), 
                                     InputFileSyntaxWarning)

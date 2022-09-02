@@ -13,7 +13,7 @@ email: iaguirre6@gatech.edu, sgarcia9@wisc.edu
 
 from snapReactors.functions.checkerrors import (_isstr, _isarray,
     _explengtharray, _isnonnegativearray, _isnumber, _isnonnegative,
-    _isinstanceList) 
+    _isinstanceList, _isdict) 
 from snapReactors.functions.parameters import ALLOWED_PROPERTIES
 from snapReactors.functions.warnings import InputFileSyntaxWarning
 from enum import Enum
@@ -61,7 +61,7 @@ class ReactorState:
                             description=description, _components=c1)
     """
     def __init__(self, id, reference=None, description=None, 
-                _components=None):
+                _components=None, _reactorMap = None):
         _isstr(id, "Reactor State Name")
         if reference != None:
             _isstr(reference, "Reference")
@@ -84,7 +84,11 @@ class ReactorState:
                     self._components.append(i)
             else:
                 self._components.append(_components)
+        self._reactorMap = _reactorMap
 
+    def addReactorMap(self, reactorMap):
+        _isdict(reactorMap, "reactor map")
+        self._reactorMap = reactorMap
     
     def addComponents(self, _components):
         """Add data for a specific component

@@ -58,9 +58,9 @@ Properties: {
 %Examples are included below
 
 type:const
-id:cp
+id:r
 unit:SI 
-value:[1]
+value:[700]
 unc:[.01]
 
 type:table 
@@ -76,17 +76,7 @@ value: [1.1 2.1
 unc: [1 1
         1 1]
 
-type:corr
-id:r 
-unit:SI 
-ref:NAA-SR-3120
-corr:T+P**2
-deps:T,P
-dep1unit:K 
-dep2unit:Pa
-dep1range: [300,900] 
-dep2range: [16,48]
-        }
+}
 Reference: NA-Examples
 Description: This is an example input file
 
@@ -150,9 +140,9 @@ Properties: {
 %Examples are included below
 
 type:const
-id:cp
+id:r
 unit:SI 
-value:[1]
+value:[800]
 unc:[.01]
 
 type:table 
@@ -168,16 +158,7 @@ value: [1.1 2.1
 unc: [1 1
         1 1]
 
-type:corr
-id:r 
-unit:SI 
-ref:NAA-SR-3120
-corr:T+P**2
-deps:T,P
-dep1unit:K 
-dep2unit:Pa
-dep1range: [300,900] 
-dep2range: [16,48]
+
 }
 Reference: NA-Examples
 Description: This is an example input file
