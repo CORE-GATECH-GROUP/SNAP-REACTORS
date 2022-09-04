@@ -6,7 +6,7 @@
 
 
 % ----------------------------------------------
-% Upper Grid Plate Materials:
+% fuel element Materials:
 % ----------------------------------------------
 % Component Description: 
 % ----------------------------------------------
@@ -17,7 +17,7 @@ Reference:  NA-Examples
 Description:  This is an example input file
 
 */
-mat hasteC    -0.7000000000000001    
+mat fuel    -0.7000000000000001    
 6000.06c	-0.0007
 27059.06c	-0.0125
 24050.06c	-0.006952
@@ -58,7 +58,7 @@ Reference:  NA-Examples
 Description:  This is an example input file
 
 */
-mat hasteC    -0.7000000000000001    
+mat fuel    -0.7000000000000001    
 6000.06c	-0.0007
 27059.06c	-0.0125
 24050.06c	-0.006952
@@ -94,7 +94,7 @@ mat hasteC    -0.7000000000000001
 28064.06c	-0.0016596008
 
 % ----------------------------------------------
-% Lower Grid Plate Materials:
+% coolant element Materials:
 % ----------------------------------------------
 % Component Description: 
 % ----------------------------------------------
@@ -104,7 +104,7 @@ Reference:  NA-Examples
 
 Description:  This is an example input file
 */
-mat hasteB    -0.8    
+mat coolant    -0.8    
 6000.06c	-0.0007
 27059.06c	-0.0125
 24050.06c	-0.006952
@@ -144,7 +144,7 @@ Reference:  NA-Examples
 
 Description:  This is an example input file
 */
-mat hasteB    -0.8    
+mat coolant    -0.8    
 6000.06c	-0.0007
 27059.06c	-0.0125
 24050.06c	-0.006952

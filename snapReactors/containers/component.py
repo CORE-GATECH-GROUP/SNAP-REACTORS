@@ -11,6 +11,7 @@ email: sgarcia9@wisc.edu
 """
 
 from snapReactors.functions.checkerrors import _isinstanceList, _isstr
+from snapReactors.containers.dimension import Dimension
 from snapReactors.functions.utilities import createDictFromConatinerList
 from snapReactors.containers.materials import Material
 class Component:
@@ -61,10 +62,11 @@ class Component:
         # initialize all parameters in Component as lists
         self.id = compName
         self._materials = _materials
-        self._materialsDict = {}
         self.isVerified = False
         self.description = description
         self._dimensions = _dimensions
+        self.materialsDict = {}
+        self.dimensionsDict = {}
 
         if not isinstance(_materials, type(None)):
             _isinstanceList(_materials, Material, "List of materials")
@@ -72,9 +74,18 @@ class Component:
                 self._materials.append(_materials[i])
             self._setMatDict()
 
+        if not isinstance(_dimensions, type(None)):
+            _isinstanceList(_dimensions, Dimension, "List of dimensions")
+            for i in range(0, len(_dimensions)):
+                self._dimensions.append(_dimensions[i])
+            self._setDimDict()
+
     def _setMatDict(self):
-        self._materialsDict = createDictFromConatinerList(self._materials)
-    
+        self.materialsDict = createDictFromConatinerList(self._materials)
+
+    def _setDimDict(self):
+        self.dimensionsDict = createDictFromConatinerList(self._dimensions)
+
     def __eq__(self, other):
         if not isinstance(other, Component):
             # don't attempt to compare against unrelated types

@@ -84,11 +84,11 @@ class ReactorState:
                     self._components.append(i)
             else:
                 self._components.append(_components)
-        self._reactorMap = _reactorMap
+        self.reactorMap = _reactorMap
 
     def addReactorMap(self, reactorMap):
         _isdict(reactorMap, "reactor map")
-        self._reactorMap = reactorMap
+        self.reactorMap = reactorMap
     
     def addComponents(self, _components):
         """Add data for a specific component

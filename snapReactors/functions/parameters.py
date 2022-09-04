@@ -114,5 +114,7 @@ ALLOWED_DIMENSIONS =\
       DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
    }
 
+ALLOWED_MATERIALS = \
+   {'fuel', 'diffusion_barrier', 'burnable_poison', 'internal_reflector', 'external_reflector', 'control_drum', 'coolant'}
 
 

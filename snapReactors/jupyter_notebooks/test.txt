@@ -1,4 +1,4 @@
-Material Name: hasteC
+Material Name: fuel
 ctype: WDENSITY
 utype: NONE
 Number of isotopes: 33
@@ -80,7 +80,7 @@ unc: [1 1
 Reference: NA-Examples
 Description: This is an example input file
 
-Material Name: hasteB
+Material Name: coolant
 ctype: WDENSITY
 utype: NONE
 Number of isotopes: 33
