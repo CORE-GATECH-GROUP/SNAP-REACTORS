@@ -12,8 +12,8 @@
 % ----------------------------------------------
 
 % Parameter(unit): value unc reference description
-% fuel_radius(cm): 6.7 0.01NAA-SR-9642
-% fuel_radius(cm): 6.7 0.01NAA-SR-9642
+% fuel_radius(cm): 6.7 0.01 NAA-SR-9642
+% fuel_radius(cm): 6.7 0.01 NAA-SR-9642
 
 % ----------------------------------------------
 % coolant element Materials:
@@ -22,10 +22,94 @@
 % ----------------------------------------------
 
 % Parameter(unit): value unc reference description
-% lattice_pitch(cm): 12.7 0.01NAA-SR-9642
-% lattice_pitch(cm): 12.7 0.01NAA-SR-9642
+% lattice_pitch(cm): 12.7 0.01 NAA-SR-9642
+% lattice_pitch(cm): 12.7 0.01 NAA-SR-9642
+
+lat mapNameTBD 2 0 0 9 9 1.26
+cool cool cool cool cool cool cool cool cool 
+ cool cool cool cool cool cool cool cool cool 
+  cool cool cool cool cool cool cool cool cool 
+   cool cool cool cool fuel fuel cool cool cool 
+    cool cool cool fuel fuel fuel cool cool cool 
+     cool cool cool fuel fuel cool cool cool cool 
+      cool cool cool cool cool cool cool cool cool 
+       cool cool cool cool cool cool cool cool cool 
+        cool cool cool cool cool cool cool cool cool 
+         
+pin cool
+coolant
 
 pin fuel
 fuel	0.067
 coolant
+
+mat coolant    -0.8    
+6000.06c	-0.0007
+27059.06c	-0.0125
+24050.06c	-0.006952
+24052.06c	-0.1340624
+24053.06c	-0.0152016
+24054.06c	-0.003784
+42092.06c	-0.0249033
+42094.06c	-0.0156179
+42095.06c	-0.0269841
+42096.06c	-0.0283441
+42097.06c	-0.0162894
+42098.06c	-0.0412964
+42100.06c	-0.0165648
+23050.06c	-7.5e-06
+23051.06c	-0.0029925
+74180.06c	-0.00048
+74182.06c	-0.106
+74183.06c	-0.05724
+74184.06c	-0.12256
+74186.06c	-0.11372
+26054.06c	-0.003360875
+26056.06c	-0.05275855
+26057.06c	-0.001218425
+26058.06c	-0.00016215
+25055.06c	-0.01
+14028.06c	-0.00645561
+14029.06c	-0.00032795
+14030.06c	-0.00032795
+28058.06c	-0.1220600887
+28060.06c	-0.0470180183
+28061.06c	-0.0020438407
+28062.06c	-0.0065166585
+28064.06c	-0.0016596008
+
+mat fuel    -0.7000000000000001    
+6000.06c	-0.0007
+27059.06c	-0.0125
+24050.06c	-0.006952
+24052.06c	-0.1340624
+24053.06c	-0.0152016
+24054.06c	-0.003784
+42092.06c	-0.0249033
+42094.06c	-0.0156179
+42095.06c	-0.0269841
+42096.06c	-0.0283441
+42097.06c	-0.0162894
+42098.06c	-0.0412964
+42100.06c	-0.0165648
+23050.06c	-7.5e-06
+23051.06c	-0.0029925
+74180.06c	-0.00048
+74182.06c	-0.106
+74183.06c	-0.05724
+74184.06c	-0.12256
+74186.06c	-0.11372
+26054.06c	-0.003360875
+26056.06c	-0.05275855
+26057.06c	-0.001218425
+26058.06c	-0.00016215
+25055.06c	-0.01
+14028.06c	-0.00645561
+14029.06c	-0.00032795
+14030.06c	-0.00032795
+28058.06c	-0.1220600887
+28060.06c	-0.0470180183
+28061.06c	-0.0020438407
+28062.06c	-0.0065166585
+28064.06c	-0.0016596008
 

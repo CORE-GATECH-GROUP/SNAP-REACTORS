@@ -7,8 +7,9 @@ Created on 2022-08-29 13:38:19 @author: Isaac Naupa
 Last updated on 2022-08-29 13:38:28 @author: Isaac Naupa
 email: iaguirre6@gatech.edu
 """
+import dbm
 from msilib.schema import Condition
-from re import TEMPLATE
+from re import TEMPLATE, template
 from turtle import fd
 from weakref import ref
 from sympy.polys.specialpolys import dmp_fateman_poly_F_1
@@ -47,22 +48,12 @@ from serpentGenerator.functions.housing import housing as hous
 from serpentGenerator.functions.branches import branches as bdict
 from serpentGenerator.functions.core import core
 from serpentGenerator.functions.pin import pin
+from serpentGenerator.functions.builders import (buildHexLattice)
+from serpentGenerator.functions.utilities import (createDictFromConatinerList)
 
 #CONVERSION FACTORS
 KGM3_GCM3 = 1/1000
 M_CM = 100
-
-class Template:
-    def __init__(self, id):
-        self.id = id
-        self.map = {}
-
-class SNAP(Template):
-    def __init__(self):
-        id = "SNAP"
-        map = {}
-        Template.__int__(self, id)
-        self.map = map
 
 class Serpent:
     """A container to store and process data to be used in the creation of 
@@ -104,17 +95,16 @@ class Serpent:
         self.id = id
 
     def toSerpent(self, reactorState, template, baseFileName):
-        matStr = Serpent.__filterMatsToSerpent(reactorState)
-        dimStr = Serpent.__filterDimensionsToSerpent(reactorState)
+        matStr = Serpent.__buildSerpentMaterialHeader(reactorState)
+        dimStr = Serpent.__buildSerpentDimensionsHeader(reactorState)
         geoStr = Serpent.__buildSerpentGeometry(template)
-        #conditions = Serpent.__filterConditionsToSerpent(reactorState)
+        mainStr = Serpent.__buildSerpentMain(reactorState, template)
         Serpent.__buildSerpentGeometryFile(dimStr, geoStr, baseFileName)
         Serpent.__buildSerpentMaterialFile(matStr, baseFileName)
-        Serpent.__buildSerpentMainFile(baseFileName)
-
+        Serpent.__buildSerpentMainFile(mainStr, baseFileName)
         return  
     
-    def __filterMatsToSerpent(rs):
+    def __buildSerpentMaterialHeader(rs):
         comps = rs._components
         dbMats = []
         for i in range(0, len(comps)):
@@ -162,7 +152,7 @@ class Serpent:
         matStr = matsHeader + matStr 
         return matStr
 
-    def __filterDimensionsToSerpent(rs):
+    def __buildSerpentDimensionsHeader(rs):
         comps = rs._components
         dimsHeader = "% ==================================================\n"\
                      "% Dimensions File\n"\
@@ -188,19 +178,18 @@ class Serpent:
                 fdimVal = str(dim.valueSI*ALLOWED_DIMENSIONS[dim.id].conversion.S2SERP)
                 fdimUnits = "("+ALLOWED_DIMENSIONS[dim.id].units.Serpent+"): "
                 fdimUnc = str(dim.unc)
-                fdimDesc = dim.reference if dim.reference != None else "" 
-                fdimRef = dim.description if dim.description != None else "" 
+                fdimDesc = dim.reference if dim.reference != None else " " 
+                fdimRef = dim.description if dim.description != None else " " 
                 dimStr = dimStr + "% "+dim.id+fdimUnits+fdimVal+" "+fdimUnc+ fdimRef+ fdimDesc + "\n"
             dimStr = dimStr + "\n"
         dimStr = dimsHeader + dimStr
-        return dimStr 
+        return dimStr
     
-
-    def __filterConditionsToSerpent(rs):
+    def __buildSerpentMain(rs, template):
         return
     
     def __buildSerpentGeometry(template):
-        geoStr = template.map['fuel_element'].toString()
+        geoStr = template.map['active_core'].toString()
         return geoStr
 
     def __buildSerpentMaterialFile(mats, baseFileName):
@@ -215,32 +204,77 @@ class Serpent:
         dimsFile.close()
         return
 
-    def __buildSerpentMainFile(baseFileName):
+    def __buildSerpentMainFile(mainStr, baseFileName):
         return
 
-
 class Template:
-    def __init__(self, id):
-        self.id = id
+    def __init__(self, softwareId, systemId):
+        self.softwareId = softwareId 
+        self.systemId = systemId
         self.map = {}
 
-class SNAP(Template):
+class SerpentTemplate(Template):
+    def __init__(self, systemId):
+        Template.__init__(self, "Serpent", systemId)
+
+class SNAP(Serpent):
     def __init__(self, fuelElement, coolElement):#, internalReflector, barrel, controlDrums):
         id = "SNAP"
-        Template.__init__(self, id)
-        self.map = SNAP.setMap(fuelElement, coolElement)
+        SerpentTemplate.__init__(self, id)
+        self.map = self.setMap(fuelElement, coolElement)
 
-    def setMap(fuelElement, coolElement):
+    def __buildMaterials(self, dbMats):
+        serMats = []
+        for mat in dbMats:
+            serMat = material(mat.id, isBurn=False, isModer=False)
+            serMat.set('dens', float(-1*mat._propertiesDict['r'].value*KGM3_GCM3))
+            serMat.set('nuclides', mat.isotopes.astype('int'))
+            if mat.ctype == CTYPE.WDENSITY:
+                mult = -1
+            else:
+                mult = 1
+            serMat.set('fractions', mat.abundances*mult)
+            serMat.set('xsLib', "06c")
+            # refStr = mat.reference
+            # descStr = mat.description
+
+            # header = "/*\nReference: "+refStr+"\nDescription: "+descStr+"\n"\
+            #         "*/\n"
+            # matStr = matStr + header+ serMat.toString()
+            serMats.append(serMat)
+
+            print(serMats)
+        return serMats
+
+    def setMap(self, fuelElement, coolElement):
         fuelMat = fuelElement.materialsDict['fuel']
         fuelRad = fuelElement.dimensionsDict['fuel_radius'].value
         coolMat = coolElement.materialsDict['coolant']
         elemPitch = coolElement.dimensionsDict['lattice_pitch'].value
 
+        serMatsList = self.__buildMaterials([fuelMat, coolMat])
+        print(serMatsList)
+        serMatsDict = createDictFromConatinerList(serMatsList)
+
         fuelSer = pin('fuel', 2)
-        fuelSer.set('materials', [fuelMat, coolMat])
+        fuelSer.set('materials', [serMatsDict['fuel'], serMatsDict['coolant']])
         fuelSer.set('radii', [fuelRad])
 
-        map = {'fuel_element':fuelSer}
+        coolSer = pin('cool', 1)
+        coolSer.set('materials', [ serMatsDict['coolant']])
+
+        univMap = {'1': fuelSer, '2': coolSer, '0':coolSer}
+        layout = " 2 2 2;\
+                2 1 1 2;\
+                2 1 1 1 2;\
+                2 1 1 2;\
+                2 2 2"
+        nOuter = 2
+        pitch = 1.260
+
+        hexLat1 = buildHexLattice(layout, univMap, nOuter, pitch)
+        map = {'active_core': hexLat1, 'fuel_element':fuelSer}
+    
         return map 
         
 
