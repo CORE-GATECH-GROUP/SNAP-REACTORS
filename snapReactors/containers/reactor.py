@@ -26,8 +26,6 @@ class LTYPE(Enum):
     HEX = 1
     SQUARE = 1
 
-
-
 class Reactor:
     """ A container to store reactor state data and store nominal attributes
     of reactor design

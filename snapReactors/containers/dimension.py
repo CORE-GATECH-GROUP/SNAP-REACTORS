@@ -89,6 +89,7 @@ class Dimension:
         self.isUnitSI = isUnitSI
         self.valueSI = value if isUnitSI else value*ALLOWED_DIMENSIONS[id].conversion.I2S
         self.valueIMP = value if not isUnitSI else value*ALLOWED_DIMENSIONS[id].conversion.S2I
+        self.valueSERP = self.valueSI*ALLOWED_DIMENSIONS[id].conversion.S2SERP
         self.unit = unit
         self.unc = unc
         self.description = description

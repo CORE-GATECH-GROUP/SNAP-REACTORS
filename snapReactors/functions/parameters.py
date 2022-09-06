@@ -42,7 +42,6 @@ def __kelvin_faren(tempKelvin):
    # (0K − 273.15) × 9/5 + 32 = -459.7°F
    return tempFaren
 
-   return
 ALLOWED_PROPERTIES =\
     {'cp': Property('heat capacity (constant pressure)', 
         PUnits("J/kg/K","BTU/lb/F"), PConversion(0.0002, 5000)),
@@ -112,6 +111,7 @@ ALLOWED_DIMENSIONS =\
       DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
    'core_equivalent_radius': Dimension('core equivalent radius', 
       DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+
    }
 
 ALLOWED_MATERIALS = \
