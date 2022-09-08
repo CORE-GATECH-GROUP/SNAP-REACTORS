@@ -189,7 +189,7 @@ class Serpent:
         return
     
     def __buildSerpentGeometry(template):
-        geoStr = template.map['active_core'].toString()
+        geoStr = template.map['active_core']._geoString()
         return geoStr
 
     def __buildSerpentMaterialFile(mats, baseFileName):
