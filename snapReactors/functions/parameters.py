@@ -111,10 +111,15 @@ ALLOWED_DIMENSIONS =\
       DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
    'core_equivalent_radius': Dimension('core equivalent radius', 
       DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
-
+   'active_apothem': Dimension('active_apothem', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'internal_reflector_radius': Dimension('internal_reflector_radius', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'barrel_radius': Dimension('barrel_radius', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
    }
 
 ALLOWED_MATERIALS = \
-   {'fuel', 'diffusion_barrier', 'burnable_poison', 'internal_reflector', 'external_reflector', 'control_drum', 'coolant'}
+   {'fuel', 'diffusion_barrier', 'burnable_poison', 'internal_reflector', 'barrel', 'external_reflector', 'control_drum', 'coolant'}
 
 

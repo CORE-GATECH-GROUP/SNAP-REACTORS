@@ -98,7 +98,7 @@ class Serpent:
         matStr = Serpent.__buildSerpentMaterialHeader(reactorState)
         dimStr = Serpent.__buildSerpentDimensionsHeader(reactorState)
         geoStr = Serpent.__buildSerpentGeometry(template)
-        mainStr = Serpent.__buildSerpentMain(reactorState, template)
+        mainStr = Serpent.__buildSerpentMain(reactorState, template, baseFileName)
         Serpent.__buildSerpentGeometryFile(dimStr, geoStr, baseFileName)
         Serpent.__buildSerpentMaterialFile(matStr, baseFileName)
         Serpent.__buildSerpentMainFile(mainStr, baseFileName)
@@ -185,8 +185,18 @@ class Serpent:
         dimStr = dimsHeader + dimStr
         return dimStr
     
-    def __buildSerpentMain(rs, template):
-        return
+    def __buildSerpentMain(rs, template, baseFileName):
+        mainHeader = "% ==================================================\n"\
+                "% Main File\n"\
+                "% --------------------------------------------------\n"\
+                "% Description: " +rs.description+"\n"\
+                "% --------------------------------------------------\n"\
+                "% Materials:\ninclude "+baseFileName+".mat\n"\
+                "% --------------------------------------------------\n"\
+                "% Geometry:\ninclude "+baseFileName+".geo\n"\
+                "% ==================================================\n"\
+                "\n\n"
+        return mainHeader
     
     def __buildSerpentGeometry(template):
         geoStr = template.map['active_core']._geoString()
@@ -205,5 +215,8 @@ class Serpent:
         return
 
     def __buildSerpentMainFile(mainStr, baseFileName):
+        mainFile = open(baseFileName+".main", "w")
+        mainFile.write(mainStr)
+        mainFile.close()
         return
 

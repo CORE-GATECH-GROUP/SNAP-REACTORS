@@ -44,7 +44,7 @@ from serpentGenerator.functions.housing import housing as hous
 from serpentGenerator.functions.branches import branches as bdict
 from serpentGenerator.functions.core import core
 from serpentGenerator.functions.pin import pin
-from serpentGenerator.functions.builders import (buildHexLattice)
+from serpentGenerator.functions.builders import (buildHexLattice, buildPeripheralRings)
 from serpentGenerator.functions.utilities import (createDictFromConatinerList)
 KGM3_GCM3 = 1/1000
 M_CM = 100
@@ -60,10 +60,10 @@ class SerpentTemplate(Template):
         Template.__init__(self, "Serpent", systemId)
 
 class S8ER(SerpentTemplate):
-    def __init__(self, fuelElement, coolElement, latticeApothem):#, internalReflector, barrel, controlDrums):
+    def __init__(self, fuelElement, coolElement, internalReflector, barrel):#, internalReflector, barrel, controlDrums):
         id = "SNAP"
         SerpentTemplate.__init__(self, id)
-        self.map = self.setMap(fuelElement, coolElement, latticeApothem)
+        self.map = self.setMap(fuelElement, coolElement, internalReflector, barrel)
 
     def __buildMaterials(self, dbMats):
         serMats = []
@@ -86,14 +86,21 @@ class S8ER(SerpentTemplate):
             serMats.append(serMat)
         return serMats
 
-    def setMap(self, fuelElement, coolElement, latticeApothem):
+    def setMap(self, fuelElement, coolElement, internalReflector, barrel):
         fuelMat = fuelElement.materialsDict['fuel']
         fuelRad = fuelElement.dimensionsDict['fuel_radius'].valueSERP
+
         coolMat = coolElement.materialsDict['coolant']
         elemPitch = coolElement.dimensionsDict['lattice_pitch'].valueSERP
-        latticeApothem = latticeApothem.valueSERP
 
-        serMatsList = self.__buildMaterials([fuelMat, coolMat])
+        intRefMat = internalReflector.materialsDict['internal_reflector']
+        latticeApothem = internalReflector.dimensionsDict['assembly_pitch'].valueSERP
+        intRefRad = internalReflector.dimensionsDict['internal_reflector_radius'].valueSERP
+
+        barrelMat = barrel.materialsDict['barrel']
+        barrelRad = barrel.dimensionsDict['barrel_radius'].valueSERP
+
+        serMatsList = self.__buildMaterials([fuelMat, coolMat, intRefMat, barrelMat])
         serMatsDict = createDictFromConatinerList(serMatsList)
 
         fuelSer = pin('fuel', 2)
@@ -105,13 +112,15 @@ class S8ER(SerpentTemplate):
 
         univMap = {'1': fuelSer, '2': coolSer, '0':coolSer}
         layout = " 2 2 2;\
-                2 1 1 2;\
-                2 1 1 1 2;\
-                2 1 1 2;\
-                2 2 2"
+                  2 1 1 2;\
+                 2 1 1 1 2;\
+                  2 1 1 2;\
+                   2 2 2"
         nOuter = 2
 
         hexLat1 = buildHexLattice(layout, univMap, nOuter, elemPitch, hexApothem = latticeApothem)
-        map = {'active_core': hexLat1, 'fuel_element':fuelSer}
+        intref1 = buildPeripheralRings(hexLat1, serMatsDict['internal_reflector'], intRefRad, "intref")
+        barrel1 = buildPeripheralRings(intref1, serMatsDict['barrel'], barrelRad, "barrel")
+        map = {'active_core': barrel1}
     
         return map 
