@@ -13,7 +13,7 @@ email: dan.kotlyar@me.gatech.edu, sgarcia9@wisc.edu
 """
 from snapReactors.functions.checkerrors import _isstr, _isarray,\
     _explengtharray, _isnonnegativearray, _isinstanceList
-from snapReactors.functions.parameters import ALLOWED_PROPERTIES
+from snapReactors.functions.parameters import ALLOWED_PROPERTIES, ALLOWED_DEPENDENCIES
 from snapReactors.containers.property import Property
 from snapReactors.functions.warnings import InputFileSyntaxWarning
 from snapReactors.functions.utilities import createDictFromConatinerList
@@ -127,7 +127,7 @@ class Material:
     """
 
     def __init__(self, id, utype, ctype, isotopes, abundances,
-                 unc=None, reference=None,
+                 unc=None, dependencies = None, dependencyValues = None, reference=None,
                  description=None, _properties=None, referenceCalcFile=None,
                  isVerified=None):
 
@@ -195,7 +195,11 @@ class Material:
         self._propertiesDict = {}
         self.referenceCalcFile = referenceCalcFile
         self.isVerified = isVerified
-        
+        if type(dependencies) == type(None):
+            self.dependencyDict = {}
+        else:
+            self.dependencyDict = dict(zip(dependencies,dependencyValues))
+
         if not isinstance(_properties, type(None)):
             _isinstanceList(_properties, Property, "List of properties")
             for i in range(0, len(_properties)):
@@ -527,10 +531,10 @@ class Material:
                         .format(mp["id"][0], i+k+2))
             
             if "Reference" in line:
-                mp["reference"] = str(line.split(":")[-1])
+                mp["reference"] = str(line.split(":")[-1]).replace("\n", "")
             
             if "Description" in line:
-                mp["description"] = str(line.split(":")[-1])
+                mp["description"] = str(line.split(":")[-1]).replace("\n", "")
 
             if "Properties" in line:
                 indexBegin = i + 1

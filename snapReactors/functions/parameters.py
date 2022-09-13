@@ -16,14 +16,19 @@ email: dan.kotlyar@me.gatech.edu
 from collections import namedtuple
 Property = namedtuple("property", ["description", "units", "conversion"])
 Dimension = namedtuple("dimension", ["description", "units", "conversion"])
+Dependency = namedtuple("dependency", ["description", "units", "conversion"])
 
 PUnits = namedtuple("units", ["SI", "imperial"])
 DUnits = namedtuple("units", ["SI", "imperial", "Serpent"])
+DepUnits = namedtuple("units", ["SI", "imperial"])
+
 PConversion = namedtuple("conversion", ["S2I","I2S"]) #S2I = SI to Imperial, 
 #I2S = Imperial to SI, #S2SERP SI to Serpent
 
 DConversion = namedtuple("conversion", ["S2I","I2S","S2SERP"]) #S2I = SI to Imperial, 
 #I2S = Imperial to SI, #S2SERP SI to Serpent
+
+DepConversion = namedtuple("conversion", ["S2I","I2S"]) #S2I = SI to Imperial, 
 
 # General structure of the OUTPUT_PARAMETERS is
 # {parameter : (description, Units(SI, CGS))}
@@ -70,7 +75,7 @@ ALLOWED_PROPERTIES =\
      'alpha': Property('Coefficient of thermal expansion', 
         PUnits("m/m/K","ft/ft/F"), PConversion(0.555555556, 1.79999999856)),
      'alphaT': Property('Zero stress temperature', PUnits("K","F"), 
-        PConversion(__kelvin_faren, __faren_kelvin,)),
+        PConversion(__kelvin_faren, __faren_kelvin)),
      'E': Property('Modulus of elasticity', PUnits("Pa","lb/in^2"), 
         PConversion(0.000145038, 6894.74482549)),
      'sigma': Property('Tensile strength', PUnits("Pa","lb/in^2"), 
@@ -121,5 +126,10 @@ ALLOWED_DIMENSIONS =\
 
 ALLOWED_MATERIALS = \
    {'fuel', 'diffusion_barrier', 'burnable_poison', 'clad', 'gap' 'internal_reflector', 'barrel', 'external_reflector', 'control_drum', 'coolant'}
+
+ALLOWED_DEPENDENCIES =\
+    {'T': Dependency('Temperature', 
+        DepUnits("K","F"), DepConversion(__kelvin_faren, __faren_kelvin))
+    }
 
 

@@ -16,7 +16,7 @@ version = 'v0.1.0'
 date = '2022-01-31 15:32:13'
 ex1 = Database(filePath=filePath, version=version, date=date)
 
-mats = Material.readData(r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\jupyter_notebooks\test.txt")
+mats = Material.readData(r"C:\Users\iaguirre6\Documents\GitHub\SNAP-REACTORS\snapReactors\jupyter_notebooks\test.txt")
 
 matsDict = createDictFromConatinerList(mats)
 

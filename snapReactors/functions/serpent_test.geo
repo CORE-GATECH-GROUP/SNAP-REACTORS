@@ -6,7 +6,7 @@
 
 
 % ----------------------------------------------
-% fuel element Materials:
+% fuel element Dimensions:
 % ----------------------------------------------
 % Component Description: 
 % ----------------------------------------------
@@ -19,7 +19,7 @@
 % clad_radius(cm): 0.7130879 0.01 NAA-SR-9642
 
 % ----------------------------------------------
-% coolant element Materials:
+% coolant element Dimensions:
 % ----------------------------------------------
 % Component Description: 
 % ----------------------------------------------
@@ -28,7 +28,7 @@
 % lattice_pitch(cm): 1.4478 0.01 NAA-SR-9642
 
 % ----------------------------------------------
-% internal reflector Materials:
+% internal reflector Dimensions:
 % ----------------------------------------------
 % Component Description: 
 % ----------------------------------------------
@@ -38,7 +38,7 @@
 % internal_reflector_radius(cm): 11.6926 0.01 NAA-SR-9642
 
 % ----------------------------------------------
-% barrel Materials:
+% barrel Dimensions:
 % ----------------------------------------------
 % Component Description: 
 % ----------------------------------------------

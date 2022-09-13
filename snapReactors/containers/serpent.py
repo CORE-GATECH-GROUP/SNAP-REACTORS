@@ -95,12 +95,12 @@ class Serpent:
         self.id = id
 
     def toSerpent(self, reactorState, template, baseFileName):
-        matStr = Serpent.__buildSerpentMaterialHeader(reactorState)
+        matHeader = Serpent.__buildSerpentMaterialHeader(reactorState)
         dimStr = Serpent.__buildSerpentDimensionsHeader(reactorState)
         geoStr = Serpent.__buildSerpentGeometry(template)
         mainStr = Serpent.__buildSerpentMain(reactorState, template, baseFileName)
         Serpent.__buildSerpentGeometryFile(dimStr, geoStr, baseFileName)
-        Serpent.__buildSerpentMaterialFile(matStr, baseFileName)
+        Serpent.__buildSerpentMaterialFile(matHeader,  baseFileName, template)
         Serpent.__buildSerpentMainFile(mainStr, baseFileName)
         return  
     
@@ -124,25 +124,23 @@ class Serpent:
                          "% ----------------------------------------------\n"\
                          "% Component Description: "+descStr+"\n"\
                          "% ----------------------------------------------\n"\
-                         "\n"
+                         "\n% Material: density(kg/m^3) temp(K) reference description\n"
             matStr = matStr + compHeader
             for mat in mats:
-                serMat = material(mat.id, isBurn=False, isModer=False)
-                if 'r'in mat._propertiesDict:
-                    serMat.set('dens', float(-1*np.average(mat._propertiesDict['r'].value)*KGM3_GCM3))
-                serMat.set('nuclides', mat.isotopes.astype('int'))
-                if mat.ctype == CTYPE.WEIGHT:
-                    mult = -1
+                nameStr = mat.id
+                if 'r' in mat._propertiesDict:
+                    densStr = str(np.average(mat._propertiesDict['r'].value))
                 else:
-                    mult = 1
-                serMat.set('fractions', mat.abundances*mult)
-                serMat.set('xsLib', "03c")
+                    densStr = "N/A"
+                if 'T' in mat.dependencyDict:
+                    tempStr = str(mat.dependencyDict['T'])
+                else:
+                    tempStr = str(293.15)
                 refStr = mat.reference
                 descStr = mat.description
-
-                header = "/*\nReference: "+refStr+"\nDescription: "+descStr+"\n"\
-                        "*/\n"
-                matStr = matStr + header+ serMat.toString()
+                matStr = matStr + header
+                matStr = matStr + "% "+nameStr+" "+densStr+" "+ tempStr+" "+refStr+ descStr + "\n"
+            matStr = matStr + "\n"
         
         matStr = matsHeader + matStr 
         return matStr
@@ -162,7 +160,7 @@ class Serpent:
             nameStr = comp.id
             descStr = comp.description if comp.description != None else "" 
             compHeader = "% ----------------------------------------------\n"\
-                "% "+nameStr+" Materials:\n"\
+                "% "+nameStr+" Dimensions:\n"\
                 "% ----------------------------------------------\n"\
                 "% Component Description: "+descStr+"\n"\
                 "% ----------------------------------------------\n"\
@@ -197,9 +195,10 @@ class Serpent:
         geoStr = template.map['active_core']._geoString()
         return geoStr
 
-    def __buildSerpentMaterialFile(mats, baseFileName):
+    def __buildSerpentMaterialFile(matHeader, baseFileName, template):
         matsFile = open(baseFileName+".mat", "w")
-        matsFile.write(mats)
+        matSerp = template.map['active_core']._matString()
+        matsFile.write(matHeader+matSerp)
         matsFile.close()
         return
 

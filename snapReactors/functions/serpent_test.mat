@@ -11,13 +11,50 @@
 % Component Description: 
 % ----------------------------------------------
 
-/*
-Reference:  NA-Examples
+% Material: density(kg/m^3) temp(K) reference description
+% fuel 6060.0 293.15  NA-Examples This is an example input file
+% diffusion_barrier N/A 293.15  NA-Examples This is an example input file
+% burnable_poison 8350.0 293.15  NA-Examples This is an example input file
+% gap 0.01574 293.15  NA-Examples This is an example input file
+% clad N/A 293.15  NA-Examples This is an example input file
 
-Description:  This is an example input file
+% ----------------------------------------------
+% coolant element Materials:
+% ----------------------------------------------
+% Component Description: 
+% ----------------------------------------------
 
-*/
-mat fuel    -6.0600000000000005    
+% Material: density(kg/m^3) temp(K) reference description
+% coolant 1.225 293.15  "1973 SNAP8 Summary.pdf" This is the calculated breakdown of sodium potassium 78 eutectic
+
+% ----------------------------------------------
+% internal reflector Materials:
+% ----------------------------------------------
+% Component Description: 
+% ----------------------------------------------
+
+% Material: density(kg/m^3) temp(K) reference description
+% internal_reflector N/A 293.15  NA-Examples This is an example input file
+
+% ----------------------------------------------
+% barrel Materials:
+% ----------------------------------------------
+% Component Description: 
+% ----------------------------------------------
+
+% Material: density(kg/m^3) temp(K) reference description
+% barrel N/A 293.15  NA-Examples This is an example input file
+
+mat coolant    -0.12250000000000001    
+7014.03c	-0.752
+7015.03c	-0.00287
+8016.03c	-0.231
+8017.03c	-8.56e-05
+18036.03c	-0.000267
+18038.03c	-0.000554
+18040.03c	-0.0121
+
+mat fuel    -606.0    
 1001.03c	0.0596
 1002.03c	8.79e-06
 92235.03c	0.00143
@@ -28,12 +65,6 @@ mat fuel    -6.0600000000000005
 40094.03c	0.00619
 40096.03c	0.000998
 
-/*
-Reference:  NA-Examples
-
-Description:  This is an example input file
-
-*/
 mat diffusion_barrier    sum    
 8016.03c	-0.362335
 14028.03c	-0.205113
@@ -73,13 +104,7 @@ mat diffusion_barrier    sum
 40094.03c	-0.00641283
 40096.03c	-0.00103314
 
-/*
-Reference:  NA-Examples
-
-Description:  This is an example input file
-
-*/
-mat burnable_poison    -8.35    
+mat burnable_poison    -835.0    
 8016.03c	-0.137642
 62144.03c	-0.0265606
 62147.03c	-0.129354
@@ -89,21 +114,9 @@ mat burnable_poison    -8.35
 62152.03c	-0.230595
 62154.03c	-0.1961
 
-/*
-Reference:  NA-Examples
-
-Description:  This is an example input file
-
-*/
-mat gap    -1.5740000000000002e-05    
+mat gap    -0.001574    
 2004.03c	-1.0
 
-/*
-Reference:  NA-Examples
-
-Description:  This is an example input file
-
-*/
 mat clad    sum    
 28058.03c	-0.470343
 28060.03c	-0.181175
@@ -145,54 +158,10 @@ mat clad    sum
 22049.03c	-0.00013525
 22050.03c	-0.0001295
 
-% ----------------------------------------------
-% coolant element Materials:
-% ----------------------------------------------
-% Component Description: 
-% ----------------------------------------------
-
-/*
-Reference:  "1973 SNAP8 Summary.pdf"
-
-Description:  This is the calculated breakdown of sodium potassium 78 eutectic
-
-*/
-mat coolant    -0.0012250000000000002    
-7014.03c	-0.752
-7015.03c	-0.00287
-8016.03c	-0.231
-8017.03c	-8.56e-05
-18036.03c	-0.000267
-18038.03c	-0.000554
-18040.03c	-0.0121
-
-% ----------------------------------------------
-% internal reflector Materials:
-% ----------------------------------------------
-% Component Description: 
-% ----------------------------------------------
-
-/*
-Reference:  NA-Examples
-
-Description:  This is an example input file
-
-*/
 mat internal_reflector    sum    
 8016.03c	-0.63968
 4009.03c	-0.36032
 
-% ----------------------------------------------
-% barrel Materials:
-% ----------------------------------------------
-% Component Description: 
-% ----------------------------------------------
-
-/*
-Reference:  NA-Examples
-
-Description:  This is an example input file
-*/
 mat barrel    sum    
 6000.03c	-0.0008
 25055.03c	-0.02
