@@ -44,10 +44,10 @@ from serpentGenerator.functions.housing import housing as hous
 from serpentGenerator.functions.branches import branches as bdict
 from serpentGenerator.functions.core import core
 from serpentGenerator.functions.pin import pin
-from serpentGenerator.functions.builders import (buildHexLattice, buildPeripheralRings)
+from serpentGenerator.functions.builders import (buildHexLattice, buildPeripheralRings, buildBoundingBox)
 from serpentGenerator.functions.utilities import (createDictFromConatinerList)
-KGM3_GCM3 = 1/1000
-M_CM = 100
+KGM3_GCM3 = 1/10
+M_CM = 1
 
 class Template:
     def __init__(self, softwareId, systemId):
@@ -69,14 +69,15 @@ class S8ER(SerpentTemplate):
         serMats = []
         for mat in dbMats:
             serMat = material(mat.id, isBurn=False, isModer=False)
-            serMat.set('dens', float(-1*mat._propertiesDict['r'].value*KGM3_GCM3))
+            if 'r'in mat._propertiesDict:
+                serMat.set('dens', float(-1*np.average(mat._propertiesDict['r'].value)*KGM3_GCM3))
             serMat.set('nuclides', mat.isotopes.astype('int'))
-            if mat.ctype == CTYPE.WDENSITY:
+            if mat.ctype == CTYPE.WEIGHT:
                 mult = -1
             else:
                 mult = 1
             serMat.set('fractions', mat.abundances*mult)
-            serMat.set('xsLib', "06c")
+            serMat.set('xsLib', "03c")
             # refStr = mat.reference
             # descStr = mat.description
 
@@ -90,6 +91,18 @@ class S8ER(SerpentTemplate):
         fuelMat = fuelElement.materialsDict['fuel']
         fuelRad = fuelElement.dimensionsDict['fuel_radius'].valueSERP
 
+        dbMat = fuelElement.materialsDict['diffusion_barrier']
+        dbRad = fuelElement.dimensionsDict['diffusion_barrier_radius'].valueSERP
+
+        bpMat = fuelElement.materialsDict['burnable_poison']
+        bpRad = fuelElement.dimensionsDict['poison_coating_radius'].valueSERP
+
+        gapMat = fuelElement.materialsDict['gap']
+        gapRad = fuelElement.dimensionsDict['gap_radius'].valueSERP
+
+        cladMat = fuelElement.materialsDict['clad']
+        cladRad = fuelElement.dimensionsDict['clad_radius'].valueSERP
+
         coolMat = coolElement.materialsDict['coolant']
         elemPitch = coolElement.dimensionsDict['lattice_pitch'].valueSERP
 
@@ -100,27 +113,47 @@ class S8ER(SerpentTemplate):
         barrelMat = barrel.materialsDict['barrel']
         barrelRad = barrel.dimensionsDict['barrel_radius'].valueSERP
 
-        serMatsList = self.__buildMaterials([fuelMat, coolMat, intRefMat, barrelMat])
+        serMatsList = self.__buildMaterials([fuelMat, coolMat, dbMat, bpMat, gapMat, cladMat, intRefMat, barrelMat])
         serMatsDict = createDictFromConatinerList(serMatsList)
 
         fuelSer = pin('fuel', 2)
-        fuelSer.set('materials', [serMatsDict['fuel'], serMatsDict['coolant']])
-        fuelSer.set('radii', [fuelRad])
+        fuelSer.set('materials', [serMatsDict['fuel'], serMatsDict['diffusion_barrier'], serMatsDict['burnable_poison'], serMatsDict['gap'], serMatsDict['clad'], serMatsDict['coolant']])
+        fuelSer.set('radii', [fuelRad, dbRad, bpRad, gapRad, cladRad])
 
-        coolSer = pin('cool', 1)
+        nRings = 8
+        fes = [0]*nRings
+        for i in range(0, nRings):
+            fes[i] = fuelSer.duplicate(str(i+1)+"00")
+            # grad = str(int(255/nRings*i))
+            # fes[i]._materialsset('rgb', grad+" 255 255")
+
+        coolSer = pin('900', 1)
         coolSer.set('materials', [ serMatsDict['coolant']])
 
-        univMap = {'1': fuelSer, '2': coolSer, '0':coolSer}
-        layout = " 2 2 2;\
-                  2 1 1 2;\
-                 2 1 1 1 2;\
-                  2 1 1 2;\
-                   2 2 2"
-        nOuter = 2
+        univMap = {'1': fes[0], '2': fes[1],'3': fes[2], '4': fes[3], '5': fes[4], '6': fes[5], '7': fes[6], '8': fes[7], '9': coolSer, '0':coolSer}
 
+        layout = " 9 8 8 8 8 8 8 8 9;\
+                  8 7 7 7 7 7 7 7 7 8;\
+                 8 7 6 6 6 6 6 6 6 7 8;\
+                8 7 6 5 5 5 5 5 5 6 7 8;\
+               8 7 6 5 4 4 4 4 4 5 6 7 8;\
+              8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+             8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+            8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+           9 7 6 5 4 3 2 1 1 1 2 3 4 5 6 7 9;\
+            8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+             8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+              8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+               8 7 6 5 4 4 4 4 4 5 6 7 8;\
+                8 7 6 5 5 5 5 5 5 6 7 8;\
+                 8 7 6 6 6 6 6 6 6 7 8;\
+                  8 7 7 7 7 7 7 7 7 8;\
+                   9 8 8 8 8 8 8 8 9"
+        nOuter = 2
         hexLat1 = buildHexLattice(layout, univMap, nOuter, elemPitch, hexApothem = latticeApothem)
         intref1 = buildPeripheralRings(hexLat1, serMatsDict['internal_reflector'], intRefRad, "intref")
         barrel1 = buildPeripheralRings(intref1, serMatsDict['barrel'], barrelRad, "barrel")
-        map = {'active_core': barrel1}
+        box1 = buildBoundingBox(barrel1)
+        map = {'active_core': box1}
     
         return map 

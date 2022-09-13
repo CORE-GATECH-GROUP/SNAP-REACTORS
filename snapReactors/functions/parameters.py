@@ -120,6 +120,6 @@ ALLOWED_DIMENSIONS =\
    }
 
 ALLOWED_MATERIALS = \
-   {'fuel', 'diffusion_barrier', 'burnable_poison', 'internal_reflector', 'barrel', 'external_reflector', 'control_drum', 'coolant'}
+   {'fuel', 'diffusion_barrier', 'burnable_poison', 'clad', 'gap' 'internal_reflector', 'barrel', 'external_reflector', 'control_drum', 'coolant'}
 
 

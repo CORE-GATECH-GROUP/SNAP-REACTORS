@@ -61,24 +61,27 @@ class Component:
         _isstr(compName, "Component Name")
         # initialize all parameters in Component as lists
         self.id = compName
-        self._materials = _materials
-        self.isVerified = False
-        self.description = description
-        self._dimensions = _dimensions
-        self.materialsDict = {}
-        self.dimensionsDict = {}
-
         if not isinstance(_materials, type(None)):
             _isinstanceList(_materials, Material, "List of materials")
-            for i in range(0, len(_materials)):
-                self._materials.append(_materials[i])
+            self._materials = _materials
             self._setMatDict()
-
+            
+        else:
+            self.materialsDict = {}
+            self._materials = None
+            
+        self.isVerified = False
+        self.description = description
         if not isinstance(_dimensions, type(None)):
             _isinstanceList(_dimensions, Dimension, "List of dimensions")
-            for i in range(0, len(_dimensions)):
-                self._dimensions.append(_dimensions[i])
+            self._dimensions = _dimensions
             self._setDimDict()
+        else:
+            self._dimensions = None
+            self.dimensionsDict = {}
+
+
+
 
     def _setMatDict(self):
         self.materialsDict = createDictFromConatinerList(self._materials)

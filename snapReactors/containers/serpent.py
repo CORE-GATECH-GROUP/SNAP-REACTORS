@@ -105,12 +105,6 @@ class Serpent:
         return  
     
     def __buildSerpentMaterialHeader(rs):
-        comps = rs._components
-        dbMats = []
-        for i in range(0, len(comps)):
-            mats = comps[i]._materials
-            dbMats.append(mats)
-
         matsHeader = "% ==================================================\n"\
                      "% Materials File\n"\
                      "% --------------------------------------------------\n"\
@@ -134,14 +128,15 @@ class Serpent:
             matStr = matStr + compHeader
             for mat in mats:
                 serMat = material(mat.id, isBurn=False, isModer=False)
-                serMat.set('dens', float(-1*mat._propertiesDict['r'].value*KGM3_GCM3))
+                if 'r'in mat._propertiesDict:
+                    serMat.set('dens', float(-1*np.average(mat._propertiesDict['r'].value)*KGM3_GCM3))
                 serMat.set('nuclides', mat.isotopes.astype('int'))
-                if mat.ctype == CTYPE.WDENSITY:
+                if mat.ctype == CTYPE.WEIGHT:
                     mult = -1
                 else:
                     mult = 1
                 serMat.set('fractions', mat.abundances*mult)
-                serMat.set('xsLib', "06c")
+                serMat.set('xsLib', "03c")
                 refStr = mat.reference
                 descStr = mat.description
 
@@ -216,6 +211,17 @@ class Serpent:
 
     def __buildSerpentMainFile(mainStr, baseFileName):
         mainFile = open(baseFileName+".main", "w")
+        mainStr = mainStr + \
+        "%%% --- Boundary Conditions --- %%%\n"\
+        "set bc 1 1 2\n"\
+        "%%% --- Plotting Routines --- %%%\n"\
+        "plot 31 2000 2000\n"\
+        "%%% --- Run parameters --- %%%\n"\
+        "set pop 10000 100 40\n"\
+        "%%% --- XS Libaries --- %%%\n"\
+        'set acelib "/mnt/c/Users/user/Documents/endfb7/sss_endfb7u.xsdata"\n'\
+        'set declib "/mnt/c/Users/user/Documents/endfb7/sss_endfb7.dec"\n'\
+        'set nfylib "/mnt/c/Users/user/Documents/endfb7/sss_endfb7.nfy"\n'
         mainFile.write(mainStr)
         mainFile.close()
         return

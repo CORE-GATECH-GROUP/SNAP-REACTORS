@@ -10,20 +10,14 @@ include serpent_test.mat
 include serpent_test.geo
 % ==================================================
 
-%%% --- Title --- %%%
-set title "S8ER C3 Critcal Configuration Experiment"
-
-%%% --- Acedata --- %%%
-set acelib "/hpc-common/data/serpent/xsdata/s2v0_endfb71/s2v0_endfb71.xsdata"
-
-%%% --- Materials --- %%%
-include s8er_mat_dry.mat
 
 %%% --- Boundary Conditions --- %%%
 set bc 1 1 2
-
 %%% --- Plotting Routines --- %%%
-plot 31 1000 1000 
-
+plot 31 2000 2000
 %%% --- Run parameters --- %%%
 set pop 10000 100 40
+%%% --- XS Libaries --- %%%
+set acelib "/mnt/c/Users/user/Documents/endfb7/sss_endfb7u.xsdata"
+set declib "/mnt/c/Users/user/Documents/endfb7/sss_endfb7.dec"
+set nfylib "/mnt/c/Users/user/Documents/endfb7/sss_endfb7.nfy"
