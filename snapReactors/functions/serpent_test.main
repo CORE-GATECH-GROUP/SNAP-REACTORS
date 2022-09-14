@@ -10,7 +10,9 @@ include serpent_test.mat
 include serpent_test.geo
 % ==================================================
 
-
-set bc 1 1 2
+plot 31 5000 5000
+plot 3 5000 5000
+plot 1 5000 5000
+set bc 1 1 1
 set pop 100000 100 40
 set acelib '/mnt/c/Users/user/Documents/endfb7/sss_endfb7u.xsdata'

@@ -122,6 +122,10 @@ ALLOWED_DIMENSIONS =\
       DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
    'barrel_radius': Dimension('barrel_radius', 
       DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'upper_endcap_thickness': Dimension('upper_endcap_thickness', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'lower_endcap_thickness': Dimension('upper_endcap_thickness', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
    }
 
 ALLOWED_MATERIALS = \

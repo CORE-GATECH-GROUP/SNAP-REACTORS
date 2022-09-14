@@ -6,7 +6,7 @@ from snapReactors.containers.materials import Material
 from snapReactors.containers.reactorstate import ReactorState
 from snapReactors.containers.reactor import Reactor
 from snapReactors.containers.serpent import Serpent
-from snapReactors.containers.templates import S8ER
+from snapReactors.containers.templates import S83D
 from snapReactors.containers.dimension import Dimension
 from snapReactors.functions.utilities import createDictFromConatinerList
 
@@ -15,7 +15,7 @@ version = 'v0.1.0'
 date = '2022-01-31 15:32:13'
 ex1 = Database(filePath=filePath, version=version, date=date)
 
-mats = Material.readData(r"C:\Users\iaguirre6\Documents\GitHub\SNAP-REACTORS\snapReactors\jupyter_notebooks\test.txt")
+mats = Material.readData(r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\jupyter_notebooks\test.txt")
 
 matsDict = createDictFromConatinerList(mats)
 
@@ -27,20 +27,20 @@ cr = Dimension("clad_radius", 0.7130879/100, unc=0.01, ref='NAA-SR-9642')
 lp = Dimension("lattice_pitch", 1.4478/100, unc=0.01, ref='NAA-SR-9642')
 la = Dimension("assembly_pitch", .110414, unc=0.01, ref='NAA-SR-9642')
 irr = Dimension("internal_reflector_radius", .116926, unc=0.01, ref='NAA-SR-9642')
-brr = Dimension("barrel_radius", .1187704, unc=0.01, ref='NAA-SR-9642')\
+brr = Dimension("barrel_radius", .1187704, unc=0.01, ref='NAA-SR-9642')
+uet = Dimension("upper_endcap_thickness", .01, unc=0.01, ref='NAA-SR-9642')
+let = Dimension("lower_endcap_thickness", .02, unc=0.01, ref='NAA-SR-9642')
 
-fe = Component('fuel element', _materials = [matsDict['fuel'], matsDict['diffusion_barrier'], matsDict['burnable_poison'], matsDict['gap'], matsDict['clad']], _dimensions = [fr, dbr, bpr, gr, cr])
+fe = Component('fuel element', _materials = [matsDict['fuel'], matsDict['diffusion_barrier'], matsDict['burnable_poison'], matsDict['gap'], matsDict['clad']], _dimensions = [fr, dbr, bpr, gr, cr, uet, let])
 ce = Component('coolant element', _materials = [matsDict['coolant']], _dimensions = [lp])
 ir = Component('internal reflector', _materials = [matsDict['internal_reflector']], _dimensions = [la, irr])
 br = Component('barrel', _materials = [matsDict['barrel']], _dimensions = [brr])
 
-
 ## In future there will be a template for this kinda setup like the XS Interface
 #reactorMap = {'fuel element': fe, 'coolant element': ce}#, 'internal reflector': ir, 'barrel': barrel, 'control drums': cd, 'upper grid plate':upperPlate, 'lower grid plate': lowerPlate}
-snapTemplate = S8ER(fe, ce, ir, br)
+snapTemplate = S83D(fe, ce, ir, br)
 xsPath = r"/mnt/c/Users/user/Documents/endfb7/sss_endfb7u.xsdata"
-snapTemplate.setSettings(geoType='2D', nps = 1E+05, nact = 100, nskip=40, xsAbsPath=xsPath)
-
+snapTemplate.setSettings(geoType='3D', nps = 1E+05, nact = 100, nskip=40, xsAbsPath=xsPath)
 
 coldCore = ReactorState('Cold Power', reference='AI-AEC-13070', description = 'S8ER C3 Critcal Configuration Experiment, Dry Conditions 300 K',
 _components=[fe, ce, ir, br])#, _reactorMap= reactorMap)
