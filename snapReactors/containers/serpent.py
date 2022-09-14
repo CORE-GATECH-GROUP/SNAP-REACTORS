@@ -101,7 +101,7 @@ class Serpent:
         mainStr = Serpent.__buildSerpentMain(reactorState, template, baseFileName)
         Serpent.__buildSerpentGeometryFile(dimStr, geoStr, baseFileName)
         Serpent.__buildSerpentMaterialFile(matHeader,  baseFileName, template)
-        Serpent.__buildSerpentMainFile(mainStr, baseFileName)
+        Serpent.__buildSerpentMainFile(mainStr, baseFileName, template)
         return  
     
     def __buildSerpentMaterialHeader(rs):
@@ -188,7 +188,7 @@ class Serpent:
                 "% --------------------------------------------------\n"\
                 "% Geometry:\ninclude "+baseFileName+".geo\n"\
                 "% ==================================================\n"\
-                "\n\n"
+                "\n"
         return mainHeader
     
     def __buildSerpentGeometry(template):
@@ -208,19 +208,10 @@ class Serpent:
         dimsFile.close()
         return
 
-    def __buildSerpentMainFile(mainStr, baseFileName):
+    def __buildSerpentMainFile(mainStr, baseFileName, template):
         mainFile = open(baseFileName+".main", "w")
-        mainStr = mainStr + \
-        "%%% --- Boundary Conditions --- %%%\n"\
-        "set bc 1 1 2\n"\
-        "%%% --- Plotting Routines --- %%%\n"\
-        "plot 31 2000 2000\n"\
-        "%%% --- Run parameters --- %%%\n"\
-        "set pop 10000 100 40\n"\
-        "%%% --- XS Libaries --- %%%\n"\
-        'set acelib "/mnt/c/Users/user/Documents/endfb7/sss_endfb7u.xsdata"\n'\
-        'set declib "/mnt/c/Users/user/Documents/endfb7/sss_endfb7.dec"\n'\
-        'set nfylib "/mnt/c/Users/user/Documents/endfb7/sss_endfb7.nfy"\n'
+        if 'settings' in template.settings:
+            mainStr = mainStr + template.settings['settings']
         mainFile.write(mainStr)
         mainFile.close()
         return

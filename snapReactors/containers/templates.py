@@ -1,7 +1,7 @@
 """Templates
 
 A container to store and process data to be used in specific software, 
-the container are meant to tailor the data to suite the needs of each indiv.
+the container is meant to tailor the data to suit the needs of each indiv.
 software. 
 
 Created on 2022-08-29 13:38:19 @author: Isaac Naupa
@@ -58,6 +58,7 @@ class Template:
 class SerpentTemplate(Template):
     def __init__(self, systemId):
         Template.__init__(self, "Serpent", systemId)
+        self.settings = {}
 
 class S8ER(SerpentTemplate):
     def __init__(self, fuelElement, coolElement, internalReflector, barrel):#, internalReflector, barrel, controlDrums):
@@ -157,3 +158,24 @@ class S8ER(SerpentTemplate):
         map = {'active_core': box1}
     
         return map 
+
+    def setSettings(self, geoType, nps, nact, nskip, xsAbsPath, plotOptions = None):
+        setDict = {}
+        if geoType == '2D':
+            bcStr = "set bc 1 1 2\n"
+            setDict['bc'] = bcStr
+        elif(geoType == '3D'):
+            bcStr = "set bc 1 1 1\n"
+            setDict['bc'] = bcStr
+
+        popStr = "set pop "+str(int(nps))+" "+str(int(nact))+" " + str(int(nskip))+"\n"
+        setDict['pop'] = popStr
+        
+        xsStr = "set acelib '"+xsAbsPath+"'\n"
+        setDict['xsLib'] = popStr
+        
+        setDict['settings'] = bcStr + popStr + xsStr
+    
+        self.settings = setDict
+        return 
+

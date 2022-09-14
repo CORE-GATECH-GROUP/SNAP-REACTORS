@@ -3,7 +3,6 @@ from snapReactors.containers.templates import S8ER
 from snapReactors.library.database import Database
 from snapReactors.containers.component import Component
 from snapReactors.containers.materials import Material
-from IPython.display import Image
 from snapReactors.containers.reactorstate import ReactorState
 from snapReactors.containers.reactor import Reactor
 from snapReactors.containers.serpent import Serpent
@@ -38,7 +37,10 @@ br = Component('barrel', _materials = [matsDict['barrel']], _dimensions = [brr])
 
 ## In future there will be a template for this kinda setup like the XS Interface
 #reactorMap = {'fuel element': fe, 'coolant element': ce}#, 'internal reflector': ir, 'barrel': barrel, 'control drums': cd, 'upper grid plate':upperPlate, 'lower grid plate': lowerPlate}
-snapTemplate = S8ER(fe, ce, ir, br)#, ir, barrel, cd)
+snapTemplate = S8ER(fe, ce, ir, br)
+xsPath = r"/mnt/c/Users/user/Documents/endfb7/sss_endfb7u.xsdata"
+snapTemplate.setSettings(geoType='2D', nps = 1E+05, nact = 100, nskip=40, xsAbsPath=xsPath)
+
 
 coldCore = ReactorState('Cold Power', reference='AI-AEC-13070', description = 'S8ER C3 Critcal Configuration Experiment, Dry Conditions 300 K',
 _components=[fe, ce, ir, br])#, _reactorMap= reactorMap)
