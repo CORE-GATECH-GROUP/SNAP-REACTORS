@@ -98,4 +98,142 @@ class Dimension:
     def __str__(self):
         """" Overwrites print method, prints all objects variables. """
         return str(vars(self))
-    
+
+    def _dimensionReader(data):
+        def _arrayStrParse(arrayCont):
+            arrayCont[-1] = arrayCont[-1].replace("\n", "")
+
+            tempBeg =  arrayCont[0].replace("\n", "")
+            tempBeg =  tempBeg.replace(" ", "")
+            tempEnd =  arrayCont[-1].replace(" ", "")
+            if tempEnd == "]":
+                arrayCont[-2] = arrayCont[-2].replace("\n", "")
+
+            if tempBeg == "[":
+                arrayCont[0] = arrayCont[0].replace("\n", "")               
+
+            arrayStr = ""
+            for i in range(0, len(arrayCont)):  
+                arrayCont[i] = arrayCont[i].replace(";;", ";")
+                arrayStr = arrayStr + arrayCont[i]
+
+            arrayStr = arrayStr.replace("[", "")
+            arrayStr = arrayStr.replace("]", "")
+
+            if ";" in arrayStr:
+                arrayStr = np.matrix(arrayStr)
+                arrayStr = np.array(arrayStr)
+            else:
+                arrayStr = arrayStr.replace("\n", ";")
+                arrayStr = arrayStr.replace(",", " ")
+                arrayStr = np.matrix(arrayStr)
+                arrayStr = np.array(arrayStr)
+
+            if((arrayStr.shape[0] == 1) & (arrayStr.shape[1] == 1)):
+                arrayStr = arrayStr[0][0]
+
+            elif arrayStr.shape[0] == 1:
+                arrayStr = arrayStr[0]
+            else:
+                pass
+
+            return arrayStr
+
+        input = dict()
+        dcount = 0
+            
+#        if "Dimensions" in line:
+#            indexBegin = i+1
+        for i in range(0, len(data)):
+            if(data[i][0] == "%"):
+                pass
+            else:
+                if "id" in data[i]:
+                    dcount = dcount + 1
+        
+        input["ndims"] = dcount
+
+        for i in range(0,dcount):
+            key = "dim"+str(i+1)
+            input[key] = dict()
+
+
+        dcount = 0
+        while (dcount < input["ndims"]):
+            for i in range(0, len(data)):
+                if (data[i][0] == "%"):
+                    pass
+                else:
+                    
+                    if "id" in data[i]:
+                        dcount = dcount + 1
+
+                    if "id" in data[i]:  
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        value = value.replace("\t", "")
+                        key = "dim"+str(dcount)
+                        input[key]["id"] = value
+                    
+                    if "value" in data[i]:  
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        value = value.replace("\t", "")
+                        key = "dim"+str(dcount)
+                        input[key]["value"] = value
+
+                    if "unit" == data[i].split(":")[0]:
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        value = value.replace("\t", "")
+                        key = "dim"+str(dcount)
+                        input[key]["unit"] = value
+                    
+                    if "unc" in data[i]:  
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        value = value.replace("\t", "")
+                        key = "dim"+str(dcount)
+                        input[key]["unc"] = value
+
+                    if "ref" in data[i]:  
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        value = value.replace("\t", "")
+                        key = "dim"+str(dcount)
+                        input[key]["ref"] = value
+
+                    if "desc" in data[i]:  
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        value = value.replace("\t", "")
+                        key = "dim"+str(dcount)
+                        input[key]["desc"] = value
+
+
+        dimensions = [0]*input["ndims"]            
+        for i in range(0, len(dimensions)):
+            dimensions[i] = input["dim"+str(i+1)]
+            
+            if "id" in dimensions[i]:
+                id = dimensions[i]["id"]
+            else:
+                raise ValueError("id not given for {} dimension @"
+                "line: {}".format(dimensions[i][""]))
+        # the following will be to check for input error
+
+        #dimensions[i] = Dimension(id, value=value, isUnitSI=boolSI,
+        #    unc=unc, ref=reference, description=description)
+        return dimensions
+data = """
+id: checkid
+value: 3
+unit: SI
+
+"""
