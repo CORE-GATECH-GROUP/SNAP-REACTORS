@@ -166,7 +166,3 @@ class Component:
                 evalProps = evalProps[self._materials[i].id] = evalProp
 
             return evalProps
-    def _componentReader(filename):
-        components=1
-        return components
-
