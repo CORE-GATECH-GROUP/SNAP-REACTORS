@@ -7,6 +7,7 @@ Last updated on 2022-08-30 14:05:05 @author: Isaac Naupa
 email: iaguirre6@gatech.edu
 """
 
+from tabnanny import check
 from sympy.polys.specialpolys import dmp_fateman_poly_F_1
 from snapReactors.functions.checkerrors import _isstr, _isarray,\
     _explengtharray, _isnonnegativearray, _isnumber, _isnonnegative, _isbool
@@ -134,6 +135,7 @@ class Dimension:
                         value = value.replace("\n", "")
                         value = value.replace(" ", "")
                         value = value.replace("\t", "")
+                        value = [value,i+1]
                         key = "dim"+str(dcount)
                         input[key]["id"] = value
                     
@@ -185,8 +187,94 @@ class Dimension:
             if "id" in dimensions[i]:
                 id = dimensions[i]["id"]
             else:
-                raise ValueError("id not given for {} dimension @"
-                "line: {}".format(dimensions[i][""]))
+                raise KeyError("id for dimension missing")
+
+            if "value" in dimensions[i]:
+                val = dimensions[i]["value"]
+            else:
+                raise ValueError("value not given for {} dimension @"
+                " line: {}".format(dimensions[i]["id"][0], 
+                dimensions[i]["id"][1]))
+
+            if "unit" in dimensions[i]:
+                unit = dimensions[i]["unit"]
+            else:
+                raise ValueError("units not given for {} dimension @"
+                " line: {}".format(dimensions[i]["id"][0], 
+                dimensions[i]["id"][1]))
+            
+            if "unc" in dimensions[i]:
+                unc = dimensions[i]["unc"]
+            else:
+                warnings.warn("uncertainty not given for {} dimension @"
+                " line: {}".format(dimensions[i]["id"][0], 
+                dimensions[i]["id"][1]))
+
+            if "ref" in dimensions[i]:
+                ref = dimensions[i]["ref"]
+            else:
+                warnings.warn("reference not given for {} dimension @"
+                " line: {}".format(dimensions[i]["id"][0], 
+                dimensions[i]["id"][1]))
+
+            if "desc" in dimensions[i]:
+                desc = dimensions[i]["desc"]
+            else:
+                warnings.warn("description not given for {} dimension @"
+                " line: {}".format(dimensions[i]["id"][0], 
+                dimensions[i]["id"][1]))
+
+            try:
+                if id in ALLOWED_DIMENSIONS:
+                    pass
+            except KeyError:
+                raise KeyError("Dimension id {} not Allowed Dimension @"
+                "@ line: {}".format(dimensions[i]["id"][0], 
+                dimensions[i]["id"][1]))
+
+
+            try:
+                if unit == "SI":
+                    unit = ALLOWED_DIMENSIONS[id].units.SI
+                    isUnitSI = True
+                elif unit == "imperial":
+                    unit = ALLOWED_DIMENSIONS[id].units.imperial
+                    isUnitSI = False
+                elif unit == "Serpent":
+                    unit = ALLOWED_DIMENSIONS[id].units.Serpent
+                    isUnitSI = False
+            except ValueError:
+                raise ValueError("Dimension units must be either SI "
+                    "imperial or Serpent @ line: {}"
+                        .format(dimensions[i]["id"][1]))
+
+            try:
+                val = float(val)
+            except TypeError: 
+                raise TypeError("Dimension value must be a number "
+                    "@ line: {}".format(dimensions[i]["id"][1]))
+            
+            try:
+                if unc != None:
+                    unc = float(unc)
+            except TypeError:
+                raise TypeError("{} Dimension uncertainty must be a"
+                "number @ line: {}".format(dimensions[i]["id"[0]],
+                dimensions[i]["id"][1]))
+            
+            try:
+                dim = Dimension(id, value, isUnitSI, unc, ref , desc)
+                dimensions[i] = dim
+            except ValueError as ve:
+                raise Exception("Error For Property @ line: {} \n"
+                            .format(dimensions[i]["id"][1])) from ve
+            except TypeError as te:
+                raise Exception("Error For Property @ line: {} \n"
+                            .format(dimensions[i]["id"][1])) from te
+            except KeyError as ke:
+                raise Exception("Error For Property @ line: {} \n"
+                            .format(dimensions[i]["id"][1])) from ke
+
         # the following will be to check for input error
 
         #dimensions[i] = Dimension(id, value=value, isUnitSI=boolSI,
