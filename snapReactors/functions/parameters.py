@@ -124,7 +124,17 @@ ALLOWED_DIMENSIONS =\
       DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
    'upper_endcap_thickness': Dimension('upper_endcap_thickness', 
       DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
-   'lower_endcap_thickness': Dimension('upper_endcap_thickness', 
+   'lower_endcap_thickness': Dimension('lower_endcap_thickness', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'upper_gridplate_thickness': Dimension('upper_gridplate_thickness', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'lower_gridplate_thickness': Dimension('lower_gridplate_thickness', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'upper_gridplate_hole_radius': Dimension('upper_gridplate_hole_radius', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'lower_gridplate_hole_radius': Dimension('lower_gridplate_hole_radius', 
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'fuel_length': Dimension('fuel_length', 
       DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
    }
 
