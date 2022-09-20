@@ -17,3 +17,6 @@ plot 11 1000 1000 0
 plot 31 1000 1000 0
 plot 31 1000 1000 9
 plot 31 1000 1000 36
+
+ifc cool.int
+ifc fuel.int

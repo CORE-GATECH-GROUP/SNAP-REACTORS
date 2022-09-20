@@ -37,12 +37,6 @@ lgt = Dimension("lower_gridplate_thickness", 0.7938/100, unc=0.01, ref='NAA-SR-9
 ughr = Dimension("upper_gridplate_hole_radius", 0.1984/100, unc=0.01, ref='NAA-SR-9642')
 lghr = Dimension("lower_gridplate_hole_radius", 0.15875/100, unc=0.01, ref='NAA-SR-9642')
 
-# cda = Dimension('control_drum_apothem', )
-# cdr = Dimension('control_drum_radius')
-# cdgr = Dimension('control_drum_gap_radius')
-# saa = Dimension('control_drum_shim_a_apothem')
-# cupt = Dimension('control_upper_plate_thickness')
-
 fe = Component('fuel element', _materials = [matsDict['fuel'], matsDict['diffusion_barrier'], matsDict['burnable_poison'], matsDict['gap'], matsDict['clad']], _dimensions = [fr, dbr, bpr, gr, cr, uet, let, fl])
 ce = Component('coolant element', _materials = [matsDict['coolant']], _dimensions = [lp])
 ir = Component('internal reflector', _materials = [matsDict['internal_reflector']], _dimensions = [la, irr])
