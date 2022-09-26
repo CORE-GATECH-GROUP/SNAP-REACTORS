@@ -105,9 +105,9 @@ class Dimension:
 
         input = dict()
         dcount = 0
-            
+        
         for i in range(0, len(data)):
-            if(data[i][0] == "%"):
+            if(data[i] == "%"):
                 pass
             else:
                 if "id" in data[i]:
@@ -123,7 +123,7 @@ class Dimension:
         dcount = 0
         while (dcount < input["ndims"]):
             for i in range(0, len(data)):
-                if (data[i][0] == "%"):
+                if (data[i] == "%"):
                     pass
                 else:
                     
@@ -209,6 +209,7 @@ class Dimension:
                 warnings.warn("uncertainty not given for {} dimension @"
                 " line: {}".format(dimensions[i]["id"][0], 
                 dimensions[i]["id"][1]))
+                unc = None
 
             if "ref" in dimensions[i]:
                 ref = dimensions[i]["ref"]
@@ -216,6 +217,7 @@ class Dimension:
                 warnings.warn("reference not given for {} dimension @"
                 " line: {}".format(dimensions[i]["id"][0], 
                 dimensions[i]["id"][1]))
+                ref = None
 
             if "desc" in dimensions[i]:
                 desc = dimensions[i]["desc"]
@@ -223,25 +225,26 @@ class Dimension:
                 warnings.warn("description not given for {} dimension @"
                 " line: {}".format(dimensions[i]["id"][0], 
                 dimensions[i]["id"][1]))
+                desc = None
 
-            try:
-                if id in ALLOWED_DIMENSIONS:
-                    pass
-            except KeyError:
-                raise KeyError("Dimension id {} not Allowed Dimension @"
-                "@ line: {}".format(dimensions[i]["id"][0], 
-                dimensions[i]["id"][1]))
+            if id[0] not in ALLOWED_DIMENSIONS:
+                raise KeyError("Dimension id {} not Allowed Dimension @ "
+                 "line: {}. Allowed Dimension id's are: {}"
+                 .format(dimensions[i]["id"][0], 
+                 dimensions[i]["id"][1], ALLOWED_DIMENSIONS.keys()))
+            else:
+                pass
 
 
             try:
                 if unit == "SI":
-                    unit = ALLOWED_DIMENSIONS[id].units.SI
+                    unit = ALLOWED_DIMENSIONS[id[0]].units.SI
                     isUnitSI = True
                 elif unit == "imperial":
-                    unit = ALLOWED_DIMENSIONS[id].units.imperial
+                    unit = ALLOWED_DIMENSIONS[id[0]].units.imperial
                     isUnitSI = False
                 elif unit == "Serpent":
-                    unit = ALLOWED_DIMENSIONS[id].units.Serpent
+                    unit = ALLOWED_DIMENSIONS[id[0]].units.Serpent
                     isUnitSI = False
             except ValueError:
                 raise ValueError("Dimension units must be either SI "
@@ -249,7 +252,7 @@ class Dimension:
                         .format(dimensions[i]["id"][1]))
 
             try:
-                val = float(val)
+                value = float(val)
             except TypeError: 
                 raise TypeError("Dimension value must be a number "
                     "@ line: {}".format(dimensions[i]["id"][1]))
@@ -263,14 +266,14 @@ class Dimension:
                 dimensions[i]["id"][1]))
             
             try:
-                dim = Dimension(id, value, isUnitSI, unc, ref , desc)
+                dim = Dimension(id[0], value, isUnitSI, unc, ref , desc)
                 dimensions[i] = dim
             except ValueError as ve:
                 raise Exception("Error For Property @ line: {} \n"
                             .format(dimensions[i]["id"][1])) from ve
-            except TypeError as te:
-                raise Exception("Error For Property @ line: {} \n"
-                            .format(dimensions[i]["id"][1])) from te
+            # except TypeError as te:
+            #     raise Exception("Error For Property @ line: {} \n"
+            #                 .format(dimensions[i]["id"][1])) from te
             except KeyError as ke:
                 raise Exception("Error For Property @ line: {} \n"
                             .format(dimensions[i]["id"][1])) from ke
@@ -280,9 +283,9 @@ class Dimension:
         #dimensions[i] = Dimension(id, value=value, isUnitSI=boolSI,
         #    unc=unc, ref=reference, description=description)
         return dimensions
-data = """
-id: checkid
+datacheck = """
+id: fuel_radius
 value: 3
-unit: SI
-
-"""
+unit: SI"""
+check = Dimension._dimensionReader(datacheck)
+print(check)

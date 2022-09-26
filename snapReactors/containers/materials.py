@@ -342,7 +342,7 @@ class Material:
                 self.isotopes, self.unc, self.reference, self.description,
                 self._properties))
 
-    def readData(filename):
+    def readData(data):
         """Reads compositional data to save material data quickly. Furthemore,
         the formatting of input filename is assumed to have the following 
         formatting:
@@ -444,17 +444,18 @@ class Material:
         --------
         >>> mats = Material.readData('file.i')
             """
-        _isstr(filename, "file name")
+        # _isstr(filename, "file name")
 
-        if not os.path.isfile(filename):
-            raise OSError("Filename {} is not found".format(filename))
+        # if not os.path.isfile(filename):
+        #     raise OSError("Filename {} is not found".format(filename))
 
-        with open(filename) as filehandle:
-            lines = filehandle.readlines()
+        # with open(filename) as filehandle:
+        #     lines = filehandle.readlines()
 
         # read input file
-        with open(filename, "r") as f:
-            data = f.readlines()
+        # with open(filename, "r") as f:
+        #     data = f.readlines()
+        
         matpoints = []
         states = 0
         mp = None
