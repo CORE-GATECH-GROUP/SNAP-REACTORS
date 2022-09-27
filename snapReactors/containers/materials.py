@@ -342,6 +342,278 @@ class Material:
                 self.isotopes, self.unc, self.reference, self.description,
                 self._properties))
 
+    def readDataFile(filename):
+        """Reads compositional data to save material data quickly. Furthemore,
+        the formatting of input filename is assumed to have the following 
+        formatting:
+        
+        Material Name: exampleName
+        ctype: compositionType
+        utype: uncertaintyType
+        Number of isotopes: isoNumber
+        Isotopic Definition:
+        --------------------
+        AAZZZ XXXXX UUUUU
+        ...
+        reference: NA-Examples
+        description: This is an example input file
+
+        Note that if uncertainties are indicated to not exist then the method
+        will save uncertainty data as 'None'. Additionally, this method reads
+        multiple material data for components that require more than one 
+        material.
+
+
+        Properties can be read in for the material by adding a Properties 
+        section.
+
+        The properties section takes the form:
+
+        Properties: {
+        %property values for material
+        %type = const, table, corr
+        %id = property id
+        %unit = SI or imperial
+        %must have a ":" between keyword and value i.e "keyword: value"
+        %each keyword must on its own line i.e 
+        % keyword1: val1 
+        % keyword: val2
+        %array type inputs are denoted using "[]" i.e [1, 2] or [1 2] 
+        %multidimensional arrays can be denoted using the ";" matlab style i.e
+        % [1 2; 3 4] or [1, 2;
+        %                3, 4]
+        % or by using a newline i.e
+        %   [1 2
+             3 4] 
+        %Supports comments by preceeding a line with "%"
+        %Examples are included below
+
+        type:const
+        id:cp
+        unit:SI 
+        value:[1]
+        unc:[.01]
+
+        type:table 
+        id:h 
+        unit:imperial 
+        ref:NAA-SR-6160 
+        dep1unit:K 
+        dep1values: [1 2]
+        dep2unit:Pa 
+        dep2values: [.1 .2]
+        value: [1.1 2.1
+                3.1 4.1]
+        unc: [1 1
+            1 1]
+
+        type:corr
+        id:r 
+        unit:SI 
+        ref:NAA-SR-3120
+        corr:T+P**2
+        deps:T,P
+        dep1unit:K 
+        dep2unit:Pa
+        dep1range: [300,900] 
+        dep2range: [16,48]
+        }
+
+        Note that if uncertainties are indicated to not exist then the method
+        will save uncertainty data as 'None'. Additionally, this method reads
+        multiple material data for components that require more than one 
+        material.
+
+        Attributes
+        ----------
+        filename : str
+            input file that will be parsed
+        Raises
+        ------
+        TypeError
+            If ``filename``, ``utype`` are not str
+        OSError
+            If ``filename`` is not found 
+        ValueError
+            If ``id``, ``ctype``, ``numberOfIsotopes``, ``utype``,
+            ``unc``, and ``abundance`` is not given for a material.
+        Warnings
+            If ``utype`` is given as NONE and if ``reference``, 
+            ``description``, and ``properties`` are not given for a material.
+        Examples
+        --------
+        >>> mats = Material.readData('file.i')
+            """
+        _isstr(filename, "file name")
+
+        if not os.path.isfile(filename):
+            raise OSError("Filename {} is not found".format(filename))
+
+        with open(filename) as filehandle:
+            lines = filehandle.readlines()
+
+        #read input file
+        with open(filename, "r") as f:
+            data = f.readlines()
+        
+        matpoints = []
+        states = 0
+        mp = None
+
+        for i in range(0, len(data)):
+            line = data[i]
+            if "Material Name" in line:
+                if states == 0:
+                    states += 1
+                else:
+                    matpoints.append(mp)
+                    states += 1
+
+                mp = dict()
+                mp["id"] = [str(line.split(":")[-1]).replace("\n", "").replace(" ", ""), i+1]
+
+            if "ctype" in line:
+                ctype = str(line.split(":")[-1]).replace("\n", "").replace(" ", "")
+                if ctype.strip() not in CTYPE.__members__:
+                    raise KeyError("Composition Type {} is not an allowed" 
+                                    "composition type: {}".format(ctype, 
+                                                        CTYPE._member_names_))
+                try:
+                    mp["ctype"] = ctype.strip()
+                except:
+                    raise ValueError("Material Name not given for material"
+                                    .format(i))
+            if "utype" in line:
+                utype = str(line.split(":")[-1]).replace("\n", "").replace(" ", "")
+                if utype.strip() not in UTYPE.__members__:
+                    raise KeyError("Uncertainty Type {} is not an allowed" 
+                                    "uncertainty type: {}".format(utype, 
+                                                        UTYPE._member_names_))
+                mp["utype"] = utype.strip()
+            
+            if "Number of isotopes" in line:
+                isoNumberStr = line.split(":")[-1].replace("\n", "").replace(" ", "")
+                isoNumber = int(isoNumberStr)
+                mp["isoNum"] = isoNumber
+            
+            if "Isotopic Definition" in line:
+                for var in ["isotopes", "abundances", "unc"]:
+                    if var == "isotopes":
+                        mp[var] = np.zeros(isoNumber, dtype=float)
+                    elif var == "unc":
+                        try:
+                            if mp["utype"] == "NONE":
+                                mp[var] = np.zeros(isoNumber, dtype=float)
+                            else:
+                                mp[var] = np.zeros(isoNumber, dtype=float)
+                        except:
+                            raise ValueError("utype not given for material {}" 
+                            "@ line: {}".format(
+                                mp["id"][0], mp["id"][1]+1))
+                    else:
+                        mp[var] = np.zeros(isoNumber, dtype = float)
+                for k in range(0, isoNumber):
+                    line1 = data[i+k+2].split()
+                    mp["isotopes"][k] = line1[0]
+                    try:
+                        mp["abundances"][k] = float(line1[1])
+                    except:
+                        raise ValueError("Incorrect input for abundance in "
+                        "material {} @ line {}"
+                        .format(mp["id"][0],i+k+2))
+                    if mp["utype"] == "NONE":
+                        mp["unc"] = None
+                    else:
+                        try:
+                            mp["unc"][k] = float(line1[2])
+                        except:
+                            raise ValueError("Incorrect uncertainty input in "
+                        "material {} @ line {}"
+                        .format(mp["id"][0], i+k+2))
+            
+            if "Reference" in line:
+                mp["reference"] = str(line.split(":")[-1]).replace("\n", "")
+            
+            if "Description" in line:
+                mp["description"] = str(line.split(":")[-1]).replace("\n", "")
+
+            if "Properties" in line:
+                indexBegin = i + 1
+
+            if "}" in line:
+                indexEnd = i
+                mp["properties"] = Property._propertyReader(data[indexBegin: 
+                                                                    indexEnd])
+            
+        matpoints.append(mp)
+        mats = [0]*len(matpoints)
+
+        for i in range(len(matpoints)):
+
+            if "id" in matpoints[i]:
+                id = matpoints[i]["id"][0]
+
+            if "ctype" in matpoints[i]:
+                ctype = matpoints[i]["ctype"]
+            else:
+                raise ValueError("ctype not given for {} material @"
+                    " line: {}".format(
+                    matpoints[i]["id"][0], matpoints[i]["id"][1]))
+
+            if "utype" in matpoints[i]:
+                utype = matpoints[i]["utype"]
+                if utype == UTYPE.NONE:
+                    warnings.warn("Uncertainty for {} material is marked as " 
+                                    "none".format(id), 
+                                    InputFileSyntaxWarning)
+            else:
+                raise ValueError("utype not given for {} material @"
+                    " line: {}".format(
+                    matpoints[i]["id"][0], matpoints[i]["id"][1]+1))
+
+            if "isoNum" not in matpoints[i]:
+                raise ValueError("Number of isotopes not given for {}" 
+                 "material @ line: {}".format(
+                    matpoints[i]["id"][0], matpoints[i]["id"][1]))
+            
+            if "isotopes" in matpoints[i]:
+                isotopes = matpoints[i]["isotopes"]
+            
+            if "abundances" in matpoints[i]:
+                abundances = matpoints[i]["abundances"]
+            
+            if "unc" in matpoints[i]:
+                unc = matpoints[i]["unc"]
+
+            if "reference" in matpoints[i]:
+                reference = matpoints[i]["reference"]
+            else:
+                reference = None
+                warnings.warn("Reference for material {} not" 
+                            "provided".format(id), 
+                                    InputFileSyntaxWarning)
+
+
+            if "description" in matpoints[i]:
+                description = matpoints[i]["description"]
+            else:
+                description = None
+                warnings.warn("Description for material {} not" 
+                            "provided".format(id), 
+                                    InputFileSyntaxWarning)
+
+            if "properties" in matpoints[i]:
+                properties = matpoints[i]["properties"]
+            else:
+                warnings.warn("Property/s for material {} are not" 
+                            "given".format(id), 
+                                    InputFileSyntaxWarning)
+            mats[i] = Material(id, utype, ctype, isotopes, abundances,
+                                unc, 
+                                reference=reference, description=description,
+                                _properties=properties)
+        return mats
+
     def readData(data):
         """Reads compositional data to save material data quickly. Furthemore,
         the formatting of input filename is assumed to have the following 

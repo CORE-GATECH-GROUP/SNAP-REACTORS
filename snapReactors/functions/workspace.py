@@ -1,5 +1,5 @@
 from re import template
-from snapReactors.containers.templates import S8ER
+from snapReactors.containers.templates import S82D, S8ER
 from snapReactors.library.database import Database
 from snapReactors.containers.component import Component
 from snapReactors.containers.materials import Material
@@ -15,8 +15,7 @@ version = 'v0.1.0'
 date = '2022-01-31 15:32:13'
 ex1 = Database(filePath=filePath, version=version, date=date)
 
-mats = Material.readData(r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\jupyter_notebooks\test.txt")
-
+mats = Material.readDataFile(r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\jupyter_notebooks\test.txt")
 matsDict = createDictFromConatinerList(mats)
 
 fr = Dimension("fuel_radius", 0.67564/100, unc=0.01, ref='NAA-SR-9642')
@@ -43,7 +42,7 @@ ir = Component('internal reflector', _materials = [matsDict['internal_reflector'
 br = Component('barrel', _materials = [matsDict['barrel']], _dimensions = [brr])
 
 ugp = Component('upper gridplate', _materials = [matsDict['barrel']], _dimensions = [ugt, ughr])
-lgp = Component('lower gridplate', _materials = [matsDict['clad']], _dimensions = [lgt, lghr])
+lgp = Component('lower gridplate', _materials = [matsDict['lower_gridplate']], _dimensions = [lgt, lghr])
 
 cd = Component('control drum system', _materials = [matsDict['control_drum']])#, _dimensions = [cda, cdr, cdgr, saa, cupt])
 
@@ -56,5 +55,11 @@ snapTemplate.setSettings(geoType='3D', nps = 1E+05, nact = 100, nskip=40, xsAbsP
 coldCore = ReactorState('Cold Power', reference='AI-AEC-13070', description = 'S8ER C3 Critcal Configuration Experiment, Dry Conditions 300 K',
 _components=[fe, ce, ir, br])#, _reactorMap= reactorMap)
 
-sTest = Serpent("Serpent Test")
-sTest.toSerpent(coldCore, snapTemplate, "serpent_test")
+sTest3D = Serpent("Serpent Test 3D")
+sTest3D.toSerpent(coldCore, snapTemplate, "serpent_test")
+
+snap2D = S82D(fe, ce, ir, br, cd)
+snap2D.setSettings(geoType='2D', nps = 1E+04, nact = 100, nskip=40, xsAbsPath=xsPath, plotOptions=([3], 1000, [0], 1))
+
+sTest2D = Serpent("Serpent Test 2D")
+sTest2D.toSerpent(coldCore, snap2D, "s82d")

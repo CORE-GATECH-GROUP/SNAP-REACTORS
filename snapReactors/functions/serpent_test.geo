@@ -49,14 +49,15 @@
 % Parameter(unit): value unc reference description
 % barrel_radius(cm): 11.87704 0.01 NAA-SR-9642
 
-surf lgBarrelcc1 cyl 0.0 0.0 11.87704 
 surf lowerCDcc1 cyl 0.0 0.0 22.7478 
+surf putBorder cuboid -22.7478 22.7478 -22.7478 22.7478 0.0 38.4207 
+surf lgBarrelcc1 cyl 0.0 0.0 11.87704 
 surf barrelcc1 cyl 0.0 0.0 11.87704 
 surf cdBarrelHexVoidcc1 cyl 0.0 0.0 22.7478 
 surf intrefcc1 cyl 0.0 0.0 11.6926 
 surf hexBorder hexyc 0.0 0.0 11.0414 
-surf barrelCDh1 hexyc 0.0 0.0 17.82064 
 surf lowershimA_univcc1 cyl 0.0 0.0 23.7609 
+surf barrelCDh1 hexyc 0.0 0.0 17.82064 
 surf svDrum1 cyl 0.0 23.972012 11.95 
 surf svDrum2 cyl 0.0 -23.972012 11.95 
 surf svDrum3 cyl 20.76037137182541 11.986005999999998 11.95 
@@ -77,21 +78,23 @@ surf upperShimAh1 hexyc 0.0 0.0 19.7002
 surf upperShimACuth1 hexxc 0.0 0.0 20.5775 
 surf ugBarrelcc1 cyl 0.0 0.0 11.87704 
 surf upperCDcc1 cyl 0.0 0.0 22.7478 
-surf putBorder cuboid -22.7478 22.7478 -22.7478 22.7478 0.0 38.4207 
+cell fillRegion 1  fill core_grid -lowerCDcc1 
+cell voidRegion 1  void lowerCDcc1 -putBorder 
 cell lgBarrel_univlowerCD_cell1 lgBarrel_univlowerCD_univ  fill lgBarrel_univ -lgBarrelcc1 
 cell lgBarrel_univlowerCD_cell2 lgBarrel_univlowerCD_univ  fill lowerCD_univ lgBarrelcc1 -lowerCDcc1 
 cell lgBarrel_cell lgBarrel_univ  fill lowerGridLat -lgBarrelcc1 
 cell lowerCD_cell lowerCD_univ  void lgBarrelcc1 -lowerCDcc1 
-cell active_core_univintref_univbarrel_univcdBarrelHexVoid_univ_cell1 active_core_univintref_univbarrel_univcdBarrelHexVoid_univ_univ  fill active_core_univintref_univbarrel_univ -barrelcc1 
-cell active_core_univintref_univbarrel_univcdBarrelHexVoid_univ_cell2 active_core_univintref_univbarrel_univcdBarrelHexVoid_univ_univ  fill cdBarrelHexVoid_univ barrelcc1 -cdBarrelHexVoidcc1 
+cell active_core_univintref_univbarrel_univcontrolDrumHousingcdBarrelHexVoid_univ_cell1 active_core_univintref_univbarrel_univcontrolDrumHousingcdBarrelHexVoid_univ_univ  fill active_core_univintref_univbarrel_univ -barrelcc1 
+cell active_core_univintref_univbarrel_univcontrolDrumHousingcdBarrelHexVoid_univ_cell2 active_core_univintref_univbarrel_univcontrolDrumHousingcdBarrelHexVoid_univ_univ  fill controlDrumHousingcdBarrelHexVoid_univ barrelcc1 -cdBarrelHexVoidcc1 
 cell active_core_univintref_univbarrel_cell1 active_core_univintref_univbarrel_univ  fill active_core_univintref_univ -intrefcc1 
 cell active_core_univintref_univbarrel_cell2 active_core_univintref_univbarrel_univ  fill barrel_univ intrefcc1 -barrelcc1 
 cell active_core_univintref_cell1 active_core_univintref_univ  fill active_core_univ -hexBorder 
 cell active_core_univintref_cell2 active_core_univintref_univ  fill intref_univ hexBorder -intrefcc1 
 cell active_core_cell active_core_univ  fill activeCoreLat -hexBorder 
-cell intref_cell intref_univ  internal_reflector hexBorder -intrefcc1 
+cell intref_cell intref_univ  reflMix hexBorder -intrefcc1 
 cell barrel_cell barrel_univ  barrel intrefcc1 -barrelcc1 
-cell cdBarrelHexVoid_cell cdBarrelHexVoid_univ  fill controlDrumHousing -cdBarrelHexVoidcc1 
+cell controlDrumHousingcdBarrelHexVoid_cell1 controlDrumHousingcdBarrelHexVoid_univ  fill controlDrumHousing -lowershimA_univcc1 
+cell controlDrumHousingcdBarrelHexVoid_cell2 controlDrumHousingcdBarrelHexVoid_univ  fill cdBarrelHexVoid_univ lowershimA_univcc1 -cdBarrelHexVoidcc1 
 cell lowercdFulllowershimA_univ_cell1 lowercdFulllowershimA_univ_univ  fill lowercdFull -barrelCDh1 
 cell lowercdFulllowershimA_univ_cell2 lowercdFulllowershimA_univ_univ  fill lowershimA_univ barrelCDh1 -lowershimA_univcc1 
 cell lowercdFulld1 lowercdFull  fill lowercd1_univ -svDrum1 
@@ -160,16 +163,16 @@ cell uppercDrum6 uppercd6_univ  control_drum -sDrum6
 cell uppercvDrum6 uppercd6_univ  void sDrum6 -svDrum6 
 cell uppershimA_cell1 uppershimA_univ  control_drum barrelCDh1 -upperShimAh1 -upperShimACuth1 
 cell uppervoid_cell1 uppershimA_univ  void (upperShimAh1 -uppershimA_univcc1):(upperShimACuth1 -uppershimA_univcc1)
+cell cdBarrelHexVoid_cell cdBarrelHexVoid_univ  void lowershimA_univcc1 -cdBarrelHexVoidcc1 
 cell ugBarrel_univupperCD_cell1 ugBarrel_univupperCD_univ  fill ugBarrel_univ -ugBarrelcc1 
 cell ugBarrel_univupperCD_cell2 ugBarrel_univupperCD_univ  fill upperCD_univ ugBarrelcc1 -upperCDcc1 
 cell ugBarrel_cell ugBarrel_univ  fill upperGridLat -ugBarrelcc1 
 cell upperCD_cell upperCD_univ  void ugBarrelcc1 -upperCDcc1 
-cell fillRegion 0  fill core_grid -lowerCDcc1 
-cell voidRegion 0  void lowerCDcc1 -putBorder 
-cell outRegion 0  outside putBorder 
+cell outRegionIn 0  fill 1 -putBorder 
+cell outRegionOut 0  outside putBorder 
 lat core_grid 9 0 0 3
 0.0	lgBarrel_univlowerCD_univ
-0.7937999999999998	active_core_univintref_univbarrel_univcdBarrelHexVoid_univ_univ
+0.7937999999999998	active_core_univintref_univbarrel_univcontrolDrumHousingcdBarrelHexVoid_univ_univ
 37.547599999999996	ugBarrel_univupperCD_univ
 
 lat lowerGridLat 2 0 0 21 21 1.4478
@@ -200,7 +203,7 @@ clad
 
 pin pLGH
 coolant	0.15875
-clad
+lower_gridplate
 
 lat activeCoreLat 2 0 0 21 21 1.4478
 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 

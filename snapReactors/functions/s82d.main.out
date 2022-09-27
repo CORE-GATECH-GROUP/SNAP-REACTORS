@@ -150,7 +150,7 @@
 
  Nuclide    1 / 92 : 1001.03c -- hydrogen (H-1)
 
- Pointers                     : 165603 973
+ Pointers                     : 39713 973
  Primary type                 : Transport
  Nuclide ZAI                  : 10010
  Library ID                   : 03c
@@ -199,7 +199,7 @@
 
  Nuclide    2 / 92 : 1002.03c -- deuterium (H-2)
 
- Pointers                     : 165933 1249
+ Pointers                     : 40043 1249
  Primary type                 : Transport
  Nuclide ZAI                  : 10020
  Library ID                   : 03c
@@ -250,7 +250,7 @@
 
  Nuclide    3 / 92 : 2004.03c -- helium 4 (He-4)
 
- Pointers                     : 301938 2307
+ Pointers                     : 204349 2307
  Primary type                 : Transport
  Nuclide ZAI                  : 20040
  Library ID                   : 03c
@@ -294,7 +294,7 @@
 
  Nuclide    4 / 92 : 3006.03c -- lithium 6 (Li-6)
 
- Pointers                     : 188940 2583
+ Pointers                     : 75793 2583
  Primary type                 : Transport
  Nuclide ZAI                  : 30060
  Library ID                   : 03c
@@ -381,7 +381,7 @@
 
  Nuclide    5 / 92 : 3007.03c -- lithium 7 (Li-7)
 
- Pointers                     : 192044 2859
+ Pointers                     : 78897 2859
  Primary type                 : Transport
  Nuclide ZAI                  : 30070
  Library ID                   : 03c
@@ -470,7 +470,7 @@
 
  Nuclide    6 / 92 : 4009.03c -- beryllium 9 (Be-9)
 
- Pointers                     : 308444 3411
+ Pointers                     : 281377 3411
  Primary type                 : Transport
  Nuclide ZAI                  : 40090
  Library ID                   : 03c
@@ -532,7 +532,7 @@
 
  Nuclide    7 / 92 : 6000.03c -- natural carbon (C-nat)
 
- Pointers                     : 163740 4239
+ Pointers                     : 282656 4239
  Primary type                 : Transport
  Nuclide ZAI                  : 60000
  Library ID                   : 03c
@@ -602,7 +602,7 @@
 
  Nuclide    8 / 92 : 6012.03c -- carbon 12 (C-12)
 
- Pointers                     : 116780 4515
+ Pointers                     : 268599 4515
  Primary type                 : Transport
  Nuclide ZAI                  : 60120
  Library ID                   : 03c
@@ -683,7 +683,7 @@
 
  Nuclide    9 / 92 : 7014.03c -- nitrogen 14 (N-14)
 
- Pointers                     : 141647 4791
+ Pointers                     : 17615 4791
  Primary type                 : Transport
  Nuclide ZAI                  : 70140
  Library ID                   : 03c
@@ -794,7 +794,7 @@
 
  Nuclide   10 / 92 : 7015.03c -- nitrogen 15 (N-15)
 
- Pointers                     : 146503 5067
+ Pointers                     : 22476 5067
  Primary type                 : Transport
  Nuclide ZAI                  : 70150
  Library ID                   : 03c
@@ -862,7 +862,7 @@
 
  Nuclide   11 / 92 : 8016.03c -- oxygen 16 (O-16)
 
- Pointers                     : 148220 5343
+ Pointers                     : 24193 5343
  Primary type                 : Transport
  Nuclide ZAI                  : 80160
  Library ID                   : 03c
@@ -977,7 +977,7 @@
 
  Nuclide   12 / 92 : 8017.03c -- oxygen 17 (O-17)
 
- Pointers                     : 153368 5619
+ Pointers                     : 29341 5619
  Primary type                 : Transport
  Nuclide ZAI                  : 80170
  Library ID                   : 03c
@@ -1048,7 +1048,7 @@
 
  Nuclide   13 / 92 : 12024.03c -- magnesium 24 (Mg-24)
 
- Pointers                     : 231438 6999
+ Pointers                     : 130380 6999
  Primary type                 : Transport
  Nuclide ZAI                  : 120240
  Library ID                   : 03c
@@ -1116,7 +1116,7 @@
 
  Nuclide   14 / 92 : 12025.03c -- magnesium 25 (Mg-25)
 
- Pointers                     : 233155 7275
+ Pointers                     : 132097 7275
  Primary type                 : Transport
  Nuclide ZAI                  : 120250
  Library ID                   : 03c
@@ -1190,7 +1190,7 @@
 
  Nuclide   15 / 92 : 12026.03c -- magnesium 26 (Mg-26)
 
- Pointers                     : 235310 7551
+ Pointers                     : 134252 7551
  Primary type                 : Transport
  Nuclide ZAI                  : 120260
  Library ID                   : 03c
@@ -1260,7 +1260,7 @@
 
  Nuclide   16 / 92 : 13027.03c -- aluminum 27 (Al-27)
 
- Pointers                     : 119446 7827
+ Pointers                     : 271265 7827
  Primary type                 : Transport
  Nuclide ZAI                  : 130270
  Library ID                   : 03c
@@ -1443,7 +1443,7 @@
 
  Nuclide   17 / 92 : 14028.03c -- silicon 28 (Si-28)
 
- Pointers                     : 79986 8379
+ Pointers                     : 63050 8379
  Primary type                 : Transport
  Nuclide ZAI                  : 140280
  Library ID                   : 03c
@@ -1553,7 +1553,7 @@
 
  Nuclide   18 / 92 : 14029.03c -- silicon 29 (Si-29)
 
- Pointers                     : 84769 8655
+ Pointers                     : 67833 8655
  Primary type                 : Transport
  Nuclide ZAI                  : 140290
  Library ID                   : 03c
@@ -1665,7 +1665,7 @@
 
  Nuclide   19 / 92 : 14030.03c -- silicon 30 (Si-30)
 
- Pointers                     : 89698 8931
+ Pointers                     : 72762 8931
  Primary type                 : Transport
  Nuclide ZAI                  : 140300
  Library ID                   : 03c
@@ -1751,7 +1751,7 @@
 
  Nuclide   20 / 92 : 15031.03c -- phosphorus 31 (P-31)
 
- Pointers                     : 302122 9207
+ Pointers                     : 284519 9207
  Primary type                 : Transport
  Nuclide ZAI                  : 150310
  Library ID                   : 03c
@@ -1809,7 +1809,7 @@
 
  Nuclide   21 / 92 : 16032.03c -- sulfur 32 (S-32)
 
- Pointers                     : 303109 9759
+ Pointers                     : 285506 9759
  Primary type                 : Transport
  Nuclide ZAI                  : 160320
  Library ID                   : 03c
@@ -1872,7 +1872,7 @@
 
  Nuclide   22 / 92 : 16033.03c -- sulfur 33 (S-33)
 
- Pointers                     : 304461 10035
+ Pointers                     : 286858 10035
  Primary type                 : Transport
  Nuclide ZAI                  : 160330
  Library ID                   : 03c
@@ -1936,7 +1936,7 @@
 
  Nuclide   23 / 92 : 16034.03c -- sulfur 34 (S-34)
 
- Pointers                     : 305886 10311
+ Pointers                     : 288283 10311
  Primary type                 : Transport
  Nuclide ZAI                  : 160340
  Library ID                   : 03c
@@ -1998,7 +1998,7 @@
 
  Nuclide   24 / 92 : 16036.03c -- sulfur 36 (S-36)
 
- Pointers                     : 307165 10587
+ Pointers                     : 289562 10587
  Primary type                 : Transport
  Nuclide ZAI                  : 160360
  Library ID                   : 03c
@@ -2060,7 +2060,7 @@
 
  Nuclide   25 / 92 : 18036.03c -- argon 36 (Ar-36)
 
- Pointers                     : 155304 11691
+ Pointers                     : 31277 11691
  Primary type                 : Transport
  Nuclide ZAI                  : 180360
  Library ID                   : 03c
@@ -2141,7 +2141,7 @@
 
  Nuclide   26 / 92 : 18038.03c -- argon 38 (Ar-38)
 
- Pointers                     : 157970 11967
+ Pointers                     : 33943 11967
  Primary type                 : Transport
  Nuclide ZAI                  : 180380
  Library ID                   : 03c
@@ -2220,7 +2220,7 @@
 
  Nuclide   27 / 92 : 18040.03c -- argon 40 (Ar-40)
 
- Pointers                     : 160490 12243
+ Pointers                     : 36463 12243
  Primary type                 : Transport
  Nuclide ZAI                  : 180400
  Library ID                   : 03c
@@ -2309,7 +2309,7 @@
 
  Nuclide   28 / 92 : 20040.03c -- calcium 40 (Ca-40)
 
- Pointers                     : 195294 13899
+ Pointers                     : 82147 13899
  Primary type                 : Transport
  Nuclide ZAI                  : 200400
  Library ID                   : 03c
@@ -2446,7 +2446,7 @@
 
  Nuclide   29 / 92 : 20042.03c -- calcium 42 (Ca-42)
 
- Pointers                     : 202048 14175
+ Pointers                     : 88901 14175
  Primary type                 : Transport
  Nuclide ZAI                  : 200420
  Library ID                   : 03c
@@ -2582,7 +2582,7 @@
 
  Nuclide   30 / 92 : 20043.03c -- calcium 43 (Ca-43)
 
- Pointers                     : 208729 14451
+ Pointers                     : 95582 14451
  Primary type                 : Transport
  Nuclide ZAI                  : 200430
  Library ID                   : 03c
@@ -2718,7 +2718,7 @@
 
  Nuclide   31 / 92 : 20044.03c -- calcium 44 (Ca-44)
 
- Pointers                     : 215410 14727
+ Pointers                     : 102263 14727
  Primary type                 : Transport
  Nuclide ZAI                  : 200440
  Library ID                   : 03c
@@ -2846,7 +2846,7 @@
 
  Nuclide   32 / 92 : 20046.03c -- calcium 46 (Ca-46)
 
- Pointers                     : 221507 15003
+ Pointers                     : 108360 15003
  Primary type                 : Transport
  Nuclide ZAI                  : 200460
  Library ID                   : 03c
@@ -2962,7 +2962,7 @@
 
  Nuclide   33 / 92 : 20048.03c -- calcium 48 (Ca-48)
 
- Pointers                     : 226728 15279
+ Pointers                     : 113581 15279
  Primary type                 : Transport
  Nuclide ZAI                  : 200480
  Library ID                   : 03c
@@ -3071,7 +3071,7 @@
 
  Nuclide   34 / 92 : 22046.03c -- titanium 46 (Ti-46)
 
- Pointers                     : 129558 16107
+ Pointers                     : 118291 16107
  Primary type                 : Transport
  Nuclide ZAI                  : 220460
  Library ID                   : 03c
@@ -3144,7 +3144,7 @@
 
  Nuclide   35 / 92 : 22047.03c -- titanium 47 (Ti-47)
 
- Pointers                     : 131640 16383
+ Pointers                     : 120373 16383
  Primary type                 : Transport
  Nuclide ZAI                  : 220470
  Library ID                   : 03c
@@ -3224,7 +3224,7 @@
 
  Nuclide   36 / 92 : 22048.03c -- titanium 48 (Ti-48)
 
- Pointers                     : 134233 16659
+ Pointers                     : 122966 16659
  Primary type                 : Transport
  Nuclide ZAI                  : 220480
  Library ID                   : 03c
@@ -3305,7 +3305,7 @@
 
  Nuclide   37 / 92 : 22049.03c -- titanium 49 (Ti-49)
 
- Pointers                     : 136899 16935
+ Pointers                     : 125632 16935
  Primary type                 : Transport
  Nuclide ZAI                  : 220490
  Library ID                   : 03c
@@ -3384,7 +3384,7 @@
 
  Nuclide   38 / 92 : 22050.03c -- titanium 50 (Ti-50)
 
- Pointers                     : 139419 17211
+ Pointers                     : 128152 17211
  Primary type                 : Transport
  Nuclide ZAI                  : 220500
  Library ID                   : 03c
@@ -3459,7 +3459,7 @@
 
  Nuclide   39 / 92 : 23051.03c -- vanadium 51 (V-51)
 
- Pointers                     : 105951 17763
+ Pointers                     : 257770 17763
  Primary type                 : Transport
  Nuclide ZAI                  : 230510
  Library ID                   : 03c
@@ -3535,7 +3535,7 @@
 
  Nuclide   40 / 92 : 24050.03c -- chromium 50 (Cr-50)
 
- Pointers                     : 65593 18315
+ Pointers                     : 233624 18315
  Primary type                 : Transport
  Nuclide ZAI                  : 240500
  Library ID                   : 03c
@@ -3602,7 +3602,7 @@
 
  Nuclide   41 / 92 : 24052.03c -- chromium 52 (Cr-52)
 
- Pointers                     : 67237 18591
+ Pointers                     : 235268 18591
  Primary type                 : Transport
  Nuclide ZAI                  : 240520
  Library ID                   : 03c
@@ -3672,7 +3672,7 @@
 
  Nuclide   42 / 92 : 24053.03c -- chromium 53 (Cr-53)
 
- Pointers                     : 69100 18867
+ Pointers                     : 237131 18867
  Primary type                 : Transport
  Nuclide ZAI                  : 240530
  Library ID                   : 03c
@@ -3745,7 +3745,7 @@
 
  Nuclide   43 / 92 : 24054.03c -- chromium 54 (Cr-54)
 
- Pointers                     : 71182 19143
+ Pointers                     : 239213 19143
  Primary type                 : Transport
  Nuclide ZAI                  : 240540
  Library ID                   : 03c
@@ -3807,7 +3807,7 @@
 
  Nuclide   44 / 92 : 25055.03c -- manganese 55 (Mn-55)
 
- Pointers                     : 92729 19419
+ Pointers                     : 164406 19419
  Primary type                 : Transport
  Nuclide ZAI                  : 250550
  Library ID                   : 03c
@@ -3899,7 +3899,7 @@
 
  Nuclide   45 / 92 : 26054.03c -- iron 54 (Fe-54)
 
- Pointers                     : 72461 19971
+ Pointers                     : 240492 19971
  Primary type                 : Transport
  Nuclide ZAI                  : 260540
  Library ID                   : 03c
@@ -3967,7 +3967,7 @@
 
  Nuclide   46 / 92 : 26056.03c -- iron 56 (Fe-56)
 
- Pointers                     : 74178 20247
+ Pointers                     : 242209 20247
  Primary type                 : Transport
  Nuclide ZAI                  : 260560
  Library ID                   : 03c
@@ -4056,7 +4056,7 @@
 
  Nuclide   47 / 92 : 26057.03c -- iron 57 (Fe-57)
 
- Pointers                     : 77428 20523
+ Pointers                     : 245459 20523
  Primary type                 : Transport
  Nuclide ZAI                  : 260570
  Library ID                   : 03c
@@ -4121,7 +4121,7 @@
 
  Nuclide   48 / 92 : 26058.03c -- iron 58 (Fe-58)
 
- Pointers                     : 78926 20799
+ Pointers                     : 246957 20799
  Primary type                 : Transport
  Nuclide ZAI                  : 260580
  Library ID                   : 03c
@@ -4180,7 +4180,7 @@
 
  Nuclide   49 / 92 : 27059.03c -- cobalt 59 (Co-59)
 
- Pointers                     : 113584 21351
+ Pointers                     : 265403 21351
  Primary type                 : Transport
  Nuclide ZAI                  : 270590
  Library ID                   : 03c
@@ -4271,7 +4271,7 @@
 
  Nuclide   50 / 92 : 28058.03c -- nickel 58 (Ni-58)
 
- Pointers                     : 36497 22179
+ Pointers                     : 204533 22179
  Primary type                 : Transport
  Nuclide ZAI                  : 280580
  Library ID                   : 03c
@@ -4340,7 +4340,7 @@
 
  Nuclide   51 / 92 : 28060.03c -- nickel 60 (Ni-60)
 
- Pointers                     : 38292 22731
+ Pointers                     : 206323 22731
  Primary type                 : Transport
  Nuclide ZAI                  : 280600
  Library ID                   : 03c
@@ -4412,7 +4412,7 @@
 
  Nuclide   52 / 92 : 28061.03c -- nickel 61 (Ni-61)
 
- Pointers                     : 40301 23007
+ Pointers                     : 208332 23007
  Primary type                 : Transport
  Nuclide ZAI                  : 280610
  Library ID                   : 03c
@@ -4480,7 +4480,7 @@
 
  Nuclide   53 / 92 : 28062.03c -- nickel 62 (Ni-62)
 
- Pointers                     : 42018 23283
+ Pointers                     : 210049 23283
  Primary type                 : Transport
  Nuclide ZAI                  : 280620
  Library ID                   : 03c
@@ -4545,7 +4545,7 @@
 
  Nuclide   54 / 92 : 28064.03c -- nickel 64 (Ni-64)
 
- Pointers                     : 43516 23559
+ Pointers                     : 211547 23559
  Primary type                 : Transport
  Nuclide ZAI                  : 280640
  Library ID                   : 03c
@@ -4608,7 +4608,7 @@
 
  Nuclide   55 / 92 : 29063.03c -- copper 63 (Cu-63)
 
- Pointers                     : 108252 24111
+ Pointers                     : 260071 24111
  Primary type                 : Transport
  Nuclide ZAI                  : 290630
  Library ID                   : 03c
@@ -4693,7 +4693,7 @@
 
  Nuclide   56 / 92 : 29065.03c -- copper 65 (Cu-65)
 
- Pointers                     : 111210 24387
+ Pointers                     : 263029 24387
  Primary type                 : Transport
  Nuclide ZAI                  : 290650
  Library ID                   : 03c
@@ -4770,7 +4770,7 @@
 
  Nuclide   57 / 92 : 38084.03c -- strontium 84 (Sr-84)
 
- Pointers                     : 251696 33495
+ Pointers                     : 150638 33495
  Primary type                 : Transport
  Nuclide ZAI                  : 380840
  Library ID                   : 03c
@@ -4906,7 +4906,7 @@
 
  Nuclide   58 / 92 : 38086.03c -- strontium 86 (Sr-86)
 
- Pointers                     : 258177 33771
+ Pointers                     : 157119 33771
  Primary type                 : Transport
  Nuclide ZAI                  : 380860
  Library ID                   : 03c
@@ -4985,7 +4985,7 @@
 
  Nuclide   59 / 92 : 38087.03c -- strontium 87 (Sr-87)
 
- Pointers                     : 260497 34047
+ Pointers                     : 159439 34047
  Primary type                 : Transport
  Nuclide ZAI                  : 380870
  Library ID                   : 03c
@@ -5056,7 +5056,7 @@
 
  Nuclide   60 / 92 : 38088.03c -- strontium 88 (Sr-88)
 
- Pointers                     : 262433 34323
+ Pointers                     : 161375 34323
  Primary type                 : Transport
  Nuclide ZAI                  : 380880
  Library ID                   : 03c
@@ -5142,7 +5142,7 @@
 
  Nuclide   61 / 92 : 40090.03c -- zirconium 90 (Zr-90)
 
- Pointers                     : 173639 36255
+ Pointers                     : 47749 36255
  Primary type                 : Transport
  Nuclide ZAI                  : 400900
  Library ID                   : 03c
@@ -5268,7 +5268,7 @@
 
  Nuclide   62 / 92 : 40091.03c -- zirconium 91 (Zr-91)
 
- Pointers                     : 179590 36531
+ Pointers                     : 53700 36531
  Primary type                 : Transport
  Nuclide ZAI                  : 400910
  Library ID                   : 03c
@@ -5347,7 +5347,7 @@
 
  Nuclide   63 / 92 : 40092.03c -- zirconium 92 (Zr-92)
 
- Pointers                     : 182110 36807
+ Pointers                     : 56220 36807
  Primary type                 : Transport
  Nuclide ZAI                  : 400920
  Library ID                   : 03c
@@ -5428,7 +5428,7 @@
 
  Nuclide   64 / 92 : 40094.03c -- zirconium 94 (Zr-94)
 
- Pointers                     : 184776 37359
+ Pointers                     : 58886 37359
  Primary type                 : Transport
  Nuclide ZAI                  : 400940
  Library ID                   : 03c
@@ -5505,7 +5505,7 @@
 
  Nuclide   65 / 92 : 40096.03c -- zirconium 96 (Zr-96)
 
- Pointers                     : 187150 37911
+ Pointers                     : 61260 37911
  Primary type                 : Transport
  Nuclide ZAI                  : 400960
  Library ID                   : 03c
@@ -5574,7 +5574,7 @@
 
  Nuclide   66 / 92 : 42092.03c -- molybdenum 92 (Mo-92)
 
- Pointers                     : 44868 39291
+ Pointers                     : 212899 39291
  Primary type                 : Transport
  Nuclide ZAI                  : 420920
  Library ID                   : 03c
@@ -5658,7 +5658,7 @@
 
  Nuclide   67 / 92 : 42094.03c -- molybdenum 94 (Mo-94)
 
- Pointers                     : 47553 39567
+ Pointers                     : 215584 39567
  Primary type                 : Transport
  Nuclide ZAI                  : 420940
  Library ID                   : 03c
@@ -5742,7 +5742,7 @@
 
  Nuclide   68 / 92 : 42095.03c -- molybdenum 95 (Mo-95)
 
- Pointers                     : 50438 39843
+ Pointers                     : 218469 39843
  Primary type                 : Transport
  Nuclide ZAI                  : 420950
  Library ID                   : 03c
@@ -5871,7 +5871,7 @@
 
  Nuclide   69 / 92 : 42096.03c -- molybdenum 96 (Mo-96)
 
- Pointers                     : 56608 40119
+ Pointers                     : 224639 40119
  Primary type                 : Transport
  Nuclide ZAI                  : 420960
  Library ID                   : 03c
@@ -5950,7 +5950,7 @@
 
  Nuclide   70 / 92 : 42097.03c -- molybdenum 97 (Mo-97)
 
- Pointers                     : 59128 40395
+ Pointers                     : 227159 40395
  Primary type                 : Transport
  Nuclide ZAI                  : 420970
  Library ID                   : 03c
@@ -6027,7 +6027,7 @@
 
  Nuclide   71 / 92 : 42098.03c -- molybdenum 98 (Mo-98)
 
- Pointers                     : 61502 40671
+ Pointers                     : 229533 40671
  Primary type                 : Transport
  Nuclide ZAI                  : 420980
  Library ID                   : 03c
@@ -6103,7 +6103,7 @@
 
  Nuclide   72 / 92 : 42100.03c -- molybdenum 100 (Mo-100)
 
- Pointers                     : 63803 41223
+ Pointers                     : 231834 41223
  Primary type                 : Transport
  Nuclide ZAI                  : 421000
  Library ID                   : 03c
@@ -6172,7 +6172,7 @@
 
  Nuclide   73 / 92 : 56130.03c -- barium 130 (Ba-130)
 
- Pointers                     : 237173 66891
+ Pointers                     : 136115 66891
  Primary type                 : Transport
  Nuclide ZAI                  : 561300
  Library ID                   : 03c
@@ -6249,7 +6249,7 @@
 
  Nuclide   74 / 92 : 56132.03c -- barium 132 (Ba-132)
 
- Pointers                     : 239347 67167
+ Pointers                     : 138289 67167
  Primary type                 : Transport
  Nuclide ZAI                  : 561320
  Library ID                   : 03c
@@ -6327,7 +6327,7 @@
 
  Nuclide   75 / 92 : 56134.03c -- barium 134 (Ba-134)
 
- Pointers                     : 241594 67719
+ Pointers                     : 140536 67719
  Primary type                 : Transport
  Nuclide ZAI                  : 561340
  Library ID                   : 03c
@@ -6406,7 +6406,7 @@
 
  Nuclide   76 / 92 : 56135.03c -- barium 135 (Ba-135)
 
- Pointers                     : 243914 67995
+ Pointers                     : 142856 67995
  Primary type                 : Transport
  Nuclide ZAI                  : 561350
  Library ID                   : 03c
@@ -6482,7 +6482,7 @@
 
  Nuclide   77 / 92 : 56136.03c -- barium 136 (Ba-136)
 
- Pointers                     : 246015 68271
+ Pointers                     : 144957 68271
  Primary type                 : Transport
  Nuclide ZAI                  : 561360
  Library ID                   : 03c
@@ -6558,7 +6558,7 @@
 
  Nuclide   78 / 92 : 56137.03c -- barium 137 (Ba-137)
 
- Pointers                     : 248116 68547
+ Pointers                     : 147058 68547
  Primary type                 : Transport
  Nuclide ZAI                  : 561370
  Library ID                   : 03c
@@ -6629,7 +6629,7 @@
 
  Nuclide   79 / 92 : 56138.03c -- barium 138 (Ba-138)
 
- Pointers                     : 250052 68823
+ Pointers                     : 148994 68823
  Primary type                 : Transport
  Nuclide ZAI                  : 561380
  Library ID                   : 03c
@@ -6696,7 +6696,7 @@
 
  Nuclide   80 / 92 : 62144.03c -- samarium 144 (Sm-144)
 
- Pointers                     : 265464 77103
+ Pointers                     : 167875 77103
  Primary type                 : Transport
  Nuclide ZAI                  : 621440
  Library ID                   : 03c
@@ -6791,7 +6791,7 @@
 
  Nuclide   81 / 92 : 62147.03c -- samarium 147 (Sm-147)
 
- Pointers                     : 269152 77379
+ Pointers                     : 171563 77379
  Primary type                 : Transport
  Nuclide ZAI                  : 621470
  Library ID                   : 03c
@@ -6908,7 +6908,7 @@
 
  Nuclide   82 / 92 : 62148.03c -- samarium 148 (Sm-148)
 
- Pointers                     : 274446 77655
+ Pointers                     : 176857 77655
  Primary type                 : Transport
  Nuclide ZAI                  : 621480
  Library ID                   : 03c
@@ -7044,7 +7044,7 @@
 
  Nuclide   83 / 92 : 62149.03c -- samarium 149 (Sm-149)
 
- Pointers                     : 281127 77931
+ Pointers                     : 183538 77931
  Primary type                 : Transport
  Nuclide ZAI                  : 621490
  Library ID                   : 03c
@@ -7162,7 +7162,7 @@
 
  Nuclide   84 / 92 : 62150.03c -- samarium 150 (Sm-150)
 
- Pointers                     : 286494 78207
+ Pointers                     : 188905 78207
  Primary type                 : Transport
  Nuclide ZAI                  : 621500
  Library ID                   : 03c
@@ -7278,7 +7278,7 @@
 
  Nuclide   85 / 92 : 62152.03c -- samarium 152 (Sm-152)
 
- Pointers                     : 291715 78759
+ Pointers                     : 194126 78759
  Primary type                 : Transport
  Nuclide ZAI                  : 621520
  Library ID                   : 03c
@@ -7405,7 +7405,7 @@
 
  Nuclide   86 / 92 : 62154.03c -- samarium 154 (Sm-154)
 
- Pointers                     : 297739 79311
+ Pointers                     : 200150 79311
  Primary type                 : Transport
  Nuclide ZAI                  : 621540
  Library ID                   : 03c
@@ -7507,7 +7507,7 @@
 
  Nuclide   87 / 92 : 74182.03c -- tungsten 182 (W-182)
 
- Pointers                     : 96198 92559
+ Pointers                     : 248017 92559
  Primary type                 : Transport
  Nuclide ZAI                  : 741820
  Library ID                   : 03c
@@ -7590,7 +7590,7 @@
 
  Nuclide   88 / 92 : 74183.03c -- tungsten 183 (W-183)
 
- Pointers                     : 98810 92835
+ Pointers                     : 250629 92835
  Primary type                 : Transport
  Nuclide ZAI                  : 741830
  Library ID                   : 03c
@@ -7664,7 +7664,7 @@
 
  Nuclide   89 / 92 : 74184.03c -- tungsten 184 (W-184)
 
- Pointers                     : 100965 93111
+ Pointers                     : 252784 93111
  Primary type                 : Transport
  Nuclide ZAI                  : 741840
  Library ID                   : 03c
@@ -7746,7 +7746,7 @@
 
  Nuclide   90 / 92 : 74186.03c -- tungsten 186 (W-186)
 
- Pointers                     : 103504 93387
+ Pointers                     : 255323 93387
  Primary type                 : Transport
  Nuclide ZAI                  : 741860
  Library ID                   : 03c
@@ -7824,7 +7824,7 @@
 
  Nuclide   91 / 92 : 92235.03c -- uranium 235 (U-235)
 
- Pointers                     : 166409 105853
+ Pointers                     : 40519 105853
  Primary type                 : Transport
  Nuclide ZAI                  : 922350
  Library ID                   : 03c
@@ -7919,7 +7919,7 @@
 
  Nuclide   92 / 92 : 92238.03c -- uranium 238 (U-238)
 
- Pointers                     : 170024 106681
+ Pointers                     : 44134 106681
  Primary type                 : Transport
  Nuclide ZAI                  : 922380
  Library ID                   : 03c
@@ -8014,69 +8014,8 @@
 
  --- Table  1: Summary of material compositions: 
 
- 11 materials included in calculation
+ 9 materials included in calculation
 
-
-Material "clad":
-
- - Material is included in majorant
- - Material is included in geometry
- - Atom density 9.87299E-03 1/barn*cm
- - Mass density 9.98479E-01 g/cm3
- - Volume 6.71000E+39 cm3
- - Mass 6.69979E+39 g
- - Photon emission rate 0.00000E+00 1/s
- - Neutron emission rate 0.00000E+00 1/s
- - 39 nuclides in composition
- - No nuclides associated with S(a,b) data
- - 13.59 Mb of memory allocated for data
-
-Isotopic composition (non-zero densities):
-
--------------------------------------------------------------------
- Nuclide    a. weight   temp      a. dens      a. frac      m. frac
--------------------------------------------------------------------
- 28058.03c   57.93570  300.0  4.88891E-03  4.95181E-01  4.71060E-01    
- 28060.03c   59.93084  300.0  1.82050E-03  1.84392E-01  1.81451E-01    
- 28061.03c   60.93143  300.0  7.78367E-05  7.88381E-03  7.88757E-03    
- 28062.03c   61.92799  300.0  2.44184E-04  2.47325E-02  2.51491E-02    
- 28064.03c   63.92818  300.0  6.02407E-05  6.10157E-03  6.40471E-03    
- 42092.03c   91.90683  300.0  1.53576E-04  1.55552E-02  2.34741E-02    
- 42094.03c   93.90509  300.0  9.41722E-05  9.53837E-03  1.47072E-02    
- 42095.03c   94.90589  300.0  1.61150E-04  1.63223E-02  2.54355E-02    
- 42096.03c   95.90467  300.0  1.67509E-04  1.69664E-02  2.67174E-02    
- 42097.03c   96.90598  300.0  9.52729E-05  9.64986E-03  1.53546E-02    
- 42098.03c   97.90536  300.0  2.39068E-04  2.42143E-02  3.89264E-02    
- 42100.03c   99.90726  300.0  9.39732E-05  9.51821E-03  1.56142E-02    
- 24050.03c   49.94606  300.0  3.66717E-05  3.71434E-03  3.04613E-03    
- 24052.03c   51.94019  300.0  6.80026E-04  6.88774E-02  5.87416E-02    
- 24053.03c   52.94079  300.0  7.56521E-05  7.66253E-03  6.66083E-03    
- 24054.03c   53.93937  300.0  1.84828E-05  1.87206E-03  1.65802E-03    
- 26054.03c   53.93937  300.0  2.61025E-05  2.64383E-03  2.34156E-03    
- 26056.03c   55.93451  300.0  3.95138E-04  4.00222E-02  3.67575E-02    
- 26057.03c   56.93510  300.0  8.96509E-06  9.08042E-04  8.48891E-04    
- 26058.03c   57.93368  300.0  1.17252E-06  1.18761E-04  1.12972E-04    
- 14028.03c   27.97734  300.0  1.98712E-04  2.01268E-02  9.24586E-03    
- 14029.03c   28.97693  300.0  9.65333E-06  9.77752E-04  4.65208E-04    
- 14030.03c   29.97349  300.0  6.10171E-06  6.18020E-04  3.04163E-04    
- 25055.03c   54.93805  300.0  8.76921E-05  8.88203E-03  8.01219E-03    
- 74182.03c  181.95307  300.0  4.38531E-06  4.44173E-04  1.32702E-03    
- 74183.03c  182.95166  300.0  2.35514E-06  2.38544E-04  7.16590E-04    
- 74184.03c  183.95022  300.0  5.01536E-06  5.07988E-04  1.53433E-03    
- 74186.03c  185.95747  300.0  4.60338E-06  4.66260E-04  1.42367E-03    
- 23051.03c   50.94394  300.0  5.91046E-05  5.98650E-03  5.00762E-03    
- 29063.03c   62.92960  300.0  1.32346E-05  1.34049E-03  1.38511E-03    
- 29065.03c   64.92777  300.0  5.72267E-06  5.79629E-04  6.17940E-04    
- 27059.03c   58.93317  300.0  2.04369E-05  2.06998E-03  2.00305E-03    
-  6012.03c   11.99999  300.0  3.01103E-05  3.04976E-03  6.00914E-04    
- 13027.03c   26.98154  300.0  5.57978E-05  5.65156E-03  2.50381E-03    
- 22046.03c   45.95266  300.0  2.70288E-06  2.73765E-04  2.06564E-04    
- 22047.03c   46.95174  300.0  2.38564E-06  2.41633E-04  1.86283E-04    
- 22048.03c   47.96807  300.0  2.31375E-05  2.34352E-03  1.84581E-03    
- 22049.03c   48.94789  300.0  1.66398E-06  1.68538E-04  1.35456E-04    
- 22050.03c   49.94475  300.0  1.56143E-06  1.58152E-04  1.29697E-04    
-       sum                    9.87299E-03  1.00000E+00  1.00000E+00
--------------------------------------------------------------------
 
 Material "coolant":
 
@@ -8084,8 +8023,8 @@ Material "coolant":
  - Material is included in geometry
  - Atom density 5.07117E-05 1/barn*cm
  - Mass density 1.22500E-03 g/cm3
- - Volume 9.70200E+40 cm3
- - Mass 1.18850E+38 g
+ - Volume 4.41000E+39 cm3
+ - Mass 5.40225E+36 g
  - Photon emission rate 0.00000E+00 1/s
  - Neutron emission rate 0.00000E+00 1/s
  - 7 nuclides in composition
@@ -8107,69 +8046,14 @@ Isotopic composition (non-zero densities):
        sum                    5.07117E-05  1.00000E+00  1.00000E+00
 -------------------------------------------------------------------
 
-Material "lower_gridplate":
-
- - Material is included in majorant
- - Material is included in geometry
- - Atom density 9.60443E-03 1/barn*cm
- - Mass density 9.99937E-01 g/cm3
- - Volume 2.11000E+39 cm3
- - Mass 2.10987E+39 g
- - Photon emission rate 0.00000E+00 1/s
- - Neutron emission rate 0.00000E+00 1/s
- - 33 nuclides in composition
- - No nuclides associated with S(a,b) data
- - 13.58 Mb of memory allocated for data
-
-Isotopic composition (non-zero densities):
-
--------------------------------------------------------------------
- Nuclide    a. weight   temp      a. dens      a. frac      m. frac
--------------------------------------------------------------------
- 28058.03c   57.93570  300.0  3.86076E-03  4.01977E-01  3.71451E-01    
- 28060.03c   59.93084  300.0  1.43764E-03  1.49685E-01  1.43082E-01    
- 28061.03c   60.93143  300.0  6.14672E-05  6.39988E-03  6.21968E-03    
- 28062.03c   61.92799  300.0  1.92830E-04  2.00772E-02  1.98310E-02    
- 28064.03c   63.92818  300.0  4.75717E-05  4.95310E-03  5.05039E-03    
- 27059.03c   58.93317  300.0  2.55461E-04  2.65982E-02  2.50016E-02    
- 24050.03c   49.94606  300.0  8.38209E-05  8.72732E-03  6.95244E-03    
- 24052.03c   51.94019  300.0  1.55434E-03  1.61836E-01  1.34070E-01    
- 24053.03c   52.94079  300.0  1.72919E-04  1.80041E-02  1.52026E-02    
- 24054.03c   53.93937  300.0  4.22463E-05  4.39863E-03  3.78424E-03    
- 42092.03c   91.90683  300.0  1.53576E-04  1.59901E-02  2.34399E-02    
- 42094.03c   93.90509  300.0  9.41722E-05  9.80508E-03  1.46857E-02    
- 42095.03c   94.90589  300.0  1.61150E-04  1.67787E-02  2.53984E-02    
- 42096.03c   95.90467  300.0  1.67509E-04  1.74408E-02  2.66785E-02    
- 42097.03c   96.90598  300.0  9.52729E-05  9.91969E-03  1.53322E-02    
- 42098.03c   97.90536  300.0  2.39068E-04  2.48914E-02  3.88696E-02    
- 42100.03c   99.90726  300.0  9.39732E-05  9.78436E-03  1.55914E-02    
- 26054.03c   53.93937  300.0  3.26282E-05  3.39720E-03  2.92268E-03    
- 26056.03c   55.93451  300.0  4.93923E-04  5.14266E-02  4.58799E-02    
- 26057.03c   56.93510  300.0  1.12064E-05  1.16679E-03  1.05957E-03    
- 26058.03c   57.93368  300.0  1.46566E-06  1.52602E-04  1.41009E-04    
- 74182.03c  181.95307  300.0  3.50825E-05  3.65274E-03  1.06007E-02    
- 74183.03c  182.95166  300.0  1.88411E-05  1.96171E-03  5.72436E-03    
- 74184.03c  183.95022  300.0  4.01229E-05  4.17754E-03  1.22568E-02    
- 74186.03c  185.95747  300.0  3.68271E-05  3.83438E-03  1.13727E-02    
- 25055.03c   54.93805  300.0  1.09615E-04  1.14130E-02  1.00006E-02    
- 23051.03c   50.94394  300.0  4.13732E-05  4.30772E-03  3.50022E-03    
- 14028.03c   27.97734  300.0  1.58970E-05  1.65517E-03  7.38590E-04    
- 14029.03c   28.97693  300.0  7.72267E-07  8.04073E-05  3.71623E-05    
- 14030.03c   29.97349  300.0  4.88137E-07  5.08241E-05  2.42975E-05    
-  6000.03c   12.00110  300.0  5.01791E-06  5.22458E-04  1.00006E-04    
- 29063.03c   62.92960  300.0  3.30865E-05  3.44492E-03  3.45772E-03    
- 29065.03c   64.92777  300.0  1.43067E-05  1.48959E-03  1.54260E-03    
-       sum                    9.60443E-03  1.00000E+00  1.00000E+00
--------------------------------------------------------------------
-
 Material "fuel":
 
  - Material is included in majorant
  - Material is included in geometry
  - Atom density 9.62394E-02 1/barn*cm
  - Mass density 6.06000E+00 g/cm3
- - Volume 6.05192E+03 cm3
- - Mass 3.66746E+04 g
+ - Volume 3.02596E+02 cm3
+ - Mass 1.83373E+03 g
  - Photon emission rate 0.00000E+00 1/s
  - Neutron emission rate 0.00000E+00 1/s
  - 9 nuclides in composition
@@ -8199,8 +8083,8 @@ Material "diffusion_barrier":
  - Material is included in geometry
  - Atom density 2.14523E-02 1/barn*cm
  - Mass density 1.00000E+00 g/cm3
- - Volume 1.14292E+02 cm3
- - Mass 1.14292E+02 g
+ - Volume 5.71462E+00 cm3
+ - Mass 5.71462E+00 g
  - Photon emission rate 0.00000E+00 1/s
  - Neutron emission rate 0.00000E+00 1/s
  - 37 nuclides in composition
@@ -8258,8 +8142,8 @@ Material "burnable_poison":
  - Material is included in geometry
  - Atom density 7.21194E-02 1/barn*cm
  - Mass density 8.35000E+00 g/cm3
- - Volume 1.11804E+01 cm3
- - Mass 9.33560E+01 g
+ - Volume 5.59018E-01 cm3
+ - Mass 4.66780E+00 g
  - Photon emission rate 0.00000E+00 1/s
  - Neutron emission rate 0.00000E+00 1/s
  - 8 nuclides in composition
@@ -8288,8 +8172,8 @@ Material "gap":
  - Material is included in geometry
  - Atom density 2.36813E-06 1/barn*cm
  - Mass density 1.57400E-05 g/cm3
- - Volume 7.37748E+01 cm3
- - Mass 1.16122E-03 g
+ - Volume 3.68874E+00 cm3
+ - Mass 5.80608E-05 g
  - Photon emission rate 0.00000E+00 1/s
  - Neutron emission rate 0.00000E+00 1/s
  - 1 nuclides in composition
@@ -8303,6 +8187,91 @@ Isotopic composition (non-zero densities):
 -------------------------------------------------------------------
   2004.03c    4.00260  300.0  2.36813E-06  1.00000E+00  1.00000E+00    
        sum                    2.36813E-06  1.00000E+00  1.00000E+00
+-------------------------------------------------------------------
+
+Material "clad":
+
+ - Material is included in majorant
+ - Material is included in geometry
+ - Atom density 9.87299E-03 1/barn*cm
+ - Mass density 9.98479E-01 g/cm3
+ - Volume 2.45105E+01 cm3
+ - Mass 2.44732E+01 g
+ - Photon emission rate 0.00000E+00 1/s
+ - Neutron emission rate 0.00000E+00 1/s
+ - 39 nuclides in composition
+ - No nuclides associated with S(a,b) data
+ - 13.59 Mb of memory allocated for data
+
+Isotopic composition (non-zero densities):
+
+-------------------------------------------------------------------
+ Nuclide    a. weight   temp      a. dens      a. frac      m. frac
+-------------------------------------------------------------------
+ 28058.03c   57.93570  300.0  4.88891E-03  4.95181E-01  4.71060E-01    
+ 28060.03c   59.93084  300.0  1.82050E-03  1.84392E-01  1.81451E-01    
+ 28061.03c   60.93143  300.0  7.78367E-05  7.88381E-03  7.88757E-03    
+ 28062.03c   61.92799  300.0  2.44184E-04  2.47325E-02  2.51491E-02    
+ 28064.03c   63.92818  300.0  6.02407E-05  6.10157E-03  6.40471E-03    
+ 42092.03c   91.90683  300.0  1.53576E-04  1.55552E-02  2.34741E-02    
+ 42094.03c   93.90509  300.0  9.41722E-05  9.53837E-03  1.47072E-02    
+ 42095.03c   94.90589  300.0  1.61150E-04  1.63223E-02  2.54355E-02    
+ 42096.03c   95.90467  300.0  1.67509E-04  1.69664E-02  2.67174E-02    
+ 42097.03c   96.90598  300.0  9.52729E-05  9.64986E-03  1.53546E-02    
+ 42098.03c   97.90536  300.0  2.39068E-04  2.42143E-02  3.89264E-02    
+ 42100.03c   99.90726  300.0  9.39732E-05  9.51821E-03  1.56142E-02    
+ 24050.03c   49.94606  300.0  3.66717E-05  3.71434E-03  3.04613E-03    
+ 24052.03c   51.94019  300.0  6.80026E-04  6.88774E-02  5.87416E-02    
+ 24053.03c   52.94079  300.0  7.56521E-05  7.66253E-03  6.66083E-03    
+ 24054.03c   53.93937  300.0  1.84828E-05  1.87206E-03  1.65802E-03    
+ 26054.03c   53.93937  300.0  2.61025E-05  2.64383E-03  2.34156E-03    
+ 26056.03c   55.93451  300.0  3.95138E-04  4.00222E-02  3.67575E-02    
+ 26057.03c   56.93510  300.0  8.96509E-06  9.08042E-04  8.48891E-04    
+ 26058.03c   57.93368  300.0  1.17252E-06  1.18761E-04  1.12972E-04    
+ 14028.03c   27.97734  300.0  1.98712E-04  2.01268E-02  9.24586E-03    
+ 14029.03c   28.97693  300.0  9.65333E-06  9.77752E-04  4.65208E-04    
+ 14030.03c   29.97349  300.0  6.10171E-06  6.18020E-04  3.04163E-04    
+ 25055.03c   54.93805  300.0  8.76921E-05  8.88203E-03  8.01219E-03    
+ 74182.03c  181.95307  300.0  4.38531E-06  4.44173E-04  1.32702E-03    
+ 74183.03c  182.95166  300.0  2.35514E-06  2.38544E-04  7.16590E-04    
+ 74184.03c  183.95022  300.0  5.01536E-06  5.07988E-04  1.53433E-03    
+ 74186.03c  185.95747  300.0  4.60338E-06  4.66260E-04  1.42367E-03    
+ 23051.03c   50.94394  300.0  5.91046E-05  5.98650E-03  5.00762E-03    
+ 29063.03c   62.92960  300.0  1.32346E-05  1.34049E-03  1.38511E-03    
+ 29065.03c   64.92777  300.0  5.72267E-06  5.79629E-04  6.17940E-04    
+ 27059.03c   58.93317  300.0  2.04369E-05  2.06998E-03  2.00305E-03    
+  6012.03c   11.99999  300.0  3.01103E-05  3.04976E-03  6.00914E-04    
+ 13027.03c   26.98154  300.0  5.57978E-05  5.65156E-03  2.50381E-03    
+ 22046.03c   45.95266  300.0  2.70288E-06  2.73765E-04  2.06564E-04    
+ 22047.03c   46.95174  300.0  2.38564E-06  2.41633E-04  1.86283E-04    
+ 22048.03c   47.96807  300.0  2.31375E-05  2.34352E-03  1.84581E-03    
+ 22049.03c   48.94789  300.0  1.66398E-06  1.68538E-04  1.35456E-04    
+ 22050.03c   49.94475  300.0  1.56143E-06  1.58152E-04  1.29697E-04    
+       sum                    9.87299E-03  1.00000E+00  1.00000E+00
+-------------------------------------------------------------------
+
+Material "internal_reflector":
+
+ - Material is included in majorant
+ - Material is included in geometry
+ - Atom density 4.81607E-02 1/barn*cm
+ - Mass density 1.00000E+00 g/cm3
+ - Volume 4.29509E+02 cm3
+ - Mass 4.29509E+02 g
+ - Photon emission rate 0.00000E+00 1/s
+ - Neutron emission rate 0.00000E+00 1/s
+ - 2 nuclides in composition
+ - No nuclides associated with S(a,b) data
+ - 13.54 Mb of memory allocated for data
+
+Isotopic composition (non-zero densities):
+
+-------------------------------------------------------------------
+ Nuclide    a. weight   temp      a. dens      a. frac      m. frac
+-------------------------------------------------------------------
+  8016.03c   15.99492  300.0  2.40838E-02  5.00071E-01  6.39680E-01    
+  4009.03c    9.01220  300.0  2.40769E-02  4.99929E-01  3.60320E-01    
+       sum                    4.81607E-02  1.00000E+00  1.00000E+00
 -------------------------------------------------------------------
 
 Material "barrel":
@@ -8359,124 +8328,14 @@ Isotopic composition (non-zero densities):
        sum                    1.08968E-02  1.00000E+00  1.00000E+00
 -------------------------------------------------------------------
 
-Material "internal_reflector":
-
- - Material is not included in majorant
- - Material is not included in geometry
- - Atom density 4.81607E-02 1/barn*cm
- - Mass density 1.00000E+00 g/cm3
- - Volume 0.00000E+00 cm3
- - Mass 0.00000E+00 g
- - Photon emission rate 0.00000E+00 1/s
- - Neutron emission rate 0.00000E+00 1/s
- - 2 nuclides in composition
- - No nuclides associated with S(a,b) data
- - 13.54 Mb of memory allocated for data
-
-Isotopic composition (non-zero densities):
-
--------------------------------------------------------------------
- Nuclide    a. weight   temp      a. dens      a. frac      m. frac
--------------------------------------------------------------------
-  8016.03c   15.99492  300.0  2.40838E-02  5.00071E-01  6.39680E-01    
-  4009.03c    9.01220  300.0  2.40769E-02  4.99929E-01  3.60320E-01    
-       sum                    4.81607E-02  1.00000E+00  1.00000E+00
--------------------------------------------------------------------
-
-Material "reflMix":
-
- - Material is included in majorant
- - Material is included in geometry
- - Atom density 2.22600E-02 1/barn*cm
- - Mass density 6.43373E-01 g/cm3
- - Volume 0.00000E+00 cm3
- - Mass 0.00000E+00 g
- - Photon emission rate 0.00000E+00 1/s
- - Neutron emission rate 0.00000E+00 1/s
- - 80 nuclides in composition
- - No nuclides associated with S(a,b) data
- - 13.64 Mb of memory allocated for data
-
-Material is a mixture of 4 components:
-
------------------------------------------
-Material             a. frac      m. frac
------------------------------------------
-barrel           1.91000E-01  2.96872E-01
-clad             4.20000E-02  6.51817E-02
-internal_reflector  4.10000E-01  6.37266E-01
-coolant          3.57000E-01  6.79738E-04
--------------------------------------------------------------------
-
-Isotopic composition (non-zero densities):
-
--------------------------------------------------------------------
- Nuclide    a. weight   temp      a. dens      a. frac      m. frac
--------------------------------------------------------------------
-  6000.03c   12.00110  300.0  7.66737E-06  3.44447E-04  2.37498E-04    
- 25055.03c   54.93805  300.0  4.55561E-05  2.04655E-03  6.45971E-03    
- 14028.03c   27.97734  300.0  3.68114E-05  1.65370E-03  2.65816E-03    
- 14029.03c   28.97693  300.0  1.78828E-06  8.03362E-05  1.33746E-04    
- 14030.03c   29.97349  300.0  1.13034E-06  5.07791E-05  8.74461E-05    
- 15031.03c   30.97408  300.0  8.35529E-07  3.75350E-05  6.67964E-05    
- 16032.03c   31.97196  300.0  1.02843E-06  4.62011E-05  8.48671E-05    
- 16033.03c   32.97104  300.0  7.66085E-09  3.44154E-07  6.51933E-07    
- 16034.03c   33.96800  300.0  4.02783E-08  1.80945E-06  3.53130E-06    
- 16036.03c   35.96698  300.0  1.24721E-10  5.60291E-09  1.15780E-08    
- 24050.03c   49.94606  300.0  1.85506E-05  8.33362E-04  2.39140E-03    
- 24052.03c   51.94019  300.0  3.43995E-04  1.54535E-02  4.61158E-02    
- 24053.03c   52.94079  300.0  3.82691E-05  1.71919E-03  5.22917E-03    
- 24054.03c   53.93937  300.0  9.34964E-06  4.20021E-04  1.30165E-03    
- 42092.03c   91.90683  300.0  1.10335E-05  4.95665E-04  2.61730E-03    
- 42094.03c   93.90509  300.0  6.76569E-06  3.03940E-04  1.63981E-03    
- 42095.03c   94.90589  300.0  1.15776E-05  5.20109E-04  2.83599E-03    
- 42096.03c   95.90467  300.0  1.20345E-05  5.40633E-04  2.97893E-03    
- 42097.03c   96.90598  300.0  6.84476E-06  3.07492E-04  1.71199E-03    
- 42098.03c   97.90536  300.0  1.71755E-05  7.71588E-04  4.34020E-03    
- 42100.03c   99.90726  300.0  6.75139E-06  3.03297E-04  1.74094E-03    
- 28058.03c   57.93570  300.0  3.67520E-04  1.65104E-02  5.49567E-02    
- 28060.03c   59.93084  300.0  1.36855E-04  6.14803E-03  2.11692E-02    
- 28061.03c   60.93143  300.0  5.85131E-06  2.62862E-04  9.20211E-04    
- 28062.03c   61.92799  300.0  1.83563E-05  8.24634E-04  2.93404E-03    
- 28064.03c   63.92818  300.0  4.52854E-06  2.03439E-04  7.47212E-04    
-  7014.03c   14.00307  300.0  2.23418E-05  1.00367E-03  8.07484E-04    
-  7015.03c   14.99986  300.0  7.95471E-08  3.57355E-06  3.07967E-06    
- 26054.03c   53.93937  300.0  8.27571E-05  3.71775E-03  1.15214E-02    
- 26056.03c   55.93451  300.0  1.25277E-03  5.62791E-02  1.80861E-01    
- 26057.03c   56.93510  300.0  2.84236E-05  1.27689E-03  4.17688E-03    
- 26058.03c   57.93368  300.0  3.71744E-06  1.67001E-04  5.55863E-04    
- 74182.03c  181.95307  300.0  1.84183E-07  8.27419E-06  8.64973E-05    
- 74183.03c  182.95166  300.0  9.89160E-08  4.44367E-06  4.67085E-05    
- 74184.03c  183.95022  300.0  2.10645E-07  9.46296E-06  1.00010E-04    
- 74186.03c  185.95747  300.0  1.93342E-07  8.68564E-06  9.27969E-05    
- 23051.03c   50.94394  300.0  2.48239E-06  1.11518E-04  3.26405E-04    
- 29063.03c   62.92960  300.0  5.55854E-07  2.49710E-05  9.02836E-05    
- 29065.03c   64.92777  300.0  2.40352E-07  1.07975E-05  4.02784E-05    
- 27059.03c   58.93317  300.0  8.58348E-07  3.85602E-05  1.30562E-04    
-  6012.03c   11.99999  300.0  1.26463E-06  5.68119E-05  3.91686E-05    
- 13027.03c   26.98154  300.0  2.34351E-06  1.05279E-04  1.63202E-04    
- 22046.03c   45.95266  300.0  1.13521E-07  5.09979E-06  1.34642E-05    
- 22047.03c   46.95174  300.0  1.00197E-07  4.50122E-06  1.21423E-05    
- 22048.03c   47.96807  300.0  9.71776E-07  4.36558E-05  1.20313E-04    
- 22049.03c   48.94789  300.0  6.98870E-08  3.13958E-06  8.82925E-06    
- 22050.03c   49.94475  300.0  6.55803E-08  2.94611E-06  8.45388E-06    
-  8016.03c   15.99492  300.0  9.87816E-03  4.43764E-01  4.07804E-01    
-  4009.03c    9.01220  300.0  9.87155E-03  4.43467E-01  2.29620E-01    
-  8017.03c   16.99913  300.0  1.32765E-09  5.96429E-08  5.82510E-08    
- 18036.03c   35.96748  300.0  1.95721E-09  8.79252E-08  1.81694E-07    
- 18038.03c   37.96272  300.0  3.84759E-09  1.72848E-07  3.76998E-07    
- 18040.03c   39.96240  300.0  7.98307E-08  3.58629E-06  8.23408E-06    
-       sum                    2.22600E-02  1.00000E+00  1.00000E+00
--------------------------------------------------------------------
-
 Material "control_drum":
 
  - Material is included in majorant
  - Material is included in geometry
  - Atom density 1.22951E-01 1/barn*cm
  - Mass density 1.84000E+00 g/cm3
- - Volume 8.02482E+03 cm3
- - Mass 1.47657E+04 g
+ - Volume 2.67494E+03 cm3
+ - Mass 4.92189E+03 g
  - Photon emission rate 0.00000E+00 1/s
  - Neutron emission rate 0.00000E+00 1/s
  - 1 nuclides in composition
