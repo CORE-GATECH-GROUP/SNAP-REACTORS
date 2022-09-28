@@ -105,7 +105,7 @@ class Dimension:
 
         input = dict()
         dcount = 0
-        
+
         for i in range(0, len(data)):
             if(data[i] == "%"):
                 pass
@@ -271,21 +271,11 @@ class Dimension:
             except ValueError as ve:
                 raise Exception("Error For Property @ line: {} \n"
                             .format(dimensions[i]["id"][1])) from ve
-            # except TypeError as te:
-            #     raise Exception("Error For Property @ line: {} \n"
-            #                 .format(dimensions[i]["id"][1])) from te
+            except TypeError as te:
+                 raise Exception("Error For Property @ line: {} \n"
+                             .format(dimensions[i]["id"][1])) from te
             except KeyError as ke:
                 raise Exception("Error For Property @ line: {} \n"
                             .format(dimensions[i]["id"][1])) from ke
 
-        # the following will be to check for input error
-
-        #dimensions[i] = Dimension(id, value=value, isUnitSI=boolSI,
-        #    unc=unc, ref=reference, description=description)
         return dimensions
-datacheck = """
-id: fuel_radius
-value: 3
-unit: SI"""
-check = Dimension._dimensionReader(datacheck)
-print(check)

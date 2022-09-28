@@ -22,7 +22,7 @@ class Component:
 
     Attributes
     ----------
-    compName : str
+    id : str
         name of component
     _materials : list
         list of materials of instance type Material
@@ -50,17 +50,17 @@ class Component:
                     unc = np.array(xxx, yyy, zzz), reference = NA-SR-6162, 
                     description = "This is an example", _properties = p1)
 
-    >>> controlRod = Component(compName = "Control Rod", 
+    >>> controlRod = Component(id = "Control Rod", 
                                 _materials= boronCarbide)
     """
 
 
-    def __init__(self, compName, _materials = None, _dimensions = None, description = None):
+    def __init__(self, id, _materials = None, _dimensions = None, description = None):
 
         # check that variables are of correct type (return TypeError if not)
-        _isstr(compName, "Component Name")
+        _isstr(id, "Component Name")
         # initialize all parameters in Component as lists
-        self.id = compName
+        self.id = id
         if not isinstance(_materials, type(None)):
             _isinstanceList(_materials, Material, "List of materials")
             self._materials = _materials
@@ -127,7 +127,7 @@ class Component:
         >>>            unc = np.array(xxx, yyy, zzz), reference = NA-SR-6162, 
         >>>            description = "This is an example", _properties = p1)
 
-        >>> controlRod = Component(compName = "Control Rod", 
+        >>> controlRod = Component(id = "Control Rod", 
         >>>                        _materials= boronCarbide)
     
         >>> p2 = Table('h', 'THPHYS', np.array([1, 2, 3, 4]), 'W/K*m^2', 
@@ -166,3 +166,69 @@ class Component:
                 evalProps = evalProps[self._materials[i].id] = evalProp
 
             return evalProps
+    def _componentReader(data):
+        
+        input = dict()
+        cpcount = 0
+
+        for i in range(0, len(data)):
+            if(data[i] == "%"):
+                pass
+            else:
+                if "Component id" in data[i]:
+                    cpcount = cpcount + 1
+        
+        input["ncomps"] = cpcount
+
+        for i in range(0,cpcount):
+            key = "comp"+str(i+1)
+            input[key] = dict()
+
+
+        cpcount = 0
+        while (cpcount < input["ncomps"]):
+            for i in range(0, len(data)):
+                if (data[i] == "%"):
+                    pass
+                else:
+                    
+                    if "Component id" in data[i]:
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        value = value.replace("\t", "")
+                        value = [value,i+1]
+                        key = "comp"+str(cpcount)
+                        input[key]["id"] = value
+                        if cpcount == 0: 
+                            cpcount = cpcount + 1
+                        else:                  
+                            mindexEnd = i-1
+                            materials = Material._materialReader(data[
+                                mindexBegin:mindexEnd])
+                            key = 'comp'+str(cpcount)
+                            input[key]['mat'] = materials 
+                            cpcount = cpcount +1
+                        key = 1
+                        
+                    if "Dimensions" in data[i]:
+                        dindexBegin = i+1
+                        dFlag = True
+                    
+                    if "Material Name" in data[i]:
+                        if dFlag is True:
+                            dindexEnd = i-1
+                            dimensions = Dimension._dimensionReader(data[
+                            dindexBegin:dindexEnd])
+                            key = 'comp'+str(cpcount)
+                            input[key]['dim']=dimensions
+                            mindexBegin = i
+                            dFlag = False
+
+        components = [0]*input["ncomps"]
+
+        try:
+                    components = Component()
+        except:
+                    pass
+        return components
