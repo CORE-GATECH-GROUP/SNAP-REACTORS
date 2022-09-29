@@ -155,9 +155,18 @@ class S82D(S8ER):
         serMatsList = self._buildMaterials([fuelMat, coolMat, dbMat, bpMat, gapMat, cladMat, intRefMat, barrelMat, cdMat])
         serMatsDict = createDictFromConatinerList(serMatsList)
 
+        # Experimental Pin Comp
+        # fuelSerRadii = [fuelRad, dbRad, bpRad, gapRad, cladRad]
+        # fuelSerMats = [serMatsDict['fuel'], serMatsDict['diffusion_barrier'], serMatsDict['burnable_poison'], serMatsDict['gap'], serMatsDict['clad'], serMatsDict['coolant']]
+
+        # ANS Winter Pin Comp
+        fuelSerRadii = [fuelRad, gapRad, dbRad, bpRad, cladRad]
+        fuelSerMats = [serMatsDict['fuel'], serMatsDict['gap'], serMatsDict['diffusion_barrier'], serMatsDict['burnable_poison'], serMatsDict['clad'], serMatsDict['coolant']]
+        
+
         fuelSer = pin('fuel', 2)
-        fuelSer.set('materials', [serMatsDict['fuel'], serMatsDict['diffusion_barrier'], serMatsDict['burnable_poison'], serMatsDict['gap'], serMatsDict['clad'], serMatsDict['coolant']])
-        fuelSer.set('radii', [fuelRad, dbRad, bpRad, gapRad, cladRad])
+        fuelSer.set('materials', fuelSerMats)
+        fuelSer.set('radii', fuelSerRadii)
 
         nRings = 8
         fes = [0]*nRings
@@ -327,11 +336,15 @@ class S82D(S8ER):
             cdFulld6.setSurfs([vSurf6],[1])
 
             cdSys = cell(uid+'cdSys', mat=serMatsDict['control_drum'])
-            cdNoShimSurf = surf("barrelCD"+"h1", "hexyc", np.array([0.0, 0.0, cdNoShimRad]))
-            cdSys.setSurfs([cdNoShimSurf, vSurf6, vSurf2, vSurf3, vSurf4, vSurf5, vSurf1], [1, 0, 0, 0, 0, 0, 0])
+            cdVoidSurf = surf("barrelCD"+"c1", "cyl", np.array([0.0, 0.0, cdNoShimRad]))
+            #cdNoShimSurf = surf("barrelCD"+"h1", "hexyc", np.array([0.0, 0.0, cdNoShimRad]))
+            cdSys.setSurfs([cdVoidSurf, vSurf6, vSurf2, vSurf3, vSurf4, vSurf5, vSurf1], [1, 0, 0, 0, 0, 0, 0])
 
-            cdFull.setBoundary(cdNoShimSurf)
-            cdFull.setGeom([cdFulld1, cdFulld2, cdFulld3, cdFulld4, cdFulld5, cdFulld6, cdSys])
+            # cdSysVoid = cell(uid+'cdSys', mat=serMatsDict['control_drum'])
+            # cdSysVoid.setSurfs([cdVoidSurf, cdNoShimSurf, vSurf6, vSurf2, vSurf3, vSurf4, vSurf5, vSurf1], [0, 1, 0, 0, 0, 0, 0, 0])
+
+            cdFull.setBoundary(cdVoidSurf)
+            cdFull.setGeom([cdFulld1, cdFulld2, cdFulld3, cdFulld4, cdFulld5, cdFulld6, cdSys])#, cdSysVoid])
             cdFull.collectAll()
 
             return cdFull
@@ -415,6 +428,7 @@ class S83D(S8ER):
         clad = serMatsDict['clad']
         intref = serMatsDict['internal_reflector']
         air = serMatsDict['coolant']
+        ugpMat = bar.duplicateMat("upper_gridplate")
         # ss316 0.191
         # hasteN 0.042
         # BeO 0.410
@@ -428,9 +442,13 @@ class S83D(S8ER):
         nLayersTot = 22
         nActiveLayers = nLayersTot - 2
         dz = (fuelLen-upperEndcapThick-lowerEndcapThick)/nActiveLayers
+        # Experimental Pin Comp
+        # fuelSerRadii = [fuelRad, dbRad, bpRad, gapRad, cladRad]
+        # fuelSerMats = [serMatsDict['fuel'], serMatsDict['diffusion_barrier'], serMatsDict['burnable_poison'], serMatsDict['gap'], serMatsDict['clad'], serMatsDict['coolant']]
 
-        fuelSerRadii = [fuelRad, dbRad, bpRad, gapRad, cladRad]
-        fuelSerMats = [serMatsDict['fuel'], serMatsDict['diffusion_barrier'], serMatsDict['burnable_poison'], serMatsDict['gap'], serMatsDict['clad'], serMatsDict['coolant']]
+        # ANS Winter Pin Comp
+        fuelSerRadii = [fuelRad, gapRad, dbRad, bpRad, cladRad]
+        fuelSerMats = [serMatsDict['fuel'], serMatsDict['gap'], serMatsDict['diffusion_barrier'], serMatsDict['burnable_poison'], serMatsDict['clad'], serMatsDict['coolant']]
 
         upperEndCap = pin("upperEndCap", 2)
         upperEndCap.set('materials', [serMatsDict['clad'], serMatsDict['coolant'] ])
@@ -487,8 +505,7 @@ class S83D(S8ER):
         cdLowerThick = 3.1369
         cdUpperThick = 3.1369
         cdUpperCut = fuelLen - cdUpperThick
-        drumRad = 11.9126
-        drumVoidGap = .2
+        drumRad = 11.9126 
         voidRad = 11.95
         drumFX = 23.972012  
         deg_rad = np.pi/180
@@ -596,11 +613,15 @@ class S83D(S8ER):
             cdFulld6.setSurfs([vSurf6],[1])
 
             cdSys = cell(uid+'cdSys', mat=serMatsDict['control_drum'])
+            cdVoidSurf = surf("barrelCD"+"c1", "cyl", np.array([0.0, 0.0, cdNoShimRad]))
+            cdSys.setSurfs([cdVoidSurf, vSurf6, vSurf2, vSurf3, vSurf4, vSurf5, vSurf1], [1, 0, 0, 0, 0, 0, 0])
+
             cdNoShimSurf = surf("barrelCD"+"h1", "hexyc", np.array([0.0, 0.0, cdNoShimRad]))
-            cdSys.setSurfs([cdNoShimSurf, vSurf6, vSurf2, vSurf3, vSurf4, vSurf5, vSurf1], [1, 0, 0, 0, 0, 0, 0])
+            cdSysVoid = cell(uid+'cdSysVoid', isVoid=True)
+            cdSysVoid.setSurfs([cdVoidSurf, cdNoShimSurf, vSurf6, vSurf2, vSurf3, vSurf4, vSurf5, vSurf1], [0, 1, 0, 0, 0, 0, 0, 0])
 
             cdFull.setBoundary(cdNoShimSurf)
-            cdFull.setGeom([cdFulld1, cdFulld2, cdFulld3, cdFulld4, cdFulld5, cdFulld6, cdSys])
+            cdFull.setGeom([cdFulld1, cdFulld2, cdFulld3, cdFulld4, cdFulld5, cdFulld6, cdSys, cdSysVoid])
             cdFull.collectAll()
 
             return cdFull
@@ -639,14 +660,14 @@ class S83D(S8ER):
         cdBarrel = buildPeripheralObject(barrel1, cdVoid)
 
         ugp = pin("pUGP", 1)
-        ugp.set('materials', [serMatsDict['clad']])
+        ugp.set('materials', [ugpMat])
 
         ugph = pin("pUGH", 2)
-        ugph.set('materials', [serMatsDict['coolant'], serMatsDict['clad']])
+        ugph.set('materials', [serMatsDict['coolant'], ugpMat])
         ugph.set('radii', [ughr])
 
         lgp = pin("pLGP", 1)
-        lgp.set('materials', [serMatsDict['clad']])
+        lgp.set('materials', [serMatsDict['lower_gridplate']])
 
         lgph = pin("pLGH", 2)
         lgph.set('materials', [serMatsDict['coolant'], serMatsDict['lower_gridplate']])

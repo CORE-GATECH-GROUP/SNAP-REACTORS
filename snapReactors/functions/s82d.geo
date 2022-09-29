@@ -13,12 +13,12 @@
 
 % Parameter(unit): value unc reference description
 % fuel_radius(cm): 0.67564 0.01 NAA-SR-9642
-% diffusion_barrier_radius(cm): 0.68199 0.01 NAA-SR-9642
-% poison_coating_radius(cm): 0.682608 0.01 NAA-SR-9642
-% gap_radius(cm): 0.686672 0.01 NAA-SR-9642
-% clad_radius(cm): 0.7130879 0.01 NAA-SR-9642
-% upper_endcap_thickness(cm): 0.2032 0.01 NAA-SR-9642
-% lower_endcap_thickness(cm): 0.9398 0.01 NAA-SR-9642
+% diffusion_barrier_radius(cm): 0.6883 0.01 NAA-SR-9642
+% poison_coating_radius(cm): 0.68834 0.01 NAA-SR-9642
+% gap_radius(cm): 0.68272 0.01 NAA-SR-9642
+% clad_radius(cm): 0.71374 0.01 NAA-SR-9642
+% upper_endcap_thickness(cm): 0.228505 0.01 NAA-SR-9642
+% lower_endcap_thickness(cm): 0.9652 0.01 NAA-SR-9642
 % fuel_length(cm): 36.7538 0.01 NAA-SR-9642
 
 % ----------------------------------------------
@@ -38,7 +38,7 @@
 
 % Parameter(unit): value unc reference description
 % assembly_pitch(cm): 11.0414 0.01 NAA-SR-9642
-% internal_reflector_radius(cm): 11.6926 0.01 NAA-SR-9642
+% internal_reflector_radius(cm): 11.718036 0.01 NAA-SR-9642
 
 % ----------------------------------------------
 % barrel Dimensions:
@@ -52,9 +52,9 @@
 surf cdBarrelshimA_univcc1 cyl 0.0 0.0 23.7609 
 surf putBorder rect -23.7609 23.7609 -23.7609 23.7609 
 surf barrelcc1 cyl 0.0 0.0 11.87704 
-surf intrefcc1 cyl 0.0 0.0 11.6926 
+surf intrefcc1 cyl 0.0 0.0 11.718036 
 surf hexBorder hexyc 0.0 0.0 11.0414 
-surf barrelCDh1 hexyc 0.0 0.0 17.82064 
+surf barrelCDc1 cyl 0.0 0.0 17.82064 
 surf svDrum1 cyl 0.0 23.972012 11.95 
 surf svDrum2 cyl 0.0 -23.972012 11.95 
 surf svDrum3 cyl 20.76037137182541 11.986005999999998 11.95 
@@ -67,6 +67,7 @@ surf sDrum3 cyl 20.76037137182541 11.986005999999998 11.9126
 surf sDrum4 cyl -20.76037137182541 11.986005999999998 11.9126 
 surf sDrum5 cyl 20.76037137182541 -11.986005999999998 11.9126 
 surf sDrum6 cyl -20.76037137182541 -11.986005999999998 11.9126 
+surf barrelCDh1 hexyc 0.0 0.0 17.82064 
 surf cdBarrelShimAh1 hexyc 0.0 0.0 19.7002 
 surf cdBarrelShimACuth1 hexxc 0.0 0.0 20.5775 
 cell fillRegion 1  fill active_core_univintref_univbarrel_univcdBarrelcdFullcdBarrelshimA_univ_univ_univ -cdBarrelshimA_univcc1 
@@ -80,15 +81,15 @@ cell active_core_univintref_cell2 active_core_univintref_univ  fill intref_univ 
 cell active_core_cell active_core_univ  fill activeCoreLat -hexBorder 
 cell intref_cell intref_univ  reflMix hexBorder -intrefcc1 
 cell barrel_cell barrel_univ  barrel intrefcc1 -barrelcc1 
-cell cdBarrelcdFullcdBarrelshimA_univ_cell1 cdBarrelcdFullcdBarrelshimA_univ_univ  fill cdBarrelcdFull -barrelCDh1 
-cell cdBarrelcdFullcdBarrelshimA_univ_cell2 cdBarrelcdFullcdBarrelshimA_univ_univ  fill cdBarrelshimA_univ barrelCDh1 -cdBarrelshimA_univcc1 
+cell cdBarrelcdFullcdBarrelshimA_univ_cell1 cdBarrelcdFullcdBarrelshimA_univ_univ  fill cdBarrelcdFull -barrelCDc1 
+cell cdBarrelcdFullcdBarrelshimA_univ_cell2 cdBarrelcdFullcdBarrelshimA_univ_univ  fill cdBarrelshimA_univ barrelCDc1 -cdBarrelshimA_univcc1 
 cell cdBarrelcdFulld1 cdBarrelcdFull  fill cdBarrelcd1_univ -svDrum1 
 cell cdBarrelcdFulld2 cdBarrelcdFull  fill cdBarrelcd2_univ -svDrum2 
 cell cdBarrelcdFulld3 cdBarrelcdFull  fill cdBarrelcd3_univ -svDrum3 
 cell cdBarrelcdFulld4 cdBarrelcdFull  fill cdBarrelcd4_univ -svDrum4 
 cell cdBarrelcdFulld5 cdBarrelcdFull  fill cdBarrelcd5_univ -svDrum5 
 cell cdBarrelcdFulld6 cdBarrelcdFull  fill cdBarrelcd6_univ -svDrum6 
-cell cdBarrelcdSys cdBarrelcdFull  control_drum -barrelCDh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
+cell cdBarrelcdSys cdBarrelcdFull  control_drum -barrelCDc1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
 cell cdBarrelcDrum1 cdBarrelcd1_univ  control_drum -sDrum1 
 cell cdBarrelcvDrum1 cdBarrelcd1_univ  void sDrum1 -svDrum1 
 cell cdBarrelcDrum2 cdBarrelcd2_univ  control_drum -sDrum2 
@@ -133,65 +134,65 @@ coolant
 
 pin 800
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin 700
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin 600
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin 500
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin 400
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin 300
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin 200
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin 100
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 

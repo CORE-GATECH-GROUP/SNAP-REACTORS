@@ -140,7 +140,41 @@ mat hasteN   sum rgb 100 100 100
 % --- Type 316 SS  https://tubingchina.com/316-316L-Stainless-Steel-Tube-Pipe-Tubing.htm
 %   needed for upper grid plate, core tie rods, coolant flow baffle, reactor vessel (NAA-SR-9642, pg. 14)
 
-mat ss316 sum rgb 102 0 0 
+mat ss316_ugp sum rgb 102 0 0
+ 6000.03c     -8.00000E-04
+25055.03c     -2.00000E-02
+14028.03c     -6.92385E-03
+14029.03c     -3.48375E-04
+14030.03c     -2.27775E-04
+15031.03c     -2.25000E-04
+16032.03c     -2.85870E-04
+16033.03c     -2.19600E-06
+16034.03c     -1.18950E-05
+16036.03c     -3.90000E-08
+24050.03c     -7.38650E-03
+24052.03c     -1.42441E-01
+24053.03c     -1.61517E-02
+24054.03c     -4.02050E-03
+42092.03c     -3.66225E-03
+42094.03c     -2.29450E-03
+42095.03c     -3.96825E-03
+42096.03c     -4.16825E-03
+42097.03c     -2.39550E-03
+42098.03c     -6.07300E-03
+42100.03c     -2.43600E-03
+28058.03c     -8.16923E-02
+28060.03c     -3.14677E-02
+28061.03c     -1.36788E-03
+28062.03c     -4.36140E-03
+28064.03c     -1.11072E-03
+7014.03c      -9.96205E-04
+7015.03c      -3.79500E-06
+26054.03c     -3.82950E-02
+26056.03c     -6.01149E-01
+26057.03c     -1.38832E-02
+26058.03c     -1.84759E-03
+
+mat ss316_barrel sum rgb 102 0 0
  6000.03c     -8.00000E-04
 25055.03c     -2.00000E-02
 14028.03c     -6.92385E-03
@@ -273,9 +307,8 @@ mat air -1.225E-3 rgb 196 193 193
 18038.03c -5.54E-4
 18040.03c -1.21E-2
 
- 
 mix reflMix rgb 186 152 117
-ss316 0.191
+ss316_barrel 0.191
 hasteN 0.042
 BeO 0.410
 intatm 0.357
@@ -293,10 +326,10 @@ intatm 0.357
 
 pin pFuel
 UZrH     0.67564
-intatm  0.68272
-ceramic 0.68830
-Sm2O3 0.68834
-hasteN 0.71374
+intatm   0.68272
+ceramic  0.68830
+Sm2O3    0.68834
+hasteN   0.71374
 air
 
 % --- Dummy Lucite Pin (same size as fuel pin, 0.56in OD)
@@ -322,12 +355,12 @@ Be
 
 % --- Upper Grid Plating
 pin SS
-ss316
+ss316_ugp
 
 % --- Upper Grid Holes
 pin pSS
 air 0.1984
-ss316
+ss316_ugp
 
 % --- Lower Grid Plating
 pin Hc
@@ -739,7 +772,7 @@ cell cCutD61 drum6 void -S8 sCut5 -sDrum6
 cell cCutD62 drum6 void -S8 sCut4 -sDrum6
 % --- fill definitions
 cell cCore reactor fill core -S12
-cell cCoreWall reactor  ss316 S12 -S5
+cell cCoreWall reactor  ss316_barrel S12 -S5
 cell cDrum1 reactor fill drum1 -sDrum1 -S8
 cell cDrum2 reactor fill drum2 -sDrum2 -S8
 cell cDrum3 reactor fill drum3 -sDrum3 -S8
@@ -792,7 +825,7 @@ set bc 1
 
 % --- Neutron population: 100000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 10000 100 40
+set pop 100000 100 40
 
 % --- XY-plot (3)
 

@@ -13,12 +13,12 @@
 
 % Parameter(unit): value unc reference description
 % fuel_radius(cm): 0.67564 0.01 NAA-SR-9642
-% diffusion_barrier_radius(cm): 0.68199 0.01 NAA-SR-9642
-% poison_coating_radius(cm): 0.682608 0.01 NAA-SR-9642
-% gap_radius(cm): 0.686672 0.01 NAA-SR-9642
-% clad_radius(cm): 0.7130879 0.01 NAA-SR-9642
-% upper_endcap_thickness(cm): 0.2032 0.01 NAA-SR-9642
-% lower_endcap_thickness(cm): 0.9398 0.01 NAA-SR-9642
+% diffusion_barrier_radius(cm): 0.6883 0.01 NAA-SR-9642
+% poison_coating_radius(cm): 0.68834 0.01 NAA-SR-9642
+% gap_radius(cm): 0.68272 0.01 NAA-SR-9642
+% clad_radius(cm): 0.71374 0.01 NAA-SR-9642
+% upper_endcap_thickness(cm): 0.228505 0.01 NAA-SR-9642
+% lower_endcap_thickness(cm): 0.9652 0.01 NAA-SR-9642
 % fuel_length(cm): 36.7538 0.01 NAA-SR-9642
 
 % ----------------------------------------------
@@ -38,7 +38,7 @@
 
 % Parameter(unit): value unc reference description
 % assembly_pitch(cm): 11.0414 0.01 NAA-SR-9642
-% internal_reflector_radius(cm): 11.6926 0.01 NAA-SR-9642
+% internal_reflector_radius(cm): 11.718036 0.01 NAA-SR-9642
 
 % ----------------------------------------------
 % barrel Dimensions:
@@ -54,7 +54,7 @@ surf putBorder cuboid -22.7478 22.7478 -22.7478 22.7478 0.0 38.4207
 surf lgBarrelcc1 cyl 0.0 0.0 11.87704 
 surf barrelcc1 cyl 0.0 0.0 11.87704 
 surf cdBarrelHexVoidcc1 cyl 0.0 0.0 22.7478 
-surf intrefcc1 cyl 0.0 0.0 11.6926 
+surf intrefcc1 cyl 0.0 0.0 11.718036 
 surf hexBorder hexyc 0.0 0.0 11.0414 
 surf lowershimA_univcc1 cyl 0.0 0.0 23.7609 
 surf barrelCDh1 hexyc 0.0 0.0 17.82064 
@@ -64,6 +64,7 @@ surf svDrum3 cyl 20.76037137182541 11.986005999999998 11.95
 surf svDrum4 cyl -20.76037137182541 11.986005999999998 11.95 
 surf svDrum5 cyl 20.76037137182541 -11.986005999999998 11.95 
 surf svDrum6 cyl -20.76037137182541 -11.986005999999998 11.95 
+surf barrelCDc1 cyl 0.0 0.0 17.82064 
 surf sDrum1 cyl 0.0 23.972012 11.9126 
 surf sDrum2 cyl 0.0 -23.972012 11.9126 
 surf sDrum3 cyl 20.76037137182541 11.986005999999998 11.9126 
@@ -103,7 +104,8 @@ cell lowercdFulld3 lowercdFull  fill lowercd3_univ -svDrum3
 cell lowercdFulld4 lowercdFull  fill lowercd4_univ -svDrum4 
 cell lowercdFulld5 lowercdFull  fill lowercd5_univ -svDrum5 
 cell lowercdFulld6 lowercdFull  fill lowercd6_univ -svDrum6 
-cell lowercdSys lowercdFull  control_drum -barrelCDh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
+cell lowercdSys lowercdFull  control_drum -barrelCDc1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
+cell lowercdSysVoid lowercdFull  void barrelCDc1 -barrelCDh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
 cell lowercDrum1 lowercd1_univ  control_drum -sDrum1 
 cell lowercvDrum1 lowercd1_univ  void sDrum1 -svDrum1 
 cell lowercDrum2 lowercd2_univ  control_drum -sDrum2 
@@ -126,7 +128,8 @@ cell barrelcdFulld3 barrelcdFull  fill barrelcd3_univ -svDrum3
 cell barrelcdFulld4 barrelcdFull  fill barrelcd4_univ -svDrum4 
 cell barrelcdFulld5 barrelcdFull  fill barrelcd5_univ -svDrum5 
 cell barrelcdFulld6 barrelcdFull  fill barrelcd6_univ -svDrum6 
-cell barrelcdSys barrelcdFull  control_drum -barrelCDh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
+cell barrelcdSys barrelcdFull  control_drum -barrelCDc1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
+cell barrelcdSysVoid barrelcdFull  void barrelCDc1 -barrelCDh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
 cell barrelcDrum1 barrelcd1_univ  control_drum -sDrum1 
 cell barrelcvDrum1 barrelcd1_univ  void sDrum1 -svDrum1 
 cell barrelcDrum2 barrelcd2_univ  control_drum -sDrum2 
@@ -148,7 +151,8 @@ cell uppercdFulld3 uppercdFull  fill uppercd3_univ -svDrum3
 cell uppercdFulld4 uppercdFull  fill uppercd4_univ -svDrum4 
 cell uppercdFulld5 uppercdFull  fill uppercd5_univ -svDrum5 
 cell uppercdFulld6 uppercdFull  fill uppercd6_univ -svDrum6 
-cell uppercdSys uppercdFull  control_drum -barrelCDh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
+cell uppercdSys uppercdFull  control_drum -barrelCDc1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
+cell uppercdSysVoid uppercdFull  void barrelCDc1 -barrelCDh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
 cell uppercDrum1 uppercd1_univ  control_drum -sDrum1 
 cell uppercvDrum1 uppercd1_univ  void sDrum1 -svDrum1 
 cell uppercDrum2 uppercd2_univ  control_drum -sDrum2 
@@ -199,7 +203,7 @@ pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP 
                     pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP pLGP 
                      
 pin pLGP
-clad
+lower_gridplate
 
 pin pLGH
 coolant	0.15875
@@ -230,27 +234,27 @@ lat activeCoreLat 2 0 0 21 21 1.4478
                      
 lat 900 9 0 0 22
 0.0	lowerEndCool
-0.9398	900z1
-2.7203399999999998	900z2
-4.5008799999999995	900z3
-6.281419999999999	900z4
-8.06196	900z5
-9.8425	900z6
-11.623039999999998	900z7
-13.403579999999998	900z8
-15.184119999999998	900z9
-16.964659999999995	900z10
-18.745199999999997	900z11
-20.52574	900z12
-22.306279999999994	900z13
-24.086819999999996	900z14
-25.867359999999998	900z15
-27.6479	900z16
-29.428439999999995	900z17
-31.208979999999997	900z18
-32.98951999999999	900z19
-34.770059999999994	900z20
-36.550599999999996	upperEndCool
+0.9652	900z1
+2.74320475	900z2
+4.521209499999999	900z3
+6.2992142499999995	900z4
+8.077219	900z5
+9.855223749999999	900z6
+11.633228499999998	900z7
+13.411233249999999	900z8
+15.189237999999998	900z9
+16.967242749999997	900z10
+18.745247499999998	900z11
+20.52325225	900z12
+22.301256999999996	900z13
+24.079261749999997	900z14
+25.857266499999998	900z15
+27.635271249999995	900z16
+29.413275999999996	900z17
+31.191280749999997	900z18
+32.9692855	900z19
+34.74729025	900z20
+36.525295	upperEndCool
 
 pin lowerEndCool
 coolant
@@ -320,363 +324,363 @@ coolant
 
 lat 800 9 0 0 22
 0.0	lowerEndCap
-0.9398	fuelElemz1
-2.7203399999999998	fuelElemz2
-4.5008799999999995	fuelElemz3
-6.281419999999999	fuelElemz4
-8.06196	fuelElemz5
-9.8425	fuelElemz6
-11.623039999999998	fuelElemz7
-13.403579999999998	fuelElemz8
-15.184119999999998	fuelElemz9
-16.964659999999995	fuelElemz10
-18.745199999999997	fuelElemz11
-20.52574	fuelElemz12
-22.306279999999994	fuelElemz13
-24.086819999999996	fuelElemz14
-25.867359999999998	fuelElemz15
-27.6479	fuelElemz16
-29.428439999999995	fuelElemz17
-31.208979999999997	fuelElemz18
-32.98951999999999	fuelElemz19
-34.770059999999994	fuelElemz20
-36.550599999999996	upperEndCap
+0.9652	fuelElemz1
+2.74320475	fuelElemz2
+4.521209499999999	fuelElemz3
+6.2992142499999995	fuelElemz4
+8.077219	fuelElemz5
+9.855223749999999	fuelElemz6
+11.633228499999998	fuelElemz7
+13.411233249999999	fuelElemz8
+15.189237999999998	fuelElemz9
+16.967242749999997	fuelElemz10
+18.745247499999998	fuelElemz11
+20.52325225	fuelElemz12
+22.301256999999996	fuelElemz13
+24.079261749999997	fuelElemz14
+25.857266499999998	fuelElemz15
+27.635271249999995	fuelElemz16
+29.413275999999996	fuelElemz17
+31.191280749999997	fuelElemz18
+32.9692855	fuelElemz19
+34.74729025	fuelElemz20
+36.525295	upperEndCap
 
 pin lowerEndCap
-clad	0.7130879
+clad	0.71374
 coolant
 
 pin fuelElemz1
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz2
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz3
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz4
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz5
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz6
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz7
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz8
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz9
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz10
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz11
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz12
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz13
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz14
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz15
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz16
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz17
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz18
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz19
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin fuelElemz20
 fuel	0.67564
-diffusion_barrier	0.68199
-burnable_poison	0.682608
-gap	0.686672
-clad	0.7130879
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
+clad	0.71374
 coolant
 
 pin upperEndCap
-clad	0.7130879
+clad	0.71374
 coolant
 
 lat 700 9 0 0 22
 0.0	lowerEndCap
-0.9398	fuelElemz1
-2.7203399999999998	fuelElemz2
-4.5008799999999995	fuelElemz3
-6.281419999999999	fuelElemz4
-8.06196	fuelElemz5
-9.8425	fuelElemz6
-11.623039999999998	fuelElemz7
-13.403579999999998	fuelElemz8
-15.184119999999998	fuelElemz9
-16.964659999999995	fuelElemz10
-18.745199999999997	fuelElemz11
-20.52574	fuelElemz12
-22.306279999999994	fuelElemz13
-24.086819999999996	fuelElemz14
-25.867359999999998	fuelElemz15
-27.6479	fuelElemz16
-29.428439999999995	fuelElemz17
-31.208979999999997	fuelElemz18
-32.98951999999999	fuelElemz19
-34.770059999999994	fuelElemz20
-36.550599999999996	upperEndCap
+0.9652	fuelElemz1
+2.74320475	fuelElemz2
+4.521209499999999	fuelElemz3
+6.2992142499999995	fuelElemz4
+8.077219	fuelElemz5
+9.855223749999999	fuelElemz6
+11.633228499999998	fuelElemz7
+13.411233249999999	fuelElemz8
+15.189237999999998	fuelElemz9
+16.967242749999997	fuelElemz10
+18.745247499999998	fuelElemz11
+20.52325225	fuelElemz12
+22.301256999999996	fuelElemz13
+24.079261749999997	fuelElemz14
+25.857266499999998	fuelElemz15
+27.635271249999995	fuelElemz16
+29.413275999999996	fuelElemz17
+31.191280749999997	fuelElemz18
+32.9692855	fuelElemz19
+34.74729025	fuelElemz20
+36.525295	upperEndCap
 
 lat 600 9 0 0 22
 0.0	lowerEndCap
-0.9398	fuelElemz1
-2.7203399999999998	fuelElemz2
-4.5008799999999995	fuelElemz3
-6.281419999999999	fuelElemz4
-8.06196	fuelElemz5
-9.8425	fuelElemz6
-11.623039999999998	fuelElemz7
-13.403579999999998	fuelElemz8
-15.184119999999998	fuelElemz9
-16.964659999999995	fuelElemz10
-18.745199999999997	fuelElemz11
-20.52574	fuelElemz12
-22.306279999999994	fuelElemz13
-24.086819999999996	fuelElemz14
-25.867359999999998	fuelElemz15
-27.6479	fuelElemz16
-29.428439999999995	fuelElemz17
-31.208979999999997	fuelElemz18
-32.98951999999999	fuelElemz19
-34.770059999999994	fuelElemz20
-36.550599999999996	upperEndCap
+0.9652	fuelElemz1
+2.74320475	fuelElemz2
+4.521209499999999	fuelElemz3
+6.2992142499999995	fuelElemz4
+8.077219	fuelElemz5
+9.855223749999999	fuelElemz6
+11.633228499999998	fuelElemz7
+13.411233249999999	fuelElemz8
+15.189237999999998	fuelElemz9
+16.967242749999997	fuelElemz10
+18.745247499999998	fuelElemz11
+20.52325225	fuelElemz12
+22.301256999999996	fuelElemz13
+24.079261749999997	fuelElemz14
+25.857266499999998	fuelElemz15
+27.635271249999995	fuelElemz16
+29.413275999999996	fuelElemz17
+31.191280749999997	fuelElemz18
+32.9692855	fuelElemz19
+34.74729025	fuelElemz20
+36.525295	upperEndCap
 
 lat 500 9 0 0 22
 0.0	lowerEndCap
-0.9398	fuelElemz1
-2.7203399999999998	fuelElemz2
-4.5008799999999995	fuelElemz3
-6.281419999999999	fuelElemz4
-8.06196	fuelElemz5
-9.8425	fuelElemz6
-11.623039999999998	fuelElemz7
-13.403579999999998	fuelElemz8
-15.184119999999998	fuelElemz9
-16.964659999999995	fuelElemz10
-18.745199999999997	fuelElemz11
-20.52574	fuelElemz12
-22.306279999999994	fuelElemz13
-24.086819999999996	fuelElemz14
-25.867359999999998	fuelElemz15
-27.6479	fuelElemz16
-29.428439999999995	fuelElemz17
-31.208979999999997	fuelElemz18
-32.98951999999999	fuelElemz19
-34.770059999999994	fuelElemz20
-36.550599999999996	upperEndCap
+0.9652	fuelElemz1
+2.74320475	fuelElemz2
+4.521209499999999	fuelElemz3
+6.2992142499999995	fuelElemz4
+8.077219	fuelElemz5
+9.855223749999999	fuelElemz6
+11.633228499999998	fuelElemz7
+13.411233249999999	fuelElemz8
+15.189237999999998	fuelElemz9
+16.967242749999997	fuelElemz10
+18.745247499999998	fuelElemz11
+20.52325225	fuelElemz12
+22.301256999999996	fuelElemz13
+24.079261749999997	fuelElemz14
+25.857266499999998	fuelElemz15
+27.635271249999995	fuelElemz16
+29.413275999999996	fuelElemz17
+31.191280749999997	fuelElemz18
+32.9692855	fuelElemz19
+34.74729025	fuelElemz20
+36.525295	upperEndCap
 
 lat 400 9 0 0 22
 0.0	lowerEndCap
-0.9398	fuelElemz1
-2.7203399999999998	fuelElemz2
-4.5008799999999995	fuelElemz3
-6.281419999999999	fuelElemz4
-8.06196	fuelElemz5
-9.8425	fuelElemz6
-11.623039999999998	fuelElemz7
-13.403579999999998	fuelElemz8
-15.184119999999998	fuelElemz9
-16.964659999999995	fuelElemz10
-18.745199999999997	fuelElemz11
-20.52574	fuelElemz12
-22.306279999999994	fuelElemz13
-24.086819999999996	fuelElemz14
-25.867359999999998	fuelElemz15
-27.6479	fuelElemz16
-29.428439999999995	fuelElemz17
-31.208979999999997	fuelElemz18
-32.98951999999999	fuelElemz19
-34.770059999999994	fuelElemz20
-36.550599999999996	upperEndCap
+0.9652	fuelElemz1
+2.74320475	fuelElemz2
+4.521209499999999	fuelElemz3
+6.2992142499999995	fuelElemz4
+8.077219	fuelElemz5
+9.855223749999999	fuelElemz6
+11.633228499999998	fuelElemz7
+13.411233249999999	fuelElemz8
+15.189237999999998	fuelElemz9
+16.967242749999997	fuelElemz10
+18.745247499999998	fuelElemz11
+20.52325225	fuelElemz12
+22.301256999999996	fuelElemz13
+24.079261749999997	fuelElemz14
+25.857266499999998	fuelElemz15
+27.635271249999995	fuelElemz16
+29.413275999999996	fuelElemz17
+31.191280749999997	fuelElemz18
+32.9692855	fuelElemz19
+34.74729025	fuelElemz20
+36.525295	upperEndCap
 
 lat 300 9 0 0 22
 0.0	lowerEndCap
-0.9398	fuelElemz1
-2.7203399999999998	fuelElemz2
-4.5008799999999995	fuelElemz3
-6.281419999999999	fuelElemz4
-8.06196	fuelElemz5
-9.8425	fuelElemz6
-11.623039999999998	fuelElemz7
-13.403579999999998	fuelElemz8
-15.184119999999998	fuelElemz9
-16.964659999999995	fuelElemz10
-18.745199999999997	fuelElemz11
-20.52574	fuelElemz12
-22.306279999999994	fuelElemz13
-24.086819999999996	fuelElemz14
-25.867359999999998	fuelElemz15
-27.6479	fuelElemz16
-29.428439999999995	fuelElemz17
-31.208979999999997	fuelElemz18
-32.98951999999999	fuelElemz19
-34.770059999999994	fuelElemz20
-36.550599999999996	upperEndCap
+0.9652	fuelElemz1
+2.74320475	fuelElemz2
+4.521209499999999	fuelElemz3
+6.2992142499999995	fuelElemz4
+8.077219	fuelElemz5
+9.855223749999999	fuelElemz6
+11.633228499999998	fuelElemz7
+13.411233249999999	fuelElemz8
+15.189237999999998	fuelElemz9
+16.967242749999997	fuelElemz10
+18.745247499999998	fuelElemz11
+20.52325225	fuelElemz12
+22.301256999999996	fuelElemz13
+24.079261749999997	fuelElemz14
+25.857266499999998	fuelElemz15
+27.635271249999995	fuelElemz16
+29.413275999999996	fuelElemz17
+31.191280749999997	fuelElemz18
+32.9692855	fuelElemz19
+34.74729025	fuelElemz20
+36.525295	upperEndCap
 
 lat 200 9 0 0 22
 0.0	lowerEndCap
-0.9398	fuelElemz1
-2.7203399999999998	fuelElemz2
-4.5008799999999995	fuelElemz3
-6.281419999999999	fuelElemz4
-8.06196	fuelElemz5
-9.8425	fuelElemz6
-11.623039999999998	fuelElemz7
-13.403579999999998	fuelElemz8
-15.184119999999998	fuelElemz9
-16.964659999999995	fuelElemz10
-18.745199999999997	fuelElemz11
-20.52574	fuelElemz12
-22.306279999999994	fuelElemz13
-24.086819999999996	fuelElemz14
-25.867359999999998	fuelElemz15
-27.6479	fuelElemz16
-29.428439999999995	fuelElemz17
-31.208979999999997	fuelElemz18
-32.98951999999999	fuelElemz19
-34.770059999999994	fuelElemz20
-36.550599999999996	upperEndCap
+0.9652	fuelElemz1
+2.74320475	fuelElemz2
+4.521209499999999	fuelElemz3
+6.2992142499999995	fuelElemz4
+8.077219	fuelElemz5
+9.855223749999999	fuelElemz6
+11.633228499999998	fuelElemz7
+13.411233249999999	fuelElemz8
+15.189237999999998	fuelElemz9
+16.967242749999997	fuelElemz10
+18.745247499999998	fuelElemz11
+20.52325225	fuelElemz12
+22.301256999999996	fuelElemz13
+24.079261749999997	fuelElemz14
+25.857266499999998	fuelElemz15
+27.635271249999995	fuelElemz16
+29.413275999999996	fuelElemz17
+31.191280749999997	fuelElemz18
+32.9692855	fuelElemz19
+34.74729025	fuelElemz20
+36.525295	upperEndCap
 
 lat 100 9 0 0 22
 0.0	lowerEndCap
-0.9398	fuelElemz1
-2.7203399999999998	fuelElemz2
-4.5008799999999995	fuelElemz3
-6.281419999999999	fuelElemz4
-8.06196	fuelElemz5
-9.8425	fuelElemz6
-11.623039999999998	fuelElemz7
-13.403579999999998	fuelElemz8
-15.184119999999998	fuelElemz9
-16.964659999999995	fuelElemz10
-18.745199999999997	fuelElemz11
-20.52574	fuelElemz12
-22.306279999999994	fuelElemz13
-24.086819999999996	fuelElemz14
-25.867359999999998	fuelElemz15
-27.6479	fuelElemz16
-29.428439999999995	fuelElemz17
-31.208979999999997	fuelElemz18
-32.98951999999999	fuelElemz19
-34.770059999999994	fuelElemz20
-36.550599999999996	upperEndCap
+0.9652	fuelElemz1
+2.74320475	fuelElemz2
+4.521209499999999	fuelElemz3
+6.2992142499999995	fuelElemz4
+8.077219	fuelElemz5
+9.855223749999999	fuelElemz6
+11.633228499999998	fuelElemz7
+13.411233249999999	fuelElemz8
+15.189237999999998	fuelElemz9
+16.967242749999997	fuelElemz10
+18.745247499999998	fuelElemz11
+20.52325225	fuelElemz12
+22.301256999999996	fuelElemz13
+24.079261749999997	fuelElemz14
+25.857266499999998	fuelElemz15
+27.635271249999995	fuelElemz16
+29.413275999999996	fuelElemz17
+31.191280749999997	fuelElemz18
+32.9692855	fuelElemz19
+34.74729025	fuelElemz20
+36.525295	upperEndCap
 
 lat controlDrumHousing 9 0 0 3
 0.0	lowercdFulllowershimA_univ_univ
@@ -707,9 +711,9 @@ pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP 
                     pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP 
                      
 pin pUGP
-clad
+upper_gridplate
 
 pin pUGH
 coolant	0.19840000000000002
-clad
+upper_gridplate
 
