@@ -269,13 +269,13 @@ class Dimension:
                 dim = Dimension(id[0], value, isUnitSI, unc, ref , desc)
                 dimensions[i] = dim
             except ValueError as ve:
-                raise Exception("Error For Property @ line: {} \n"
+                raise Exception("Error For Dimension @ line: {} \n"
                             .format(dimensions[i]["id"][1])) from ve
             except TypeError as te:
-                 raise Exception("Error For Property @ line: {} \n"
+                 raise Exception("Error For Dimension @ line: {} \n"
                              .format(dimensions[i]["id"][1])) from te
             except KeyError as ke:
-                raise Exception("Error For Property @ line: {} \n"
+                raise Exception("Error For Dimension @ line: {} \n"
                             .format(dimensions[i]["id"][1])) from ke
 
         return dimensions

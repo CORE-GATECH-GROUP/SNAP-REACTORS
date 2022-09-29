@@ -10,6 +10,9 @@ Last updated on 2022-01-18 11:10:40 @author: Samuel Garcia
 email: sgarcia9@wisc.edu
 """
 
+from logging import warning
+import warnings
+
 from snapReactors.functions.checkerrors import _isinstanceList, _isstr
 from snapReactors.containers.dimension import Dimension
 from snapReactors.functions.utilities import createDictFromConatinerList
@@ -193,13 +196,6 @@ class Component:
                 else:
                     
                     if "Component id" in data[i]:
-                        value = data[i].split(":")[-1]
-                        value = value.replace("\n", "")
-                        value = value.replace(" ", "")
-                        value = value.replace("\t", "")
-                        value = [value,i+1]
-                        key = "comp"+str(cpcount)
-                        input[key]["id"] = value
                         if cpcount == 0: 
                             cpcount = cpcount + 1
                         else:                  
@@ -209,8 +205,23 @@ class Component:
                             key = 'comp'+str(cpcount)
                             input[key]['mat'] = materials 
                             cpcount = cpcount +1
-                        key = 1
-                        
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        value = value.replace("\t", "")
+                        value = [value,i+1]
+                        key = "comp"+str(cpcount)
+                        input[key]["id"] = value
+                    
+                    if "Component Description" in data[i]:
+                        value = data[i].split(":")[-1]
+                        value = value.replace("\n", "")
+                        value = value.replace(" ", "")
+                        value = value.replace("\t", "")
+                        value = [value,i+1]
+                        key = "comp"+str(cpcount)
+                        input[key]["des"] = value
+
                     if "Dimensions" in data[i]:
                         dindexBegin = i+1
                         dFlag = True
@@ -226,9 +237,49 @@ class Component:
                             dFlag = False
 
         components = [0]*input["ncomps"]
+        for i in range(0, len(components)):
+            components[i] = input["comp"+str(i+1)]
 
-        try:
-                    components = Component()
-        except:
-                    pass
+            if "id" in components[i]:
+                id = components[i]["id"]
+            else:
+                raise KeyError("id for component missing")
+            
+            if "des" in components[i]:
+                des = components[i]["des"]
+            else:
+                warnings.warn("description not given for {} component @ "
+                "line: {}".format(components[i]["id"][0], 
+                components[i]["id"][1]))
+                des = None
+
+            if "mat" in components[i]:
+                _materials = components[i]["mat"]
+            else:
+                warnings.warn("materials not given for {} component @ "
+                "line: {}".format(components[i]["id"][0], 
+                components[i]["id"][1]))
+                _materials = None
+            
+            if "dim" in components[i]:
+                _dimensions = components[i]["dim"]
+            else:
+                warnings.warn("dimensions not given for {} component @ "
+                "line: {}".format(components[i]["id"][0], 
+                components[i]["id"][1]))
+                _dimensions = None
+
+            try:
+                comp = Component(id[0], _materials, _dimensions, des)
+                components[i] = comp
+            except ValueError as ve:
+                raise Exception("Error For Dimension @ line: {} \n"
+                            .format(components[i]["id"][1])) from ve
+            except TypeError as te:
+                 raise Exception("Error For Dimension @ line: {} \n"
+                             .format(components[i]["id"][1])) from te
+            except KeyError as ke:
+                raise Exception("Error For Dimension @ line: {} \n"
+                            .format(components[i]["id"][1])) from ke
+                            
         return components
