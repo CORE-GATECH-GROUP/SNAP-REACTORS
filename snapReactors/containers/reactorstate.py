@@ -53,7 +53,7 @@ class ReactorState:
     >>> from snapReactors.containers.materials import Material
 
     >>> c1 = Component("c1")
-    >>> c1.addMaterial(Material.readData('material_data.txt'))
+    >>> c1.addMaterial(Material._materialReader(materialData))
     >>> reference = NA-SR-XXXX
     >>> description = 'Operating temperature and pressure are at cold start' 
                         'conditions'
@@ -109,7 +109,7 @@ class ReactorState:
         >>> from snapReactors.containers.materials import Material
 
         >>> c1 = Component("c1")
-        >>> c1.addMaterial(Material.readData('material_data.txt'))
+        >>> c1.addMaterial(Material._materialReader(materialData))
         >>> reference = NA-SR-XXXX
         >>> description = 'Operating temperature and pressure are at cold start' 
                         'conditions'
