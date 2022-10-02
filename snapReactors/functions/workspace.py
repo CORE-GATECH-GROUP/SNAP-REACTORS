@@ -64,6 +64,18 @@ snapTemplate.setSettings(geoType='3D', nps = 1E+05, nact = 100, nskip=40, xsAbsP
 coldCore = ReactorState('Cold Power', reference='AI-AEC-13070', description = 'S8ER C3 Critcal Configuration Experiment, Dry Conditions 300 K',
 _components=[fe, ce, ir, br])#, _reactorMap= reactorMap)
 
+## RELEVANT INFO PLEASE READ 
+# New workflow using the _rsReader function in the ReactorState class, this is a fully working example of a text file that reads in all necessary information
+# Essentially, lines 17-60 & 64-65 up above are all done in two lines below
+
+# states = ReactorState._rsReader("C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\jupyter_notebooks\rsReadertest.txt")
+# coldCore = states[0]
+# snapTemplate = S83D(coldCore._components[0], coldCore._componets[1], coldCore._components[2], coldCore._components[3], coldCore._components[4],
+#                      coldCore._components[5], coldCore._components[6])
+
+
+
+
 sTest3D = Serpent("Serpent Test 3D")
 sTest3D.toSerpent(coldCore, snapTemplate, "serpent_test")
 

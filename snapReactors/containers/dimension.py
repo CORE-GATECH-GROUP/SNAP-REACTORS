@@ -103,6 +103,7 @@ class Dimension:
 
     def _dimensionReader(data):
 
+
         input = dict()
         dcount = 0
 
@@ -110,7 +111,7 @@ class Dimension:
             if(data[i] == "%"):
                 pass
             else:
-                if "id" in data[i]:
+                if "id:" in data[i]:
                     dcount = dcount + 1
         
         input["ndims"] = dcount
@@ -127,19 +128,18 @@ class Dimension:
                     pass
                 else:
                     
-                    if "id" in data[i]:
+                    if "id:" in data[i]:
                         dcount = dcount + 1
 
-                    if "id" in data[i]:  
+                    if "id:" in data[i]:  
                         value = data[i].split(":")[-1]
-                        value = value.replace("\n", "")
-                        value = value.replace(" ", "")
-                        value = value.replace("\t", "")
+                        value=value.lstrip()
+                        value=value.rstrip()
                         value = [value,i+1]
                         key = "dim"+str(dcount)
                         input[key]["id"] = value
                     
-                    if "value" in data[i]:  
+                    if "value:" in data[i]:  
                         value = data[i].split(":")[-1]
                         value = value.replace("\n", "")
                         value = value.replace(" ", "")
@@ -147,7 +147,7 @@ class Dimension:
                         key = "dim"+str(dcount)
                         input[key]["value"] = value
 
-                    if "unit" == data[i].split(":")[0]:
+                    if "unit:" in data[i]:
                         value = data[i].split(":")[-1]
                         value = value.replace("\n", "")
                         value = value.replace(" ", "")
@@ -155,7 +155,7 @@ class Dimension:
                         key = "dim"+str(dcount)
                         input[key]["unit"] = value
                     
-                    if "unc" in data[i]:  
+                    if "unc:" in data[i]:  
                         value = data[i].split(":")[-1]
                         value = value.replace("\n", "")
                         value = value.replace(" ", "")
@@ -163,19 +163,17 @@ class Dimension:
                         key = "dim"+str(dcount)
                         input[key]["unc"] = value
 
-                    if "ref" in data[i]:  
+                    if "ref:" in data[i]:  
                         value = data[i].split(":")[-1]
-                        value = value.replace("\n", "")
-                        value = value.replace(" ", "")
-                        value = value.replace("\t", "")
+                        value=value.lstrip()
+                        value=value.rstrip()
                         key = "dim"+str(dcount)
                         input[key]["ref"] = value
 
-                    if "desc" in data[i]:  
+                    if "desc:" in data[i]:  
                         value = data[i].split(":")[-1]
-                        value = value.replace("\n", "")
-                        value = value.replace(" ", "")
-                        value = value.replace("\t", "")
+                        value=value.lstrip()
+                        value=value.rstrip()                        
                         key = "dim"+str(dcount)
                         input[key]["desc"] = value
 

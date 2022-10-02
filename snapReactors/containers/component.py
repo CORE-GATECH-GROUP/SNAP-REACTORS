@@ -195,7 +195,7 @@ class Component:
                     pass
                 else:
                     
-                    if "Component id" in data[i]:
+                    if "Component id:" in data[i]:
                         if cpcount == 0: 
                             cpcount = cpcount + 1
                         else:                  
@@ -206,18 +206,16 @@ class Component:
                             input[key]['mat'] = materials 
                             cpcount = cpcount +1
                         value = data[i].split(":")[-1]
-                        value = value.replace("\n", "")
-                        value = value.replace(" ", "")
-                        value = value.replace("\t", "")
+                        value=value.lstrip()
+                        value=value.rstrip()
                         value = [value,i+1]
                         key = "comp"+str(cpcount)
                         input[key]["id"] = value
                     
-                    if "Component Description" in data[i]:
+                    if "Component Description:" in data[i]:
                         value = data[i].split(":")[-1]
-                        value = value.replace("\n", "")
-                        value = value.replace(" ", "")
-                        value = value.replace("\t", "")
+                        value=value.lstrip()
+                        value=value.rstrip()
                         value = [value,i+1]
                         key = "comp"+str(cpcount)
                         input[key]["des"] = value
@@ -273,13 +271,13 @@ class Component:
                 comp = Component(id[0], _materials, _dimensions, des)
                 components[i] = comp
             except ValueError as ve:
-                raise Exception("Error For Dimension @ line: {} \n"
+                raise Exception("Error For Component @ line: {} \n"
                             .format(components[i]["id"][1])) from ve
             except TypeError as te:
-                 raise Exception("Error For Dimension @ line: {} \n"
+                 raise Exception("Error For Component @ line: {} \n"
                              .format(components[i]["id"][1])) from te
             except KeyError as ke:
-                raise Exception("Error For Dimension @ line: {} \n"
+                raise Exception("Error For Component @ line: {} \n"
                             .format(components[i]["id"][1])) from ke
                             
         return components

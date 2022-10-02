@@ -21,6 +21,8 @@ from snapReactors.containers.component import Component
 from snapReactors.containers.materials import Material, CTYPE, UTYPE
 from snapReactors.containers.property import Property, DTYPE, VTYPE 
 import numpy as np
+import os
+import warnings
 class ReactorState:
     """ A container to store component data to be evaluated at specific 
     temperature and pressures.   
@@ -141,3 +143,124 @@ class ReactorState:
         # necessary for instances to behave sanely in dicts and sets.
         return hash((self.id, self.reference, self.description,
                 self._components))
+
+    def _rsReader(filename):
+        _isstr(filename, "file name")
+
+        if not os.path.isfile(filename):
+            raise OSError("Filename {} is not found".format(filename))
+
+        with open(filename, "r") as f:
+            data = f.readlines()
+
+        input = dict()
+        rscount = 0
+
+        for i in range(0, len(data)):
+            if(data[i] == "%"):
+                pass
+            else:
+                if "Reactor State id" in data[i]:
+                    rscount = rscount + 1
+
+        input["nrs"] = rscount
+
+        for i in range(0,rscount):
+            key = "rs"+str(i+1)
+            input[key] = dict()
+
+
+        rscount = 0
+
+        while (rscount < input["nrs"]):
+            for i in range(0, len(data)):
+                if (data[i] == "%"):
+                    pass
+                else:
+                    
+                    if "Reactor State id" in data[i]:
+                        if rscount == 0: 
+                            rscount = rscount + 1
+                        else:                  
+                            cindexEnd = i-1
+                            components = Component._componentReader(data[
+                                cindexBegin:cindexEnd])
+                            key = 'rs'+str(rscount)
+                            input[key]['comp'] = components 
+                            rscount = rscount +1
+                        value = data[i].split(":")[-1]
+                        value=value.lstrip()
+                        value=value.rstrip()
+                        value = [value,i+1]
+                        key = "rs"+str(rscount)
+                        input[key]["id"] = value
+
+                    if "Reactor State Description" in data[i]:
+                        value = data[i].split(":")[-1]
+                        value=value.lstrip()
+                        value=value.rstrip()
+                        key = "rs"+str(rscount)
+                        input[key]["des"] = value
+                        cindexBegin = i + 1
+
+                    if "Reactor State Reference" in data[i]:
+                        value = data[i].split(":")[-1]
+                        value=value.lstrip()
+                        value=value.rstrip()
+                        key = "rs"+str(rscount)
+                        input[key]["ref"] = value
+                        
+                    if i == len(data)-1:
+                        cindexEnd = i
+                        components = Component._componentReader(data[
+                                cindexBegin:cindexEnd])
+                        key = 'rs'+str(rscount)
+                        input[key]['comp'] = components
+
+        reactorStates = [0]*input["nrs"]
+        for i in range(0, len(reactorStates)):
+            reactorStates[i] = input["rs"+str(i+1)]
+
+            if "id" in reactorStates[i]:
+                id = reactorStates[i]["id"]
+            else:
+                raise KeyError("id for reactor state missing")
+            
+            if "des" in reactorStates[i]:
+                des = reactorStates[i]["des"]
+            else:
+                warnings.warn("description not given for {} reactor state @ "
+                "line: {}".format(reactorStates[i]["id"][0], 
+                reactorStates[i]["id"][1]))
+                des = None
+
+            if "ref" in reactorStates[i]:
+                ref = reactorStates[i]["ref"]
+            else:
+                warnings.warn("reference not given for {} reactor state @ "
+                "line: {}".format(reactorStates[i]["id"][0], 
+                reactorStates[i]["id"][1]))
+                ref = None
+            
+            if "comp" in reactorStates[i]:
+                _components = reactorStates[i]["comp"]
+            else:
+                warnings.warn("components not given for {} reactor state @ "
+                "line: {}".format(reactorStates[i]["id"][0], 
+                reactorStates[i]["id"][1]))
+                _components = None
+
+            try:
+                rs = ReactorState(id[0], ref, des, _components)
+                reactorStates[i] = rs
+            except ValueError as ve:
+                raise Exception("Error For Reactor State @ line: {} \n"
+                            .format(reactorStates[i]["id"][1])) from ve
+            except TypeError as te:
+                 raise Exception("Error For Reactor State @ line: {} \n"
+                             .format(reactorStates[i]["id"][1])) from te
+            except KeyError as ke:
+                raise Exception("Error For Reactor State @ line: {} \n"
+                            .format(reactorStates[i]["id"][1])) from ke
+                            
+        return reactorStates
