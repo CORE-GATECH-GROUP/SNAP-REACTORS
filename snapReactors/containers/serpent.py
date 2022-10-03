@@ -7,6 +7,7 @@ Created on 2022-08-29 13:38:19 @author: Isaac Naupa
 Last updated on 2022-08-29 13:38:28 @author: Isaac Naupa
 email: iaguirre6@gatech.edu
 """
+from code import compile_command
 import dbm
 from msilib.schema import Condition
 from re import TEMPLATE, template
@@ -51,6 +52,11 @@ from serpentGenerator.functions.pin import pin
 from serpentGenerator.functions.builders import (buildHexLattice)
 from serpentGenerator.functions.utilities import (createDictFromConatinerList)
 
+import serpentTools
+from tabulate import tabulate
+import pandas as pd
+from matplotlib import pyplot as plt
+
 #CONVERSION FACTORS
 KGM3_GCM3 = 1/1000
 M_CM = 100
@@ -93,8 +99,10 @@ class Serpent:
 
     def __init__(self, id):
         self.id = id
+        self.baseFileName = None
 
     def toSerpent(self, reactorState, template, baseFileName):
+        self.baseFileName = baseFileName
         matHeader = Serpent.__buildSerpentMaterialHeader(reactorState)
         dimStr = Serpent.__buildSerpentDimensionsHeader(reactorState)
         geoStr = Serpent.__buildSerpentGeometry(template)
@@ -117,6 +125,8 @@ class Serpent:
         comps = rs._components
         for comp in comps:
             mats = comp._materials
+            print(comp.id, comp._materials)
+
             nameStr = comp.id
             descStr = comp.description if comp.description != None else "" 
             compHeader = "% ----------------------------------------------\n"\
@@ -167,6 +177,7 @@ class Serpent:
                 "\n% Parameter(unit): value unc reference description\n"
             dimStr = dimStr + compHeader
             dims = comp._dimensions
+            print(comp.id, comp._dimensions)
             for dim in dims:
                 fdimVal = str(dim.valueSI*ALLOWED_DIMENSIONS[dim.id].conversion.S2SERP)
                 fdimUnits = "("+ALLOWED_DIMENSIONS[dim.id].units.Serpent+"): "
@@ -214,5 +225,81 @@ class Serpent:
             mainStr = mainStr + template.settings['settings']
         mainFile.write(mainStr)
         mainFile.close()
+        return
+
+    def plotHistoryData(self, hisFile):
+        his = serpentTools.read(hisFile)
+        hKeff = his['anaKeff']
+        hKu = hKeff[:, 2] * 3 * hKeff[:, 1]
+        cyc = np.arange(hKu.shape[0])
+        plt.plot(cyc, hKeff[:, 0], label="Cycle")
+        plt.title("Effective Multiplication Factor vs. Number of Cycles")
+        plt.xlabel("Number of Cycles")
+        plt.ylabel("Effective Multiplication Factor")
+        plt.errorbar(cyc, hKeff[:, 1], yerr=hKu, label="Cumulative")
+        plt.legend()
+        plt.savefig(self.baseFileName+"_hisKeff.png")
+        return
+
+    def outputMaterialData(self, outFile, mvolFile):
+        word = 'set mvol'
+        words = []
+        vols = []
+        with open(mvolFile, 'r') as fp:
+            # read all lines in a list
+            lines = fp.readlines()
+            for ldx, line in enumerate(lines):
+                # check if string present on a current line
+                if line.find(word) != -1:
+                    #print("Line 2 after:", lines[ldx+2])
+                    bidx = ldx+2
+                    fidx = len(lines)
+                    for i in range(bidx, fidx):
+                        matVals = lines[i].split("0", 1)
+                        matName = matVals[0].strip()
+                        matVolParams = matVals[1].split("%")
+                        matVol = matVolParams[0].strip()
+                        #matVolUnc = matVolParams[1].replace("(", "").replace(")", "").strip()
+                        words.append(matName)
+                        #rint("matName "+matName)
+                        #print("matVol "+matVol)
+                        vols.append(float(matVol))
+                        #print("matVolUnc "+matVolUnc+"\n")
+                    break
+        mdens = []
+        with open(outFile, 'r') as fp:
+            # read all lines in a list
+            lines = fp.readlines()
+            for ldx, line in enumerate(lines):
+                # check if string present on a current line
+                for word in words:
+                    if line.find('Material "'+word+'":') != -1:
+        #                 print(word, 'string exists in file')
+        #                 print('Line Number:', lines.index(line))
+        #                 print('Line:', line)
+                        #print(word)
+                        #vol = lines[ldx+6].replace("-", "").replace("Volume", "").replace("cm3", "").strip()
+                        #print("volume: "+ vol+" cm3")
+                        massDens = lines[ldx+5].split("-", 1)[1].replace("Mass density", "").replace("g/cm3", "").strip()
+                        #print("dens: "+ massDens +" g/cm3")
+                        mdens.append(float(massDens))
+                        #mass = lines[ldx+7].replace("-", "").replace("Mass", "").replace("g", "").strip()
+                        #print("mass: "+ mass +" g\n")
+        print(mdens)
+        print(vols)
+        mass = [0]*len(mdens)
+        for i in range(0, len(words)):
+            mass[i] = mdens[i]*vols[i]
+            #print(words[i]+" "+str(mdens[i])+ " " + str(vols[i])+" "+str(mass[i]))
+
+        df = pd.DataFrame({'Material' : words,
+                   'Density (g/cm^3)' : mdens, 
+                   'Volume (cm^3)' : vols,
+                   'Mass (g)' : mass,})
+
+        mdata = tabulate(df, headers='keys', tablefmt='pretty', showindex=False, numalign="right")
+        mdataFile = open(self.baseFileName+".mdata", "w")
+        mdataFile.write(mdata)
+        mdataFile.close()
         return
 

@@ -54,7 +54,7 @@ surf putBorder rect -23.7609 23.7609 -23.7609 23.7609
 surf barrelcc1 cyl 0.0 0.0 11.87704 
 surf intrefcc1 cyl 0.0 0.0 11.718036 
 surf hexBorder hexyc 0.0 0.0 11.0414 
-surf barrelCDc1 cyl 0.0 0.0 17.82064 
+surf barrelCDc1 cyl 0.0 0.0 18.82064 
 surf svDrum1 cyl 0.0 23.972012 11.95 
 surf svDrum2 cyl 0.0 -23.972012 11.95 
 surf svDrum3 cyl 20.76037137182541 11.986005999999998 11.95 

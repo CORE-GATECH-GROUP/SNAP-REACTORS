@@ -71,7 +71,7 @@ class Component:
             
         else:
             self.materialsDict = {}
-            self._materials = None
+            self._materials = []
             
         self.isVerified = False
         self.description = description
@@ -80,7 +80,7 @@ class Component:
             self._dimensions = _dimensions
             self._setDimDict()
         else:
-            self._dimensions = None
+            self._dimensions = []
             self.dimensionsDict = {}
 
 
@@ -239,12 +239,12 @@ class Component:
             components[i] = input["comp"+str(i+1)]
 
             if "id" in components[i]:
-                id = components[i]["id"]
+                id = components[i]["id"][0]
             else:
                 raise KeyError("id for component missing")
             
             if "des" in components[i]:
-                des = components[i]["des"]
+                des = components[i]["des"][0]
             else:
                 warnings.warn("description not given for {} component @ "
                 "line: {}".format(components[i]["id"][0], 

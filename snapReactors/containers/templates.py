@@ -112,9 +112,13 @@ class S8ER(SerpentTemplate):
             plotPos = plotOptions[2]
             nPlots = len(plotTypes)
             for i in range(0, nPlots):
-                plotStr = plotStr + "plot "+str(int(plotTypes[i]))+str(int(borderType))+" "+ str(int(plotRes))+" "+ str(int(plotRes))+" "+ str(int(plotPos[i])) +"\n"
+                plotStr = plotStr + "plot "+str(int(plotTypes[i]))+str(int(borderType))+" "+ str(int(plotRes))+" "+ str(int(plotRes))+" "+ str(float(plotPos[i])) +"\n"
+            setDict['plot'] = plotStr
+
+        hisStr = "set his 1\n"
+        setDict['history'] = hisStr
         
-        setDict['settings'] = bcStr + popStr + xsStr + plotStr
+        setDict['settings'] = bcStr + popStr + xsStr + plotStr + hisStr
     
         self.settings = setDict
         return 
@@ -155,13 +159,27 @@ class S82D(S8ER):
         serMatsList = self._buildMaterials([fuelMat, coolMat, dbMat, bpMat, gapMat, cladMat, intRefMat, barrelMat, cdMat])
         serMatsDict = createDictFromConatinerList(serMatsList)
 
-        # Experimental Pin Comp
-        # fuelSerRadii = [fuelRad, dbRad, bpRad, gapRad, cladRad]
-        # fuelSerMats = [serMatsDict['fuel'], serMatsDict['diffusion_barrier'], serMatsDict['burnable_poison'], serMatsDict['gap'], serMatsDict['clad'], serMatsDict['coolant']]
+        def intRefMix(bar, clad, intref, air):
+            refMix = mix("reflMix", [bar, clad, intref, air], [0.191, 0.042, 0.410, 0.357])
+            return refMix
+
+        barMat = serMatsDict['barrel']
+        barMat.set('rgb', "219 89 89")
+        cladMat = serMatsDict['clad']
+        cladMat.set('rgb', "100 100 100")
+        intrefMat = serMatsDict['internal_reflector']
+        airMat = serMatsDict['coolant']
+        airMat.set('rgb', "196 193 193")
+        refMix = intRefMix(barMat, cladMat, intrefMat, airMat)
+        dbMat = serMatsDict['diffusion_barrier']
+        bpMat = serMatsDict['burnable_poison']
+        cdMat = serMatsDict['control_drum']
+        gapMat = serMatsDict['gap']
+        fuelMat = serMatsDict['fuel']
 
         # ANS Winter Pin Comp
         fuelSerRadii = [fuelRad, gapRad, dbRad, bpRad, cladRad]
-        fuelSerMats = [serMatsDict['fuel'], serMatsDict['gap'], serMatsDict['diffusion_barrier'], serMatsDict['burnable_poison'], serMatsDict['clad'], serMatsDict['coolant']]
+        fuelSerMats = [fuelMat, gapMat, dbMat, bpMat, cladMat, airMat]
         
 
         fuelSer = pin('fuel', 2)
@@ -176,7 +194,7 @@ class S82D(S8ER):
             # fes[i]._materialsset('rgb', grad+" 255 255")
 
         coolSer = pin('900', 1)
-        coolSer.set('materials', [serMatsDict['coolant']])
+        coolSer.set('materials', [airMat])
 
         univMap = {'1': fes[0], '2': fes[1],'3': fes[2], '4': fes[3], '5': fes[4], '6': fes[5], '7': fes[6], '8': fes[7], '9': coolSer, '0':coolSer}
 
@@ -199,23 +217,8 @@ class S82D(S8ER):
                    9 8 8 8 8 8 8 8 9"
         nOuter = 2
         hexLat1 = buildHexLattice("activeCoreLat", layout, univMap, nOuter, elemPitch, hexApothem = latticeApothem)
-
-        bar = serMatsDict['barrel']
-        clad = serMatsDict['clad']
-        intref = serMatsDict['internal_reflector']
-        air = serMatsDict['coolant']
-        # ss316 0.191
-        # hasteN 0.042
-        # BeO 0.410
-        # intatm 0.357
-        def intRefMix(bar, clad, intref, air):
-
-            refMix = mix("reflMix", [bar, clad, intref, air], [0.191, 0.042, 0.410, 0.357])
-
-            return refMix
-        refMix  = intRefMix(bar, clad, intref, air)
         intref1 = buildPeripheralRing(hexLat1, intRefRad, material= refMix, ringId="intref")
-        barrel1 = buildPeripheralRing(intref1, barrelRad, material= serMatsDict['barrel'], ringId= "barrel")
+        barrel1 = buildPeripheralRing(intref1, barrelRad, material= barMat, ringId= "barrel")
 
         cdNoShimRad = 17.82064
         cdNoShimCircRad = 20.5775
@@ -251,12 +254,12 @@ class S82D(S8ER):
             vSurf5  = surf("svDrum5", "cyl",np.array([drumX, -drumY, voidRad]))
             vSurf6  = surf("svDrum6", "cyl",np.array([-drumX, -drumY, voidRad]))
 
-            cdCell1 = cell(uid+"cDrum1",mat=serMatsDict['control_drum'])
-            cdCell2 = cell(uid+"cDrum2",mat=serMatsDict['control_drum'])
-            cdCell3 = cell(uid+"cDrum3",mat=serMatsDict['control_drum'])
-            cdCell4 = cell(uid+"cDrum4",mat=serMatsDict['control_drum'])
-            cdCell5 = cell(uid+"cDrum5",mat=serMatsDict['control_drum'])
-            cdCell6 = cell(uid+"cDrum6",mat=serMatsDict['control_drum'])
+            cdCell1 = cell(uid+"cDrum1",mat=cdMat)
+            cdCell2 = cell(uid+"cDrum2",mat=cdMat)
+            cdCell3 = cell(uid+"cDrum3",mat=cdMat)
+            cdCell4 = cell(uid+"cDrum4",mat=cdMat)
+            cdCell5 = cell(uid+"cDrum5",mat=cdMat)
+            cdCell6 = cell(uid+"cDrum6",mat=cdMat)
 
             cdCell1.setSurfs([cdSurf1], [1])
             cdCell2.setSurfs([cdSurf2], [1])
@@ -335,8 +338,8 @@ class S82D(S8ER):
             cdFulld6.setFill(cd6)
             cdFulld6.setSurfs([vSurf6],[1])
 
-            cdSys = cell(uid+'cdSys', mat=serMatsDict['control_drum'])
-            cdVoidSurf = surf("barrelCD"+"c1", "cyl", np.array([0.0, 0.0, cdNoShimRad]))
+            cdSys = cell(uid+'cdSys', mat=cdMat)
+            cdVoidSurf = surf("barrelCD"+"c1", "cyl", np.array([0.0, 0.0, cdNoShimRad+1]))
             #cdNoShimSurf = surf("barrelCD"+"h1", "hexyc", np.array([0.0, 0.0, cdNoShimRad]))
             cdSys.setSurfs([cdVoidSurf, vSurf6, vSurf2, vSurf3, vSurf4, vSurf5, vSurf1], [1, 0, 0, 0, 0, 0, 0])
 
@@ -354,7 +357,7 @@ class S82D(S8ER):
             cdNoShimSurf = surf("barrelCD"+"h1", "hexyc", np.array([0.0, 0.0, cdNoShimRad]))
             shimAsurf = surf(uid+"ShimA"+"h1", "hexyc", np.array([0.0, 0.0, cdUpperRad]))
             shimAcut  = surf(uid+"ShimACut"+"h1", "hexxc", np.array([0.0, 0.0, 20.5775]))
-            ucd1Cell  = cell(uid+"shimA_cell1", mat=serMatsDict['control_drum'], isVoid=False)
+            ucd1Cell  = cell(uid+"shimA_cell1", mat=cdMat, isVoid=False)
             ucd1Cell.setSurfs([cdNoShimSurf, shimAsurf, shimAcut], [0, 1, 1])
             voidCell =  cell(uid+"void_cell1", isVoid=True)
             voidSurf =  surf(uid+"shimA_univcc1", "cyl", np.array([0.0, 0.0, shimAUpperRad]))
@@ -391,6 +394,8 @@ class S83D(S8ER):
         lowerEndcapThick = fuelElement.dimensionsDict['lower_endcap_thickness'].valueSERP
         fuelLen = fuelElement.dimensionsDict['fuel_length'].valueSERP
 
+        print("fuel len 1:", fuelLen)
+
         dbMat = fuelElement.materialsDict['diffusion_barrier']
         dbRad = fuelElement.dimensionsDict['diffusion_barrier_radius'].valueSERP
 
@@ -424,45 +429,70 @@ class S83D(S8ER):
 
         serMatsList = super()._buildMaterials([fuelMat, coolMat, dbMat, bpMat, gapMat, cladMat, intRefMat, barrelMat, cdMat, lgpMat])
         serMatsDict = createDictFromConatinerList(serMatsList)
-        bar = serMatsDict['barrel']
-        clad = serMatsDict['clad']
-        intref = serMatsDict['internal_reflector']
-        air = serMatsDict['coolant']
-        ugpMat = bar.duplicateMat("upper_gridplate")
+
+        def intRefMix(bar, clad, intref, air):
+            refMix = mix("reflMix", [bar, clad, intref, air], [0.191, 0.042, 0.410, 0.357])
+            return refMix
+
+        barMat = serMatsDict['barrel']
+        barMat.set('rgb', "102 0 0")
+        cladMat = serMatsDict['clad']
+        cladMat.set('rgb', "100 100 100")
+        intrefMat = serMatsDict['internal_reflector']
+        #intRefMat.set('rgb', "186 152 117")
+        airMat = serMatsDict['coolant']
+        airMat.set('rgb', "196 193 193")
+        ugpMat = barMat.duplicateMat("upper_gridplate")
+        ugpMat.set('rgb', "102 0 0")
+        refMix = intRefMix(barMat, cladMat, intrefMat, airMat)
+        refMix.set('rgb', "186 152 117")
+        lgpMat = serMatsDict['lower_gridplate']
+        lgpMat.set('rgb', "124 138 197")
+        dbMat = serMatsDict['diffusion_barrier']
+        bpMat = serMatsDict['burnable_poison']
+        cdMat = serMatsDict['control_drum']
+        cdMat.set('rgb', "247 215 183")
+        gapMat = serMatsDict['gap']
+        fuelMat = serMatsDict['fuel']
+        fuelMat.set('rgb', "219 89 89")
+
+
+
         # ss316 0.191
         # hasteN 0.042
         # BeO 0.410
         # intatm 0.357
-        def intRefMix(bar, clad, intref, air):
-
-            refMix = mix("reflMix", [bar, clad, intref, air], [0.191, 0.042, 0.410, 0.357])
-
-            return refMix
-
         nLayersTot = 22
         nActiveLayers = nLayersTot - 2
-        dz = (fuelLen-upperEndcapThick-lowerEndcapThick)/nActiveLayers
-        # Experimental Pin Comp
-        # fuelSerRadii = [fuelRad, dbRad, bpRad, gapRad, cladRad]
-        # fuelSerMats = [serMatsDict['fuel'], serMatsDict['diffusion_barrier'], serMatsDict['burnable_poison'], serMatsDict['gap'], serMatsDict['clad'], serMatsDict['coolant']]
+        activeFuelHeight = 35.56
+        dz = activeFuelHeight/nActiveLayers
 
         # ANS Winter Pin Comp
         fuelSerRadii = [fuelRad, gapRad, dbRad, bpRad, cladRad]
-        fuelSerMats = [serMatsDict['fuel'], serMatsDict['gap'], serMatsDict['diffusion_barrier'], serMatsDict['burnable_poison'], serMatsDict['clad'], serMatsDict['coolant']]
+        fuelSerMats = [fuelMat, gapMat, dbMat, bpMat, cladMat, airMat]
 
         upperEndCap = pin("upperEndCap", 2)
-        upperEndCap.set('materials', [serMatsDict['clad'], serMatsDict['coolant'] ])
+        upperEndCap.set('materials', [cladMat, airMat ])
         upperEndCap.set('radii', [cladRad])
-        lowerEndCap = pin("lowerEndCap", 2)
-        lowerEndCap.set('materials', [serMatsDict['clad'], serMatsDict['coolant'] ])
-        lowerEndCap.set('radii', [cladRad])
-        fuelSer = build3Dpin("fuelElem", fuelSerMats, fuelSerRadii, nLayersTot, dz=dz, hasUniqueMatlayers=False, topUniv=upperEndCap, topUnivdz=upperEndcapThick, botUniv=lowerEndCap, botUnivdz=lowerEndcapThick)
 
-        coolSerMats = [serMatsDict['coolant']]
+        upT = 0.000095
+        upperPois = pin("upperPoison", 1)
+        upperPois.set('materials', [bpMat])
+
+        uecPois = pinStack("uecWithPoison", 0, 0, 2)
+        uecPois.setStack(univs=np.array([upperPois, upperEndCap]), heights=np.array([0.00, upT]))
+        uecPois.collectAll()
+
+        lowerEndCap = pin("lowerEndCap", 2)
+        lowerEndCap.set('materials', [cladMat, airMat ])
+        lowerEndCap.set('radii', [cladRad])
+        fuelSer = build3Dpin("fuelElem", fuelSerMats, fuelSerRadii, nLayersTot, dz=dz, hasUniqueMatlayers=False, topUniv=uecPois, topUnivdz=upperEndcapThick, botUniv=lowerEndCap, botUnivdz=lowerEndcapThick)
+
+        coolSerMats = [airMat]
         upperEndCool = pin("upperEndCool", 1)
-        upperEndCool.set('materials', [serMatsDict['coolant'] ])
+        upperEndCool.set('materials', [airMat ])
         lowerEndCool = pin("lowerEndCool", 1)
-        lowerEndCool.set('materials', [serMatsDict['coolant'] ])
+        lowerEndCool.set('materials', [airMat ])
         coolSer = build3Dpin("900", coolSerMats, [], nLayersTot, dz=dz, hasUniqueMatlayers=False, topUniv=upperEndCool, topUnivdz=upperEndcapThick, botUniv=lowerEndCool, botUnivdz=lowerEndcapThick)
 
         nRings = 8
@@ -493,9 +523,8 @@ class S83D(S8ER):
 
         nOuter = 2
         hexLat1 = buildHexLattice("activeCoreLat", layout, univMap, nOuter, elemPitch, hexApothem = latticeApothem)
-        refMix = intRefMix(bar, clad, intref, air)
         intref1 = buildPeripheralRing(hexLat1, intRefRad, material= refMix, ringId="intref")
-        barrel1 = buildPeripheralRing(intref1, barrelRad, material= serMatsDict['barrel'], ringId= "barrel")
+        barrel1 = buildPeripheralRing(intref1, barrelRad, material= barMat, ringId= "barrel")
 
         cdNoShimRad = 17.82064
         cdUpperRad  = 19.7002
@@ -504,7 +533,13 @@ class S83D(S8ER):
         shimAUpperRad = 23.7609
         cdLowerThick = 3.1369
         cdUpperThick = 3.1369
+
         cdUpperCut = fuelLen - cdUpperThick
+
+        print("start of upper control drum lip:", cdUpperCut)
+
+        print("height of lower control drum lip:", cdLowerThick)
+
         drumRad = 11.9126 
         voidRad = 11.95
         drumFX = 23.972012  
@@ -528,12 +563,12 @@ class S83D(S8ER):
             vSurf5  = surf("svDrum5", "cyl",np.array([drumX, -drumY, voidRad]))
             vSurf6  = surf("svDrum6", "cyl",np.array([-drumX, -drumY, voidRad]))
 
-            cdCell1 = cell(uid+"cDrum1",mat=serMatsDict['control_drum'])
-            cdCell2 = cell(uid+"cDrum2",mat=serMatsDict['control_drum'])
-            cdCell3 = cell(uid+"cDrum3",mat=serMatsDict['control_drum'])
-            cdCell4 = cell(uid+"cDrum4",mat=serMatsDict['control_drum'])
-            cdCell5 = cell(uid+"cDrum5",mat=serMatsDict['control_drum'])
-            cdCell6 = cell(uid+"cDrum6",mat=serMatsDict['control_drum'])
+            cdCell1 = cell(uid+"cDrum1",mat=cdMat)
+            cdCell2 = cell(uid+"cDrum2",mat=cdMat)
+            cdCell3 = cell(uid+"cDrum3",mat=cdMat)
+            cdCell4 = cell(uid+"cDrum4",mat=cdMat)
+            cdCell5 = cell(uid+"cDrum5",mat=cdMat)
+            cdCell6 = cell(uid+"cDrum6",mat=cdMat)
 
             cdCell1.setSurfs([cdSurf1], [1])
             cdCell2.setSurfs([cdSurf2], [1])
@@ -612,8 +647,8 @@ class S83D(S8ER):
             cdFulld6.setFill(cd6)
             cdFulld6.setSurfs([vSurf6],[1])
 
-            cdSys = cell(uid+'cdSys', mat=serMatsDict['control_drum'])
-            cdVoidSurf = surf("barrelCD"+"c1", "cyl", np.array([0.0, 0.0, cdNoShimRad]))
+            cdSys = cell(uid+'cdSys', mat=cdMat)
+            cdVoidSurf = surf("barrelCD"+"c1", "cyl", np.array([0.0, 0.0, cdNoShimRad+.5]))
             cdSys.setSurfs([cdVoidSurf, vSurf6, vSurf2, vSurf3, vSurf4, vSurf5, vSurf1], [1, 0, 0, 0, 0, 0, 0])
 
             cdNoShimSurf = surf("barrelCD"+"h1", "hexyc", np.array([0.0, 0.0, cdNoShimRad]))
@@ -631,7 +666,7 @@ class S83D(S8ER):
             cdNoShimSurf = surf("barrelCD"+"h1", "hexyc", np.array([0.0, 0.0, cdNoShimRad]))
             shimAsurf = surf(uid+"ShimA"+"h1", "hexyc", np.array([0.0, 0.0, cdUpperRad]))
             shimAcut  = surf(uid+"ShimACut"+"h1", "hexxc", np.array([0.0, 0.0, 20.5775]))
-            ucd1Cell  = cell(uid+"shimA_cell1", mat=serMatsDict['control_drum'], isVoid=False)
+            ucd1Cell  = cell(uid+"shimA_cell1", mat=cdMat, isVoid=False)
             ucd1Cell.setSurfs([cdNoShimSurf, shimAsurf, shimAcut], [0, 1, 1])
             voidCell =  cell(uid+"void_cell1", isVoid=True)
             voidSurf =  surf(uid+"shimA_univcc1", "cyl", np.array([0.0, 0.0, shimAUpperRad]))
@@ -663,14 +698,14 @@ class S83D(S8ER):
         ugp.set('materials', [ugpMat])
 
         ugph = pin("pUGH", 2)
-        ugph.set('materials', [serMatsDict['coolant'], ugpMat])
+        ugph.set('materials', [airMat, ugpMat])
         ugph.set('radii', [ughr])
 
         lgp = pin("pLGP", 1)
-        lgp.set('materials', [serMatsDict['lower_gridplate']])
+        lgp.set('materials', [lgpMat])
 
         lgph = pin("pLGH", 2)
-        lgph.set('materials', [serMatsDict['coolant'], serMatsDict['lower_gridplate']])
+        lgph.set('materials', [airMat, lgpMat])
         lgph.set('radii', [lghr])
 
         univMap = {'1':ugph, '2':ugp, '0':ugp}
@@ -692,7 +727,7 @@ class S83D(S8ER):
                   1 1 1 1 1 1 1 1 1 1;\
                    2 1 1 1 1 1 1 1 2"
         nOuter = 2
-        ug = buildHexLattice("upperGridLat", layout, univMap, nOuter, elemPitch)
+        ug = buildHexLattice("upperGridLat", layout, univMap, nOuter, elemPitch, latType="POINT")
         ugBarrel = buildPeripheralRing(ug, barrelRad, ringId="ugBarrel")
         ugVoid  = buildPeripheralRing(ugBarrel, cdUpperApothem, ringId="upperCD", isVoid=True)
 
@@ -715,16 +750,25 @@ class S83D(S8ER):
                   1 1 1 1 1 1 1 1 1 1;\
                    2 1 1 1 1 1 1 1 2"
         nOuter = 2
-        lg = buildHexLattice("lowerGridLat", layout, univMap, nOuter, elemPitch)
+        lg = buildHexLattice("lowerGridLat", layout, univMap, nOuter, elemPitch, latType="POINT")
         lgBarrel = buildPeripheralRing(lg, barrelRad, ringId="lgBarrel")
         lgVoid = buildPeripheralRing(lgBarrel, cdUpperApothem, ringId="lowerCD", isVoid=True)
-
-        cStack = pinStack("core_grid", 0, 0, 3)
-        cStack.setStack(univs=np.array([lgVoid, cdBarrel, ugVoid]), heights=np.array([0.00, lgt, fuelLen+lgt]))
+        
+        voidPin = pin("voidPin", 1, isVoid=True)
+        cStack = pinStack("core_grid", 0, 0, 5)
+        cStack.setStack(univs=np.array([voidPin, lgVoid, cdBarrel, ugVoid, voidPin]), heights=np.array([0.00, 3.7293, 3.7293+lgt, 3.7293+fuelLen+lgt, 3.7293+fuelLen+ugt+lgt]))
         cStack.collectAll()
         cStack.setBoundary(lgVoid.boundary)
+
+        voidPin = pin("voidPin", 1, isVoid=True)
     
-        box1 = buildBoundingBox(cStack, width =cdUpperRad , length=cdUpperApothem, height=fuelLen+lgt+ugt)
+        box1 = buildBoundingBox(cStack, width =22.9 , length=22.9, height=3.7293+fuelLen+ugt+lgt+3.65)
+
+        print("start of lgp", 3.7293)
+        print("start of lowerdrumlip ", 3.7293+lgt)
+        print("start of ugt ", 3.7293+fuelLen+lgt)
+        print("start of uppervoid", 3.7293+fuelLen+ugt+lgt)
+
         map = {'active_core': box1}
         return map
         

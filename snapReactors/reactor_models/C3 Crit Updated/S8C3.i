@@ -60,7 +60,7 @@ mat UZrH_Summary -6.09    %moder ZrH1 1001 moder ZrH2 40000
 % --- Hastelloy C   https://tubingchina.com/Chemical-Composition-of-Hastelloy-Alloy.htm
 %   needed for lower grid plate (NAA-SR-9642, pg. 14)
 
-mat hasteC    sum
+mat hasteC    sum rgb 124 138 197
 28058.03c     -3.71428E-01
 28060.03c     -1.43073E-01
 28061.03c     -6.21929E-03
@@ -825,15 +825,17 @@ set bc 1
 
 % --- Neutron population: 100000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 100000 100 40
+set pop 100000 100 100
+
+set his 1
 
 % --- XY-plot (3)
 
-%plot 31 1000 1000  %-19.0 
-%plot 31 1000 1000  18.2 
-%plot 31 1000 1000 -17.8
-%plot 21 1000 1000
-%plot 11 1000 1000
+plot 31 1000 1000  %-19.0 
+plot 31 1000 1000  18.2 
+plot 31 1000 1000 -18.5
+plot 21 1000 1000
+plot 11 1000 1000
 % --- XY-meshplot (3), which is 700 by 700 pixels and covers the whole geometry
 
 mesh 3 900 900

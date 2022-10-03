@@ -1,19 +1,19 @@
 % --- Material volumes:
 
-% Produced Wed Sep 28 20:50:09 2022 by MC volume calculation routine by
-% sampling 100000000 random points in the geometry.
+% Produced Fri Sep 30 01:25:08 2022 by MC volume calculation routine by
+% sampling 1000000000 random points in the geometry.
 
 set mvol
 
-lower_gridplate         0 3.39120E+02 % (0.001)
-coolant                 0 2.69712E+03 % (0.001)
-clad                    0 1.24279E+03 % (0.001)
-fuel                    0 1.07623E+04 % (0.000)
-gap                     0 2.26984E+02 % (0.002)
-diffusion_barrier       0 1.80794E+02 % (0.002)
-burnable_poison         0 1.22071E+00 % (0.023)
-barrel                  0 4.33136E+02 % (0.001)
+lower_gridplate         0 3.38728E+02 % (0.001)
+coolant                 0 2.69383E+03 % (0.000)
+clad                    0 1.24238E+03 % (0.000)
+fuel                    0 1.07599E+04 % (0.000)
+gap                     0 2.26717E+02 % (0.001)
+diffusion_barrier       0 1.80247E+02 % (0.001)
+burnable_poison         0 1.32578E+00 % (0.008)
+barrel                  0 4.33518E+02 % (0.000)
 internal_reflector      0 0.00000E+00 % (0.000)
-reflMix                 0 7.85812E+02 % (0.001)
-control_drum            0 2.49647E+04 % (0.000)
-upper_gridplate         0 3.63710E+02 % (0.001)
+reflMix                 0 7.85365E+02 % (0.000)
+control_drum            0 2.50434E+04 % (0.000)
+upper_gridplate         0 3.64115E+02 % (0.001)

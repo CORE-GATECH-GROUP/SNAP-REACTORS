@@ -6,46 +6,74 @@
 
 
 % ----------------------------------------------
-% fuel element Materials:
+% f Materials:
 % ----------------------------------------------
-% Component Description: 
+% Component Description: SM2O3 poisoned Zirconium Hydride fuel elements
 % ----------------------------------------------
 
 % Material: density(kg/m^3) temp(K) reference description
 % fuel 6060.0 293.15  NA-Examples This is an example input file
-% diffusion_barrier N/A 293.15  NA-Examples This is an example input file
-% burnable_poison 8350.0 293.15  NA-Examples This is an example input file
-% gap 0.01574 293.15  NA-Examples This is an example input file
 % clad N/A 293.15  NA-Examples This is an example input file
+% diffusion_barrier N/A 293.15  NA-Examples This is an example input file
+% burnable_poison 835.0 293.15  NA-Examples This is an example input 
+% gap 0.01574 293.15  NA-Examples This is an example input file
 
 % ----------------------------------------------
-% coolant element Materials:
+% c Materials:
 % ----------------------------------------------
-% Component Description: 
+% Component Description: coolant channel element
 % ----------------------------------------------
 
 % Material: density(kg/m^3) temp(K) reference description
 % coolant 1.225 293.15  "1973 SNAP8 Summary.pdf" This is the calculated breakdown of sodium potassium 78 eutectic
 
 % ----------------------------------------------
-% internal reflector Materials:
+% i Materials:
 % ----------------------------------------------
-% Component Description: 
+% Component Description: internal reflectors located inside reactor barrel
 % ----------------------------------------------
 
 % Material: density(kg/m^3) temp(K) reference description
 % internal_reflector N/A 293.15  NA-Examples This is an example input file
 
 % ----------------------------------------------
-% barrel Materials:
+% b Materials:
 % ----------------------------------------------
-% Component Description: 
+% Component Description: Housing unit containing fuel element assembly and internal reflector
 % ----------------------------------------------
 
 % Material: density(kg/m^3) temp(K) reference description
 % barrel N/A 293.15  NA-Examples This is an example input file
 
-mat lower_gridplate    sum    
+% ----------------------------------------------
+% u Materials:
+% ----------------------------------------------
+% Component Description: upper gridplate to provide coolant flow and structurally locking in fuel elements
+% ----------------------------------------------
+
+% Material: density(kg/m^3) temp(K) reference description
+% barrel N/A 293.15  NA-Examples This is an example input file
+
+% ----------------------------------------------
+% l Materials:
+% ----------------------------------------------
+% Component Description: lower gridplate to provide coolant flow and structurally locking in fuel elements
+% ----------------------------------------------
+
+% Material: density(kg/m^3) temp(K) reference description
+% lower_gridplate N/A 293.15  NA-Examples This is an example input file
+
+% ----------------------------------------------
+% c Materials:
+% ----------------------------------------------
+% Component Description: control drum elements
+% ----------------------------------------------
+
+% Material: density(kg/m^3) temp(K) reference description
+% lower_gridplate N/A 293.15  NA-Examples control drum elements 
+% control_drum 1840.0 293.15  NA-Examples This is an example input file
+
+mat lower_gridplate    sum    rgb 124 138 197
 28058.03c	-0.371428
 28060.03c	-0.143073
 28061.03c	-0.00621929
@@ -80,7 +108,7 @@ mat lower_gridplate    sum
 29063.03c	-0.0034575
 29065.03c	-0.0015425
 
-mat coolant    -0.0012250000000000002    
+mat coolant    -0.0012250000000000002    rgb 196 193 193
 7014.03c	-0.752
 7015.03c	-0.00287
 8016.03c	-0.231
@@ -89,7 +117,7 @@ mat coolant    -0.0012250000000000002
 18038.03c	-0.000554
 18040.03c	-0.0121
 
-mat clad    sum    
+mat clad    sum    rgb 100 100 100
 28058.03c	-0.470343
 28060.03c	-0.181175
 28061.03c	-0.00787557
@@ -130,7 +158,7 @@ mat clad    sum
 22049.03c	-0.00013525
 22050.03c	-0.0001295
 
-mat fuel    -6.0600000000000005    
+mat fuel    -6.0600000000000005    rgb 219 89 89
 1001.03c	0.0596
 1002.03c	8.79e-06
 92235.03c	0.00143
@@ -183,7 +211,7 @@ mat diffusion_barrier    sum
 40094.03c	-0.00641283
 40096.03c	-0.00103314
 
-mat burnable_poison    -8.35    
+mat burnable_poison    -0.835    
 8016.03c	-0.137642
 62144.03c	-0.0265606
 62147.03c	-0.129354
@@ -193,7 +221,7 @@ mat burnable_poison    -8.35
 62152.03c	-0.230595
 62154.03c	-0.1961
 
-mat barrel    sum    
+mat barrel    sum    rgb 102 0 0
 6000.03c	-0.0008
 25055.03c	-0.02
 14028.03c	-0.00692385
@@ -231,16 +259,16 @@ mat internal_reflector    sum
 8016.03c	-0.63968
 4009.03c	-0.36032
 
-mix reflMix
+mix reflMix rgb 186 152 117
 barrel	0.191
 clad	0.042
 internal_reflector	0.41
 coolant	0.357
 
-mat control_drum    -1.84    
+mat control_drum    -1.84    rgb 247 215 183
 4009.03c	-1.0
 
-mat upper_gridplate    sum    
+mat upper_gridplate    sum    rgb 102 0 0
 6000.03c	-0.0008
 25055.03c	-0.02
 14028.03c	-0.00692385
