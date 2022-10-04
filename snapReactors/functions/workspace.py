@@ -15,8 +15,8 @@ from snapReactors.functions.utilities import createDictFromConatinerList
 # date = '2022-01-31 15:32:13'
 # ex1 = Database(filePath=filePath, version=version, date=date)
 
-# mats = Material.readDataFile(r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\jupyter_notebooks\test.txt")
-# matsDict = createDictFromConatinerList(mats)
+#mats = Material.readDataFile(r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\jupyter_notebooks\test.txt")
+#matsDict = createDictFromConatinerList(mats)
 
 # # Experimental Dimensions
 # # fr = Dimension("fuel_radius", 0.67564/100, unc=0.01, ref='NAA-SR-9642')
@@ -64,10 +64,9 @@ from snapReactors.functions.utilities import createDictFromConatinerList
 
 states = ReactorState._rsReader(r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\jupyter_notebooks\rsReadertest.txt")
 coldCore = states[0]
-# snapTemplate = S83D(coldCore._components[0], coldCore._components[1], coldCore._components[2], coldCore._components[3], coldCore._components[4],
-#                      coldCore._components[5], coldCore._components[6])
-
-#coldCore._components.pop()
+snapTemplate = S83D(coldCore._components[0], coldCore._components[1], coldCore._components[2], coldCore._components[3], coldCore._components[4],
+                     coldCore._components[5], coldCore._components[6])
+# coldCore._components.pop()
 
 xsPath = r"/mnt/c/Users/user/Documents/endfb7/sss_endfb7u.xsdata"
 
@@ -82,8 +81,8 @@ snap3D = S83D(coldCore._components[0], coldCore._components[1], coldCore._compon
 
 snap3D.setSettings(geoType='3D', nps = 1E+05, nact = 100, nskip=100, xsAbsPath=xsPath, plotOptions=([3, 3, 3, 1, 2], 1000, [18.3769, 5, 42, 0, 0], 1))
 
-sTest3D = Serpent("Serpent Test 3D")
-sTest3D.toSerpent(coldCore, snap3D, "serpent_test")
+# sTest3D = Serpent("Serpent Test 3D")
+# sTest3D.toSerpent(coldCore, snap3D, "serpent_test")
 
-sTest3D.plotHistoryData(r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\functions\serpent_test.main_his0.m")
-sTest3D.outputMaterialData(r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\functions\serpent_test.main.out", r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\functions\serpent_test.main.mvol")
+# sTest3D.plotHistoryData(r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\functions\serpent_test.main_his0.m")
+# sTest3D.outputMaterialData(r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\functions\serpent_test.main.out", r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\functions\serpent_test.main.mvol")

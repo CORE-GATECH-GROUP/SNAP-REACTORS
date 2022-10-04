@@ -233,6 +233,14 @@ class Component:
                             input[key]['dim']=dimensions
                             mindexBegin = i
                             dFlag = False
+                    
+                    if i == len(data)-1:
+                        mindexEnd = i
+                        materials = Material._materialReader(data[
+                                mindexBegin:mindexEnd])
+                        key = 'comp'+str(cpcount)
+                        input[key]['mat'] = materials
+                        
 
         components = [0]*input["ncomps"]
         for i in range(0, len(components)):
@@ -268,7 +276,7 @@ class Component:
                 _dimensions = None
 
             try:
-                comp = Component(id[0], _materials, _dimensions, des)
+                comp = Component(id, _materials, _dimensions, des)
                 components[i] = comp
             except ValueError as ve:
                 raise Exception("Error For Component @ line: {} \n"

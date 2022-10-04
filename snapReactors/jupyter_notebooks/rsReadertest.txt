@@ -771,6 +771,7 @@ Description: This is an example input file
 Component id: control drum system
 Component Description: control drum elements 
 ============================================================================================
+Dimensions:
 
 Material Name: control_drum
 ctype: WEIGHT
@@ -820,57 +821,3 @@ unc: [1 1
 }
 Reference: NA-Examples
 Description: This is an example input file
-
-Component id: control drum system
-Component Description: control drum elements 
-============================================================================================
-
-Material Name: control_drum
-ctype: WEIGHT
-utype: NONE
-Number of isotopes: 1
-Isotopic Definition:
--------------------
-4009    1.0
-
-Properties: {
-%property values for material
-%type = const, table, corr
-%id = property id
-%unit = SI or imperial
-%must have a ":" between keyword and value i.e "keyword: value"
-%each keyword must on its own line i.e 
-% keyword1: val1 
-% keyword: val2
-%array type inputs are denoted using "[]" i.e [1, 2] or [1 2] 
-%multidimensional arrays can be denoted using the ";" matlab style i.e
-% [1 2; 3 4] or [1, 2;
-%                3, 4]
-% or by using a newline i.e
-%   [1 2
-     3 4] 
-%Supports comments by preceeding a line with "%"
-%Examples are included below
-
-type:const
-id:r
-unit:SI 
-value:[1840]
-unc:[.01]
-
-type:table 
-id:h 
-unit:imperial 
-ref:NAA-SR-6160 
-dep1unit:K 
-dep1values: [1 2]
-dep2unit:Pa 
-dep2values: [.1 .2]
-value: [1.1 2.1
-        3.1 4.1]
-unc: [1 1
-        1 1]
-}
-Reference: NA-Examples
-Description: This is an example input file
-
