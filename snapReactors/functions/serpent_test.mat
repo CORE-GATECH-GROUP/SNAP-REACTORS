@@ -6,72 +6,71 @@
 
 
 % ----------------------------------------------
-% f Materials:
+% fuel element Materials:
 % ----------------------------------------------
 % Component Description: SM2O3 poisoned Zirconium Hydride fuel elements
 % ----------------------------------------------
 
 % Material: density(kg/m^3) temp(K) reference description
-% fuel 6060.0 293.15  NA-Examples This is an example input file
-% clad N/A 293.15  NA-Examples This is an example input file
-% diffusion_barrier N/A 293.15  NA-Examples This is an example input file
-% burnable_poison 835.0 293.15  NA-Examples This is an example input 
-% gap 0.01574 293.15  NA-Examples This is an example input file
+% fuel 6060.0 293.15  NA-Examples  This is an example input file
+% clad N/A 293.15  NA-Examples  This is an example input file
+% diffusion_barrier N/A 293.15  NA-Examples  This is an example input file
+% burnable_poison 8350.0 293.15  NA-Examples  This is an example input 
+% gap 0.01574 293.15  NA-Examples  This is an example input file
 
 % ----------------------------------------------
-% c Materials:
+% coolant element Materials:
 % ----------------------------------------------
 % Component Description: coolant channel element
 % ----------------------------------------------
 
 % Material: density(kg/m^3) temp(K) reference description
-% coolant 1.225 293.15  "1973 SNAP8 Summary.pdf" This is the calculated breakdown of sodium potassium 78 eutectic
+% coolant 1.225 293.15  "1973 SNAP8 Summary.pdf"  This is the calculated breakdown of sodium potassium 78 eutectic
 
 % ----------------------------------------------
-% i Materials:
+% internal reflector Materials:
 % ----------------------------------------------
 % Component Description: internal reflectors located inside reactor barrel
 % ----------------------------------------------
 
 % Material: density(kg/m^3) temp(K) reference description
-% internal_reflector N/A 293.15  NA-Examples This is an example input file
+% internal_reflector N/A 293.15  NA-Examples  This is an example input file
 
 % ----------------------------------------------
-% b Materials:
+% barrel Materials:
 % ----------------------------------------------
 % Component Description: Housing unit containing fuel element assembly and internal reflector
 % ----------------------------------------------
 
 % Material: density(kg/m^3) temp(K) reference description
-% barrel N/A 293.15  NA-Examples This is an example input file
+% barrel N/A 293.15  NA-Examples  This is an example input file
 
 % ----------------------------------------------
-% u Materials:
+% upper gridplate Materials:
 % ----------------------------------------------
 % Component Description: upper gridplate to provide coolant flow and structurally locking in fuel elements
 % ----------------------------------------------
 
 % Material: density(kg/m^3) temp(K) reference description
-% barrel N/A 293.15  NA-Examples This is an example input file
+% barrel N/A 293.15  NA-Examples  This is an example input file
 
 % ----------------------------------------------
-% l Materials:
+% lower gridplate Materials:
 % ----------------------------------------------
 % Component Description: lower gridplate to provide coolant flow and structurally locking in fuel elements
 % ----------------------------------------------
 
 % Material: density(kg/m^3) temp(K) reference description
-% lower_gridplate N/A 293.15  NA-Examples This is an example input file
+% lower_gridplate N/A 293.15  NA-Examples  This is an example input file
 
 % ----------------------------------------------
-% c Materials:
+% control drum system Materials:
 % ----------------------------------------------
 % Component Description: control drum elements
 % ----------------------------------------------
 
 % Material: density(kg/m^3) temp(K) reference description
-% lower_gridplate N/A 293.15  NA-Examples control drum elements 
-% control_drum 1840.0 293.15  NA-Examples This is an example input file
+% control_drum 1840.0 293.15 N/A N/A
 
 mat lower_gridplate    sum    rgb 124 138 197
 28058.03c	-0.371428
@@ -211,7 +210,7 @@ mat diffusion_barrier    sum
 40094.03c	-0.00641283
 40096.03c	-0.00103314
 
-mat burnable_poison    -0.835    
+mat burnable_poison    -8.35    
 8016.03c	-0.137642
 62144.03c	-0.0265606
 62147.03c	-0.129354

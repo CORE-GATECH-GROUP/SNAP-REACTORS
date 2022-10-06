@@ -6,71 +6,71 @@
 
 
 % ----------------------------------------------
-% f Dimensions:
+% fuel element Dimensions:
 % ----------------------------------------------
 % Component Description: SM2O3 poisoned Zirconium Hydride fuel elements
 % ----------------------------------------------
 
 % Parameter(unit): value unc reference description
-% fuel_radius(cm): 0.67564 0.01radius of the fuelNAA-SR-9642
-% gap_radius(cm): 0.68272 0.01outer radius of the gapNAA-SR-9642
-% diffusion_barrier_radius(cm): 0.6883 0.01outer diffusion barrier radiusNAA-SR-9642
-% poison_coating_radius(cm): 0.68834 0.01outer radius of poison coatingNAA-SR-9642
-% clad_radius(cm): 0.71374 0.01outer clad radiusNAA-SR-9642
-% upper_endcap_thickness(cm): 0.22850499999999999 0.01thickness of upper endcapsNAA-SR-9642
-% lower_endcap_thickness(cm): 0.9652000000000001 0.01thickness of lower endcapsNAA-SR-9642
-% fuel_length(cm): 36.7538 0.01length of the fuel element not including endcap thicknessesNAA-SR-9642
+% fuel_radius(cm): 0.67564 0.01 radius of the fuel NAA-SR-9642 
+% gap_radius(cm): 0.68272 0.01 outer radius of the gap NAA-SR-9642 
+% diffusion_barrier_radius(cm): 0.6883 0.01 outer diffusion barrier radius NAA-SR-9642 
+% poison_coating_radius(cm): 0.68834 0.01 outer radius of poison coating NAA-SR-9642 
+% clad_radius(cm): 0.71374 0.01 outer clad radius NAA-SR-9642 
+% upper_endcap_thickness(cm): 0.22850499999999999 0.01 thickness of upper endcaps NAA-SR-9642 
+% lower_endcap_thickness(cm): 0.9652000000000001 0.01 thickness of lower endcaps NAA-SR-9642 
+% fuel_length(cm): 36.7538 0.01 length of the fuel element not including endcap thicknesses NAA-SR-9642 
 
 % ----------------------------------------------
-% c Dimensions:
+% coolant element Dimensions:
 % ----------------------------------------------
 % Component Description: coolant channel element
 % ----------------------------------------------
 
 % Parameter(unit): value unc reference description
-% lattice_pitch(cm): 1.4478 0.01triangular lattice pitchNAA-SR-9642
+% lattice_pitch(cm): 1.4478 0.01 triangular lattice pitch NAA-SR-9642 
 
 % ----------------------------------------------
-% i Dimensions:
+% internal reflector Dimensions:
 % ----------------------------------------------
 % Component Description: internal reflectors located inside reactor barrel
 % ----------------------------------------------
 
 % Parameter(unit): value unc reference description
-% assembly_pitch(cm): 11.0414 0.01pitch of the assembly measuring from surface of internal reflectorNAA-SR-9642
-% internal_reflector_radius(cm): 11.718036 0.01radius of curvature of internal reflectorNAA-SR-9642
+% assembly_pitch(cm): 11.0414 0.01 pitch of the assembly measuring from surface of internal reflector NAA-SR-9642 
+% internal_reflector_radius(cm): 11.718036 0.01 radius of curvature of internal reflector NAA-SR-9642 
 
 % ----------------------------------------------
-% b Dimensions:
+% barrel Dimensions:
 % ----------------------------------------------
 % Component Description: Housing unit containing fuel element assembly and internal reflector
 % ----------------------------------------------
 
 % Parameter(unit): value unc reference description
-% barrel_radius(cm): 11.87704 0.01inner radius of barrel housingNAA-SR-9642
+% barrel_radius(cm): 11.87704 0.01 inner radius of barrel housing NAA-SR-9642 
 
 % ----------------------------------------------
-% u Dimensions:
+% upper gridplate Dimensions:
 % ----------------------------------------------
 % Component Description: upper gridplate to provide coolant flow and structurally locking in fuel elements
 % ----------------------------------------------
 
 % Parameter(unit): value unc reference description
-% upper_gridplate_thickness(cm): 0.8730999999999999 0.01thickness of the upper gridplateNAA-SR-9642
-% upper_gridplate_hole_radius(cm): 0.19840000000000002 0.01hole radius for fuel element structural pinsNAA-SR-9642
+% upper_gridplate_thickness(cm): 0.8730999999999999 0.01 thickness of the upper gridplate NAA-SR-9642 
+% upper_gridplate_hole_radius(cm): 0.19840000000000002 0.01 hole radius for fuel element structural pins NAA-SR-9642 
 
 % ----------------------------------------------
-% l Dimensions:
+% lower gridplate Dimensions:
 % ----------------------------------------------
 % Component Description: lower gridplate to provide coolant flow and structurally locking in fuel elements
 % ----------------------------------------------
 
 % Parameter(unit): value unc reference description
-% lower_gridplate_thickness(cm): 0.7938000000000001 0.01thickness of lower grid plateNAA-SR_9642
-% lower_gridplate_hole_radius(cm): 0.15875 0.01hole radius for fuel element structural pinsNAA-SR-9642
+% lower_gridplate_thickness(cm): 0.7938000000000001 0.01 thickness of lower grid plate NAA-SR_9642 
+% lower_gridplate_hole_radius(cm): 0.15875 0.01 hole radius for fuel element structural pins NAA-SR-9642 
 
 % ----------------------------------------------
-% c Dimensions:
+% control drum system Dimensions:
 % ----------------------------------------------
 % Component Description: control drum elements
 % ----------------------------------------------
@@ -78,13 +78,67 @@
 % Parameter(unit): value unc reference description
 
 surf lowerCDcc1 cyl 0.0 0.0 22.7478 
-surf putBorder cuboid -22.7478 22.7478 -22.7478 22.7478 0.0 45.8 
+surf putBorder cuboid -22.7478 22.7478 -22.7478 22.7478 -22.9 22.9 
+surf core_gridspz0 pz -22.9 
+surf core_gridspz1 pz -19.1707 
+surf core_gridspz2 pz -18.3769 
+surf core_gridspz3 pz 18.3769 
+surf core_gridspz4 pz 19.25 
 surf lgBarrelcc1 cyl 0.0 0.0 11.87704 
 surf barrelcc1 cyl 0.0 0.0 11.87704 
 surf cdBarrelHexVoidcc1 cyl 0.0 0.0 22.7478 
 surf intrefcc1 cyl 0.0 0.0 11.718036 
 surf hexBorder hexyc 0.0 0.0 11.0414 
+surf 900spz0 pz -18.3769 
+surf 900spz1 pz -17.4117 
+surf 900spz2 pz -15.6337 
+surf 900spz3 pz -13.855699999999999 
+surf 900spz4 pz -12.077699999999998 
+surf 900spz5 pz -10.299699999999998 
+surf 900spz6 pz -8.521699999999997 
+surf 900spz7 pz -6.743699999999997 
+surf 900spz8 pz -4.9656999999999965 
+surf 900spz9 pz -3.1876999999999964 
+surf 900spz10 pz -1.4096999999999964 
+surf 900spz11 pz 0.3683000000000036 
+surf 900spz12 pz 2.1463000000000036 
+surf 900spz13 pz 3.9243000000000037 
+surf 900spz14 pz 5.702300000000004 
+surf 900spz15 pz 7.480300000000003 
+surf 900spz16 pz 9.258300000000004 
+surf 900spz17 pz 11.036300000000004 
+surf 900spz18 pz 12.814300000000005 
+surf 900spz19 pz 14.592300000000005 
+surf 900spz20 pz 16.370300000000004 
+surf 900spz21 pz 18.148300000000003 
+surf fuelElemspz0 pz -18.3769 
+surf fuelElemspz1 pz -17.4117 
+surf fuelElemspz2 pz -15.6337 
+surf fuelElemspz3 pz -13.855699999999999 
+surf fuelElemspz4 pz -12.077699999999998 
+surf fuelElemspz5 pz -10.299699999999998 
+surf fuelElemspz6 pz -8.521699999999997 
+surf fuelElemspz7 pz -6.743699999999997 
+surf fuelElemspz8 pz -4.9656999999999965 
+surf fuelElemspz9 pz -3.1876999999999964 
+surf fuelElemspz10 pz -1.4096999999999964 
+surf fuelElemspz11 pz 0.3683000000000036 
+surf fuelElemspz12 pz 2.1463000000000036 
+surf fuelElemspz13 pz 3.9243000000000037 
+surf fuelElemspz14 pz 5.702300000000004 
+surf fuelElemspz15 pz 7.480300000000003 
+surf fuelElemspz16 pz 9.258300000000004 
+surf fuelElemspz17 pz 11.036300000000004 
+surf fuelElemspz18 pz 12.814300000000005 
+surf fuelElemspz19 pz 14.592300000000005 
+surf fuelElemspz20 pz 16.370300000000004 
+surf fuelElemspz21 pz 18.148300000000003 
+surf uecWithPoisonspz0 pz 18.148300000000003 
+surf uecWithPoisonspz1 pz 18.148395000000004 
 surf lowershimA_univcc1 cyl 0.0 0.0 23.7609 
+surf controlDrumHousingspz0 pz -18.3769 
+surf controlDrumHousingspz1 pz -15.239999999999998 
+surf controlDrumHousingspz2 pz 15.240000000000002 
 surf barrelCDh1 hexyc 0.0 0.0 17.82064 
 surf svDrum1 cyl 0.0 23.972012 11.95 
 surf svDrum2 cyl 0.0 -23.972012 11.95 
@@ -109,6 +163,11 @@ surf ugBarrelcc1 cyl 0.0 0.0 11.87704
 surf upperCDcc1 cyl 0.0 0.0 22.7478 
 cell fillRegion 1  fill core_grid -lowerCDcc1 
 cell voidRegion 1  void lowerCDcc1 -putBorder 
+cell core_gridcpz0 core_grid  fill voidPin core_gridspz0 -core_gridspz1 
+cell core_gridcpz1 core_grid  fill lgBarrel_univlowerCD_univ core_gridspz1 -core_gridspz2 
+cell core_gridcpz2 core_grid  fill active_core_univintref_univbarrel_univcontrolDrumHousingcdBarrelHexVoid_univ_univ core_gridspz2 -core_gridspz3 
+cell core_gridcpz3 core_grid  fill ugBarrel_univupperCD_univ core_gridspz3 -core_gridspz4 
+cell core_gridcpz4 core_grid  fill voidPin core_gridspz4 
 cell lgBarrel_univlowerCD_cell1 lgBarrel_univlowerCD_univ  fill lgBarrel_univ -lgBarrelcc1 
 cell lgBarrel_univlowerCD_cell2 lgBarrel_univlowerCD_univ  fill lowerCD_univ lgBarrelcc1 -lowerCDcc1 
 cell lgBarrel_cell lgBarrel_univ  fill lowerGridLat -lgBarrelcc1 
@@ -120,10 +179,213 @@ cell active_core_univintref_univbarrel_cell2 active_core_univintref_univbarrel_u
 cell active_core_univintref_cell1 active_core_univintref_univ  fill active_core_univ -hexBorder 
 cell active_core_univintref_cell2 active_core_univintref_univ  fill intref_univ hexBorder -intrefcc1 
 cell active_core_cell active_core_univ  fill activeCoreLat -hexBorder 
+cell 900cpz0 900  fill lowerEndCool 900spz0 -900spz1 
+cell 900cpz1 900  fill 900z0 900spz1 -900spz2 
+cell 900cpz2 900  fill 900z1 900spz2 -900spz3 
+cell 900cpz3 900  fill 900z2 900spz3 -900spz4 
+cell 900cpz4 900  fill 900z3 900spz4 -900spz5 
+cell 900cpz5 900  fill 900z4 900spz5 -900spz6 
+cell 900cpz6 900  fill 900z5 900spz6 -900spz7 
+cell 900cpz7 900  fill 900z6 900spz7 -900spz8 
+cell 900cpz8 900  fill 900z7 900spz8 -900spz9 
+cell 900cpz9 900  fill 900z8 900spz9 -900spz10 
+cell 900cpz10 900  fill 900z9 900spz10 -900spz11 
+cell 900cpz11 900  fill 900z10 900spz11 -900spz12 
+cell 900cpz12 900  fill 900z11 900spz12 -900spz13 
+cell 900cpz13 900  fill 900z12 900spz13 -900spz14 
+cell 900cpz14 900  fill 900z13 900spz14 -900spz15 
+cell 900cpz15 900  fill 900z14 900spz15 -900spz16 
+cell 900cpz16 900  fill 900z15 900spz16 -900spz17 
+cell 900cpz17 900  fill 900z16 900spz17 -900spz18 
+cell 900cpz18 900  fill 900z17 900spz18 -900spz19 
+cell 900cpz19 900  fill 900z18 900spz19 -900spz20 
+cell 900cpz20 900  fill 900z19 900spz20 -900spz21 
+cell 900cpz21 900  fill upperEndCool 900spz21 
+cell fuelElemcpz0100200300400500600700 800  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1100200300400500600700 800  fill fuelElemz0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2100200300400500600700 800  fill fuelElemz1 fuelElemspz2 -fuelElemspz3 
+cell fuelElemcpz3100200300400500600700 800  fill fuelElemz2 fuelElemspz3 -fuelElemspz4 
+cell fuelElemcpz4100200300400500600700 800  fill fuelElemz3 fuelElemspz4 -fuelElemspz5 
+cell fuelElemcpz5100200300400500600700 800  fill fuelElemz4 fuelElemspz5 -fuelElemspz6 
+cell fuelElemcpz6100200300400500600700 800  fill fuelElemz5 fuelElemspz6 -fuelElemspz7 
+cell fuelElemcpz7100200300400500600700 800  fill fuelElemz6 fuelElemspz7 -fuelElemspz8 
+cell fuelElemcpz8100200300400500600700 800  fill fuelElemz7 fuelElemspz8 -fuelElemspz9 
+cell fuelElemcpz9100200300400500600700 800  fill fuelElemz8 fuelElemspz9 -fuelElemspz10 
+cell fuelElemcpz10100200300400500600700 800  fill fuelElemz9 fuelElemspz10 -fuelElemspz11 
+cell fuelElemcpz11100200300400500600700 800  fill fuelElemz10 fuelElemspz11 -fuelElemspz12 
+cell fuelElemcpz12100200300400500600700 800  fill fuelElemz11 fuelElemspz12 -fuelElemspz13 
+cell fuelElemcpz13100200300400500600700 800  fill fuelElemz12 fuelElemspz13 -fuelElemspz14 
+cell fuelElemcpz14100200300400500600700 800  fill fuelElemz13 fuelElemspz14 -fuelElemspz15 
+cell fuelElemcpz15100200300400500600700 800  fill fuelElemz14 fuelElemspz15 -fuelElemspz16 
+cell fuelElemcpz16100200300400500600700 800  fill fuelElemz15 fuelElemspz16 -fuelElemspz17 
+cell fuelElemcpz17100200300400500600700 800  fill fuelElemz16 fuelElemspz17 -fuelElemspz18 
+cell fuelElemcpz18100200300400500600700 800  fill fuelElemz17 fuelElemspz18 -fuelElemspz19 
+cell fuelElemcpz19100200300400500600700 800  fill fuelElemz18 fuelElemspz19 -fuelElemspz20 
+cell fuelElemcpz20100200300400500600700 800  fill fuelElemz19 fuelElemspz20 -fuelElemspz21 
+cell fuelElemcpz21100200300400500600700 800  fill uecWithPoison fuelElemspz21 
+cell uecWithPoisoncpz0 uecWithPoison  fill upperPoison uecWithPoisonspz0 -uecWithPoisonspz1 
+cell uecWithPoisoncpz1 uecWithPoison  fill upperEndCap uecWithPoisonspz1 
+cell fuelElemcpz0100200300400500600 700  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1100200300400500600 700  fill fuelElemz0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2100200300400500600 700  fill fuelElemz1 fuelElemspz2 -fuelElemspz3 
+cell fuelElemcpz3100200300400500600 700  fill fuelElemz2 fuelElemspz3 -fuelElemspz4 
+cell fuelElemcpz4100200300400500600 700  fill fuelElemz3 fuelElemspz4 -fuelElemspz5 
+cell fuelElemcpz5100200300400500600 700  fill fuelElemz4 fuelElemspz5 -fuelElemspz6 
+cell fuelElemcpz6100200300400500600 700  fill fuelElemz5 fuelElemspz6 -fuelElemspz7 
+cell fuelElemcpz7100200300400500600 700  fill fuelElemz6 fuelElemspz7 -fuelElemspz8 
+cell fuelElemcpz8100200300400500600 700  fill fuelElemz7 fuelElemspz8 -fuelElemspz9 
+cell fuelElemcpz9100200300400500600 700  fill fuelElemz8 fuelElemspz9 -fuelElemspz10 
+cell fuelElemcpz10100200300400500600 700  fill fuelElemz9 fuelElemspz10 -fuelElemspz11 
+cell fuelElemcpz11100200300400500600 700  fill fuelElemz10 fuelElemspz11 -fuelElemspz12 
+cell fuelElemcpz12100200300400500600 700  fill fuelElemz11 fuelElemspz12 -fuelElemspz13 
+cell fuelElemcpz13100200300400500600 700  fill fuelElemz12 fuelElemspz13 -fuelElemspz14 
+cell fuelElemcpz14100200300400500600 700  fill fuelElemz13 fuelElemspz14 -fuelElemspz15 
+cell fuelElemcpz15100200300400500600 700  fill fuelElemz14 fuelElemspz15 -fuelElemspz16 
+cell fuelElemcpz16100200300400500600 700  fill fuelElemz15 fuelElemspz16 -fuelElemspz17 
+cell fuelElemcpz17100200300400500600 700  fill fuelElemz16 fuelElemspz17 -fuelElemspz18 
+cell fuelElemcpz18100200300400500600 700  fill fuelElemz17 fuelElemspz18 -fuelElemspz19 
+cell fuelElemcpz19100200300400500600 700  fill fuelElemz18 fuelElemspz19 -fuelElemspz20 
+cell fuelElemcpz20100200300400500600 700  fill fuelElemz19 fuelElemspz20 -fuelElemspz21 
+cell fuelElemcpz21100200300400500600 700  fill uecWithPoison fuelElemspz21 
+cell fuelElemcpz0100200300400500 600  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1100200300400500 600  fill fuelElemz0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2100200300400500 600  fill fuelElemz1 fuelElemspz2 -fuelElemspz3 
+cell fuelElemcpz3100200300400500 600  fill fuelElemz2 fuelElemspz3 -fuelElemspz4 
+cell fuelElemcpz4100200300400500 600  fill fuelElemz3 fuelElemspz4 -fuelElemspz5 
+cell fuelElemcpz5100200300400500 600  fill fuelElemz4 fuelElemspz5 -fuelElemspz6 
+cell fuelElemcpz6100200300400500 600  fill fuelElemz5 fuelElemspz6 -fuelElemspz7 
+cell fuelElemcpz7100200300400500 600  fill fuelElemz6 fuelElemspz7 -fuelElemspz8 
+cell fuelElemcpz8100200300400500 600  fill fuelElemz7 fuelElemspz8 -fuelElemspz9 
+cell fuelElemcpz9100200300400500 600  fill fuelElemz8 fuelElemspz9 -fuelElemspz10 
+cell fuelElemcpz10100200300400500 600  fill fuelElemz9 fuelElemspz10 -fuelElemspz11 
+cell fuelElemcpz11100200300400500 600  fill fuelElemz10 fuelElemspz11 -fuelElemspz12 
+cell fuelElemcpz12100200300400500 600  fill fuelElemz11 fuelElemspz12 -fuelElemspz13 
+cell fuelElemcpz13100200300400500 600  fill fuelElemz12 fuelElemspz13 -fuelElemspz14 
+cell fuelElemcpz14100200300400500 600  fill fuelElemz13 fuelElemspz14 -fuelElemspz15 
+cell fuelElemcpz15100200300400500 600  fill fuelElemz14 fuelElemspz15 -fuelElemspz16 
+cell fuelElemcpz16100200300400500 600  fill fuelElemz15 fuelElemspz16 -fuelElemspz17 
+cell fuelElemcpz17100200300400500 600  fill fuelElemz16 fuelElemspz17 -fuelElemspz18 
+cell fuelElemcpz18100200300400500 600  fill fuelElemz17 fuelElemspz18 -fuelElemspz19 
+cell fuelElemcpz19100200300400500 600  fill fuelElemz18 fuelElemspz19 -fuelElemspz20 
+cell fuelElemcpz20100200300400500 600  fill fuelElemz19 fuelElemspz20 -fuelElemspz21 
+cell fuelElemcpz21100200300400500 600  fill uecWithPoison fuelElemspz21 
+cell fuelElemcpz0100200300400 500  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1100200300400 500  fill fuelElemz0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2100200300400 500  fill fuelElemz1 fuelElemspz2 -fuelElemspz3 
+cell fuelElemcpz3100200300400 500  fill fuelElemz2 fuelElemspz3 -fuelElemspz4 
+cell fuelElemcpz4100200300400 500  fill fuelElemz3 fuelElemspz4 -fuelElemspz5 
+cell fuelElemcpz5100200300400 500  fill fuelElemz4 fuelElemspz5 -fuelElemspz6 
+cell fuelElemcpz6100200300400 500  fill fuelElemz5 fuelElemspz6 -fuelElemspz7 
+cell fuelElemcpz7100200300400 500  fill fuelElemz6 fuelElemspz7 -fuelElemspz8 
+cell fuelElemcpz8100200300400 500  fill fuelElemz7 fuelElemspz8 -fuelElemspz9 
+cell fuelElemcpz9100200300400 500  fill fuelElemz8 fuelElemspz9 -fuelElemspz10 
+cell fuelElemcpz10100200300400 500  fill fuelElemz9 fuelElemspz10 -fuelElemspz11 
+cell fuelElemcpz11100200300400 500  fill fuelElemz10 fuelElemspz11 -fuelElemspz12 
+cell fuelElemcpz12100200300400 500  fill fuelElemz11 fuelElemspz12 -fuelElemspz13 
+cell fuelElemcpz13100200300400 500  fill fuelElemz12 fuelElemspz13 -fuelElemspz14 
+cell fuelElemcpz14100200300400 500  fill fuelElemz13 fuelElemspz14 -fuelElemspz15 
+cell fuelElemcpz15100200300400 500  fill fuelElemz14 fuelElemspz15 -fuelElemspz16 
+cell fuelElemcpz16100200300400 500  fill fuelElemz15 fuelElemspz16 -fuelElemspz17 
+cell fuelElemcpz17100200300400 500  fill fuelElemz16 fuelElemspz17 -fuelElemspz18 
+cell fuelElemcpz18100200300400 500  fill fuelElemz17 fuelElemspz18 -fuelElemspz19 
+cell fuelElemcpz19100200300400 500  fill fuelElemz18 fuelElemspz19 -fuelElemspz20 
+cell fuelElemcpz20100200300400 500  fill fuelElemz19 fuelElemspz20 -fuelElemspz21 
+cell fuelElemcpz21100200300400 500  fill uecWithPoison fuelElemspz21 
+cell fuelElemcpz0100200300 400  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1100200300 400  fill fuelElemz0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2100200300 400  fill fuelElemz1 fuelElemspz2 -fuelElemspz3 
+cell fuelElemcpz3100200300 400  fill fuelElemz2 fuelElemspz3 -fuelElemspz4 
+cell fuelElemcpz4100200300 400  fill fuelElemz3 fuelElemspz4 -fuelElemspz5 
+cell fuelElemcpz5100200300 400  fill fuelElemz4 fuelElemspz5 -fuelElemspz6 
+cell fuelElemcpz6100200300 400  fill fuelElemz5 fuelElemspz6 -fuelElemspz7 
+cell fuelElemcpz7100200300 400  fill fuelElemz6 fuelElemspz7 -fuelElemspz8 
+cell fuelElemcpz8100200300 400  fill fuelElemz7 fuelElemspz8 -fuelElemspz9 
+cell fuelElemcpz9100200300 400  fill fuelElemz8 fuelElemspz9 -fuelElemspz10 
+cell fuelElemcpz10100200300 400  fill fuelElemz9 fuelElemspz10 -fuelElemspz11 
+cell fuelElemcpz11100200300 400  fill fuelElemz10 fuelElemspz11 -fuelElemspz12 
+cell fuelElemcpz12100200300 400  fill fuelElemz11 fuelElemspz12 -fuelElemspz13 
+cell fuelElemcpz13100200300 400  fill fuelElemz12 fuelElemspz13 -fuelElemspz14 
+cell fuelElemcpz14100200300 400  fill fuelElemz13 fuelElemspz14 -fuelElemspz15 
+cell fuelElemcpz15100200300 400  fill fuelElemz14 fuelElemspz15 -fuelElemspz16 
+cell fuelElemcpz16100200300 400  fill fuelElemz15 fuelElemspz16 -fuelElemspz17 
+cell fuelElemcpz17100200300 400  fill fuelElemz16 fuelElemspz17 -fuelElemspz18 
+cell fuelElemcpz18100200300 400  fill fuelElemz17 fuelElemspz18 -fuelElemspz19 
+cell fuelElemcpz19100200300 400  fill fuelElemz18 fuelElemspz19 -fuelElemspz20 
+cell fuelElemcpz20100200300 400  fill fuelElemz19 fuelElemspz20 -fuelElemspz21 
+cell fuelElemcpz21100200300 400  fill uecWithPoison fuelElemspz21 
+cell fuelElemcpz0100200 300  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1100200 300  fill fuelElemz0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2100200 300  fill fuelElemz1 fuelElemspz2 -fuelElemspz3 
+cell fuelElemcpz3100200 300  fill fuelElemz2 fuelElemspz3 -fuelElemspz4 
+cell fuelElemcpz4100200 300  fill fuelElemz3 fuelElemspz4 -fuelElemspz5 
+cell fuelElemcpz5100200 300  fill fuelElemz4 fuelElemspz5 -fuelElemspz6 
+cell fuelElemcpz6100200 300  fill fuelElemz5 fuelElemspz6 -fuelElemspz7 
+cell fuelElemcpz7100200 300  fill fuelElemz6 fuelElemspz7 -fuelElemspz8 
+cell fuelElemcpz8100200 300  fill fuelElemz7 fuelElemspz8 -fuelElemspz9 
+cell fuelElemcpz9100200 300  fill fuelElemz8 fuelElemspz9 -fuelElemspz10 
+cell fuelElemcpz10100200 300  fill fuelElemz9 fuelElemspz10 -fuelElemspz11 
+cell fuelElemcpz11100200 300  fill fuelElemz10 fuelElemspz11 -fuelElemspz12 
+cell fuelElemcpz12100200 300  fill fuelElemz11 fuelElemspz12 -fuelElemspz13 
+cell fuelElemcpz13100200 300  fill fuelElemz12 fuelElemspz13 -fuelElemspz14 
+cell fuelElemcpz14100200 300  fill fuelElemz13 fuelElemspz14 -fuelElemspz15 
+cell fuelElemcpz15100200 300  fill fuelElemz14 fuelElemspz15 -fuelElemspz16 
+cell fuelElemcpz16100200 300  fill fuelElemz15 fuelElemspz16 -fuelElemspz17 
+cell fuelElemcpz17100200 300  fill fuelElemz16 fuelElemspz17 -fuelElemspz18 
+cell fuelElemcpz18100200 300  fill fuelElemz17 fuelElemspz18 -fuelElemspz19 
+cell fuelElemcpz19100200 300  fill fuelElemz18 fuelElemspz19 -fuelElemspz20 
+cell fuelElemcpz20100200 300  fill fuelElemz19 fuelElemspz20 -fuelElemspz21 
+cell fuelElemcpz21100200 300  fill uecWithPoison fuelElemspz21 
+cell fuelElemcpz0100 200  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1100 200  fill fuelElemz0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2100 200  fill fuelElemz1 fuelElemspz2 -fuelElemspz3 
+cell fuelElemcpz3100 200  fill fuelElemz2 fuelElemspz3 -fuelElemspz4 
+cell fuelElemcpz4100 200  fill fuelElemz3 fuelElemspz4 -fuelElemspz5 
+cell fuelElemcpz5100 200  fill fuelElemz4 fuelElemspz5 -fuelElemspz6 
+cell fuelElemcpz6100 200  fill fuelElemz5 fuelElemspz6 -fuelElemspz7 
+cell fuelElemcpz7100 200  fill fuelElemz6 fuelElemspz7 -fuelElemspz8 
+cell fuelElemcpz8100 200  fill fuelElemz7 fuelElemspz8 -fuelElemspz9 
+cell fuelElemcpz9100 200  fill fuelElemz8 fuelElemspz9 -fuelElemspz10 
+cell fuelElemcpz10100 200  fill fuelElemz9 fuelElemspz10 -fuelElemspz11 
+cell fuelElemcpz11100 200  fill fuelElemz10 fuelElemspz11 -fuelElemspz12 
+cell fuelElemcpz12100 200  fill fuelElemz11 fuelElemspz12 -fuelElemspz13 
+cell fuelElemcpz13100 200  fill fuelElemz12 fuelElemspz13 -fuelElemspz14 
+cell fuelElemcpz14100 200  fill fuelElemz13 fuelElemspz14 -fuelElemspz15 
+cell fuelElemcpz15100 200  fill fuelElemz14 fuelElemspz15 -fuelElemspz16 
+cell fuelElemcpz16100 200  fill fuelElemz15 fuelElemspz16 -fuelElemspz17 
+cell fuelElemcpz17100 200  fill fuelElemz16 fuelElemspz17 -fuelElemspz18 
+cell fuelElemcpz18100 200  fill fuelElemz17 fuelElemspz18 -fuelElemspz19 
+cell fuelElemcpz19100 200  fill fuelElemz18 fuelElemspz19 -fuelElemspz20 
+cell fuelElemcpz20100 200  fill fuelElemz19 fuelElemspz20 -fuelElemspz21 
+cell fuelElemcpz21100 200  fill uecWithPoison fuelElemspz21 
+cell fuelElemcpz0 100  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1 100  fill fuelElemz0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2 100  fill fuelElemz1 fuelElemspz2 -fuelElemspz3 
+cell fuelElemcpz3 100  fill fuelElemz2 fuelElemspz3 -fuelElemspz4 
+cell fuelElemcpz4 100  fill fuelElemz3 fuelElemspz4 -fuelElemspz5 
+cell fuelElemcpz5 100  fill fuelElemz4 fuelElemspz5 -fuelElemspz6 
+cell fuelElemcpz6 100  fill fuelElemz5 fuelElemspz6 -fuelElemspz7 
+cell fuelElemcpz7 100  fill fuelElemz6 fuelElemspz7 -fuelElemspz8 
+cell fuelElemcpz8 100  fill fuelElemz7 fuelElemspz8 -fuelElemspz9 
+cell fuelElemcpz9 100  fill fuelElemz8 fuelElemspz9 -fuelElemspz10 
+cell fuelElemcpz10 100  fill fuelElemz9 fuelElemspz10 -fuelElemspz11 
+cell fuelElemcpz11 100  fill fuelElemz10 fuelElemspz11 -fuelElemspz12 
+cell fuelElemcpz12 100  fill fuelElemz11 fuelElemspz12 -fuelElemspz13 
+cell fuelElemcpz13 100  fill fuelElemz12 fuelElemspz13 -fuelElemspz14 
+cell fuelElemcpz14 100  fill fuelElemz13 fuelElemspz14 -fuelElemspz15 
+cell fuelElemcpz15 100  fill fuelElemz14 fuelElemspz15 -fuelElemspz16 
+cell fuelElemcpz16 100  fill fuelElemz15 fuelElemspz16 -fuelElemspz17 
+cell fuelElemcpz17 100  fill fuelElemz16 fuelElemspz17 -fuelElemspz18 
+cell fuelElemcpz18 100  fill fuelElemz17 fuelElemspz18 -fuelElemspz19 
+cell fuelElemcpz19 100  fill fuelElemz18 fuelElemspz19 -fuelElemspz20 
+cell fuelElemcpz20 100  fill fuelElemz19 fuelElemspz20 -fuelElemspz21 
+cell fuelElemcpz21 100  fill uecWithPoison fuelElemspz21 
 cell intref_cell intref_univ  reflMix hexBorder -intrefcc1 
 cell barrel_cell barrel_univ  barrel intrefcc1 -barrelcc1 
 cell controlDrumHousingcdBarrelHexVoid_cell1 controlDrumHousingcdBarrelHexVoid_univ  fill controlDrumHousing -lowershimA_univcc1 
 cell controlDrumHousingcdBarrelHexVoid_cell2 controlDrumHousingcdBarrelHexVoid_univ  fill cdBarrelHexVoid_univ lowershimA_univcc1 -cdBarrelHexVoidcc1 
+cell controlDrumHousingcpz0 controlDrumHousing  fill lowercdFulllowershimA_univ_univ controlDrumHousingspz0 -controlDrumHousingspz1 
+cell controlDrumHousingcpz1 controlDrumHousing  fill barrelcdFullbarrelVoid_univ controlDrumHousingspz1 -controlDrumHousingspz2 
+cell controlDrumHousingcpz2 controlDrumHousing  fill uppercdFulluppershimA_univ_univ controlDrumHousingspz2 
 cell lowercdFulllowershimA_univ_cell1 lowercdFulllowershimA_univ_univ  fill lowercdFull -barrelCDh1 
 cell lowercdFulllowershimA_univ_cell2 lowercdFulllowershimA_univ_univ  fill lowershimA_univ barrelCDh1 -lowershimA_univcc1 
 cell lowercdFulld1 lowercdFull  fill lowercd1_univ -svDrum1 
@@ -202,13 +464,6 @@ cell ugBarrel_cell ugBarrel_univ  fill upperGridLat -ugBarrelcc1
 cell upperCD_cell upperCD_univ  void ugBarrelcc1 -upperCDcc1 
 cell outRegionIn 0  fill 1 -putBorder 
 cell outRegionOut 0  outside putBorder 
-lat core_grid 9 0 0 5
-0.0	voidPin
-3.7293	lgBarrel_univlowerCD_univ
-4.5230999999999995	active_core_univintref_univbarrel_univcontrolDrumHousingcdBarrelHexVoid_univ_univ
-41.2769	ugBarrel_univupperCD_univ
-42.15	voidPin
-
 pin voidPin
 void
 
@@ -265,31 +520,10 @@ lat activeCoreLat 2 0 0 21 21 1.4478
                    900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 
                     900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 
                      
-lat 900 9 0 0 22
-0.0	lowerEndCool
-0.9652000000000001	900z1
-2.7432	900z2
-4.5212	900z3
-6.2992	900z4
-8.0772	900z5
-9.8552	900z6
-11.633199999999999	900z7
-13.4112	900z8
-15.1892	900z9
-16.9672	900z10
-18.7452	900z11
-20.5232	900z12
-22.301199999999998	900z13
-24.0792	900z14
-25.8572	900z15
-27.6352	900z16
-29.4132	900z17
-31.1912	900z18
-32.9692	900z19
-34.74720000000001	900z20
-36.525200000000005	upperEndCool
-
 pin lowerEndCool
+coolant
+
+pin 900z0
 coolant
 
 pin 900z1
@@ -349,37 +583,18 @@ coolant
 pin 900z19
 coolant
 
-pin 900z20
-coolant
-
 pin upperEndCool
 coolant
 
-lat 800 9 0 0 22
-0.0	lowerEndCap
-0.9652000000000001	fuelElemz1
-2.7432	fuelElemz2
-4.5212	fuelElemz3
-6.2992	fuelElemz4
-8.0772	fuelElemz5
-9.8552	fuelElemz6
-11.633199999999999	fuelElemz7
-13.4112	fuelElemz8
-15.1892	fuelElemz9
-16.9672	fuelElemz10
-18.7452	fuelElemz11
-20.5232	fuelElemz12
-22.301199999999998	fuelElemz13
-24.0792	fuelElemz14
-25.8572	fuelElemz15
-27.6352	fuelElemz16
-29.4132	fuelElemz17
-31.1912	fuelElemz18
-32.9692	fuelElemz19
-34.74720000000001	fuelElemz20
-36.525200000000005	uecWithPoison
-
 pin lowerEndCap
+clad	0.71374
+coolant
+
+pin fuelElemz0
+fuel	0.67564
+gap	0.68272
+diffusion_barrier	0.6883
+burnable_poison	0.68834
 clad	0.71374
 coolant
 
@@ -535,197 +750,12 @@ burnable_poison	0.68834
 clad	0.71374
 coolant
 
-pin fuelElemz20
-fuel	0.67564
-gap	0.68272
-diffusion_barrier	0.6883
-burnable_poison	0.68834
-clad	0.71374
-coolant
-
-lat uecWithPoison 9 0 0 2
-0.0	upperPoison
-9.5e-05	upperEndCap
-
 pin upperPoison
 burnable_poison
 
 pin upperEndCap
 clad	0.71374
 coolant
-
-lat 700 9 0 0 22
-0.0	lowerEndCap
-0.9652000000000001	fuelElemz1
-2.7432	fuelElemz2
-4.5212	fuelElemz3
-6.2992	fuelElemz4
-8.0772	fuelElemz5
-9.8552	fuelElemz6
-11.633199999999999	fuelElemz7
-13.4112	fuelElemz8
-15.1892	fuelElemz9
-16.9672	fuelElemz10
-18.7452	fuelElemz11
-20.5232	fuelElemz12
-22.301199999999998	fuelElemz13
-24.0792	fuelElemz14
-25.8572	fuelElemz15
-27.6352	fuelElemz16
-29.4132	fuelElemz17
-31.1912	fuelElemz18
-32.9692	fuelElemz19
-34.74720000000001	fuelElemz20
-36.525200000000005	uecWithPoison
-
-lat 600 9 0 0 22
-0.0	lowerEndCap
-0.9652000000000001	fuelElemz1
-2.7432	fuelElemz2
-4.5212	fuelElemz3
-6.2992	fuelElemz4
-8.0772	fuelElemz5
-9.8552	fuelElemz6
-11.633199999999999	fuelElemz7
-13.4112	fuelElemz8
-15.1892	fuelElemz9
-16.9672	fuelElemz10
-18.7452	fuelElemz11
-20.5232	fuelElemz12
-22.301199999999998	fuelElemz13
-24.0792	fuelElemz14
-25.8572	fuelElemz15
-27.6352	fuelElemz16
-29.4132	fuelElemz17
-31.1912	fuelElemz18
-32.9692	fuelElemz19
-34.74720000000001	fuelElemz20
-36.525200000000005	uecWithPoison
-
-lat 500 9 0 0 22
-0.0	lowerEndCap
-0.9652000000000001	fuelElemz1
-2.7432	fuelElemz2
-4.5212	fuelElemz3
-6.2992	fuelElemz4
-8.0772	fuelElemz5
-9.8552	fuelElemz6
-11.633199999999999	fuelElemz7
-13.4112	fuelElemz8
-15.1892	fuelElemz9
-16.9672	fuelElemz10
-18.7452	fuelElemz11
-20.5232	fuelElemz12
-22.301199999999998	fuelElemz13
-24.0792	fuelElemz14
-25.8572	fuelElemz15
-27.6352	fuelElemz16
-29.4132	fuelElemz17
-31.1912	fuelElemz18
-32.9692	fuelElemz19
-34.74720000000001	fuelElemz20
-36.525200000000005	uecWithPoison
-
-lat 400 9 0 0 22
-0.0	lowerEndCap
-0.9652000000000001	fuelElemz1
-2.7432	fuelElemz2
-4.5212	fuelElemz3
-6.2992	fuelElemz4
-8.0772	fuelElemz5
-9.8552	fuelElemz6
-11.633199999999999	fuelElemz7
-13.4112	fuelElemz8
-15.1892	fuelElemz9
-16.9672	fuelElemz10
-18.7452	fuelElemz11
-20.5232	fuelElemz12
-22.301199999999998	fuelElemz13
-24.0792	fuelElemz14
-25.8572	fuelElemz15
-27.6352	fuelElemz16
-29.4132	fuelElemz17
-31.1912	fuelElemz18
-32.9692	fuelElemz19
-34.74720000000001	fuelElemz20
-36.525200000000005	uecWithPoison
-
-lat 300 9 0 0 22
-0.0	lowerEndCap
-0.9652000000000001	fuelElemz1
-2.7432	fuelElemz2
-4.5212	fuelElemz3
-6.2992	fuelElemz4
-8.0772	fuelElemz5
-9.8552	fuelElemz6
-11.633199999999999	fuelElemz7
-13.4112	fuelElemz8
-15.1892	fuelElemz9
-16.9672	fuelElemz10
-18.7452	fuelElemz11
-20.5232	fuelElemz12
-22.301199999999998	fuelElemz13
-24.0792	fuelElemz14
-25.8572	fuelElemz15
-27.6352	fuelElemz16
-29.4132	fuelElemz17
-31.1912	fuelElemz18
-32.9692	fuelElemz19
-34.74720000000001	fuelElemz20
-36.525200000000005	uecWithPoison
-
-lat 200 9 0 0 22
-0.0	lowerEndCap
-0.9652000000000001	fuelElemz1
-2.7432	fuelElemz2
-4.5212	fuelElemz3
-6.2992	fuelElemz4
-8.0772	fuelElemz5
-9.8552	fuelElemz6
-11.633199999999999	fuelElemz7
-13.4112	fuelElemz8
-15.1892	fuelElemz9
-16.9672	fuelElemz10
-18.7452	fuelElemz11
-20.5232	fuelElemz12
-22.301199999999998	fuelElemz13
-24.0792	fuelElemz14
-25.8572	fuelElemz15
-27.6352	fuelElemz16
-29.4132	fuelElemz17
-31.1912	fuelElemz18
-32.9692	fuelElemz19
-34.74720000000001	fuelElemz20
-36.525200000000005	uecWithPoison
-
-lat 100 9 0 0 22
-0.0	lowerEndCap
-0.9652000000000001	fuelElemz1
-2.7432	fuelElemz2
-4.5212	fuelElemz3
-6.2992	fuelElemz4
-8.0772	fuelElemz5
-9.8552	fuelElemz6
-11.633199999999999	fuelElemz7
-13.4112	fuelElemz8
-15.1892	fuelElemz9
-16.9672	fuelElemz10
-18.7452	fuelElemz11
-20.5232	fuelElemz12
-22.301199999999998	fuelElemz13
-24.0792	fuelElemz14
-25.8572	fuelElemz15
-27.6352	fuelElemz16
-29.4132	fuelElemz17
-31.1912	fuelElemz18
-32.9692	fuelElemz19
-34.74720000000001	fuelElemz20
-36.525200000000005	uecWithPoison
-
-lat controlDrumHousing 9 0 0 3
-0.0	lowercdFulllowershimA_univ_univ
-3.1369	barrelcdFullbarrelVoid_univ
-33.6169	uppercdFulluppershimA_univ_univ
 
 lat upperGridLat 3 0 0 21 21 1.4478
 pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP pUGP 

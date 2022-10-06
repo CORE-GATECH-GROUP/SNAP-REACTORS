@@ -45,7 +45,7 @@ from serpentGenerator.functions.housing import housing as hous
 from serpentGenerator.functions.branches import branches as bdict
 from serpentGenerator.functions.core import core
 from serpentGenerator.functions.pin import pin
-from serpentGenerator.functions.builders import (buildHexLattice, buildPeripheralRing, buildBoundingBox, build3Dpin, buildPeripheralObject)
+from serpentGenerator.functions.builders import (buildHexLattice, buildPeripheralRing, buildBoundingBox, build3Dpin, buildPeripheralObject, buildStack, buildStackPlanes, build3DPinPlanes)
 from serpentGenerator.functions.utilities import (createDictFromConatinerList)
 KGM3_GCM3 = 1/1000
 M_CM = 100
@@ -394,8 +394,6 @@ class S83D(S8ER):
         lowerEndcapThick = fuelElement.dimensionsDict['lower_endcap_thickness'].valueSERP
         fuelLen = fuelElement.dimensionsDict['fuel_length'].valueSERP
 
-        print("fuel len 1:", fuelLen)
-
         dbMat = fuelElement.materialsDict['diffusion_barrier']
         dbRad = fuelElement.dimensionsDict['diffusion_barrier_radius'].valueSERP
 
@@ -424,6 +422,19 @@ class S83D(S8ER):
         lgt = lowerGridplate.dimensionsDict['lower_gridplate_thickness'].valueSERP
         lghr = lowerGridplate.dimensionsDict['lower_gridplate_hole_radius'].valueSERP
         lgpMat = lowerGridplate.materialsDict['lower_gridplate']
+
+        #nLayersTot = 22
+        nActiveLayers = 20
+        activeFuelHeight = 35.56
+        dz = activeFuelHeight/nActiveLayers
+        upT = 0.000095
+
+        # print("lgp read in", lgt)
+        # print("lcap read in", lowerEndcapThick)
+        # print("active fuel read in", activeFuelHeight)
+        # print("poison layer read in", upT)
+        # print("ucap read in", upperEndcapThick)
+        # print("ugp read in", ugt)
 
         cdMat = controlDrums.materialsDict['control_drum']
 
@@ -456,17 +467,6 @@ class S83D(S8ER):
         fuelMat = serMatsDict['fuel']
         fuelMat.set('rgb', "219 89 89")
 
-
-
-        # ss316 0.191
-        # hasteN 0.042
-        # BeO 0.410
-        # intatm 0.357
-        nLayersTot = 22
-        nActiveLayers = nLayersTot - 2
-        activeFuelHeight = 35.56
-        dz = activeFuelHeight/nActiveLayers
-
         # ANS Winter Pin Comp
         fuelSerRadii = [fuelRad, gapRad, dbRad, bpRad, cladRad]
         fuelSerMats = [fuelMat, gapMat, dbMat, bpMat, cladMat, airMat]
@@ -475,25 +475,35 @@ class S83D(S8ER):
         upperEndCap.set('materials', [cladMat, airMat ])
         upperEndCap.set('radii', [cladRad])
 
-        upT = 0.000095
         upperPois = pin("upperPoison", 1)
         upperPois.set('materials', [bpMat])
 
-        uecPois = pinStack("uecWithPoison", 0, 0, 2)
-        uecPois.setStack(univs=np.array([upperPois, upperEndCap]), heights=np.array([0.00, upT]))
-        uecPois.collectAll()
+        lvt = 3.7293
+        uvt = 3.65 
+        # print("lowervoid read in", lvt)
+        # print("uppervoid read in", uvt)
+
+        uecPois = buildStackPlanes("uecWithPoison", [upperPois, upperEndCap], [upT, upperEndcapThick], -22.9+lvt+lgt+activeFuelHeight+lowerEndcapThick)
+        #uecPois = buildStack("uecWithPoison", [upperPois, upperEndCap], [upT, upperEndcapThick])
+
+        # uecPois = pinStack("uecWithPoison", 0, 0, 2)
+        # uecPois.setStack(univs=np.array([upperPois, upperEndCap]), heights=np.array([0.00, upT]))
+        # uecPois.collectAll()
+
+        uecPoisLen = upT + upperEndcapThick
 
         lowerEndCap = pin("lowerEndCap", 2)
         lowerEndCap.set('materials', [cladMat, airMat ])
         lowerEndCap.set('radii', [cladRad])
-        fuelSer = build3Dpin("fuelElem", fuelSerMats, fuelSerRadii, nLayersTot, dz=dz, hasUniqueMatlayers=False, topUniv=uecPois, topUnivdz=upperEndcapThick, botUniv=lowerEndCap, botUnivdz=lowerEndcapThick)
-
+        fuelSer = build3DPinPlanes("fuelElem", fuelSerMats, fuelSerRadii, nActiveLayers, dz, -22.9+lvt+lgt, topUniv=uecPois, topUnivdz=uecPoisLen, botUniv=lowerEndCap, botUnivdz=lowerEndcapThick)
+        #fuelSer = build3Dpin("fuelElem", fuelSerMats, fuelSerRadii, nLayersTot, dz=dz, hasUniqueMatlayers=False, topUniv=uecPois, topUnivdz=uecPoisLen, botUniv=lowerEndCap, botUnivdz=lowerEndcapThick)
         coolSerMats = [airMat]
         upperEndCool = pin("upperEndCool", 1)
         upperEndCool.set('materials', [airMat ])
         lowerEndCool = pin("lowerEndCool", 1)
         lowerEndCool.set('materials', [airMat ])
-        coolSer = build3Dpin("900", coolSerMats, [], nLayersTot, dz=dz, hasUniqueMatlayers=False, topUniv=upperEndCool, topUnivdz=upperEndcapThick, botUniv=lowerEndCool, botUnivdz=lowerEndcapThick)
+        coolSer = build3DPinPlanes("900", coolSerMats, [], nActiveLayers, dz, -22.9+lvt+lgt, topUniv=upperEndCool, topUnivdz=uecPoisLen, botUniv=lowerEndCool, botUnivdz=lowerEndcapThick)
+        #coolSer = build3Dpin("900", coolSerMats, [], nLayersTot, dz=dz, hasUniqueMatlayers=False, topUniv=upperEndCool, topUnivdz=uecPoisLen, botUniv=lowerEndCool, botUnivdz=lowerEndcapThick)
 
         nRings = 8
         fes = [0]*nRings
@@ -533,12 +543,7 @@ class S83D(S8ER):
         shimAUpperRad = 23.7609
         cdLowerThick = 3.1369
         cdUpperThick = 3.1369
-
-        cdUpperCut = fuelLen - cdUpperThick
-
-        print("start of upper control drum lip:", cdUpperCut)
-
-        print("height of lower control drum lip:", cdLowerThick)
+        activeDrumHeight= fuelLen - cdUpperThick - cdLowerThick
 
         drumRad = 11.9126 
         voidRad = 11.95
@@ -547,6 +552,10 @@ class S83D(S8ER):
         angle1 = 30
         drumX = drumFX*np.cos(angle1*deg_rad)
         drumY = drumFX*np.sin(angle1*deg_rad)
+
+        # print("lower drum height read in", cdLowerThick)
+        # print("active drum height read in", activeDrumHeight)
+        # print("upper drum height read in", cdUpperThick)
 
         def _buildControlDrums(uid):
             cdSurf1  = surf("sDrum1", "cyl",np.array([0, drumFX, drumRad]))
@@ -685,11 +694,19 @@ class S83D(S8ER):
         lcd1 = _buildControlDrums("lower")
         lvd1 = buildPeripheralObject(lcd1, _buildShimA("lower"))
 
+        lvt = 3.7293
+        uvt = 3.65 
+        # print("lowervoid read in", lvt)
+        # print("uppervoid read in", uvt)
 
-        cdStack = pinStack("controlDrumHousing", 0, 0, 3)
-        cdStack.setStack(univs=np.array([lvd1, vd1, uvd1]), heights=np.array([0.00, cdLowerThick, cdUpperCut]))
-        cdStack.collectAll()
-        cdStack.setBoundary(lvd1.boundary)
+
+        # cdStack = pinStack("controlDrumHousing", 0, 0, 3)
+        # cdStack.setStack(univs=np.array([lvd1, vd1, uvd1]), heights=np.array([0.00, cdLowerThick, cdUpperCut]))
+        # cdStack.collectAll()
+        # cdStack.setBoundary(lvd1.boundary)
+
+        cdStack = buildStackPlanes("controlDrumHousing", [lvd1, vd1, uvd1], [cdLowerThick, activeDrumHeight, cdUpperThick], -22.9+lvt+lgt, lvd1.boundary)
+        #cdStack = buildStack("controlDrumHousing", [lvd1, vd1, uvd1], [cdLowerThick, activeDrumHeight, cdUpperThick], lvd1.boundary)
 
         cdVoid = buildPeripheralRing(cdStack, cdUpperApothem, ringId="cdBarrelHexVoid", isVoid=True)
         cdBarrel = buildPeripheralObject(barrel1, cdVoid)
@@ -753,21 +770,23 @@ class S83D(S8ER):
         lg = buildHexLattice("lowerGridLat", layout, univMap, nOuter, elemPitch, latType="POINT")
         lgBarrel = buildPeripheralRing(lg, barrelRad, ringId="lgBarrel")
         lgVoid = buildPeripheralRing(lgBarrel, cdUpperApothem, ringId="lowerCD", isVoid=True)
-        
-        voidPin = pin("voidPin", 1, isVoid=True)
-        cStack = pinStack("core_grid", 0, 0, 5)
-        cStack.setStack(univs=np.array([voidPin, lgVoid, cdBarrel, ugVoid, voidPin]), heights=np.array([0.00, 3.7293, 3.7293+lgt, 3.7293+fuelLen+lgt, 3.7293+fuelLen+ugt+lgt]))
-        cStack.collectAll()
-        cStack.setBoundary(lgVoid.boundary)
+
+        lvt = 3.7293
+        uvt = 3.65 
+        # print("lowervoid read in", lvt)
+        # print("uppervoid read in", uvt)
 
         voidPin = pin("voidPin", 1, isVoid=True)
+        cStack = buildStackPlanes("core_grid", [voidPin, lgVoid, cdBarrel, ugVoid, voidPin], [lvt, lgt, fuelLen, ugt, uvt], -22.9, lgVoid.boundary)
+        #cStack = buildStack("core_grid", [voidPin, lgVoid, cdBarrel, ugVoid, voidPin], [lvt, lgt, fuelLen, ugt, uvt], lgVoid.boundary)
+        # cStack = pinStack("core_grid", 0, 0, 5)
+        # cStack.setStack(univs=np.array([voidPin, lgVoid, cdBarrel, ugVoid, voidPin]), heights=np.array([0.00, 3.7293, 3.7293+lgt, 3.7293+fuelLen+lgt, 3.7293+fuelLen+ugt+lgt]))
+        # cStack.collectAll()
+        # cStack.setBoundary(lgVoid.boundary)
+
+        # print(vars(cStack))
     
-        box1 = buildBoundingBox(cStack, width =22.9 , length=22.9, height=3.7293+fuelLen+ugt+lgt+3.65)
-
-        print("start of lgp", 3.7293)
-        print("start of lowerdrumlip ", 3.7293+lgt)
-        print("start of ugt ", 3.7293+fuelLen+lgt)
-        print("start of uppervoid", 3.7293+fuelLen+ugt+lgt)
+        box1 = buildBoundingBox(cStack, width =22.9 , length=22.9, height=22.9)
 
         map = {'active_core': box1}
         return map

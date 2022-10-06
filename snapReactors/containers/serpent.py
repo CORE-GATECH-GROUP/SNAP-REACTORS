@@ -125,7 +125,7 @@ class Serpent:
         comps = rs._components
         for comp in comps:
             mats = comp._materials
-            print(comp.id, comp._materials)
+            #print(comp.id, comp._materials)
 
             nameStr = comp.id
             descStr = comp.description if comp.description != None else "" 
@@ -146,10 +146,10 @@ class Serpent:
                     tempStr = str(mat.dependencyDict['T'])
                 else:
                     tempStr = str(293.15)
-                refStr = mat.reference
-                descStr = mat.description
+                refStr = mat.reference if mat.reference != None else "N/A"
+                descStr = mat.description if mat.description != None else "N/A"
                 matStr = matStr + header
-                matStr = matStr + "% "+nameStr+" "+densStr+" "+ tempStr+" "+refStr+ descStr + "\n"
+                matStr = matStr + "% "+nameStr+" "+densStr+" "+ tempStr+" "+refStr+ " "+ descStr + "\n"
             matStr = matStr + "\n"
         
         matStr = matsHeader + matStr 
@@ -177,13 +177,12 @@ class Serpent:
                 "\n% Parameter(unit): value unc reference description\n"
             dimStr = dimStr + compHeader
             dims = comp._dimensions
-            print(comp.id, comp._dimensions)
             for dim in dims:
                 fdimVal = str(dim.valueSI*ALLOWED_DIMENSIONS[dim.id].conversion.S2SERP)
                 fdimUnits = "("+ALLOWED_DIMENSIONS[dim.id].units.Serpent+"): "
-                fdimUnc = str(dim.unc)
-                fdimDesc = dim.reference if dim.reference != None else " " 
-                fdimRef = dim.description if dim.description != None else " " 
+                fdimUnc = str(dim.unc) + " "
+                fdimDesc = dim.reference + " " if dim.reference != None else " " 
+                fdimRef = dim.description+ " " if dim.description != None else " " 
                 dimStr = dimStr + "% "+dim.id+fdimUnits+fdimVal+" "+fdimUnc+ fdimRef+ fdimDesc + "\n"
             dimStr = dimStr + "\n"
         dimStr = dimsHeader + dimStr
@@ -285,8 +284,8 @@ class Serpent:
                         mdens.append(float(massDens))
                         #mass = lines[ldx+7].replace("-", "").replace("Mass", "").replace("g", "").strip()
                         #print("mass: "+ mass +" g\n")
-        print(mdens)
-        print(vols)
+        # print(mdens)
+        # print(vols)
         mass = [0]*len(mdens)
         for i in range(0, len(words)):
             mass[i] = mdens[i]*vols[i]

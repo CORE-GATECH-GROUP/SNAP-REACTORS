@@ -323,7 +323,7 @@ Properties: {
 type:const
 id:r
 unit:SI 
-value:[835]
+value:[8350]
 unc:[.01]
 
 type:table 
@@ -586,7 +586,7 @@ Component Description: upper gridplate to provide coolant flow and structurally 
 ============================================================================================
 Dimensions:
 id: upper_gridplate_thickness
-value:0.008731
+value: 0.008731
 unit: SI
 unc: 0.01
 ref: NAA-SR-9642
@@ -600,7 +600,7 @@ ref: NAA-SR-9642
 desc: hole radius for fuel element structural pins
 
 Material Name: barrel
-ctype: WEIGHT
+ctype: WEIGHT 
 utype: NONE
 Number of isotopes: 32
 Isotopic Definition:
