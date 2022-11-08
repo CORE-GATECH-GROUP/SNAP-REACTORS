@@ -169,7 +169,109 @@ class Component:
                 evalProps = evalProps[self._materials[i].id] = evalProp
 
             return evalProps
+    def addDimension(self, dim):
+        """ Add data for a list of materials
+
+        Values for a list of materials are added using the ``addmaterial`` 
+        method. These values must be of instance type Material.
+
+
+        Parameters
+        ----------
+        mtl : list
+            list of materials of instance type Material
+
+        Raises
+        ------
+        TypeError
+            If ``mtl`` is not an ndarray of instance type Material
+
+        Examples
+        --------
+        >>> p1 = Constant('cv', 'THPHYS', 1, 'kg')
+
+        >>> boronCarbide = Material(matName= "Boron Carbide",
+        >>>                                                 utype= "ABSOLUTE", 
+        >>>         ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
+        >>>            abundances= np.array(0.xxx, 0.yyy, 0.zzz),
+        >>>            unc = np.array(xxx, yyy, zzz), reference = NA-SR-6162, 
+        >>>            description = "This is an example", _properties = p1)
+
+        >>> controlRod = Component(id = "Control Rod", 
+        >>>                        _materials= boronCarbide)
+    
+        >>> p2 = Table('h', 'THPHYS', np.array([1, 2, 3, 4]), 'W/K*m^2', 
+        >>>     np.array([100, 200, 300, 400]), 'K', 
+        >>>     unc = np.array([.01, .01, .01, .01]))
+
+        >>> hasteB = Material(matName= "Hastelloy B", utype= "ABSOLUTE", 
+        >>>         ctype= "WEIGHT", isotopes= np.array("B-10", "B-9", "C-12")
+        >>>        abundances= np.array(0.xxx, 0.yyy, 0.zzz),
+        >>>        unc = np.array(xxx, yyy, zzz), reference = NA-SR-6162, 
+        >>>        description = "Second Example", _properties = p2)
+
+        >>> controlRod.addmaterial([hasteB])
+
+        """
+        _isinstanceList(dim, Dimension, "List of dimensions")
+        for d in dim:
+            self._dimensions.append(d)
+        self._setDimDict()
+
     def _componentReader(data):
+        """Reads component data to initialize component object. 
+        Furthemore, the formatting of data structure is assumed to have the \
+        following formatting:
+
+        Component id: Example Component
+        Component Description: Example Component Description
+        =============================================================
+        Dimensions:
+        id: Example ID
+        value: 0.0067564
+        unit: SI or Imperial
+        unc: value
+        ref: Example Reference
+        desc: Example Description
+        ...
+
+        Material Name: exampleName1
+        ctype: compositionType
+        utype: uncertaintyType
+        Number of isotopes: isoNumber
+        Isotopic Definition:
+        --------------------
+        AAZZZ XXXXX UUUUU
+        ...
+        reference: NA-Examples
+        description: This is an example input file
+        
+        Properties: {
+        type:const
+        id:cp
+        unit:SI 
+        value:[1]
+        unc:[.01]
+
+        Material Name: exampleName2
+        ctype: compositionType
+        utype: uncertaintyType
+        Number of isotopes: isoNumber
+        Isotopic Definition:
+        --------------------
+        AAZZZ XXXXX UUUUU
+        ...
+        reference: NA-Examples
+        description: This is an example input file
+        
+        Properties: {
+        type:const
+        id:cp
+        unit:SI 
+        value:[1]
+        unc:[.01]
+        
+        """
         
         input = dict()
         cpcount = 0

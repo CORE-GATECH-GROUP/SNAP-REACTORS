@@ -306,7 +306,7 @@ id: r
 unit: SI
 value: [2800]
 ref: NAA-SR-8617 Table 4.2.1 Page 4.3 (87 in pdf)
-description: density of hastelloy-n 
+description: density of Ai-8763D
 }
 Reference: "1964 S8ER hydrogen Coating" - table 2
 Description: This is the calculated breakdown of Ai-8763D, the ceramic coating

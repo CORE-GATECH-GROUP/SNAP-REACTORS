@@ -444,17 +444,6 @@ class Material:
         --------
         >>> mats = Material._materialReader(data)
             """
-        # _isstr(filename, "file name")
-
-        # if not os.path.isfile(filename):
-        #     raise OSError("Filename {} is not found".format(filename))
-
-        # with open(filename) as filehandle:
-        #     lines = filehandle.readlines()
-
-        # read input file
-        # with open(filename, "r") as f:
-        #     data = f.readlines()
         
         matpoints = []
         states = 0
@@ -589,7 +578,7 @@ class Material:
                 reference = matpoints[i]["reference"]
             else:
                 reference = None
-                warnings.warn("Reference for material {} not" 
+                warnings.warn("Reference for material {} not " 
                             "provided".format(id), 
                                     InputFileSyntaxWarning)
 
@@ -598,7 +587,7 @@ class Material:
                 description = matpoints[i]["description"]
             else:
                 description = None
-                warnings.warn("Description for material {} not" 
+                warnings.warn("Description for material {} not " 
                             "provided".format(id), 
                                     InputFileSyntaxWarning)
 

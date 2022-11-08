@@ -41,6 +41,7 @@ class ReactorState:
     Methods
     -------
     addComponent : add data for a specific component
+    _rsReader: read data from text file to initialize reactor states
 
     Raises
     ------
@@ -145,6 +146,89 @@ class ReactorState:
                 self._components))
 
     def _rsReader(filename):
+        """Reads reactor state data to initialize reactor state object. 
+        Furthemore, the formatting of input filename is assumed to have the \
+        following formatting:
+        
+        Reactor State id: Example ID
+        Reactor State Reference: Example Ref
+        Reactor State Description:  Example Description
+        -----------------------------------------------
+        Component id: Example Component
+        Component Description: Example Component Description
+        =============================================================
+        Dimensions:
+        id: Example ID
+        value: 0.0067564
+        unit: SI or Imperial
+        unc: value
+        ref: Example Reference
+        desc: Example Description
+        ...
+
+        Material Name: exampleName
+        ctype: compositionType
+        utype: uncertaintyType
+        Number of isotopes: isoNumber
+        Isotopic Definition:
+        --------------------
+        AAZZZ XXXXX UUUUU
+        ...
+        reference: NA-Examples
+        description: This is an example input file
+        
+        Properties: {
+        type:const
+        id:cp
+        unit:SI 
+        value:[1]
+        unc:[.01]
+
+        Component id: Example Component
+        Component Description: Example Component Description
+        =============================================================
+        ...
+        There are several requirements of _rsReader which are:
+        
+        1. The id, reference and description are of reactor state are to be 
+        written in that order with the above formatting before any components 
+        are to be written. Refence and Description must be written in 
+        specifically although they need not be filled in e.g.
+            Reactor State id: Example_1
+            Reactor State Reference: 
+            Reactor State Description:
+
+        2. The order of information is to be presented as Reactor State,
+        Component, Dimensions, Material, Properties
+
+        3. More than one reactor state can be written in the input file but 
+        must follow the structure outlined above. 
+
+        For more information regarding the formatting of Components, 
+        Dimensions, Materials, and Properties please refer to their respective
+        data readers.
+
+        Attributes
+        ----------
+        filename : str
+            input file that will be parsed
+        Raises
+        ------
+        TypeError
+            If ``filename``, are not str
+        OSError
+            If ``filename`` is not found 
+        KeyError
+            If ``id`` not given for reactor State
+        Warnings
+            If ``reference``, ``description``, ``component`` not given for 
+            reactor state.
+        Examples
+        --------
+        >>> from snapReactors.containers.reactorstate import ReactorState
+
+        >>> states = ReactorState._rsReader(filename)
+        """
         _isstr(filename, "file name")
 
         if not os.path.isfile(filename):
@@ -152,6 +236,7 @@ class ReactorState:
 
         with open(filename, "r") as f:
             data = f.readlines()
+            f.close()
 
         input = dict()
         rscount = 0
@@ -201,7 +286,7 @@ class ReactorState:
                         value=value.rstrip()
                         key = "rs"+str(rscount)
                         input[key]["des"] = value
-                        cindexBegin = i + 1
+                        cFlag = True
 
                     if "Reactor State Reference" in data[i]:
                         value = data[i].split(":")[-1]
@@ -209,6 +294,10 @@ class ReactorState:
                         value=value.rstrip()
                         key = "rs"+str(rscount)
                         input[key]["ref"] = value
+                    
+                    if "Component id:" in data[i] and cFlag:
+                        cindexBegin = i
+                        cFlag = False
                         
                     if i == len(data)-1:
                         cindexEnd = i
