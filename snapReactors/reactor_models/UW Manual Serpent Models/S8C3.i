@@ -826,6 +826,7 @@ set bc 1
 % --- Neutron population: 100000 neutrons per cycle, 60 active / 20 inactive cycles
 
 set pop 100000 100 40
+set nbuf 10
 
 % --- XY-plot (3)
 
