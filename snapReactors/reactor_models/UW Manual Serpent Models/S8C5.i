@@ -2,8 +2,8 @@
 
 /*
 General comments: Current changes are looking to swap the way Bshims are defined to allower for easier rotation. 
-The void region is the final region that must be adjusted. Also not sure if this will make the file easier but
-this is one method that comes to mind. More to do later. 
+Densities for materials have been added since issues regarding expected and actual material volumes were found.
+Thermal scattering library used in ENDFB7 which needs to be swapped to ENDFB8, as well as inclusion of Be and BeO.
 */
 
 % --- Problem title:
