@@ -12,8 +12,14 @@ set title "SNAP 8"
 
 % --- Cross section library file path:
 
-set acelib "/hpc-common/data/serpent/xsdata/endfb71_edep/endfb71_edep.xsdata"
-% therm ZrH1i  "/hpc-common/data/serpent/xsdata/endfb71_edep/zrh_EDF71.ace/zrh.03t" 
+set acelib "/hpc-common/data/serpent/xsdata/s2v0_endfb71/s2v0_endfb71.xsdata"
+
+/************************
+  Thermal Scattering Libraries 
+ ************************/
+
+therm HZr hzr.03t
+therm ZrH zrh.03t
 % --- Decay and fission yield libraries:
 
 set declib "/hpc-common/data/serpent/xsdata/sss_endfb7.dec"
@@ -28,7 +34,7 @@ set nfylib "/hpc-common/data/serpent/xsdata/sss_endfb7.nfy"
 % --- UZr-H fuel, average initial enrichment 93.15% (NAA-SR-9642, pg. 14):
 % Note that this material composition is specific to dry critical experiment
 % there are some descrepancies found within the S8 Summary Report (AI-AEC-13070)
-mat UZrH -6.06 rgb 219 89 89 % moder zrh.03t 1001  %moder ZrH2 40000
+mat UZrH -6.06 rgb 219 89 89  moder HZr 1001  moder ZrH 40090
  1001.03c   5.960E-2
  1002.03c   8.790E-6
 92235.03c   1.430E-3
@@ -59,7 +65,7 @@ mat UZrH_Summary -6.09    %moder ZrH1 1001 moder ZrH2 40000
 % --- Hastelloy C   https://tubingchina.com/Chemical-Composition-of-Hastelloy-Alloy.htm
 %   needed for lower grid plate (NAA-SR-9642, pg. 14)
 
-mat hasteC    sum
+mat hasteC    -8.89
 28058.03c     -3.71428E-01
 28060.03c     -1.43073E-01
 28061.03c     -6.21929E-03
@@ -96,7 +102,7 @@ mat hasteC    sum
 % --- Hastelloy N   https://www.haynesintl.com/alloys/alloy-portfolio_/Corrosion-resistant-Alloys/hastelloy-n-alloy/nominal-composition
 %   needed for clad for internal reflectors, clad for fuel elements, (NAA-SR-9642, pg. 14)
 
-mat hasteN   sum rgb 100 100 100
+mat hasteN   -8.86 rgb 100 100 100
 28058.03c     -4.70343E-01
 28060.03c     -1.81175E-01
 28061.03c     -7.87557E-03
@@ -139,7 +145,7 @@ mat hasteN   sum rgb 100 100 100
 % --- Type 316 SS  https://tubingchina.com/316-316L-Stainless-Steel-Tube-Pipe-Tubing.htm
 %   needed for upper grid plate, core tie rods, coolant flow baffle, reactor vessel (NAA-SR-9642, pg. 14)
 
-mat ss316 sum rgb 102 0 0 
+mat ss316 -7.954 rgb 102 0 0 
  6000.03c     -8.00000E-04
 25055.03c     -2.00000E-02
 14028.03c     -6.92385E-03
@@ -192,7 +198,7 @@ mat Be       -1.84 rgb 247 215 183
 % --- BeO
 %  needed for internal reflectors (NAA-SR-9642, pg. 14)
 
-mat BeO      sum
+mat BeO      -3.02
 8016.03c      -6.39680E-01
 4009.03c      -3.60320E-01
 
@@ -213,7 +219,7 @@ mat Sm2O3    -8.35
 % - needed for fuel hydrogen barrier
 % - See "Materials" spreadsheet for calculation of composition by element
 
-mat ceramic   sum
+mat ceramic   -2.80
 8016.03c      -3.62335E-01
 14028.03c      -2.05113E-01
 14029.03c      -1.03203E-02
@@ -665,7 +671,7 @@ lat lgridplate 2 0.0 0.0 21 21 1.4478
                                         7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
 % --- These cells define the reactor i.e. cutting off the "core"
 %     universe with cylindrical boundaries
-cell cRadialCore  core fill lattice -S12 -sHrefl1 -sHrefl2 -sHrefl3 -sHrefl4 -sHrefl5 -sHrefl6
+cell cRadialCore  core fill C4critload -S12 -sHrefl1 -sHrefl2 -sHrefl3 -sHrefl4 -sHrefl5 -sHrefl6
 %%
 cell cInternRefl1   core  reflMix  srefl1 -S14 -sHouseZ1 sHouseZ2
 cell cInternRefl2   core  reflMix  srefl2 -S14 -sHouseZ1 sHouseZ2
@@ -682,7 +688,7 @@ cell cHouseRefl6    core reflMix (sHrefl6 -srefl6 -S12):(S14 -S12 srefl6):(sHous
 
 % --- Drum1 definitions 
 cell cDrums1 drum1 Be (-sDrum1 -S8 sShimZ1 -sCut6 -sCut5 -sBY11 -sBY21):(-sDrum1 -sShimE1 -sShimZ1 sShimZ2 -sCut6 -sCut5 -sBY11 -sBY21):(-sDrum1 -S8 -sShimZ2 -sCut6 -sCut5 -sBY11 -sBY21)
-cell cShimA1 drum1 Be sShimE1 -S8 -sShimZ1 sShimZ2 -sDrum1 -sBY21 -sBY11%-sCut6
+cell cShimA1 drum1 Be  sShimE1 -S8 -sShimZ1 sShimZ2 -sDrum1 -sBY21 -sBY11%-sCut6
 cell cCutD11 drum1 void -S8 sBY21 -sDrum1
 cell cCutD12 drum1 void -S8 sBY11 -sDrum1
 cell cCutD13 drum1 void -S8 -sBY11 sCut6 sShimZ1
@@ -691,7 +697,7 @@ cell cCutD15 drum1 void -S8 -sBY11 sCut6 -sShimZ2
 cell cCutD16 drum1 void -S8 -sBY21 sCut5 -sShimZ2
 % --- Drum2 definitions
 cell cDrums2 drum2 Be (-sDrum2 -S8 sShimZ1 -sCut6 -sCut1 -sBY12 -sBY22):(-sDrum2 -sShimE2 -sShimZ1 sShimZ2 -sCut6 -sCut1 -sBY12 -sBY22):(-sDrum2 -S8 -sShimZ2 -sCut6 -sCut1 -sBY12 -sBY22)
-cell cShimA2 drum2 Be sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 -sBY22 -sBY12
+cell cShimA2 drum2 Be  sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 -sBY22 -sBY12
 cell cCutD21 drum2 void  -S8 sBY22 -sDrum2
 cell cCutD22 drum2 void -S8 sBY12 -sDrum2
 cell cCutD23 drum2 void -S8 -sBY12 sCut1 sShimZ1
@@ -700,7 +706,7 @@ cell cCutD25 drum2 void -S8 -sBY12 sCut1 -sShimZ2
 cell cCutD26 drum2 void -S8 -sBY22 sCut6 -sShimZ2
 % --- Drum3 definitions
 cell cDrums3 drum3 Be (-sDrum3 -S8 sShimZ1 -sCut1 -sCut2 -sBY13 -sBY23):(-sDrum3 -sShimE3 -sShimZ1 sShimZ2 -sCut1 -sCut2 -sBY13 -sBY23):(-sDrum3 -S8 -sShimZ2 -sCut1 -sCut2 -sBY13 -sBY23)
-cell cShimA3 drum3 Be sShimE3 -S8 -sShimZ1 sShimZ2 -sDrum3 -sBY23 -sBY13
+cell cShimA3 drum3 Be  sShimE3 -S8 -sShimZ1 sShimZ2 -sDrum3 -sBY23 -sBY13
 cell cCutD31 drum3 void -S8 sBY23 -sDrum3
 cell cCutD32 drum3 void -S8 sBY13 -sDrum3
 cell cCutD33 drum3 void -S8 -sBY13 sCut2 sShimZ1
@@ -709,7 +715,7 @@ cell cCutD35 drum3 void -S8 -sBY13 sCut2 -sShimZ2
 cell cCutD36 drum3 void -S8 -sBY23 sCut1 -sShimZ2
 % --- Drum4 definitions
 cell cDrums4 drum4 Be (-sDrum4 -S8 sShimZ1 -sCut2 -sCut3 -sBY11 -sBY21):(-sDrum4 -sShimE4 -sShimZ1 sShimZ2 -sCut2 -sCut3 -sBY11 -sBY21):(-sDrum4 -S8 -sShimZ2 -sCut2 -sCut3 -sBY11 -sBY21)
-cell cShimA4 drum4 Be sShimE4 -S8 -sShimZ1 sShimZ2 -sDrum4 -sBY21 -sBY11
+cell cShimA4 drum4 Be  sShimE4 -S8 -sShimZ1 sShimZ2 -sDrum4 -sBY21 -sBY11
 cell cCutD41 drum4 void -S8 sBY21 -sDrum4
 cell cCutD42 drum4 void -S8 sBY11 -sDrum4
 cell cCutD43 drum4 void -S8 -sBY11 sCut2 sShimZ1
@@ -718,7 +724,7 @@ cell cCutD45 drum4 void -S8 -sBY11 sCut2 -sShimZ2
 cell cCutD46 drum4 void -S8 -sBY21 sCut3 -sShimZ2
 % --- Drum5 definitions
 cell cDrums5 drum5 Be (-sDrum5 -S8 sShimZ1 -sCut3 -sCut4 -sBY12 -sBY22):(-sDrum5 -sShimE5 -sShimZ1 sShimZ2 -sCut3 -sCut4 -sBY12 -sBY22):(-sDrum5 -S8 -sShimZ2 -sCut3 -sCut4 -sBY12 -sBY22)
-cell cShimA5 drum5 Be sShimE5 -S8 -sShimZ1 sShimZ2 -sDrum5 -sBY22 -sBY12
+cell cShimA5 drum5 Be  sShimE5 -S8 -sShimZ1 sShimZ2 -sDrum5 -sBY22 -sBY12
 cell cCutD51 drum5 void -S8 sBY22 -sDrum5
 cell cCutD52 drum5 void -S8 sBY12 -sDrum5
 cell cCutD53 drum5 void -S8 -sBY12 sCut3 sShimZ1
@@ -727,7 +733,7 @@ cell cCutD55 drum5 void -S8 -sBY12 sCut3 -sShimZ2
 cell cCutD56 drum5 void -S8 -sBY22 sCut4 -sShimZ2
 % --- Drum6 definitions
 cell cDrums6 drum6 Be (-sDrum6 -S8 sShimZ1 -sCut4 -sCut5 -sBY13 -sBY23):(-sDrum6 -sShimE6 -sShimZ1 sShimZ2 -sCut4 -sCut5 -sBY13 -sBY23):(-sDrum6 -S8 -sShimZ2 -sCut4 -sCut5 -sBY13 -sBY23)
-cell cShimA6 drum6 Be sShimE6 -S8 -sShimZ1 sShimZ2 -sDrum6 -sBY23 -sBY13
+cell cShimA6 drum6 Be  sShimE6 -S8 -sShimZ1 sShimZ2 -sDrum6 -sBY23 -sBY13
 cell cCutD61 drum6 void -S8 sBY23 -sDrum6
 cell cCutD62 drum6 void -S8 sBY13 -sDrum6
 cell cCutD63 drum6 void -S8 -sBY13 sCut4 sShimZ1
@@ -805,7 +811,8 @@ cell cIN 0 fill reactor -SCube
 % --- Cell cOUT  is defined as everything outside the cubic cell
 cell cOUT 0 outside SCube
 
-trans U core rot 0 0 0 0 0 1 30 
+trans U core rot 0 0 0 0 0 1 30
+%trans U drum5 rot -11.9860 -20.7604 0 0 0 1 105 
 % ------------------------------------------------------------
 
 /******************
@@ -818,7 +825,7 @@ set bc 1
 
 % --- Neutron population: 100000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 10000 100 40
+set pop 100000 100 40
 
 % --- XY-plot (3)
 
