@@ -370,7 +370,7 @@ surf sLcap pz -17.4371
 surf sUpoison pz 18.1483
 surf sUclad pz 18.148395
 surf sLclad pz -17.4117
-surf SCube cube  0.0 0.0 0.0 25.0
+surf SCube cube  0.0 0.0 0.0 30.0
 
 % --- surfaces for drums 
 surf sDrum1 cyl  23.972012 0.0 11.9126 -18.3769 18.3769
@@ -687,68 +687,104 @@ cell cHouseRefl5    core reflMix (sHrefl5 -srefl5 -S12):(sHouseZ1 -S12 sHrefl5):
 cell cHouseRefl6    core reflMix (sHrefl6 -srefl6 -S12):(S14 -S12 srefl6):(sHouseZ1 -S12 sHrefl6):(-sHouseZ2 -S12 sHrefl6)
 
 % --- Drum1 definitions 
-cell cDrums1 drum1 Be (-sDrum1 -S8 sShimZ1 -sCut6 -sCut5 -sBY11 -sBY21):(-sDrum1 -sShimE1 -sShimZ1 sShimZ2 -sCut6 -sCut5 -sBY11 -sBY21):(-sDrum1 -S8 -sShimZ2 -sCut6 -sCut5 -sBY11 -sBY21)
-cell cShimA1 drum1 Be  sShimE1 -S8 -sShimZ1 sShimZ2 -sDrum1 -sBY21 -sBY11%-sCut6
-cell cCutD11 drum1 void -S8 sBY21 -sDrum1
-cell cCutD12 drum1 void -S8 sBY11 -sDrum1
-cell cCutD13 drum1 void -S8 -sBY11 sCut6 sShimZ1
-cell cCutD14 drum1 void -S8 -sBY21 sCut5 sShimZ1
-cell cCutD15 drum1 void -S8 -sBY11 sCut6 -sShimZ2
-cell cCutD16 drum1 void -S8 -sBY21 sCut5 -sShimZ2
+cell cDrums1 drum1 Be (-sDrum1 -sBX21 sShimZ1 -sCut6 -sCut5 -sBY11 -sBY21):(-sDrum1 -sShimE1 -sShimZ1 sShimZ2 -sCut6 -sCut5 -sBY11 -sBY21):(-sDrum1 -sBX21 -sShimZ2 -sCut6 -sCut5 -sBY11 -sBY21)
+cell cShimA1 drum1 Be  sShimE1 -sBX21 -sShimZ1 sShimZ2 -sDrum1 -sBY21 -sBY11%-sCut6
+cell cShimB11 drum1 Be -sBY11 -sBY21 -sBX11 sBX21 -sShimZ1 sShimZ2  -sBcut5 -sBcut6 sShaftCut11
+cell cShimB21 drum1 Be -sBY11 -sBY21 -sBX11 sBX21 -sShimZ1 sShimZ2  -sBcut5 -sBcut6 -sShaftCut21
+cell cShaftVoid1 drum1 void -sShaftCut11 sShaftCut21 -sBX11 sBX21 -sShimZ1 sShimZ2
+cell cSBVoid1 drum1 void (sBcut5 -sBY21 -sBX11 -S7):(-sBY11 -sBY21 -sBX11 sBX21 sShimZ1 -sBcut5 -sBcut6 -S7):(-sBY11 -sBY21 -sBX11 sBX21 -sShimZ2 -sBcut5 -sBcut6 S6)
+cell cSBVoid2 drum1 void sBcut6 -sBY11 -sBX11 -S7 S6
+cell cCutD11 drum1 void  sBY21 -sDrum1
+cell cCutD12 drum1 void  sBY11 -sDrum1
+cell cCutD13 drum1 void  -sBY11 sCut6 sShimZ1 -sBX21
+cell cCutD14 drum1 void  -sBY21 sCut5 sShimZ1 -sBX21
+cell cCutD15 drum1 void  -sBY11 sCut6 -sShimZ2 -sBX21
+cell cCutD16 drum1 void  -sBY21 sCut5 -sShimZ2 -sBX21
+cell cBlock1 drum1 void  sBX11 -sBY11 -sBY21 -sDrum1
 % --- Drum2 definitions
-cell cDrums2 drum2 Be (-sDrum2 -S8 sShimZ1 -sCut6 -sCut1 -sBY12 -sBY22):(-sDrum2 -sShimE2 -sShimZ1 sShimZ2 -sCut6 -sCut1 -sBY12 -sBY22):(-sDrum2 -S8 -sShimZ2 -sCut6 -sCut1 -sBY12 -sBY22)
-cell cShimA2 drum2 Be  sShimE2 -S8 -sShimZ1 sShimZ2 -sDrum2 -sBY22 -sBY12
-cell cCutD21 drum2 void  -S8 sBY22 -sDrum2
-cell cCutD22 drum2 void -S8 sBY12 -sDrum2
-cell cCutD23 drum2 void -S8 -sBY12 sCut1 sShimZ1
-cell cCutD24 drum2 void -S8 -sBY22 sCut6 sShimZ1
-cell cCutD25 drum2 void -S8 -sBY12 sCut1 -sShimZ2
-cell cCutD26 drum2 void -S8 -sBY22 sCut6 -sShimZ2
+cell cDrums2 drum2 Be (-sDrum2 -sBX22 sShimZ1 -sCut6 -sCut1 -sBY12 -sBY22):(-sDrum2 -sShimE2 -sShimZ1 sShimZ2 -sCut6 -sCut1 -sBY12 -sBY22):(-sDrum2 -sBX22 -sShimZ2 -sCut6 -sCut1 -sBY12 -sBY22)
+cell cShimA2 drum2 Be  sShimE2 -sBX22 -sShimZ1 sShimZ2 -sDrum2 -sBY22 -sBY12
+cell cShimB12 drum2 Be -sBY12 -sBY22 -sBX12 sBX22 -sShimZ1 sShimZ2  -sBcut1 -sBcut6 sShaftCut12
+cell cShimB22 drum2 Be -sBY12 -sBY22 -sBX12 sBX22 -sShimZ1 sShimZ2  -sBcut1 -sBcut6 -sShaftCut22
+cell cShaftVoid2 drum2 void -sShaftCut12 sShaftCut22 -sBX12 sBX22 -sShimZ1 sShimZ2
+cell cSBVoid3 drum2 void (sBcut6 -sBY22 -sBX12 -S7 S6):(-sBY12 -sBY22 -sBX12 sBX22 sShimZ1 -sBcut1 -sBcut6 -S7):(-sBY12 -sBY22 -sBX12 sBX22 -sShimZ2 -sBcut1 -sBcut6 S6)
+cell cSBVoid4 drum2 void sBcut1 -sBY12 -sBX12 -S7 S6
+cell cCutD21 drum2 void  sBY22 -sDrum2
+cell cCutD22 drum2 void  sBY12 -sDrum2
+cell cCutD23 drum2 void  -sBY12 sCut1 sShimZ1 -sBX22
+cell cCutD24 drum2 void  -sBY22 sCut6 sShimZ1 -sBX22
+cell cCutD25 drum2 void  -sBY12 sCut1 -sShimZ2 -sBX22
+cell cCutD26 drum2 void  -sBY22 sCut6 -sShimZ2 -sBX22
+cell cBlock2 drum2 void  sBX12 -sBY12 -sBY22 -sDrum2
 % --- Drum3 definitions
-cell cDrums3 drum3 Be (-sDrum3 -S8 sShimZ1 -sCut1 -sCut2 -sBY13 -sBY23):(-sDrum3 -sShimE3 -sShimZ1 sShimZ2 -sCut1 -sCut2 -sBY13 -sBY23):(-sDrum3 -S8 -sShimZ2 -sCut1 -sCut2 -sBY13 -sBY23)
-cell cShimA3 drum3 Be  sShimE3 -S8 -sShimZ1 sShimZ2 -sDrum3 -sBY23 -sBY13
-cell cCutD31 drum3 void -S8 sBY23 -sDrum3
-cell cCutD32 drum3 void -S8 sBY13 -sDrum3
-cell cCutD33 drum3 void -S8 -sBY13 sCut2 sShimZ1
-cell cCutD34 drum3 void -S8 -sBY23 sCut1 sShimZ1
-cell cCutD35 drum3 void -S8 -sBY13 sCut2 -sShimZ2
-cell cCutD36 drum3 void -S8 -sBY23 sCut1 -sShimZ2
+cell cDrums3 drum3 Be (-sDrum3 -sBX23 sShimZ1 -sCut1 -sCut2 -sBY13 -sBY23):(-sDrum3 -sShimE3 -sShimZ1 sShimZ2 -sCut1 -sCut2 -sBY13 -sBY23):(-sDrum3 -sBX23 -sShimZ2 -sCut1 -sCut2 -sBY13 -sBY23)
+cell cShimA3 drum3 Be  sShimE3 -sBX23 -sShimZ1 sShimZ2 -sDrum3 -sBY23 -sBY13
+cell cShimB13 drum3 Be -sBY13 -sBY23 -sBX13 sBX23 -sShimZ1 sShimZ2  -sBcut2 -sBcut1 sShaftCut13
+cell cShimB23 drum3 Be -sBY13 -sBY23 -sBX13 sBX23 -sShimZ1 sShimZ2  -sBcut2 -sBcut1 -sShaftCut23
+cell cShaftVoid3 drum3 void -sShaftCut13 sShaftCut23 -sBX13 sBX23 -sShimZ1 sShimZ2
+cell cSBVoid5 drum3 void (sBcut1 -sBY23 -sBX13 -S7 S6):(-sBY13 -sBY23 -sBX13 sBX23 sShimZ1 -sBcut1 -sBcut2 -S7):(-sBY13 -sBY23 -sBX13 sBX23 -sShimZ2 -sBcut1 -sBcut2 S6)
+cell cSBVoid6 drum3 void sBcut2 -sBY13 -sBX13 -S7 S6
+cell cCutD31 drum3 void  sBY23 -sDrum3
+cell cCutD32 drum3 void  sBY13 -sDrum3
+cell cCutD33 drum3 void  -sBY13 sCut2 sShimZ1 -sBX23
+cell cCutD34 drum3 void  -sBY23 sCut1 sShimZ1 -sBX23
+cell cCutD35 drum3 void  -sBY13 sCut2 -sShimZ2 -sBX23
+cell cCutD36 drum3 void  -sBY23 sCut1 -sShimZ2 -sBX23
+cell cBlock3 drum3 void  sBX13 -sBY13 -sBY23 -sDrum3
 % --- Drum4 definitions
-cell cDrums4 drum4 Be (-sDrum4 -S8 sShimZ1 -sCut2 -sCut3 -sBY11 -sBY21):(-sDrum4 -sShimE4 -sShimZ1 sShimZ2 -sCut2 -sCut3 -sBY11 -sBY21):(-sDrum4 -S8 -sShimZ2 -sCut2 -sCut3 -sBY11 -sBY21)
-cell cShimA4 drum4 Be  sShimE4 -S8 -sShimZ1 sShimZ2 -sDrum4 -sBY21 -sBY11
-cell cCutD41 drum4 void -S8 sBY21 -sDrum4
-cell cCutD42 drum4 void -S8 sBY11 -sDrum4
-cell cCutD43 drum4 void -S8 -sBY11 sCut2 sShimZ1
-cell cCutD44 drum4 void -S8 -sBY21 sCut3 sShimZ1
-cell cCutD45 drum4 void -S8 -sBY11 sCut2 -sShimZ2
-cell cCutD46 drum4 void -S8 -sBY21 sCut3 -sShimZ2
+cell cDrums4 drum4 Be (-sDrum4 sBX24 sShimZ1 -sCut2 -sCut3 -sBY11 -sBY21):(-sDrum4 -sShimE4 -sShimZ1 sShimZ2 -sCut2 -sCut3 -sBY11 -sBY21):(-sDrum4 sBX24 -sShimZ2 -sCut2 -sCut3 -sBY11 -sBY21)
+cell cShimA4 drum4 Be  sShimE4 sBX24 -sShimZ1 sShimZ2 -sDrum4 -sBY21 -sBY11
+cell cShimB14 drum4 Be -sBY11 -sBY21 -sBX14 -sBX24 -sShimZ1 sShimZ2 -sBcut3 -sBcut2 sShaftCut14
+cell cShimB24 drum4 Be -sBY11 -sBY21 -sBX14 -sBX24 -sShimZ1 sShimZ2 -sBcut3 -sBcut2 -sShaftCut24
+cell cShaftVoid4 drum4 void -sShaftCut14 sShaftCut24 -sBX14 -sBX24 -sShimZ1 sShimZ2
+cell cSBVoid7 drum4 void (sBcut2 -sBY11 -sBX14 -S7 S6):(-sBY11 -sBY21 -sBX14 -sBX24 sShimZ1 -sBcut3 -sBcut2 -S7):(-sBY11 -sBY21 -sBX14 -sBX24 -sShimZ2 -sBcut3 -sBcut2 S6)
+cell cSBVoid8 drum4 void sBcut3 -sBY21 -sBX14 -S7 S6
+cell cCutD41 drum4 void  sBY21 -sDrum4
+cell cCutD42 drum4 void  sBY11 -sDrum4
+cell cCutD43 drum4 void  -sBY11 sCut2 sShimZ1 sBX24
+cell cCutD44 drum4 void  -sBY21 sCut3 sShimZ1 sBX24
+cell cCutD45 drum4 void  -sBY11 sCut2 -sShimZ2 sBX24
+cell cCutD46 drum4 void  -sBY21 sCut3 -sShimZ2 sBX24
+cell cBlock4 drum4 void  sBX14 -sBY11 -sBY21 -sDrum4
 % --- Drum5 definitions
-cell cDrums5 drum5 Be (-sDrum5 -S8 sShimZ1 -sCut3 -sCut4 -sBY12 -sBY22):(-sDrum5 -sShimE5 -sShimZ1 sShimZ2 -sCut3 -sCut4 -sBY12 -sBY22):(-sDrum5 -S8 -sShimZ2 -sCut3 -sCut4 -sBY12 -sBY22)
-cell cShimA5 drum5 Be  sShimE5 -S8 -sShimZ1 sShimZ2 -sDrum5 -sBY22 -sBY12
-cell cCutD51 drum5 void -S8 sBY22 -sDrum5
-cell cCutD52 drum5 void -S8 sBY12 -sDrum5
-cell cCutD53 drum5 void -S8 -sBY12 sCut3 sShimZ1
-cell cCutD54 drum5 void -S8 -sBY22 sCut4 sShimZ1
-cell cCutD55 drum5 void -S8 -sBY12 sCut3 -sShimZ2
-cell cCutD56 drum5 void -S8 -sBY22 sCut4 -sShimZ2
+cell cDrums5 drum5 Be (-sDrum5  -sBX25 sShimZ1 -sCut3 -sCut4 -sBY12 -sBY22):(-sDrum5 -sShimE5 -sShimZ1 sShimZ2 -sCut3 -sCut4 -sBY12 -sBY22):(-sDrum5 -sBX25  -sShimZ2 -sCut3 -sCut4 -sBY12 -sBY22) 
+cell cShimA5 drum5 Be     sShimE5 -sBX25 -sShimZ1 sShimZ2 -sDrum5 -sBY22 -sBY12 
+cell cShimB15 drum5 Be -sBY12 -sBY22 -sBX15 sBX25 -sShimZ1 sShimZ2  -sBcut4 -sBcut3 sShaftCut15
+cell cShimB25 drum5 Be -sBY12 -sBY22 -sBX15 sBX25 -sShimZ1 sShimZ2  -sBcut4 -sBcut3 -sShaftCut25
+cell cShaftVoid5 drum5 void -sShaftCut15 sShaftCut25 -sBX15 sBX25 -sShimZ1 sShimZ2
+cell cSBVoid10 drum5 void (sBcut3 -sBY12 -sBX15 -S7 S6):(-sBY12 -sBY22 -sBX15 sBX25 sShimZ1 -sBcut4 -sBcut3 -S7):(-sBY12 -sBY22 -sBX15 sBX25 -sShimZ2 -sBcut4 -sBcut3 S6)
+cell cSBVoid11 drum5 void sBcut4 -sBY22 -sBX15 -S7 S6
+cell cCutD51 drum5 void   sBY22 -sDrum5
+cell cCutD52 drum5 void   sBY12 -sDrum5
+cell cCutD53 drum5 void  -sBY12 sCut3 sShimZ1 -sBX25
+cell cCutD54 drum5 void  -sBY22 sCut4 sShimZ1 -sBX25
+cell cCutD55 drum5 void  -sBY12 sCut3 -sShimZ2 -sBX25
+cell cCutD56 drum5 void  -sBY22 sCut4 -sShimZ2 -sBX25
+cell cBlock5 drum5 void   sBX15 -sBY12 -sBY22 -sDrum5
 % --- Drum6 definitions
-cell cDrums6 drum6 Be (-sDrum6 -S8 sShimZ1 -sCut4 -sCut5 -sBY13 -sBY23):(-sDrum6 -sShimE6 -sShimZ1 sShimZ2 -sCut4 -sCut5 -sBY13 -sBY23):(-sDrum6 -S8 -sShimZ2 -sCut4 -sCut5 -sBY13 -sBY23)
-cell cShimA6 drum6 Be  sShimE6 -S8 -sShimZ1 sShimZ2 -sDrum6 -sBY23 -sBY13
-cell cCutD61 drum6 void -S8 sBY23 -sDrum6
-cell cCutD62 drum6 void -S8 sBY13 -sDrum6
-cell cCutD63 drum6 void -S8 -sBY13 sCut4 sShimZ1
-cell cCutD64 drum6 void -S8 -sBY23 sCut5 sShimZ1
-cell cCutD65 drum6 void -S8 -sBY13 sCut4 -sShimZ2
-cell cCutD66 drum6 void -S8 -sBY23 sCut5 -sShimZ2
+cell cDrums6 drum6 Be (-sDrum6 -sBX26 sShimZ1 -sCut4 -sCut5 -sBY13 -sBY23):(-sDrum6 -sShimE6 -sShimZ1 sShimZ2 -sCut4 -sCut5 -sBY13 -sBY23):(-sDrum6 -sBX26 -sShimZ2 -sCut4 -sCut5 -sBY13 -sBY23)
+cell cShimA6 drum6 Be  sShimE6 -sBX26 -sShimZ1 sShimZ2 -sDrum6 -sBY23 -sBY13
+cell cShimB16 drum6 Be -sBY13 -sBY23 -sBX16 sBX26 -sShimZ1 sShimZ2  -sBcut5 -sBcut4 sShaftCut16
+cell cShimB26 drum6 Be -sBY13 -sBY23 -sBX16 sBX26 -sShimZ1 sShimZ2  -sBcut5 -sBcut4 -sShaftCut26
+cell cShaftVoid6 drum6 void -sShaftCut16 sShaftCut26 -sBX16 sBX26 -sShimZ1 sShimZ2
+cell cSBVoid12 drum6 void (sBcut4 -sBY13 -sBX16 -S7 S6):(-sBY13 -sBY23 -sBX16 sBX26 sShimZ1 -sBcut5 -sBcut4 -S7):(-sBY13 -sBY23 -sBX16 sBX26 -sShimZ2 -sBcut5 -sBcut4 S6)
+cell cSBVoid13 drum6 void sBcut5 -sBY23 -sBX16 -S7 S6
+cell cCutD61 drum6 void  sBY23 -sDrum6
+cell cCutD62 drum6 void  sBY13 -sDrum6
+cell cCutD63 drum6 void  -sBY13 sCut4 sShimZ1 -sBX26
+cell cCutD64 drum6 void  -sBY23 sCut5 sShimZ1 -sBX26
+cell cCutD65 drum6 void  -sBY13 sCut4 -sShimZ2 -sBX26
+cell cCutD66 drum6 void  -sBY23 sCut5 -sShimZ2 -sBX26
+cell cBlock6 drum6 void sBX16 -sBY13 -sBY23 -sDrum6
 % --- fill definitions
 cell cCore reactor fill core -S12
 cell cCoreWall reactor  ss316 S12 -S5
-cell cDrum1 reactor fill drum1 -sDrum1 -S8
-cell cDrum2 reactor fill drum2 -sDrum2 -S8
-cell cDrum3 reactor fill drum3 -sDrum3 -S8
-cell cDrum4 reactor fill drum4 -sDrum4 -S8
-cell cDrum5 reactor fill drum5 -sDrum5 -S8
-cell cDrum6 reactor fill drum6 -sDrum6 -S8
+cell cDrum1 reactor fill drum1 -sDrum1 %-S8
+cell cDrum2 reactor fill drum2 -sDrum2 %-S8
+cell cDrum3 reactor fill drum3 -sDrum3 %-S8
+cell cDrum4 reactor fill drum4 -sDrum4 %-S8
+cell cDrum5 reactor fill drum5 -sDrum5 %-S8
+cell cDrum6 reactor fill drum6 -sDrum6 %-S8
 cell cStationaryRef reactor Be sVDrum1 sVDrum2 sVDrum3 sVDrum4 sVDrum5 sVDrum6 S13 -S8 -sStatCut1 -sStatCut2 -sStatCut3 -sStatCut4 -sStatCut5 -sStatCut6
 cell cStatRefVoid1 reactor void sDrum2 sDrum3 S13 -S8 sStatCut1
 cell cStatRefVoid2 reactor void sDrum3 sDrum4 S13 -S8 sStatCut2
@@ -765,43 +801,9 @@ cell cDrumvoid5 reactor void sDrum5 -sVDrum5 -S8 -sStatCut3 -sStatCut4
 cell cDrumvoid6 reactor void sDrum6 -sVDrum6 -S8 -sStatCut4 -sStatCut5
 cell cUpperGrid reactor fill ugridplate -SUG
 cell cLowerGrid reactor fill lgridplate -SLG
-cell cShimB11 reactor Be -sBY11 -sBY21 -sBX11 sBX21 -sShimZ1 sShimZ2  -sBcut5 -sBcut6 sShaftCut11
-cell cShimB21 reactor Be -sBY11 -sBY21 -sBX11 sBX21 -sShimZ1 sShimZ2  -sBcut5 -sBcut6 -sShaftCut21
-cell cShimB12 reactor Be -sBY12 -sBY22 -sBX12 sBX22 -sShimZ1 sShimZ2  -sBcut1 -sBcut6 sShaftCut12
-cell cShimB22 reactor Be -sBY12 -sBY22 -sBX12 sBX22 -sShimZ1 sShimZ2  -sBcut1 -sBcut6 -sShaftCut22
-cell cShimB13 reactor Be -sBY13 -sBY23 -sBX13 sBX23 -sShimZ1 sShimZ2  -sBcut2 -sBcut1 sShaftCut13
-cell cShimB23 reactor Be -sBY13 -sBY23 -sBX13 sBX23 -sShimZ1 sShimZ2  -sBcut2 -sBcut1 -sShaftCut23
-cell cShimB14 reactor Be -sBY11 -sBY21 -sBX14 -sBX24 -sShimZ1 sShimZ2 -sBcut3 -sBcut2 sShaftCut14
-cell cShimB24 reactor Be -sBY11 -sBY21 -sBX14 -sBX24 -sShimZ1 sShimZ2 -sBcut3 -sBcut2 -sShaftCut24
-cell cShimB15 reactor Be -sBY12 -sBY22 -sBX15 sBX25 -sShimZ1 sShimZ2  -sBcut4 -sBcut3 sShaftCut15
-cell cShimB25 reactor Be -sBY12 -sBY22 -sBX15 sBX25 -sShimZ1 sShimZ2  -sBcut4 -sBcut3 -sShaftCut25
-cell cShimB16 reactor Be -sBY13 -sBY23 -sBX16 sBX26 -sShimZ1 sShimZ2  -sBcut5 -sBcut4 sShaftCut16
-cell cShimB26 reactor Be -sBY13 -sBY23 -sBX16 sBX26 -sShimZ1 sShimZ2  -sBcut5 -sBcut4 -sShaftCut26
-cell cShaftVoid1 reactor void -sShaftCut11 sShaftCut21 -sBX11 sBX21 -sShimZ1 sShimZ2
-cell cShaftVoid2 reactor void -sShaftCut12 sShaftCut22 -sBX12 sBX22 -sShimZ1 sShimZ2
-cell cShaftVoid3 reactor void -sShaftCut13 sShaftCut23 -sBX13 sBX23 -sShimZ1 sShimZ2
-cell cShaftVoid4 reactor void -sShaftCut14 sShaftCut24 -sBX14 -sBX24 -sShimZ1 sShimZ2
-cell cShaftVoid5 reactor void -sShaftCut15 sShaftCut25 -sBX15 sBX25 -sShimZ1 sShimZ2
-cell cShaftVoid6 reactor void -sShaftCut16 sShaftCut26 -sBX16 sBX26 -sShimZ1 sShimZ2
-cell cSBVoid1 reactor void (sBcut5 -sBY21 -sBX11 -S7):(-sBY11 -sBY21 -sBX11 sBX21 sShimZ1 -sBcut5 -sBcut6 -S7):(-sBY11 -sBY21 -sBX11 sBX21 -sShimZ2 -sBcut5 -sBcut6 S6)
-cell cSBVoid2 reactor void sBcut6 -sBY11 -sBX11 -S7 S6
-cell cSBVoid3 reactor void (sBcut6 -sBY22 -sBX12 -S7 S6):(-sBY12 -sBY22 -sBX12 sBX22 sShimZ1 -sBcut1 -sBcut6 -S7):(-sBY12 -sBY22 -sBX12 sBX22 -sShimZ2 -sBcut1 -sBcut6 S6)
-cell cSBVoid4 reactor void sBcut1 -sBY12 -sBX12 -S7 S6 
-cell cSBVoid5 reactor void (sBcut1 -sBY23 -sBX13 -S7 S6):(-sBY13 -sBY23 -sBX13 sBX23 sShimZ1 -sBcut1 -sBcut2 -S7):(-sBY13 -sBY23 -sBX13 sBX23 -sShimZ2 -sBcut1 -sBcut2 S6)
-cell cSBVoid6 reactor void sBcut2 -sBY13 -sBX13 -S7 S6
-cell cSBVoid7 reactor void (sBcut2 -sBY11 -sBX14 -S7 S6):(-sBY11 -sBY21 -sBX14 -sBX24 sShimZ1 -sBcut3 -sBcut2 -S7):(-sBY11 -sBY21 -sBX14 -sBX24 -sShimZ2 -sBcut3 -sBcut2 S6)
-cell cSBVoid8 reactor void sBcut3 -sBY21 -sBX14 -S7 S6
-cell cSBVoid10 reactor void (sBcut3 -sBY12 -sBX15 -S7 S6):(-sBY12 -sBY22 -sBX15 sBX25 sShimZ1 -sBcut4 -sBcut3 -S7):(-sBY12 -sBY22 -sBX15 sBX25 -sShimZ2 -sBcut4 -sBcut3 S6)
-cell cSBVoid11 reactor void sBcut4 -sBY22 -sBX15 -S7 S6
-cell cSBVoid12 reactor void (sBcut4 -sBY13 -sBX16 -S7 S6):(-sBY13 -sBY23 -sBX16 sBX26 sShimZ1 -sBcut5 -sBcut4 -S7):(-sBY13 -sBY23 -sBX16 sBX26 -sShimZ2 -sBcut5 -sBcut4 S6)
-cell cSBVoid13 reactor void sBcut5 -sBY23 -sBX16 -S7 S6
-cell cHexVoid reactor  void (sBX11:sBX12:sBX13:sBX14:sBX15:sBX16):(S7 SUG):(-S6 SLG)
-cell cCornerVoid1 reactor void S8 sBY11 sBY22 -sBX11 -sBX12
-cell cCornerVoid2 reactor void S8 sBY12 sBY23 -sBX12 -sBX13
-cell cCornerVoid3 reactor void S8 sBY13 sBY11 -sBX13 -sBX14
-cell cCornerVoid4 reactor void S8 sBY21 sBY12 -sBX14 -sBX15
-cell cCornerVoid5 reactor void S8 sBY22 sBY13 -sBX15 -sBX16
-cell cCornerVoid6 reactor void S8 sBY21 sBY23 -sBX16 -sBX11
+cell cOuterDrumVoid reactor void sDrum1 sDrum2 sDrum3 sDrum4 sDrum5 sDrum6 S6 -S7 S8 
+cell cUpperVoid reactor void S7 SUG
+cell cLowerVoid reactor void -S6 SLG 
 % --- Cell cIN  is filled with universe "core", also its important to keep in mind that
 %     the "0" universe is the universe for which outside needs to be defined.
 %     Serpent gives the warning that the  '0' universe should be the only one defining outside
@@ -825,7 +827,7 @@ set bc 1
 
 % --- Neutron population: 100000 neutrons per cycle, 60 active / 20 inactive cycles
 
-set pop 100000 100 40
+set pop 1000000 100 40
 
 % --- XY-plot (3)
 

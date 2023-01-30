@@ -152,7 +152,7 @@
 
  Nuclide    1 / 93 : 1001.03c -- hydrogen (H-1)
 
- Pointers                     : 70007 1099
+ Pointers                     : 52350 1099
  Primary type                 : Transport
  Nuclide ZAI                  : 10010
  Library ID                   : 03c
@@ -202,7 +202,7 @@
 
  Nuclide    2 / 93 : 1001.03s -- hydrogen (H-1)
 
- Pointers                     : 425201 1099
+ Pointers                     : 407544 1099
  Primary type                 : Transport
  Nuclide ZAI                  : 10010
  Library ID                   : 03s
@@ -255,7 +255,7 @@
 
  Nuclide    3 / 93 : 1002.03c -- deuterium (H-2)
 
- Pointers                     : 70464 1421
+ Pointers                     : 52807 1421
  Primary type                 : Transport
  Nuclide ZAI                  : 10020
  Library ID                   : 03c
@@ -307,7 +307,7 @@
 
  Nuclide    4 / 93 : 2004.03c -- helium 4 (He-4)
 
- Pointers                     : 413423 2387
+ Pointers                     : 395766 2387
  Primary type                 : Transport
  Nuclide ZAI                  : 20040
  Library ID                   : 03c
@@ -355,7 +355,7 @@
 
  Nuclide    5 / 93 : 3006.03c -- lithium 6 (Li-6)
 
- Pointers                     : 334003 2709
+ Pointers                     : 316346 2709
  Primary type                 : Transport
  Nuclide ZAI                  : 30060
  Library ID                   : 03c
@@ -443,7 +443,7 @@
 
  Nuclide    6 / 93 : 3007.03c -- lithium 7 (Li-7)
 
- Pointers                     : 337229 3031
+ Pointers                     : 319572 3031
  Primary type                 : Transport
  Nuclide ZAI                  : 30070
  Library ID                   : 03c
@@ -533,7 +533,7 @@
 
  Nuclide    7 / 93 : 4009.03c -- beryllium 9 (Be-9)
 
- Pointers                     : 289825 3675
+ Pointers                     : 272168 3675
  Primary type                 : Transport
  Nuclide ZAI                  : 40090
  Library ID                   : 03c
@@ -596,7 +596,7 @@
 
  Nuclide    8 / 93 : 6000.03c -- natural carbon (C-nat)
 
- Pointers                     : 245582 4641
+ Pointers                     : 227925 4641
  Primary type                 : Transport
  Nuclide ZAI                  : 60000
  Library ID                   : 03c
@@ -667,7 +667,7 @@
 
  Nuclide    9 / 93 : 7014.03c -- nitrogen 14 (N-14)
 
- Pointers                     : 283008 4963
+ Pointers                     : 265351 4963
  Primary type                 : Transport
  Nuclide ZAI                  : 70140
  Library ID                   : 03c
@@ -779,7 +779,7 @@
 
  Nuclide   10 / 93 : 7015.03c -- nitrogen 15 (N-15)
 
- Pointers                     : 287986 5285
+ Pointers                     : 270329 5285
  Primary type                 : Transport
  Nuclide ZAI                  : 70150
  Library ID                   : 03c
@@ -848,7 +848,7 @@
 
  Nuclide   11 / 93 : 8016.03c -- oxygen 16 (O-16)
 
- Pointers                     : 291226 5607
+ Pointers                     : 273569 5607
  Primary type                 : Transport
  Nuclide ZAI                  : 80160
  Library ID                   : 03c
@@ -964,7 +964,7 @@
 
  Nuclide   12 / 93 : 8017.03c -- oxygen 17 (O-17)
 
- Pointers                     : 413729 5929
+ Pointers                     : 396072 5929
  Primary type                 : Transport
  Nuclide ZAI                  : 80170
  Library ID                   : 03c
@@ -1036,7 +1036,7 @@
 
  Nuclide   13 / 93 : 12024.03c -- magnesium 24 (Mg-24)
 
- Pointers                     : 377696 7217
+ Pointers                     : 360039 7217
  Primary type                 : Transport
  Nuclide ZAI                  : 120240
  Library ID                   : 03c
@@ -1105,7 +1105,7 @@
 
  Nuclide   14 / 93 : 12025.03c -- magnesium 25 (Mg-25)
 
- Pointers                     : 379535 7539
+ Pointers                     : 361878 7539
  Primary type                 : Transport
  Nuclide ZAI                  : 120250
  Library ID                   : 03c
@@ -1180,7 +1180,7 @@
 
  Nuclide   15 / 93 : 12026.03c -- magnesium 26 (Mg-26)
 
- Pointers                     : 381812 7861
+ Pointers                     : 364155 7861
  Primary type                 : Transport
  Nuclide ZAI                  : 120260
  Library ID                   : 03c
@@ -1251,7 +1251,7 @@
 
  Nuclide   16 / 93 : 13027.03c -- aluminum 27 (Al-27)
 
- Pointers                     : 253143 8183
+ Pointers                     : 235486 8183
  Primary type                 : Transport
  Nuclide ZAI                  : 130270
  Library ID                   : 03c
@@ -1435,7 +1435,7 @@
 
  Nuclide   17 / 93 : 14028.03c -- silicon 28 (Si-28)
 
- Pointers                     : 232473 8505
+ Pointers                     : 214816 8505
  Primary type                 : Transport
  Nuclide ZAI                  : 140280
  Library ID                   : 03c
@@ -1546,7 +1546,7 @@
 
  Nuclide   18 / 93 : 14029.03c -- silicon 29 (Si-29)
 
- Pointers                     : 237378 8827
+ Pointers                     : 219721 8827
  Primary type                 : Transport
  Nuclide ZAI                  : 140290
  Library ID                   : 03c
@@ -1659,7 +1659,7 @@
 
  Nuclide   19 / 93 : 14030.03c -- silicon 30 (Si-30)
 
- Pointers                     : 242429 9149
+ Pointers                     : 224772 9149
  Primary type                 : Transport
  Nuclide ZAI                  : 140300
  Library ID                   : 03c
@@ -1746,7 +1746,7 @@
 
  Nuclide   20 / 93 : 15031.03c -- phosphorus 31 (P-31)
 
- Pointers                     : 276076 9471
+ Pointers                     : 258419 9471
  Primary type                 : Transport
  Nuclide ZAI                  : 150310
  Library ID                   : 03c
@@ -1805,7 +1805,7 @@
 
  Nuclide   21 / 93 : 16032.03c -- sulfur 32 (S-32)
 
- Pointers                     : 277185 9793
+ Pointers                     : 259528 9793
  Primary type                 : Transport
  Nuclide ZAI                  : 160320
  Library ID                   : 03c
@@ -1869,7 +1869,7 @@
 
  Nuclide   22 / 93 : 16033.03c -- sulfur 33 (S-33)
 
- Pointers                     : 278659 10115
+ Pointers                     : 261002 10115
  Primary type                 : Transport
  Nuclide ZAI                  : 160330
  Library ID                   : 03c
@@ -1934,7 +1934,7 @@
 
  Nuclide   23 / 93 : 16034.03c -- sulfur 34 (S-34)
 
- Pointers                     : 280206 10437
+ Pointers                     : 262549 10437
  Primary type                 : Transport
  Nuclide ZAI                  : 160340
  Library ID                   : 03c
@@ -1997,7 +1997,7 @@
 
  Nuclide   24 / 93 : 16036.03c -- sulfur 36 (S-36)
 
- Pointers                     : 281607 10759
+ Pointers                     : 263950 10759
  Primary type                 : Transport
  Nuclide ZAI                  : 160360
  Library ID                   : 03c
@@ -2060,7 +2060,7 @@
 
  Nuclide   25 / 93 : 18036.03c -- argon 36 (Ar-36)
 
- Pointers                     : 415787 11725
+ Pointers                     : 398130 11725
  Primary type                 : Transport
  Nuclide ZAI                  : 180360
  Library ID                   : 03c
@@ -2142,7 +2142,7 @@
 
  Nuclide   26 / 93 : 18038.03c -- argon 38 (Ar-38)
 
- Pointers                     : 418575 12047
+ Pointers                     : 400918 12047
  Primary type                 : Transport
  Nuclide ZAI                  : 180380
  Library ID                   : 03c
@@ -2222,7 +2222,7 @@
 
  Nuclide   27 / 93 : 18040.03c -- argon 40 (Ar-40)
 
- Pointers                     : 421217 12369
+ Pointers                     : 403560 12369
  Primary type                 : Transport
  Nuclide ZAI                  : 180400
  Library ID                   : 03c
@@ -2312,7 +2312,7 @@
 
  Nuclide   28 / 93 : 20040.03c -- calcium 40 (Ca-40)
 
- Pointers                     : 340601 13657
+ Pointers                     : 322944 13657
  Primary type                 : Transport
  Nuclide ZAI                  : 200400
  Library ID                   : 03c
@@ -2450,7 +2450,7 @@
 
  Nuclide   29 / 93 : 20042.03c -- calcium 42 (Ca-42)
 
- Pointers                     : 347477 13979
+ Pointers                     : 329820 13979
  Primary type                 : Transport
  Nuclide ZAI                  : 200420
  Library ID                   : 03c
@@ -2587,7 +2587,7 @@
 
  Nuclide   30 / 93 : 20043.03c -- calcium 43 (Ca-43)
 
- Pointers                     : 354280 14301
+ Pointers                     : 336623 14301
  Primary type                 : Transport
  Nuclide ZAI                  : 200430
  Library ID                   : 03c
@@ -2724,7 +2724,7 @@
 
  Nuclide   31 / 93 : 20044.03c -- calcium 44 (Ca-44)
 
- Pointers                     : 361083 14623
+ Pointers                     : 343426 14623
  Primary type                 : Transport
  Nuclide ZAI                  : 200440
  Library ID                   : 03c
@@ -2853,7 +2853,7 @@
 
  Nuclide   32 / 93 : 20046.03c -- calcium 46 (Ca-46)
 
- Pointers                     : 367302 14945
+ Pointers                     : 349645 14945
  Primary type                 : Transport
  Nuclide ZAI                  : 200460
  Library ID                   : 03c
@@ -2975,7 +2975,7 @@
 
  Nuclide   33 / 93 : 20048.03c -- calcium 48 (Ca-48)
 
- Pointers                     : 372718 15267
+ Pointers                     : 355061 15267
  Primary type                 : Transport
  Nuclide ZAI                  : 200480
  Library ID                   : 03c
@@ -3091,7 +3091,7 @@
 
  Nuclide   34 / 93 : 22046.03c -- titanium 46 (Ti-46)
 
- Pointers                     : 263377 15911
+ Pointers                     : 245720 15911
  Primary type                 : Transport
  Nuclide ZAI                  : 220460
  Library ID                   : 03c
@@ -3165,7 +3165,7 @@
 
  Nuclide   35 / 93 : 22047.03c -- titanium 47 (Ti-47)
 
- Pointers                     : 265581 16233
+ Pointers                     : 247924 16233
  Primary type                 : Transport
  Nuclide ZAI                  : 220470
  Library ID                   : 03c
@@ -3246,7 +3246,7 @@
 
  Nuclide   36 / 93 : 22048.03c -- titanium 48 (Ti-48)
 
- Pointers                     : 268296 16555
+ Pointers                     : 250639 16555
  Primary type                 : Transport
  Nuclide ZAI                  : 220480
  Library ID                   : 03c
@@ -3328,7 +3328,7 @@
 
  Nuclide   37 / 93 : 22049.03c -- titanium 49 (Ti-49)
 
- Pointers                     : 271084 16877
+ Pointers                     : 253427 16877
  Primary type                 : Transport
  Nuclide ZAI                  : 220490
  Library ID                   : 03c
@@ -3408,7 +3408,7 @@
 
  Nuclide   38 / 93 : 22050.03c -- titanium 50 (Ti-50)
 
- Pointers                     : 273726 17199
+ Pointers                     : 256069 17199
  Primary type                 : Transport
  Nuclide ZAI                  : 220500
  Library ID                   : 03c
@@ -3484,7 +3484,7 @@
 
  Nuclide   39 / 93 : 23051.03c -- vanadium 51 (V-51)
 
- Pointers                     : 228809 17843
+ Pointers                     : 211152 17843
  Primary type                 : Transport
  Nuclide ZAI                  : 230510
  Library ID                   : 03c
@@ -3578,7 +3578,7 @@
 
  Nuclide   40 / 93 : 24050.03c -- chromium 50 (Cr-50)
 
- Pointers                     : 167593 18165
+ Pointers                     : 149936 18165
  Primary type                 : Transport
  Nuclide ZAI                  : 240500
  Library ID                   : 03c
@@ -3646,7 +3646,7 @@
 
  Nuclide   41 / 93 : 24052.03c -- chromium 52 (Cr-52)
 
- Pointers                     : 169359 18487
+ Pointers                     : 151702 18487
  Primary type                 : Transport
  Nuclide ZAI                  : 240520
  Library ID                   : 03c
@@ -3717,7 +3717,7 @@
 
  Nuclide   42 / 93 : 24053.03c -- chromium 53 (Cr-53)
 
- Pointers                     : 171344 18809
+ Pointers                     : 153687 18809
  Primary type                 : Transport
  Nuclide ZAI                  : 240530
  Library ID                   : 03c
@@ -3791,7 +3791,7 @@
 
  Nuclide   43 / 93 : 24054.03c -- chromium 54 (Cr-54)
 
- Pointers                     : 173548 19131
+ Pointers                     : 155891 19131
  Primary type                 : Transport
  Nuclide ZAI                  : 240540
  Library ID                   : 03c
@@ -3854,7 +3854,7 @@
 
  Nuclide   44 / 93 : 25055.03c -- manganese 55 (Mn-55)
 
- Pointers                     : 219816 19453
+ Pointers                     : 202159 19453
  Primary type                 : Transport
  Nuclide ZAI                  : 250550
  Library ID                   : 03c
@@ -4021,7 +4021,7 @@
 
  Nuclide   45 / 93 : 26054.03c -- iron 54 (Fe-54)
 
- Pointers                     : 196600 19775
+ Pointers                     : 178943 19775
  Primary type                 : Transport
  Nuclide ZAI                  : 260540
  Library ID                   : 03c
@@ -4090,7 +4090,7 @@
 
  Nuclide   46 / 93 : 26056.03c -- iron 56 (Fe-56)
 
- Pointers                     : 198439 20097
+ Pointers                     : 180782 20097
  Primary type                 : Transport
  Nuclide ZAI                  : 260560
  Library ID                   : 03c
@@ -4180,7 +4180,7 @@
 
  Nuclide   47 / 93 : 26057.03c -- iron 57 (Fe-57)
 
- Pointers                     : 201811 20419
+ Pointers                     : 184154 20419
  Primary type                 : Transport
  Nuclide ZAI                  : 260570
  Library ID                   : 03c
@@ -4246,7 +4246,7 @@
 
  Nuclide   48 / 93 : 26058.03c -- iron 58 (Fe-58)
 
- Pointers                     : 203431 20741
+ Pointers                     : 185774 20741
  Primary type                 : Transport
  Nuclide ZAI                  : 260580
  Library ID                   : 03c
@@ -4306,7 +4306,7 @@
 
  Nuclide   49 / 93 : 27059.03c -- cobalt 59 (Co-59)
 
- Pointers                     : 164276 21385
+ Pointers                     : 146619 21385
  Primary type                 : Transport
  Nuclide ZAI                  : 270590
  Library ID                   : 03c
@@ -4398,7 +4398,7 @@
 
  Nuclide   50 / 93 : 28058.03c -- nickel 58 (Ni-58)
 
- Pointers                     : 155227 22029
+ Pointers                     : 137570 22029
  Primary type                 : Transport
  Nuclide ZAI                  : 280580
  Library ID                   : 03c
@@ -4469,7 +4469,7 @@
 
  Nuclide   51 / 93 : 28060.03c -- nickel 60 (Ni-60)
 
- Pointers                     : 157212 22673
+ Pointers                     : 139555 22673
  Primary type                 : Transport
  Nuclide ZAI                  : 280600
  Library ID                   : 03c
@@ -4542,7 +4542,7 @@
 
  Nuclide   52 / 93 : 28061.03c -- nickel 61 (Ni-61)
 
- Pointers                     : 159343 22995
+ Pointers                     : 141686 22995
  Primary type                 : Transport
  Nuclide ZAI                  : 280610
  Library ID                   : 03c
@@ -4611,7 +4611,7 @@
 
  Nuclide   53 / 93 : 28062.03c -- nickel 62 (Ni-62)
 
- Pointers                     : 161182 23317
+ Pointers                     : 143525 23317
  Primary type                 : Transport
  Nuclide ZAI                  : 280620
  Library ID                   : 03c
@@ -4677,7 +4677,7 @@
 
  Nuclide   54 / 93 : 28064.03c -- nickel 64 (Ni-64)
 
- Pointers                     : 162802 23639
+ Pointers                     : 145145 23639
  Primary type                 : Transport
  Nuclide ZAI                  : 280640
  Library ID                   : 03c
@@ -4741,7 +4741,7 @@
 
  Nuclide   55 / 93 : 29063.03c -- copper 63 (Cu-63)
 
- Pointers                     : 247567 23961
+ Pointers                     : 229910 23961
  Primary type                 : Transport
  Nuclide ZAI                  : 290630
  Library ID                   : 03c
@@ -4827,7 +4827,7 @@
 
  Nuclide   56 / 93 : 29065.03c -- copper 65 (Cu-65)
 
- Pointers                     : 250647 24283
+ Pointers                     : 232990 24283
  Primary type                 : Transport
  Nuclide ZAI                  : 290650
  Library ID                   : 03c
@@ -4905,7 +4905,7 @@
 
  Nuclide   57 / 93 : 38084.03c -- strontium 84 (Sr-84)
 
- Pointers                     : 399169 35553
+ Pointers                     : 381512 35553
  Primary type                 : Transport
  Nuclide ZAI                  : 380840
  Library ID                   : 03c
@@ -5042,7 +5042,7 @@
 
  Nuclide   58 / 93 : 38086.03c -- strontium 86 (Sr-86)
 
- Pointers                     : 405771 35875
+ Pointers                     : 388114 35875
  Primary type                 : Transport
  Nuclide ZAI                  : 380860
  Library ID                   : 03c
@@ -5122,7 +5122,7 @@
 
  Nuclide   59 / 93 : 38087.03c -- strontium 87 (Sr-87)
 
- Pointers                     : 408212 36197
+ Pointers                     : 390555 36197
  Primary type                 : Transport
  Nuclide ZAI                  : 380870
  Library ID                   : 03c
@@ -5194,7 +5194,7 @@
 
  Nuclide   60 / 93 : 38088.03c -- strontium 88 (Sr-88)
 
- Pointers                     : 410270 36519
+ Pointers                     : 392613 36519
  Primary type                 : Transport
  Nuclide ZAI                  : 380880
  Library ID                   : 03c
@@ -5281,7 +5281,7 @@
 
  Nuclide   61 / 93 : 40090.03c -- zirconium 90 (Zr-90)
 
- Pointers                     : 130264 38451
+ Pointers                     : 112607 38451
  Primary type                 : Transport
  Nuclide ZAI                  : 400900
  Library ID                   : 03c
@@ -5378,7 +5378,7 @@
 
  Nuclide   62 / 93 : 40090.03s -- zirconium 90 (Zr-90)
 
- Pointers                     : 425799 38451
+ Pointers                     : 408142 38451
  Primary type                 : Transport
  Nuclide ZAI                  : 400900
  Library ID                   : 03s
@@ -5478,7 +5478,7 @@
 
  Nuclide   63 / 93 : 40091.03c -- zirconium 91 (Zr-91)
 
- Pointers                     : 134147 38773
+ Pointers                     : 116490 38773
  Primary type                 : Transport
  Nuclide ZAI                  : 400910
  Library ID                   : 03c
@@ -5603,7 +5603,7 @@
 
  Nuclide   64 / 93 : 40092.03c -- zirconium 92 (Zr-92)
 
- Pointers                     : 140074 39095
+ Pointers                     : 122417 39095
  Primary type                 : Transport
  Nuclide ZAI                  : 400920
  Library ID                   : 03c
@@ -5723,7 +5723,7 @@
 
  Nuclide   65 / 93 : 40094.03c -- zirconium 94 (Zr-94)
 
- Pointers                     : 145636 39739
+ Pointers                     : 127979 39739
  Primary type                 : Transport
  Nuclide ZAI                  : 400940
  Library ID                   : 03c
@@ -5855,7 +5855,7 @@
 
  Nuclide   66 / 93 : 40096.03c -- zirconium 96 (Zr-96)
 
- Pointers                     : 152074 40383
+ Pointers                     : 134417 40383
  Primary type                 : Transport
  Nuclide ZAI                  : 400960
  Library ID                   : 03c
@@ -5946,7 +5946,7 @@
 
  Nuclide   67 / 93 : 42092.03c -- molybdenum 92 (Mo-92)
 
- Pointers                     : 174949 41671
+ Pointers                     : 157292 41671
  Primary type                 : Transport
  Nuclide ZAI                  : 420920
  Library ID                   : 03c
@@ -6031,7 +6031,7 @@
 
  Nuclide   68 / 93 : 42094.03c -- molybdenum 94 (Mo-94)
 
- Pointers                     : 177755 41993
+ Pointers                     : 160098 41993
  Primary type                 : Transport
  Nuclide ZAI                  : 420940
  Library ID                   : 03c
@@ -6116,7 +6116,7 @@
 
  Nuclide   69 / 93 : 42095.03c -- molybdenum 95 (Mo-95)
 
- Pointers                     : 180762 42315
+ Pointers                     : 163105 42315
  Primary type                 : Transport
  Nuclide ZAI                  : 420950
  Library ID                   : 03c
@@ -6246,7 +6246,7 @@
 
  Nuclide   70 / 93 : 42096.03c -- molybdenum 96 (Mo-96)
 
- Pointers                     : 187054 42637
+ Pointers                     : 169397 42637
  Primary type                 : Transport
  Nuclide ZAI                  : 420960
  Library ID                   : 03c
@@ -6326,7 +6326,7 @@
 
  Nuclide   71 / 93 : 42097.03c -- molybdenum 97 (Mo-97)
 
- Pointers                     : 189696 42959
+ Pointers                     : 172039 42959
  Primary type                 : Transport
  Nuclide ZAI                  : 420970
  Library ID                   : 03c
@@ -6404,7 +6404,7 @@
 
  Nuclide   72 / 93 : 42098.03c -- molybdenum 98 (Mo-98)
 
- Pointers                     : 192192 43281
+ Pointers                     : 174535 43281
  Primary type                 : Transport
  Nuclide ZAI                  : 420980
  Library ID                   : 03c
@@ -6481,7 +6481,7 @@
 
  Nuclide   73 / 93 : 42100.03c -- molybdenum 100 (Mo-100)
 
- Pointers                     : 194615 43925
+ Pointers                     : 176958 43925
  Primary type                 : Transport
  Nuclide ZAI                  : 421000
  Library ID                   : 03c
@@ -6556,7 +6556,7 @@
 
  Nuclide   74 / 93 : 56130.03c -- barium 130 (Ba-130)
 
- Pointers                     : 383797 72261
+ Pointers                     : 366140 72261
  Primary type                 : Transport
  Nuclide ZAI                  : 561300
  Library ID                   : 03c
@@ -6634,7 +6634,7 @@
 
  Nuclide   75 / 93 : 56132.03c -- barium 132 (Ba-132)
 
- Pointers                     : 386092 72583
+ Pointers                     : 368435 72583
  Primary type                 : Transport
  Nuclide ZAI                  : 561320
  Library ID                   : 03c
@@ -6713,7 +6713,7 @@
 
  Nuclide   76 / 93 : 56134.03c -- barium 134 (Ba-134)
 
- Pointers                     : 388460 73227
+ Pointers                     : 370803 73227
  Primary type                 : Transport
  Nuclide ZAI                  : 561340
  Library ID                   : 03c
@@ -6793,7 +6793,7 @@
 
  Nuclide   77 / 93 : 56135.03c -- barium 135 (Ba-135)
 
- Pointers                     : 390901 73549
+ Pointers                     : 373244 73549
  Primary type                 : Transport
  Nuclide ZAI                  : 561350
  Library ID                   : 03c
@@ -6870,7 +6870,7 @@
 
  Nuclide   78 / 93 : 56136.03c -- barium 136 (Ba-136)
 
- Pointers                     : 393123 73871
+ Pointers                     : 375466 73871
  Primary type                 : Transport
  Nuclide ZAI                  : 561360
  Library ID                   : 03c
@@ -6947,7 +6947,7 @@
 
  Nuclide   79 / 93 : 56137.03c -- barium 137 (Ba-137)
 
- Pointers                     : 395345 74193
+ Pointers                     : 377688 74193
  Primary type                 : Transport
  Nuclide ZAI                  : 561370
  Library ID                   : 03c
@@ -7019,7 +7019,7 @@
 
  Nuclide   80 / 93 : 56138.03c -- barium 138 (Ba-138)
 
- Pointers                     : 397403 74515
+ Pointers                     : 379746 74515
  Primary type                 : Transport
  Nuclide ZAI                  : 561380
  Library ID                   : 03c
@@ -7087,7 +7087,7 @@
 
  Nuclide   81 / 93 : 62144.03c -- samarium 144 (Sm-144)
 
- Pointers                     : 296496 83853
+ Pointers                     : 278839 83853
  Primary type                 : Transport
  Nuclide ZAI                  : 621440
  Library ID                   : 03c
@@ -7183,7 +7183,7 @@
 
  Nuclide   82 / 93 : 62147.03c -- samarium 147 (Sm-147)
 
- Pointers                     : 300306 84175
+ Pointers                     : 282649 84175
  Primary type                 : Transport
  Nuclide ZAI                  : 621470
  Library ID                   : 03c
@@ -7306,7 +7306,7 @@
 
  Nuclide   83 / 93 : 62148.03c -- samarium 148 (Sm-148)
 
- Pointers                     : 305795 84497
+ Pointers                     : 288138 84497
  Primary type                 : Transport
  Nuclide ZAI                  : 621480
  Library ID                   : 03c
@@ -7448,7 +7448,7 @@
 
  Nuclide   84 / 93 : 62149.03c -- samarium 149 (Sm-149)
 
- Pointers                     : 312704 84819
+ Pointers                     : 295047 84819
  Primary type                 : Transport
  Nuclide ZAI                  : 621490
  Library ID                   : 03c
@@ -7567,7 +7567,7 @@
 
  Nuclide   85 / 93 : 62150.03c -- samarium 150 (Sm-150)
 
- Pointers                     : 318193 85141
+ Pointers                     : 300536 85141
  Primary type                 : Transport
  Nuclide ZAI                  : 621500
  Library ID                   : 03c
@@ -7684,7 +7684,7 @@
 
  Nuclide   86 / 93 : 62152.03c -- samarium 152 (Sm-152)
 
- Pointers                     : 323536 85785
+ Pointers                     : 305879 85785
  Primary type                 : Transport
  Nuclide ZAI                  : 621520
  Library ID                   : 03c
@@ -7812,7 +7812,7 @@
 
  Nuclide   87 / 93 : 62154.03c -- samarium 154 (Sm-154)
 
- Pointers                     : 329682 86429
+ Pointers                     : 312025 86429
  Primary type                 : Transport
  Nuclide ZAI                  : 621540
  Library ID                   : 03c
@@ -7915,7 +7915,7 @@
 
  Nuclide   88 / 93 : 74182.03c -- tungsten 182 (W-182)
 
- Pointers                     : 204613 101885
+ Pointers                     : 186956 101885
  Primary type                 : Transport
  Nuclide ZAI                  : 741820
  Library ID                   : 03c
@@ -8033,7 +8033,7 @@
 
  Nuclide   89 / 93 : 74183.03c -- tungsten 183 (W-183)
 
- Pointers                     : 209536 102207
+ Pointers                     : 191879 102207
  Primary type                 : Transport
  Nuclide ZAI                  : 741830
  Library ID                   : 03c
@@ -8152,7 +8152,7 @@
 
  Nuclide   90 / 93 : 74184.03c -- tungsten 184 (W-184)
 
- Pointers                     : 214733 102529
+ Pointers                     : 197076 102529
  Primary type                 : Transport
  Nuclide ZAI                  : 741840
  Library ID                   : 03c
@@ -8239,7 +8239,7 @@
 
  Nuclide   91 / 93 : 74186.03c -- tungsten 186 (W-186)
 
- Pointers                     : 217393 102851
+ Pointers                     : 199736 102851
  Primary type                 : Transport
  Nuclide ZAI                  : 741860
  Library ID                   : 03c
@@ -8320,7 +8320,7 @@
 
  Nuclide   92 / 93 : 92235.03c -- uranium 235 (U-235)
 
- Pointers                     : 71062 117341
+ Pointers                     : 53405 117341
  Primary type                 : Transport
  Nuclide ZAI                  : 922350
  Library ID                   : 03c
@@ -8423,7 +8423,7 @@
 
  Nuclide   93 / 93 : 92238.03c -- uranium 238 (U-238)
 
- Pointers                     : 106276 118307
+ Pointers                     : 88619 118307
  Primary type                 : Transport
  Nuclide ZAI                  : 922380
  Library ID                   : 03c
