@@ -1,5 +1,5 @@
 from snapReactors.containers.templates import S82D, S8ER
-from snapReactors.library.database import Database
+from snapReactors.functions.database import Database
 from snapReactors.containers.component import Component
 from snapReactors.containers.materials import Material
 from snapReactors.containers.reactorstate import ReactorState
@@ -9,7 +9,7 @@ from snapReactors.containers.templates import S83D
 from snapReactors.containers.dimension import Dimension
 from snapReactors.functions.utilities import createDictFromConatinerList
 
-rsFilePath = "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors/jupyter_notebooks/rsReadertest.txt"
+rsFilePath = "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors/data_inputfiles/rsReadertest.txt"
 states = ReactorState._rsReader(rsFilePath)
 coldCore = states[0]
 xsPath = r"/mnt/c/Users/user/Documents/endfb7/sss_endfb7u.xsdata"
@@ -22,9 +22,9 @@ snap3D.setSettings(geoType='3D', nps = 1E+05, nact = 100, nskip=100, xsAbsPath=x
 sTest3D = Serpent("Serpent Test 3D")
 sTest3D.toSerpent(coldCore, snap3D, "serpent_test")
 
-hisFilePath =  "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors/functions/serpent_test.main_his0.m"
-outputFilePath = "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors/functions/serpent_test.main.out"
-mvolFilePath = "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors/functions/serpent_test.main.mvol"
+hisFilePath =  "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors/reactor_models/Automated Serpent Models/serpent_test.main_his0.m"
+outputFilePath = "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors//reactor_models/Automated Serpent Models/serpent_test.main.out"
+mvolFilePath = "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors/reactor_models/Automated Serpent Models/serpent_test.main.mvol"
 
 sTest3D.plotHistoryData(hisFilePath)
 sTest3D.outputMaterialData(outputFilePath, mvolFilePath)
