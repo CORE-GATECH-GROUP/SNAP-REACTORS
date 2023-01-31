@@ -73,12 +73,12 @@ class S8ER(SerpentTemplate):
             serMat = material(mat.id, isBurn=False, isModer=False)
             if 'r'in mat._propertiesDict:
                 serMat.set('dens', float(-1*np.average(mat._propertiesDict['r'].value)*KGM3_GCM3))
-            serMat.set('nuclides', mat.isotopes.astype('int'))
+            serMat.set('nuclides', list(mat.isotopes.astype('int')))
             if mat.ctype == CTYPE.WEIGHT:
                 mult = -1
             else:
                 mult = 1
-            serMat.set('fractions', mat.abundances*mult)
+            serMat.set('fractions', list(mat.abundances*mult))
             serMat.set('xsLib', "03c")
             # refStr = mat.reference
             # descStr = mat.description

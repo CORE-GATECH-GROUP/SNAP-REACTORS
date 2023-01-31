@@ -187,18 +187,11 @@ Properties: {
 %Examples are included below
 
 
-type:table 
-id:h 
-unit:imperial 
-ref:NAA-SR-6160 
-dep1unit:K 
-dep1values: [1 2]
-dep2unit:Pa 
-dep2values: [.1 .2]
-value: [1.1 2.1
-        3.1 4.1]
-unc: [1 1
-        1 1]
+type:const
+id:r
+unit:SI 
+value:[8860]
+unc:[.01]
 
 
 }
@@ -268,20 +261,11 @@ Properties: {
 %Supports comments by preceeding a line with "%"
 %Examples are included below
 
-type:table 
-id:h 
-unit:imperial 
-ref:NAA-SR-6160 
-dep1unit:K 
-dep1values: [1 2]
-dep2unit:Pa 
-dep2values: [.1 .2]
-value: [1.1 2.1
-        3.1 4.1]
-unc: [1 1
-        1 1]
-
-
+type:const
+id:r
+unit:SI 
+value:[2800]
+unc:[.01]
 }
 Reference: NA-Examples
 Description: This is an example input file
@@ -477,19 +461,11 @@ Properties: {
 %Supports comments by preceeding a line with "%"
 %Examples are included below
 
-type:table 
-id:h 
-unit:imperial 
-ref:NAA-SR-6160 
-dep1unit:K 
-dep1values: [1 2]
-dep2unit:Pa 
-dep2values: [.1 .2]
-value: [1.1 2.1
-        3.1 4.1]
-unc: [1 1
-        1 1]
-
+type:const
+id:r
+unit:SI 
+value:[3020]
+unc:[.01]
 
 }
 Reference: NA-Examples
@@ -565,18 +541,11 @@ Properties: {
 %Supports comments by preceeding a line with "%"
 %Examples are included below
 
-type:table 
-id:h 
-unit:imperial 
-ref:NAA-SR-6160 
-dep1unit:K 
-dep1values: [1 2]
-dep2unit:Pa 
-dep2values: [.1 .2]
-value: [1.1 2.1
-        3.1 4.1]
-unc: [1 1
-        1 1]
+type:const
+id:r
+unit:SI 
+value:[7954]
+unc:[.01]
 }
 Reference: NA-Examples
 Description: This is an example input file
@@ -751,18 +720,12 @@ Properties: {
 %Supports comments by preceeding a line with "%"
 %Examples are included below
 
-type:table 
-id:h 
-unit:imperial 
-ref:NAA-SR-6160 
-dep1unit:K 
-dep1values: [1 2]
-dep2unit:Pa 
-dep2values: [.1 .2]
-value: [1.1 2.1
-        3.1 4.1]
-unc: [1 1
-        1 1]
+type:const
+id:r
+unit:SI 
+value:[8890]
+unc:[.01]
+
 }
 Reference: NA-Examples
 Description: This is an example input file

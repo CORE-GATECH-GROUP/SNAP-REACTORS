@@ -13,13 +13,14 @@ email: iaguirre6@gatech.edu, sgarcia9@wisc.edu
 
 from snapReactors.functions.checkerrors import (_isstr, _isarray,
     _explengtharray, _isnonnegativearray, _isnumber, _isnonnegative,
-    _isinstanceList, _isdict) 
+    _isinstanceList, _isdict, _isbool) 
 from snapReactors.functions.parameters import ALLOWED_PROPERTIES
 from snapReactors.functions.warnings import InputFileSyntaxWarning
 from enum import Enum
 from snapReactors.containers.component import Component
 from snapReactors.containers.materials import Material, CTYPE, UTYPE
-from snapReactors.containers.property import Property, DTYPE, VTYPE 
+from snapReactors.containers.property import Property, DTYPE, VTYPE
+from snapReactors.functions.utilities import createDictFromConatinerList 
 import numpy as np
 import os
 import warnings
@@ -41,7 +42,7 @@ class ReactorState:
     Methods
     -------
     addComponent : add data for a specific component
-    _rsReader: read data from text file to initialize reactor states
+    rsReader: read data from text file to initialize reactor states
 
     Raises
     ------
@@ -87,6 +88,8 @@ class ReactorState:
                     self._components.append(i)
             else:
                 self._components.append(_components)
+
+        self.componentsDict = createDictFromConatinerList(self._components)
         self.reactorMap = _reactorMap
 
     def addReactorMap(self, reactorMap):
@@ -131,6 +134,8 @@ class ReactorState:
                 self._components.append(i)
         else:
             self._components.append(_components)
+
+        self.componentsDict = createDictFromConatinerList(self._components)
     
     def __eq__(self, other):
         if not isinstance(other, ReactorState):
@@ -145,7 +150,7 @@ class ReactorState:
         return hash((self.id, self.reference, self.description,
                 self._components))
 
-    def _rsReader(filename):
+    def rsReader(filename, outputDict = False):
         """Reads reactor state data to initialize reactor state object. 
         Furthemore, the formatting of input filename is assumed to have the \
         following formatting:
@@ -188,7 +193,7 @@ class ReactorState:
         Component Description: Example Component Description
         =============================================================
         ...
-        There are several requirements of _rsReader which are:
+        There are several requirements of rsReader which are:
         
         1. The id, reference and description are of reactor state are to be 
         written in that order with the above formatting before any components 
@@ -212,6 +217,8 @@ class ReactorState:
         ----------
         filename : str
             input file that will be parsed
+        outputDict : bool
+            bool indicates if output will be dict or list
         Raises
         ------
         TypeError
@@ -227,9 +234,10 @@ class ReactorState:
         --------
         >>> from snapReactors.containers.reactorstate import ReactorState
 
-        >>> states = ReactorState._rsReader(filename)
+        >>> states = ReactorState.rsReader(filename)
         """
         _isstr(filename, "file name")
+        _isbool(outputDict, "True/False is Dict")
 
         if not os.path.isfile(filename):
             raise OSError("Filename {} is not found".format(filename))
@@ -352,4 +360,7 @@ class ReactorState:
                 raise Exception("Error For Reactor State @ line: {} \n"
                             .format(reactorStates[i]["id"][1])) from ke
                             
-        return reactorStates
+        if outputDict:
+            return createDictFromConatinerList(reactorStates)
+        else: 
+            return reactorStates
