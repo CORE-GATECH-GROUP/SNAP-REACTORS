@@ -7,13 +7,7 @@ Created on 2022-08-29 13:38:19 @author: Isaac Naupa
 Last updated on 2022-08-29 13:38:28 @author: Isaac Naupa
 email: iaguirre6@gatech.edu
 """
-from code import compile_command
-import dbm
-from msilib.schema import Condition
-from re import TEMPLATE, template
-from turtle import fd
-from weakref import ref
-from sympy.polys.specialpolys import dmp_fateman_poly_F_1
+
 from snapReactors.functions.checkerrors import _isstr, _isarray,\
     _explengtharray, _isnonnegativearray, _isnumber, _isnonnegative
 

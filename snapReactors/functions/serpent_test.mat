@@ -13,8 +13,8 @@
 
 % Material: density(kg/m^3) temp(K) reference description
 % fuel 6060.0 293.15  NA-Examples  This is an example input file
-% clad N/A 293.15  NA-Examples  This is an example input file
-% diffusion_barrier N/A 293.15  NA-Examples  This is an example input file
+% clad 8860.0 293.15  NA-Examples  This is an example input file
+% diffusion_barrier 2800.0 293.15  NA-Examples  This is an example input file
 % burnable_poison 8350.0 293.15  NA-Examples  This is an example input 
 % gap 0.01574 293.15  NA-Examples  This is an example input file
 
@@ -34,7 +34,7 @@
 % ----------------------------------------------
 
 % Material: density(kg/m^3) temp(K) reference description
-% internal_reflector N/A 293.15  NA-Examples  This is an example input file
+% internal_reflector 3020.0 293.15  NA-Examples  This is an example input file
 
 % ----------------------------------------------
 % barrel Materials:
@@ -43,7 +43,7 @@
 % ----------------------------------------------
 
 % Material: density(kg/m^3) temp(K) reference description
-% barrel N/A 293.15  NA-Examples  This is an example input file
+% barrel 7954.0 293.15  NA-Examples  This is an example input file
 
 % ----------------------------------------------
 % upper gridplate Materials:
@@ -61,7 +61,7 @@
 % ----------------------------------------------
 
 % Material: density(kg/m^3) temp(K) reference description
-% lower_gridplate N/A 293.15  NA-Examples  This is an example input file
+% lower_gridplate 8890.0 293.15  NA-Examples  This is an example input file
 
 % ----------------------------------------------
 % control drum system Materials:
@@ -72,7 +72,7 @@
 % Material: density(kg/m^3) temp(K) reference description
 % control_drum 1840.0 293.15 N/A N/A
 
-mat lower_gridplate    sum    rgb 124 138 197
+mat lower_gridplate    -8.89    rgb 124 138 197
 28058.03c	-0.371428
 28060.03c	-0.143073
 28061.03c	-0.00621929
@@ -116,7 +116,7 @@ mat coolant    -0.0012250000000000002    rgb 196 193 193
 18038.03c	-0.000554
 18040.03c	-0.0121
 
-mat clad    sum    rgb 100 100 100
+mat clad    -8.86    rgb 100 100 100
 28058.03c	-0.470343
 28060.03c	-0.181175
 28061.03c	-0.00787557
@@ -171,7 +171,7 @@ mat fuel    -6.0600000000000005    rgb 219 89 89
 mat gap    -1.5740000000000002e-05    
 2004.03c	-1.0
 
-mat diffusion_barrier    sum    
+mat diffusion_barrier    -2.8000000000000003    
 8016.03c	-0.362335
 14028.03c	-0.205113
 14029.03c	-0.0103203
@@ -220,7 +220,7 @@ mat burnable_poison    -8.35
 62152.03c	-0.230595
 62154.03c	-0.1961
 
-mat barrel    sum    rgb 102 0 0
+mat barrel    -7.954    rgb 102 0 0
 6000.03c	-0.0008
 25055.03c	-0.02
 14028.03c	-0.00692385
@@ -254,7 +254,7 @@ mat barrel    sum    rgb 102 0 0
 26057.03c	-0.0138832
 26058.03c	-0.00184759
 
-mat internal_reflector    sum    
+mat internal_reflector    -3.02    
 8016.03c	-0.63968
 4009.03c	-0.36032
 
@@ -267,7 +267,7 @@ coolant	0.357
 mat control_drum    -1.84    rgb 247 215 183
 4009.03c	-1.0
 
-mat upper_gridplate    sum    rgb 102 0 0
+mat upper_gridplate    -7.954    rgb 102 0 0
 6000.03c	-0.0008
 25055.03c	-0.02
 14028.03c	-0.00692385
