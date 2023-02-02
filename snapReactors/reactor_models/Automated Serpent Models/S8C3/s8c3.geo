@@ -587,7 +587,7 @@ pin upperEndCool
 coolant
 
 pin lowerEndCap
-clad	0.71374
+clad	0.7112
 coolant
 
 pin fuelElemz0
@@ -754,7 +754,7 @@ pin upperPoison
 burnable_poison
 
 pin upperEndCap
-clad	0.71374
+clad	0.7112
 coolant
 
 lat upperGridLat 3 0 0 21 21 1.4478

@@ -14,3 +14,8 @@ set bc 1 1 1
 set pop 100000 100 100
 set acelib "/mnt/c/Users/user/Documents/endfb7/sss_endfb7u.xsdata"
 set his 1
+plot 31 1000 1000 0.0
+plot 31 1000 1000 18.2
+plot 31 1000 1000 -18.5
+plot 11 1000 1000 0.0
+plot 21 1000 1000 0.0

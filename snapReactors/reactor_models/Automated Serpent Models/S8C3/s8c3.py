@@ -12,7 +12,8 @@ from snapReactors.functions.utilities import createDictFromConatinerList
 
 ##Loading and accessing inputfile data
 #reads in reactor state data
-rsFilePath = "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors/data_inputfiles/s8er_coldpower.txt"
+#rsFilePath = "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors/data_inputfiles/s8er_coldpower.txt"
+rsFilePath = r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\data_inputfiles\s8er_coldpower.txt"
 states = ReactorState.rsReader(rsFilePath, outputDict=True)
 #display states read in and access state being modeled
 print(states)
@@ -41,8 +42,9 @@ sTest3D.toSerpent(reactorState=coldpow, template=snap, baseFileName="s8c3")
 
 #post processing capabilities using serpentTools
 # hisFilePath =  "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors/reactor_models/Automated Serpent Models/serpent_test.main_his0.m"
-# outputFilePath = "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors//reactor_models/Automated Serpent Models/serpent_test.main.out"
-# mvolFilePath = "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors/reactor_models/Automated Serpent Models/serpent_test.main.mvol"
-
+#outputFilePath = "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors//reactor_models/Automated Serpent Models/serpent_test.main.out"
+#mvolFilePath = "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors/reactor_models/Automated Serpent Models/serpent_test.main.mvol"
+outputFilePath = r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\reactor_models\Automated Serpent Models\S8C3\s8c3.main.out"
+mvolFilePath = r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\reactor_models\Automated Serpent Models\S8C3\s8c3.main.mvol"
 # sTest3D.plotHistoryData(hisFilePath)
-# sTest3D.outputMaterialData(outputFilePath, mvolFilePath)
+sTest3D.outputMaterialData(outputFilePath, mvolFilePath)

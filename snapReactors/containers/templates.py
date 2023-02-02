@@ -473,7 +473,9 @@ class S83D(S8ER):
 
         upperEndCap = pin("upperEndCap", 2)
         upperEndCap.set('materials', [cladMat, airMat ])
-        upperEndCap.set('radii', [cladRad])
+
+        ecPinRad = 0.7112
+        upperEndCap.set('radii', [ecPinRad])
 
         upperPois = pin("upperPoison", 1)
         upperPois.set('materials', [bpMat])
@@ -494,7 +496,7 @@ class S83D(S8ER):
 
         lowerEndCap = pin("lowerEndCap", 2)
         lowerEndCap.set('materials', [cladMat, airMat ])
-        lowerEndCap.set('radii', [cladRad])
+        lowerEndCap.set('radii', [ecPinRad])
         fuelSer = build3DPinPlanes("fuelElem", fuelSerMats, fuelSerRadii, nActiveLayers, dz, -22.9+lvt+lgt, topUniv=uecPois, topUnivdz=uecPoisLen, botUniv=lowerEndCap, botUnivdz=lowerEndcapThick)
         #fuelSer = build3Dpin("fuelElem", fuelSerMats, fuelSerRadii, nLayersTot, dz=dz, hasUniqueMatlayers=False, topUniv=uecPois, topUnivdz=uecPoisLen, botUniv=lowerEndCap, botUnivdz=lowerEndcapThick)
         coolSerMats = [airMat]
