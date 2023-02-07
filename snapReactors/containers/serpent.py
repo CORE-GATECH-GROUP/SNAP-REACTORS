@@ -273,7 +273,7 @@ class Serpent:
                         #print(word)
                         #vol = lines[ldx+6].replace("-", "").replace("Volume", "").replace("cm3", "").strip()
                         #print("volume: "+ vol+" cm3")
-                        massDens = lines[ldx+6].split("-", 1)[1].replace("Mass density", "").replace("g/cm3", "").strip()
+                        massDens = lines[ldx+5].split("-", 1)[1].replace("Mass density", "").replace("g/cm3", "").strip()
                         #print("dens: "+ massDens +" g/cm3")
                         mdens.append(float(massDens))
                         #mass = lines[ldx+7].replace("-", "").replace("Mass", "").replace("g", "").strip()

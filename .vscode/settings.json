@@ -4,4 +4,7 @@
     ],
     "terminal.integrated.defaultProfile.windows": "Command Prompt",
     "jupyter.notebookFileRoot": "${workspaceFolder}",
+    "files.associations": {
+        "bitset": "c"
+    },
 }
