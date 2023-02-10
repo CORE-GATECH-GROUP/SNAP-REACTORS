@@ -1122,29 +1122,99 @@ class S83D_Revised(S8ER):
         cdLowerThick = 3.1369
         cdUpperThick = 3.1369
         activeDrumHeight= fuelLen - cdUpperThick - cdLowerThick 
+ 
+        gapThickness = 0.207772 #Table 1 SR-9642
+        drumVoidThickness = 11.95 - 11.9126 #to be determined (extracted from Wisc model)
+        drumRadCurv = 11.8872#Table 1 SR-9642
+        drumCent =  barrelRad+gapThickness+drumRadCurv
 
-        drumRad = 11.9126
-        voidRad = 11.95
-        drumFX = 23.972012  
-        deg_rad = np.pi/180
-        angle1 = 30
-        drumX = drumFX*np.cos(angle1*deg_rad)
-        drumY = drumFX*np.sin(angle1*deg_rad)
+        def calcDrumParams(barrelOuterRad, gapThickness, radOfCurv, drumVoidThickness):
+            dx = barrelOuterRad+gapThickness+radOfCurv
+            drumCent = np.array([dx, 0])
+            drumAngles = np.array([30, 90, 150, 210, 270, 330])
+            radian = drumAngles*(np.pi/180)
+
+            drumPos = np.zeros((len(drumAngles)*2, 3))
+
+            for i in range(0, len(drumAngles)):
+                deg = radian[i]
+                A = np.array([[np.cos(deg), -np.sin(deg)] , [np.sin(deg), np.cos(deg)]])
+                cordVec = A@drumCent
+
+                drumPos[i][0], drumPos[i][1] = cordVec[0], cordVec[1]
+                drumPos[i][2] = radOfCurv
+
+                drumPos[i+len(drumAngles)][0], drumPos[i+len(drumAngles)][1] = cordVec[0], cordVec[1]
+                drumPos[i+len(drumAngles)][2] = radOfCurv+drumVoidThickness
+                
+            return drumPos
+
+        def calcChordLength(drumCent,drumRad, cutOffApothem):
+            C = drumCent
+            d = C - cutOffApothem
+            r = drumRad
+            chordLen = 2*np.sqrt(r**2 - d**2)
+            return chordLen
+
+        
+        drumChordLen = calcChordLength(drumCent, drumRadCurv, drumApothem)
+    
+        def calcShimPlanes(drumChordLen):
+            initCord = np.array([0, drumChordLen/2])
+
+            drumAngles = np.array([30, 90, 150, 210, 270, 330])
+            radian = drumAngles*(np.pi/180)
+
+            params = np.zeros((len(drumAngles), 4))
+            def calcNormCord(cord):
+                norm = np.sqrt(cord[0]**2 + cord[1]**2)
+                return np.array([cord[0]/norm , cord[1]/norm])
+
+            normCord = calcNormCord(initCord)
+            for i in range(0, len(drumAngles)):
+                deg = radian[i]
+                A = np.array([[np.cos(deg), -np.sin(deg)] , [np.sin(deg), np.cos(deg)]])
+                cordVec = A@initCord
+                normVec = A@normCord
+
+                a = normVec[0]
+                b = normVec[1]
+                c = 0
+                d = normVec[0]* cordVec[0] + normVec[1] * cordVec[1]
+
+                params[i][0], params[i][1], params[i][2], params[i][3] = a, b, c, d
+            return params 
 
         def _buildControlDrums(uid):
-            cdSurf1  = surf("sDrum1", "cyl",np.array([0, drumFX, drumRad]))
-            cdSurf2  = surf("sDrum2", "cyl",np.array([0, -drumFX, drumRad]))
-            cdSurf3  = surf("sDrum3", "cyl",np.array([drumX, drumY, drumRad]))
-            cdSurf4  = surf("sDrum4", "cyl",np.array([-drumX, drumY, drumRad]))
-            cdSurf5  = surf("sDrum5", "cyl",np.array([drumX, -drumY, drumRad]))
-            cdSurf6  = surf("sDrum6", "cyl",np.array([-drumX, -drumY, drumRad]))
+            drumParams = calcDrumParams(barrelRad, gapThickness, drumRadCurv, drumVoidThickness)
+            cdSurf1  = surf("sDrum1", "cyl", drumParams[0])
+            cdSurf2  = surf("sDrum2", "cyl", drumParams[1])
+            cdSurf3  = surf("sDrum3", "cyl", drumParams[2])
+            cdSurf4  = surf("sDrum4", "cyl", drumParams[3])
+            cdSurf5  = surf("sDrum5", "cyl", drumParams[4])
+            cdSurf6  = surf("sDrum6", "cyl", drumParams[5])
 
-            vSurf1  = surf("svDrum1", "cyl",np.array([0, drumFX, voidRad]))
-            vSurf2  = surf("svDrum2", "cyl",np.array([0, -drumFX, voidRad]))
-            vSurf3  = surf("svDrum3", "cyl",np.array([drumX, drumY, voidRad]))
-            vSurf4  = surf("svDrum4", "cyl",np.array([-drumX, drumY, voidRad]))
-            vSurf5  = surf("svDrum5", "cyl",np.array([drumX, -drumY, voidRad]))
-            vSurf6  = surf("svDrum6", "cyl",np.array([-drumX, -drumY, voidRad]))
+            vSurf1  = surf("svDrum1", "cyl", drumParams[6])
+            vSurf2  = surf("svDrum2", "cyl", drumParams[7])
+            vSurf3  = surf("svDrum3", "cyl", drumParams[8])
+            vSurf4  = surf("svDrum4", "cyl", drumParams[9])
+            vSurf5  = surf("svDrum5", "cyl", drumParams[10])
+            vSurf6  = surf("svDrum6", "cyl", drumParams[11])
+
+            planeParams = calcShimPlanes(drumChordLen)
+
+            spU14  = surf("spU14", "plane", planeParams[0])
+            spL14  = surf("spL14", "plane", planeParams[3])
+
+            spU25  = surf("spU25", "plane", planeParams[1])
+            spL25  = surf("spL25", "plane", planeParams[4])
+
+            spU36  = surf("spU36", "plane", planeParams[2])
+            spL36  = surf("spL36", "plane", planeParams[5])
+
+            drumSurf  = surf("barrelCD"+"h1", "hexyc", np.array([0.0, 0.0, drumApothem]))
+            shimAsurf = surf(uid+"ShimA"+"h1", "hexyc", np.array([0.0, 0.0, shimAApothem]))
+            shimBsurf = surf(uid+"ShimB"+"h1", "hexyc", np.array([0.0, 0.0, shimBApothem]))
 
             cdCell1 = cell(uid+"cDrum1",mat=cdMat)
             cdCell2 = cell(uid+"cDrum2",mat=cdMat)
@@ -1153,12 +1223,26 @@ class S83D_Revised(S8ER):
             cdCell5 = cell(uid+"cDrum5",mat=cdMat)
             cdCell6 = cell(uid+"cDrum6",mat=cdMat)
 
-            cdCell1.setSurfs([cdSurf1], [1])
-            cdCell2.setSurfs([cdSurf2], [1])
-            cdCell3.setSurfs([cdSurf3], [1])
-            cdCell4.setSurfs([cdSurf4], [1])
-            cdCell5.setSurfs([cdSurf5], [1])
-            cdCell6.setSurfs([cdSurf6], [1])
+            cdCell1.setSurfs([cdSurf1, drumSurf, spU14, spL14], [1, 1, 1, 1])
+            cdCell2.setSurfs([cdSurf2, drumSurf, spU25, spL25], [1, 1, 1, 1])
+            cdCell3.setSurfs([cdSurf3, drumSurf, spU36, spL36], [1, 1, 1, 1])
+            cdCell4.setSurfs([cdSurf4, drumSurf, spU14, spL14], [1, 1, 1, 1])
+            cdCell5.setSurfs([cdSurf5, drumSurf, spU25, spL25], [1, 1, 1, 1])
+            cdCell6.setSurfs([cdSurf6, drumSurf, spU36, spL36], [1, 1, 1, 1])
+
+            saCell1 = cell(uid+"saDrum1",mat=cdMat)
+            saCell2 = cell(uid+"saDrum2",mat=cdMat)
+            saCell3 = cell(uid+"saDrum3",mat=cdMat)
+            saCell4 = cell(uid+"saDrum4",mat=cdMat)
+            saCell5 = cell(uid+"saDrum5",mat=cdMat)
+            saCell6 = cell(uid+"saDrum6",mat=cdMat)
+
+            saCell1.setSurfs([cdSurf1, drumSurf, shimAsurf, spU14, spL14], [1, 0, 1, 1, 1])
+            saCell2.setSurfs([cdSurf2, drumSurf, shimAsurf, spU25, spL25], [1, 0, 1, 1, 1])
+            saCell3.setSurfs([cdSurf3, drumSurf, shimAsurf, spU36, spL36], [1, 0, 1, 1, 1])
+            saCell4.setSurfs([cdSurf4, drumSurf, shimAsurf, spU14, spL14], [1, 0, 1, 1, 1])
+            saCell5.setSurfs([cdSurf5, drumSurf, shimAsurf, spU25, spL25], [1, 0, 1, 1, 1])
+            saCell6.setSurfs([cdSurf6, drumSurf, shimAsurf, spU36, spL36], [1, 0, 1, 1, 1])
 
             vCell1 = cell(uid+"cvDrum1", isVoid=True)
             vCell2 = cell(uid+"cvDrum2", isVoid=True)
@@ -1174,35 +1258,67 @@ class S83D_Revised(S8ER):
             vCell5.setSurfs([cdSurf5, vSurf5], [0, 1])
             vCell6.setSurfs([cdSurf6, vSurf6], [0, 1])
 
-            cd1 = universe(uid+"cd1_univ")
-            cd1.setGeom([cdCell1, vCell1])
-            cd1.setBoundary(vSurf1)
-            cd1.collectAll()
 
-            cd2 = universe(uid+"cd2_univ")
-            cd2.setGeom([cdCell2, vCell2])
-            cd2.setBoundary(vSurf2)
-            cd2.collectAll()
+            if self.config == 'C3':
+                cd1 = universe(uid+"cd1_univ")
+                cd1.setGeom([cdCell1, vCell1])
+                cd1.setBoundary(vSurf1)
+                cd1.collectAll()
 
-            cd3 = universe(uid+"cd3_univ")
-            cd3.setGeom([cdCell3, vCell3])
-            cd3.setBoundary(vSurf3)
-            cd3.collectAll()
+                cd2 = universe(uid+"cd2_univ")
+                cd2.setGeom([cdCell2, vCell2])
+                cd2.setBoundary(vSurf2)
+                cd2.collectAll()
 
-            cd4 = universe(uid+"cd4_univ")
-            cd4.setGeom([cdCell4, vCell4])
-            cd4.setBoundary(vSurf4)
-            cd4.collectAll()
+                cd3 = universe(uid+"cd3_univ")
+                cd3.setGeom([cdCell3, vCell3])
+                cd3.setBoundary(vSurf3)
+                cd3.collectAll()
 
-            cd5 = universe(uid+"cd5_univ")
-            cd5.setGeom([cdCell5, vCell5])
-            cd5.setBoundary(vSurf5)
-            cd5.collectAll()
+                cd4 = universe(uid+"cd4_univ")
+                cd4.setGeom([cdCell4, vCell4])
+                cd4.setBoundary(vSurf4)
+                cd4.collectAll()
 
-            cd6 = universe(uid+"cd6_univ")
-            cd6.setGeom([cdCell6, vCell6])
-            cd6.setBoundary(vSurf6)
-            cd6.collectAll()
+                cd5 = universe(uid+"cd5_univ")
+                cd5.setGeom([cdCell5, vCell5])
+                cd5.setBoundary(vSurf5)
+                cd5.collectAll()
+
+                cd6 = universe(uid+"cd6_univ")
+                cd6.setGeom([cdCell6, vCell6])
+                cd6.setBoundary(vSurf6)
+                cd6.collectAll()
+            elif self.config == 'C1':
+                cd1 = universe(uid+"cd1_univ")
+                cd1.setGeom([cdCell1, vCell1, saCell1])
+                cd1.setBoundary(vSurf1)
+                cd1.collectAll()
+
+                cd2 = universe(uid+"cd2_univ")
+                cd2.setGeom([cdCell2, vCell2, saCell2])
+                cd2.setBoundary(vSurf2)
+                cd2.collectAll()
+
+                cd3 = universe(uid+"cd3_univ")
+                cd3.setGeom([cdCell3, vCell3, saCell3])
+                cd3.setBoundary(vSurf3)
+                cd3.collectAll()
+
+                cd4 = universe(uid+"cd4_univ")
+                cd4.setGeom([cdCell4, vCell4, saCell4])
+                cd4.setBoundary(vSurf4)
+                cd4.collectAll()
+
+                cd5 = universe(uid+"cd5_univ")
+                cd5.setGeom([cdCell5, vCell5, saCell5])
+                cd5.setBoundary(vSurf5)
+                cd5.collectAll()
+
+                cd6 = universe(uid+"cd6_univ")
+                cd6.setGeom([cdCell6, vCell6, saCell6])
+                cd6.setBoundary(vSurf6)
+                cd6.collectAll()
 
             cdFull = universe(uid+"cdFull")
 
@@ -1230,17 +1346,22 @@ class S83D_Revised(S8ER):
             cdFulld6.setFill(cd6)
             cdFulld6.setSurfs([vSurf6],[1])
 
-            cdSys = cell(uid+'cdSys', mat=cdMat)
-            cdVoidSurf = surf("barrelCD"+"c1", "cyl", np.array([0.0, 0.0, drumApothem+.5]))
-            cdSys.setSurfs([cdVoidSurf, vSurf6, vSurf2, vSurf3, vSurf4, vSurf5, vSurf1], [1, 0, 0, 0, 0, 0, 0])
+            if self.config == 'C3':
+                cdSys = cell(uid+'cdSys', mat=cdMat)
+                cdSys.setSurfs([drumSurf, vSurf6, vSurf2, vSurf3, vSurf4, vSurf5, vSurf1], [1, 0, 0, 0, 0, 0, 0])
 
-            cdNoShimSurf = surf("barrelCD"+"h1", "hexyc", np.array([0.0, 0.0, drumApothem]))
-            cdSysVoid = cell(uid+'cdSysVoid', isVoid=True)
-            cdSysVoid.setSurfs([cdVoidSurf, cdNoShimSurf, vSurf6, vSurf2, vSurf3, vSurf4, vSurf5, vSurf1], [0, 1, 0, 0, 0, 0, 0, 0])
 
-            cdFull.setBoundary(cdNoShimSurf)
-            cdFull.setGeom([cdFulld1, cdFulld2, cdFulld3, cdFulld4, cdFulld5, cdFulld6, cdSys, cdSysVoid])
-            cdFull.collectAll()
+                cdFull.setBoundary(drumSurf)
+                cdFull.setGeom([cdFulld1, cdFulld2, cdFulld3, cdFulld4, cdFulld5, cdFulld6, cdSys])
+                cdFull.collectAll()
+            elif self.config == 'C1':
+                cdSys = cell(uid+'cdSys', mat=cdMat)
+                cdSys.setSurfs([shimAsurf, vSurf6, vSurf2, vSurf3, vSurf4, vSurf5, vSurf1], [1, 0, 0, 0, 0, 0, 0])
+
+
+                cdFull.setBoundary(shimAsurf)
+                cdFull.setGeom([cdFulld1, cdFulld2, cdFulld3, cdFulld4, cdFulld5, cdFulld6, cdSys])
+                cdFull.collectAll()                
 
             return cdFull
 
@@ -1281,12 +1402,12 @@ class S83D_Revised(S8ER):
 
         cd1 = _buildControlDrums("barrel")
 
-        if self.config == 'C3':
-            ccd1 = buildPeripheralRing(cd1, shimAVertex, isVoid = True, ringId="barrelVoid")
-        elif self.config =='C2':
-            ccd1 = buildPeripheralObject(cd1, _buildShimA("barrel"))
-        elif self.config =='C1':
-            ccd1 = buildPeripheralObject(cd1, _buildShimAWithB("barrel"))
+        # if self.config == 'C3':
+        ccd1 = buildPeripheralRing(cd1, shimAVertex, isVoid = True, ringId="barrelVoid")
+        # elif self.config =='C2':
+        #     ccd1 = buildPeripheralObject(cd1, _buildShimA("barrel"))
+        # elif self.config =='C1':
+        #     ccd1 = buildPeripheralObject(cd1, _buildShimAWithB("barrel"))
 
         ucd1 = _buildControlDrums("upper")
         uvd1 = buildPeripheralObject(ucd1, _buildShimA("upper"))
@@ -1364,4 +1485,5 @@ class S83D_Revised(S8ER):
 
         map = {'active_core': box1}
         return map
+
 
