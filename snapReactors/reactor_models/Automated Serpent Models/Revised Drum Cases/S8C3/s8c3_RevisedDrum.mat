@@ -157,14 +157,6 @@ mat clad -8.86    rgb 100 100 100
 22049.00c	-0.00013525
 22050.00c	-0.0001295
 
-therm HLu h-luci.40t
-mat lucite   -1.19 rgb 11 229 229 moder HLu 1001
-1001.00c     -0.080538  %H1
-%6012.03c     -0.599848  %C
-6012.00c     -0.5934296264
-6013.00c     -0.0064183736
-8016.00c     -0.319614  %O16
-
 therm HZr h-zrh.40t therm ZrH zr-zrh.40t
 mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
 1001.00c	0.0596

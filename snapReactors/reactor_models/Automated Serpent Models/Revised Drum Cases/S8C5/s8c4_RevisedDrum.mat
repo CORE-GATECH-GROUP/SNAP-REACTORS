@@ -72,7 +72,8 @@
 % Material: density(kg/m^3) temp(K) reference description
 % control_drum 1840.0 293.15 N/A N/A
 
-mat lower_gridplate -8.89    rgb 124 138 197
+% hasteC og: -8.89, snap2ornl: -8.27
+mat lower_gridplate -8.27    rgb 124 138 197
 28058.00c	-0.371428
 28060.00c	-0.143073
 28061.00c	-0.00621929
@@ -157,13 +158,13 @@ mat clad -8.86    rgb 100 100 100
 22049.00c	-0.00013525
 22050.00c	-0.0001295
 
+% hasteC og: -1.19, snap2ornl: -1.18
 therm HLu h-luci.40t
-mat lucite   -1.19 rgb 11 229 229 moder HLu 1001
-1001.00c     -0.080538  %H1
-%6012.03c     -0.599848  %C
-6012.00c     -0.5934296264
-6013.00c     -0.0064183736
-8016.00c     -0.319614  %O16
+mat lucite -1.19 moder HLu 1001   rgb 11 229 229
+1001.00c	-0.080538
+6012.00c	-0.5934296264
+6013.00c	-0.0064183736
+8016.00c	-0.319614
 
 therm HZr h-zrh.40t therm ZrH zr-zrh.40t
 mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
@@ -233,7 +234,8 @@ burnable_poison	0.005696794
 mat gap -1.5740000000000002e-05    
 2004.00c	-1.0
 
-mat barrel -7.954    rgb 102 0 0
+%ss316 og: -7.954, snap2ornl: -8.03 
+mat barrel -7.954     rgb 102 0 0
 6012.00c	-0.0008
 25055.00c	-0.02
 14028.00c	-0.00692385
@@ -278,6 +280,7 @@ clad	0.042
 internal_reflector	0.41
 coolant	0.357
 
+% Be og: -1.84, snap2ornl: -1.82
 therm Bem be-met.40t
 mat control_drum -1.84 moder Bem 4009   rgb 247 215 183
 4009.00c	-1.0

@@ -31,7 +31,7 @@ ugp = components['upper gridplate']
 cds = components['control drum system']
 
 ##Initialize S83D simba template - CoreComp
-snap = S83D_Revised(fe, ce, ir, br, ugp, lgp, cds, config='C1',  xsLibrary="ENDF8", hasThermScatt=True)
+snap = S83D_Revised(fe, ce, ir, br, ugp, lgp, cds, config='C4',  xsLibrary="ENDF8", hasThermScatt=True)
 #set serpent params desired for model
 #acePath = r"/mnt/c/Users/user/Documents/endfb7/sss_endfb7u.xsdata"
 acePath = "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
@@ -45,8 +45,8 @@ xsAbsPath=acePath, plotOptions=([3, 1], 1000, [0, 0], 1), xsLibrary="ENDF8")
 # # mvolFilePath = r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\reactor_models\Automated Serpent Models\S8C3\s8c3.main.mvol"
 # #sTest3D.plotHistoryData(hisFilePath)
 
-sTest3D = Serpent(id="s8c4_RevisedWCoreComp")
-sTest3D.toSerpent(reactorState=coldpow, template=snap, baseFileName="s8c4_RevisedWCoreComp")
+sTest3D = Serpent(id="s8c4_RevisedDrum")
+sTest3D.toSerpent(reactorState=coldpow, template=snap, baseFileName="s8c4_RevisedDrum")
 # outputFilePath = "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors/reactor_models/Automated Serpent Models/S8C3_CoreCompVerification/s8c3_corecomp.main.out"
 # mvolFilePath = "/Users/isaacnaupaaguirre/Documents/GitHub/SNAP-REACTORS/snapReactors/reactor_models/Automated Serpent Models/S8C3_CoreCompVerification/s8c3_corecomp.main.mvol"
 # sTest3D.baseFileName = "s8cr_corecomp"

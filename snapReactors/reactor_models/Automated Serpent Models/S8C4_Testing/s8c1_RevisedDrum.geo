@@ -77,15 +77,15 @@
 
 % Parameter(unit): value unc reference description
 
-surf cdBarrelHexVoidcc1 cyl 0.0 0.0 35.859212 
-surf putBorder cuboid -35.859212 35.859212 -35.859212 35.859212 -22.9 22.9 
+surf cdBarrelHexVoidcc1 cyl 0.0 0.0 24.601364633066932 
+surf putBorder cuboid -24.601364633066932 24.601364633066932 -24.601364633066932 24.601364633066932 -22.9 22.9 
 surf core_gridspz0 pz -22.9 
 surf core_gridspz1 pz -19.1707 
 surf core_gridspz2 pz -18.3769 
 surf core_gridspz3 pz 18.3769 
 surf core_gridspz4 pz 19.25 
 surf lgBarrelcc1 cyl 0.0 0.0 11.87704 
-surf lowerCDcc1 cyl 0.0 0.0 35.859212 
+surf lowerCDcc1 cyl 0.0 0.0 24.601364633066932 
 surf barrelcc1 cyl 0.0 0.0 11.87704 
 surf intrefcc1 cyl 0.0 0.0 11.7475 
 surf hexBorder hexyc 0.0 0.0 11.43 
@@ -100,12 +100,12 @@ surf uecWithPoisonspz1 pz 18.148395000000004
 surf fuelElemspz0 pz -18.3769 
 surf fuelElemspz1 pz -17.4117 
 surf fuelElemspz2 pz 18.148300000000003 
-surf barrelVoidcc1 cyl 0.0 0.0 35.859212 
+surf barrelVoidcc1 cyl 0.0 0.0 24.601364633066932 
 surf controlDrumHousingspz0 pz -18.3769 
 surf controlDrumHousingspz1 pz -15.239999999999998 
 surf controlDrumHousingspz2 pz 15.240000000000002 
-surf lowerShimAh1 hexyc 0.0 0.0 19.6467995 
-surf lowerGPVoidcc1 cyl 0.0 0.0 35.859212 
+surf lowervoidDrumh1 cyl 0.0 0.0 22.349720799665754 
+surf lowerGPVoidcc1 cyl 0.0 0.0 24.601364633066932 
 surf svDrum1 cyl 20.76037137182541 11.986005999999998 11.9246 
 surf svDrum2 cyl 1.467862388246097e-15 23.972012 11.9246 
 surf svDrum3 cyl -20.76037137182541 11.986005999999998 11.9246 
@@ -113,6 +113,7 @@ surf svDrum4 cyl -20.760371371825407 -11.986006000000001 11.9246
 surf svDrum5 cyl -4.403587164738291e-15 -23.972012 11.9246 
 surf svDrum6 cyl 20.7603713718254 -11.98600600000001 11.9246 
 surf barrelCDh1 hexyc 0.0 0.0 17.4732315 
+surf lowerShimAh1 hexyc 0.0 0.0 19.35542598 
 surf sDrum1 cyl 20.76037137182541 11.986005999999998 11.8872 
 surf spU14 plane -0.49999999999999994 0.8660254037844387 0.0 9.953460496371088 
 surf spL14 plane 0.5000000000000001 -0.8660254037844386 0.0 9.953460496371088 
@@ -125,13 +126,14 @@ surf spL36 plane 0.5000000000000004 0.8660254037844384 0.0 9.953460496371088
 surf sDrum4 cyl -20.760371371825407 -11.986006000000001 11.8872 
 surf sDrum5 cyl -4.403587164738291e-15 -23.972012 11.8872 
 surf sDrum6 cyl 20.7603713718254 -11.98600600000001 11.8872 
-surf barrelShimAh1 hexyc 0.0 0.0 19.6467995 
-surf barrelShimBh1 hexyc 0.0 0.0 21.30900257 
-surf barrelvoidDrumh1 cyl 0.0 0.0 35.859212 
-surf upperShimAh1 hexyc 0.0 0.0 19.6467995 
-surf upperGPVoidcc1 cyl 0.0 0.0 35.859212 
+surf barrelShimAh1 hexyc 0.0 0.0 19.35542598 
+surf barrelShimBh1 hexyc 0.0 0.0 21.30540674 
+surf barrelvoidDrumh1 cyl 0.0 0.0 24.601364633066932 
+surf uppervoidDrumh1 cyl 0.0 0.0 22.349720799665754 
+surf upperGPVoidcc1 cyl 0.0 0.0 24.601364633066932 
+surf upperShimAh1 hexyc 0.0 0.0 19.35542598 
 surf ugBarrelcc1 cyl 0.0 0.0 11.87704 
-surf upperCDcc1 cyl 0.0 0.0 35.859212 
+surf upperCDcc1 cyl 0.0 0.0 24.601364633066932 
 cell fillRegion 1  fill core_grid -cdBarrelHexVoidcc1 
 cell voidRegion 1  void cdBarrelHexVoidcc1 -putBorder 
 cell core_gridcpz0 core_grid  fill voidPin core_gridspz0 -core_gridspz1 
@@ -158,9 +160,6 @@ cell lucElemcpz1 lucElem  fill lucElemz0 lucElemspz1 -lucElemspz2
 cell lucElemcpz2 lucElem  fill uecWithPoison lucElemspz2 
 cell uecWithPoisoncpz0 uecWithPoison  fill upperPoison uecWithPoisonspz0 -uecWithPoisonspz1 
 cell uecWithPoisoncpz1 uecWithPoison  fill upperEndCap uecWithPoisonspz1 
-cell fuelElemcpz0100200300400500600700 800  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
-cell fuelElemcpz1100200300400500600700 800  fill fuelElemz0 fuelElemspz1 -fuelElemspz2 
-cell fuelElemcpz2100200300400500600700 800  fill uecWithPoison fuelElemspz2 
 cell fuelElemcpz0100200300400500600 700  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
 cell fuelElemcpz1100200300400500600 700  fill fuelElemz0 fuelElemspz1 -fuelElemspz2 
 cell fuelElemcpz2100200300400500600 700  fill uecWithPoison fuelElemspz2 
@@ -182,6 +181,9 @@ cell fuelElemcpz2100 200  fill uecWithPoison fuelElemspz2
 cell fuelElemcpz0 100  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
 cell fuelElemcpz1 100  fill fuelElemz0 fuelElemspz1 -fuelElemspz2 
 cell fuelElemcpz2 100  fill uecWithPoison fuelElemspz2 
+cell fuelElemcpz0100200300400500600700 800  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1100200300400500600700 800  fill fuelElemz0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2100200300400500600700 800  fill uecWithPoison fuelElemspz2 
 cell intref_cell intref_univ  reflMix hexBorder -intrefcc1 
 cell barrel_cell barrel_univ  barrel intrefcc1 -barrelcc1 
 cell controlDrumHousingcdBarrelHexVoid_cell1 controlDrumHousingcdBarrelHexVoid_univ  fill controlDrumHousing -barrelVoidcc1 
@@ -189,8 +191,8 @@ cell controlDrumHousingcdBarrelHexVoid_cell2 controlDrumHousingcdBarrelHexVoid_u
 cell controlDrumHousingcpz0 controlDrumHousing  fill lowercdFulllowerGPVoid_univ controlDrumHousingspz0 -controlDrumHousingspz1 
 cell controlDrumHousingcpz1 controlDrumHousing  fill barrelcdFull controlDrumHousingspz1 -controlDrumHousingspz2 
 cell controlDrumHousingcpz2 controlDrumHousing  fill uppercdFullupperGPVoid_univ controlDrumHousingspz2 
-cell lowercdFulllowerGPVoid_cell1 lowercdFulllowerGPVoid_univ  fill lowercdFull -lowerShimAh1 
-cell lowercdFulllowerGPVoid_cell2 lowercdFulllowerGPVoid_univ  fill lowerGPVoid_univ lowerShimAh1 -lowerGPVoidcc1 
+cell lowercdFulllowerGPVoid_cell1 lowercdFulllowerGPVoid_univ  fill lowercdFull -lowervoidDrumh1 
+cell lowercdFulllowerGPVoid_cell2 lowercdFulllowerGPVoid_univ  fill lowerGPVoid_univ lowervoidDrumh1 -lowerGPVoidcc1 
 cell lowercdFulld1 lowercdFull  fill lowercd1_univ -svDrum1 
 cell lowercdFulld2 lowercdFull  fill lowercd2_univ -svDrum2 
 cell lowercdFulld3 lowercdFull  fill lowercd3_univ -svDrum3 
@@ -198,32 +200,39 @@ cell lowercdFulld4 lowercdFull  fill lowercd4_univ -svDrum4
 cell lowercdFulld5 lowercdFull  fill lowercd5_univ -svDrum5 
 cell lowercdFulld6 lowercdFull  fill lowercd6_univ -svDrum6 
 cell lowercdSys lowercdFull  control_drum -barrelCDh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
-cell lowercdSysVoid lowercdFull  void barrelCDh1 -lowerShimAh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
+cell lowercdSysVoidSA lowercdFull  void barrelCDh1 -lowerShimAh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
+cell lowercdSysVoidDV lowercdFull  void lowerShimAh1 -lowervoidDrumh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
 cell lowercDrum1 lowercd1_univ  control_drum -sDrum1 -barrelCDh1 -spU14 -spL14 
 cell lowercvDrum1 lowercd1_univ  void sDrum1 -svDrum1 
 cell lowersaDrum1 lowercd1_univ  control_drum -sDrum1 barrelCDh1 -lowerShimAh1 -spU14 -spL14 
 cell lowersaVDrum1 lowercd1_univ  void (-sDrum1 barrelCDh1 -lowerShimAh1 spU14 ):(-sDrum1 barrelCDh1 -lowerShimAh1 spL14 )
+cell lowerouter_saVDrum1 lowercd1_univ  void -sDrum1 lowerShimAh1 
 cell lowercDrum2 lowercd2_univ  control_drum -sDrum2 -barrelCDh1 -spU25 -spL25 
 cell lowercvDrum2 lowercd2_univ  void sDrum2 -svDrum2 
 cell lowersaDrum2 lowercd2_univ  control_drum -sDrum2 barrelCDh1 -lowerShimAh1 -spU25 -spL25 
 cell lowersaVDrum2 lowercd2_univ  void (-sDrum2 barrelCDh1 -lowerShimAh1 spU25 ):(-sDrum2 barrelCDh1 -lowerShimAh1 spL25 )
+cell lowerouter_saVDrum2 lowercd2_univ  void -sDrum2 lowerShimAh1 
 cell lowercDrum3 lowercd3_univ  control_drum -sDrum3 -barrelCDh1 -spU36 -spL36 
 cell lowercvDrum3 lowercd3_univ  void sDrum3 -svDrum3 
 cell lowersaDrum3 lowercd3_univ  control_drum -sDrum3 barrelCDh1 -lowerShimAh1 -spU36 -spL36 
 cell lowersaVDrum3 lowercd3_univ  void (-sDrum3 barrelCDh1 -lowerShimAh1 spU36 ):(-sDrum3 barrelCDh1 -lowerShimAh1 spL36 )
+cell lowerouter_saVDrum3 lowercd3_univ  void -sDrum3 lowerShimAh1 
 cell lowercDrum4 lowercd4_univ  control_drum -sDrum4 -barrelCDh1 -spU14 -spL14 
 cell lowercvDrum4 lowercd4_univ  void sDrum4 -svDrum4 
 cell lowersaDrum4 lowercd4_univ  control_drum -sDrum4 barrelCDh1 -lowerShimAh1 -spU14 -spL14 
 cell lowersaVDrum4 lowercd4_univ  void (-sDrum4 barrelCDh1 -lowerShimAh1 spU14 ):(-sDrum4 barrelCDh1 -lowerShimAh1 spL14 )
+cell lowerouter_saVDrum4 lowercd4_univ  void -sDrum4 lowerShimAh1 
 cell lowercDrum5 lowercd5_univ  control_drum -sDrum5 -barrelCDh1 -spU25 -spL25 
 cell lowercvDrum5 lowercd5_univ  void sDrum5 -svDrum5 
 cell lowersaDrum5 lowercd5_univ  control_drum -sDrum5 barrelCDh1 -lowerShimAh1 -spU25 -spL25 
 cell lowersaVDrum5 lowercd5_univ  void (-sDrum5 barrelCDh1 -lowerShimAh1 spU25 ):(-sDrum5 barrelCDh1 -lowerShimAh1 spL25 )
+cell lowerouter_saVDrum5 lowercd5_univ  void -sDrum5 lowerShimAh1 
 cell lowercDrum6 lowercd6_univ  control_drum -sDrum6 -barrelCDh1 -spU36 -spL36 
 cell lowercvDrum6 lowercd6_univ  void sDrum6 -svDrum6 
 cell lowersaDrum6 lowercd6_univ  control_drum -sDrum6 barrelCDh1 -lowerShimAh1 -spU36 -spL36 
 cell lowersaVDrum6 lowercd6_univ  void (-sDrum6 barrelCDh1 -lowerShimAh1 spU36 ):(-sDrum6 barrelCDh1 -lowerShimAh1 spL36 )
-cell lowerGPVoid_cell lowerGPVoid_univ  void lowerShimAh1 -lowerGPVoidcc1 
+cell lowerouter_saVDrum6 lowercd6_univ  void -sDrum6 lowerShimAh1 
+cell lowerGPVoid_cell lowerGPVoid_univ  void lowervoidDrumh1 -lowerGPVoidcc1 
 cell barrelcdFulld1 barrelcdFull  fill barrelcd1_univ -svDrum1 
 cell barrelcdFulld2 barrelcdFull  fill barrelcd2_univ -svDrum2 
 cell barrelcdFulld3 barrelcdFull  fill barrelcd3_univ -svDrum3 
@@ -276,8 +285,8 @@ cell barrelsbDrum6 barrelcd6_univ  control_drum -sDrum6 barrelShimAh1 -barrelShi
 cell barrelsaVDrum6 barrelcd6_univ  void (-sDrum6 barrelCDh1 -barrelShimAh1 spU36 ):(-sDrum6 barrelCDh1 -barrelShimAh1 spL36 )
 cell barrelsbVDrum6 barrelcd6_univ  void (-sDrum6 barrelShimAh1 -barrelShimBh1 spU36 ):(-sDrum6 barrelShimAh1 -barrelShimBh1 spL36 )
 cell barrelouter_sbVDrum6 barrelcd6_univ  void -sDrum6 barrelShimBh1 
-cell uppercdFullupperGPVoid_cell1 uppercdFullupperGPVoid_univ  fill uppercdFull -upperShimAh1 
-cell uppercdFullupperGPVoid_cell2 uppercdFullupperGPVoid_univ  fill upperGPVoid_univ upperShimAh1 -upperGPVoidcc1 
+cell uppercdFullupperGPVoid_cell1 uppercdFullupperGPVoid_univ  fill uppercdFull -uppervoidDrumh1 
+cell uppercdFullupperGPVoid_cell2 uppercdFullupperGPVoid_univ  fill upperGPVoid_univ uppervoidDrumh1 -upperGPVoidcc1 
 cell uppercdFulld1 uppercdFull  fill uppercd1_univ -svDrum1 
 cell uppercdFulld2 uppercdFull  fill uppercd2_univ -svDrum2 
 cell uppercdFulld3 uppercdFull  fill uppercd3_univ -svDrum3 
@@ -285,32 +294,39 @@ cell uppercdFulld4 uppercdFull  fill uppercd4_univ -svDrum4
 cell uppercdFulld5 uppercdFull  fill uppercd5_univ -svDrum5 
 cell uppercdFulld6 uppercdFull  fill uppercd6_univ -svDrum6 
 cell uppercdSys uppercdFull  control_drum -barrelCDh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
-cell uppercdSysVoid uppercdFull  void barrelCDh1 -upperShimAh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
+cell uppercdSysVoidSA uppercdFull  void barrelCDh1 -upperShimAh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
+cell uppercdSysVoidDV uppercdFull  void upperShimAh1 -uppervoidDrumh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
 cell uppercDrum1 uppercd1_univ  control_drum -sDrum1 -barrelCDh1 -spU14 -spL14 
 cell uppercvDrum1 uppercd1_univ  void sDrum1 -svDrum1 
 cell uppersaDrum1 uppercd1_univ  control_drum -sDrum1 barrelCDh1 -upperShimAh1 -spU14 -spL14 
 cell uppersaVDrum1 uppercd1_univ  void (-sDrum1 barrelCDh1 -upperShimAh1 spU14 ):(-sDrum1 barrelCDh1 -upperShimAh1 spL14 )
+cell upperouter_saVDrum1 uppercd1_univ  void -sDrum1 upperShimAh1 
 cell uppercDrum2 uppercd2_univ  control_drum -sDrum2 -barrelCDh1 -spU25 -spL25 
 cell uppercvDrum2 uppercd2_univ  void sDrum2 -svDrum2 
 cell uppersaDrum2 uppercd2_univ  control_drum -sDrum2 barrelCDh1 -upperShimAh1 -spU25 -spL25 
 cell uppersaVDrum2 uppercd2_univ  void (-sDrum2 barrelCDh1 -upperShimAh1 spU25 ):(-sDrum2 barrelCDh1 -upperShimAh1 spL25 )
+cell upperouter_saVDrum2 uppercd2_univ  void -sDrum2 upperShimAh1 
 cell uppercDrum3 uppercd3_univ  control_drum -sDrum3 -barrelCDh1 -spU36 -spL36 
 cell uppercvDrum3 uppercd3_univ  void sDrum3 -svDrum3 
 cell uppersaDrum3 uppercd3_univ  control_drum -sDrum3 barrelCDh1 -upperShimAh1 -spU36 -spL36 
 cell uppersaVDrum3 uppercd3_univ  void (-sDrum3 barrelCDh1 -upperShimAh1 spU36 ):(-sDrum3 barrelCDh1 -upperShimAh1 spL36 )
+cell upperouter_saVDrum3 uppercd3_univ  void -sDrum3 upperShimAh1 
 cell uppercDrum4 uppercd4_univ  control_drum -sDrum4 -barrelCDh1 -spU14 -spL14 
 cell uppercvDrum4 uppercd4_univ  void sDrum4 -svDrum4 
 cell uppersaDrum4 uppercd4_univ  control_drum -sDrum4 barrelCDh1 -upperShimAh1 -spU14 -spL14 
 cell uppersaVDrum4 uppercd4_univ  void (-sDrum4 barrelCDh1 -upperShimAh1 spU14 ):(-sDrum4 barrelCDh1 -upperShimAh1 spL14 )
+cell upperouter_saVDrum4 uppercd4_univ  void -sDrum4 upperShimAh1 
 cell uppercDrum5 uppercd5_univ  control_drum -sDrum5 -barrelCDh1 -spU25 -spL25 
 cell uppercvDrum5 uppercd5_univ  void sDrum5 -svDrum5 
 cell uppersaDrum5 uppercd5_univ  control_drum -sDrum5 barrelCDh1 -upperShimAh1 -spU25 -spL25 
 cell uppersaVDrum5 uppercd5_univ  void (-sDrum5 barrelCDh1 -upperShimAh1 spU25 ):(-sDrum5 barrelCDh1 -upperShimAh1 spL25 )
+cell upperouter_saVDrum5 uppercd5_univ  void -sDrum5 upperShimAh1 
 cell uppercDrum6 uppercd6_univ  control_drum -sDrum6 -barrelCDh1 -spU36 -spL36 
 cell uppercvDrum6 uppercd6_univ  void sDrum6 -svDrum6 
 cell uppersaDrum6 uppercd6_univ  control_drum -sDrum6 barrelCDh1 -upperShimAh1 -spU36 -spL36 
 cell uppersaVDrum6 uppercd6_univ  void (-sDrum6 barrelCDh1 -upperShimAh1 spU36 ):(-sDrum6 barrelCDh1 -upperShimAh1 spL36 )
-cell upperGPVoid_cell upperGPVoid_univ  void upperShimAh1 -upperGPVoidcc1 
+cell upperouter_saVDrum6 uppercd6_univ  void -sDrum6 upperShimAh1 
+cell upperGPVoid_cell upperGPVoid_univ  void uppervoidDrumh1 -upperGPVoidcc1 
 cell cdBarrelHexVoid_cell cdBarrelHexVoid_univ  void barrelVoidcc1 -cdBarrelHexVoidcc1 
 cell ugBarrel_univupperCD_cell1 ugBarrel_univupperCD_univ  fill ugBarrel_univ -ugBarrelcc1 
 cell ugBarrel_univupperCD_cell2 ugBarrel_univupperCD_univ  fill upperCD_univ ugBarrelcc1 -upperCDcc1 
@@ -354,14 +370,14 @@ lower_gridplate
 lat activeCoreLat 2 0 0 21 21 1.4478
 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 
  900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 
-  900 900 900 900 900 900 900 900 900 900 900 lucElem lucElem lucElem 800 lucElem lucElem lucElem 900 900 900 
-   900 900 900 900 900 900 900 900 900 lucElem lucElem 700 700 700 700 700 700 lucElem lucElem 900 900 
-    900 900 900 900 900 900 900 900 lucElem 700 600 600 600 600 600 600 600 700 lucElem 900 900 
-     900 900 900 900 900 900 900 lucElem 700 600 500 500 500 500 500 500 600 700 lucElem 900 900 
-      900 900 900 900 900 900 lucElem 700 600 500 400 400 400 400 400 500 600 700 lucElem 900 900 
-       900 900 900 900 900 lucElem 700 600 500 400 300 300 300 300 400 500 600 700 lucElem 900 900 
-        900 900 900 900 lucElem 700 600 500 400 300 200 200 200 300 400 500 600 700 lucElem 900 900 
-         900 900 900 800 700 600 500 400 300 200 100 100 200 300 400 500 600 700 800 900 900 
+  900 900 900 900 900 900 900 900 900 900 900 lucElem lucElem lucElem lucElem lucElem lucElem lucElem 900 900 900 
+   900 900 900 900 900 900 900 900 900 lucElem lucElem 700 700 lucElem 700 lucElem lucElem lucElem lucElem 900 900 
+    900 900 900 900 900 900 900 900 lucElem lucElem 600 600 600 600 600 600 600 lucElem lucElem 900 900 
+     900 900 900 900 900 900 900 lucElem lucElem 600 500 500 500 500 500 500 600 lucElem lucElem 900 900 
+      900 900 900 900 900 900 lucElem lucElem 600 500 400 400 400 400 400 500 600 lucElem lucElem 900 900 
+       900 900 900 900 900 lucElem lucElem 600 500 400 300 300 300 300 400 500 600 lucElem lucElem 900 900 
+        900 900 900 900 lucElem lucElem 600 500 400 300 200 200 200 300 400 500 600 lucElem lucElem 900 900 
+         900 900 900 lucElem lucElem 600 500 400 300 200 100 100 200 300 400 500 600 lucElem lucElem 900 900 
           900 900 900 700 600 500 400 300 200 100 100 100 200 300 400 500 600 700 900 900 900 
            900 900 800 700 600 500 400 300 200 100 100 200 300 400 500 600 700 800 900 900 900 
             900 900 800 700 600 500 400 300 200 200 200 300 400 500 600 700 800 900 900 900 900 
@@ -435,4 +451,3 @@ pin pUGH
 coolant	0.19840000000000002
 upper_gridplate
 
-trans U barrelcd4_univ rot -20.760371371825407 -11.986006000000001 0 0 0 1 105
