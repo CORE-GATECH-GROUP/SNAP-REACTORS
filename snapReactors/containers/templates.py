@@ -1215,9 +1215,6 @@ class S83D_Revised(S8ER):
                 params[i][0], params[i][1], params[i][2], params[i][3] = a, b, c, d
             return params 
 
-        print("shimA Area", (shimAApothem-drumApothem)*drumChordLen*6)
-        print("shimB Area", (shimBApothem-shimAApothem)*drumChordLen*6)
-
 
         def _buildControlDrums(uid, isForHousing = False):
             drumParams = calcDrumParams(barrelRad, gapThickness, drumRadCurv, drumVoidThickness)
@@ -1646,38 +1643,3 @@ class S83D_Revised(S8ER):
 
         map = {'active_core': box1}
         return map
-
-drumApothem = 17.4732315
-shimAApothem = 19.35542598
-shimBApothem = 21.30540674
-drumVertex = calcVertexFromApothem(drumApothem)
-shimAVertex = calcVertexFromApothem(shimAApothem)
-shimBVertex = calcVertexFromApothem(shimBApothem)
-cdLowerThick = 3.1369
-cdUpperThick = 3.1369
-#activeDrumHeight= fuelLen - cdUpperThick - cdLowerThick 
-
-barrelRad = 11.87704
-gapThickness = 0.207772 #Table 1 SR-9642
-drumVoidThickness = 11.95 - 11.9126 #to be determined (extracted from Wisc model)
-drumRadCurv = 11.8872#Table 1 SR-9642
-drumCent =  barrelRad+gapThickness+drumRadCurv
-
-voidApothem = drumCent+drumRadCurv
-voidVertex = calcVertexFromApothem(voidApothem)
-
-def calcChordLength(drumCent,drumRad, cutOffApothem):
-    C = drumCent
-    d = C - cutOffApothem
-    r = drumRad
-    chordLen = 2*np.sqrt(r**2 - d**2)
-    return chordLen
-
-
-drumChordLen = calcChordLength(drumCent, drumRadCurv, drumApothem)
-
-print("shimA Thickness", (shimAApothem-drumApothem)/2.54)
-print("shimB Thickness", (shimBApothem-shimAApothem)/2.54)
-
-print("shimA Area", ((shimAApothem-drumApothem)/2.54)*(drumChordLen/2.54)*6)
-print("shimB Area", ((shimBApothem-shimAApothem)/2.54)*(drumChordLen/2.54)*6)
