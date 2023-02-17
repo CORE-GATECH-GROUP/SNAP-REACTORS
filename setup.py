@@ -35,12 +35,14 @@ setuptools.setup(
     ],
     python_requires='>=3.6',
     packages=['snapReactors', 'snapReactors.functions',
-              'snapReactors.containers', 'snapReactors.library',
-              'snapReactors.raw_data', 'snapReactors.tests'],
+              'snapReactors.containers', 'snapReactors.databases',
+              'snapReactors.tests',
+              'snapReactors.reference_calc', 'snapReactors.reactor_models', 
+              'snapReactors.jupyter_notebooks', 'snapReactors.data_inputfiles'],
     package_data={
-        'snapReactors.library':
-            ['library/{}'.format(ext) for ext in DATA_EXTS],
+        'snapReactors.databases':
+            ['databases/{}'.format(ext) for ext in DATA_EXTS],
     },
     include_package_data=True,
-    data_files=[('snapReactors/library', getDataFiles()), ],
+    data_files=[('snapReactors/databases', getDataFiles()), ],
 )

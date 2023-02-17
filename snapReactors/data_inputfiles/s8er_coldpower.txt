@@ -1,0 +1,786 @@
+Reactor State id: Cold Power
+Reactor State Reference: AI-AEC-13070
+Reactor State Description:  S8ER C3 Critcal Configuration Experiment, Dry Conditions 300 K
+------------------------------------------------------------------------------------------
+Component id: fuel element
+Component Description: SM2O3 poisoned Zirconium Hydride fuel elements
+=====================================================================
+Dimensions:
+id: fuel_radius
+value: 0.0067564
+unit: SI
+unc: 0.01
+ref: NAA-SR-9642
+desc: radius of the fuel
+
+id: gap_radius
+value: 0.0068272
+unit: SI
+unc: 0.01
+ref: NAA-SR-9642
+desc: outer radius of the gap
+
+id: diffusion_barrier_radius
+value: 0.006883
+unit: SI
+unc: 0.01
+ref: NAA-SR-9642
+desc: outer diffusion barrier radius
+
+id: poison_coating_radius
+value: 0.0068834
+unc: 0.01
+unit: SI
+ref: NAA-SR-9642
+desc: outer radius of poison coating
+
+id: clad_radius
+value: 0.0071374
+unc: 0.01
+unit: SI
+ref: NAA-SR-9642
+desc: outer clad radius
+
+id: upper_endcap_thickness
+value: 0.00228505
+unc: 0.01
+unit: SI
+ref: NAA-SR-9642
+desc: thickness of upper endcaps
+
+id: lower_endcap_thickness
+value: 0.009652
+unc: 0.01
+unit: SI
+ref: NAA-SR-9642
+desc: thickness of lower endcaps
+
+id: fuel_length
+value: 0.367538
+unc:0.01
+unit: SI
+ref: NAA-SR-9642
+desc: length of the fuel element not including endcap thicknesses
+
+
+Material Name: fuel
+ctype: ADENSITY
+utype: NONE
+Number of isotopes: 9
+Isotopic Definition:
+-------------------
+ 1001   5.960E-2
+ 1002   8.790E-6
+92235   1.430E-3
+92238   1.040E-4
+40090   1.830E-2
+40091   4.000E-3
+40092   6.110E-3
+40094   6.190E-3
+40096   9.980E-4
+
+Properties: {
+%property values for material
+%type = const, table, corr
+%id = property id
+%unit = SI or imperial
+%must have a ":" between keyword and value i.e "keyword: value"
+%each keyword must on its own line i.e 
+% keyword1: val1 
+% keyword: val2
+%array type inputs are denoted using "[]" i.e [1, 2] or [1 2] 
+%multidimensional arrays can be denoted using the ";" matlab style i.e
+% [1 2; 3 4] or [1, 2;
+%                3, 4]
+% or by using a newline i.e
+%   [1 2
+     3 4] 
+%Supports comments by preceeding a line with "%"
+%Examples are included below
+
+type:const
+id:r
+unit:SI 
+value:[6060]
+unc:[.01]
+
+type:table 
+id:h 
+unit:imperial 
+ref:NAA-SR-6160 
+dep1unit:K 
+dep1values: [1 2]
+dep2unit:Pa 
+dep2values: [.1 .2]
+value: [1.1 2.1
+        3.1 4.1]
+unc: [1 1
+        1 1]
+
+}
+Reference: NA-Examples
+Description: This is an example input file
+
+Material Name: clad
+ctype: WEIGHT
+utype: NONE
+Number of isotopes: 39
+Isotopic Definition:
+-------------------
+28058     4.70343E-01
+28060     1.81175E-01
+28061     7.87557E-03
+28062     2.51108E-02
+28064     6.39497E-03
+42092     2.34384E-02
+42094     1.46848E-02
+42095     2.53968E-02
+42096     2.66768E-02
+42097     1.53312E-02
+42098     3.88672E-02
+42100     1.55904E-02
+24050     3.04150E-03
+24052     5.86523E-02
+24053     6.65070E-03
+24054     1.65550E-03
+26054     2.33800E-03
+26056     3.67016E-02
+26057     8.47600E-04
+26058     1.12800E-04
+14028     9.23180E-03
+14029     4.64500E-04
+14030     3.03700E-04
+25055     8.00000E-03
+74182     1.32500E-03
+74183     7.15500E-04
+74184     1.53200E-03
+74186     1.42150E-03
+23051     5.00000E-03
+29063     1.38300E-03
+29065     6.17000E-04
+27059     2.00000E-03
+6012      6.00000E-04
+13027     2.50000E-03
+22046     2.06250E-04
+22047     1.86000E-04
+22048     1.84300E-03
+22049     1.35250E-04
+22050     1.29500E-04
+
+Properties: {
+%property values for material
+%type = const, table, corr
+%id = property id
+%unit = SI or imperial
+%must have a ":" between keyword and value i.e "keyword: value"
+%each keyword must on its own line i.e 
+% keyword1: val1 
+% keyword: val2
+%array type inputs are denoted using "[]" i.e [1, 2] or [1 2] 
+%multidimensional arrays can be denoted using the ";" matlab style i.e
+% [1 2; 3 4] or [1, 2;
+%                3, 4]
+% or by using a newline i.e
+%   [1 2
+     3 4] 
+%Supports comments by preceeding a line with "%"
+%Examples are included below
+
+
+type:const
+id:r
+unit:SI 
+value:[8860]
+unc:[.01]
+
+
+}
+Reference: NA-Examples
+Description: This is an example input file
+
+Material Name: diffusion_barrier
+ctype: WEIGHT
+utype: NONE
+Number of isotopes: 37
+Isotopic Definition:
+-------------------
+8016      3.62335E-01
+14028     2.05113E-01
+14029     1.03203E-02
+14030     6.74765E-03
+3006      2.56278E-04
+3007      5.02780E-03
+20040     1.05772E-02
+20042     7.05937E-05
+20043     1.47298E-05
+20044     2.27602E-04
+20046     4.36437E-07
+20048     2.04034E-05
+22046     4.93007E-03
+22047     4.44602E-03
+22048     4.40539E-02
+22049     3.23293E-03
+22050     3.09548E-03
+12024     1.24273E-03
+12025     1.58020E-04
+12026     1.74720E-04
+56130     3.13332E-04
+56132     2.84847E-04
+56134     6.89331E-03
+56135     1.87714E-02
+56136     2.23605E-02
+56137     3.19884E-02
+56138     2.04236E-01
+38084     5.08883E-05
+38086     8.95997E-04
+38087     6.36103E-04
+38088     7.50420E-03
+25055     7.12210E-03
+40090     1.89839E-02
+40091     4.13993E-03
+40092     6.32797E-03
+40094     6.41283E-03
+40096     1.03314E-03
+
+Properties: {
+%property values for material
+%type = const, table, corr
+%id = property id
+%unit = SI or imperial
+%must have a ":" between keyword and value i.e "keyword: value"
+%each keyword must on its own line i.e 
+% keyword1: val1 
+% keyword: val2
+%array type inputs are denoted using "[]" i.e [1, 2] or [1 2] 
+%multidimensional arrays can be denoted using the ";" matlab style i.e
+% [1 2; 3 4] or [1, 2;
+%                3, 4]
+% or by using a newline i.e
+%   [1 2
+     3 4] 
+%Supports comments by preceeding a line with "%"
+%Examples are included below
+
+type:const
+id:r
+unit:SI 
+value:[2800]
+unc:[.01]
+}
+Reference: NA-Examples
+Description: This is an example input file
+
+Material Name: burnable_poison
+ctype: WEIGHT
+utype: NONE
+Number of isotopes: 8
+Isotopic Definition:
+-------------------
+8016      1.37642E-01
+62144     2.65606E-02
+62147     1.29354E-01
+62148     9.70153E-02
+62149     1.19178E-01
+62150     6.35558E-02
+62152     2.30595E-01
+62154     1.96100E-01
+
+Properties: {
+%property values for material
+%type = const, table, corr
+%id = property id
+%unit = SI or imperial
+%must have a ":" between keyword and value i.e "keyword: value"
+%each keyword must on its own line i.e 
+% keyword1: val1 
+% keyword: val2
+%array type inputs are denoted using "[]" i.e [1, 2] or [1 2] 
+%multidimensional arrays can be denoted using the ";" matlab style i.e
+% [1 2; 3 4] or [1, 2;
+%                3, 4]
+% or by using a newline i.e
+%   [1 2
+     3 4] 
+%Supports comments by preceeding a line with "%"
+%Examples are included below
+
+type:const
+id:r
+unit:SI 
+value:[8350]
+unc:[.01]
+
+type:table 
+id:h 
+unit:imperial 
+ref:NAA-SR-6160 
+dep1unit:K 
+dep1values: [1 2]
+dep2unit:Pa 
+dep2values: [.1 .2]
+value: [1.1 2.1
+        3.1 4.1]
+unc: [1 1
+        1 1]
+
+}
+Reference: NA-Examples
+Description: This is an example input 
+
+Material Name: gap
+ctype: WEIGHT
+utype: NONE
+Number of isotopes: 1
+Isotopic Definition:
+-------------------
+2004    1.0
+
+Properties: {
+%property values for material
+%type = const, table, corr
+%id = property id
+%unit = SI or imperial
+%must have a ":" between keyword and value i.e "keyword: value"
+%each keyword must on its own line i.e 
+% keyword1: val1 
+% keyword: val2
+%array type inputs are denoted using "[]" i.e [1, 2] or [1 2] 
+%multidimensional arrays can be denoted using the ";" matlab style i.e
+% [1 2; 3 4] or [1, 2;
+%                3, 4]
+% or by using a newline i.e
+%   [1 2
+     3 4] 
+%Supports comments by preceeding a line with "%"
+%Examples are included below
+
+type:const
+id:r
+unit:SI 
+value:[0.01574]
+unc:[.01]
+
+type:table 
+id:h 
+unit:imperial 
+ref:NAA-SR-6160 
+dep1unit:K 
+dep1values: [1 2]
+dep2unit:Pa 
+dep2values: [.1 .2]
+value: [1.1 2.1
+        3.1 4.1]
+unc: [1 1
+        1 1]
+}
+Reference: NA-Examples
+Description: This is an example input file
+
+
+Component id: coolant element
+Component Description: coolant channel element
+=====================================================================
+Dimensions:
+id: lattice_pitch
+value: 0.014478
+unit: SI
+unc: 0.01
+ref: NAA-SR-9642
+desc: triangular lattice pitch
+
+Material Name: coolant
+ctype: WEIGHT
+utype: NONE
+Number of isotopes: 7
+Isotopic Definition:
+-------------------
+7014   7.52E-1
+7015   2.87E-3
+8016   2.31E-1
+8017   8.56E-5
+18036  2.67E-4
+18038  5.54E-4
+18040  1.21E-2
+
+Properties : {
+
+type:const
+id:r
+unit:SI 
+value:[1.225]
+unc:[.01]
+
+}
+Reference: "1973 SNAP8 Summary.pdf"
+Description: This is the calculated breakdown of sodium potassium 78 eutectic
+
+Component id: internal reflector
+Component Description: internal reflectors located inside reactor barrel
+=====================================================================
+Dimensions:
+id: assembly_pitch
+value: 0.110414
+unit: SI
+unc: 0.01
+ref: NAA-SR-9642
+desc: pitch of the assembly measuring from surface of internal reflector
+
+id: internal_reflector_radius
+value: 0.11718036
+unit: SI
+unc: 0.01
+ref: NAA-SR-9642
+desc: radius of curvature of internal reflector
+
+
+Material Name: internal_reflector
+ctype: WEIGHT
+utype: NONE
+Number of isotopes: 2
+Isotopic Definition:
+-------------------
+8016      6.39680E-01
+4009      3.60320E-01
+
+Properties: {
+%property values for material
+%type = const, table, corr
+%id = property id
+%unit = SI or imperial
+%must have a ":" between keyword and value i.e "keyword: value"
+%each keyword must on its own line i.e 
+% keyword1: val1 
+% keyword: val2
+%array type inputs are denoted using "[]" i.e [1, 2] or [1 2] 
+%multidimensional arrays can be denoted using the ";" matlab style i.e
+% [1 2; 3 4] or [1, 2;
+%                3, 4]
+% or by using a newline i.e
+%   [1 2
+     3 4] 
+%Supports comments by preceeding a line with "%"
+%Examples are included below
+
+type:const
+id:r
+unit:SI 
+value:[3020]
+unc:[.01]
+
+}
+Reference: NA-Examples
+Description: This is an example input file
+
+
+Component id: barrel
+Component Description: Housing unit containing fuel element assembly and internal reflector
+============================================================================================
+Dimensions:
+id: barrel_radius
+value: 0.1187704
+unit: SI
+unc: 0.01
+ref: NAA-SR-9642
+desc: inner radius of barrel housing
+
+Material Name: barrel
+ctype: WEIGHT
+utype: NONE
+Number of isotopes: 32
+Isotopic Definition:
+-------------------
+ 6000     8.00000E-04
+25055     2.00000E-02
+14028     6.92385E-03
+14029     3.48375E-04
+14030     2.27775E-04
+15031     2.25000E-04
+16032     2.85870E-04
+16033     2.19600E-06
+16034     1.18950E-05
+16036     3.90000E-08
+24050     7.38650E-03
+24052     1.42441E-01
+24053     1.61517E-02
+24054     4.02050E-03
+42092     3.66225E-03
+42094     2.29450E-03
+42095     3.96825E-03
+42096     4.16825E-03
+42097     2.39550E-03
+42098     6.07300E-03
+42100     2.43600E-03
+28058     8.16923E-02
+28060     3.14677E-02
+28061     1.36788E-03
+28062     4.36140E-03
+28064     1.11072E-03
+7014      9.96205E-04
+7015      3.79500E-06
+26054     3.82950E-02
+26056     6.01149E-01
+26057     1.38832E-02
+26058     1.84759E-03
+
+Properties: {
+%property values for material
+%type = const, table, corr
+%id = property id
+%unit = SI or imperial
+%must have a ":" between keyword and value i.e "keyword: value"
+%each keyword must on its own line i.e 
+% keyword1: val1 
+% keyword: val2
+%array type inputs are denoted using "[]" i.e [1, 2] or [1 2] 
+%multidimensional arrays can be denoted using the ";" matlab style i.e
+% [1 2; 3 4] or [1, 2;
+%                3, 4]
+% or by using a newline i.e
+%   [1 2
+     3 4] 
+%Supports comments by preceeding a line with "%"
+%Examples are included below
+
+type:const
+id:r
+unit:SI 
+value:[7954]
+unc:[.01]
+}
+Reference: NA-Examples
+Description: This is an example input file
+
+Component id: upper gridplate
+Component Description: upper gridplate to provide coolant flow and structurally locking in fuel elements
+============================================================================================
+Dimensions:
+id: upper_gridplate_thickness
+value: 0.008731
+unit: SI
+unc: 0.01
+ref: NAA-SR-9642
+desc: thickness of the upper gridplate
+
+id: upper_gridplate_hole_radius
+value: 0.001984
+unit: SI
+unc: 0.01
+ref: NAA-SR-9642
+desc: hole radius for fuel element structural pins
+
+Material Name: barrel
+ctype: WEIGHT 
+utype: NONE
+Number of isotopes: 32
+Isotopic Definition:
+-------------------
+ 6000     8.00000E-04
+25055     2.00000E-02
+14028     6.92385E-03
+14029     3.48375E-04
+14030     2.27775E-04
+15031     2.25000E-04
+16032     2.85870E-04
+16033     2.19600E-06
+16034     1.18950E-05
+16036     3.90000E-08
+24050     7.38650E-03
+24052     1.42441E-01
+24053     1.61517E-02
+24054     4.02050E-03
+42092     3.66225E-03
+42094     2.29450E-03
+42095     3.96825E-03
+42096     4.16825E-03
+42097     2.39550E-03
+42098     6.07300E-03
+42100     2.43600E-03
+28058     8.16923E-02
+28060     3.14677E-02
+28061     1.36788E-03
+28062     4.36140E-03
+28064     1.11072E-03
+7014      9.96205E-04
+7015      3.79500E-06
+26054     3.82950E-02
+26056     6.01149E-01
+26057     1.38832E-02
+26058     1.84759E-03
+
+Properties: {
+%property values for material
+%type = const, table, corr
+%id = property id
+%unit = SI or imperial
+%must have a ":" between keyword and value i.e "keyword: value"
+%each keyword must on its own line i.e 
+% keyword1: val1 
+% keyword: val2
+%array type inputs are denoted using "[]" i.e [1, 2] or [1 2] 
+%multidimensional arrays can be denoted using the ";" matlab style i.e
+% [1 2; 3 4] or [1, 2;
+%                3, 4]
+% or by using a newline i.e
+%   [1 2
+     3 4] 
+%Supports comments by preceeding a line with "%"
+%Examples are included below
+
+type:table 
+id:h 
+unit:imperial 
+ref:NAA-SR-6160 
+dep1unit:K 
+dep1values: [1 2]
+dep2unit:Pa 
+dep2values: [.1 .2]
+value: [1.1 2.1
+        3.1 4.1]
+unc: [1 1
+        1 1]
+}
+Reference: NA-Examples
+Description: This is an example input file
+
+
+Component id: lower gridplate
+Component Description: lower gridplate to provide coolant flow and structurally locking in fuel elements
+============================================================================================
+Dimensions: 
+id: lower_gridplate_thickness
+value: 0.007938
+unit: SI
+unc: 0.01
+ref: NAA-SR_9642
+desc: thickness of lower grid plate
+
+id: lower_gridplate_hole_radius
+value: 0.0015875
+unit: SI
+unc: 0.01
+ref: NAA-SR-9642
+desc: hole radius for fuel element structural pins
+
+Material Name: lower_gridplate
+ctype: WEIGHT
+utype: NONE
+Number of isotopes: 33
+Isotopic Definition:
+-------------------
+28058     3.71428E-01
+28060     1.43073E-01
+28061     6.21929E-03
+28062     1.98298E-02
+28064     5.05007E-03
+27059     2.50000E-02
+24050     6.95200E-03
+24052     1.34062E-01
+24053     1.52016E-02
+24054     3.78400E-03
+42092     2.34384E-02
+42094     1.46848E-02
+42095     2.53968E-02
+42096     2.66768E-02
+42097     1.53312E-02
+42098     3.88672E-02
+42100     1.55904E-02
+26054     2.92250E-03
+26056     4.58770E-02
+26057     1.05950E-03
+26058     1.41000E-04
+74182     1.06000E-02
+74183     5.72400E-03
+74184     1.22560E-02
+74186     1.13720E-02
+25055     1.00000E-02
+23051     3.50000E-03
+14028     7.38544E-04
+14029     3.71600E-05
+14030     2.42960E-05
+6000      1.00000E-04
+29063     3.45750E-03
+29065     1.54250E-03
+
+Properties: {
+%property values for material
+%type = const, table, corr
+%id = property id
+%unit = SI or imperial
+%must have a ":" between keyword and value i.e "keyword: value"
+%each keyword must on its own line i.e 
+% keyword1: val1 
+% keyword: val2
+%array type inputs are denoted using "[]" i.e [1, 2] or [1 2] 
+%multidimensional arrays can be denoted using the ";" matlab style i.e
+% [1 2; 3 4] or [1, 2;
+%                3, 4]
+% or by using a newline i.e
+%   [1 2
+     3 4] 
+%Supports comments by preceeding a line with "%"
+%Examples are included below
+
+type:const
+id:r
+unit:SI 
+value:[8890]
+unc:[.01]
+
+}
+Reference: NA-Examples
+Description: This is an example input file
+
+
+Component id: control drum system
+Component Description: control drum elements 
+============================================================================================
+Dimensions:
+
+Material Name: control_drum
+ctype: WEIGHT
+utype: NONE
+Number of isotopes: 1
+Isotopic Definition:
+-------------------
+4009    1.0
+
+Properties: {
+%property values for material
+%type = const, table, corr
+%id = property id
+%unit = SI or imperial
+%must have a ":" between keyword and value i.e "keyword: value"
+%each keyword must on its own line i.e 
+% keyword1: val1 
+% keyword: val2
+%array type inputs are denoted using "[]" i.e [1, 2] or [1 2] 
+%multidimensional arrays can be denoted using the ";" matlab style i.e
+% [1 2; 3 4] or [1, 2;
+%                3, 4]
+% or by using a newline i.e
+%   [1 2
+     3 4] 
+%Supports comments by preceeding a line with "%"
+%Examples are included below
+
+type:const
+id:r
+unit:SI 
+value:[1840]
+unc:[.01]
+
+type:table 
+id:h 
+unit:imperial 
+ref:NAA-SR-6160 
+dep1unit:K 
+dep1values: [1 2]
+dep2unit:Pa 
+dep2values: [.1 .2]
+value: [1.1 2.1
+        3.1 4.1]
+unc: [1 1
+        1 1]
+}
+Reference: NA-Examples
+Description: This is an example input file

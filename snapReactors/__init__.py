@@ -1,7 +1,7 @@
 from snapReactors.functions import *
-from snapReactors.library import *
+from snapReactors.databases import *
 from snapReactors.containers import *
-from snapReactors.raw_data import *
+from snapReactors.data_inputfiles import *
 from snapReactors.tests import *
 
 

@@ -30,40 +30,40 @@ def test_material(setMaterial, setMaterialProperties, setPropertyList):
     #                           description='Testing')
     # return newmat
 
-    prdval = mat.matName
-    expval = ["newMat"]
+    prdval = mat.id
+    expval = "newMat"
     assert prdval == expval
 
     prdval = mat.utype
-    expval = [UTYPE.NONE]
+    expval = UTYPE.NONE
     assert prdval == expval
     
     prdval = mat.ctype
-    expval = [CTYPE.WEIGHT]
+    expval = CTYPE.WEIGHT
     assert prdval == expval
     
     prdval = mat.abundances
-    expval = [np.array([])]
+    expval = np.array([])
     assert np.testing.assert_array_equal(prdval, expval) is None
 
     prdval = mat.isotopes
-    expval = [np.array([])]
+    expval = np.array([])
     assert np.testing.assert_array_equal(prdval, expval) is None
     
     prdval = mat.unc
-    expval = [None]
+    expval = None
     assert prdval == expval
 
     prdval = mat.reference
-    expval = ["NA-SR-3060"]
+    expval = "NA-SR-3060"
     assert prdval == expval
 
     prdval = mat.description
-    expval = ["Testing"]
+    expval = "Testing"
     assert prdval == expval
 
     prdval = mat._properties
-    expval = [None]
+    expval = []
     assert prdval == expval
 
     # prdval1 = matprop._properties[0]

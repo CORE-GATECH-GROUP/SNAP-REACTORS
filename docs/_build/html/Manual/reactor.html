@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>snapReactors &#8212; snapReactors 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="snapreactors">
+<h1>snapReactors<a class="headerlink" href="#snapreactors" title="Permalink to this headline">¶</a></h1>
+<p>Copyright (c) Dan Kotlyar and CoRE group</p>
+</section>
+<section id="reactor-container">
+<h1>Reactor Container<a class="headerlink" href="#reactor-container" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>This container is made to store reactor state container data and
+provide nominal attributes to the reactor design</p></li>
+</ul>
+<section id="code">
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">snapReactors.containers.reactor</span> <span class="kn">import</span> <span class="n">Reactor</span>
+<span class="kn">from</span> <span class="nn">snapReactors.containers.reactorstate</span> <span class="kn">import</span> <span class="n">ReactorState</span>
+<span class="kn">from</span> <span class="nn">snapReactors.containers.component</span> <span class="kn">import</span> <span class="n">Component</span>
+<span class="kn">from</span> <span class="nn">snapReactors.containers.materials</span> <span class="kn">import</span> <span class="n">Material</span>
+</pre></div>
+</div>
+</section>
+<section id="defining-a-new-reactor-state">
+<h2>Defining a new reactor state<a class="headerlink" href="#defining-a-new-reactor-state" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Provide the name of the reactor state</p></li>
+<li><p>Provide core lattice type, must be in <code class="docutils literal notranslate"><span class="pre">Enum.LTYPE</span></code> which are:</p>
+<ul class="simple">
+<li><p>HEX</p></li>
+<li><p>SQUARE</p></li>
+</ul>
+</li>
+<li><p>Provide the number of fuel rod channels</p></li>
+<li><p>Provide the number of guide tube channels</p></li>
+<li><p>Provide the number of instrumentation rod channels</p></li>
+<li><p>Provide the nominal thermal power output</p></li>
+<li><p>Provide the nominal electrical power output.</p></li>
+<li><p>Provide the name of the coolant used in the core</p></li>
+<li><p>Provide the name of the moderator used in the core</p></li>
+<li><p>The description of the reactor and its purpose, as well as reactor
+states are left as optional inputs</p></li>
+</ol>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c1</span> <span class="o">=</span> <span class="n">Component</span><span class="p">(</span><span class="s2">&quot;c1&quot;</span><span class="p">)</span>
+<span class="n">rs1</span> <span class="o">=</span> <span class="n">ReactorState</span><span class="p">(</span><span class="s1">&#39;Cold Power&#39;</span><span class="p">,</span> <span class="n">_components</span><span class="o">=</span><span class="n">c1</span><span class="p">)</span>
+<span class="n">SNAP10</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;SNAP4&#39;</span><span class="p">,</span> <span class="n">ltype</span> <span class="o">=</span> <span class="s1">&#39;HEX&#39;</span><span class="p">,</span> <span class="n">rodNum</span><span class="o">=</span><span class="mi">583</span><span class="p">,</span> <span class="n">guideNum</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                        <span class="n">instrumNum</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">thermalPower</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">electricPower</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                        <span class="n">coolant</span> <span class="o">=</span> <span class="s1">&#39;Water&#39;</span><span class="p">,</span> <span class="n">moderator</span> <span class="o">=</span> <span class="s1">&#39;Water&#39;</span><span class="p">,</span>
+                        <span class="n">_reactorstates</span><span class="o">=</span><span class="n">rs1</span><span class="p">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;500 Watt microreactor developed for space deployment&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">SNAP10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">snapReactors</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">reactor</span><span class="o">.</span><span class="n">Reactor</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x0000022277100880</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<section id="updating-reactor-states-to-reactor">
+<h3>Updating reactor states to reactor<a class="headerlink" href="#updating-reactor-states-to-reactor" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>A list of reactor states or single reactor state may be added with
+the <code class="docutils literal notranslate"><span class="pre">addReactorStates</span></code> function.</p></li>
+</ol>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rs2</span> <span class="o">=</span> <span class="n">ReactorState</span><span class="p">(</span><span class="s1">&#39;rs2&#39;</span><span class="p">)</span>
+<span class="n">SNAP10</span><span class="o">.</span><span class="n">addReactorStates</span><span class="p">(</span><span class="n">rs2</span><span class="p">)</span>
+
+<span class="n">rs3</span> <span class="o">=</span> <span class="n">ReactorState</span><span class="p">(</span><span class="s1">&#39;rs3&#39;</span><span class="p">)</span>
+<span class="n">rs4</span> <span class="o">=</span> <span class="n">ReactorState</span><span class="p">(</span><span class="s1">&#39;rs4&#39;</span><span class="p">)</span>
+<span class="n">SNAP10</span><span class="o">.</span><span class="n">addReactorStates</span><span class="p">([</span><span class="n">rs3</span><span class="p">,</span><span class="n">rs4</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">SNAP10</span><span class="o">.</span><span class="n">_reactorstates</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">snapReactors</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">reactorstate</span><span class="o">.</span><span class="n">ReactorState</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x00000222771007F0</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">snapReactors</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">reactorstate</span><span class="o">.</span><span class="n">ReactorState</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x00000222771002E0</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">snapReactors</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">reactorstate</span><span class="o">.</span><span class="n">ReactorState</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x0000022273AF3400</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">snapReactors</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">reactorstate</span><span class="o">.</span><span class="n">ReactorState</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x00000222771002B0</span><span class="o">&gt;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">snapReactors</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">**CONTENTS**:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors.html">Developer Team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">User’s Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../develop/index.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Dan Kotlyar.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Manual/reactor.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
