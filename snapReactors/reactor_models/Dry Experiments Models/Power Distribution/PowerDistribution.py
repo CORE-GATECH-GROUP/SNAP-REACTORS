@@ -3,7 +3,7 @@ import numpy as np
 import statistics as st
 import serpentTools
 
-c1File = 's8c3_RevisedDrum.main_det0.m'
+c1File = 's8c1_RevisedDrum.main_det0.m'
 c1 = serpentTools.read(c1File)
 #print(c1.detectors)
 #xyflux = c1.detectors['xymesh']
@@ -35,15 +35,20 @@ c1 = serpentTools.read(c1File)
 #plt.ylim(0.5, 1.3)
 #plt.show()
 
-cylflux = c1.detectors['cylmesh']
-actualTallies = cylflux.tallies
-#print(cylflux.grids['Z'])
-print(cylflux)
-phi,r = np.meshgrid(cylflux.grids['PHI'][:,-1]/180*np.pi, cylflux.grids['R'][:,-1])
+# cylflux = c1.detectors['cylmesh']
+# cylflux.plot(fixed = {'phi':1}, 
+#              xlabel = 'Radial Position',
+#              ylabel = 'Flux along phi={}'
+#              .format(cylflux.grids['PHI'][1,0]))
+# plt.show()
 
-fig, ax = plt.subplots(subplot_kw={'projection':'polar'}, figsize = (8,8))
-c = ax.pcolor(phi,r,actualTallies.T[:,:,50], shading = 'nearest')
-fig.colorbar(c, ax=ax)
+xy = c1.detectors['xymesh']
+print(xy.tallies)
 
-ax.get_xaxis().set_visible(False)
-fig.show()
+#print(xy.slice({'ymesh':2}))
+#print(xy.grids['Y'][2])
+xy.plot(fixed = {'ymesh':2},
+        xlabel = 'X position',
+        ylabel = 'Flux along y ={}'
+        .format(xy.grids['Y'][2,2]))
+plt.show()
