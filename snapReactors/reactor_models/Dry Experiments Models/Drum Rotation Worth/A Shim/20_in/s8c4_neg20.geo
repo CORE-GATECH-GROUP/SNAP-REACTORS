@@ -246,7 +246,7 @@ cell barrelcdSysVoidDV barrelcdFull  void barrelShimBh1 -barrelvoidDrumh1 svDrum
 cell barrelcDrum1 barrelcd1_univ  control_drum -sDrum1 -barrelCDh1 -spU14 -spL14 
 cell barrelcvDrum1 barrelcd1_univ  void sDrum1 -svDrum1 
 cell barrelsaDrum1 barrelcd1_univ  control_drum -sDrum1 barrelCDh1 -barrelShimAh1 -spU14 -spL14 
-cell barrelsbDrum1 barrelcd1_univ  control_drum -sDrum1 barrelShimAh1 -barrelShimBh1 -spU14 -spL14 
+cell barrelsbDrum1 barrelcd1_univ  void -sDrum1 barrelShimAh1 -barrelShimBh1 -spU14 -spL14 
 cell barrelsaVDrum1 barrelcd1_univ  void (-sDrum1 barrelCDh1 -barrelShimAh1 spU14 ):(-sDrum1 barrelCDh1 -barrelShimAh1 spL14 )
 cell barrelsbVDrum1 barrelcd1_univ  void (-sDrum1 barrelShimAh1 -barrelShimBh1 spU14 ):(-sDrum1 barrelShimAh1 -barrelShimBh1 spL14 )
 cell barrelouter_sbVDrum1 barrelcd1_univ  void -sDrum1 barrelShimBh1 
@@ -281,7 +281,7 @@ cell barrelouter_sbVDrum5 barrelcd5_univ  void -sDrum5 barrelShimBh1
 cell barrelcDrum6 barrelcd6_univ  control_drum -sDrum6 -barrelCDh1 -spU36 -spL36 
 cell barrelcvDrum6 barrelcd6_univ  void sDrum6 -svDrum6 
 cell barrelsaDrum6 barrelcd6_univ  control_drum -sDrum6 barrelCDh1 -barrelShimAh1 -spU36 -spL36 
-cell barrelsbDrum6 barrelcd6_univ  void -sDrum6 barrelShimAh1 -barrelShimBh1 -spU36 -spL36 
+cell barrelsbDrum6 barrelcd6_univ  control_drum -sDrum6 barrelShimAh1 -barrelShimBh1 -spU36 -spL36 
 cell barrelsaVDrum6 barrelcd6_univ  void (-sDrum6 barrelCDh1 -barrelShimAh1 spU36 ):(-sDrum6 barrelCDh1 -barrelShimAh1 spL36 )
 cell barrelsbVDrum6 barrelcd6_univ  void (-sDrum6 barrelShimAh1 -barrelShimBh1 spU36 ):(-sDrum6 barrelShimAh1 -barrelShimBh1 spL36 )
 cell barrelouter_sbVDrum6 barrelcd6_univ  void -sDrum6 barrelShimBh1 
@@ -370,14 +370,14 @@ lower_gridplate
 lat activeCoreLat 2 0 0 21 21 1.4478
 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 
  900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 
-  900 900 900 900 900 900 900 900 900 900 900 lucElem lucElem lucElem 800 lucElem lucElem lucElem 900 900 900 
-   900 900 900 900 900 900 900 900 900 lucElem lucElem 700 700 700 700 700 700 lucElem lucElem 900 900 
-    900 900 900 900 900 900 900 900 lucElem 700 600 600 600 600 600 600 600 700 lucElem 900 900 
-     900 900 900 900 900 900 900 lucElem 700 600 500 500 500 500 500 500 600 700 lucElem 900 900 
-      900 900 900 900 900 900 lucElem 700 600 500 400 400 400 400 400 500 600 700 lucElem 900 900 
-       900 900 900 900 900 lucElem 700 600 500 400 300 300 300 300 400 500 600 700 lucElem 900 900 
-        900 900 900 900 lucElem 700 600 500 400 300 200 200 200 300 400 500 600 700 lucElem 900 900 
-         900 900 900 800 700 600 500 400 300 200 100 100 200 300 400 500 600 700 800 900 900 
+  900 900 900 900 900 900 900 900 900 900 900 lucElem lucElem lucElem lucElem lucElem lucElem lucElem 900 900 900 
+   900 900 900 900 900 900 900 900 900 lucElem lucElem 700 700 lucElem 700 lucElem lucElem lucElem lucElem 900 900 
+    900 900 900 900 900 900 900 900 lucElem lucElem 600 600 600 600 600 600 600 lucElem lucElem 900 900 
+     900 900 900 900 900 900 900 lucElem lucElem 600 500 500 500 500 500 500 600 lucElem lucElem 900 900 
+      900 900 900 900 900 900 lucElem lucElem 600 500 400 400 400 400 400 500 600 lucElem lucElem 900 900 
+       900 900 900 900 900 lucElem lucElem 600 500 400 300 300 300 300 400 500 600 lucElem lucElem 900 900 
+        900 900 900 900 lucElem lucElem 600 500 400 300 200 200 200 300 400 500 600 lucElem lucElem 900 900 
+         900 900 900 lucElem lucElem 600 500 400 300 200 100 100 200 300 400 500 600 lucElem lucElem 900 900 
           900 900 900 700 600 500 400 300 200 100 100 100 200 300 400 500 600 700 900 900 900 
            900 900 800 700 600 500 400 300 200 100 100 200 300 400 500 600 700 800 900 900 900 
             900 900 800 700 600 500 400 300 200 200 200 300 400 500 600 700 800 900 900 900 900 
@@ -388,7 +388,7 @@ lat activeCoreLat 2 0 0 21 21 1.4478
                  900 900 800 700 700 700 700 700 700 700 700 800 900 900 900 900 900 900 900 900 900 
                   900 900 900 800 800 800 800 800 800 800 900 900 900 900 900 900 900 900 900 900 900 
                    900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 
-                    900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 
+                    900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900
                      
 pin lowerEndCool
 coolant
@@ -451,4 +451,4 @@ pin pUGH
 coolant	0.19840000000000002
 upper_gridplate
 
-trans U barrelcd6_univ rot 20.760371371825407 -11.986006000000001 0 0 0 1 -20
+trans U barrelcd1_univ rot 20.760371371825407 11.986006000000001 0 0 0 1 -85
