@@ -1,13 +1,13 @@
 
  --- Table  1: Summary of nuclide data: 
 
- Data for 96 nuclides included in calculation:
+ Data for 98 nuclides included in calculation:
 
- - 96 Transport nuclides
+ - 98 Transport nuclides
  - No dosimetry nuclides
  - No decay nuclides
- - 2619 reaction channels
- - 1962 special reactions
+ - 2629 reaction channels
+ - 1968 special reactions
  - No transmutation reactions
  - 11 transmutation branch reactions
  - No decay reactions
@@ -56,106 +56,108 @@
 
     1   0  1001.00c      00c  TRA    1   1 0    1.00782   294.0          N/A  I-----T--------------  hydrogen (H-1)
     2   0  1001.00s      00s  TRA    1   1 0    1.00782   294.0          N/A  I-----TS-------------  hydrogen (H-1)
-    3   0  1002.00c      00c  TRA    1   2 0    2.01410   294.0          N/A  I-----T--------------  deuterium (H-2)
-    4   0  2004.00c      00c  TRA    2   4 0    4.00260   294.0          N/A  I-----T--------------  helium 4 (He-4)
-    5   0  3006.00c      00c  TRA    3   6 0    6.01348   294.0          N/A  I-----T--------------  lithium 6 (Li-6)
-    6   0  3007.00c      00c  TRA    3   7 0    7.01600   294.0          N/A  I-----T--------------  lithium 7 (Li-7)
-    7   0  4009.00c      00c  TRA    4   9 0    9.01220   294.0          N/A  I-----T--------------  beryllium 9 (Be-9)
-    8   0  4009.00s      00s  TRA    4   9 0    9.01220   294.0          N/A  I-----TS-------------  beryllium 9 (Be-9)
+    3   0  1001.00s      00s  TRA    1   1 0    1.00782   294.0          N/A  I-----TS-------------  hydrogen (H-1)
+    4   0  1002.00c      00c  TRA    1   2 0    2.01410   294.0          N/A  I-----T--------------  deuterium (H-2)
+    5   0  2004.00c      00c  TRA    2   4 0    4.00260   294.0          N/A  I-----T--------------  helium 4 (He-4)
+    6   0  3006.00c      00c  TRA    3   6 0    6.01348   294.0          N/A  I-----T--------------  lithium 6 (Li-6)
+    7   0  3007.00c      00c  TRA    3   7 0    7.01600   294.0          N/A  I-----T--------------  lithium 7 (Li-7)
+    8   0  4009.00c      00c  TRA    4   9 0    9.01220   294.0          N/A  I-----T--------------  beryllium 9 (Be-9)
     9   0  4009.00s      00s  TRA    4   9 0    9.01220   294.0          N/A  I-----TS-------------  beryllium 9 (Be-9)
-   10   0  6012.00c      00c  TRA    6  12 0   11.99671   294.0          N/A  I-----T--------------  carbon 12 (C-12)
-   11   0  7014.00c      00c  TRA    7  14 0   14.00307   294.0          N/A  I-----T--------------  nitrogen 14 (N-14)
-   12   0  7015.00c      00c  TRA    7  15 0   14.99986   294.0          N/A  I-----T--------------  nitrogen 15 (N-15)
-   13   0  8016.00c      00c  TRA    8  16 0   15.99492   294.0          N/A  I-----T--------------  oxygen 16 (O-16)
-   14   0  8016.00s      00s  TRA    8  16 0   15.99492   294.0          N/A  I-----TS-------------  oxygen 16 (O-16)
-   15   0  8017.00c      00c  TRA    8  17 0   16.99913   294.0          N/A  I-----T--------------  oxygen 17 (O-17)
-   16   0  12024.00c     00c  TRA   12  24 0   23.98504   294.0          N/A  I-----T--------------  magnesium 24 (Mg-24)
-   17   0  12025.00c     00c  TRA   12  25 0   24.98584   294.0          N/A  I-----T--------------  magnesium 25 (Mg-25)
-   18   0  12026.00c     00c  TRA   12  26 0   25.98260   294.0          N/A  I-----T--------------  magnesium 26 (Mg-26)
-   19   0  13027.00c     00c  TRA   13  27 0   26.98154   294.0          N/A  I-----T--------------  aluminum 27 (Al-27)
-   20   0  14028.00c     00c  TRA   14  28 0   27.97734   294.0          N/A  I-----T--------------  silicon 28 (Si-28)
-   21   0  14029.00c     00c  TRA   14  29 0   28.97693   294.0          N/A  I-----T--------------  silicon 29 (Si-29)
-   22   0  14030.00c     00c  TRA   14  30 0   29.97349   294.0          N/A  I-----T--------------  silicon 30 (Si-30)
-   23   0  15031.00c     00c  TRA   15  31 0   30.97408   294.0          N/A  I-----T--------------  phosphorus 31 (P-31)
-   24   0  16032.00c     00c  TRA   16  32 0   31.97196   294.0          N/A  I-----T--------------  sulfur 32 (S-32)
-   25   0  16033.00c     00c  TRA   16  33 0   32.97104   294.0          N/A  I-----T--------------  sulfur 33 (S-33)
-   26   0  16034.00c     00c  TRA   16  34 0   33.96800   294.0          N/A  I-----T--------------  sulfur 34 (S-34)
-   27   0  16036.00c     00c  TRA   16  36 0   35.96697   294.0          N/A  I-----T--------------  sulfur 36 (S-36)
-   28   0  18036.00c     00c  TRA   18  36 0   35.96748   294.0          N/A  I-----T--------------  argon 36 (Ar-36)
-   29   0  18038.00c     00c  TRA   18  38 0   37.96272   294.0          N/A  I-----T--------------  argon 38 (Ar-38)
-   30   0  18040.00c     00c  TRA   18  40 0   39.96240   294.0          N/A  I-----T--------------  argon 40 (Ar-40)
-   31   0  20040.00c     00c  TRA   20  40 0   39.96260   294.0          N/A  I-----T--------------  calcium 40 (Ca-40)
-   32   0  20042.00c     00c  TRA   20  42 0   41.95863   294.0          N/A  I-----T--------------  calcium 42 (Ca-42)
-   33   0  20043.00c     00c  TRA   20  43 0   42.95877   294.0          N/A  I-----T--------------  calcium 43 (Ca-43)
-   34   0  20044.00c     00c  TRA   20  44 0   43.95548   294.0          N/A  I-----T--------------  calcium 44 (Ca-44)
-   35   0  20046.00c     00c  TRA   20  46 0   45.95370   294.0          N/A  I-----T--------------  calcium 46 (Ca-46)
-   36   0  20048.00c     00c  TRA   20  48 0   47.95254   294.0          N/A  I-----T--------------  calcium 48 (Ca-48)
-   37   0  22046.00c     00c  TRA   22  46 0   45.95266   294.0          N/A  I-----T--------------  titanium 46 (Ti-46)
-   38   0  22047.00c     00c  TRA   22  47 0   46.95174   294.0          N/A  I-----T--------------  titanium 47 (Ti-47)
-   39   0  22048.00c     00c  TRA   22  48 0   47.94800   294.0          N/A  I-----T--------------  titanium 48 (Ti-48)
-   40   0  22049.00c     00c  TRA   22  49 0   48.94789   294.0          N/A  I-----T--------------  titanium 49 (Ti-49)
-   41   0  22050.00c     00c  TRA   22  50 0   49.94475   294.0          N/A  I-----T--------------  titanium 50 (Ti-50)
-   42   0  23051.00c     00c  TRA   23  51 0   50.94394   294.0          N/A  I-----T--------------  vanadium 51 (V-51)
-   43   0  24050.00c     00c  TRA   24  50 0   49.94606   294.0          N/A  I-----T--------------  chromium 50 (Cr-50)
-   44   0  24052.00c     00c  TRA   24  52 0   51.94019   294.0          N/A  I-----T--------------  chromium 52 (Cr-52)
-   45   0  24053.00c     00c  TRA   24  53 0   52.94079   294.0          N/A  I-----T--------------  chromium 53 (Cr-53)
-   46   0  24054.00c     00c  TRA   24  54 0   53.93937   294.0          N/A  I-----T--------------  chromium 54 (Cr-54)
-   47   0  25055.00c     00c  TRA   25  55 0   54.93805   294.0          N/A  I-----T--------------  manganese 55 (Mn-55)
-   48   0  26054.00c     00c  TRA   26  54 0   53.93961   294.0          N/A  I-----T--------------  iron 54 (Fe-54)
-   49   0  26056.00c     00c  TRA   26  56 0   55.93494   294.0          N/A  I-----T--------------  iron 56 (Fe-56)
-   50   0  26057.00c     00c  TRA   26  57 0   56.93539   294.0          N/A  I-----T--------------  iron 57 (Fe-57)
-   51   0  26058.00c     00c  TRA   26  58 0   57.93328   294.0          N/A  I-----T--------------  iron 58 (Fe-58)
-   52   0  27059.00c     00c  TRA   27  59 0   58.93317   294.0          N/A  I-----T-I------------  cobalt 59 (Co-59)
-   53   0  28058.00c     00c  TRA   28  58 0   57.93570   294.0          N/A  I-----T--------------  nickel 58 (Ni-58)
-   54   0  28060.00c     00c  TRA   28  60 0   59.93084   294.0          N/A  I-----T--------------  nickel 60 (Ni-60)
-   55   0  28061.00c     00c  TRA   28  61 0   60.93143   294.0          N/A  I-----T--------------  nickel 61 (Ni-61)
-   56   0  28062.00c     00c  TRA   28  62 0   61.92799   294.0          N/A  I-----T--------------  nickel 62 (Ni-62)
-   57   0  28064.00c     00c  TRA   28  64 0   63.92818   294.0          N/A  I-----T--------------  nickel 64 (Ni-64)
-   58   0  29063.00c     00c  TRA   29  63 0   62.92960   294.0          N/A  I-----T--------------  copper 63 (Cu-63)
-   59   0  29065.00c     00c  TRA   29  65 0   64.92776   294.0          N/A  I-----T--------------  copper 65 (Cu-65)
-   60   0  38084.00c     00c  TRA   38  84 0   83.91346   294.0          N/A  I-----T-I------------  strontium 84 (Sr-84)
-   61   0  38086.00c     00c  TRA   38  86 0   85.90931   294.0          N/A  I-----T-I------------  strontium 86 (Sr-86)
-   62   0  38087.00c     00c  TRA   38  87 0   86.90889   294.0          N/A  I-----T--------------  strontium 87 (Sr-87)
-   63   0  38088.00c     00c  TRA   38  88 0   87.90515   294.0          N/A  I-----T--------------  strontium 88 (Sr-88)
-   64   0  40090.00c     00c  TRA   40  90 0   89.90473   294.0          N/A  I-----T--------------  zirconium 90 (Zr-90)
-   65   0  40090.00s     00s  TRA   40  90 0   89.90473   294.0          N/A  I-----TS-------------  zirconium 90 (Zr-90)
-   66   0  40091.00c     00c  TRA   40  91 0   90.90563   294.0          N/A  I-----T--------------  zirconium 91 (Zr-91)
-   67   0  40092.00c     00c  TRA   40  92 0   91.90501   294.0          N/A  I-----T--------------  zirconium 92 (Zr-92)
-   68   0  40094.00c     00c  TRA   40  94 0   93.90631   294.0          N/A  I-----T--------------  zirconium 94 (Zr-94)
-   69   0  40096.00c     00c  TRA   40  96 0   95.90830   294.0          N/A  I-----T--------------  zirconium 96 (Zr-96)
-   70   0  42092.00c     00c  TRA   42  92 0   91.90683   294.0          N/A  I-----T-I------------  molybdenum 92 (Mo-92)
-   71   0  42094.00c     00c  TRA   42  94 0   93.90510   294.0          N/A  I-----T--------------  molybdenum 94 (Mo-94)
-   72   0  42095.00c     00c  TRA   42  95 0   94.90589   294.0          N/A  I-----T--------------  molybdenum 95 (Mo-95)
-   73   0  42096.00c     00c  TRA   42  96 0   95.90467   294.0          N/A  I-----T--------------  molybdenum 96 (Mo-96)
-   74   0  42097.00c     00c  TRA   42  97 0   96.90597   294.0          N/A  I-----T--------------  molybdenum 97 (Mo-97)
-   75   0  42098.00c     00c  TRA   42  98 0   97.90536   294.0          N/A  I-----T--------------  molybdenum 98 (Mo-98)
-   76   0  42100.00c     00c  TRA   42 100 0   99.90726   294.0          N/A  I-----T--------------  molybdenum 100 (Mo-100)
-   77   0  56130.00c     00c  TRA   56 130 0  129.90596   294.0          N/A  I-----T-I------------  barium 130 (Ba-130)
-   78   0  56132.00c     00c  TRA   56 132 0  131.90514   294.0          N/A  I-----T-I------------  barium 132 (Ba-132)
-   79   0  56134.00c     00c  TRA   56 134 0  133.90431   294.0          N/A  I-----T-I------------  barium 134 (Ba-134)
-   80   0  56135.00c     00c  TRA   56 135 0  134.90591   294.0          N/A  I-----T-I------------  barium 135 (Ba-135)
-   81   0  56136.00c     00c  TRA   56 136 0  135.90449   294.0          N/A  I-----T-I------------  barium 136 (Ba-136)
-   82   0  56137.00c     00c  TRA   56 137 0  136.90610   294.0          N/A  I-----T--------------  barium 137 (Ba-137)
-   83   0  56138.00c     00c  TRA   56 138 0  137.90467   294.0          N/A  I-----T--------------  barium 138 (Ba-138)
-   84   0  62144.00c     00c  TRA   62 144 0  143.91228   294.0          N/A  I-----T--------------  samarium 144 (Sm-144)
-   85   0  62147.00c     00c  TRA   62 147 0  146.91508   294.0          N/A  I-----T--------------  samarium 147 (Sm-147)
-   86   0  62148.00c     00c  TRA   62 148 0  147.91467   294.0          N/A  I-----T--------------  samarium 148 (Sm-148)
-   87   0  62149.00c     00c  TRA   62 149 0  148.91728   294.0          N/A  I-----T--------------  samarium 149 (Sm-149)
-   88   0  62150.00c     00c  TRA   62 150 0  149.91687   294.0          N/A  I-----T--------------  samarium 150 (Sm-150)
-   89   0  62152.00c     00c  TRA   62 152 0  151.92007   294.0          N/A  I-----T--------------  samarium 152 (Sm-152)
-   90   0  62154.00c     00c  TRA   62 154 0  153.92227   294.0          N/A  I-----T--------------  samarium 154 (Sm-154)
-   91   0  74182.00c     00c  TRA   74 182 0  181.94803   294.0          N/A  I-----T-I------------  tungsten 182 (W-182)
-   92   0  74183.00c     00c  TRA   74 183 0  182.95064   294.0          N/A  I-----T--------------  tungsten 183 (W-183)
-   93   0  74184.00c     00c  TRA   74 184 0  183.95124   294.0          N/A  I-----T-I------------  tungsten 184 (W-184)
-   94   0  74186.00c     00c  TRA   74 186 0  185.95445   294.0          N/A  I-----T--------------  tungsten 186 (W-186)
-   95   0  92235.00c     00c  TRA   92 235 0  235.04395   294.0          N/A  I-----T--F-D---------  uranium 235 (U-235)
-   96   0  92238.00c     00c  TRA   92 238 0  238.05078   294.0          N/A  I-----T--F-D---------  uranium 238 (U-238)
+   10   0  4009.00s      00s  TRA    4   9 0    9.01220   294.0          N/A  I-----TS-------------  beryllium 9 (Be-9)
+   11   0  6012.00c      00c  TRA    6  12 0   11.99671   294.0          N/A  I-----T--------------  carbon 12 (C-12)
+   12   0  6013.00c      00c  TRA    6  13 0   13.00336   294.0          N/A  I-----T--------------  carbon 13 (C-13)
+   13   0  7014.00c      00c  TRA    7  14 0   14.00307   294.0          N/A  I-----T--------------  nitrogen 14 (N-14)
+   14   0  7015.00c      00c  TRA    7  15 0   14.99986   294.0          N/A  I-----T--------------  nitrogen 15 (N-15)
+   15   0  8016.00c      00c  TRA    8  16 0   15.99492   294.0          N/A  I-----T--------------  oxygen 16 (O-16)
+   16   0  8016.00s      00s  TRA    8  16 0   15.99492   294.0          N/A  I-----TS-------------  oxygen 16 (O-16)
+   17   0  8017.00c      00c  TRA    8  17 0   16.99913   294.0          N/A  I-----T--------------  oxygen 17 (O-17)
+   18   0  12024.00c     00c  TRA   12  24 0   23.98504   294.0          N/A  I-----T--------------  magnesium 24 (Mg-24)
+   19   0  12025.00c     00c  TRA   12  25 0   24.98584   294.0          N/A  I-----T--------------  magnesium 25 (Mg-25)
+   20   0  12026.00c     00c  TRA   12  26 0   25.98260   294.0          N/A  I-----T--------------  magnesium 26 (Mg-26)
+   21   0  13027.00c     00c  TRA   13  27 0   26.98154   294.0          N/A  I-----T--------------  aluminum 27 (Al-27)
+   22   0  14028.00c     00c  TRA   14  28 0   27.97734   294.0          N/A  I-----T--------------  silicon 28 (Si-28)
+   23   0  14029.00c     00c  TRA   14  29 0   28.97693   294.0          N/A  I-----T--------------  silicon 29 (Si-29)
+   24   0  14030.00c     00c  TRA   14  30 0   29.97349   294.0          N/A  I-----T--------------  silicon 30 (Si-30)
+   25   0  15031.00c     00c  TRA   15  31 0   30.97408   294.0          N/A  I-----T--------------  phosphorus 31 (P-31)
+   26   0  16032.00c     00c  TRA   16  32 0   31.97196   294.0          N/A  I-----T--------------  sulfur 32 (S-32)
+   27   0  16033.00c     00c  TRA   16  33 0   32.97104   294.0          N/A  I-----T--------------  sulfur 33 (S-33)
+   28   0  16034.00c     00c  TRA   16  34 0   33.96800   294.0          N/A  I-----T--------------  sulfur 34 (S-34)
+   29   0  16036.00c     00c  TRA   16  36 0   35.96697   294.0          N/A  I-----T--------------  sulfur 36 (S-36)
+   30   0  18036.00c     00c  TRA   18  36 0   35.96748   294.0          N/A  I-----T--------------  argon 36 (Ar-36)
+   31   0  18038.00c     00c  TRA   18  38 0   37.96272   294.0          N/A  I-----T--------------  argon 38 (Ar-38)
+   32   0  18040.00c     00c  TRA   18  40 0   39.96240   294.0          N/A  I-----T--------------  argon 40 (Ar-40)
+   33   0  20040.00c     00c  TRA   20  40 0   39.96260   294.0          N/A  I-----T--------------  calcium 40 (Ca-40)
+   34   0  20042.00c     00c  TRA   20  42 0   41.95863   294.0          N/A  I-----T--------------  calcium 42 (Ca-42)
+   35   0  20043.00c     00c  TRA   20  43 0   42.95877   294.0          N/A  I-----T--------------  calcium 43 (Ca-43)
+   36   0  20044.00c     00c  TRA   20  44 0   43.95548   294.0          N/A  I-----T--------------  calcium 44 (Ca-44)
+   37   0  20046.00c     00c  TRA   20  46 0   45.95370   294.0          N/A  I-----T--------------  calcium 46 (Ca-46)
+   38   0  20048.00c     00c  TRA   20  48 0   47.95254   294.0          N/A  I-----T--------------  calcium 48 (Ca-48)
+   39   0  22046.00c     00c  TRA   22  46 0   45.95266   294.0          N/A  I-----T--------------  titanium 46 (Ti-46)
+   40   0  22047.00c     00c  TRA   22  47 0   46.95174   294.0          N/A  I-----T--------------  titanium 47 (Ti-47)
+   41   0  22048.00c     00c  TRA   22  48 0   47.94800   294.0          N/A  I-----T--------------  titanium 48 (Ti-48)
+   42   0  22049.00c     00c  TRA   22  49 0   48.94789   294.0          N/A  I-----T--------------  titanium 49 (Ti-49)
+   43   0  22050.00c     00c  TRA   22  50 0   49.94475   294.0          N/A  I-----T--------------  titanium 50 (Ti-50)
+   44   0  23051.00c     00c  TRA   23  51 0   50.94394   294.0          N/A  I-----T--------------  vanadium 51 (V-51)
+   45   0  24050.00c     00c  TRA   24  50 0   49.94606   294.0          N/A  I-----T--------------  chromium 50 (Cr-50)
+   46   0  24052.00c     00c  TRA   24  52 0   51.94019   294.0          N/A  I-----T--------------  chromium 52 (Cr-52)
+   47   0  24053.00c     00c  TRA   24  53 0   52.94079   294.0          N/A  I-----T--------------  chromium 53 (Cr-53)
+   48   0  24054.00c     00c  TRA   24  54 0   53.93937   294.0          N/A  I-----T--------------  chromium 54 (Cr-54)
+   49   0  25055.00c     00c  TRA   25  55 0   54.93805   294.0          N/A  I-----T--------------  manganese 55 (Mn-55)
+   50   0  26054.00c     00c  TRA   26  54 0   53.93961   294.0          N/A  I-----T--------------  iron 54 (Fe-54)
+   51   0  26056.00c     00c  TRA   26  56 0   55.93494   294.0          N/A  I-----T--------------  iron 56 (Fe-56)
+   52   0  26057.00c     00c  TRA   26  57 0   56.93539   294.0          N/A  I-----T--------------  iron 57 (Fe-57)
+   53   0  26058.00c     00c  TRA   26  58 0   57.93328   294.0          N/A  I-----T--------------  iron 58 (Fe-58)
+   54   0  27059.00c     00c  TRA   27  59 0   58.93317   294.0          N/A  I-----T-I------------  cobalt 59 (Co-59)
+   55   0  28058.00c     00c  TRA   28  58 0   57.93570   294.0          N/A  I-----T--------------  nickel 58 (Ni-58)
+   56   0  28060.00c     00c  TRA   28  60 0   59.93084   294.0          N/A  I-----T--------------  nickel 60 (Ni-60)
+   57   0  28061.00c     00c  TRA   28  61 0   60.93143   294.0          N/A  I-----T--------------  nickel 61 (Ni-61)
+   58   0  28062.00c     00c  TRA   28  62 0   61.92799   294.0          N/A  I-----T--------------  nickel 62 (Ni-62)
+   59   0  28064.00c     00c  TRA   28  64 0   63.92818   294.0          N/A  I-----T--------------  nickel 64 (Ni-64)
+   60   0  29063.00c     00c  TRA   29  63 0   62.92960   294.0          N/A  I-----T--------------  copper 63 (Cu-63)
+   61   0  29065.00c     00c  TRA   29  65 0   64.92776   294.0          N/A  I-----T--------------  copper 65 (Cu-65)
+   62   0  38084.00c     00c  TRA   38  84 0   83.91346   294.0          N/A  I-----T-I------------  strontium 84 (Sr-84)
+   63   0  38086.00c     00c  TRA   38  86 0   85.90931   294.0          N/A  I-----T-I------------  strontium 86 (Sr-86)
+   64   0  38087.00c     00c  TRA   38  87 0   86.90889   294.0          N/A  I-----T--------------  strontium 87 (Sr-87)
+   65   0  38088.00c     00c  TRA   38  88 0   87.90515   294.0          N/A  I-----T--------------  strontium 88 (Sr-88)
+   66   0  40090.00c     00c  TRA   40  90 0   89.90473   294.0          N/A  I-----T--------------  zirconium 90 (Zr-90)
+   67   0  40090.00s     00s  TRA   40  90 0   89.90473   294.0          N/A  I-----TS-------------  zirconium 90 (Zr-90)
+   68   0  40091.00c     00c  TRA   40  91 0   90.90563   294.0          N/A  I-----T--------------  zirconium 91 (Zr-91)
+   69   0  40092.00c     00c  TRA   40  92 0   91.90501   294.0          N/A  I-----T--------------  zirconium 92 (Zr-92)
+   70   0  40094.00c     00c  TRA   40  94 0   93.90631   294.0          N/A  I-----T--------------  zirconium 94 (Zr-94)
+   71   0  40096.00c     00c  TRA   40  96 0   95.90830   294.0          N/A  I-----T--------------  zirconium 96 (Zr-96)
+   72   0  42092.00c     00c  TRA   42  92 0   91.90683   294.0          N/A  I-----T-I------------  molybdenum 92 (Mo-92)
+   73   0  42094.00c     00c  TRA   42  94 0   93.90510   294.0          N/A  I-----T--------------  molybdenum 94 (Mo-94)
+   74   0  42095.00c     00c  TRA   42  95 0   94.90589   294.0          N/A  I-----T--------------  molybdenum 95 (Mo-95)
+   75   0  42096.00c     00c  TRA   42  96 0   95.90467   294.0          N/A  I-----T--------------  molybdenum 96 (Mo-96)
+   76   0  42097.00c     00c  TRA   42  97 0   96.90597   294.0          N/A  I-----T--------------  molybdenum 97 (Mo-97)
+   77   0  42098.00c     00c  TRA   42  98 0   97.90536   294.0          N/A  I-----T--------------  molybdenum 98 (Mo-98)
+   78   0  42100.00c     00c  TRA   42 100 0   99.90726   294.0          N/A  I-----T--------------  molybdenum 100 (Mo-100)
+   79   0  56130.00c     00c  TRA   56 130 0  129.90596   294.0          N/A  I-----T-I------------  barium 130 (Ba-130)
+   80   0  56132.00c     00c  TRA   56 132 0  131.90514   294.0          N/A  I-----T-I------------  barium 132 (Ba-132)
+   81   0  56134.00c     00c  TRA   56 134 0  133.90431   294.0          N/A  I-----T-I------------  barium 134 (Ba-134)
+   82   0  56135.00c     00c  TRA   56 135 0  134.90591   294.0          N/A  I-----T-I------------  barium 135 (Ba-135)
+   83   0  56136.00c     00c  TRA   56 136 0  135.90449   294.0          N/A  I-----T-I------------  barium 136 (Ba-136)
+   84   0  56137.00c     00c  TRA   56 137 0  136.90610   294.0          N/A  I-----T--------------  barium 137 (Ba-137)
+   85   0  56138.00c     00c  TRA   56 138 0  137.90467   294.0          N/A  I-----T--------------  barium 138 (Ba-138)
+   86   0  62144.00c     00c  TRA   62 144 0  143.91228   294.0          N/A  I-----T--------------  samarium 144 (Sm-144)
+   87   0  62147.00c     00c  TRA   62 147 0  146.91508   294.0          N/A  I-----T--------------  samarium 147 (Sm-147)
+   88   0  62148.00c     00c  TRA   62 148 0  147.91467   294.0          N/A  I-----T--------------  samarium 148 (Sm-148)
+   89   0  62149.00c     00c  TRA   62 149 0  148.91728   294.0          N/A  I-----T--------------  samarium 149 (Sm-149)
+   90   0  62150.00c     00c  TRA   62 150 0  149.91687   294.0          N/A  I-----T--------------  samarium 150 (Sm-150)
+   91   0  62152.00c     00c  TRA   62 152 0  151.92007   294.0          N/A  I-----T--------------  samarium 152 (Sm-152)
+   92   0  62154.00c     00c  TRA   62 154 0  153.92227   294.0          N/A  I-----T--------------  samarium 154 (Sm-154)
+   93   0  74182.00c     00c  TRA   74 182 0  181.94803   294.0          N/A  I-----T-I------------  tungsten 182 (W-182)
+   94   0  74183.00c     00c  TRA   74 183 0  182.95064   294.0          N/A  I-----T--------------  tungsten 183 (W-183)
+   95   0  74184.00c     00c  TRA   74 184 0  183.95124   294.0          N/A  I-----T-I------------  tungsten 184 (W-184)
+   96   0  74186.00c     00c  TRA   74 186 0  185.95445   294.0          N/A  I-----T--------------  tungsten 186 (W-186)
+   97   0  92235.00c     00c  TRA   92 235 0  235.04395   294.0          N/A  I-----T--F-D---------  uranium 235 (U-235)
+   98   0  92238.00c     00c  TRA   92 238 0  238.05078   294.0          N/A  I-----T--F-D---------  uranium 238 (U-238)
 
  --- Table  2: Reaction and decay data: 
 
- Nuclide    1 / 96 : 1001.00c -- hydrogen (H-1)
+ Nuclide    1 / 98 : 1001.00c -- hydrogen (H-1)
 
- Pointers                     : 215598 1053
+ Pointers                     : 227505 1053
  Primary type                 : Transport
  Nuclide ZAI                  : 10010
  Library ID                   : 00c
@@ -203,9 +205,62 @@
    1    MT =    204  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : total deuteron production
    2    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
 
- Nuclide    2 / 96 : 1001.00s -- hydrogen (H-1)
+ Nuclide    2 / 98 : 1001.00s -- hydrogen (H-1)
 
- Pointers                     : 379433 1053
+ Pointers                     : 392536 1053
+ Primary type                 : Transport
+ Nuclide ZAI                  : 10010
+ Library ID                   : 00s
+ Cross section data file      : /hpc-common/data/serpent/xsdata/s2v0_endfb80/Lib80x/Lib80x/H/1001.800nc
+ Atomic weight (AW)           : 1.00782
+ Atomic weight ratio (AWR)    : 0.99917
+ Temperature                  : 294.0 Kelvin
+ XS temperature               : 294.0 Kelvin
+ Minimum and maximum energy   : 1.00000E-11 2.00000E+01
+ Half-life                    : N/A
+ Specific ingestion toxicity  : N/A
+ Specific inhalation toxicity : N/A
+
+ - Nuclide is not involved in burnup calculation
+ - Nuclide has neutron transport data
+ - Nuclide has no photon transport data
+ - Nuclide has inelastic S(a,b) channel between 1.00E-11 and 4.90E-06 MeV
+ - Nuclide has elastic S(a,b) channel between 1.00E-11 and 4.90E-06 MeV
+ - Nuclide has no isomeric branching data
+ - Nuclide is not fissile
+ - Nuclide is not a delayed neutron precursor
+ - Nuclide has no delayed neutron data
+ - Nuclide has no ures ptable data
+ - Nuclide temperature is not adjusted with TMS
+ - Nuclide has no dosimetry data
+ - Nuclide has no decay data
+ - Nuclide has no supplementary transmutation cross section data
+ - Nuclide has no NFY data
+ - Nuclide has no SFY data
+
+ - 4 reaction channels
+ - 2 special reactions
+ - No transmutation reactions
+ - No transmutation branch reactions
+ - No decay reactions
+ - No decay branch reactions
+ - No transmutation paths
+
+ 4 reactions channel:
+
+   1    MT =      2  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  frac = 1.00000E+00  : elastic scattering
+   2    MT =    102  Q =  2.22465E+00 MeV  Emin = 1.00000E-11 MeV  frac = 1.00000E+00  : (n,gamma)
+   3    MT =   1004  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  frac = 1.00000E+00  : S(a,b) inelastic scattering
+   4    MT =   1002  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  frac = 1.00000E+00  : S(a,b) elastic scattering
+
+ 2 special reactions:
+
+   1    MT =    204  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : total deuteron production
+   2    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
+
+ Nuclide    3 / 98 : 1001.00s -- hydrogen (H-1)
+
+ Pointers                     : 393134 1053
  Primary type                 : Transport
  Nuclide ZAI                  : 10010
  Library ID                   : 00s
@@ -256,9 +311,9 @@
    1    MT =    204  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : total deuteron production
    2    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
 
- Nuclide    3 / 96 : 1002.00c -- deuterium (H-2)
+ Nuclide    4 / 98 : 1002.00c -- deuterium (H-2)
 
- Pointers                     : 216050 1375
+ Pointers                     : 228847 1375
  Primary type                 : Transport
  Nuclide ZAI                  : 10020
  Library ID                   : 00c
@@ -308,9 +363,9 @@
    2    MT =    205  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : total triton production
    3    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
 
- Nuclide    4 / 96 : 2004.00c -- helium 4 (He-4)
+ Nuclide    5 / 98 : 2004.00c -- helium 4 (He-4)
 
- Pointers                     : 369264 2341
+ Pointers                     : 382061 2341
  Primary type                 : Transport
  Nuclide ZAI                  : 20040
  Library ID                   : 00c
@@ -356,9 +411,9 @@
 
    1    MT =    444  Q =  0.00000E+00 MeV  Emin = 3.50000E-05 MeV  : damage-energy production
 
- Nuclide    5 / 96 : 3006.00c -- lithium 6 (Li-6)
+ Nuclide    6 / 98 : 3006.00c -- lithium 6 (Li-6)
 
- Pointers                     : 252735 2663
+ Pointers                     : 265532 2663
  Primary type                 : Transport
  Nuclide ZAI                  : 30060
  Library ID                   : 00c
@@ -444,9 +499,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.75160E+00 MeV  : total inelastic scattering
 
- Nuclide    6 / 96 : 3007.00c -- lithium 7 (Li-7)
+ Nuclide    7 / 98 : 3007.00c -- lithium 7 (Li-7)
 
- Pointers                     : 255961 2985
+ Pointers                     : 268758 2985
  Primary type                 : Transport
  Nuclide ZAI                  : 30070
  Library ID                   : 00c
@@ -534,9 +589,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 5.46277E-01 MeV  : total inelastic scattering
 
- Nuclide    7 / 96 : 4009.00c -- beryllium 9 (Be-9)
+ Nuclide    8 / 98 : 4009.00c -- beryllium 9 (Be-9)
 
- Pointers                     : 376502 3629
+ Pointers                     : 389299 3629
  Primary type                 : Transport
  Nuclide ZAI                  : 40090
  Library ID                   : 00c
@@ -597,9 +652,9 @@
    9    MT =    701  Q = -1.09180E+01 MeV  Emin = 1.21400E+01 MeV  : (n,t1)
   10    MT =    800  Q = -6.00000E-01 MeV  Emin = 6.67153E-01 MeV  : (n,alpha) to ground state
 
- Nuclide    8 / 96 : 4009.00s -- beryllium 9 (Be-9)
+ Nuclide    9 / 98 : 4009.00s -- beryllium 9 (Be-9)
 
- Pointers                     : 384060 3629
+ Pointers                     : 397761 3629
  Primary type                 : Transport
  Nuclide ZAI                  : 40090
  Library ID                   : 00s
@@ -663,9 +718,9 @@
    9    MT =    701  Q = -1.09180E+01 MeV  Emin = 1.21400E+01 MeV  : (n,t1)
   10    MT =    800  Q = -6.00000E-01 MeV  Emin = 6.67153E-01 MeV  : (n,alpha) to ground state
 
- Nuclide    9 / 96 : 4009.00s -- beryllium 9 (Be-9)
+ Nuclide   10 / 98 : 4009.00s -- beryllium 9 (Be-9)
 
- Pointers                     : 391023 3629
+ Pointers                     : 404724 3629
  Primary type                 : Transport
  Nuclide ZAI                  : 40090
  Library ID                   : 00s
@@ -729,9 +784,9 @@
    9    MT =    701  Q = -1.09180E+01 MeV  Emin = 1.21400E+01 MeV  : (n,t1)
   10    MT =    800  Q = -6.00000E-01 MeV  Emin = 6.67153E-01 MeV  : (n,alpha) to ground state
 
- Nuclide   10 / 96 : 6012.00c -- carbon 12 (C-12)
+ Nuclide   11 / 98 : 6012.00c -- carbon 12 (C-12)
 
- Pointers                     : 160259 4917
+ Pointers                     : 172166 4917
  Primary type                 : Transport
  Nuclide ZAI                  : 60120
  Library ID                   : 00c
@@ -800,9 +855,65 @@
    4    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    5    MT =      4  Q =  0.00000E+00 MeV  Emin = 4.81300E+00 MeV  : total inelastic scattering
 
- Nuclide   11 / 96 : 7014.00c -- nitrogen 14 (N-14)
+ Nuclide   12 / 98 : 6013.00c -- carbon 13 (C-13)
 
- Pointers                     : 170229 5561
+ Pointers                     : 227957 5239
+ Primary type                 : Transport
+ Nuclide ZAI                  : 60130
+ Library ID                   : 00c
+ Cross section data file      : /hpc-common/data/serpent/xsdata/s2v0_endfb80/Lib80x/Lib80x/C/6013.800nc
+ Atomic weight (AW)           : 13.00336
+ Atomic weight ratio (AWR)    : 12.89165
+ Temperature                  : 294.0 Kelvin
+ XS temperature               : 294.0 Kelvin
+ Minimum and maximum energy   : 1.00000E-11 2.00000E+01
+ Half-life                    : N/A
+ Specific ingestion toxicity  : N/A
+ Specific inhalation toxicity : N/A
+
+ - Nuclide is not involved in burnup calculation
+ - Nuclide has neutron transport data
+ - Nuclide has no photon transport data
+ - Nuclide has no S(a,b) data
+ - Nuclide has no isomeric branching data
+ - Nuclide is not fissile
+ - Nuclide is not a delayed neutron precursor
+ - Nuclide has no delayed neutron data
+ - Nuclide has no ures ptable data
+ - Nuclide temperature is not adjusted with TMS
+ - Nuclide has no dosimetry data
+ - Nuclide has no decay data
+ - Nuclide has no supplementary transmutation cross section data
+ - Nuclide has no NFY data
+ - Nuclide has no SFY data
+
+ - 6 reaction channels
+ - 4 special reactions
+ - No transmutation reactions
+ - No transmutation branch reactions
+ - No decay reactions
+ - No decay branch reactions
+ - No transmutation paths
+
+ 6 reactions channel:
+
+   1    MT =      2  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  frac = 1.00000E+00  : elastic scattering
+   2    MT =     51  Q = -3.08944E+00 MeV  Emin = 3.33000E+00 MeV  frac = 1.00000E+00  : inelastic scatt. to 1. excited state
+   3    MT =     52  Q = -3.68451E+00 MeV  Emin = 3.97100E+00 MeV  frac = 1.00000E+00  : inelastic scatt. to 2. excited state
+   4    MT =     53  Q = -3.85381E+00 MeV  Emin = 4.15500E+00 MeV  frac = 1.00000E+00  : inelastic scatt. to 3. excited state
+   5    MT =    102  Q =  8.17643E+00 MeV  Emin = 1.00000E-11 MeV  frac = 1.00000E+00  : (n,gamma)
+   6    MT =    107  Q =  0.00000E+00 MeV  Emin = 4.13500E+00 MeV  frac = 1.00000E+00  : (n,alpha)
+
+ 4 special reactions:
+
+   1    MT =    207  Q =  0.00000E+00 MeV  Emin = 4.13500E+00 MeV  : total alpha production
+   2    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
+   3    MT =    800  Q = -3.83608E+00 MeV  Emin = 4.13500E+00 MeV  : (n,alpha) to ground state
+   4    MT =      4  Q =  0.00000E+00 MeV  Emin = 3.33000E+00 MeV  : total inelastic scattering
+
+ Nuclide   13 / 98 : 7014.00c -- nitrogen 14 (N-14)
+
+ Pointers                     : 182136 5561
  Primary type                 : Transport
  Nuclide ZAI                  : 70140
  Library ID                   : 00c
@@ -912,9 +1023,9 @@
   29    MT =    810  Q = -9.34330E+00 MeV  Emin = 1.00163E+01 MeV  : (n,a10)
   30    MT =      4  Q =  0.00000E+00 MeV  Emin = 2.47939E+00 MeV  : total inelastic scattering
 
- Nuclide   12 / 96 : 7015.00c -- nitrogen 15 (N-15)
+ Nuclide   14 / 98 : 7015.00c -- nitrogen 15 (N-15)
 
- Pointers                     : 175207 5883
+ Pointers                     : 187114 5883
  Primary type                 : Transport
  Nuclide ZAI                  : 70150
  Library ID                   : 00c
@@ -981,9 +1092,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 5.62450E+00 MeV  : total inelastic scattering
 
- Nuclide   13 / 96 : 8016.00c -- oxygen 16 (O-16)
+ Nuclide   15 / 98 : 8016.00c -- oxygen 16 (O-16)
 
- Pointers                     : 177046 6205
+ Pointers                     : 188953 6205
  Primary type                 : Transport
  Nuclide ZAI                  : 80160
  Library ID                   : 00c
@@ -1097,9 +1208,9 @@
   44    MT =    803  Q = -6.06940E+00 MeV  Emin = 6.45215E+00 MeV  : (n,a3)
   45    MT =      4  Q =  0.00000E+00 MeV  Emin = 6.43089E+00 MeV  : total inelastic scattering
 
- Nuclide   14 / 96 : 8016.00s -- oxygen 16 (O-16)
+ Nuclide   16 / 98 : 8016.00s -- oxygen 16 (O-16)
 
- Pointers                     : 385607 6205
+ Pointers                     : 399308 6205
  Primary type                 : Transport
  Nuclide ZAI                  : 80160
  Library ID                   : 00s
@@ -1216,9 +1327,9 @@
   44    MT =    803  Q = -6.06940E+00 MeV  Emin = 6.45215E+00 MeV  : (n,a3)
   45    MT =      4  Q =  0.00000E+00 MeV  Emin = 6.43089E+00 MeV  : total inelastic scattering
 
- Nuclide   15 / 96 : 8017.00c -- oxygen 17 (O-17)
+ Nuclide   17 / 98 : 8017.00c -- oxygen 17 (O-17)
 
- Pointers                     : 182316 6527
+ Pointers                     : 194223 6527
  Primary type                 : Transport
  Nuclide ZAI                  : 80170
  Library ID                   : 00c
@@ -1288,9 +1399,9 @@
    4    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    5    MT =      4  Q =  0.00000E+00 MeV  Emin = 9.22470E-01 MeV  : total inelastic scattering
 
- Nuclide   16 / 96 : 12024.00c -- magnesium 24 (Mg-24)
+ Nuclide   18 / 98 : 12024.00c -- magnesium 24 (Mg-24)
 
- Pointers                     : 296209 9103
+ Pointers                     : 309006 9103
  Primary type                 : Transport
  Nuclide ZAI                  : 120240
  Library ID                   : 00c
@@ -1357,9 +1468,9 @@
    3    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    4    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.42616E+00 MeV  : total inelastic scattering
 
- Nuclide   17 / 96 : 12025.00c -- magnesium 25 (Mg-25)
+ Nuclide   19 / 98 : 12025.00c -- magnesium 25 (Mg-25)
 
- Pointers                     : 298048 9425
+ Pointers                     : 310845 9425
  Primary type                 : Transport
  Nuclide ZAI                  : 120250
  Library ID                   : 00c
@@ -1432,9 +1543,9 @@
    3    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    4    MT =      4  Q =  0.00000E+00 MeV  Emin = 6.08720E-01 MeV  : total inelastic scattering
 
- Nuclide   18 / 96 : 12026.00c -- magnesium 26 (Mg-26)
+ Nuclide   20 / 98 : 12026.00c -- magnesium 26 (Mg-26)
 
- Pointers                     : 300325 9747
+ Pointers                     : 313122 9747
  Primary type                 : Transport
  Nuclide ZAI                  : 120260
  Library ID                   : 00c
@@ -1503,9 +1614,9 @@
    3    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    4    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.87892E+00 MeV  : total inelastic scattering
 
- Nuclide   19 / 96 : 13027.00c -- aluminum 27 (Al-27)
+ Nuclide   21 / 98 : 13027.00c -- aluminum 27 (Al-27)
 
- Pointers                     : 192665 10391
+ Pointers                     : 204572 10391
  Primary type                 : Transport
  Nuclide ZAI                  : 130270
  Library ID                   : 00c
@@ -1687,9 +1798,9 @@
   80    MT =    849  Q = -6.81203E+00 MeV  Emin = 7.06669E+00 MeV  : (n,alpha) to continuum
   81    MT =      4  Q =  0.00000E+00 MeV  Emin = 8.75293E-01 MeV  : total inelastic scattering
 
- Nuclide   20 / 96 : 14028.00c -- silicon 28 (Si-28)
+ Nuclide   22 / 98 : 14028.00c -- silicon 28 (Si-28)
 
- Pointers                     : 147150 10713
+ Pointers                     : 159057 10713
  Primary type                 : Transport
  Nuclide ZAI                  : 140280
  Library ID                   : 00c
@@ -1798,9 +1909,9 @@
   37    MT =    849  Q = -7.45000E+00 MeV  Emin = 7.71860E+00 MeV  : (n,alpha) to continuum
   38    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.84314E+00 MeV  : total inelastic scattering
 
- Nuclide   21 / 96 : 14029.00c -- silicon 29 (Si-29)
+ Nuclide   23 / 98 : 14029.00c -- silicon 29 (Si-29)
 
- Pointers                     : 152055 11035
+ Pointers                     : 163962 11035
  Primary type                 : Transport
  Nuclide ZAI                  : 140290
  Library ID                   : 00c
@@ -1911,9 +2022,9 @@
   43    MT =    849  Q = -7.03470E+00 MeV  Emin = 7.27960E+00 MeV  : (n,alpha) to continuum
   44    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.31731E+00 MeV  : total inelastic scattering
 
- Nuclide   22 / 96 : 14030.00c -- silicon 30 (Si-30)
+ Nuclide   24 / 98 : 14030.00c -- silicon 30 (Si-30)
 
- Pointers                     : 157106 11357
+ Pointers                     : 169013 11357
  Primary type                 : Transport
  Nuclide ZAI                  : 140300
  Library ID                   : 00c
@@ -1998,9 +2109,9 @@
   25    MT =    849  Q = -8.20020E+00 MeV  Emin = 8.47620E+00 MeV  : (n,alpha) to continuum
   26    MT =      4  Q =  0.00000E+00 MeV  Emin = 2.31021E+00 MeV  : total inelastic scattering
 
- Nuclide   23 / 96 : 15031.00c -- phosphorus 31 (P-31)
+ Nuclide   25 / 98 : 15031.00c -- phosphorus 31 (P-31)
 
- Pointers                     : 369570 12323
+ Pointers                     : 382367 12323
  Primary type                 : Transport
  Nuclide ZAI                  : 150310
  Library ID                   : 00c
@@ -2057,9 +2168,9 @@
    4    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    5    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.31001E+00 MeV  : total inelastic scattering
 
- Nuclide   24 / 96 : 16032.00c -- sulfur 32 (S-32)
+ Nuclide   26 / 98 : 16032.00c -- sulfur 32 (S-32)
 
- Pointers                     : 370679 12645
+ Pointers                     : 383476 12645
  Primary type                 : Transport
  Nuclide ZAI                  : 160320
  Library ID                   : 00c
@@ -2121,9 +2232,9 @@
    3    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    4    MT =      4  Q =  0.00000E+00 MeV  Emin = 2.30035E+00 MeV  : total inelastic scattering
 
- Nuclide   25 / 96 : 16033.00c -- sulfur 33 (S-33)
+ Nuclide   27 / 98 : 16033.00c -- sulfur 33 (S-33)
 
- Pointers                     : 372153 12967
+ Pointers                     : 384950 12967
  Primary type                 : Transport
  Nuclide ZAI                  : 160330
  Library ID                   : 00c
@@ -2186,9 +2297,9 @@
    3    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    4    MT =      4  Q =  0.00000E+00 MeV  Emin = 8.65698E-01 MeV  : total inelastic scattering
 
- Nuclide   26 / 96 : 16034.00c -- sulfur 34 (S-34)
+ Nuclide   28 / 98 : 16034.00c -- sulfur 34 (S-34)
 
- Pointers                     : 373700 13289
+ Pointers                     : 386497 13289
  Primary type                 : Transport
  Nuclide ZAI                  : 160340
  Library ID                   : 00c
@@ -2249,9 +2360,9 @@
    3    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    4    MT =      4  Q =  0.00000E+00 MeV  Emin = 2.19016E+00 MeV  : total inelastic scattering
 
- Nuclide   27 / 96 : 16036.00c -- sulfur 36 (S-36)
+ Nuclide   29 / 98 : 16036.00c -- sulfur 36 (S-36)
 
- Pointers                     : 375101 13933
+ Pointers                     : 387898 13933
  Primary type                 : Transport
  Nuclide ZAI                  : 160360
  Library ID                   : 00c
@@ -2312,9 +2423,9 @@
    3    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    4    MT =      4  Q =  0.00000E+00 MeV  Emin = 3.38329E+00 MeV  : total inelastic scattering
 
- Nuclide   28 / 96 : 18036.00c -- argon 36 (Ar-36)
+ Nuclide   30 / 98 : 18036.00c -- argon 36 (Ar-36)
 
- Pointers                     : 184374 15221
+ Pointers                     : 196281 15221
  Primary type                 : Transport
  Nuclide ZAI                  : 180360
  Library ID                   : 00c
@@ -2394,9 +2505,9 @@
    4    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    5    MT =      4  Q =  0.00000E+00 MeV  Emin = 2.02525E+00 MeV  : total inelastic scattering
 
- Nuclide   29 / 96 : 18038.00c -- argon 38 (Ar-38)
+ Nuclide   31 / 98 : 18038.00c -- argon 38 (Ar-38)
 
- Pointers                     : 187162 15865
+ Pointers                     : 199069 15865
  Primary type                 : Transport
  Nuclide ZAI                  : 180380
  Library ID                   : 00c
@@ -2474,9 +2585,9 @@
    4    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    5    MT =      4  Q =  0.00000E+00 MeV  Emin = 2.22560E+00 MeV  : total inelastic scattering
 
- Nuclide   30 / 96 : 18040.00c -- argon 40 (Ar-40)
+ Nuclide   32 / 98 : 18040.00c -- argon 40 (Ar-40)
 
- Pointers                     : 189804 16509
+ Pointers                     : 201711 16509
  Primary type                 : Transport
  Nuclide ZAI                  : 180400
  Library ID                   : 00c
@@ -2557,9 +2668,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.49774E+00 MeV  : total inelastic scattering
 
- Nuclide   31 / 96 : 20040.00c -- calcium 40 (Ca-40)
+ Nuclide   33 / 98 : 20040.00c -- calcium 40 (Ca-40)
 
- Pointers                     : 259333 18119
+ Pointers                     : 272130 18119
  Primary type                 : Transport
  Nuclide ZAI                  : 200400
  Library ID                   : 00c
@@ -2695,9 +2806,9 @@
   51    MT =    849  Q = -1.77887E+00 MeV  Emin = 3.20000E+00 MeV  : (n,alpha) to continuum
   52    MT =      4  Q =  0.00000E+00 MeV  Emin = 3.43724E+00 MeV  : total inelastic scattering
 
- Nuclide   32 / 96 : 20042.00c -- calcium 42 (Ca-42)
+ Nuclide   34 / 98 : 20042.00c -- calcium 42 (Ca-42)
 
- Pointers                     : 266209 18763
+ Pointers                     : 279006 18763
  Primary type                 : Transport
  Nuclide ZAI                  : 200420
  Library ID                   : 00c
@@ -2832,9 +2943,9 @@
   51    MT =    849  Q = -2.29008E+00 MeV  Emin = 4.00000E+00 MeV  : (n,alpha) to continuum
   52    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.56139E+00 MeV  : total inelastic scattering
 
- Nuclide   33 / 96 : 20043.00c -- calcium 43 (Ca-43)
+ Nuclide   35 / 98 : 20043.00c -- calcium 43 (Ca-43)
 
- Pointers                     : 273012 19085
+ Pointers                     : 285809 19085
  Primary type                 : Transport
  Nuclide ZAI                  : 200430
  Library ID                   : 00c
@@ -2969,9 +3080,9 @@
   51    MT =    849  Q = -1.64094E+00 MeV  Emin = 2.60000E+00 MeV  : (n,alpha) to continuum
   52    MT =      4  Q =  0.00000E+00 MeV  Emin = 3.81514E-01 MeV  : total inelastic scattering
 
- Nuclide   34 / 96 : 20044.00c -- calcium 44 (Ca-44)
+ Nuclide   36 / 98 : 20044.00c -- calcium 44 (Ca-44)
 
- Pointers                     : 279815 19407
+ Pointers                     : 292612 19407
  Primary type                 : Transport
  Nuclide ZAI                  : 200440
  Library ID                   : 00c
@@ -3098,9 +3209,9 @@
   47    MT =    849  Q = -5.32442E+00 MeV  Emin = 7.00000E+00 MeV  : (n,alpha) to continuum
   48    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.18360E+00 MeV  : total inelastic scattering
 
- Nuclide   35 / 96 : 20046.00c -- calcium 46 (Ca-46)
+ Nuclide   37 / 98 : 20046.00c -- calcium 46 (Ca-46)
 
- Pointers                     : 286034 20051
+ Pointers                     : 298831 20051
  Primary type                 : Transport
  Nuclide ZAI                  : 200460
  Library ID                   : 00c
@@ -3215,9 +3326,9 @@
   38    MT =    849  Q = -1.02510E+01 MeV  Emin = 1.20000E+01 MeV  : (n,alpha) to continuum
   39    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.37555E+00 MeV  : total inelastic scattering
 
- Nuclide   36 / 96 : 20048.00c -- calcium 48 (Ca-48)
+ Nuclide   38 / 98 : 20048.00c -- calcium 48 (Ca-48)
 
- Pointers                     : 291377 20695
+ Pointers                     : 304174 20695
  Primary type                 : Transport
  Nuclide ZAI                  : 200480
  Library ID                   : 00c
@@ -3325,9 +3436,9 @@
   31    MT =    849  Q = -1.20990E+01 MeV  Emin = 1.40000E+01 MeV  : (n,alpha) to continuum
   32    MT =      4  Q =  0.00000E+00 MeV  Emin = 3.91232E+00 MeV  : total inelastic scattering
 
- Nuclide   37 / 96 : 22046.00c -- titanium 46 (Ti-46)
+ Nuclide   39 / 98 : 22046.00c -- titanium 46 (Ti-46)
 
- Pointers                     : 202899 21339
+ Pointers                     : 214806 21339
  Primary type                 : Transport
  Nuclide ZAI                  : 220460
  Library ID                   : 00c
@@ -3399,9 +3510,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 9.08820E-01 MeV  : total inelastic scattering
 
- Nuclide   38 / 96 : 22047.00c -- titanium 47 (Ti-47)
+ Nuclide   40 / 98 : 22047.00c -- titanium 47 (Ti-47)
 
- Pointers                     : 205103 21661
+ Pointers                     : 217010 21661
  Primary type                 : Transport
  Nuclide ZAI                  : 220470
  Library ID                   : 00c
@@ -3480,9 +3591,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.62825E-01 MeV  : total inelastic scattering
 
- Nuclide   39 / 96 : 22048.00c -- titanium 48 (Ti-48)
+ Nuclide   41 / 98 : 22048.00c -- titanium 48 (Ti-48)
 
- Pointers                     : 207818 21983
+ Pointers                     : 219725 21983
  Primary type                 : Transport
  Nuclide ZAI                  : 220480
  Library ID                   : 00c
@@ -3562,9 +3673,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.00419E+00 MeV  : total inelastic scattering
 
- Nuclide   40 / 96 : 22049.00c -- titanium 49 (Ti-49)
+ Nuclide   42 / 98 : 22049.00c -- titanium 49 (Ti-49)
 
- Pointers                     : 210606 22305
+ Pointers                     : 222513 22305
  Primary type                 : Transport
  Nuclide ZAI                  : 220490
  Library ID                   : 00c
@@ -3642,9 +3753,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.41028E+00 MeV  : total inelastic scattering
 
- Nuclide   41 / 96 : 22050.00c -- titanium 50 (Ti-50)
+ Nuclide   43 / 98 : 22050.00c -- titanium 50 (Ti-50)
 
- Pointers                     : 213248 22627
+ Pointers                     : 225155 22627
  Primary type                 : Transport
  Nuclide ZAI                  : 220500
  Library ID                   : 00c
@@ -3718,9 +3829,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.58518E+00 MeV  : total inelastic scattering
 
- Nuclide   42 / 96 : 23051.00c -- vanadium 51 (V-51)
+ Nuclide   44 / 98 : 23051.00c -- vanadium 51 (V-51)
 
- Pointers                     : 143486 23593
+ Pointers                     : 155393 23593
  Primary type                 : Transport
  Nuclide ZAI                  : 230510
  Library ID                   : 00c
@@ -3812,9 +3923,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 3.26421E-01 MeV  : total inelastic scattering
 
- Nuclide   43 / 96 : 24050.00c -- chromium 50 (Cr-50)
+ Nuclide   45 / 98 : 24050.00c -- chromium 50 (Cr-50)
 
- Pointers                     : 65407 23915
+ Pointers                     : 77314 23915
  Primary type                 : Transport
  Nuclide ZAI                  : 240500
  Library ID                   : 00c
@@ -3880,9 +3991,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 7.98813E-01 MeV  : total inelastic scattering
 
- Nuclide   44 / 96 : 24052.00c -- chromium 52 (Cr-52)
+ Nuclide   46 / 98 : 24052.00c -- chromium 52 (Cr-52)
 
- Pointers                     : 67173 24559
+ Pointers                     : 79080 24559
  Primary type                 : Transport
  Nuclide ZAI                  : 240520
  Library ID                   : 00c
@@ -3951,9 +4062,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.46185E+00 MeV  : total inelastic scattering
 
- Nuclide   45 / 96 : 24053.00c -- chromium 53 (Cr-53)
+ Nuclide   47 / 98 : 24053.00c -- chromium 53 (Cr-53)
 
- Pointers                     : 69158 24881
+ Pointers                     : 81065 24881
  Primary type                 : Transport
  Nuclide ZAI                  : 240530
  Library ID                   : 00c
@@ -4025,9 +4136,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 5.74746E-01 MeV  : total inelastic scattering
 
- Nuclide   46 / 96 : 24054.00c -- chromium 54 (Cr-54)
+ Nuclide   48 / 98 : 24054.00c -- chromium 54 (Cr-54)
 
- Pointers                     : 71362 25203
+ Pointers                     : 83269 25203
  Primary type                 : Transport
  Nuclide ZAI                  : 240540
  Library ID                   : 00c
@@ -4088,9 +4199,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 8.50615E-01 MeV  : total inelastic scattering
 
- Nuclide   47 / 96 : 25055.00c -- manganese 55 (Mn-55)
+ Nuclide   49 / 98 : 25055.00c -- manganese 55 (Mn-55)
 
- Pointers                     : 134493 25847
+ Pointers                     : 146400 25847
  Primary type                 : Transport
  Nuclide ZAI                  : 250550
  Library ID                   : 00c
@@ -4255,9 +4366,9 @@
   72    MT =    831  Q = -3.21400E+00 MeV  Emin = 5.50000E+00 MeV  : (n,a31)
   73    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.28263E-01 MeV  : total inelastic scattering
 
- Nuclide   48 / 96 : 26054.00c -- iron 54 (Fe-54)
+ Nuclide   50 / 98 : 26054.00c -- iron 54 (Fe-54)
 
- Pointers                     : 94341 26169
+ Pointers                     : 106248 26169
  Primary type                 : Transport
  Nuclide ZAI                  : 260540
  Library ID                   : 00c
@@ -4385,9 +4496,9 @@
   65    MT =    823  Q = -2.12650E+00 MeV  Emin = 2.16627E+00 MeV  : (n,a23)
   66    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.43452E+00 MeV  : total inelastic scattering
 
- Nuclide   49 / 96 : 26056.00c -- iron 56 (Fe-56)
+ Nuclide   51 / 98 : 26056.00c -- iron 56 (Fe-56)
 
- Pointers                     : 100633 26813
+ Pointers                     : 112540 26813
  Primary type                 : Transport
  Nuclide ZAI                  : 260560
  Library ID                   : 00c
@@ -4515,9 +4626,9 @@
   36    MT =    818  Q = -2.66600E+00 MeV  Emin = 2.71408E+00 MeV  : (n,a18)
   37    MT =      4  Q =  0.00000E+00 MeV  Emin = 8.62048E-01 MeV  : total inelastic scattering
 
- Nuclide   50 / 96 : 26057.00c -- iron 57 (Fe-57)
+ Nuclide   52 / 98 : 26057.00c -- iron 57 (Fe-57)
 
- Pointers                     : 106925 27135
+ Pointers                     : 118832 27135
  Primary type                 : Transport
  Nuclide ZAI                  : 260570
  Library ID                   : 00c
@@ -4648,9 +4759,9 @@
   64    MT =    838  Q = -2.28850E+00 MeV  Emin = 2.32904E+00 MeV  : (n,a38)
   65    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.46689E-02 MeV  : total inelastic scattering
 
- Nuclide   51 / 96 : 26058.00c -- iron 58 (Fe-58)
+ Nuclide   53 / 98 : 26058.00c -- iron 58 (Fe-58)
 
- Pointers                     : 113436 27457
+ Pointers                     : 125343 27457
  Primary type                 : Transport
  Nuclide ZAI                  : 260580
  Library ID                   : 00c
@@ -4776,9 +4887,9 @@
   34    MT =    809  Q = -2.87853E+00 MeV  Emin = 2.92865E+00 MeV  : (n,a9)
   35    MT =      4  Q =  0.00000E+00 MeV  Emin = 8.24882E-01 MeV  : total inelastic scattering
 
- Nuclide   52 / 96 : 27059.00c -- cobalt 59 (Co-59)
+ Nuclide   54 / 98 : 27059.00c -- cobalt 59 (Co-59)
 
- Pointers                     : 60703 28423
+ Pointers                     : 72610 28423
  Primary type                 : Transport
  Nuclide ZAI                  : 270590
  Library ID                   : 00c
@@ -4887,9 +4998,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.11807E+00 MeV  : total inelastic scattering
 
- Nuclide   53 / 96 : 28058.00c -- nickel 58 (Ni-58)
+ Nuclide   55 / 98 : 28058.00c -- nickel 58 (Ni-58)
 
- Pointers                     : 40261 28745
+ Pointers                     : 52168 28745
  Primary type                 : Transport
  Nuclide ZAI                  : 280580
  Library ID                   : 00c
@@ -4986,9 +5097,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.47931E+00 MeV  : total inelastic scattering
 
- Nuclide   54 / 96 : 28060.00c -- nickel 60 (Ni-60)
+ Nuclide   56 / 98 : 28060.00c -- nickel 60 (Ni-60)
 
- Pointers                     : 44295 29389
+ Pointers                     : 56202 29389
  Primary type                 : Transport
  Nuclide ZAI                  : 280600
  Library ID                   : 00c
@@ -5080,9 +5191,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.35495E+00 MeV  : total inelastic scattering
 
- Nuclide   55 / 96 : 28061.00c -- nickel 61 (Ni-61)
+ Nuclide   57 / 98 : 28061.00c -- nickel 61 (Ni-61)
 
- Pointers                     : 47959 29711
+ Pointers                     : 59866 29711
  Primary type                 : Transport
  Nuclide ZAI                  : 280610
  Library ID                   : 00c
@@ -5182,9 +5293,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 6.85290E-02 MeV  : total inelastic scattering
 
- Nuclide   56 / 96 : 28062.00c -- nickel 62 (Ni-62)
+ Nuclide   58 / 98 : 28062.00c -- nickel 62 (Ni-62)
 
- Pointers                     : 52207 30033
+ Pointers                     : 64114 30033
  Primary type                 : Transport
  Nuclide ZAI                  : 280620
  Library ID                   : 00c
@@ -5284,9 +5395,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.19202E+00 MeV  : total inelastic scattering
 
- Nuclide   57 / 96 : 28064.00c -- nickel 64 (Ni-64)
+ Nuclide   59 / 98 : 28064.00c -- nickel 64 (Ni-64)
 
- Pointers                     : 56455 30677
+ Pointers                     : 68362 30677
  Primary type                 : Transport
  Nuclide ZAI                  : 280640
  Library ID                   : 00c
@@ -5386,9 +5497,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.36698E+00 MeV  : total inelastic scattering
 
- Nuclide   58 / 96 : 29063.00c -- copper 63 (Cu-63)
+ Nuclide   60 / 98 : 29063.00c -- copper 63 (Cu-63)
 
- Pointers                     : 162244 30999
+ Pointers                     : 174151 30999
  Primary type                 : Transport
  Nuclide ZAI                  : 290630
  Library ID                   : 00c
@@ -5480,9 +5591,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 6.80404E-01 MeV  : total inelastic scattering
 
- Nuclide   59 / 96 : 29065.00c -- copper 65 (Cu-65)
+ Nuclide   61 / 98 : 29065.00c -- copper 65 (Cu-65)
 
- Pointers                     : 165908 31643
+ Pointers                     : 177815 31643
  Primary type                 : Transport
  Nuclide ZAI                  : 290650
  Library ID                   : 00c
@@ -5583,9 +5694,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 7.82612E-01 MeV  : total inelastic scattering
 
- Nuclide   60 / 96 : 38084.00c -- strontium 84 (Sr-84)
+ Nuclide   62 / 98 : 38084.00c -- strontium 84 (Sr-84)
 
- Pointers                     : 317682 46133
+ Pointers                     : 330479 46133
  Primary type                 : Transport
  Nuclide ZAI                  : 380840
  Library ID                   : 00c
@@ -5720,9 +5831,9 @@
   69    MT =    849  Q =  9.14200E-01 MeV  Emin = 1.50000E+00 MeV  : (n,alpha) to continuum
   70    MT =      4  Q =  0.00000E+00 MeV  Emin = 8.02836E-01 MeV  : total inelastic scattering
 
- Nuclide   61 / 96 : 38086.00c -- strontium 86 (Sr-86)
+ Nuclide   63 / 98 : 38086.00c -- strontium 86 (Sr-86)
 
- Pointers                     : 324284 46777
+ Pointers                     : 337081 46777
  Primary type                 : Transport
  Nuclide ZAI                  : 380860
  Library ID                   : 00c
@@ -5800,9 +5911,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.09126E+00 MeV  : total inelastic scattering
 
- Nuclide   62 / 96 : 38087.00c -- strontium 87 (Sr-87)
+ Nuclide   64 / 98 : 38087.00c -- strontium 87 (Sr-87)
 
- Pointers                     : 326725 47099
+ Pointers                     : 339522 47099
  Primary type                 : Transport
  Nuclide ZAI                  : 380870
  Library ID                   : 00c
@@ -5872,9 +5983,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 3.92807E-01 MeV  : total inelastic scattering
 
- Nuclide   63 / 96 : 38088.00c -- strontium 88 (Sr-88)
+ Nuclide   65 / 98 : 38088.00c -- strontium 88 (Sr-88)
 
- Pointers                     : 328783 47421
+ Pointers                     : 341580 47421
  Primary type                 : Transport
  Nuclide ZAI                  : 380880
  Library ID                   : 00c
@@ -5959,9 +6070,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.85720E+00 MeV  : total inelastic scattering
 
- Nuclide   64 / 96 : 40090.00c -- zirconium 90 (Zr-90)
+ Nuclide   66 / 98 : 40090.00c -- zirconium 90 (Zr-90)
 
- Pointers                     : 227845 49353
+ Pointers                     : 240642 49353
  Primary type                 : Transport
  Nuclide ZAI                  : 400900
  Library ID                   : 00c
@@ -6056,9 +6167,9 @@
   29    MT =    849  Q = -1.64480E-01 MeV  Emin = 4.20000E+00 MeV  : (n,alpha) to continuum
   30    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.18800E+00 MeV  : total inelastic scattering
 
- Nuclide   65 / 96 : 40090.00s -- zirconium 90 (Zr-90)
+ Nuclide   67 / 98 : 40090.00s -- zirconium 90 (Zr-90)
 
- Pointers                     : 380031 49353
+ Pointers                     : 393732 49353
  Primary type                 : Transport
  Nuclide ZAI                  : 400900
  Library ID                   : 00s
@@ -6156,9 +6267,9 @@
   29    MT =    849  Q = -1.64480E-01 MeV  Emin = 4.20000E+00 MeV  : (n,alpha) to continuum
   30    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.18800E+00 MeV  : total inelastic scattering
 
- Nuclide   66 / 96 : 40091.00c -- zirconium 91 (Zr-91)
+ Nuclide   68 / 98 : 40091.00c -- zirconium 91 (Zr-91)
 
- Pointers                     : 231728 49675
+ Pointers                     : 244525 49675
  Primary type                 : Transport
  Nuclide ZAI                  : 400910
  Library ID                   : 00c
@@ -6281,9 +6392,9 @@
   54    MT =    849  Q =  7.48000E-01 MeV  Emin = 1.00000E-11 MeV  : (n,alpha) to continuum
   55    MT =      4  Q =  0.00000E+00 MeV  Emin = 9.30601E-01 MeV  : total inelastic scattering
 
- Nuclide   67 / 96 : 40092.00c -- zirconium 92 (Zr-92)
+ Nuclide   69 / 98 : 40092.00c -- zirconium 92 (Zr-92)
 
- Pointers                     : 237655 49997
+ Pointers                     : 250452 49997
  Primary type                 : Transport
  Nuclide ZAI                  : 400920
  Library ID                   : 00c
@@ -6401,9 +6512,9 @@
   49    MT =    849  Q = -3.47000E-01 MeV  Emin = 1.00000E+00 MeV  : (n,alpha) to continuum
   50    MT =      4  Q =  0.00000E+00 MeV  Emin = 8.31600E-01 MeV  : total inelastic scattering
 
- Nuclide   68 / 96 : 40094.00c -- zirconium 94 (Zr-94)
+ Nuclide   70 / 98 : 40094.00c -- zirconium 94 (Zr-94)
 
- Pointers                     : 243217 50641
+ Pointers                     : 256014 50641
  Primary type                 : Transport
  Nuclide ZAI                  : 400940
  Library ID                   : 00c
@@ -6533,9 +6644,9 @@
   58    MT =    849  Q = -2.30873E+00 MeV  Emin = 5.00000E+00 MeV  : (n,alpha) to continuum
   59    MT =      4  Q =  0.00000E+00 MeV  Emin = 8.51400E-01 MeV  : total inelastic scattering
 
- Nuclide   69 / 96 : 40096.00c -- zirconium 96 (Zr-96)
+ Nuclide   71 / 98 : 40096.00c -- zirconium 96 (Zr-96)
 
- Pointers                     : 249655 51285
+ Pointers                     : 262452 51285
  Primary type                 : Transport
  Nuclide ZAI                  : 400960
  Library ID                   : 00c
@@ -6619,9 +6730,9 @@
   21    MT =    849  Q = -1.26995E+00 MeV  Emin = 5.20000E+00 MeV  : (n,alpha) to continuum
   22    MT =      4  Q =  0.00000E+00 MeV  Emin = 8.71200E-01 MeV  : total inelastic scattering
 
- Nuclide   70 / 96 : 42092.00c -- molybdenum 92 (Mo-92)
+ Nuclide   72 / 98 : 42092.00c -- molybdenum 92 (Mo-92)
 
- Pointers                     : 72763 52573
+ Pointers                     : 84670 52573
  Primary type                 : Transport
  Nuclide ZAI                  : 420920
  Library ID                   : 00c
@@ -6704,9 +6815,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.52607E+00 MeV  : total inelastic scattering
 
- Nuclide   71 / 96 : 42094.00c -- molybdenum 94 (Mo-94)
+ Nuclide   73 / 98 : 42094.00c -- molybdenum 94 (Mo-94)
 
- Pointers                     : 75569 53217
+ Pointers                     : 87476 53217
  Primary type                 : Transport
  Nuclide ZAI                  : 420940
  Library ID                   : 00c
@@ -6789,9 +6900,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 8.80457E-01 MeV  : total inelastic scattering
 
- Nuclide   72 / 96 : 42095.00c -- molybdenum 95 (Mo-95)
+ Nuclide   74 / 98 : 42095.00c -- molybdenum 95 (Mo-95)
 
- Pointers                     : 78576 53539
+ Pointers                     : 90483 53539
  Primary type                 : Transport
  Nuclide ZAI                  : 420950
  Library ID                   : 00c
@@ -6919,9 +7030,9 @@
   44    MT =    649  Q = -2.91200E+00 MeV  Emin = 4.00000E+00 MeV  : (n,p) to continuum
   45    MT =      4  Q =  0.00000E+00 MeV  Emin = 2.06289E-01 MeV  : total inelastic scattering
 
- Nuclide   73 / 96 : 42096.00c -- molybdenum 96 (Mo-96)
+ Nuclide   75 / 98 : 42096.00c -- molybdenum 96 (Mo-96)
 
- Pointers                     : 84868 53861
+ Pointers                     : 96775 53861
  Primary type                 : Transport
  Nuclide ZAI                  : 420960
  Library ID                   : 00c
@@ -6999,9 +7110,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 7.86384E-01 MeV  : total inelastic scattering
 
- Nuclide   74 / 96 : 42097.00c -- molybdenum 97 (Mo-97)
+ Nuclide   76 / 98 : 42097.00c -- molybdenum 97 (Mo-97)
 
- Pointers                     : 87510 54183
+ Pointers                     : 99417 54183
  Primary type                 : Transport
  Nuclide ZAI                  : 420970
  Library ID                   : 00c
@@ -7077,9 +7188,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 4.85906E-01 MeV  : total inelastic scattering
 
- Nuclide   75 / 96 : 42098.00c -- molybdenum 98 (Mo-98)
+ Nuclide   77 / 98 : 42098.00c -- molybdenum 98 (Mo-98)
 
- Pointers                     : 90006 54505
+ Pointers                     : 101913 54505
  Primary type                 : Transport
  Nuclide ZAI                  : 420980
  Library ID                   : 00c
@@ -7154,9 +7265,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 7.42370E-01 MeV  : total inelastic scattering
 
- Nuclide   76 / 96 : 42100.00c -- molybdenum 100 (Mo-100)
+ Nuclide   78 / 98 : 42100.00c -- molybdenum 100 (Mo-100)
 
- Pointers                     : 92429 55149
+ Pointers                     : 104336 55149
  Primary type                 : Transport
  Nuclide ZAI                  : 421000
  Library ID                   : 00c
@@ -7224,9 +7335,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 5.41010E-01 MeV  : total inelastic scattering
 
- Nuclide   77 / 96 : 56130.00c -- barium 130 (Ba-130)
+ Nuclide   79 / 98 : 56130.00c -- barium 130 (Ba-130)
 
- Pointers                     : 302310 92823
+ Pointers                     : 315107 92823
  Primary type                 : Transport
  Nuclide ZAI                  : 561300
  Library ID                   : 00c
@@ -7302,9 +7413,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 3.60074E-01 MeV  : total inelastic scattering
 
- Nuclide   78 / 96 : 56132.00c -- barium 132 (Ba-132)
+ Nuclide   80 / 98 : 56132.00c -- barium 132 (Ba-132)
 
- Pointers                     : 304605 93467
+ Pointers                     : 317402 93467
  Primary type                 : Transport
  Nuclide ZAI                  : 561320
  Library ID                   : 00c
@@ -7381,9 +7492,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 4.68153E-01 MeV  : total inelastic scattering
 
- Nuclide   79 / 96 : 56134.00c -- barium 134 (Ba-134)
+ Nuclide   81 / 98 : 56134.00c -- barium 134 (Ba-134)
 
- Pointers                     : 306973 94111
+ Pointers                     : 319770 94111
  Primary type                 : Transport
  Nuclide ZAI                  : 561340
  Library ID                   : 00c
@@ -7461,9 +7572,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 6.09255E-01 MeV  : total inelastic scattering
 
- Nuclide   80 / 96 : 56135.00c -- barium 135 (Ba-135)
+ Nuclide   82 / 98 : 56135.00c -- barium 135 (Ba-135)
 
- Pointers                     : 309414 94433
+ Pointers                     : 322211 94433
  Primary type                 : Transport
  Nuclide ZAI                  : 561350
  Library ID                   : 00c
@@ -7538,9 +7649,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 2.22653E-01 MeV  : total inelastic scattering
 
- Nuclide   81 / 96 : 56136.00c -- barium 136 (Ba-136)
+ Nuclide   83 / 98 : 56136.00c -- barium 136 (Ba-136)
 
- Pointers                     : 311636 94755
+ Pointers                     : 324433 94755
  Primary type                 : Transport
  Nuclide ZAI                  : 561360
  Library ID                   : 00c
@@ -7615,9 +7726,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 8.24676E-01 MeV  : total inelastic scattering
 
- Nuclide   82 / 96 : 56137.00c -- barium 137 (Ba-137)
+ Nuclide   84 / 98 : 56137.00c -- barium 137 (Ba-137)
 
- Pointers                     : 313858 95077
+ Pointers                     : 326655 95077
  Primary type                 : Transport
  Nuclide ZAI                  : 561370
  Library ID                   : 00c
@@ -7687,9 +7798,9 @@
    5    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    6    MT =      4  Q =  0.00000E+00 MeV  Emin = 2.81257E-01 MeV  : total inelastic scattering
 
- Nuclide   83 / 96 : 56138.00c -- barium 138 (Ba-138)
+ Nuclide   85 / 98 : 56138.00c -- barium 138 (Ba-138)
 
- Pointers                     : 315916 95399
+ Pointers                     : 328713 95399
  Primary type                 : Transport
  Nuclide ZAI                  : 561380
  Library ID                   : 00c
@@ -7755,9 +7866,9 @@
    6    MT =    444  Q =  0.00000E+00 MeV  Emin = 1.00000E-11 MeV  : damage-energy production
    7    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.44630E+00 MeV  : total inelastic scattering
 
- Nuclide   84 / 96 : 62144.00c -- samarium 144 (Sm-144)
+ Nuclide   86 / 98 : 62144.00c -- samarium 144 (Sm-144)
 
- Pointers                     : 331936 107635
+ Pointers                     : 344733 107635
  Primary type                 : Transport
  Nuclide ZAI                  : 621440
  Library ID                   : 00c
@@ -7851,9 +7962,9 @@
   23    MT =    849  Q =  6.24870E+00 MeV  Emin = 8.00000E-01 MeV  : (n,alpha) to continuum
   24    MT =      4  Q =  0.00000E+00 MeV  Emin = 4.95000E-01 MeV  : total inelastic scattering
 
- Nuclide   85 / 96 : 62147.00c -- samarium 147 (Sm-147)
+ Nuclide   87 / 98 : 62147.00c -- samarium 147 (Sm-147)
 
- Pointers                     : 335746 108601
+ Pointers                     : 348543 108601
  Primary type                 : Transport
  Nuclide ZAI                  : 621470
  Library ID                   : 00c
@@ -7969,9 +8080,9 @@
   23    MT =    649  Q = -2.49300E-01 MeV  Emin = 1.90000E+00 MeV  : (n,p) to continuum
   24    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.22052E-01 MeV  : total inelastic scattering
 
- Nuclide   86 / 96 : 62148.00c -- samarium 148 (Sm-148)
+ Nuclide   88 / 98 : 62148.00c -- samarium 148 (Sm-148)
 
- Pointers                     : 341162 108923
+ Pointers                     : 353959 108923
  Primary type                 : Transport
  Nuclide ZAI                  : 621480
  Library ID                   : 00c
@@ -8106,9 +8217,9 @@
   66    MT =    849  Q =  6.31340E+00 MeV  Emin = 2.00000E-02 MeV  : (n,alpha) to continuum
   67    MT =      4  Q =  0.00000E+00 MeV  Emin = 3.96000E-01 MeV  : total inelastic scattering
 
- Nuclide   87 / 96 : 62149.00c -- samarium 149 (Sm-149)
+ Nuclide   89 / 98 : 62149.00c -- samarium 149 (Sm-149)
 
- Pointers                     : 347965 109245
+ Pointers                     : 360762 109245
  Primary type                 : Transport
  Nuclide ZAI                  : 621490
  Library ID                   : 00c
@@ -8225,9 +8336,9 @@
   40    MT =    649  Q = -1.09764E+00 MeV  Emin = 2.00000E+00 MeV  : (n,p) to continuum
   41    MT =      4  Q =  0.00000E+00 MeV  Emin = 2.26625E-02 MeV  : total inelastic scattering
 
- Nuclide   88 / 96 : 62150.00c -- samarium 150 (Sm-150)
+ Nuclide   90 / 98 : 62150.00c -- samarium 150 (Sm-150)
 
- Pointers                     : 353454 109567
+ Pointers                     : 366251 109567
  Primary type                 : Transport
  Nuclide ZAI                  : 621500
  Library ID                   : 00c
@@ -8342,9 +8453,9 @@
   30    MT =    849  Q =  5.69952E+00 MeV  Emin = 2.00000E-02 MeV  : (n,alpha) to continuum
   31    MT =      4  Q =  0.00000E+00 MeV  Emin = 3.36106E-01 MeV  : total inelastic scattering
 
- Nuclide   89 / 96 : 62152.00c -- samarium 152 (Sm-152)
+ Nuclide   91 / 98 : 62152.00c -- samarium 152 (Sm-152)
 
- Pointers                     : 358797 110211
+ Pointers                     : 371594 110211
  Primary type                 : Transport
  Nuclide ZAI                  : 621520
  Library ID                   : 00c
@@ -8470,9 +8581,9 @@
   31    MT =    849  Q =  4.64500E+00 MeV  Emin = 1.60000E+00 MeV  : (n,alpha) to continuum
   32    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.22589E-01 MeV  : total inelastic scattering
 
- Nuclide   90 / 96 : 62154.00c -- samarium 154 (Sm-154)
+ Nuclide   92 / 98 : 62154.00c -- samarium 154 (Sm-154)
 
- Pointers                     : 364943 110855
+ Pointers                     : 377740 110855
  Primary type                 : Transport
  Nuclide ZAI                  : 621540
  Library ID                   : 00c
@@ -8573,9 +8684,9 @@
   20    MT =    849  Q =  4.13800E+00 MeV  Emin = 2.00000E+00 MeV  : (n,alpha) to continuum
   21    MT =      4  Q =  0.00000E+00 MeV  Emin = 8.25172E-02 MeV  : total inelastic scattering
 
- Nuclide   91 / 96 : 74182.00c -- tungsten 182 (W-182)
+ Nuclide   93 / 98 : 74182.00c -- tungsten 182 (W-182)
 
- Pointers                     : 119582 134039
+ Pointers                     : 131489 134039
  Primary type                 : Transport
  Nuclide ZAI                  : 741820
  Library ID                   : 00c
@@ -8686,9 +8797,9 @@
   42    MT =    849  Q =  7.45210E+00 MeV  Emin = 9.78223E-04 MeV  : (n,alpha) to continuum
   43    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.00665E-01 MeV  : total inelastic scattering
 
- Nuclide   92 / 96 : 74183.00c -- tungsten 183 (W-183)
+ Nuclide   94 / 98 : 74183.00c -- tungsten 183 (W-183)
 
- Pointers                     : 124432 134361
+ Pointers                     : 136339 134361
  Primary type                 : Transport
  Nuclide ZAI                  : 741830
  Library ID                   : 00c
@@ -8800,9 +8911,9 @@
   45    MT =    849  Q =  7.62600E+00 MeV  Emin = 9.47912E-04 MeV  : (n,alpha) to continuum
   46    MT =      4  Q =  0.00000E+00 MeV  Emin = 4.67363E-02 MeV  : total inelastic scattering
 
- Nuclide   93 / 96 : 74184.00c -- tungsten 184 (W-184)
+ Nuclide   95 / 98 : 74184.00c -- tungsten 184 (W-184)
 
- Pointers                     : 129556 134683
+ Pointers                     : 141463 134683
  Primary type                 : Transport
  Nuclide ZAI                  : 741840
  Library ID                   : 00c
@@ -8882,9 +8993,9 @@
   14    MT =    849  Q =  7.05600E+00 MeV  Emin = 7.00000E-01 MeV  : (n,alpha) to continuum
   15    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.11820E-01 MeV  : total inelastic scattering
 
- Nuclide   94 / 96 : 74186.00c -- tungsten 186 (W-186)
+ Nuclide   96 / 98 : 74186.00c -- tungsten 186 (W-186)
 
- Pointers                     : 132143 135327
+ Pointers                     : 144050 135327
  Primary type                 : Transport
  Nuclide ZAI                  : 741860
  Library ID                   : 00c
@@ -8958,9 +9069,9 @@
    7    MT =    849  Q =  6.42100E+00 MeV  Emin = 1.30000E+00 MeV  : (n,alpha) to continuum
    8    MT =      4  Q =  0.00000E+00 MeV  Emin = 1.23245E-01 MeV  : total inelastic scattering
 
- Nuclide   95 / 96 : 92235.00c -- uranium 235 (U-235)
+ Nuclide   97 / 98 : 92235.00c -- uranium 235 (U-235)
 
- Pointers                     : 216648 159477
+ Pointers                     : 229445 159477
  Primary type                 : Transport
  Nuclide ZAI                  : 922350
  Library ID                   : 00c
@@ -9097,9 +9208,9 @@
   43    MT =    835  Q =  9.85780E+00 MeV  Emin = 1.00000E-11 MeV  : (n,a35)
   44    MT =      4  Q =  0.00000E+00 MeV  Emin = 7.73402E-05 MeV  : total inelastic scattering
 
- Nuclide   96 / 96 : 92238.00c -- uranium 238 (U-238)
+ Nuclide   98 / 98 : 92238.00c -- uranium 238 (U-238)
 
- Pointers                     : 223524 160443
+ Pointers                     : 236321 160443
  Primary type                 : Transport
  Nuclide ZAI                  : 922380
  Library ID                   : 00c
@@ -9203,7 +9314,7 @@
 
  --- Table  1: Summary of material compositions: 
 
- 13 materials included in calculation
+ 14 materials included in calculation
 
 
 Material "lower_gridplate":
@@ -9219,7 +9330,7 @@ Material "lower_gridplate":
  - Neutron emission rate 0.00000E+00 1/s
  - 33 nuclides in composition
  - No nuclides associated with S(a,b) data
- - 41.02 Mb of memory allocated for data
+ - 41.03 Mb of memory allocated for data
 
 Isotopic composition (non-zero densities):
 
@@ -9275,7 +9386,7 @@ Material "coolant":
  - Neutron emission rate 0.00000E+00 1/s
  - 7 nuclides in composition
  - No nuclides associated with S(a,b) data
- - 40.92 Mb of memory allocated for data
+ - 40.93 Mb of memory allocated for data
 
 Isotopic composition (non-zero densities):
 
@@ -9305,7 +9416,7 @@ Material "clad":
  - Neutron emission rate 0.00000E+00 1/s
  - 39 nuclides in composition
  - No nuclides associated with S(a,b) data
- - 41.05 Mb of memory allocated for data
+ - 41.06 Mb of memory allocated for data
 
 Isotopic composition (non-zero densities):
 
@@ -9354,6 +9465,33 @@ Isotopic composition (non-zero densities):
        sum                    8.76081E-02  1.00000E+00  1.00000E+00
 -------------------------------------------------------------------
 
+Material "lucite":
+
+ - Material is not burnable
+ - Material is included in majorant
+ - Material is included in geometry
+ - Atom density 1.07389E-01 1/barn*cm
+ - Mass density 1.19000E+00 g/cm3
+ - Volume 3.17807E+01 cm3
+ - Mass 3.78190E+01 g
+ - Photon emission rate 0.00000E+00 1/s
+ - Neutron emission rate 0.00000E+00 1/s
+ - 4 nuclides in composition
+ - 1 nuclides associated with S(a,b) data
+ - 40.91 Mb of memory allocated for data
+
+Isotopic composition (non-zero densities):
+
+-------------------------------------------------------------------
+ Nuclide    a. weight   temp      a. dens      a. frac      m. frac
+-------------------------------------------------------------------
+  1001.00s    1.00782  294.0  5.72673E-02  5.33268E-01  8.05380E-02 S
+  6012.00c   11.99671  294.0  3.54485E-02  3.30094E-01  5.93430E-01 
+  6013.00c   13.00336  294.0  3.53721E-04  3.29382E-03  6.41837E-03 
+  8016.00c   15.99492  294.0  1.43197E-02  1.33344E-01  3.19614E-01 
+       sum                    1.07389E-01  1.00000E+00  1.00000E+00
+-------------------------------------------------------------------
+
 Material "fuel":
 
  - Material is not burnable
@@ -9361,13 +9499,13 @@ Material "fuel":
  - Material is included in geometry
  - Atom density 9.62394E-02 1/barn*cm
  - Mass density 6.06000E+00 g/cm3
- - Volume 3.02596E+02 cm3
- - Mass 1.83373E+03 g
+ - Volume 2.73914E+02 cm3
+ - Mass 1.65992E+03 g
  - Photon emission rate 0.00000E+00 1/s
  - Neutron emission rate 0.00000E+00 1/s
  - 9 nuclides in composition
  - 2 nuclides associated with S(a,b) data
- - 71.58 Mb of memory allocated for data
+ - 71.59 Mb of memory allocated for data
 
 Isotopic composition (non-zero densities):
 
@@ -9399,7 +9537,7 @@ Material "diffusion_barrier":
  - Neutron emission rate 0.00000E+00 1/s
  - 37 nuclides in composition
  - No nuclides associated with S(a,b) data
- - 41.05 Mb of memory allocated for data
+ - 41.06 Mb of memory allocated for data
 
 Isotopic composition (non-zero densities):
 
@@ -9484,8 +9622,8 @@ Material "ceramic":
  - Material is included in geometry
  - Atom density 6.01358E-02 1/barn*cm
  - Mass density 2.83162E+00 g/cm3
- - Volume 5.02604E+00 cm3
- - Mass 1.42318E+01 g
+ - Volume 4.50200E+00 cm3
+ - Mass 1.27479E+01 g
  - Photon emission rate 0.00000E+00 1/s
  - Neutron emission rate 0.00000E+00 1/s
  - 45 nuclides in composition
@@ -9560,8 +9698,8 @@ Material "gap":
  - Material is included in geometry
  - Atom density 2.36813E-06 1/barn*cm
  - Mass density 1.57400E-05 g/cm3
- - Volume 3.68131E+00 cm3
- - Mass 5.79438E-05 g
+ - Volume 3.33237E+00 cm3
+ - Mass 5.24515E-05 g
  - Photon emission rate 0.00000E+00 1/s
  - Neutron emission rate 0.00000E+00 1/s
  - 1 nuclides in composition
@@ -9590,7 +9728,7 @@ Material "barrel":
  - Neutron emission rate 0.00000E+00 1/s
  - 32 nuclides in composition
  - No nuclides associated with S(a,b) data
- - 41.01 Mb of memory allocated for data
+ - 41.02 Mb of memory allocated for data
 
 Isotopic composition (non-zero densities):
 
@@ -9645,7 +9783,7 @@ Material "internal_reflector":
  - Neutron emission rate 0.00000E+00 1/s
  - 2 nuclides in composition
  - 2 nuclides associated with S(a,b) data
- - 40.90 Mb of memory allocated for data
+ - 40.91 Mb of memory allocated for data
 
 Isotopic composition (non-zero densities):
 
@@ -9751,8 +9889,8 @@ Material "control_drum":
  - Material is included in geometry
  - Atom density 1.22951E-01 1/barn*cm
  - Mass density 1.84000E+00 g/cm3
- - Volume 1.33177E+04 cm3
- - Mass 2.45046E+04 g
+ - Volume 1.86448E+04 cm3
+ - Mass 3.43065E+04 g
  - Photon emission rate 0.00000E+00 1/s
  - Neutron emission rate 0.00000E+00 1/s
  - 1 nuclides in composition
@@ -9781,7 +9919,7 @@ Material "upper_gridplate":
  - Neutron emission rate 0.00000E+00 1/s
  - 32 nuclides in composition
  - No nuclides associated with S(a,b) data
- - 41.01 Mb of memory allocated for data
+ - 41.02 Mb of memory allocated for data
 
 Isotopic composition (non-zero densities):
 

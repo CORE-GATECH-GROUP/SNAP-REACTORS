@@ -77,32 +77,35 @@
 
 % Parameter(unit): value unc reference description
 
-surf cdBarrelHexVoidcc1 cyl 0.0 0.0 22.349720799665754 
-surf putBorder cuboid -22.349720799665754 22.349720799665754 -22.349720799665754 22.349720799665754 -22.9 22.9 
+surf cdBarrelHexVoidcc1 cyl 0.0 0.0 35.859212 
+surf putBorder cuboid -35.859212 35.859212 -35.859212 35.859212 -22.9 22.9 
 surf core_gridspz0 pz -22.9 
 surf core_gridspz1 pz -19.1707 
 surf core_gridspz2 pz -18.3769 
 surf core_gridspz3 pz 18.3769 
 surf core_gridspz4 pz 19.25 
 surf lgBarrelcc1 cyl 0.0 0.0 11.87704 
-surf lowerCDcc1 cyl 0.0 0.0 22.349720799665754 
+surf lowerCDcc1 cyl 0.0 0.0 35.859212 
 surf barrelcc1 cyl 0.0 0.0 11.87704 
 surf intrefcc1 cyl 0.0 0.0 11.7475 
 surf hexBorder hexyc 0.0 0.0 11.43 
 surf 900spz0 pz -18.3769 
 surf 900spz1 pz -17.4117 
 surf 900spz2 pz 18.148300000000003 
+surf lucElemspz0 pz -18.3769 
+surf lucElemspz1 pz -17.4117 
+surf lucElemspz2 pz 18.148300000000003 
+surf uecWithPoisonspz0 pz 18.148300000000003 
+surf uecWithPoisonspz1 pz 18.148395000000004 
 surf fuelElemspz0 pz -18.3769 
 surf fuelElemspz1 pz -17.4117 
 surf fuelElemspz2 pz 18.148300000000003 
-surf uecWithPoisonspz0 pz 18.148300000000003 
-surf uecWithPoisonspz1 pz 18.148395000000004 
-surf barrelVoidcc1 cyl 0.0 0.0 22.349720799665754 
+surf barrelVoidcc1 cyl 0.0 0.0 35.859212 
 surf controlDrumHousingspz0 pz -18.3769 
 surf controlDrumHousingspz1 pz -15.239999999999998 
 surf controlDrumHousingspz2 pz 15.240000000000002 
 surf lowervoidDrumh1 cyl 0.0 0.0 22.349720799665754 
-surf lowerGPVoidcc1 cyl 0.0 0.0 22.349720799665754 
+surf lowerGPVoidcc1 cyl 0.0 0.0 35.859212 
 surf svDrum1 cyl 20.76037137182541 11.986005999999998 11.9246 
 surf svDrum2 cyl 1.467862388246097e-15 23.972012 11.9246 
 surf svDrum3 cyl -20.76037137182541 11.986005999999998 11.9246 
@@ -123,12 +126,14 @@ surf spL36 plane 0.5000000000000004 0.8660254037844384 0.0 9.953460496371088
 surf sDrum4 cyl -20.760371371825407 -11.986006000000001 11.8872 
 surf sDrum5 cyl -4.403587164738291e-15 -23.972012 11.8872 
 surf sDrum6 cyl 20.7603713718254 -11.98600600000001 11.8872 
-surf barrelvoidDrumh1 cyl 0.0 0.0 22.349720799665754 
+surf barrelShimAh1 hexyc 0.0 0.0 19.35542598 
+surf barrelShimBh1 hexyc 0.0 0.0 21.30540674 
+surf barrelvoidDrumh1 cyl 0.0 0.0 35.859212 
 surf uppervoidDrumh1 cyl 0.0 0.0 22.349720799665754 
-surf upperGPVoidcc1 cyl 0.0 0.0 22.349720799665754 
+surf upperGPVoidcc1 cyl 0.0 0.0 35.859212 
 surf upperShimAh1 hexyc 0.0 0.0 19.35542598 
 surf ugBarrelcc1 cyl 0.0 0.0 11.87704 
-surf upperCDcc1 cyl 0.0 0.0 22.349720799665754 
+surf upperCDcc1 cyl 0.0 0.0 35.859212 
 cell fillRegion 1  fill core_grid -cdBarrelHexVoidcc1 
 cell voidRegion 1  void cdBarrelHexVoidcc1 -putBorder 
 cell core_gridcpz0 core_grid  fill voidPin core_gridspz0 -core_gridspz1 
@@ -150,11 +155,64 @@ cell active_core_cell active_core_univ  fill activeCoreLat -hexBorder
 cell 900cpz0 900  fill lowerEndCool 900spz0 -900spz1 
 cell 900cpz1 900  fill 900z0 900spz1 -900spz2 
 cell 900cpz2 900  fill upperEndCool 900spz2 
+cell lucElemcpz0 lucElem  fill lowerEndCap lucElemspz0 -lucElemspz1 
+cell lucElemcpz1 lucElem  fill lucElemz0 lucElemspz1 -lucElemspz2 
+cell lucElemcpz2 lucElem  fill uecWithPoison lucElemspz2 
+cell uecWithPoisoncpz0 uecWithPoison  fill upperPoison uecWithPoisonspz0 -uecWithPoisonspz1 
+cell uecWithPoisoncpz1 uecWithPoison  fill upperEndCap uecWithPoisonspz1 
+
+% Special Fuel Pins
+cell fuelElemcpz0E181 E181  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1E181 E181  fill E181z0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2E181 E181  fill uecWithPoison fuelElemspz2
+
+cell fuelElemcpz0E672 E672  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1E672 E672  fill E672z0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2E672 E672  fill uecWithPoison fuelElemspz2
+
+cell fuelElemcpz0E669 E669  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1E669 E669  fill E669z0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2E669 E669  fill uecWithPoison fuelElemspz2 
+
+cell fuelElemcpz0E671 E671  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1E671 E671  fill E671z0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2E671 E671  fill uecWithPoison fuelElemspz2 
+
+cell fuelElemcpz0E661_I1 E661_I1  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1E661_I1 E661_I1  fill E661_I1z0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2E661_I1 E661_I1  fill uecWithPoison fuelElemspz2 
+
+cell fuelElemcpz0E660 E660  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1E660 E660  fill E660z0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2E660 E660  fill uecWithPoison fuelElemspz2 
+
+cell fuelElemcpz0E661_V23 E661_V23  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1E661_V23 E661_V23  fill E661_V23z0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2E661_V23 E661_V23  fill uecWithPoison fuelElemspz2 
+
+cell fuelElemcpz0E661_IX45 E661_IX45  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell fuelElemcpz1E661_IX45 E661_IX45  fill E661_IX45z0 fuelElemspz1 -fuelElemspz2 
+cell fuelElemcpz2E661_IX45 E661_IX45  fill uecWithPoison fuelElemspz2 
+
+cell aircpz0 air  fill lowerEndCool 900spz0 -900spz1 
+cell aircpz1 air  fill 900z0 900spz1 -900spz2 
+cell aircpz2 air  fill upperEndCool 900spz2
+
+cell emptyCancpz0 emptyCan fill lowerEndCap fuelElemspz0 -fuelElemspz1 
+cell emptyCancpz1 emptyCan  fill emptyCanz0 fuelElemspz1 -fuelElemspz2 
+cell emptyCancpz2 emptyCan  fill uecWithPoison fuelElemspz2 
+
+cell noFuelcpz0 noFuel fill lowerEndCap fuelElemspz0 -fuelElemspz1
+cell noFuelcpz1 noFuel fill noFuelz0 fuelElemspz1 -fuelElemspz2 
+cell noFuelcpz2 noFuel fill uecWithPoison fuelElemspz2 
+
+cell noCeramcpz0 noCeram fill lowerEndCap fuelElemspz0 -fuelElemspz1
+cell noCeramcpz1 noCeram fill noCeramz0 fuelElemspz1 -fuelElemspz2 
+cell noCeramcpz2 noCeram fill uecWithPoison fuelElemspz2 
+
 cell fuelElemcpz0100200300400500600700 800  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
 cell fuelElemcpz1100200300400500600700 800  fill fuelElemz0 fuelElemspz1 -fuelElemspz2 
 cell fuelElemcpz2100200300400500600700 800  fill uecWithPoison fuelElemspz2 
-cell uecWithPoisoncpz0 uecWithPoison  fill upperPoison uecWithPoisonspz0 -uecWithPoisonspz1 
-cell uecWithPoisoncpz1 uecWithPoison  fill upperEndCap uecWithPoisonspz1 
 cell fuelElemcpz0100200300400500600 700  fill lowerEndCap fuelElemspz0 -fuelElemspz1 
 cell fuelElemcpz1100200300400500600 700  fill fuelElemz0 fuelElemspz1 -fuelElemspz2 
 cell fuelElemcpz2100200300400500600 700  fill uecWithPoison fuelElemspz2 
@@ -232,25 +290,51 @@ cell barrelcdFulld4 barrelcdFull  fill barrelcd4_univ -svDrum4
 cell barrelcdFulld5 barrelcdFull  fill barrelcd5_univ -svDrum5 
 cell barrelcdFulld6 barrelcdFull  fill barrelcd6_univ -svDrum6 
 cell barrelcdSys barrelcdFull  control_drum -barrelCDh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
-cell barrelcdSysVoidDV barrelcdFull  void barrelCDh1 -barrelvoidDrumh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
+cell barrelcdSysVoidSA barrelcdFull  void barrelCDh1 -barrelShimAh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
+cell barrelcdSysVoidSB barrelcdFull  void barrelShimAh1 -barrelShimBh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
+cell barrelcdSysVoidDV barrelcdFull  void barrelShimBh1 -barrelvoidDrumh1 svDrum6 svDrum2 svDrum3 svDrum4 svDrum5 svDrum1 
 cell barrelcDrum1 barrelcd1_univ  control_drum -sDrum1 -barrelCDh1 -spU14 -spL14 
 cell barrelcvDrum1 barrelcd1_univ  void sDrum1 -svDrum1 
-cell barrelouter_dVDrum1 barrelcd1_univ  void -sDrum1 barrelCDh1 
+cell barrelsaDrum1 barrelcd1_univ  control_drum -sDrum1 barrelCDh1 -barrelShimAh1 -spU14 -spL14 
+cell barrelsbDrum1 barrelcd1_univ  control_drum -sDrum1 barrelShimAh1 -barrelShimBh1 -spU14 -spL14 
+cell barrelsaVDrum1 barrelcd1_univ  void (-sDrum1 barrelCDh1 -barrelShimAh1 spU14 ):(-sDrum1 barrelCDh1 -barrelShimAh1 spL14 )
+cell barrelsbVDrum1 barrelcd1_univ  void (-sDrum1 barrelShimAh1 -barrelShimBh1 spU14 ):(-sDrum1 barrelShimAh1 -barrelShimBh1 spL14 )
+cell barrelouter_sbVDrum1 barrelcd1_univ  void -sDrum1 barrelShimBh1 
 cell barrelcDrum2 barrelcd2_univ  control_drum -sDrum2 -barrelCDh1 -spU25 -spL25 
 cell barrelcvDrum2 barrelcd2_univ  void sDrum2 -svDrum2 
-cell barrelouter_dVDrum2 barrelcd2_univ  void -sDrum2 barrelCDh1 
+cell barrelsaDrum2 barrelcd2_univ  control_drum -sDrum2 barrelCDh1 -barrelShimAh1 -spU25 -spL25 
+cell barrelsbDrum2 barrelcd2_univ  control_drum -sDrum2 barrelShimAh1 -barrelShimBh1 -spU25 -spL25 
+cell barrelsaVDrum2 barrelcd2_univ  void (-sDrum2 barrelCDh1 -barrelShimAh1 spU25 ):(-sDrum2 barrelCDh1 -barrelShimAh1 spL25 )
+cell barrelsbVDrum2 barrelcd2_univ  void (-sDrum2 barrelShimAh1 -barrelShimBh1 spU25 ):(-sDrum2 barrelShimAh1 -barrelShimBh1 spL25 )
+cell barrelouter_sbVDrum2 barrelcd2_univ  void -sDrum2 barrelShimBh1 
 cell barrelcDrum3 barrelcd3_univ  control_drum -sDrum3 -barrelCDh1 -spU36 -spL36 
 cell barrelcvDrum3 barrelcd3_univ  void sDrum3 -svDrum3 
-cell barrelouter_dVDrum3 barrelcd3_univ  void -sDrum3 barrelCDh1 
+cell barrelsaDrum3 barrelcd3_univ  control_drum -sDrum3 barrelCDh1 -barrelShimAh1 -spU36 -spL36 
+cell barrelsbDrum3 barrelcd3_univ  control_drum -sDrum3 barrelShimAh1 -barrelShimBh1 -spU36 -spL36 
+cell barrelsaVDrum3 barrelcd3_univ  void (-sDrum3 barrelCDh1 -barrelShimAh1 spU36 ):(-sDrum3 barrelCDh1 -barrelShimAh1 spL36 )
+cell barrelsbVDrum3 barrelcd3_univ  void (-sDrum3 barrelShimAh1 -barrelShimBh1 spU36 ):(-sDrum3 barrelShimAh1 -barrelShimBh1 spL36 )
+cell barrelouter_sbVDrum3 barrelcd3_univ  void -sDrum3 barrelShimBh1 
 cell barrelcDrum4 barrelcd4_univ  control_drum -sDrum4 -barrelCDh1 -spU14 -spL14 
 cell barrelcvDrum4 barrelcd4_univ  void sDrum4 -svDrum4 
-cell barrelouter_dVDrum4 barrelcd4_univ  void -sDrum4 barrelCDh1 
+cell barrelsaDrum4 barrelcd4_univ  control_drum -sDrum4 barrelCDh1 -barrelShimAh1 -spU14 -spL14 
+cell barrelsbDrum4 barrelcd4_univ  control_drum -sDrum4 barrelShimAh1 -barrelShimBh1 -spU14 -spL14 
+cell barrelsaVDrum4 barrelcd4_univ  void (-sDrum4 barrelCDh1 -barrelShimAh1 spU14 ):(-sDrum4 barrelCDh1 -barrelShimAh1 spL14 )
+cell barrelsbVDrum4 barrelcd4_univ  void (-sDrum4 barrelShimAh1 -barrelShimBh1 spU14 ):(-sDrum4 barrelShimAh1 -barrelShimBh1 spL14 )
+cell barrelouter_sbVDrum4 barrelcd4_univ  void -sDrum4 barrelShimBh1 
 cell barrelcDrum5 barrelcd5_univ  control_drum -sDrum5 -barrelCDh1 -spU25 -spL25 
 cell barrelcvDrum5 barrelcd5_univ  void sDrum5 -svDrum5 
-cell barrelouter_dVDrum5 barrelcd5_univ  void -sDrum5 barrelCDh1 
+cell barrelsaDrum5 barrelcd5_univ  control_drum -sDrum5 barrelCDh1 -barrelShimAh1 -spU25 -spL25 
+cell barrelsbDrum5 barrelcd5_univ  control_drum -sDrum5 barrelShimAh1 -barrelShimBh1 -spU25 -spL25 
+cell barrelsaVDrum5 barrelcd5_univ  void (-sDrum5 barrelCDh1 -barrelShimAh1 spU25 ):(-sDrum5 barrelCDh1 -barrelShimAh1 spL25 )
+cell barrelsbVDrum5 barrelcd5_univ  void (-sDrum5 barrelShimAh1 -barrelShimBh1 spU25 ):(-sDrum5 barrelShimAh1 -barrelShimBh1 spL25 )
+cell barrelouter_sbVDrum5 barrelcd5_univ  void -sDrum5 barrelShimBh1 
 cell barrelcDrum6 barrelcd6_univ  control_drum -sDrum6 -barrelCDh1 -spU36 -spL36 
 cell barrelcvDrum6 barrelcd6_univ  void sDrum6 -svDrum6 
-cell barrelouter_dVDrum6 barrelcd6_univ  void -sDrum6 barrelCDh1 
+cell barrelsaDrum6 barrelcd6_univ  control_drum -sDrum6 barrelCDh1 -barrelShimAh1 -spU36 -spL36 
+cell barrelsbDrum6 barrelcd6_univ  control_drum -sDrum6 barrelShimAh1 -barrelShimBh1 -spU36 -spL36 
+cell barrelsaVDrum6 barrelcd6_univ  void (-sDrum6 barrelCDh1 -barrelShimAh1 spU36 ):(-sDrum6 barrelCDh1 -barrelShimAh1 spL36 )
+cell barrelsbVDrum6 barrelcd6_univ  void (-sDrum6 barrelShimAh1 -barrelShimBh1 spU36 ):(-sDrum6 barrelShimAh1 -barrelShimBh1 spL36 )
+cell barrelouter_sbVDrum6 barrelcd6_univ  void -sDrum6 barrelShimBh1 
 cell uppercdFullupperGPVoid_cell1 uppercdFullupperGPVoid_univ  fill uppercdFull -uppervoidDrumh1 
 cell uppercdFullupperGPVoid_cell2 uppercdFullupperGPVoid_univ  fill upperGPVoid_univ uppervoidDrumh1 -upperGPVoidcc1 
 cell uppercdFulld1 uppercdFull  fill uppercd1_univ -svDrum1 
@@ -336,15 +420,15 @@ lower_gridplate
 lat activeCoreLat 2 0 0 21 21 1.4478
 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 
  900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 
-  900 900 900 900 900 900 900 900 900 900 900 800 800 800 800 800 800 800 900 900 900 
-   900 900 900 900 900 900 900 900 900 800 700 700 700 700 700 700 700 700 800 900 900 
-    900 900 900 900 900 900 900 900 800 700 600 600 600 600 600 600 600 700 800 900 900 
-     900 900 900 900 900 900 900 800 700 600 500 500 500 500 500 500 600 700 800 900 900 
-      900 900 900 900 900 900 800 700 600 500 400 400 400 400 400 500 600 700 800 900 900 
-       900 900 900 900 900 800 700 600 500 400 300 300 300 300 400 500 600 700 800 900 900 
-        900 900 900 900 800 700 600 500 400 300 200 200 200 300 400 500 600 700 800 900 900 
+  900 900 900 900 900 900 900 900 900 900 900 lucElem lucElem lucElem 800 lucElem lucElem lucElem 900 900 900 
+   900 900 900 900 900 900 900 900 900 lucElem lucElem 700 700 700 700 700 700 lucElem lucElem 900 900 
+    900 900 900 900 900 900 900 900 lucElem 700 600 600 600 600 600 600 600 700 lucElem 900 900 
+     900 900 900 900 900 900 900 lucElem 700 600 500 500 500 500 500 500 600 700 lucElem 900 900 
+      900 900 900 900 900 900 lucElem 700 600 500 400 400 400 400 400 500 600 700 lucElem 900 900 
+       900 900 900 900 900 lucElem 700 600 500 400 300 300 300 300 400 500 600 700 lucElem 900 900 
+        900 900 900 900 lucElem 700 600 500 400 300 200 200 200 300 400 500 600 700 lucElem 900 900 
          900 900 900 800 700 600 500 400 300 200 100 100 200 300 400 500 600 700 800 900 900 
-          900 900 900 700 600 500 400 300 200 100 100 100 200 300 400 500 600 700 900 900 900 
+          900 900 900 700 600 500 400 300 200 100 noCeram 100 200 300 400 500 600 700 900 900 900 
            900 900 800 700 600 500 400 300 200 100 100 200 300 400 500 600 700 800 900 900 900 
             900 900 800 700 600 500 400 300 200 200 200 300 400 500 600 700 800 900 900 900 900 
              900 900 800 700 600 500 400 300 300 300 300 400 500 600 700 800 900 900 900 900 900 
@@ -369,11 +453,8 @@ pin lowerEndCap
 clad	0.7112
 coolant
 
-pin fuelElemz0
-fuel	0.67564
-ceramic	0.681228
-gap	0.685292
-clad	0.71374
+pin lucElemz0
+lucite	0.7112
 coolant
 
 pin upperPoison
@@ -381,6 +462,90 @@ clad
 
 pin upperEndCap
 clad	0.7112
+coolant
+
+pin emptyCanz0
+%fuel	0.67564
+void	0.681228
+gap	0.685292
+clad	0.71374
+coolant
+
+pin noFuelz0
+%fuel	0.67564
+ceramic	0.681228
+gap	0.685292
+clad	0.71374
+coolant
+
+pin noCeramz0
+fuel   0.67564
+void 0.681228
+gap     0.685292
+clad    0.71374
+coolant
+
+pin fuelElemz0
+fuel	0.67564
+ceramic	0.681228
+gap	0.685292
+clad	0.71374
+coolant
+
+pin E181z0
+E181fuel	0.67564
+ceramic	0.681228
+gap	0.685292
+clad	0.71374
+coolant
+
+pin E672z0
+E672fuel	0.67564
+ceramic	0.681228
+gap	0.685292
+clad	0.71374
+coolant
+
+pin E669z0
+E669fuel	0.67564
+ceramic	0.681228
+gap	0.685292
+clad	0.71374
+coolant
+
+pin E671z0
+E671fuel	0.67564
+ceramic	0.681228
+gap	0.685292
+clad	0.71374
+coolant
+
+pin E661_I1z0
+E661_I1fuel	0.67564
+ceramic	0.681228
+gap	0.685292
+clad	0.71374
+coolant
+
+pin E660z0
+E660fuel	0.67564
+ceramic	0.681228
+gap	0.685292
+clad	0.71374
+coolant
+
+pin E661_V23z0
+E661_V23fuel	0.67564
+ceramic	0.681228
+gap	0.685292
+clad	0.71374
+coolant
+
+pin E661_IX45z0
+E661_IX45fuel	0.67564
+ceramic	0.681228
+gap	0.685292
+clad	0.71374
 coolant
 
 lat upperGridLat 3 0 0 21 21 1.4478
@@ -413,3 +578,4 @@ pin pUGH
 coolant	0.19840000000000002
 upper_gridplate
 
+trans U barrelcd6_univ rot 20.760371371825407 -11.986006000000001 0 0 0 1 -105
