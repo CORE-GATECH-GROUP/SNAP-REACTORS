@@ -898,14 +898,14 @@ class S83D_ActiveCore(S83D):
         return map
 
 class S83D_Revised(S8ER):
-    def __init__(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, config = 'C3', xsLibrary = 'ENDF7.1', hasThermScatt=False):
+    def __init__(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, config = 'C3', xsLibrary = 'ENDF7.1', hasThermScatt=False, drumGeomFactor = None, rotateDrumIndex = None, rotateDrumAngle = None):
         S8ER.__init__(self)
         self.config = config
         self.xsLibrary = xsLibrary
         self.hasThermScatt = hasThermScatt
-        self.map = self.setMap(fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums)
+        self.map = self.setMap(fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, drumGeomFactor, rotateDrumIndex, rotateDrumAngle)
 
-    def setMap(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums):
+    def setMap(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, drumGeomFactor, rotateDrumIndex, rotateDrumAngle):
         map = {}
 
         fuelMat = fuelElement.materialsDict['fuel']
@@ -955,7 +955,14 @@ class S83D_Revised(S8ER):
                 matNucs = np.array(mat.nuclides)
                 #print(matNucs)
                 matNucs[matNucs == 6000] = 6012
-                mat.nuclides = list(matNucs) 
+                mat.nuclides = list(matNucs)
+        elif self.xsLibrary == 'ENDF7.1':
+            for mat in serMatsList:
+                matNucs = np.array(mat.nuclides)
+                if len(np.where(matNucs == 6013)[0]) != 0:
+                    c13idx = np.where(matNucs == 6013)[0][0]
+                    matNucs = np.delete(matNucs, c13idx)
+                mat.nuclides = list(matNucs)  
 
         serMatsDict = createDictFromConatinerList(serMatsList)
 
@@ -979,8 +986,12 @@ class S83D_Revised(S8ER):
         cdMat = serMatsDict['control_drum']
         cdMat.set('rgb', "247 215 183")
 
-        nuclides = [1001, 6012, 6013, 8016]
-        fractions = [-0.080538, -0.5934296264, -0.0064183736, -0.319614]
+        if self.xsLibrary == 'ENDF8':
+            nuclides = [1001, 6012, 6013, 8016]
+            fractions = [-0.080538, -0.5934296264, -0.0064183736, -0.319614]
+        elif self.xsLibrary == 'ENDF7.1':
+            nuclides = [1001, 6000, 8016]
+            fractions = [-0.080538, -1*(0.5934296264+0.0064183736), -0.319614]
         lucMat = cdMat.duplicateMat("lucite")
         lucMat.set('rgb', "11 229 229")
         lucMat.set('dens', -1.19)
@@ -1156,7 +1167,12 @@ class S83D_Revised(S8ER):
         voidApothem = drumCent+drumRadCurv
         voidVertex = calcVertexFromApothem(voidApothem)
 
-        print((shimAApothem-drumApothem))
+        #print((shimAApothem-drumApothem))
+
+        shimBThickness = shimBApothem - shimAApothem
+
+        if (self.config == 'C4') & (drumGeomFactor != None):
+            shimBApothem = shimAApothem + shimBThickness*drumGeomFactor
 
         def calcDrumParams(barrelOuterRad, gapThickness, radOfCurv, drumVoidThickness):
             dx = barrelOuterRad+gapThickness+radOfCurv
@@ -1244,9 +1260,10 @@ class S83D_Revised(S8ER):
             spL36  = surf("spL36", "plane", planeParams[5])
 
             drumSurf  = surf("barrelCD"+"h1", "hexyc", np.array([0.0, 0.0, drumApothem]))
-            shimAsurf = surf(uid+"ShimA"+"h1", "hexyc", np.array([0.0, 0.0, shimAApothem]))
+            shimAsurf = surf(uid+"ShimA"+"h1", "hexyc", np.array([0.0, 0.0, shimAApothem]))            
             shimBsurf = surf(uid+"ShimB"+"h1", "hexyc", np.array([0.0, 0.0, shimBApothem]))
             voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, drumCent+drumRadCurv]))
+
 
             cdCell1 = cell(uid+"cDrum1",mat=cdMat)
             cdCell2 = cell(uid+"cDrum2",mat=cdMat)
@@ -1290,12 +1307,23 @@ class S83D_Revised(S8ER):
             saVCell5.setSurfs([cdSurf5, drumSurf, shimAsurf, spU25, cdSurf5, drumSurf, shimAsurf, spL25], [1, 0, 1, 0, 3, 0, 1, 0], hasMultUnion=True)
             saVCell6.setSurfs([cdSurf6, drumSurf, shimAsurf, spU36, cdSurf6, drumSurf, shimAsurf, spL36], [1, 0, 1, 0, 3, 0, 1, 0], hasMultUnion=True)
             
-            sbCell1 = cell(uid+"sbDrum1",mat=cdMat)
-            sbCell2 = cell(uid+"sbDrum2",mat=cdMat)
-            sbCell3 = cell(uid+"sbDrum3",mat=cdMat)
-            sbCell4 = cell(uid+"sbDrum4",mat=cdMat)
-            sbCell5 = cell(uid+"sbDrum5",mat=cdMat)
-            sbCell6 = cell(uid+"sbDrum6",mat=cdMat)
+
+            if drumGeomFactor != None:
+                cdMatB = cdMat.duplicateMat("controlDrumBShimAdjusted")
+                cdMatB.set('dens', cdMat.dens/drumGeomFactor)
+                sbCell1 = cell(uid+"sbDrum1",mat=cdMatB)
+                sbCell2 = cell(uid+"sbDrum2",mat=cdMatB)
+                sbCell3 = cell(uid+"sbDrum3",mat=cdMatB)
+                sbCell4 = cell(uid+"sbDrum4",mat=cdMatB)
+                sbCell5 = cell(uid+"sbDrum5",mat=cdMatB)
+                sbCell6 = cell(uid+"sbDrum6",mat=cdMatB)
+            else:
+                sbCell1 = cell(uid+"sbDrum1",mat=cdMat)
+                sbCell2 = cell(uid+"sbDrum2",mat=cdMat)
+                sbCell3 = cell(uid+"sbDrum3",mat=cdMat)
+                sbCell4 = cell(uid+"sbDrum4",mat=cdMat)
+                sbCell5 = cell(uid+"sbDrum5",mat=cdMat)
+                sbCell6 = cell(uid+"sbDrum6",mat=cdMat)
 
             sbCell1.setSurfs([cdSurf1, shimAsurf, shimBsurf, spU14, spL14], [1, 0, 1, 1, 1])
             sbCell2.setSurfs([cdSurf2, shimAsurf, shimBsurf, spU25, spL25], [1, 0, 1, 1, 1])
@@ -1642,8 +1670,30 @@ class S83D_Revised(S8ER):
         box1 = buildBoundingBox(cStack, width =controlDrumSystemRad, length=controlDrumSystemRad, height=22.9)
 
         map = {'active_core': box1}
+        drumRotIds = []
+
+        rotStr = ""
+
+        # trans U barrelcd1_univ rot  20.760371371825407  11.986006000000001 0 0 0 1 105
+        # trans U barrelcd2_univ rot  0                   23.972012          0 0 0 1 105
+        # trans U barrelcd3_univ rot -20.760371371825407  11.986006000000001 0 0 0 1 105
+        # trans U barrelcd4_univ rot -20.760371371825407 -11.986006000000001 0 0 0 1 105
+        # trans U barrelcd5_univ rot  0                  -23.972012          0 0 0 1 105
+        # trans U barrelcd6_univ rot  20.760371371825407 -11.986006000000001 0 0 0 1 105
+        
+        drumX = [20.760371371825407, 0, -20.760371371825407, -20.760371371825407, 0, 20.760371371825407]
+        drumY = [11.986006000000001, 23.972012 , 11.986006000000001, -11.986006000000001, -23.972012, -11.986006000000001]
+
+        if ((rotateDrumIndex != None) & (rotateDrumAngle != None)):
+            if type(rotateDrumIndex) == type([]):
+                for i in range(0, len(rotateDrumIndex)):
+                    drumRotIds.append("barrelcd{}_univ".format(rotateDrumIndex[i]))
+                    rotStr = rotStr + "trans U {} rot {} {} 0 0 0 1 -{}\n".format(drumRotIds[i], drumX[rotateDrumIndex[i]-1], drumY[rotateDrumIndex[i]-1], rotateDrumAngle[i])
+
+        #print(rotStr)
+        map = {'active_core': box1, 'rotations': rotStr}
         return map
-    
+
 class S82D_Revised(S8ER):
     def __init__(self, fuelElement, coolElement, internalReflector, barrel, controlDrums, config = 'C3', xsLibrary = 'ENDF7.1', hasThermScatt=False):
         S8ER.__init__(self)
@@ -1683,6 +1733,15 @@ class S82D_Revised(S8ER):
                 matNucs = np.array(mat.nuclides)
                 #print(matNucs)
                 matNucs[matNucs == 6000] = 6012
+                mat.nuclides = list(matNucs)
+        elif self.xsLibrary == 'ENDF7.1':
+            for mat in serMatsList:
+                matNucs = np.array(mat.nuclides)
+                #print(matNucs)
+                c13idx = np.where(matNucs == 6013)[0][0]
+                print(c13idx)
+                matNucs = np.delete(matNucs, c13idx)
+                print(matNucs)
                 mat.nuclides = list(matNucs) 
 
         serMatsDict = createDictFromConatinerList(serMatsList)

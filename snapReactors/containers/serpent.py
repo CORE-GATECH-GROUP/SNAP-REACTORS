@@ -197,7 +197,8 @@ class Serpent:
     
     def __buildSerpentGeometry(template):
         geoStr = template.map['active_core']._geoString()
-        return geoStr
+        rotStr = template.map['rotations']
+        return geoStr + rotStr
 
     def __buildSerpentMaterialFile(matHeader, baseFileName, template):
         matsFile = open(baseFileName+".mat", "w")
