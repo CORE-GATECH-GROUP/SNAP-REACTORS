@@ -1,7 +1,7 @@
 #!/bin/bash
-#PBS -l select=2:ncpus=5:mpiprocs=1
+#PBS -l select=2:ncpus=8:mpiprocs=4:mem=160gb
 #PBS -N E181_I1
-#PBS -l walltime=1:30:00
+#PBS -l walltime=8:30:00
 #PBS -k doe
 #PBS -j oe
 #PBS -P edu_res
