@@ -9472,8 +9472,8 @@ Material "lucite":
  - Material is included in geometry
  - Atom density 1.07389E-01 1/barn*cm
  - Mass density 1.19000E+00 g/cm3
- - Volume 3.17807E+01 cm3
- - Mass 3.78190E+01 g
+ - Volume 6.03833E+01 cm3
+ - Mass 7.18561E+01 g
  - Photon emission rate 0.00000E+00 1/s
  - Neutron emission rate 0.00000E+00 1/s
  - 4 nuclides in composition
@@ -9499,8 +9499,8 @@ Material "fuel":
  - Material is included in geometry
  - Atom density 9.62394E-02 1/barn*cm
  - Mass density 6.06000E+00 g/cm3
- - Volume 2.73914E+02 cm3
- - Mass 1.65992E+03 g
+ - Volume 2.48100E+02 cm3
+ - Mass 1.50349E+03 g
  - Photon emission rate 0.00000E+00 1/s
  - Neutron emission rate 0.00000E+00 1/s
  - 9 nuclides in composition
@@ -9622,8 +9622,8 @@ Material "ceramic":
  - Material is included in geometry
  - Atom density 6.01358E-02 1/barn*cm
  - Mass density 2.83162E+00 g/cm3
- - Volume 4.54964E+00 cm3
- - Mass 1.28828E+01 g
+ - Volume 4.12088E+00 cm3
+ - Mass 1.16688E+01 g
  - Photon emission rate 0.00000E+00 1/s
  - Neutron emission rate 0.00000E+00 1/s
  - 45 nuclides in composition
@@ -9698,8 +9698,8 @@ Material "gap":
  - Material is included in geometry
  - Atom density 2.36813E-06 1/barn*cm
  - Mass density 1.57400E-05 g/cm3
- - Volume 3.33237E+00 cm3
- - Mass 5.24515E-05 g
+ - Volume 3.01832E+00 cm3
+ - Mass 4.75084E-05 g
  - Photon emission rate 0.00000E+00 1/s
  - Neutron emission rate 0.00000E+00 1/s
  - 1 nuclides in composition
