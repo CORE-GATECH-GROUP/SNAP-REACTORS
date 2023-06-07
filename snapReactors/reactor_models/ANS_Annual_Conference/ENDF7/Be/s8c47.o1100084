@@ -1,0 +1,10 @@
+lemhi0001.ib
+lemhi0001.ib
+lemhi0001.ib
+lemhi0001.ib
+lemhi0002.ib
+lemhi0002.ib
+lemhi0002.ib
+lemhi0002.ib
+[lemhi0001:mpi_rank_0][smpi_load_hwloc_topology] Please retry after setting MV2_BCAST_HWLOC_TOPOLOGY=0
+=>> PBS: job killed: walltime 30706 exceeded limit 30600

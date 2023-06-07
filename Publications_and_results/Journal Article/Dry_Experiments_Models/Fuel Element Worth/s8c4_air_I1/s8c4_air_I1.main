@@ -1,0 +1,18 @@
+% ==================================================
+% Main File
+% --------------------------------------------------
+% Description: S8ER C3 Critcal Configuration Experiment, Dry Conditions 300 K
+% --------------------------------------------------
+% Materials:
+include s8c4_FE.mat
+% --------------------------------------------------
+% Geometry:
+include s8c4_FE.geo
+% ==================================================
+
+set bc 1 1 1
+set pop 6000000 100 100
+set acelib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
+plot 31 1000 1000 0.0
+plot 11 1000 1000 0.0
+set his 1
