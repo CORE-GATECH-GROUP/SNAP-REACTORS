@@ -1030,6 +1030,14 @@ class S83D_Revised(S8ER):
             fuelMat.set('thermLib', "HZr 1001  moder ZrH 40090")
             fuelMat.set('aceTherm', "therm HZr hzr.03t therm ZrH zrh.03t")
 
+            cdMat.set('isModer', True)
+            cdMat.set('thermLib', "Bem 4009")
+            cdMat.set('aceTherm', "therm Bem be.03t")
+
+            intrefMat.set('isModer', True)
+            intrefMat.set('thermLib', 'BeO 4009')
+            intrefMat.set('aceTherm', "therm BeO beo.03t")
+
         ## New compcore verifaction induced comp
         fuelSerRadii = [fuelRad, dbRad, gapRad, cladRad]
         fuelSerMats = [fuelMat, cerMat, gapMat, cladMat, airMat]
