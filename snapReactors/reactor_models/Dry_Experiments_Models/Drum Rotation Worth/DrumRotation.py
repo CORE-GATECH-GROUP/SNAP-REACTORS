@@ -14,7 +14,7 @@ exp_pcm = np.array([-52.14173228, -19.4015748 ,62.4488189,138.8425197,204.322834
            275.2598425,406.2204724,602.6614173 ,722.7086614,870.0393701,
            995.5433071,1142.874016,1312.031496,1426.622047,1977.748031,
            2108.708661, 2250.582677,2408.826772, 2528.874016,2561.614173])
-exp_unc = exp_pcm*0.1*3
+exp_unc = abs(exp_pcm*0.1*3)
 
 mod_deg = np.array([0 ,10 ,20 ,30 ,40,50,60,70,80,90,100,105])
 mod_pcm = np.array([70.17506882, 213.0092137,478.2808532,885.7429685,
@@ -27,7 +27,6 @@ plt.errorbar(exp_deg, exp_pcm, exp_unc,marker = "o", linestyle = "-.", label = "
 plt.errorbar(mod_deg, mod_pcm, mod_unc, marker = "", linestyle = "--", label = "Model", barsabove=True, alpha = 1)
 plt.xlabel("Degrees Inserted ")
 plt.ylabel("Reactivity [pcm]")
-plt.title("Drum No.5 A Shim Integral Worth")
 plt.grid()
 plt.legend()
 plt.show()
@@ -57,7 +56,6 @@ plt.errorbar(exp_deg, exp_pcm, exp_unc,marker = "o", linestyle = "-.", label = "
 plt.errorbar(mod_deg, mod_pcm, mod_unc, marker = "", linestyle = "--", label = "Model", barsabove=True, alpha = 1)
 plt.xlabel("Degrees Inserted ")
 plt.ylabel("Reactivity [pcm]")
-plt.title("Drum No.5 AB Shim Integral Worth")
 plt.grid()
 plt.legend()
 plt.show()

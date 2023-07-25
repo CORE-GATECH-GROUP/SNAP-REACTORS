@@ -60,7 +60,7 @@ value: 0.367538
 unc:0.01
 unit: SI
 ref: NAA-SR-9642
-desc: length of the fuel element not including endcap thicknesses
+desc: length of the fuel element including endcap thicknesses
 
 
 Material Name: fuel
