@@ -109,13 +109,20 @@ class S8ER(SerpentTemplate):
 
         plotStr = ""
         if type(plotOptions) != type(None):
+            isMesh = plotOptions[-1]
             plotTypes = plotOptions[0]
             borderType = plotOptions[3]
             plotRes = plotOptions[1]
             plotPos = plotOptions[2]
             nPlots = len(plotTypes)
+
             for i in range(0, nPlots):
-                plotStr = plotStr + "plot "+str(int(plotTypes[i]))+str(int(borderType))+" "+ str(int(plotRes))+" "+ str(int(plotRes))+" "+ str(float(plotPos[i])) +"\n"
+                if isMesh[i] == "P":
+                    typeStr = "mesh 10 "
+                    plotStr = plotStr + typeStr+str(int(plotTypes[i]))+" "+ str(int(plotRes))+" "+ str(int(plotRes))+"\n"
+                else:
+                    typeStr = "plot "
+                    plotStr = plotStr + typeStr+str(int(plotTypes[i]))+str(int(borderType))+" "+ str(int(plotRes))+" "+ str(int(plotRes))+" "+ str(float(plotPos[i])) +"\n"
             setDict['plot'] = plotStr
 
         hisStr = "set his 1\n"

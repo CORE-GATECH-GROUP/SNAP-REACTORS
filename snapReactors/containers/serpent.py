@@ -203,6 +203,23 @@ class Serpent:
     def __buildSerpentMaterialFile(matHeader, baseFileName, template):
         matsFile = open(baseFileName+".mat", "w")
         matSerp = template.map['active_core']._matString()
+
+        therms = []
+        nonTherms = []
+        def checkDuplicates(matString):
+            strs = matString.split("\n")
+            for i in range(0, len(strs)):
+                if "therm" in strs[i]:
+                    therms.append(strs[i])
+                else:
+                    nonTherms.append(strs[i])
+
+            corTherms = list(set(therms))
+
+            joinTherms = "\n".join(corTherms)
+            return "\n".join(nonTherms) + joinTherms
+        matSerp = checkDuplicates(matSerp)
+        checkDuplicates(matSerp)    
         matsFile.write(matHeader+matSerp)
         matsFile.close()
         return
@@ -219,6 +236,7 @@ class Serpent:
             mainStr = mainStr + template.settings['settings']
         mainFile.write(mainStr)
         mainFile.close()
+
         return
 
     def plotHistoryData(self, hisFile):

@@ -157,14 +157,12 @@ mat clad -8.86    rgb 100 100 100
 22049.00c	-0.00013525
 22050.00c	-0.0001295
 
-therm HLu h-luci.40t
 mat lucite -1.19 moder HLu 1001   rgb 11 229 229
 1001.00c	-0.080538
 6012.00c	-0.5934296264
 6013.00c	-0.0064183736
 8016.00c	-0.319614
 
-therm HZr h-zrh.40t therm ZrH zr-zrh.40t
 mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
 1001.00c	0.0596
 1002.00c	8.79e-06
@@ -266,7 +264,6 @@ mat barrel -7.954    rgb 102 0 0
 26057.00c	-0.0138832
 26058.00c	-0.00184759
 
-therm BeO be-beo.40t therm OBe o-beo.40t
 mat internal_reflector -3.02 moder BeO 4009 moder OBe 8016   
 8016.00c	-0.63968
 4009.00c	-0.36032
@@ -277,11 +274,13 @@ clad	0.042
 internal_reflector	0.41
 coolant	0.357
 
-therm Bem be-met.40t
 mat control_drum -1.84 moder Bem 4009   rgb 247 215 183
 4009.00c	-1.0
 
+<<<<<<< Updated upstream:snapReactors/reactor_models/Automated Serpent Models/Revised Drum Cases/Drum Sensitvity Studies/Sens6/s8c4_drumSens6.mat
 
+=======
+>>>>>>> Stashed changes:snapReactors/reactor_models/Automated Serpent Models/Revised Drum Cases/Drum Sensitvity Studies/s8c4_drumSens6.mat
 mat controlDrumBShimAdjusted -1.2266666666666668 moder Bem 4009   rgb 247 215 183
 4009.00c	-1.0
 
@@ -319,3 +318,7 @@ mat upper_gridplate -7.954    rgb 102 0 0
 26057.00c	-0.0138832
 26058.00c	-0.00184759
 
+therm HZr h-zrh.40t therm ZrH zr-zrh.40t
+therm Bem be-met.40t
+therm HLu h-luci.40t
+therm BeO be-beo.40t therm OBe o-beo.40t
