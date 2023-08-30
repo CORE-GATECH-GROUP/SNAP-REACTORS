@@ -16,12 +16,14 @@ c8 = serpentTools.read(c8File)
 # ------------
 left = c8.detectors['xymesh']
 tallies = left.slice({'energy':0})#[20:]
+print(np.mean(tallies))
+tallies = tallies/22034600000000.0
 xvals = left.grids['X'][:,0]*-1
 xvals = xvals#[20:]
 np.flip(xvals)
 error = left.errors[0]*3#[20:]
 mean_error = error/np.mean(error)
-norm_tallies = tallies/np.mean(tallies)
+norm_tallies = tallies#/np.mean(tallies)
 xvals_exp = [0.6777163904235728, 3.233885819521179, 5.723756906077348, 8.27255985267035, 10.83609576427256]
 norm_exp = [1.1935045317220545, 1.1731117824773414, 1.1021148036253776, 1.0031722054380665, 1.1391238670694865]
 plt.errorbar(xvals_exp, norm_exp, marker = "o", linestyle = "-.", 
