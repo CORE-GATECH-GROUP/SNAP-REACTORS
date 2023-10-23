@@ -1,0 +1,19 @@
+% ==================================================
+% Main File
+% --------------------------------------------------
+% Description: S8ER C3 Critcal Configuration Experiment, Dry Conditions 300 K
+% --------------------------------------------------
+% Materials:
+include s8c3_RevisedDrum.mat
+% --------------------------------------------------
+% Geometry:
+include s8c3_RevisedDrum.geo
+% ==================================================
+set nbuf 10
+set bc 1 1 1
+set pop 6000000 100 100
+det EnergyDetector de MyEnergyGrid
+ene MyEnergyGrid 3 500 1e-11 2e1
+set acelib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
+plot 31 1000 1000 0.0
+plot 11 1000 1000 0.0
