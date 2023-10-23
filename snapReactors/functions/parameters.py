@@ -139,8 +139,9 @@ ALLOWED_DIMENSIONS =\
    }
 
 ALLOWED_MATERIALS = \
-   {'fuel', 'diffusion_barrier', 'burnable_poison', 'clad', 'gap' 'internal_reflector', 'barrel', 'external_reflector', 'control_drum', 'coolant', 'upper_gridplate', 'lower_gridplate'}
-
+   {'fuel', 'diffusion_barrier', 'burnable_poison', 'clad', 'gap' 'internal_reflector', 
+    'barrel', 'external_reflector', 'control_drum', 'coolant', 'upper_gridplate', 'lower_gridplate',
+    'flooding','shutdown_absorber'}
 ALLOWED_DEPENDENCIES =\
     {'T': Dependency('Temperature', 
         DepUnits("K","F"), DepConversion(__kelvin_faren, __faren_kelvin))

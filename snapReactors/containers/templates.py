@@ -109,13 +109,20 @@ class S8ER(SerpentTemplate):
 
         plotStr = ""
         if type(plotOptions) != type(None):
+            isMesh = plotOptions[-1]
             plotTypes = plotOptions[0]
             borderType = plotOptions[3]
             plotRes = plotOptions[1]
             plotPos = plotOptions[2]
             nPlots = len(plotTypes)
+
             for i in range(0, nPlots):
-                plotStr = plotStr + "plot "+str(int(plotTypes[i]))+str(int(borderType))+" "+ str(int(plotRes))+" "+ str(int(plotRes))+" "+ str(float(plotPos[i])) +"\n"
+                if isMesh[i] == "P":
+                    typeStr = "mesh 10 "
+                    plotStr = plotStr + typeStr+str(int(plotTypes[i]))+" "+ str(int(plotRes))+" "+ str(int(plotRes))+"\n"
+                else:
+                    typeStr = "plot "
+                    plotStr = plotStr + typeStr+str(int(plotTypes[i]))+str(int(borderType))+" "+ str(int(plotRes))+" "+ str(int(plotRes))+" "+ str(float(plotPos[i])) +"\n"
             setDict['plot'] = plotStr
 
         hisStr = "set his 1\n"
@@ -898,14 +905,14 @@ class S83D_ActiveCore(S83D):
         return map
 
 class S83D_Revised(S8ER):
-    def __init__(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, config = 'C3', xsLibrary = 'ENDF7.1', hasThermScatt=False):
+    def __init__(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, config = 'C3', xsLibrary = 'ENDF7.1', hasThermScatt=False, drumGeomFactor = None, rotateDrumIndex = None, rotateDrumAngle = None):
         S8ER.__init__(self)
         self.config = config
         self.xsLibrary = xsLibrary
         self.hasThermScatt = hasThermScatt
-        self.map = self.setMap(fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums)
+        self.map = self.setMap(fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, drumGeomFactor, rotateDrumIndex, rotateDrumAngle)
 
-    def setMap(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums):
+    def setMap(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, drumGeomFactor, rotateDrumIndex, rotateDrumAngle):
         map = {}
 
         fuelMat = fuelElement.materialsDict['fuel']
@@ -955,7 +962,14 @@ class S83D_Revised(S8ER):
                 matNucs = np.array(mat.nuclides)
                 #print(matNucs)
                 matNucs[matNucs == 6000] = 6012
-                mat.nuclides = list(matNucs) 
+                mat.nuclides = list(matNucs)
+        elif self.xsLibrary == 'ENDF7.1':
+            for mat in serMatsList:
+                matNucs = np.array(mat.nuclides)
+                if len(np.where(matNucs == 6013)[0]) != 0:
+                    c13idx = np.where(matNucs == 6013)[0][0]
+                    matNucs = np.delete(matNucs, c13idx)
+                mat.nuclides = list(matNucs)  
 
         serMatsDict = createDictFromConatinerList(serMatsList)
 
@@ -979,8 +993,12 @@ class S83D_Revised(S8ER):
         cdMat = serMatsDict['control_drum']
         cdMat.set('rgb', "247 215 183")
 
-        nuclides = [1001, 6012, 6013, 8016]
-        fractions = [-0.080538, -0.5934296264, -0.0064183736, -0.319614]
+        if self.xsLibrary == 'ENDF8':
+            nuclides = [1001, 6012, 6013, 8016]
+            fractions = [-0.080538, -0.5934296264, -0.0064183736, -0.319614]
+        elif self.xsLibrary == 'ENDF7.1':
+            nuclides = [1001, 6000, 8016]
+            fractions = [-0.080538, -1*(0.5934296264+0.0064183736), -0.319614]
         lucMat = cdMat.duplicateMat("lucite")
         lucMat.set('rgb', "11 229 229")
         lucMat.set('dens', -1.19)
@@ -1018,6 +1036,14 @@ class S83D_Revised(S8ER):
             fuelMat.set('isModer', True)
             fuelMat.set('thermLib', "HZr 1001  moder ZrH 40090")
             fuelMat.set('aceTherm', "therm HZr hzr.03t therm ZrH zrh.03t")
+
+            cdMat.set('isModer', True)
+            cdMat.set('thermLib', "Bem 4009")
+            cdMat.set('aceTherm', "therm Bem be.03t")
+
+            intrefMat.set('isModer', True)
+            intrefMat.set('thermLib', 'BeO 4009')
+            intrefMat.set('aceTherm', "therm BeO beo.03t")
 
         ## New compcore verifaction induced comp
         fuelSerRadii = [fuelRad, dbRad, gapRad, cladRad]
@@ -1156,7 +1182,12 @@ class S83D_Revised(S8ER):
         voidApothem = drumCent+drumRadCurv
         voidVertex = calcVertexFromApothem(voidApothem)
 
-        print((shimAApothem-drumApothem))
+        #print((shimAApothem-drumApothem))
+
+        shimBThickness = shimBApothem - shimAApothem
+
+        if (self.config == 'C4') & (drumGeomFactor != None):
+            shimBApothem = shimAApothem + shimBThickness*drumGeomFactor
 
         def calcDrumParams(barrelOuterRad, gapThickness, radOfCurv, drumVoidThickness):
             dx = barrelOuterRad+gapThickness+radOfCurv
@@ -1244,9 +1275,10 @@ class S83D_Revised(S8ER):
             spL36  = surf("spL36", "plane", planeParams[5])
 
             drumSurf  = surf("barrelCD"+"h1", "hexyc", np.array([0.0, 0.0, drumApothem]))
-            shimAsurf = surf(uid+"ShimA"+"h1", "hexyc", np.array([0.0, 0.0, shimAApothem]))
+            shimAsurf = surf(uid+"ShimA"+"h1", "hexyc", np.array([0.0, 0.0, shimAApothem]))            
             shimBsurf = surf(uid+"ShimB"+"h1", "hexyc", np.array([0.0, 0.0, shimBApothem]))
             voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, drumCent+drumRadCurv]))
+
 
             cdCell1 = cell(uid+"cDrum1",mat=cdMat)
             cdCell2 = cell(uid+"cDrum2",mat=cdMat)
@@ -1290,12 +1322,23 @@ class S83D_Revised(S8ER):
             saVCell5.setSurfs([cdSurf5, drumSurf, shimAsurf, spU25, cdSurf5, drumSurf, shimAsurf, spL25], [1, 0, 1, 0, 3, 0, 1, 0], hasMultUnion=True)
             saVCell6.setSurfs([cdSurf6, drumSurf, shimAsurf, spU36, cdSurf6, drumSurf, shimAsurf, spL36], [1, 0, 1, 0, 3, 0, 1, 0], hasMultUnion=True)
             
-            sbCell1 = cell(uid+"sbDrum1",mat=cdMat)
-            sbCell2 = cell(uid+"sbDrum2",mat=cdMat)
-            sbCell3 = cell(uid+"sbDrum3",mat=cdMat)
-            sbCell4 = cell(uid+"sbDrum4",mat=cdMat)
-            sbCell5 = cell(uid+"sbDrum5",mat=cdMat)
-            sbCell6 = cell(uid+"sbDrum6",mat=cdMat)
+
+            if drumGeomFactor != None:
+                cdMatB = cdMat.duplicateMat("controlDrumBShimAdjusted")
+                cdMatB.set('dens', cdMat.dens/drumGeomFactor)
+                sbCell1 = cell(uid+"sbDrum1",mat=cdMatB)
+                sbCell2 = cell(uid+"sbDrum2",mat=cdMatB)
+                sbCell3 = cell(uid+"sbDrum3",mat=cdMatB)
+                sbCell4 = cell(uid+"sbDrum4",mat=cdMatB)
+                sbCell5 = cell(uid+"sbDrum5",mat=cdMatB)
+                sbCell6 = cell(uid+"sbDrum6",mat=cdMatB)
+            else:
+                sbCell1 = cell(uid+"sbDrum1",mat=cdMat)
+                sbCell2 = cell(uid+"sbDrum2",mat=cdMat)
+                sbCell3 = cell(uid+"sbDrum3",mat=cdMat)
+                sbCell4 = cell(uid+"sbDrum4",mat=cdMat)
+                sbCell5 = cell(uid+"sbDrum5",mat=cdMat)
+                sbCell6 = cell(uid+"sbDrum6",mat=cdMat)
 
             sbCell1.setSurfs([cdSurf1, shimAsurf, shimBsurf, spU14, spL14], [1, 0, 1, 1, 1])
             sbCell2.setSurfs([cdSurf2, shimAsurf, shimBsurf, spU25, spL25], [1, 0, 1, 1, 1])
@@ -1641,5 +1684,278 @@ class S83D_Revised(S8ER):
         cStack = buildStackPlanes("core_grid", [voidPin, lgVoid, cdBarrel, ugVoid, voidPin], [lvt, lgt, fuelLen, ugt, uvt], -22.9, cdBarrel.boundary)
         box1 = buildBoundingBox(cStack, width =controlDrumSystemRad, length=controlDrumSystemRad, height=22.9)
 
+        map = {'active_core': box1}
+        drumRotIds = []
+
+        rotStr = ""
+
+        # trans U barrelcd1_univ rot  20.760371371825407  11.986006000000001 0 0 0 1 105
+        # trans U barrelcd2_univ rot  0                   23.972012          0 0 0 1 105
+        # trans U barrelcd3_univ rot -20.760371371825407  11.986006000000001 0 0 0 1 105
+        # trans U barrelcd4_univ rot -20.760371371825407 -11.986006000000001 0 0 0 1 105
+        # trans U barrelcd5_univ rot  0                  -23.972012          0 0 0 1 105
+        # trans U barrelcd6_univ rot  20.760371371825407 -11.986006000000001 0 0 0 1 105
+        
+        drumX = [20.760371371825407, 0, -20.760371371825407, -20.760371371825407, 0, 20.760371371825407]
+        drumY = [11.986006000000001, 23.972012 , 11.986006000000001, -11.986006000000001, -23.972012, -11.986006000000001]
+
+        if ((rotateDrumIndex != None) & (rotateDrumAngle != None)):
+            if type(rotateDrumIndex) == type([]):
+                for i in range(0, len(rotateDrumIndex)):
+                    drumRotIds.append("barrelcd{}_univ".format(rotateDrumIndex[i]))
+                    rotStr = rotStr + "trans U {} rot {} {} 0 0 0 1 -{}\n".format(drumRotIds[i], drumX[rotateDrumIndex[i]-1], drumY[rotateDrumIndex[i]-1], rotateDrumAngle[i])
+
+        #print(rotStr)
+        map = {'active_core': box1, 'rotations': rotStr}
+        return map
+
+class S82D_Revised(S8ER):
+    def __init__(self, fuelElement, coolElement, internalReflector, barrel, controlDrums, config = 'C3', xsLibrary = 'ENDF7.1', hasThermScatt=False):
+        S8ER.__init__(self)
+        self.config = config
+        self.xsLibrary = xsLibrary
+        self.hasThermScatt = hasThermScatt
+        self.map = self.setMap(fuelElement, coolElement, internalReflector, barrel, controlDrums)
+
+    def setMap(self, fuelElement, coolElement, internalReflector, barrel, controlDrums):
+        map = {}
+        fuelMat = fuelElement.materialsDict['fuel']
+        dbMat = fuelElement.materialsDict['diffusion_barrier']
+        bpMat = fuelElement.materialsDict['burnable_poison']
+        gapMat = fuelElement.materialsDict['gap']
+        cladMat = fuelElement.materialsDict['clad']
+        coolMat = coolElement.materialsDict['coolant']
+        intrefMat = internalReflector.materialsDict['internal_reflector']
+        barrelMat = barrel.materialsDict['barrel']
+        cdMat = controlDrums.materialsDict['control_drum']
+
+        fuelRad	            =0.67564
+        dbRad	            =0.681228
+        gapRad	            =0.685292
+        cladRad	            =0.71374
+        ecPinRad            =0.7112
+        elemPitch           =1.4478
+
+        latticeApothem = 11.43
+        intRefRad = 11.7475
+        barrelRad = barrel.dimensionsDict['barrel_radius'].valueSERP
+
+        serMatsList = super()._buildMaterials([fuelMat, coolMat, dbMat, bpMat, gapMat, cladMat, intrefMat, barrelMat, cdMat])
+
+        #replace 6000 with 6012 for endf8 lib
+        if self.xsLibrary == 'ENDF8':
+            for mat in serMatsList:
+                matNucs = np.array(mat.nuclides)
+                #print(matNucs)
+                matNucs[matNucs == 6000] = 6012
+                mat.nuclides = list(matNucs)
+        elif self.xsLibrary == 'ENDF7.1':
+            for mat in serMatsList:
+                matNucs = np.array(mat.nuclides)
+                #print(matNucs)
+                c13idx = np.where(matNucs == 6013)[0][0]
+                print(c13idx)
+                matNucs = np.delete(matNucs, c13idx)
+                print(matNucs)
+                mat.nuclides = list(matNucs) 
+
+        serMatsDict = createDictFromConatinerList(serMatsList)
+
+        def intRefMix(bar, clad, intref, air):
+            refMix = mix("reflMix", [bar, clad, intref, air], [0.191, 0.042, 0.410, 0.357])
+            return refMix
+
+        barMat = serMatsDict['barrel']
+        barMat.set('rgb', "102 0 0")
+        cladMat = serMatsDict['clad']
+        cladMat.set('rgb', "100 100 100")
+        intrefMat = serMatsDict['internal_reflector']
+        airMat = serMatsDict['coolant']
+        airMat.set('rgb', "196 193 193")
+        dbMat = serMatsDict['diffusion_barrier']
+        bpMat = serMatsDict['burnable_poison']
+        cdMat = serMatsDict['control_drum']
+        cdMat.set('rgb', "247 215 183")
+
+        nuclides = [1001, 6012, 6013, 8016]
+        fractions = [-0.080538, -0.5934296264, -0.0064183736, -0.319614]
+        lucMat = cdMat.duplicateMat("lucite")
+        lucMat.set('rgb', "11 229 229")
+        lucMat.set('dens', -1.19)
+        lucMat.set('nuclides', nuclides)
+        lucMat.set('fractions', fractions)
+
+        gapMat = serMatsDict['gap']
+        fuelMat = serMatsDict['fuel']
+        fuelMat.set('rgb', "219 89 89")
+
+        cerMat = mix("ceramic", [dbMat, bpMat], [0.994303206, 0.005696794])
+        cerMat.set('rgb', '255 174 66')
+
+        refMix = intRefMix(barMat, cladMat, intrefMat, airMat)
+        refMix.set('rgb', "186 152 117")   
+
+        if (self.hasThermScatt) & (self.xsLibrary == 'ENDF8'):
+            fuelMat.set('isModer', True)
+            fuelMat.set('thermLib', "HZr 1001  moder ZrH 40090")
+            fuelMat.set('aceTherm', "therm HZr h-zrh.40t therm ZrH zr-zrh.40t")
+
+            cdMat.set('isModer', True)
+            cdMat.set('thermLib', "Bem 4009")
+            cdMat.set('aceTherm', "therm Bem be-met.40t")
+
+            lucMat.set('isModer', True)
+            lucMat.set('thermLib', 'HLu 1001')
+            lucMat.set('aceTherm', "therm HLu h-luci.40t")
+
+            intrefMat.set('isModer', True)
+            intrefMat.set('thermLib', 'BeO 4009 moder OBe 8016')
+            intrefMat.set('aceTherm', "therm BeO be-beo.40t therm OBe o-beo.40t")
+            
+        elif (self.hasThermScatt) & (self.xsLibrary == 'ENDF7.1'):
+            fuelMat.set('isModer', True)
+            fuelMat.set('thermLib', "HZr 1001  moder ZrH 40090")
+            fuelMat.set('aceTherm', "therm HZr hzr.03t therm ZrH zrh.03t")
+
+        ## New compcore verifaction induced comp
+        fuelSerRadii = [fuelRad, dbRad, gapRad, cladRad]
+        fuelSerMats = [fuelMat, cerMat, gapMat, cladMat, airMat]
+
+        fuelSer = pin('fuelElem', 2)
+        fuelSer.set('materials', fuelSerMats)
+        fuelSer.set('radii', fuelSerRadii)
+
+        coolSer = pin('900', 1)
+        coolSer.set('materials', [airMat])
+
+        if (self.config == 'C2') | (self.config =='C1') | (self.config =='C4'):
+            lucSerRadii = [ecPinRad]
+            lucSerMats = [lucMat, airMat]
+            lucSer = pin('1700', 2)
+            lucSer.setPin(lucSerMats, lucSerRadii)
+            
+        nRings = 8
+        fes = [0]*nRings
+        for i in range(0, nRings):
+            fes[i] = fuelSer.duplicate(str(i+1)+"00")
+
+
+        if self.config == 'C3':
+            univMap = {'1': fes[0], '2': fes[1],'3': fes[2], '4': fes[3], '5': fes[4], '6': fes[5], '7': fes[6], '8': fes[7], '9': coolSer, '0':coolSer}
+            layout = " 9 8 8 8 8 8 8 8 9;\
+                      8 7 7 7 7 7 7 7 7 8;\
+                     8 7 6 6 6 6 6 6 6 7 8;\
+                    8 7 6 5 5 5 5 5 5 6 7 8;\
+                   8 7 6 5 4 4 4 4 4 5 6 7 8;\
+                  8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+                 8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+                8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+               9 7 6 5 4 3 2 1 1 1 2 3 4 5 6 7 9;\
+                8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+                 8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+                  8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+                   8 7 6 5 4 4 4 4 4 5 6 7 8;\
+                    8 7 6 5 5 5 5 5 5 6 7 8;\
+                     8 7 6 6 6 6 6 6 6 7 8;\
+                      8 7 7 7 7 7 7 7 7 8;\
+                       9 8 8 8 8 8 8 8 9"
+        elif self.config == 'C2':
+            univMap = {'1': fes[0], '2': fes[1],'3': fes[2], '4': fes[3], '5': fes[4], '6': fes[5], '7': fes[6], '8': fes[7], '9': coolSer, 'L': lucSer, '0':coolSer}
+            layout = " 9 L L L L L L L 9;\
+                      L L 7 7 7 7 7 7 L L;\
+                     L L 6 6 6 6 6 6 6 L L;\
+                    L 7 6 5 5 5 5 5 5 6 7 L;\
+                   L 7 6 5 4 4 4 4 4 5 6 7 L;\
+                  L 7 6 5 4 3 3 3 3 4 5 6 7 L;\
+                 L 7 6 5 4 3 2 2 2 3 4 5 6 7 L;\
+                L 7 6 5 4 3 2 1 1 2 3 4 5 6 7 L;\
+               9 7 6 5 4 3 2 1 1 1 2 3 4 5 6 7 9;\
+                8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+                 8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+                  8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+                   8 7 6 5 4 4 4 4 4 5 6 7 8;\
+                    8 7 6 5 5 5 5 5 5 6 7 8;\
+                     8 7 6 6 6 6 6 6 6 7 8;\
+                      8 7 7 7 7 7 7 7 7 8;\
+                       9 8 8 8 8 8 8 8 9"
+        elif self.config == 'C1':
+            univMap = {'1': fes[0], '2': fes[1],'3': fes[2], '4': fes[3], '5': fes[4], '6': fes[5], '7': fes[6], '8': fes[7], '9': coolSer, 'L': lucSer, '0':coolSer}
+            layout = " 9 L L L L L L L 9;\
+                      L L 7 7 L 7 L L L L;\
+                     L L 6 6 6 6 6 6 6 L L;\
+                    L L 6 5 5 5 5 5 5 6 L L;\
+                   L L 6 5 4 4 4 4 4 5 6 L L;\
+                  L L 6 5 4 3 3 3 3 4 5 6 L L;\
+                 L L 6 5 4 3 2 2 2 3 4 5 6 L L;\
+                L L 6 5 4 3 2 1 1 2 3 4 5 6 L L;\
+               9 7 6 5 4 3 2 1 1 1 2 3 4 5 6 7 9;\
+                8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+                 8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+                  8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+                   8 7 6 5 4 4 4 4 4 5 6 7 8;\
+                    8 7 6 5 5 5 5 5 5 6 7 8;\
+                     8 7 6 6 6 6 6 6 6 7 8;\
+                      8 7 7 7 7 7 7 7 7 8;\
+                       9 8 8 8 8 8 8 8 9"
+        elif self.config == 'C4':
+            univMap = {'1': fes[0], '2': fes[1],'3': fes[2], '4': fes[3], '5': fes[4], '6': fes[5], '7': fes[6], '8': fes[7], '9': coolSer, 'L': lucSer, '0':coolSer}
+            layout = " 9 L L L 8 L L L 9;\
+                      L L 7 7 7 7 7 7 L L;\
+                     L 7 6 6 6 6 6 6 6 7 L;\
+                    L 7 6 5 5 5 5 5 5 6 7 L;\
+                   L 7 6 5 4 4 4 4 4 5 6 7 L;\
+                  L 7 6 5 4 3 3 3 3 4 5 6 7 L;\
+                 L 7 6 5 4 3 2 2 2 3 4 5 6 7 L;\
+                8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+               9 7 6 5 4 3 2 1 1 1 2 3 4 5 6 7 9;\
+                8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+                 8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+                  8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+                   8 7 6 5 4 4 4 4 4 5 6 7 8;\
+                    8 7 6 5 5 5 5 5 5 6 7 8;\
+                     8 7 6 6 6 6 6 6 6 7 8;\
+                      8 7 7 7 7 7 7 7 7 8;\
+                       9 8 8 8 8 8 8 8 9"
+
+        nOuter = 2
+        hexLat1 = buildHexLattice("activeCoreLat", layout, univMap, nOuter, elemPitch, hexApothem = latticeApothem)
+        intref1 = buildPeripheralRing(hexLat1, intRefRad, material= refMix, ringId="1000")
+        barrel1 = buildPeripheralRing(intref1, barrelRad, material= barMat, ringId= "1100")
+
+        drumApothem = 17.4732315
+        shimAApothem = 19.35542598
+        shimBApothem = 21.30540674
+        drumVertex = calcVertexFromApothem(drumApothem)
+        shimAVertex = calcVertexFromApothem(shimAApothem)
+        shimBVertex = calcVertexFromApothem(shimBApothem)
+
+        uid = "barrel"
+        drumSurf  = surf("barrelCD"+"h1", "hexyc", np.array([0.0, 0.0, drumApothem]))
+        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, drumVertex]))
+
+
+        cdSys = cell(uid+'cdSys', mat=cdMat)
+        cdSys.setSurfs([barrel1.boundary, drumSurf], [0, 1])
+
+        cdOnly = universe("1200")
+        cdOnly.setBoundary(drumSurf)
+        cdOnly.setGeom([cdSys])
+        cdOnly.collectAll()
+
+        cdFull = universe(uid+"cdFull")
+
+        cdSysDV = cell(uid+'cdSysVoidDV', isVoid=True)
+        cdSysDV.setSurfs([drumSurf, voidSurf], [0, 1]) 
+
+        cdSysD =  cell(uid+'cdSysD')
+        cdSysD.setFill(cdOnly)
+        cdSysD.setSurfs([barrel1.boundary, drumSurf], [0, 1])
+ 
+        cdFull.setBoundary(voidSurf)
+        cdFull.setGeom([cdSysD, cdSysDV])
+        cdFull.collectAll()
+
+        cdBarrel = buildPeripheralObject(barrel1, cdFull)
+        box1 = buildBoundingBox(cdBarrel)
         map = {'active_core': box1}
         return map

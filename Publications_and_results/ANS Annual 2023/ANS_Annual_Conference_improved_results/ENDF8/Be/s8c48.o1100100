@@ -1,0 +1,2505 @@
+lemhi0321.ib
+lemhi0321.ib
+lemhi0321.ib
+lemhi0321.ib
+lemhi0323.ib
+lemhi0323.ib
+lemhi0323.ib
+lemhi0323.ib
+
+  _                   .-=-.           .-=-.          .-==-.       
+ { }      __        .' O o '.       .' O o '.       /  -<' )--<   
+ { }    .' O'.     / o .-. O \     / o .-. O \     /  .---`       
+ { }   / .-. o\   /O  /   \  o\   /O  /   \  o\   /O /            
+  \ `-` /   \ O`-'o  /     \  O`-'o  /     \  O`-`o /             
+   `-.-`     '.____.'       `._____.'       `.____.'              
+
+Serpent 2 beta
+
+A Continuous-energy Monte Carlo Reactor Physics Burnup Calculation Code
+
+ - Version 2.1.32 (February 24, 2021) -- Contact: serpent@vtt.fi
+
+ - Reference: J. Leppanen, et al. "The Serpent Monte Carlo code: Status,
+              development and applications in 2013." Ann. Nucl. Energy,
+              82 (2015) 142-150.
+
+ - Compiled Oct 21 2021 21:30:09
+
+ - MPI Parallel calculation mode available
+
+ - OpenMP Parallel calculation mode available
+
+ - Geometry and mesh plotting available
+
+ - Default data path set to: "/hpc-common/data/serpent/xsdata/"
+
+ - Full command used to run Serpent:
+
+   sss2 s8c48.main -omp 48
+
+Begin calculation on Tue Jun  6 15:53:33 2023 at lemhi0321
+
+Reading input file "s8c48.main"...
+Reading input file "s8c48.mat"...
+Reading input file "s8c48.geo"...
+
+Checking duplicate input definitions...
+OK.
+
+Creating geometry...
+OK.
+
+Counting geometry zones...
+
+The geometry consists of 11 levels:
+
+Level 0 size: max 2 zones
+Level 1 size: max 2 zones
+Level 2 size: max 5 zones
+Level 3 size: max 2 zones
+Level 4 size: max 2 zones
+Level 5 size: max 441 zones
+Level 6 size: max 10 zones
+Level 7 size: max 441 zones
+Level 8 size: max 5 zones
+Level 9 size: max 5 zones
+Level 10 size: max 2 zones
+
+Processing cells...
+OK.
+
+Linking materials to geometry...
+OK.
+
+Processing detector definitions...
+Allocating RESMAT matrices and associated arrays...
+OK.
+
+Counting cells...
+OK.
+
+Processing data for group constant generation:
+
+ - 70 energy groups in micro-group structure
+ - 2 energy groups in macro-group structure
+ - B1 fundamental mode calculation is not run
+ - Group constants generated in 1 universes
+ - Discontinuity factors are not calculated
+ - Pin-power distributions are not calculated
+ - Albedos are not calculated
+ - Poison cross sections are not calculated
+
+Plotting geometry:
+
+   0% complete
+  50% complete
+ 100% complete
+
+Reading ACE directory files...
+OK.
+
+Adding nuclides in material lower_gridplate...
+
+Nuclide  28058.00c -- nickel 58 at 294K (Ni-58)
+Nuclide  28060.00c -- nickel 60 at 294K (Ni-60)
+Nuclide  28061.00c -- nickel 61 at 294K (Ni-61)
+Nuclide  28062.00c -- nickel 62 at 294K (Ni-62)
+Nuclide  28064.00c -- nickel 64 at 294K (Ni-64)
+Nuclide  27059.00c -- cobalt 59 at 294K (Co-59)
+Nuclide  24050.00c -- chromium 50 at 294K (Cr-50)
+Nuclide  24052.00c -- chromium 52 at 294K (Cr-52)
+Nuclide  24053.00c -- chromium 53 at 294K (Cr-53)
+Nuclide  24054.00c -- chromium 54 at 294K (Cr-54)
+Nuclide  42092.00c -- molybdenum 92 at 294K (Mo-92)
+Nuclide  42094.00c -- molybdenum 94 at 294K (Mo-94)
+Nuclide  42095.00c -- molybdenum 95 at 294K (Mo-95)
+Nuclide  42096.00c -- molybdenum 96 at 294K (Mo-96)
+Nuclide  42097.00c -- molybdenum 97 at 294K (Mo-97)
+Nuclide  42098.00c -- molybdenum 98 at 294K (Mo-98)
+Nuclide  42100.00c -- molybdenum 100 at 294K (Mo-100)
+Nuclide  26054.00c -- iron 54 at 294K (Fe-54)
+Nuclide  26056.00c -- iron 56 at 294K (Fe-56)
+Nuclide  26057.00c -- iron 57 at 294K (Fe-57)
+Nuclide  26058.00c -- iron 58 at 294K (Fe-58)
+Nuclide  74182.00c -- tungsten 182 at 294K (W-182)
+Nuclide  74183.00c -- tungsten 183 at 294K (W-183)
+Nuclide  74184.00c -- tungsten 184 at 294K (W-184)
+Nuclide  74186.00c -- tungsten 186 at 294K (W-186)
+Nuclide  25055.00c -- manganese 55 at 294K (Mn-55)
+Nuclide  23051.00c -- vanadium 51 at 294K (V-51)
+Nuclide  14028.00c -- silicon 28 at 294K (Si-28)
+Nuclide  14029.00c -- silicon 29 at 294K (Si-29)
+Nuclide  14030.00c -- silicon 30 at 294K (Si-30)
+Nuclide   6012.00c -- carbon 12 at 294K (C-12)
+Nuclide  29063.00c -- copper 63 at 294K (Cu-63)
+Nuclide  29065.00c -- copper 65 at 294K (Cu-65)
+
+Adding nuclides in material coolant...
+
+Nuclide   7014.00c -- nitrogen 14 at 294K (N-14)
+Nuclide   7015.00c -- nitrogen 15 at 294K (N-15)
+Nuclide   8016.00c -- oxygen 16 at 294K (O-16)
+Nuclide   8017.00c -- oxygen 17 at 294K (O-17)
+Nuclide  18036.00c -- argon 36 at 294K (Ar-36)
+Nuclide  18038.00c -- argon 38 at 294K (Ar-38)
+Nuclide  18040.00c -- argon 40 at 294K (Ar-40)
+
+Adding nuclides in material clad...
+
+Nuclide  13027.00c -- aluminum 27 at 294K (Al-27)
+Nuclide  22046.00c -- titanium 46 at 294K (Ti-46)
+Nuclide  22047.00c -- titanium 47 at 294K (Ti-47)
+Nuclide  22048.00c -- titanium 48 at 294K (Ti-48)
+Nuclide  22049.00c -- titanium 49 at 294K (Ti-49)
+Nuclide  22050.00c -- titanium 50 at 294K (Ti-50)
+
+Adding nuclides in material lucite...
+
+Nuclide   1001.00c -- hydrogen at 294K (H-1)
+Nuclide   6013.00c -- carbon 13 at 294K (C-13)
+
+Adding nuclides in material fuel...
+
+Nuclide   1002.00c -- deuterium at 294K (H-2)
+Nuclide  92235.00c -- uranium 235 at 294K (U-235)
+Nuclide  92238.00c -- uranium 238 at 294K (U-238)
+Nuclide  40090.00c -- zirconium 90 at 294K (Zr-90)
+Nuclide  40091.00c -- zirconium 91 at 294K (Zr-91)
+Nuclide  40092.00c -- zirconium 92 at 294K (Zr-92)
+Nuclide  40094.00c -- zirconium 94 at 294K (Zr-94)
+Nuclide  40096.00c -- zirconium 96 at 294K (Zr-96)
+
+Adding nuclides in material diffusion_barrier...
+
+Nuclide   3006.00c -- lithium 6 at 294K (Li-6)
+Nuclide   3007.00c -- lithium 7 at 294K (Li-7)
+Nuclide  20040.00c -- calcium 40 at 294K (Ca-40)
+Nuclide  20042.00c -- calcium 42 at 294K (Ca-42)
+Nuclide  20043.00c -- calcium 43 at 294K (Ca-43)
+Nuclide  20044.00c -- calcium 44 at 294K (Ca-44)
+Nuclide  20046.00c -- calcium 46 at 294K (Ca-46)
+Nuclide  20048.00c -- calcium 48 at 294K (Ca-48)
+Nuclide  12024.00c -- magnesium 24 at 294K (Mg-24)
+Nuclide  12025.00c -- magnesium 25 at 294K (Mg-25)
+Nuclide  12026.00c -- magnesium 26 at 294K (Mg-26)
+Nuclide  56130.00c -- barium 130 at 294K (Ba-130)
+Nuclide  56132.00c -- barium 132 at 294K (Ba-132)
+Nuclide  56134.00c -- barium 134 at 294K (Ba-134)
+Nuclide  56135.00c -- barium 135 at 294K (Ba-135)
+Nuclide  56136.00c -- barium 136 at 294K (Ba-136)
+Nuclide  56137.00c -- barium 137 at 294K (Ba-137)
+Nuclide  56138.00c -- barium 138 at 294K (Ba-138)
+Nuclide  38084.00c -- strontium 84 at 294K (Sr-84)
+Nuclide  38086.00c -- strontium 86 at 294K (Sr-86)
+Nuclide  38087.00c -- strontium 87 at 294K (Sr-87)
+Nuclide  38088.00c -- strontium 88 at 294K (Sr-88)
+
+Adding nuclides in material burnable_poison...
+
+Nuclide  62144.00c -- samarium 144 at 294K (Sm-144)
+Nuclide  62147.00c -- samarium 147 at 294K (Sm-147)
+Nuclide  62148.00c -- samarium 148 at 294K (Sm-148)
+Nuclide  62149.00c -- samarium 149 at 294K (Sm-149)
+Nuclide  62150.00c -- samarium 150 at 294K (Sm-150)
+Nuclide  62152.00c -- samarium 152 at 294K (Sm-152)
+Nuclide  62154.00c -- samarium 154 at 294K (Sm-154)
+
+Adding nuclides in material ceramic...
+
+Adding nuclides in material gap...
+
+Nuclide   2004.00c -- helium 4 at 294K (He-4)
+
+Adding nuclides in material barrel...
+
+Nuclide  15031.00c -- phosphorus 31 at 294K (P-31)
+Nuclide  16032.00c -- sulfur 32 at 294K (S-32)
+Nuclide  16033.00c -- sulfur 33 at 294K (S-33)
+Nuclide  16034.00c -- sulfur 34 at 294K (S-34)
+Nuclide  16036.00c -- sulfur 36 at 294K (S-36)
+
+Adding nuclides in material internal_reflector...
+
+Nuclide   4009.00c -- beryllium 9 at 294K (Be-9)
+
+Adding nuclides in material reflMix...
+
+Adding nuclides in material control_drum...
+
+Adding nuclides in material upper_gridplate...
+
+Adding thermal scattering data...
+
+Nuclide be-met.40t -- beryllium 9 at 296K (Be-9)
+
+Checking data and printing output...
+OK.
+
+Sharing input data to MPI tasks...
+OK.
+
+Generating unionize energy grids...
+
+Adding points:
+
+  1001.00c -- Points added in neutron grid: 633
+  1002.00c -- Points added in neutron grid: 115
+  2004.00c -- Points added in neutron grid: 62
+  3006.00c -- Points added in neutron grid: 161
+  3007.00c -- Points added in neutron grid: 294
+  4009.00c -- Points added in neutron grid: 112
+  4009.00s -- Points added in neutron grid: 1591
+  6012.00c -- Points added in neutron grid: 911
+  6013.00c -- Points added in neutron grid: 470
+  7014.00c -- Points added in neutron grid: 1098
+  7015.00c -- Points added in neutron grid: 209
+  8016.00c -- Points added in neutron grid: 1536
+  8017.00c -- Points added in neutron grid: 162
+ 12024.00c -- Points added in neutron grid: 2105
+ 12025.00c -- Points added in neutron grid: 1104
+ 12026.00c -- Points added in neutron grid: 656
+ 13027.00c -- Points added in neutron grid: 4300
+ 14028.00c -- Points added in neutron grid: 7329
+ 14029.00c -- Points added in neutron grid: 2351
+ 14030.00c -- Points added in neutron grid: 3583
+ 15031.00c -- Points added in neutron grid: 334
+ 16032.00c -- Points added in neutron grid: 9111
+ 16033.00c -- Points added in neutron grid: 1481
+ 16034.00c -- Points added in neutron grid: 1121
+ 16036.00c -- Points added in neutron grid: 125
+ 18036.00c -- Points added in neutron grid: 719
+ 18038.00c -- Points added in neutron grid: 829
+ 18040.00c -- Points added in neutron grid: 22035
+ 20040.00c -- Points added in neutron grid: 25162
+ 20042.00c -- Points added in neutron grid: 7168
+ 20043.00c -- Points added in neutron grid: 5180
+ 20044.00c -- Points added in neutron grid: 4486
+ 20046.00c -- Points added in neutron grid: 591
+ 20048.00c -- Points added in neutron grid: 824
+ 22046.00c -- Points added in neutron grid: 14922
+ 22047.00c -- Points added in neutron grid: 5058
+ 22048.00c -- Points added in neutron grid: 13257
+ 22049.00c -- Points added in neutron grid: 6401
+ 22050.00c -- Points added in neutron grid: 4451
+ 23051.00c -- Points added in neutron grid: 16620
+ 24050.00c -- Points added in neutron grid: 33501
+ 24052.00c -- Points added in neutron grid: 30978
+ 24053.00c -- Points added in neutron grid: 22875
+ 24054.00c -- Points added in neutron grid: 14087
+ 25055.00c -- Points added in neutron grid: 13146
+ 26054.00c -- Points added in neutron grid: 35838
+ 26056.00c -- Points added in neutron grid: 39307
+ 26057.00c -- Points added in neutron grid: 11352
+ 26058.00c -- Points added in neutron grid: 20186
+ 27059.00c -- Points added in neutron grid: 19650
+ 28058.00c -- Points added in neutron grid: 42846
+ 28060.00c -- Points added in neutron grid: 37313
+ 28061.00c -- Points added in neutron grid: 7699
+ 28062.00c -- Points added in neutron grid: 9791
+ 28064.00c -- Points added in neutron grid: 8089
+ 29063.00c -- Points added in neutron grid: 32275
+ 29065.00c -- Points added in neutron grid: 25269
+ 38084.00c -- Points added in neutron grid: 3574
+ 38086.00c -- Points added in neutron grid: 7142
+ 38087.00c -- Points added in neutron grid: 17405
+ 38088.00c -- Points added in neutron grid: 8788
+ 40090.00c -- Points added in neutron grid: 13131
+ 40091.00c -- Points added in neutron grid: 18827
+ 40092.00c -- Points added in neutron grid: 14172
+ 40094.00c -- Points added in neutron grid: 11085
+ 40096.00c -- Points added in neutron grid: 5494
+ 42092.00c -- Points added in neutron grid: 11684
+ 42094.00c -- Points added in neutron grid: 9762
+ 42095.00c -- Points added in neutron grid: 11511
+ 42096.00c -- Points added in neutron grid: 12747
+ 42097.00c -- Points added in neutron grid: 12975
+ 42098.00c -- Points added in neutron grid: 20305
+ 42100.00c -- Points added in neutron grid: 19649
+ 56130.00c -- Points added in neutron grid: 13569
+ 56132.00c -- Points added in neutron grid: 1719
+ 56134.00c -- Points added in neutron grid: 15548
+ 56135.00c -- Points added in neutron grid: 21184
+ 56136.00c -- Points added in neutron grid: 16250
+ 56137.00c -- Points added in neutron grid: 12403
+ 56138.00c -- Points added in neutron grid: 5565
+ 62144.00c -- Points added in neutron grid: 10008
+ 62147.00c -- Points added in neutron grid: 38464
+ 62148.00c -- Points added in neutron grid: 4039
+ 62149.00c -- Points added in neutron grid: 25807
+ 62150.00c -- Points added in neutron grid: 8012
+ 62152.00c -- Points added in neutron grid: 21028
+ 62154.00c -- Points added in neutron grid: 10057
+ 74182.00c -- Points added in neutron grid: 38611
+ 74183.00c -- Points added in neutron grid: 50606
+ 74184.00c -- Points added in neutron grid: 28030
+ 74186.00c -- Points added in neutron grid: 25951
+ 92235.00c -- Points added in neutron grid: 73077
+ 92238.00c -- Points added in neutron grid: 146848
+
+Generating unionized energy grid:
+
+ - Unionization performed without grid thinning
+   between 1.00E-11 and 20.0 MeV.
+
+ - Final neutron grid size: 1336771 points.
+
+ - 131.56 Mb of memory allocated for grid data
+
+OK.
+
+Processing cross sections and ENDF reaction laws...
+
+Nuclide   1001.00c -- hydrogen at 294K (H-1)
+Nuclide   1002.00c -- deuterium at 294K (H-2)
+Nuclide   2004.00c -- helium 4 at 294K (He-4)
+Nuclide   3006.00c -- lithium 6 at 294K (Li-6)
+Nuclide   3007.00c -- lithium 7 at 294K (Li-7)
+Nuclide   4009.00c -- beryllium 9 at 294K (Be-9)
+Nuclide   4009.00s -- beryllium 9 at 294K (Be-9)
+Nuclide   6012.00c -- carbon 12 at 294K (C-12)
+Nuclide   6013.00c -- carbon 13 at 294K (C-13)
+Nuclide   7014.00c -- nitrogen 14 at 294K (N-14)
+Nuclide   7015.00c -- nitrogen 15 at 294K (N-15)
+Nuclide   8016.00c -- oxygen 16 at 294K (O-16)
+Nuclide   8017.00c -- oxygen 17 at 294K (O-17)
+Nuclide  12024.00c -- magnesium 24 at 294K (Mg-24)
+Nuclide  12025.00c -- magnesium 25 at 294K (Mg-25)
+Nuclide  12026.00c -- magnesium 26 at 294K (Mg-26)
+Nuclide  13027.00c -- aluminum 27 at 294K (Al-27)
+Nuclide  14028.00c -- silicon 28 at 294K (Si-28)
+Nuclide  14029.00c -- silicon 29 at 294K (Si-29)
+Nuclide  14030.00c -- silicon 30 at 294K (Si-30)
+Nuclide  15031.00c -- phosphorus 31 at 294K (P-31)
+Nuclide  16032.00c -- sulfur 32 at 294K (S-32)
+Nuclide  16033.00c -- sulfur 33 at 294K (S-33)
+Nuclide  16034.00c -- sulfur 34 at 294K (S-34)
+Nuclide  16036.00c -- sulfur 36 at 294K (S-36)
+Nuclide  18036.00c -- argon 36 at 294K (Ar-36)
+Nuclide  18038.00c -- argon 38 at 294K (Ar-38)
+Nuclide  18040.00c -- argon 40 at 294K (Ar-40)
+Nuclide  20040.00c -- calcium 40 at 294K (Ca-40)
+Nuclide  20042.00c -- calcium 42 at 294K (Ca-42)
+Nuclide  20043.00c -- calcium 43 at 294K (Ca-43)
+Nuclide  20044.00c -- calcium 44 at 294K (Ca-44)
+Nuclide  20046.00c -- calcium 46 at 294K (Ca-46)
+Nuclide  20048.00c -- calcium 48 at 294K (Ca-48)
+Nuclide  22046.00c -- titanium 46 at 294K (Ti-46)
+Nuclide  22047.00c -- titanium 47 at 294K (Ti-47)
+Nuclide  22048.00c -- titanium 48 at 294K (Ti-48)
+Nuclide  22049.00c -- titanium 49 at 294K (Ti-49)
+Nuclide  22050.00c -- titanium 50 at 294K (Ti-50)
+Nuclide  23051.00c -- vanadium 51 at 294K (V-51)
+Nuclide  24050.00c -- chromium 50 at 294K (Cr-50)
+Nuclide  24052.00c -- chromium 52 at 294K (Cr-52)
+Nuclide  24053.00c -- chromium 53 at 294K (Cr-53)
+Nuclide  24054.00c -- chromium 54 at 294K (Cr-54)
+Nuclide  25055.00c -- manganese 55 at 294K (Mn-55)
+Nuclide  26054.00c -- iron 54 at 294K (Fe-54)
+Nuclide  26056.00c -- iron 56 at 294K (Fe-56)
+Nuclide  26057.00c -- iron 57 at 294K (Fe-57)
+Nuclide  26058.00c -- iron 58 at 294K (Fe-58)
+Nuclide  27059.00c -- cobalt 59 at 294K (Co-59)
+Nuclide  28058.00c -- nickel 58 at 294K (Ni-58)
+Nuclide  28060.00c -- nickel 60 at 294K (Ni-60)
+Nuclide  28061.00c -- nickel 61 at 294K (Ni-61)
+Nuclide  28062.00c -- nickel 62 at 294K (Ni-62)
+Nuclide  28064.00c -- nickel 64 at 294K (Ni-64)
+Nuclide  29063.00c -- copper 63 at 294K (Cu-63)
+Nuclide  29065.00c -- copper 65 at 294K (Cu-65)
+Nuclide  38084.00c -- strontium 84 at 294K (Sr-84)
+Nuclide  38086.00c -- strontium 86 at 294K (Sr-86)
+Nuclide  38087.00c -- strontium 87 at 294K (Sr-87)
+Nuclide  38088.00c -- strontium 88 at 294K (Sr-88)
+Nuclide  40090.00c -- zirconium 90 at 294K (Zr-90)
+Nuclide  40091.00c -- zirconium 91 at 294K (Zr-91)
+Nuclide  40092.00c -- zirconium 92 at 294K (Zr-92)
+Nuclide  40094.00c -- zirconium 94 at 294K (Zr-94)
+Nuclide  40096.00c -- zirconium 96 at 294K (Zr-96)
+Nuclide  42092.00c -- molybdenum 92 at 294K (Mo-92)
+Nuclide  42094.00c -- molybdenum 94 at 294K (Mo-94)
+Nuclide  42095.00c -- molybdenum 95 at 294K (Mo-95)
+Nuclide  42096.00c -- molybdenum 96 at 294K (Mo-96)
+Nuclide  42097.00c -- molybdenum 97 at 294K (Mo-97)
+Nuclide  42098.00c -- molybdenum 98 at 294K (Mo-98)
+Nuclide  42100.00c -- molybdenum 100 at 294K (Mo-100)
+Nuclide  56130.00c -- barium 130 at 294K (Ba-130)
+Nuclide  56132.00c -- barium 132 at 294K (Ba-132)
+Nuclide  56134.00c -- barium 134 at 294K (Ba-134)
+Nuclide  56135.00c -- barium 135 at 294K (Ba-135)
+Nuclide  56136.00c -- barium 136 at 294K (Ba-136)
+Nuclide  56137.00c -- barium 137 at 294K (Ba-137)
+Nuclide  56138.00c -- barium 138 at 294K (Ba-138)
+Nuclide  62144.00c -- samarium 144 at 294K (Sm-144)
+Nuclide  62147.00c -- samarium 147 at 294K (Sm-147)
+Nuclide  62148.00c -- samarium 148 at 294K (Sm-148)
+Nuclide  62149.00c -- samarium 149 at 294K (Sm-149)
+Nuclide  62150.00c -- samarium 150 at 294K (Sm-150)
+Nuclide  62152.00c -- samarium 152 at 294K (Sm-152)
+Nuclide  62154.00c -- samarium 154 at 294K (Sm-154)
+Nuclide  74182.00c -- tungsten 182 at 294K (W-182)
+Nuclide  74183.00c -- tungsten 183 at 294K (W-183)
+Nuclide  74184.00c -- tungsten 184 at 294K (W-184)
+Nuclide  74186.00c -- tungsten 186 at 294K (W-186)
+Nuclide  92235.00c -- uranium 235 at 294K (U-235)
+Nuclide  92238.00c -- uranium 238 at 294K (U-238)
+
+SUMMARY -- 93 nuclides included in calculation:
+
+ - 93 transport nuclides
+ - Neutron energy cut-offs at 1.00E-11 and 20.0 MeV
+ - 2537 transport reactions
+ - 1852 special reactions
+ - 7.49 Gb of memory allocated for data
+
+Normalizing compositions and processing mixtures...
+OK.
+
+Allocating memory for macroscopic cross section data...
+OK.
+
+Allocating memory for particle structures...
+OK.
+
+Calculating maximum densities...
+OK.
+
+Performing density cut-off...
+OK.
+
+Sorting material-wise reaction lists:
+
+   0% complete
+  57% complete
+ 100% complete
+
+Calculating macroscopic cross sections:
+
+   0% complete
+  71% complete
+ 100% complete
+
+Waiting for results from other MPI tasks...
+OK.
+
+Calculating DT neutron majorant cross section:
+
+   0% complete
+  21% complete
+ 100% complete
+
+Clearing results and statistics...
+OK.
+
+Sampling initial source...
+OK.
+
+Inactive cycle   1 / 100: k-eff = 1.00000
+Inactive cycle   2 / 100: k-eff = 0.94560
+Inactive cycle   3 / 100: k-eff = 0.98410
+Inactive cycle   4 / 100: k-eff = 1.00032
+Inactive cycle   5 / 100: k-eff = 1.00583
+Inactive cycle   6 / 100: k-eff = 1.00708
+Inactive cycle   7 / 100: k-eff = 1.00762
+Inactive cycle   8 / 100: k-eff = 1.00749
+Inactive cycle   9 / 100: k-eff = 1.00480
+Inactive cycle  10 / 100: k-eff = 1.00706
+Inactive cycle  11 / 100: k-eff = 1.00755
+Inactive cycle  12 / 100: k-eff = 1.00991
+Inactive cycle  13 / 100: k-eff = 1.00834
+Inactive cycle  14 / 100: k-eff = 1.00620
+Inactive cycle  15 / 100: k-eff = 1.00479
+Inactive cycle  16 / 100: k-eff = 1.00761
+Inactive cycle  17 / 100: k-eff = 1.00791
+Inactive cycle  18 / 100: k-eff = 1.00764
+Inactive cycle  19 / 100: k-eff = 1.00794
+Inactive cycle  20 / 100: k-eff = 1.00771
+Inactive cycle  21 / 100: k-eff = 1.00943
+Inactive cycle  22 / 100: k-eff = 1.01053
+Inactive cycle  23 / 100: k-eff = 1.00787
+Inactive cycle  24 / 100: k-eff = 1.01050
+Inactive cycle  25 / 100: k-eff = 1.00833
+Inactive cycle  26 / 100: k-eff = 1.00772
+Inactive cycle  27 / 100: k-eff = 1.00565
+Inactive cycle  28 / 100: k-eff = 1.00771
+Inactive cycle  29 / 100: k-eff = 1.00722
+Inactive cycle  30 / 100: k-eff = 1.01033
+Inactive cycle  31 / 100: k-eff = 1.00846
+Inactive cycle  32 / 100: k-eff = 1.00475
+Inactive cycle  33 / 100: k-eff = 1.00900
+Inactive cycle  34 / 100: k-eff = 1.00733
+Inactive cycle  35 / 100: k-eff = 1.00625
+Inactive cycle  36 / 100: k-eff = 1.00721
+Inactive cycle  37 / 100: k-eff = 1.00871
+Inactive cycle  38 / 100: k-eff = 1.00810
+Inactive cycle  39 / 100: k-eff = 1.00863
+Inactive cycle  40 / 100: k-eff = 1.00972
+Inactive cycle  41 / 100: k-eff = 1.00942
+Inactive cycle  42 / 100: k-eff = 1.00951
+Inactive cycle  43 / 100: k-eff = 1.00942
+Inactive cycle  44 / 100: k-eff = 1.00999
+Inactive cycle  45 / 100: k-eff = 1.00846
+Inactive cycle  46 / 100: k-eff = 1.00723
+Inactive cycle  47 / 100: k-eff = 1.00646
+Inactive cycle  48 / 100: k-eff = 1.00809
+Inactive cycle  49 / 100: k-eff = 1.00662
+Inactive cycle  50 / 100: k-eff = 1.00787
+Inactive cycle  51 / 100: k-eff = 1.00885
+Inactive cycle  52 / 100: k-eff = 1.01221
+Inactive cycle  53 / 100: k-eff = 1.00741
+Inactive cycle  54 / 100: k-eff = 1.00678
+Inactive cycle  55 / 100: k-eff = 1.00808
+Inactive cycle  56 / 100: k-eff = 1.00695
+Inactive cycle  57 / 100: k-eff = 1.00665
+Inactive cycle  58 / 100: k-eff = 1.00822
+Inactive cycle  59 / 100: k-eff = 1.00709
+Inactive cycle  60 / 100: k-eff = 1.00741
+Inactive cycle  61 / 100: k-eff = 1.00513
+Inactive cycle  62 / 100: k-eff = 1.01167
+Inactive cycle  63 / 100: k-eff = 1.00894
+Inactive cycle  64 / 100: k-eff = 1.00804
+Inactive cycle  65 / 100: k-eff = 1.00966
+Inactive cycle  66 / 100: k-eff = 1.00757
+Inactive cycle  67 / 100: k-eff = 1.00589
+Inactive cycle  68 / 100: k-eff = 1.00746
+Inactive cycle  69 / 100: k-eff = 1.00809
+Inactive cycle  70 / 100: k-eff = 1.00872
+Inactive cycle  71 / 100: k-eff = 1.00812
+Inactive cycle  72 / 100: k-eff = 1.00872
+Inactive cycle  73 / 100: k-eff = 1.00854
+Inactive cycle  74 / 100: k-eff = 1.00889
+Inactive cycle  75 / 100: k-eff = 1.00830
+Inactive cycle  76 / 100: k-eff = 1.01131
+Inactive cycle  77 / 100: k-eff = 1.00830
+Inactive cycle  78 / 100: k-eff = 1.00891
+Inactive cycle  79 / 100: k-eff = 1.00699
+Inactive cycle  80 / 100: k-eff = 1.00549
+Inactive cycle  81 / 100: k-eff = 1.00701
+Inactive cycle  82 / 100: k-eff = 1.00787
+Inactive cycle  83 / 100: k-eff = 1.00748
+Inactive cycle  84 / 100: k-eff = 1.00827
+Inactive cycle  85 / 100: k-eff = 1.00880
+Inactive cycle  86 / 100: k-eff = 1.00878
+Inactive cycle  87 / 100: k-eff = 1.00950
+Inactive cycle  88 / 100: k-eff = 1.00791
+Inactive cycle  89 / 100: k-eff = 1.00666
+Inactive cycle  90 / 100: k-eff = 1.00810
+Inactive cycle  91 / 100: k-eff = 1.00729
+Inactive cycle  92 / 100: k-eff = 1.00692
+Inactive cycle  93 / 100: k-eff = 1.00731
+Inactive cycle  94 / 100: k-eff = 1.01014
+Inactive cycle  95 / 100: k-eff = 1.00752
+Inactive cycle  96 / 100: k-eff = 1.00976
+Inactive cycle  97 / 100: k-eff = 1.00893
+Inactive cycle  98 / 100: k-eff = 1.00879
+Inactive cycle  99 / 100: k-eff = 1.01162
+Inactive cycle 100 / 100: k-eff = 1.00873
+
+----- Begin active cycles -----
+
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle    1 / 100  Source neutrons : 747782
+
+Running time :                  1:05:24
+Estimated running time :        2:17:49
+Estimated running time left :   1:12:24
+
+Estimated relative CPU usage :   240.1%
+
+k-eff (analog)    = 1.00575 +/- 0.00000  [1.00575  1.00575]
+k-eff (implicit)  = 1.00950 +/- 0.00000  [1.00950  1.00950]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle    2 / 100  Source neutrons : 752426
+
+Running time :                  1:06:03
+Estimated running time :        2:13:41
+Estimated running time left :   1:07:37
+
+Estimated relative CPU usage :   274.8%
+
+k-eff (analog)    = 1.00738 +/- 0.00163  [1.00419  1.01057]
+k-eff (implicit)  = 1.00811 +/- 0.00138  [1.00540  1.01082]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle    3 / 100  Source neutrons : 747261
+
+Running time :                  1:06:41
+Estimated running time :        2:11:53
+Estimated running time left :   1:05:11
+
+Estimated relative CPU usage :   274.1%
+
+k-eff (analog)    = 1.00669 +/- 0.00116  [1.00441  1.00897]
+k-eff (implicit)  = 1.00786 +/- 0.00084  [1.00621  1.00950]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle    4 / 100  Source neutrons : 751271
+
+Running time :                  1:07:18
+Estimated running time :        2:10:30
+Estimated running time left :   1:03:11
+
+Estimated relative CPU usage :   279.9%
+
+k-eff (analog)    = 1.00677 +/- 0.00083  [1.00515  1.00839]
+k-eff (implicit)  = 1.00804 +/- 0.00062  [1.00682  1.00925]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle    5 / 100  Source neutrons : 751633
+
+Running time :                  1:07:56
+Estimated running time :        2:09:44
+Estimated running time left :   1:01:48
+
+Estimated relative CPU usage :   283.6%
+
+k-eff (analog)    = 1.00726 +/- 0.00081  [1.00568  1.00884]
+k-eff (implicit)  = 1.00760 +/- 0.00065  [1.00632  1.00888]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle    6 / 100  Source neutrons : 748271
+
+Running time :                  1:08:35
+Estimated running time :        2:09:51
+Estimated running time left :   1:01:15
+
+Estimated relative CPU usage :   265.3%
+
+k-eff (analog)    = 1.00720 +/- 0.00066  [1.00591  1.00849]
+k-eff (implicit)  = 1.00786 +/- 0.00059  [1.00670  1.00901]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle    7 / 100  Source neutrons : 751599
+
+Running time :                  1:09:08
+Estimated running time :        2:08:16
+Estimated running time left :   0:59:08
+
+Estimated relative CPU usage :   338.6%
+
+k-eff (analog)    = 1.00746 +/- 0.00062  [1.00625  1.00867]
+k-eff (implicit)  = 1.00779 +/- 0.00050  [1.00680  1.00878]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle    8 / 100  Source neutrons : 750106
+
+Running time :                  1:10:03
+Estimated running time :        2:11:52
+Estimated running time left :   1:01:48
+
+Estimated relative CPU usage :   193.1%
+
+k-eff (analog)    = 1.00768 +/- 0.00058  [1.00655  1.00881]
+k-eff (implicit)  = 1.00792 +/- 0.00046  [1.00703  1.00882]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle    9 / 100  Source neutrons : 749901
+
+Running time :                  1:10:53
+Estimated running time :        2:13:44
+Estimated running time left :   1:02:50
+
+Estimated relative CPU usage :   212.3%
+
+k-eff (analog)    = 1.00783 +/- 0.00053  [1.00679  1.00887]
+k-eff (implicit)  = 1.00816 +/- 0.00047  [1.00724  1.00908]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   10 / 100  Source neutrons : 751804
+
+Running time :                  1:11:50
+Estimated running time :        2:16:20
+Estimated running time left :   1:04:29
+
+Estimated relative CPU usage :   186.5%
+
+k-eff (analog)    = 1.00819 +/- 0.00060  [1.00702  1.00937]
+k-eff (implicit)  = 1.00821 +/- 0.00042  [1.00738  1.00904]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   11 / 100  Source neutrons : 747626
+
+Running time :                  1:12:30
+Estimated running time :        2:15:51
+Estimated running time left :   1:03:20
+
+Estimated relative CPU usage :   261.1%
+
+k-eff (analog)    = 1.00820 +/- 0.00054  [1.00714  1.00926]
+k-eff (implicit)  = 1.00832 +/- 0.00040  [1.00754  1.00910]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   12 / 100  Source neutrons : 750150
+
+Running time :                  1:13:20
+Estimated running time :        2:16:53
+Estimated running time left :   1:03:32
+
+Estimated relative CPU usage :   207.7%
+
+k-eff (analog)    = 1.00822 +/- 0.00049  [1.00725  1.00919]
+k-eff (implicit)  = 1.00840 +/- 0.00037  [1.00767  1.00913]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   13 / 100  Source neutrons : 751986
+
+Running time :                  1:14:11
+Estimated running time :        2:17:49
+Estimated running time left :   1:03:38
+
+Estimated relative CPU usage :   209.3%
+
+k-eff (analog)    = 1.00845 +/- 0.00051  [1.00745  1.00944]
+k-eff (implicit)  = 1.00832 +/- 0.00035  [1.00762  1.00901]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   14 / 100  Source neutrons : 746163
+
+Running time :                  1:14:48
+Estimated running time :        2:17:01
+Estimated running time left :   1:02:12
+
+Estimated relative CPU usage :   276.3%
+
+k-eff (analog)    = 1.00827 +/- 0.00050  [1.00729  1.00925]
+k-eff (implicit)  = 1.00833 +/- 0.00033  [1.00769  1.00897]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   15 / 100  Source neutrons : 750537
+
+Running time :                  1:15:39
+Estimated running time :        2:17:49
+Estimated running time left :   1:02:09
+
+Estimated relative CPU usage :   211.6%
+
+k-eff (analog)    = 1.00817 +/- 0.00048  [1.00723  1.00910]
+k-eff (implicit)  = 1.00838 +/- 0.00031  [1.00777  1.00898]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   16 / 100  Source neutrons : 752018
+
+Running time :                  1:16:35
+Estimated running time :        2:19:07
+Estimated running time left :   1:02:32
+
+Estimated relative CPU usage :   191.5%
+
+k-eff (analog)    = 1.00824 +/- 0.00045  [1.00735  1.00913]
+k-eff (implicit)  = 1.00840 +/- 0.00029  [1.00783  1.00897]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   17 / 100  Source neutrons : 749932
+
+Running time :                  1:17:23
+Estimated running time :        2:19:24
+Estimated running time left :   1:02:01
+
+Estimated relative CPU usage :   224.1%
+
+k-eff (analog)    = 1.00831 +/- 0.00043  [1.00746  1.00915]
+k-eff (implicit)  = 1.00834 +/- 0.00028  [1.00779  1.00888]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   18 / 100  Source neutrons : 748962
+
+Running time :                  1:18:05
+Estimated running time :        2:19:11
+Estimated running time left :   1:01:05
+
+Estimated relative CPU usage :   261.6%
+
+k-eff (analog)    = 1.00828 +/- 0.00041  [1.00748  1.00908]
+k-eff (implicit)  = 1.00826 +/- 0.00027  [1.00772  1.00880]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   19 / 100  Source neutrons : 748981
+
+Running time :                  1:19:21
+Estimated running time :        2:21:53
+Estimated running time left :   1:02:32
+
+Estimated relative CPU usage :   142.3%
+
+k-eff (analog)    = 1.00819 +/- 0.00040  [1.00742  1.00897]
+k-eff (implicit)  = 1.00816 +/- 0.00028  [1.00761  1.00870]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   20 / 100  Source neutrons : 749831
+
+Running time :                  1:20:19
+Estimated running time :        2:22:55
+Estimated running time left :   1:02:35
+
+Estimated relative CPU usage :   182.9%
+
+k-eff (analog)    = 1.00810 +/- 0.00039  [1.00734  1.00886]
+k-eff (implicit)  = 1.00818 +/- 0.00027  [1.00765  1.00870]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   21 / 100  Source neutrons : 750183
+
+Running time :                  1:21:35
+Estimated running time :        2:25:13
+Estimated running time left :   1:03:38
+
+Estimated relative CPU usage :   140.4%
+
+k-eff (analog)    = 1.00802 +/- 0.00038  [1.00729  1.00876]
+k-eff (implicit)  = 1.00821 +/- 0.00026  [1.00771  1.00871]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   22 / 100  Source neutrons : 751438
+
+Running time :                  1:22:36
+Estimated running time :        2:26:09
+Estimated running time left :   1:03:32
+
+Estimated relative CPU usage :   178.6%
+
+k-eff (analog)    = 1.00805 +/- 0.00036  [1.00734  1.00875]
+k-eff (implicit)  = 1.00819 +/- 0.00024  [1.00771  1.00867]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   23 / 100  Source neutrons : 747887
+
+Running time :                  1:23:24
+Estimated running time :        2:26:07
+Estimated running time left :   1:02:42
+
+Estimated relative CPU usage :   214.9%
+
+k-eff (analog)    = 1.00794 +/- 0.00036  [1.00724  1.00864]
+k-eff (implicit)  = 1.00814 +/- 0.00024  [1.00768  1.00861]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   24 / 100  Source neutrons : 751361
+
+Running time :                  1:24:19
+Estimated running time :        2:26:31
+Estimated running time left :   1:02:11
+
+Estimated relative CPU usage :   183.9%
+
+k-eff (analog)    = 1.00792 +/- 0.00034  [1.00725  1.00860]
+k-eff (implicit)  = 1.00812 +/- 0.00023  [1.00767  1.00857]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   25 / 100  Source neutrons : 750394
+
+Running time :                  1:25:02
+Estimated running time :        2:26:06
+Estimated running time left :   1:01:03
+
+Estimated relative CPU usage :   235.8%
+
+k-eff (analog)    = 1.00792 +/- 0.00033  [1.00728  1.00857]
+k-eff (implicit)  = 1.00814 +/- 0.00022  [1.00771  1.00857]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   26 / 100  Source neutrons : 750763
+
+Running time :                  1:25:52
+Estimated running time :        2:26:10
+Estimated running time left :   1:00:18
+
+Estimated relative CPU usage :   199.1%
+
+k-eff (analog)    = 1.00797 +/- 0.00032  [1.00734  1.00859]
+k-eff (implicit)  = 1.00809 +/- 0.00022  [1.00767  1.00852]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   27 / 100  Source neutrons : 748689
+
+Running time :                  1:26:28
+Estimated running time :        2:25:22
+Estimated running time left :   0:58:54
+
+Estimated relative CPU usage :   283.4%
+
+k-eff (analog)    = 1.00794 +/- 0.00031  [1.00734  1.00855]
+k-eff (implicit)  = 1.00809 +/- 0.00021  [1.00768  1.00850]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   28 / 100  Source neutrons : 750910
+
+Running time :                  1:27:10
+Estimated running time :        2:25:02
+Estimated running time left :   0:57:51
+
+Estimated relative CPU usage :   238.4%
+
+k-eff (analog)    = 1.00796 +/- 0.00030  [1.00738  1.00854]
+k-eff (implicit)  = 1.00810 +/- 0.00020  [1.00770  1.00849]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   29 / 100  Source neutrons : 749840
+
+Running time :                  1:27:59
+Estimated running time :        2:25:03
+Estimated running time left :   0:57:04
+
+Estimated relative CPU usage :   205.3%
+
+k-eff (analog)    = 1.00797 +/- 0.00029  [1.00741  1.00854]
+k-eff (implicit)  = 1.00809 +/- 0.00019  [1.00771  1.00847]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   30 / 100  Source neutrons : 749905
+
+Running time :                  1:28:45
+Estimated running time :        2:24:56
+Estimated running time left :   0:56:10
+
+Estimated relative CPU usage :   219.4%
+
+k-eff (analog)    = 1.00798 +/- 0.00028  [1.00743  1.00852]
+k-eff (implicit)  = 1.00808 +/- 0.00019  [1.00771  1.00844]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   31 / 100  Source neutrons : 750045
+
+Running time :                  1:29:24
+Estimated running time :        2:24:26
+Estimated running time left :   0:55:01
+
+Estimated relative CPU usage :   267.4%
+
+k-eff (analog)    = 1.00798 +/- 0.00027  [1.00746  1.00851]
+k-eff (implicit)  = 1.00801 +/- 0.00019  [1.00763  1.00839]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   32 / 100  Source neutrons : 747725
+
+Running time :                  1:30:10
+Estimated running time :        2:24:22
+Estimated running time left :   0:54:11
+
+Estimated relative CPU usage :   226.2%
+
+k-eff (analog)    = 1.00790 +/- 0.00028  [1.00736  1.00844]
+k-eff (implicit)  = 1.00799 +/- 0.00019  [1.00762  1.00836]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   33 / 100  Source neutrons : 752267
+
+Running time :                  1:31:01
+Estimated running time :        2:24:31
+Estimated running time left :   0:53:29
+
+Estimated relative CPU usage :   209.9%
+
+k-eff (analog)    = 1.00790 +/- 0.00027  [1.00738  1.00843]
+k-eff (implicit)  = 1.00799 +/- 0.00018  [1.00763  1.00835]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   34 / 100  Source neutrons : 750398
+
+Running time :                  1:31:46
+Estimated running time :        2:24:21
+Estimated running time left :   0:52:34
+
+Estimated relative CPU usage :   234.1%
+
+k-eff (analog)    = 1.00793 +/- 0.00026  [1.00742  1.00844]
+k-eff (implicit)  = 1.00801 +/- 0.00018  [1.00766  1.00837]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   35 / 100  Source neutrons : 751373
+
+Running time :                  1:32:26
+Estimated running time :        2:24:00
+Estimated running time left :   0:51:33
+
+Estimated relative CPU usage :   255.0%
+
+k-eff (analog)    = 1.00800 +/- 0.00026  [1.00749  1.00852]
+k-eff (implicit)  = 1.00801 +/- 0.00017  [1.00766  1.00835]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   36 / 100  Source neutrons : 747697
+
+Running time :                  1:33:20
+Estimated running time :        2:24:17
+Estimated running time left :   0:50:57
+
+Estimated relative CPU usage :   189.7%
+
+k-eff (analog)    = 1.00799 +/- 0.00026  [1.00749  1.00849]
+k-eff (implicit)  = 1.00800 +/- 0.00017  [1.00767  1.00833]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   37 / 100  Source neutrons : 750111
+
+Running time :                  1:34:10
+Estimated running time :        2:24:22
+Estimated running time left :   0:50:12
+
+Estimated relative CPU usage :   207.2%
+
+k-eff (analog)    = 1.00798 +/- 0.00025  [1.00749  1.00847]
+k-eff (implicit)  = 1.00794 +/- 0.00017  [1.00760  1.00829]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   38 / 100  Source neutrons : 750162
+
+Running time :                  1:35:04
+Estimated running time :        2:24:40
+Estimated running time left :   0:49:35
+
+Estimated relative CPU usage :   183.6%
+
+k-eff (analog)    = 1.00797 +/- 0.00024  [1.00750  1.00845]
+k-eff (implicit)  = 1.00796 +/- 0.00017  [1.00762  1.00829]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   39 / 100  Source neutrons : 750310
+
+Running time :                  1:35:47
+Estimated running time :        2:24:26
+Estimated running time left :   0:48:39
+
+Estimated relative CPU usage :   229.3%
+
+k-eff (analog)    = 1.00798 +/- 0.00024  [1.00752  1.00845]
+k-eff (implicit)  = 1.00794 +/- 0.00017  [1.00762  1.00827]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   40 / 100  Source neutrons : 748543
+
+Running time :                  1:36:28
+Estimated running time :        2:24:10
+Estimated running time left :   0:47:41
+
+Estimated relative CPU usage :   239.4%
+
+k-eff (analog)    = 1.00794 +/- 0.00023  [1.00748  1.00840]
+k-eff (implicit)  = 1.00799 +/- 0.00017  [1.00766  1.00831]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   41 / 100  Source neutrons : 751676
+
+Running time :                  1:37:19
+Estimated running time :        2:24:17
+Estimated running time left :   0:46:58
+
+Estimated relative CPU usage :   201.8%
+
+k-eff (analog)    = 1.00795 +/- 0.00023  [1.00750  1.00840]
+k-eff (implicit)  = 1.00799 +/- 0.00016  [1.00767  1.00831]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   42 / 100  Source neutrons : 748435
+
+Running time :                  1:38:07
+Estimated running time :        2:24:17
+Estimated running time left :   0:46:10
+
+Estimated relative CPU usage :   210.9%
+
+k-eff (analog)    = 1.00792 +/- 0.00023  [1.00747  1.00836]
+k-eff (implicit)  = 1.00792 +/- 0.00017  [1.00758  1.00826]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   43 / 100  Source neutrons : 749980
+
+Running time :                  1:38:48
+Estimated running time :        2:24:03
+Estimated running time left :   0:45:14
+
+Estimated relative CPU usage :   248.2%
+
+k-eff (analog)    = 1.00788 +/- 0.00022  [1.00744  1.00832]
+k-eff (implicit)  = 1.00787 +/- 0.00018  [1.00752  1.00822]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   44 / 100  Source neutrons : 750161
+
+Running time :                  1:39:37
+Estimated running time :        2:24:06
+Estimated running time left :   0:44:28
+
+Estimated relative CPU usage :   203.2%
+
+k-eff (analog)    = 1.00785 +/- 0.00022  [1.00742  1.00829]
+k-eff (implicit)  = 1.00784 +/- 0.00018  [1.00750  1.00819]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   45 / 100  Source neutrons : 751193
+
+Running time :                  1:40:11
+Estimated running time :        2:23:36
+Estimated running time left :   0:43:24
+
+Estimated relative CPU usage :   303.8%
+
+k-eff (analog)    = 1.00786 +/- 0.00022  [1.00744  1.00829]
+k-eff (implicit)  = 1.00781 +/- 0.00017  [1.00747  1.00815]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   46 / 100  Source neutrons : 749885
+
+Running time :                  1:41:07
+Estimated running time :        2:23:54
+Estimated running time left :   0:42:47
+
+Estimated relative CPU usage :   183.6%
+
+k-eff (analog)    = 1.00787 +/- 0.00021  [1.00745  1.00828]
+k-eff (implicit)  = 1.00780 +/- 0.00017  [1.00747  1.00814]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   47 / 100  Source neutrons : 749449
+
+Running time :                  1:41:58
+Estimated running time :        2:24:01
+Estimated running time left :   0:42:03
+
+Estimated relative CPU usage :   204.2%
+
+k-eff (analog)    = 1.00785 +/- 0.00021  [1.00745  1.00826]
+k-eff (implicit)  = 1.00775 +/- 0.00018  [1.00740  1.00809]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   48 / 100  Source neutrons : 748674
+
+Running time :                  1:42:49
+Estimated running time :        2:24:08
+Estimated running time left :   0:41:18
+
+Estimated relative CPU usage :   205.2%
+
+k-eff (analog)    = 1.00781 +/- 0.00021  [1.00740  1.00822]
+k-eff (implicit)  = 1.00769 +/- 0.00018  [1.00733  1.00805]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   49 / 100  Source neutrons : 750422
+
+Running time :                  1:43:44
+Estimated running time :        2:24:23
+Estimated running time left :   0:40:39
+
+Estimated relative CPU usage :   186.1%
+
+k-eff (analog)    = 1.00777 +/- 0.00021  [1.00737  1.00818]
+k-eff (implicit)  = 1.00768 +/- 0.00018  [1.00733  1.00803]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   50 / 100  Source neutrons : 751327
+
+Running time :                  1:44:30
+Estimated running time :        2:24:20
+Estimated running time left :   0:39:49
+
+Estimated relative CPU usage :   216.7%
+
+k-eff (analog)    = 1.00777 +/- 0.00020  [1.00738  1.00817]
+k-eff (implicit)  = 1.00770 +/- 0.00018  [1.00736  1.00805]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   51 / 100  Source neutrons : 749628
+
+Running time :                  1:45:18
+Estimated running time :        2:24:20
+Estimated running time left :   0:39:01
+
+Estimated relative CPU usage :   208.5%
+
+k-eff (analog)    = 1.00777 +/- 0.00020  [1.00738  1.00816]
+k-eff (implicit)  = 1.00769 +/- 0.00017  [1.00735  1.00804]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   52 / 100  Source neutrons : 749517
+
+Running time :                  1:46:01
+Estimated running time :        2:24:10
+Estimated running time left :   0:38:09
+
+Estimated relative CPU usage :   234.3%
+
+k-eff (analog)    = 1.00775 +/- 0.00020  [1.00736  1.00813]
+k-eff (implicit)  = 1.00770 +/- 0.00017  [1.00736  1.00803]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   53 / 100  Source neutrons : 750535
+
+Running time :                  1:46:45
+Estimated running time :        2:24:05
+Estimated running time left :   0:37:19
+
+Estimated relative CPU usage :   225.6%
+
+k-eff (analog)    = 1.00774 +/- 0.00019  [1.00736  1.00812]
+k-eff (implicit)  = 1.00771 +/- 0.00017  [1.00738  1.00804]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   54 / 100  Source neutrons : 749445
+
+Running time :                  1:47:22
+Estimated running time :        2:23:44
+Estimated running time left :   0:36:22
+
+Estimated relative CPU usage :   269.5%
+
+k-eff (analog)    = 1.00772 +/- 0.00019  [1.00735  1.00809]
+k-eff (implicit)  = 1.00768 +/- 0.00017  [1.00735  1.00801]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   55 / 100  Source neutrons : 751433
+
+Running time :                  1:48:14
+Estimated running time :        2:23:53
+Estimated running time left :   0:35:38
+
+Estimated relative CPU usage :   188.6%
+
+k-eff (analog)    = 1.00774 +/- 0.00019  [1.00737  1.00811]
+k-eff (implicit)  = 1.00770 +/- 0.00017  [1.00738  1.00803]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   56 / 100  Source neutrons : 751566
+
+Running time :                  1:49:02
+Estimated running time :        2:23:54
+Estimated running time left :   0:34:51
+
+Estimated relative CPU usage :   205.2%
+
+k-eff (analog)    = 1.00779 +/- 0.00019  [1.00742  1.00817]
+k-eff (implicit)  = 1.00772 +/- 0.00016  [1.00740  1.00805]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   57 / 100  Source neutrons : 748382
+
+Running time :                  1:49:36
+Estimated running time :        2:23:30
+Estimated running time left :   0:33:53
+
+Estimated relative CPU usage :   309.6%
+
+k-eff (analog)    = 1.00781 +/- 0.00019  [1.00744  1.00818]
+k-eff (implicit)  = 1.00772 +/- 0.00016  [1.00741  1.00804]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   58 / 100  Source neutrons : 747323
+
+Running time :                  1:50:22
+Estimated running time :        2:23:27
+Estimated running time left :   0:33:05
+
+Estimated relative CPU usage :   235.4%
+
+k-eff (analog)    = 1.00776 +/- 0.00019  [1.00738  1.00813]
+k-eff (implicit)  = 1.00774 +/- 0.00016  [1.00743  1.00806]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   59 / 100  Source neutrons : 753213
+
+Running time :                  1:51:21
+Estimated running time :        2:23:48
+Estimated running time left :   0:32:26
+
+Estimated relative CPU usage :   181.7%
+
+k-eff (analog)    = 1.00778 +/- 0.00019  [1.00741  1.00816]
+k-eff (implicit)  = 1.00775 +/- 0.00016  [1.00744  1.00806]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   60 / 100  Source neutrons : 748863
+
+Running time :                  1:52:12
+Estimated running time :        2:23:53
+Estimated running time left :   0:31:40
+
+Estimated relative CPU usage :   209.5%
+
+k-eff (analog)    = 1.00778 +/- 0.00019  [1.00742  1.00815]
+k-eff (implicit)  = 1.00776 +/- 0.00015  [1.00745  1.00806]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   61 / 100  Source neutrons : 750432
+
+Running time :                  1:53:04
+Estimated running time :        2:24:00
+Estimated running time left :   0:30:56
+
+Estimated relative CPU usage :   207.6%
+
+k-eff (analog)    = 1.00779 +/- 0.00018  [1.00743  1.00815]
+k-eff (implicit)  = 1.00778 +/- 0.00015  [1.00747  1.00808]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   62 / 100  Source neutrons : 751774
+
+Running time :                  1:54:02
+Estimated running time :        2:24:16
+Estimated running time left :   0:30:14
+
+Estimated relative CPU usage :   190.6%
+
+k-eff (analog)    = 1.00784 +/- 0.00019  [1.00747  1.00820]
+k-eff (implicit)  = 1.00780 +/- 0.00015  [1.00750  1.00810]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   63 / 100  Source neutrons : 747662
+
+Running time :                  1:54:50
+Estimated running time :        2:24:17
+Estimated running time left :   0:29:27
+
+Estimated relative CPU usage :   216.1%
+
+k-eff (analog)    = 1.00783 +/- 0.00018  [1.00747  1.00819]
+k-eff (implicit)  = 1.00783 +/- 0.00015  [1.00753  1.00813]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   64 / 100  Source neutrons : 750945
+
+Running time :                  1:55:41
+Estimated running time :        2:24:22
+Estimated running time left :   0:28:41
+
+Estimated relative CPU usage :   200.3%
+
+k-eff (analog)    = 1.00785 +/- 0.00018  [1.00749  1.00821]
+k-eff (implicit)  = 1.00783 +/- 0.00015  [1.00753  1.00813]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   65 / 100  Source neutrons : 748834
+
+Running time :                  1:56:30
+Estimated running time :        2:24:25
+Estimated running time left :   0:27:54
+
+Estimated relative CPU usage :   213.9%
+
+k-eff (analog)    = 1.00784 +/- 0.00018  [1.00749  1.00819]
+k-eff (implicit)  = 1.00783 +/- 0.00015  [1.00754  1.00812]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   66 / 100  Source neutrons : 750892
+
+Running time :                  1:57:23
+Estimated running time :        2:24:32
+Estimated running time left :   0:27:08
+
+Estimated relative CPU usage :   189.9%
+
+k-eff (analog)    = 1.00785 +/- 0.00018  [1.00750  1.00820]
+k-eff (implicit)  = 1.00783 +/- 0.00015  [1.00755  1.00812]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   67 / 100  Source neutrons : 749096
+
+Running time :                  1:58:10
+Estimated running time :        2:24:31
+Estimated running time left :   0:26:20
+
+Estimated relative CPU usage :   204.3%
+
+k-eff (analog)    = 1.00784 +/- 0.00017  [1.00750  1.00818]
+k-eff (implicit)  = 1.00786 +/- 0.00015  [1.00757  1.00815]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   68 / 100  Source neutrons : 749685
+
+Running time :                  1:58:56
+Estimated running time :        2:24:28
+Estimated running time left :   0:25:31
+
+Estimated relative CPU usage :   211.1%
+
+k-eff (analog)    = 1.00783 +/- 0.00017  [1.00749  1.00816]
+k-eff (implicit)  = 1.00786 +/- 0.00014  [1.00758  1.00815]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   69 / 100  Source neutrons : 751415
+
+Running time :                  1:59:34
+Estimated running time :        2:24:14
+Estimated running time left :   0:24:39
+
+Estimated relative CPU usage :   258.3%
+
+k-eff (analog)    = 1.00784 +/- 0.00017  [1.00750  1.00817]
+k-eff (implicit)  = 1.00788 +/- 0.00014  [1.00760  1.00816]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   70 / 100  Source neutrons : 748239
+
+Running time :                  2:00:31
+Estimated running time :        2:24:26
+Estimated running time left :   0:23:55
+
+Estimated relative CPU usage :   185.3%
+
+k-eff (analog)    = 1.00782 +/- 0.00017  [1.00749  1.00815]
+k-eff (implicit)  = 1.00787 +/- 0.00014  [1.00759  1.00814]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   71 / 100  Source neutrons : 751652
+
+Running time :                  2:01:54
+Estimated running time :        2:25:17
+Estimated running time left :   0:23:22
+
+Estimated relative CPU usage :   124.3%
+
+k-eff (analog)    = 1.00783 +/- 0.00017  [1.00750  1.00816]
+k-eff (implicit)  = 1.00785 +/- 0.00014  [1.00758  1.00812]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   72 / 100  Source neutrons : 749407
+
+Running time :                  2:03:00
+Estimated running time :        2:25:42
+Estimated running time left :   0:22:41
+
+Estimated relative CPU usage :   162.8%
+
+k-eff (analog)    = 1.00783 +/- 0.00016  [1.00750  1.00815]
+k-eff (implicit)  = 1.00784 +/- 0.00014  [1.00757  1.00812]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   73 / 100  Source neutrons : 749731
+
+Running time :                  2:03:58
+Estimated running time :        2:25:54
+Estimated running time left :   0:21:55
+
+Estimated relative CPU usage :   189.0%
+
+k-eff (analog)    = 1.00782 +/- 0.00016  [1.00750  1.00814]
+k-eff (implicit)  = 1.00786 +/- 0.00014  [1.00759  1.00813]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   74 / 100  Source neutrons : 750215
+
+Running time :                  2:05:17
+Estimated running time :        2:26:35
+Estimated running time left :   0:21:17
+
+Estimated relative CPU usage :   136.3%
+
+k-eff (analog)    = 1.00782 +/- 0.00016  [1.00750  1.00813]
+k-eff (implicit)  = 1.00786 +/- 0.00014  [1.00760  1.00813]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   75 / 100  Source neutrons : 749609
+
+Running time :                  2:06:05
+Estimated running time :        2:26:33
+Estimated running time left :   0:20:28
+
+Estimated relative CPU usage :   215.2%
+
+k-eff (analog)    = 1.00781 +/- 0.00016  [1.00750  1.00812]
+k-eff (implicit)  = 1.00787 +/- 0.00013  [1.00761  1.00814]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   76 / 100  Source neutrons : 750639
+
+Running time :                  2:07:06
+Estimated running time :        2:26:48
+Estimated running time left :   0:19:42
+
+Estimated relative CPU usage :   167.0%
+
+k-eff (analog)    = 1.00781 +/- 0.00016  [1.00751  1.00812]
+k-eff (implicit)  = 1.00787 +/- 0.00013  [1.00761  1.00813]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   77 / 100  Source neutrons : 749748
+
+Running time :                  2:07:53
+Estimated running time :        2:26:46
+Estimated running time left :   0:18:52
+
+Estimated relative CPU usage :   204.4%
+
+k-eff (analog)    = 1.00781 +/- 0.00015  [1.00751  1.00811]
+k-eff (implicit)  = 1.00787 +/- 0.00013  [1.00761  1.00813]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   78 / 100  Source neutrons : 749655
+
+Running time :                  2:08:31
+Estimated running time :        2:26:32
+Estimated running time left :   0:18:00
+
+Estimated relative CPU usage :   262.9%
+
+k-eff (analog)    = 1.00780 +/- 0.00015  [1.00750  1.00810]
+k-eff (implicit)  = 1.00787 +/- 0.00013  [1.00762  1.00812]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   79 / 100  Source neutrons : 751233
+
+Running time :                  2:09:24
+Estimated running time :        2:26:36
+Estimated running time left :   0:17:12
+
+Estimated relative CPU usage :   186.6%
+
+k-eff (analog)    = 1.00782 +/- 0.00015  [1.00752  1.00811]
+k-eff (implicit)  = 1.00786 +/- 0.00013  [1.00761  1.00811]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   80 / 100  Source neutrons : 747342
+
+Running time :                  2:10:16
+Estimated running time :        2:26:40
+Estimated running time left :   0:16:23
+
+Estimated relative CPU usage :   187.4%
+
+k-eff (analog)    = 1.00779 +/- 0.00015  [1.00749  1.00809]
+k-eff (implicit)  = 1.00783 +/- 0.00013  [1.00757  1.00808]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   81 / 100  Source neutrons : 752679
+
+Running time :                  2:11:07
+Estimated running time :        2:26:42
+Estimated running time left :   0:15:35
+
+Estimated relative CPU usage :   199.6%
+
+k-eff (analog)    = 1.00780 +/- 0.00015  [1.00750  1.00810]
+k-eff (implicit)  = 1.00783 +/- 0.00013  [1.00758  1.00809]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   82 / 100  Source neutrons : 749605
+
+Running time :                  2:11:46
+Estimated running time :        2:26:30
+Estimated running time left :   0:14:43
+
+Estimated relative CPU usage :   268.5%
+
+k-eff (analog)    = 1.00781 +/- 0.00015  [1.00751  1.00810]
+k-eff (implicit)  = 1.00783 +/- 0.00013  [1.00759  1.00808]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   83 / 100  Source neutrons : 749768
+
+Running time :                  2:12:42
+Estimated running time :        2:26:39
+Estimated running time left :   0:13:56
+
+Estimated relative CPU usage :   184.1%
+
+k-eff (analog)    = 1.00781 +/- 0.00015  [1.00752  1.00810]
+k-eff (implicit)  = 1.00784 +/- 0.00013  [1.00759  1.00808]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   84 / 100  Source neutrons : 749181
+
+Running time :                  2:13:44
+Estimated running time :        2:26:53
+Estimated running time left :   0:13:09
+
+Estimated relative CPU usage :   166.0%
+
+k-eff (analog)    = 1.00780 +/- 0.00015  [1.00751  1.00809]
+k-eff (implicit)  = 1.00783 +/- 0.00012  [1.00758  1.00807]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   85 / 100  Source neutrons : 750101
+
+Running time :                  2:14:36
+Estimated running time :        2:26:56
+Estimated running time left :   0:12:20
+
+Estimated relative CPU usage :   189.1%
+
+k-eff (analog)    = 1.00779 +/- 0.00014  [1.00751  1.00808]
+k-eff (implicit)  = 1.00782 +/- 0.00012  [1.00758  1.00806]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   86 / 100  Source neutrons : 749293
+
+Running time :                  2:15:26
+Estimated running time :        2:26:58
+Estimated running time left :   0:11:31
+
+Estimated relative CPU usage :   191.8%
+
+k-eff (analog)    = 1.00777 +/- 0.00014  [1.00749  1.00806]
+k-eff (implicit)  = 1.00781 +/- 0.00012  [1.00758  1.00805]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   87 / 100  Source neutrons : 752093
+
+Running time :                  2:16:19
+Estimated running time :        2:27:01
+Estimated running time left :   0:10:42
+
+Estimated relative CPU usage :   185.8%
+
+k-eff (analog)    = 1.00779 +/- 0.00014  [1.00750  1.00807]
+k-eff (implicit)  = 1.00782 +/- 0.00012  [1.00758  1.00806]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   88 / 100  Source neutrons : 748447
+
+Running time :                  2:17:18
+Estimated running time :        2:27:12
+Estimated running time left :   0:09:54
+
+Estimated relative CPU usage :   168.9%
+
+k-eff (analog)    = 1.00777 +/- 0.00014  [1.00750  1.00805]
+k-eff (implicit)  = 1.00781 +/- 0.00012  [1.00757  1.00804]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   89 / 100  Source neutrons : 749364
+
+Running time :                  2:18:09
+Estimated running time :        2:27:14
+Estimated running time left :   0:09:04
+
+Estimated relative CPU usage :   195.8%
+
+k-eff (analog)    = 1.00775 +/- 0.00014  [1.00748  1.00803]
+k-eff (implicit)  = 1.00782 +/- 0.00012  [1.00759  1.00806]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   90 / 100  Source neutrons : 751996
+
+Running time :                  2:18:50
+Estimated running time :        2:27:04
+Estimated running time left :   0:08:14
+
+Estimated relative CPU usage :   242.9%
+
+k-eff (analog)    = 1.00777 +/- 0.00014  [1.00749  1.00804]
+k-eff (implicit)  = 1.00782 +/- 0.00012  [1.00758  1.00805]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   91 / 100  Source neutrons : 749443
+
+Running time :                  2:19:31
+Estimated running time :        2:26:55
+Estimated running time left :   0:07:24
+
+Estimated relative CPU usage :   251.4%
+
+k-eff (analog)    = 1.00777 +/- 0.00014  [1.00749  1.00804]
+k-eff (implicit)  = 1.00780 +/- 0.00012  [1.00757  1.00804]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   92 / 100  Source neutrons : 750388
+
+Running time :                  2:20:21
+Estimated running time :        2:26:56
+Estimated running time left :   0:06:34
+
+Estimated relative CPU usage :   205.2%
+
+k-eff (analog)    = 1.00777 +/- 0.00014  [1.00750  1.00804]
+k-eff (implicit)  = 1.00780 +/- 0.00012  [1.00757  1.00803]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   93 / 100  Source neutrons : 749079
+
+Running time :                  2:21:13
+Estimated running time :        2:26:59
+Estimated running time left :   0:05:45
+
+Estimated relative CPU usage :   196.8%
+
+k-eff (analog)    = 1.00777 +/- 0.00014  [1.00750  1.00804]
+k-eff (implicit)  = 1.00781 +/- 0.00012  [1.00758  1.00803]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   94 / 100  Source neutrons : 750618
+
+Running time :                  2:22:03
+Estimated running time :        2:26:59
+Estimated running time left :   0:04:56
+
+Estimated relative CPU usage :   211.2%
+
+k-eff (analog)    = 1.00777 +/- 0.00014  [1.00751  1.00804]
+k-eff (implicit)  = 1.00782 +/- 0.00011  [1.00760  1.00805]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   95 / 100  Source neutrons : 749780
+
+Running time :                  2:22:42
+Estimated running time :        2:26:48
+Estimated running time left :   0:04:06
+
+Estimated relative CPU usage :   271.0%
+
+k-eff (analog)    = 1.00777 +/- 0.00013  [1.00751  1.00803]
+k-eff (implicit)  = 1.00783 +/- 0.00011  [1.00761  1.00806]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   96 / 100  Source neutrons : 749886
+
+Running time :                  2:23:42
+Estimated running time :        2:26:59
+Estimated running time left :   0:03:17
+
+Estimated relative CPU usage :   173.5%
+
+k-eff (analog)    = 1.00777 +/- 0.00013  [1.00751  1.00803]
+k-eff (implicit)  = 1.00782 +/- 0.00011  [1.00759  1.00804]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   97 / 100  Source neutrons : 749338
+
+Running time :                  2:24:39
+Estimated running time :        2:27:07
+Estimated running time left :   0:02:28
+
+Estimated relative CPU usage :   182.5%
+
+k-eff (analog)    = 1.00776 +/- 0.00013  [1.00750  1.00802]
+k-eff (implicit)  = 1.00782 +/- 0.00011  [1.00760  1.00804]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   98 / 100  Source neutrons : 752882
+
+Running time :                  2:25:22
+Estimated running time :        2:27:01
+Estimated running time left :   0:01:38
+
+Estimated relative CPU usage :   238.8%
+
+k-eff (analog)    = 1.00779 +/- 0.00013  [1.00753  1.00805]
+k-eff (implicit)  = 1.00782 +/- 0.00011  [1.00760  1.00804]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle   99 / 100  Source neutrons : 748577
+
+Running time :                  2:26:09
+Estimated running time :        2:26:58
+Estimated running time left :   0:00:49
+
+Estimated relative CPU usage :   221.4%
+
+k-eff (analog)    = 1.00780 +/- 0.00013  [1.00754  1.00805]
+k-eff (implicit)  = 1.00782 +/- 0.00011  [1.00760  1.00803]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.1.32 -- Static criticality source simulation
+
+Input file: "s8c48.main" 
+
+Active cycle  100 / 100  Source neutrons : 749893
+
+Running time :                  2:27:04
+Estimated running time :        2:27:04
+Estimated running time left :   0:00:00
+
+Estimated relative CPU usage :   192.5%
+
+k-eff (analog)    = 1.00780 +/- 0.00013  [1.00755  1.00806]
+k-eff (implicit)  = 1.00783 +/- 0.00011  [1.00761  1.00805]
+
+(O4) (MPI=8) (OMP=48) 
+------------------------------------------------------------
+
+Transport cycle completed in 2.44 hours.
+
+Waiting for results from other MPI tasks...
+OK.
+
