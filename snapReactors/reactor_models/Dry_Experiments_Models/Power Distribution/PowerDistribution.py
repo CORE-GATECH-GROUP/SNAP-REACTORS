@@ -48,8 +48,12 @@ plt.show()
 vert = c6.detectors['zmesh']
 tallies = vert.slice({'energy':0})
 xvals = vert.grids['Z'][:,0]
+print(xvals)
 error = vert.errors[0]*3
 norm_tallies = normalize_array(tallies)
+error = [error[0], error[10], error[23], error[37], error[51], error[65], error[79], error[95]]
+xvals = [xvals[0], xvals[10], xvals[23], xvals[37], xvals[51], xvals[65], xvals[79], xvals[95]]
+norm_tallies = [norm_tallies[0], norm_tallies[10], norm_tallies[23], norm_tallies[37], norm_tallies[51], norm_tallies[65], norm_tallies[79], norm_tallies[95]]
 xvals_exp = [-18.929088277858177, -14.848046309696093, -9.84081041968162, -4.688856729377715, 0.3183791606367592, 5.412445730824892, 10.506512301013025, 16.497829232995656]
 norm_exp = [0.34285714285714286, 0.8457142857142858, 1.110857142857143, 1.3554285714285714, 1.350857142857143, 1.1611428571428573, 0.7085714285714286, 0.28571428571428575]
 norm_exp = normalize_array(norm_exp)

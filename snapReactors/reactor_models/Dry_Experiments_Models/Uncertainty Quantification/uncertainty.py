@@ -24,3 +24,22 @@ std_deviation = np.std(data_array)
 # Print the results
 print("Average:", average_value)
 print("Standard Deviation:", std_deviation)
+
+## Hydrogen weight percent Uncertainty ##
+#---------------------------------------#
+hydrogenLoading = [
+    1.62, 1.63, 1.64, 1.62, 1.62, 1.64, 
+    1.63, 1.62, 1.59, 1.59, 1.57, 1.62, 
+    1.61, 1.55, 1.60, 1.61, 1.60
+]
+
+# Convert the data to a NumPy array for easy computation
+data_array = np.array(hydrogenLoading)
+
+# Calculate the average and standard deviation
+average_value = np.mean(data_array)
+std_deviation = np.std(data_array)
+
+# Print the results
+print("Average:", average_value)
+print("Stadnard Deviation:", std_deviation)

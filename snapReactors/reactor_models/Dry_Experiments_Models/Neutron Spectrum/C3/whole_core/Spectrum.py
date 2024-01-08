@@ -8,5 +8,5 @@ c3File = 's8c3_RevisedDrum.main_det0.m'
 c3 = serpentTools.read(c3File)
 
 spectrum = c3.detectors['EnergyDetector']
-spectrum.spectrumPlot()
+spectrum.spectrumPlot(ylabel = 'Flux normalized per unit lethargy $\pm\:\: 3\sigma$ [n\cm$^2$\s]')
 plt.show()
