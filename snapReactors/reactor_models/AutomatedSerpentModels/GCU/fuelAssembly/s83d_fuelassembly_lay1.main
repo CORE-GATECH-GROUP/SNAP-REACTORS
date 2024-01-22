@@ -1,0 +1,15 @@
+include s83d_fuelassembly_lay1.mat
+include s83d_fuelassembly_lay1.geo
+set bc 2 2 1
+set pop 500000 100 100
+set acelib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
+plot 31 1000 1000 0.0
+plot 11 1000 1000 0.0
+set his 1
+set gcu 0 100  101 
+ene fgs 1 5e-09 2.5e-08 1e-07 4e-07 9.96e-07 3e-06 9.877e-06 2.77e-05 0.0001 0.00055 0.003 0.01503 0.1 0.4 0.821 1.353 3.0 6.0655 20.0 
+set nfg fgs
+det scalarFlux100 du 100
+det scalarFlux101 du 101
+det nuFissRate100 du 100 dr -7 void
+det nuFissRate101 du 101 dr -7 void
