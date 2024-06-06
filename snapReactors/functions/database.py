@@ -178,6 +178,12 @@ class Database:
                     for kdx, k in enumerate(stateComponents):
                         componentGroup = h5file.create_group("/"+r.id +"/"+rs.id+"/"+k.id, True)
                         Database._createDatasets(componentGroup, k)
+
+                        componentDimensions = stateComponents[kdx]._dimensions
+                        for ddx, d in enumerate(componentDimensions):
+                            dimensionGroup = h5file.create_group("/" + r.id + "/" + rs.id + "/" + k.id + "/" + d.id, True)
+                            Database._createDatasets(dimensionGroup, d)
+
                         componentMaterials = stateComponents[kdx]._materials
                         for mdx, m in enumerate(componentMaterials):
                             materialGroup = h5file.create_group("/"+r.id +"/"+rs.id+"/"+k.id+"/"+m.id, True)

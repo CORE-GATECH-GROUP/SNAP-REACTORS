@@ -15,7 +15,7 @@ email: dan.kotlyar@me.gatech.edu, iaguirre6@gatech.edu
 
 import pytest
 import numpy as np
-from snapReactors.library.database import Database
+from snapReactors.functions.database import Database
 from snapReactors.containers.component import Component
 from snapReactors.containers.materials import Material
 
