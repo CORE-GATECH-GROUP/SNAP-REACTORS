@@ -297,7 +297,7 @@ class Database:
             container = Property("cp", "NUMBER", "CONSTANT", np.array([1]),
                                                                    "J/kg/K")
         elif type == Dimension:
-            container = Dimension()
+            container = Dimension("fuel_length", 1)
         elif type == ReactorState:
             container = ReactorState("1")
         elif type == Reactor:
@@ -424,9 +424,17 @@ class Database:
                 rsDicts[rdx][rs.id] = rs
                 compDicts[rsdx] = dict()
                 matDicts = [0]*len(self._reactors[rdx]._reactorstates[rsdx]._components)
+                dimDicts = [0]*len(self._reactors[rdx]._reactorstates[rsdx]._components)
                 for idx, comp in enumerate(self._reactors[rdx]._reactorstates[rsdx]._components):
                     compDicts[rsdx][comp.id] = comp
                     matDicts[idx] = dict()
+                    dimDicts[idx] = dict()
+
+                    for ddx, dim in enumerate(self._reactors[rdx]._reactorstates[rsdx]._components[idx]._dimensions):
+                        dimDicts[idx][dim.id] = dim
+                    compDicts[rsdx][comp.id+"Dimensions"] = dimDicts[idx]
+
+
                     propDicts = [0]*len(self._reactors[rdx]._reactorstates[rsdx]._components[idx]._materials)
                     for mdx, mat in enumerate(self._reactors[rdx]._reactorstates[rsdx]._components[idx]._materials):
                         matDicts[idx][mat.id] = mat
