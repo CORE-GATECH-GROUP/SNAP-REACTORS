@@ -571,6 +571,9 @@ class Database:
                 mapStr = mapStr + "\t\tComponents:" + "\n"
                 for i in range(0, len(self._reactors[r]._reactorstates[rs]._components)):
                     mapStr = mapStr +"\t\t"+ self._reactors[r]._reactorstates[rs]._components[i].id + "\n"
+                    mapStr = mapStr + "\t\t\tDimensions:" + "\n"
+                    for d in range(0, len(self._reactors[r]._reactorstates[rs]._components[i]._dimensions)):
+                        mapStr = mapStr + "\t\t\t" + self._reactors[r]._reactorstates[rs]._components[i]._dimensions[d].id + "\n"
                     mapStr = mapStr + "\t\t\tMaterials:" + "\n"
                     for j in range(0, len(self._reactors[r]._reactorstates[rs]._components[i]._materials)):
                         mapStr = mapStr+"\t\t\t"+self._reactors[r]._reactorstates[rs]._components[i]._materials[j].id+"\n"
