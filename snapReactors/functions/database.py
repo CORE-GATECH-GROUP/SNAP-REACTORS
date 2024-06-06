@@ -95,6 +95,14 @@ class Database:
                     for cdx, comp in enumerate(compGroups):
                         compContainers[cdx] = Database._createContainer(comp, 
                                                                             Component)
+                        
+                        dimGroups = Database._getInnerGroups(comp)
+                        dimContainers = [0]*len(dimGroups)
+                        for ddx, dim in enumerate(dimGroups):
+                            dimContainers[ddx] = Database._createContainer(dim, 
+                                                                            Dimension)
+                            compContainers[ddx].addDimension(dimContainers)
+
                         matGroups = Database._getInnerGroups(comp)
                         matContainers = [0]*len(matGroups)
                         for mdx, mat in enumerate(matGroups):
