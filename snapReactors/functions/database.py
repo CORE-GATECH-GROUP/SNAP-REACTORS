@@ -22,6 +22,7 @@ from snapReactors.containers.component import Component
 from snapReactors.containers.reactor import Reactor
 from snapReactors.containers.materials import Material, CTYPE, UTYPE
 from snapReactors.containers.property import Property, DTYPE, VTYPE 
+from snapReactors.containers.dimension import Dimension
 from snapReactors.functions.utilities import createDictFromConatinerList
 from mdutils.mdutils import MdUtils
 import h5py as h5
@@ -54,8 +55,11 @@ class Database:
         self.filePath = filePath
         self.version = version
         self.date = date
-        self._reactors = [] #to be updated upon completion of reactor and 
+        self._reactors = [] 
+        self._reactorstates = []#to be updated upon completion of reactor and 
         # and reactorState containers
+        self._dimensions = []
+        self._dimensionsDict = {}
         self._components = []
         self._componentsDict = {}
         self.databaseDict = {}
@@ -278,6 +282,8 @@ class Database:
         elif type == Property:
             container = Property("cp", "NUMBER", "CONSTANT", np.array([1]),
                                                                    "J/kg/K")
+        elif type == Dimension:
+            container = Dimension()
         elif type == ReactorState:
             container = ReactorState("1")
         elif type == Reactor:
