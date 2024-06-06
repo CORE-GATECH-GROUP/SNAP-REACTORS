@@ -535,6 +535,10 @@ class Database:
             value = self.databaseDict["Reactors"][keys[-4]+"States"][keys[-2]+"Components"]
         elif keys[-2] == "Components":
             value = self.databaseDict["Reactors"][keys[-5]+"States"][keys[-3]+"Components"][keys[-1]]
+        elif keys[-1] == "Dimensions":
+            value = self.databaseDict["Reactors"][keys[-6] + "States"][keys[-4] + "Components"][keys[-2] + "Dimensions"]
+        elif keys[-2] == "Dimensions":
+            value = self.databaseDict["Reactors"][keys[-7] + "States"][keys[-5] + "Components"][keys[-3] + "Dimensions"][keys[-1]]
         elif keys[-1] == "Materials":
             value = self.databaseDict["Reactors"][keys[-6]+"States"][keys[-4]+"Components"][keys[-2]+"Materials"]
         elif keys[-2] == "Materials":
