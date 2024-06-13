@@ -15,7 +15,7 @@ from snapReactors.functions.checkerrors import _isstr, _isarray,\
     _explengtharray, _isnonnegativearray, _isinstanceList
 from snapReactors.functions.parameters import ALLOWED_PROPERTIES, ALLOWED_DEPENDENCIES
 from snapReactors.containers.property import Property
-from snapReactors.functions.warnings import InputFileSyntaxWarning
+from snapReactors.functions.custom_warnings import InputFileSyntaxWarning
 from snapReactors.functions.utilities import createDictFromConatinerList
 from enum import Enum
 

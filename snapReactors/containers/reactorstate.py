@@ -15,7 +15,7 @@ from snapReactors.functions.checkerrors import (_isstr, _isarray,
     _explengtharray, _isnonnegativearray, _isnumber, _isnonnegative,
     _isinstanceList, _isdict, _isbool) 
 from snapReactors.functions.parameters import ALLOWED_PROPERTIES
-from snapReactors.functions.warnings import InputFileSyntaxWarning
+from snapReactors.functions.custom_warnings import InputFileSyntaxWarning
 from enum import Enum
 from snapReactors.containers.component import Component
 from snapReactors.containers.materials import Material, CTYPE, UTYPE

@@ -10,13 +10,13 @@ email: iaguirre6@gatech.edu, sgarcia9@wisc.edu
 
 import enum
 from fileinput import filename
-from sympy.polys.specialpolys import dmp_fateman_poly_F_1
+#from sympy.polys.specialpolys import dmp_fateman_poly_F_1
 from snapReactors.containers.reactorstate import ReactorState
 from snapReactors.functions.checkerrors import (_isstr, _isarray,
     _explengtharray, _isnonnegativearray, _isnumber, _isnonnegative,
     _isinstanceList) 
 from snapReactors.functions.parameters import ALLOWED_PROPERTIES
-from snapReactors.functions.warnings import InputFileSyntaxWarning
+from snapReactors.functions.custom_warnings import InputFileSyntaxWarning
 from enum import Enum
 from snapReactors.containers.component import Component
 from snapReactors.containers.reactor import Reactor
@@ -362,36 +362,31 @@ class Database:
         attrs = list(containerDict.keys())
         values = list(containerDict.values())
 
+        for i in range(len(values)):
+            if values[i] is None:
+                values[i] = np.array([np.nan])  # Directly set None to NaN
 
-        # removeIdxs= []
-
-        # for i in range(0, len(attrs)):
-        #     if "_" in attrs[i]:
-        #         removeIdxs.append(i)
-        #         # attrs.remove(attrs[i])
-        #         # values.remove(values[i])
-        #         # i = i -1
-
-        # removeCount = 0
-        # for i in range(0, len(removeIdxs)):
-        #     print(attrs[removeIdxs[i] - removeCount], values[removeIdxs[i] - removeCount] )
-        #     attrs.remove(attrs[removeIdxs[i] - removeCount])
-        #     values.remove(values[removeIdxs[i] - removeCount])
-
-        #     removeCount = removeCount + 1
-        
-        for i in range(0, len(values)):
-            if isinstance(values[i], type(None)):
-                values[i] = np.array([np.nan])
-                values[i] = values[i].astype(h5.opaque_dtype(values[i].dtype))
-
-        for i in range(0, len(attrs)):
             if isinstance(values[i], str):
-                values[i] = values[i].encode()
+                values[i] = values[i].encode('utf-8')
+
             if isinstance(values[i], Enum):
                 values[i] = values[i].value
-            group.create_dataset(attrs[i], data=values[i])
+        
+            if isinstance(values[i], (list, tuple)):
+                values[i] = np.array(values[i])
 
+            if isinstance(values[i], np.ndarray) and values[i].dtype == np.dtype('O'):
+                try:
+                    values[i] = np.array(values[i], dtype='S')  # Convert object array to fixed-length string array
+                except Exception as e:
+                    print(f"Skipping attribute {attrs[i]} with unsupported type {type(values[i])}: {e}")
+                    continue
+
+            try:
+                group.create_dataset(attrs[i], data=values[i])
+            except TypeError as e:
+                print(f"Error creating dataset for attribute '{attrs[i]}': {e}")
+                
     def _descend_obj(obj,sep='\t'):
         """
         Iterate through groups in a HDF5 file and prints the groups and 
