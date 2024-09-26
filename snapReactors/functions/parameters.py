@@ -154,12 +154,19 @@ ALLOWED_DIMENSIONS =\
       DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
    'moderator_radius': Dimension('moderator radius',
       DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'drum_radius': Dimension('drum radius',
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'absorber_thickness': Dimension('absorber thickness',
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'drum_block_gap': Dimension('drum block gap',
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),     
    }
 
 ALLOWED_MATERIALS = \
    {'fuel', 'diffusion_barrier', 'burnable_poison', 'clad', 'gap' 'internal_reflector', 
     'barrel', 'external_reflector', 'control_drum', 'coolant', 'upper_gridplate', 'lower_gridplate',
-    'flooding','shutdown_absorber', 'buffer', 'PYC', 'SiC', 'graphite', 'moderator'}
+    'flooding','shutdown_absorber', 'buffer', 'PYC', 'SiC', 'graphite', 'moderator', 'drum_radius',
+    'absorber_thickness', 'drum_block_gap'}
 ALLOWED_DEPENDENCIES =\
     {'T': Dependency('Temperature', 
         DepUnits("K","F"), DepConversion(__kelvin_faren, __faren_kelvin))
