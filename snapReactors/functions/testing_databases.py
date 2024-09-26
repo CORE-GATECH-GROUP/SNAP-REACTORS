@@ -4,6 +4,14 @@ from snapReactors.containers.materials import Material
 from snapReactors.containers.reactor import Reactor
 from snapReactors.containers.reactorstate import ReactorState
 
+def print_attributes(obj):
+    if hasattr(obj, "__dict__"):
+        for key, value in obj.__dict__.items():
+            print(f"{key}: {value}")
+
+# Example usage:
+
+
 filePath = '/home/garcsamu/Serpent/SNAP-REACTORS/snapReactors/databases/example.hdf5'
 version = 'v1.1.0'
 date = '2024-06-06 15:28:13'
@@ -16,5 +24,5 @@ rsFilePath = r'/home/garcsamu/Serpent/SNAP-REACTORS/snapReactors/data_inputfiles
 state = ReactorState.rsReader(rsFilePath, outputDict=False)
 c1.addReactorStates(state)
 ex1.addReactors([c1])
-
 print(ex1.map())
+ex1._write()

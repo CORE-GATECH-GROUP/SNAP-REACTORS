@@ -25,6 +25,7 @@ from snapReactors.containers.property import Property, DTYPE, VTYPE
 from snapReactors.containers.dimension import Dimension
 from snapReactors.functions.utilities import createDictFromConatinerList
 from mdutils.mdutils import MdUtils
+import json
 import h5py as h5
 import sympy as sp
 import copy
@@ -56,12 +57,12 @@ class Database:
         self.version = version
         self.date = date
         self._reactors = [] 
-        self._reactorstates = []#to be updated upon completion of reactor and 
-        # and reactorState containers
-        self._dimensions = []
-        self._dimensionsDict = {}
-        self._components = []
-        self._componentsDict = {}
+        # self._reactorstates = []#to be updated upon completion of reactor and 
+        # # and reactorState containers
+        # self._dimensions = []
+        # self._dimensionsDict = {}
+        # self._components = []
+        # self._componentsDict = {}
         self.databaseDict = {}
 
     def __str__(self):
@@ -75,8 +76,9 @@ class Database:
 
     def addReactors(self, reactors):
         _isinstanceList(reactors, Reactor, "components for database")
-        for i in reactors:
-            self._reactors.append(i)
+        self._reactors.extend(reactors)
+        # for i in reactors:
+        #     self._reactors.append(i)
 
     def _load(self):
         with h5.File(self.filePath, "r") as h5file:
@@ -121,168 +123,152 @@ class Database:
             self.addReactors(reactContainers)
             self._setDict()
 
-   
-
-
-    # def _load(self):
-    #     with h5.File(self.filePath, "r") as h5file:
-    #         compGroups = Database._getInnerGroups(h5file)
-    #         compContainers = [0]*len(compGroups)
-    #         for rsdx, rs in enumerate(rsGroups):
-
-    #         for cdx, comp in enumerate(compGroups):
-    #             compContainers[cdx] = Database._createContainer(comp, 
-    #                                                                 Component)
-    #             matGroups = Database._getInnerGroups(comp)
-    #             matContainers = [0]*len(matGroups)
-    #             for mdx, mat in enumerate(matGroups):
-    #                 matContainers[mdx] = Database._createContainer(mat, 
-    #                                                                 Material)
-    #                 propGroups = Database._getInnerGroups(mat)
-    #                 propContainers = [0]*len(propGroups)
-    #                 for pdx, prop in enumerate(propGroups):
-    #                     propContainers[pdx] = Database._createContainer(prop, 
-    #                                                                 Property)
-    #                 matContainers[mdx].addproperty(propContainers)
-    #             compContainers[cdx].addMaterial(matContainers)
-
-    #         self.addComponents(compContainers)
-
-    #         self._setDict()
-
     def _write(self):
-        # self._setDict()
-        # reactorComponents = self._components                      
-
-        # with h5.File(self.filePath, "w") as h5file:
-        #     h5file.attrs["version"] = self.version.encode()
-        #     h5file.attrs["date"] = self.date.encode()
-        #     for kdx, k in enumerate(reactorComponents):
-        #         componentGroup = h5file.create_group(k.id, True)
-        #         Database._createDatasets(componentGroup, k)
-        #         componentMaterials = reactorComponents[kdx]._materials
-        #         for mdx, m in enumerate(componentMaterials):
-        #             materialGroup = h5file.create_group("/"+k.id 
-        #                                                 +"/"+m.id, True)
-        #             Database._createDatasets(materialGroup, m)
-        #             materialProps = componentMaterials[mdx]._properties
-        #             for pdx, p in enumerate(materialProps):
-        #                 propertyGroup = h5file.create_group("/"+k.id +
-        #                                     "/"+m.id +"/" +p.id, True)
-        #                 Database._createDatasets(propertyGroup, p)
         self._setDict()
         reactors = self._reactors
+
         with h5.File(self.filePath, "w") as h5file:
             h5file.attrs["version"] = self.version.encode()
             h5file.attrs["date"] = self.date.encode()
-            for rdx, r in enumerate(reactors):
-                rGroup = h5file.create_group(r.id, True)
+
+            for r in reactors:
+                rGroup = h5file.create_group(r.id)
                 Database._createDatasets(rGroup, r)
-                reactorStates = reactors[rdx]._reactorstates
-                for rsdx, rs in enumerate(reactorStates):
-                    rsGroup = h5file.create_group("/"+r.id +"/"+rs.id, True)
+
+                for rs in r._reactorstates:
+                    rsGroup = rGroup.create_group(rs.id)
                     Database._createDatasets(rsGroup, rs)
-                    stateComponents = reactorStates[rsdx]._components
-                    for kdx, k in enumerate(stateComponents):
-                        componentGroup = h5file.create_group("/"+r.id +"/"+rs.id+"/"+k.id, True)
+
+                    for k in rs._components:
+                        componentGroup = rsGroup.create_group(k.id)
                         Database._createDatasets(componentGroup, k)
 
-                        componentDimensions = stateComponents[kdx]._dimensions
-                        for ddx, d in enumerate(componentDimensions):
-                            dimensionGroup = h5file.create_group("/" + r.id + "/" + rs.id + "/" + k.id + "/" + d.id, True)
+                        for d in k._dimensions:
+                            dimensionGroup = componentGroup.create_group(d.id)
                             Database._createDatasets(dimensionGroup, d)
 
-                        componentMaterials = stateComponents[kdx]._materials
-                        for mdx, m in enumerate(componentMaterials):
-                            materialGroup = h5file.create_group("/"+r.id +"/"+rs.id+"/"+k.id+"/"+m.id, True)
+                        for m in k._materials:
+                            materialGroup = componentGroup.create_group(m.id)
                             Database._createDatasets(materialGroup, m)
-                            materialProps = componentMaterials[mdx]._properties
-                            for pdx, p in enumerate(materialProps):
-                                propertyGroup = h5file.create_group("/"+r.id +"/"+rs.id+"/"+k.id +"/"+m.id +"/" +p.id, True)
+
+                            for p in m._properties:
+                                propertyGroup = materialGroup.create_group(p.id)
                                 Database._createDatasets(propertyGroup, p)
-        with open('..\\..\\README.md', 'r') as f:
-            data = f.readlines()
-            tabExist = False
-            f.close()
+    # def _write(self):
 
-        for i in range(0, len(data)):
-            if 'Database' in data[i]:
-                tabExist = True
-                break
+    #     self._setDict()
+    #     reactors = self._reactors
+    #     with h5.File(self.filePath, "w") as h5file:
+    #         h5file.attrs["version"] = self.version.encode()
+    #         h5file.attrs["date"] = self.date.encode()
+    #         for rdx, r in enumerate(reactors):
+    #             rGroup = h5file.create_group(r.id, True)
+    #             Database._createDatasets(rGroup, r)
+    #             reactorStates = reactors[rdx]._reactorstates
+    #             for rsdx, rs in enumerate(reactorStates):
+    #                 rsGroup = h5file.create_group("/"+r.id +"/"+rs.id, True)
+    #                 Database._createDatasets(rsGroup, rs)
+    #                 stateComponents = reactorStates[rsdx]._components
+    #                 for kdx, k in enumerate(stateComponents):
+    #                     componentGroup = h5file.create_group("/"+r.id +"/"+rs.id+"/"+k.id, True)
+    #                     Database._createDatasets(componentGroup, k)
 
-        if tabExist == True:
+    #                     componentDimensions = stateComponents[kdx]._dimensions
+    #                     for ddx, d in enumerate(componentDimensions):
+    #                         dimensionGroup = h5file.create_group("/" + r.id + "/" + rs.id + "/" + k.id + "/" + d.id, True)
+    #                         Database._createDatasets(dimensionGroup, d)
+
+    #                     componentMaterials = stateComponents[kdx]._materials
+    #                     for mdx, m in enumerate(componentMaterials):
+    #                         materialGroup = h5file.create_group("/"+r.id +"/"+rs.id+"/"+k.id+"/"+m.id, True)
+    #                         Database._createDatasets(materialGroup, m)
+    #                         materialProps = componentMaterials[mdx]._properties
+    #                         for pdx, p in enumerate(materialProps):
+    #                             propertyGroup = h5file.create_group("/"+r.id +"/"+rs.id+"/"+k.id +"/"+m.id +"/" +p.id, True)
+    #                             Database._createDatasets(propertyGroup, p)
+        # with open('..\\..\\README.md', 'r') as f:
+        #     data = f.readlines()
+        #     tabExist = False
+        #     f.close()
+
+        # for i in range(0, len(data)):
+        #     if 'Database' in data[i]:
+        #         tabExist = True
+        #         break
+
+        # if tabExist == True:
             
-            tabLine = False
-            mdData = dict()
-            key = ['Date', 'Version', 'Modifications']
-            for var in key:
-                mdData[var] = list()
+        #     tabLine = False
+        #     mdData = dict()
+        #     key = ['Date', 'Version', 'Modifications']
+        #     for var in key:
+        #         mdData[var] = list()
 
-            for i in range(0, len(data)):
-                line = data[i]
-                if 'Most Recent Version:' in line:
-                    oldVersion = line.split(':')[1]
-                if tabLine == True:
-                    for j,var in enumerate(key):
-                        mdData[var].append(line.split('|')[j+1])
-                    if mdData['Version'] == oldVersion:
-                        break
-                if '| :---: | :---: | :---: |' in line:
-                    tabLine = True
+        #     for i in range(0, len(data)):
+        #         line = data[i]
+        #         if 'Most Recent Version:' in line:
+        #             oldVersion = line.split(':')[1]
+        #         if tabLine == True:
+        #             for j,var in enumerate(key):
+        #                 mdData[var].append(line.split('|')[j+1])
+        #             if mdData['Version'] == oldVersion:
+        #                 break
+        #         if '| :---: | :---: | :---: |' in line:
+        #             tabLine = True
         
-            mdData['Date'].append(self.date)
-            mdData['Version'].append(self.version)
-            mdData['Modifications'].append('The {} component is added.'
-                                            .format(self._components))
+        #     mdData['Date'].append(self.date)
+        #     mdData['Version'].append(self.version)
+        #     mdData['Modifications'].append('The {} component is added.'
+        #                                     .format(self._components))
 
-            mdFile = MdUtils(file_name = 'Database', title = 'Database')
-            mdFile.new_line('Most Recent Version: {}'.format(self.version))
-            headers = key
-            for i in range(0,len(mdData['Date'])):
-                headers.extend([mdData['Date'][i], mdData['Version'][i], 
-                                mdData['Modifications'][i]])
-            mdFile.new_line()
-            mdFile.new_table(columns = 3, rows = len(mdData['Date'])+1, 
-                                text = headers, text_align='center')
-            with open('..\\..\\README.md','w') as f:
-                for line in data:
-                    if 'Database\n' not in line:
-                        f.write(line)
-                    else:
-                        break
-            with open('..\\..\\README.md','a') as f:
-                f.write('Database\n'
-                        '--------')
-                f.write(mdFile.file_data_text)
-                f.close()
+        #     mdFile = MdUtils(file_name = 'Database', title = 'Database')
+        #     mdFile.new_line('Most Recent Version: {}'.format(self.version))
+        #     headers = key
+        #     for i in range(0,len(mdData['Date'])):
+        #         headers.extend([mdData['Date'][i], mdData['Version'][i], 
+        #                         mdData['Modifications'][i]])
+        #     mdFile.new_line()
+        #     mdFile.new_table(columns = 3, rows = len(mdData['Date'])+1, 
+        #                         text = headers, text_align='center')
+        #     with open('..\\..\\README.md','w') as f:
+        #         for line in data:
+        #             if 'Database\n' not in line:
+        #                 f.write(line)
+        #             else:
+        #                 break
+        #     with open('..\\..\\README.md','a') as f:
+        #         f.write('Database\n'
+        #                 '--------')
+        #         f.write(mdFile.file_data_text)
+        #         f.close()
                     
-        else:
-            mdData = dict()
-            key = ['Date', 'Version', 'Modifications']
-            for var in key:
-                mdData[var] = list()
+        # else:
+        #     mdData = dict()
+        #     key = ['Date', 'Version', 'Modifications']
+        #     for var in key:
+        #         mdData[var] = list()
             
-            mdData['Date'].append(self.date)
-            mdData['Version'].append(self.version)
-            mdData['Modifications'].append('The {} component(s) were added.'
-                                            .format(self._components
-                                                    ))
+        #     mdData['Date'].append(self.date)
+        #     mdData['Version'].append(self.version)
+        #     mdData['Modifications'].append('The {} component(s) were added.'
+        #                                     .format(self._components
+        #                                             ))
 
-            mdFile = MdUtils(file_name = 'Database', title = 'Database')
-            mdFile.new_line('Most Recent Version: {}'.format(self.version))
-            headers = key
-            for i in range(0,len(mdData['Date'])):
-                headers.extend([mdData['Date'][i], mdData['Version'][i], 
-                                mdData['Modifications'][i]])
-            mdFile.new_line()
-            mdFile.new_table(columns = 3, rows = len(mdData['Date'])+1, 
-                                text = headers, text_align='center')
-            with open('..\\..\\README.md','a') as f:
-                f.write('\n\n\n\n'
-                        'Database\n'
-                        '--------')
-                f.write(mdFile.file_data_text)
-                f.close()
+        #     mdFile = MdUtils(file_name = 'Database', title = 'Database')
+        #     mdFile.new_line('Most Recent Version: {}'.format(self.version))
+        #     headers = key
+        #     for i in range(0,len(mdData['Date'])):
+        #         headers.extend([mdData['Date'][i], mdData['Version'][i], 
+        #                         mdData['Modifications'][i]])
+        #     mdFile.new_line()
+        #     mdFile.new_table(columns = 3, rows = len(mdData['Date'])+1, 
+        #                         text = headers, text_align='center')
+        #     with open('..\\..\\README.md','a') as f:
+        #         f.write('\n\n\n\n'
+        #                 'Database\n'
+        #                 '--------')
+        #         f.write(mdFile.file_data_text)
+        #         f.close()
             
 
     def _createContainer(group, type):
@@ -350,12 +336,13 @@ class Database:
                 datasetValues.append(groupItems[i][1][()])
         
         return datasetIds, datasetValues
-
+    @staticmethod
     def _createDatasets(group, container):
         containerDict = copy.deepcopy(vars(container))
 
         for key in list(containerDict):
-            if "_" in key:
+            # if "_" in key:
+            if key.startswith("_"):
                 containerDict.pop(key)
                 
         
@@ -363,27 +350,40 @@ class Database:
         values = list(containerDict.values())
 
         for i in range(len(values)):
-            if values[i] is None:
-                values[i] = np.array([np.nan])  # Directly set None to NaN
+            value = values[i]
+            if value is None:
+                value = np.array([np.nan])  # Directly set None to NaN
 
-            if isinstance(values[i], str):
-                values[i] = values[i].encode('utf-8')
+            elif isinstance(value, str):
+                value = value.encode('utf-8')
 
-            if isinstance(values[i], Enum):
-                values[i] = values[i].value
+            elif isinstance(value, Enum):
+                value = value.value
         
-            if isinstance(values[i], (list, tuple)):
-                values[i] = np.array(values[i])
+            elif isinstance(value, (list, tuple)):
+                value = np.array(value)
 
-            if isinstance(values[i], np.ndarray) and values[i].dtype == np.dtype('O'):
-                try:
-                    values[i] = np.array(values[i], dtype='S')  # Convert object array to fixed-length string array
-                except Exception as e:
-                    print(f"Skipping attribute {attrs[i]} with unsupported type {type(values[i])}: {e}")
-                    continue
+            elif isinstance(values, dict):
+                value = json.dumps(value).encode('utf-8')
+
+            elif isinstance(value, np.ndarray):
+                if value.dtype == np.dtype('O'):
+                    try:
+                        value = np.array(value, dtype='S')
+                    except Exception as e:
+                        print(f"Skipping attribute {attrs[i]} with unsupported type {type(value)}: {e}")
+                        continue
+            elif isinstance(value, (int, float, bool)):
+                value = np.array([value])
+
+            elif isinstance(value, bytes):
+                pass
+            else:
+                print(f"Skipping attribute {attrs[i]} with unsupported type {type(value)}")
+                continue
 
             try:
-                group.create_dataset(attrs[i], data=values[i])
+                group.create_dataset(attrs[i], data=value)
             except TypeError as e:
                 print(f"Error creating dataset for attribute '{attrs[i]}': {e}")
                 
@@ -409,40 +409,43 @@ class Database:
             Database._descend_obj(f[group])
 
     def _setDict(self):
-        reactDict = {}
-        rsDicts = [0]*len(self._reactors)
-        for rdx, r in enumerate(self._reactors):
-            reactDict[r.id] = r
-            rsDicts[rdx] = dict()
-            compDicts = [0]*len(self._reactors[rdx]._reactorstates)
-            for rsdx, rs in enumerate(self._reactors[rdx]._reactorstates):
-                rsDicts[rdx][rs.id] = rs
-                compDicts[rsdx] = dict()
-                matDicts = [0]*len(self._reactors[rdx]._reactorstates[rsdx]._components)
-                dimDicts = [0]*len(self._reactors[rdx]._reactorstates[rsdx]._components)
-                for idx, comp in enumerate(self._reactors[rdx]._reactorstates[rsdx]._components):
-                    compDicts[rsdx][comp.id] = comp
-                    matDicts[idx] = dict()
-                    dimDicts[idx] = dict()
+        self.databaseDict = {
+            'reactors': [reactor.id for reactor in self._reactors]
+        }
+        # reactDict = {}
+        # rsDicts = [0]*len(self._reactors)
+        # for rdx, r in enumerate(self._reactors):
+        #     reactDict[r.id] = r
+        #     rsDicts[rdx] = dict()
+        #     compDicts = [0]*len(self._reactors[rdx]._reactorstates)
+        #     for rsdx, rs in enumerate(self._reactors[rdx]._reactorstates):
+        #         rsDicts[rdx][rs.id] = rs
+        #         compDicts[rsdx] = dict()
+        #         matDicts = [0]*len(self._reactors[rdx]._reactorstates[rsdx]._components)
+        #         dimDicts = [0]*len(self._reactors[rdx]._reactorstates[rsdx]._components)
+        #         for idx, comp in enumerate(self._reactors[rdx]._reactorstates[rsdx]._components):
+        #             compDicts[rsdx][comp.id] = comp
+        #             matDicts[idx] = dict()
+        #             dimDicts[idx] = dict()
 
-                    for ddx, dim in enumerate(self._reactors[rdx]._reactorstates[rsdx]._components[idx]._dimensions):
-                        dimDicts[idx][dim.id] = dim
-                    compDicts[rsdx][comp.id+"Dimensions"] = dimDicts[idx]
+        #             for ddx, dim in enumerate(self._reactors[rdx]._reactorstates[rsdx]._components[idx]._dimensions):
+        #                 dimDicts[idx][dim.id] = dim
+        #             compDicts[rsdx][comp.id+"Dimensions"] = dimDicts[idx]
 
 
-                    propDicts = [0]*len(self._reactors[rdx]._reactorstates[rsdx]._components[idx]._materials)
-                    for mdx, mat in enumerate(self._reactors[rdx]._reactorstates[rsdx]._components[idx]._materials):
-                        matDicts[idx][mat.id] = mat
-                        propDicts[mdx] = dict()
-                        props = self._reactors[rdx]._reactorstates[rsdx]._components[idx]._materials[mdx]._properties
-                        for pdx, pty in enumerate(props):
-                            propDicts[mdx][pty.id] = pty
-                        matDicts[idx][mat.id+"Properties"] = propDicts[mdx]
-                    compDicts[rsdx][comp.id+"Materials"] = matDicts[idx]
-                rsDicts[rsdx][rs.id+"Components"] = compDicts[rsdx]
-            reactDict[r.id+"States"] = rsDicts[rdx]
+        #             propDicts = [0]*len(self._reactors[rdx]._reactorstates[rsdx]._components[idx]._materials)
+        #             for mdx, mat in enumerate(self._reactors[rdx]._reactorstates[rsdx]._components[idx]._materials):
+        #                 matDicts[idx][mat.id] = mat
+        #                 propDicts[mdx] = dict()
+        #                 props = self._reactors[rdx]._reactorstates[rsdx]._components[idx]._materials[mdx]._properties
+        #                 for pdx, pty in enumerate(props):
+        #                     propDicts[mdx][pty.id] = pty
+        #                 matDicts[idx][mat.id+"Properties"] = propDicts[mdx]
+        #             compDicts[rsdx][comp.id+"Materials"] = matDicts[idx]
+        #         rsDicts[rsdx][rs.id+"Components"] = compDicts[rsdx]
+        #     reactDict[r.id+"States"] = rsDicts[rdx]
 
-        self.databaseDict = {"Reactors": reactDict}
+        # self.databaseDict = {"Reactors": reactDict}
 
     def find(self, path):
         """
@@ -494,26 +497,7 @@ class Database:
         _isstr(path, "container/containers path")
         value = None
         keys = path.split("\\")
-        # if keys[-1] == "Components":
-        #     value = self.databaseDict["Components"]
-        # elif len(keys) == 1:
-        #     raise KeyError("The path given '{}' is not found in the database,"
-        #     " the current database has the following map \n {}"
-        #                                             .format(path, self.map()))
-        # elif keys[-2] == "Components":
-        #     value = self.databaseDict["Components"][keys[-1]]
-        # elif keys[-1] == "Materials":
-        #     value = self.databaseDict["Components"][keys[-2]+"Materials"]
-        # elif keys[-2] == "Materials":
-        #     value = self.databaseDict["Components"][keys[-3]+"Materials"][keys[-1]]
-        # elif keys[-1] == "Properties":
-        #     value = self.databaseDict["Components"][keys[-4]+"Materials"][keys[-2]+"Properties"]
-        # elif keys[-2] == "Properties":
-        #     value = self.databaseDict["Components"][keys[-5]+"Materials"][keys[-3]+"Properties"][keys[-1]]
-        # else:
-        #     raise KeyError("The path given '{}' is not found in the database,"
-        #     " the current database has the following map \n {}"
-        #                                             .format(path, self.map()))
+        
         if keys[-1] == "Reactors":
             value = self.databaseDict["Reactors"]
         elif len(keys) == 1:
