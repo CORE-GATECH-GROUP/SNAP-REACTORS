@@ -4,6 +4,8 @@ import subprocess
 import shutil
 # add cubit libraries to your path
 sys.path.append('/Applications/Coreform-Cubit-2022.4.app/Contents/MacOS')
+# sys.path.append('/Applications/Coreform-Cubit-2024.3.app/Contents/lib')
+# sys.path.append('/Applications/Coreform-Cubit-2024.3.app/Contents/MacOS')
 sys.path.append('/Users/isaacnaupaaguirre/Documents/GitHub/seacas/lib')
 
 import cubit
@@ -12,6 +14,7 @@ import exodus
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
+import zstandard
 
 class Block():
     def __init__(self, surfId, xcoord, ycoord):
@@ -21,15 +24,27 @@ class Block():
         self.blockId = None
         self.area = None
 
-def makeHexSurf(apothem):
+def makeHexSurf(apothem, isPoint = False):
+    point = 30
+    flat = 60
     vertex = apothem/(np.sqrt(3)/2)
-    angle = 30*np.pi/180
-    x1, y1 = vertex*np.cos(angle) , vertex*np.sin(angle)
-    x2, y2 = 0, vertex
-    x3, y3 = -1*x1, y1
-    x4, y4 = x3, -1*y3
-    x5, y5 = 0, -1*vertex
-    x6, y6 = x1, -1*y1
+    if not isPoint:
+        angle = flat*np.pi/180
+        x1, y1 = vertex, 0
+        x2, y2 = vertex*np.cos(angle) , vertex*np.sin(angle)
+        x3, y3 = -vertex*np.cos(angle) , vertex*np.sin(angle)
+        x4, y4 =  -1*vertex, 0
+        x5, y5 = -vertex*np.cos(angle) , -vertex*np.sin(angle)
+        x6, y6 = vertex*np.cos(angle) , -vertex*np.sin(angle)
+    else:
+        angle = point*np.pi/180
+        x1, y1 = vertex*np.cos(angle) , vertex*np.sin(angle)
+        x2, y2 = 0, vertex
+        x3, y3 = -1*x1, y1
+        x4, y4 = x3, -1*y3
+        x5, y5 = 0, -1*vertex
+        x6, y6 = x1, -1*y1
+
     cubit.cmd("create vertex {} {} 0".format(x1, y1))
     v1 = cubit.get_last_id("vertex")
     cubit.cmd("create vertex {} {} 0".format(x2, y2))
@@ -48,9 +63,51 @@ def makeHexSurf(apothem):
     return sId, vId
 
 def makeFuelPin(x, y, radii):
-    sId, vId = makeHexSurf(radii)
+    sId, vId = makeHexSurf(radii, isPoint=True)
     cubit.cmd('move Surface {}  x {} y {} include_merged '.format(sId, x, y))
     return sId, vId
+
+def makeFuelPinHC(x, y, radii):
+    sId1, vId1 = makeHexSurf(radii[-1])
+
+    cubit.cmd('create surface circle radius {} zplane'.format(radii[-2]))
+    sId2 = cubit.get_last_id("surface")
+
+    cubit.cmd('subtract surface {} from surface {} keep_tool'.format(sId2, sId1))
+    sId1 = cubit.get_last_id("surface")
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+
+    cubit.cmd('create surface circle radius {} zplane'.format(radii[-3]))
+    sId3 = cubit.get_last_id("surface")
+
+    cubit.cmd('subtract surface {} from surface {} keep_tool'.format(sId3, sId2))
+    sId2 = cubit.get_last_id("surface")
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+
+    cubit.cmd('create surface circle radius {} zplane'.format(radii[-4]))
+    sId4 = cubit.get_last_id("surface")
+
+    cubit.cmd('subtract surface {} from surface {} keep_tool'.format(sId4, sId3))
+    sId3 = cubit.get_last_id("surface")
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+
+    cubit.cmd('create surface circle radius {} zplane'.format(radii[-5]))
+    sId5 = cubit.get_last_id("surface")
+
+    cubit.cmd('subtract surface {} from surface {} keep_tool'.format(sId5, sId4))
+    sId4 = cubit.get_last_id("surface")
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+    
+    cubit.cmd('move Surface {}  x {} y {} include_merged '.format(sId4, x, y))
+
+    return sId4, sId4
+
+    # sId3, vId3 = cubit.cmd('create surface circle radius {} zplane'.format(radii[-3]))
+
 
 def init():
     cubit.init(['cubit', '-nojournal'])
@@ -69,7 +126,6 @@ def makeCirc(radius, points):
     return x, y
 
 def run(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBlockId):
-
     def repLayout(layout):
         for block in blockLayoutMap:
             layout = layout.replace(block, str(blockLayoutMap[block]))
@@ -331,6 +387,647 @@ def run(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBlockId):
     cubit.cmd('export mesh "./{}.e"  dimension 2  overwrite'.format(baseFile))
     return
 
+def runHeatConduction(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBlockId):
+    def repLayout(layout):
+        for block in blockLayoutMap:
+            layout = layout.replace(block, str(blockLayoutMap[block]))
+        return layout
+
+    layout = repLayout(layout)
+    nMid = 19
+    nEnd = int(nMid/2)
+    nRow = nEnd + 1
+    string = ""
+    string2 = ""
+    count = 1
+    xpitch = 1.4478
+    ypitch = xpitch*(np.sqrt(3)/2)
+    xi = (-1*(nRow-1)*xpitch)/2
+    yi = (-1*(nMid-1)*ypitch)/2
+
+    sIds = np.zeros((nMid, nMid))
+    vIds = np.zeros((nMid, nMid))
+
+    fpIds = []
+
+    drumApothem = 17.4732315
+    drumSurf, drumId = makeHexSurf(drumApothem)
+    drumOuter = 'outer'
+
+    curves = cubit.get_entities('curve')
+
+    cubit.cmd("sideset 1 add curve 1 2 3 4 5 6".format(curves))
+    cubit.cmd('sideset 1 name "{}"'.format(drumOuter))
+
+    barrelRad = 11.87704
+    cubit.cmd('create surface circle radius {} zplane'.format(barrelRad))   
+    barrelSurf = cubit.get_last_id("surface")
+
+    cubit.cmd('subtract surface {} from surface {} keep_tool'.format(barrelSurf, drumSurf))
+    drumSurf = cubit.get_last_id("surface")
+
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+
+    intRefRad = 11.7475
+    cubit.cmd('create surface circle radius {} zplane'.format(intRefRad))   
+    intRefSurf = cubit.get_last_id("surface")
+
+    cubit.cmd('subtract surface {} from surface {} keep_tool'.format(intRefSurf, barrelSurf))
+    barrelSurf = cubit.get_last_id("surface")
+
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+
+    hexApothem = 11.43
+    airSurf, airId = makeHexSurf(hexApothem)
+    cubit.cmd('rotate Surface {}  angle 30  about Z include_merged'.format(airSurf))
+
+    intRefRad = 11.7475
+    cubit.cmd('create surface circle radius {} zplane'.format(intRefRad))   
+    tempIntRefSurf = cubit.get_last_id("surface")
+
+    cubit.cmd('intersect surface {} {}'.format(tempIntRefSurf, airSurf))
+    latticeSurf = cubit.get_last_id("surface")
+
+    cubit.cmd('subtract surface {} from surface {} keep_tool'.format(latticeSurf, intRefSurf))
+
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+
+    intRefSections = np.linspace(latticeSurf + 1, latticeSurf + 6, 6).astype("int")
+    nSectionsStr = str(intRefSections).replace(",", " ")
+    nSectionsStr = nSectionsStr.replace("[", "")
+    nSectionsStr = nSectionsStr.replace("]", "")
+    intRefSurfs = nSectionsStr
+
+
+    fuelRad	            =0.67564
+    dbRad	            =0.681228
+    gapRad	            =0.685292
+    cladRad	            =0.71374
+    ecPinRad            =0.7112
+    elemPitch           =1.4478
+
+    for j in range(nMid):
+        for i in range(nRow):
+            string = string + str(count) + " "
+            string2 = string2 + "{:.2f}".format(xi) + " "
+            sIds, vIds[i][j] = makeFuelPinHC(xi, yi, [fuelRad, dbRad, gapRad, cladRad, xpitch/2])
+            fpIds.append(sIds)
+            #cubit.cmd('surface {}  size {}'.format(sIds[i][j], v1size))
+            #cubit.cmd('surface {}  scheme {}'.format(sIds[i][j], scheme))
+            #cubit.cmd('mesh surface {} '.format(sIds[i][j]))
+            #cubit.cmd('block {} surface {}'.format(count,sIds[i][j]))
+            count = count + 1
+            xi = xi + xpitch
+        string = string + "\n"
+        string2 = string2 + "\n"
+        if j < int(nMid/2):
+            nRow = nRow + 1
+        else:
+            nRow = nRow - 1
+        if ((j % 2) == 0):
+            xi = (-1*(nRow-1)*xpitch)/2 #- xpitch/2
+            #print("j", j, "j%2", j%2)
+        else: 
+            xi = (-1*(nRow-1)*xpitch)/2 
+            #print("j", j, "j%2", j%2)
+        yi = yi + ypitch
+
+    sIdsStr = str(np.array(fpIds).astype("int")).replace("\n", "")
+    sIdsStr = sIdsStr.replace("[", "")
+    sIdsStr = sIdsStr.replace("]", "")
+
+    #print(sIdsStr)
+
+    #break
+
+    # cubit.cmd('intersect surface {} {}'.format(latticeSurf, sIdsStr))
+    # cubit.cmd("merge all")
+    # cubit.cmd('imprint all')
+
+    # shiftIds = np.linspace(fpIds[-1]+1, len(fpIds) + fpIds[-1]+1, len(fpIds)).astype("int")
+
+    # latSurfObjs = []
+
+    # surfIds = cubit.get_entities("surface")
+
+    # for i in range(0, len(shiftIds)):
+    #     if int(shiftIds[i]) in surfIds:
+    #         latSurfObj = cubit.surface(int(shiftIds[i]))
+    #         coords = latSurfObj.center_point()
+    #         latSurfObjs.append(Block(int(shiftIds[i]), coords[0], coords[1]))
+    #         latSurfObjs[i].area = latSurfObj.area()
+
+    # def setBlockIdsHexLattice(layout, nMid, pitch, outerId, latObjs):
+    #     blockMap = {}
+    #     blockSurfMap = {}
+    #     def makeRows(layout, nMid, pitch):
+    #         splitRows = layout.split(";")
+    #         for i in range(0, nMid):
+    #             blocks = splitRows[i].strip().split(" ")
+
+    #             hRowidx = np.floor(nMid/2) - i
+                
+    #             if i%2 != 0:
+    #                 offset = pitch/2
+    #             else:
+    #                 offset = 0
+    #             for jdx, j in enumerate(blocks):
+    #                 if jdx%2 != 0:
+    #                     hColidx = -1*np.floor(len(blocks)/2) + jdx
+    #                     x, y = hColidx*pitch + offset, hRowidx*pitch*(np.sqrt(3)/2)
+    #                 else:
+    #                     hColidx = -1*np.floor(len(blocks)/2) + jdx
+    #                     x, y = hColidx*pitch + offset, hRowidx*pitch*(np.sqrt(3)/2)
+        
+    #                 coords = (x, y)
+    #                 if j not in blockMap:
+    #                     blockMap[j] = []
+    #                     blockMap[j].append(coords)
+    #                 else:
+    #                     blockMap[j].append(coords)
+    #     makeRows(layout, nMid, pitch)
+
+    #     for block in blockMap:
+    #         blockSurfMap[block] = []
+
+    #     for i in range(0, len(latObjs)):
+    #         xtol = .0000001
+    #         ytol = .0000001
+    #         for block in blockMap:
+    #             coords = blockMap[block]
+    #             for coord in coords:
+    #                 #print(coord, i)
+    #                 if (abs(latObjs[i].x - coord[0]) < xtol) & (abs(latObjs[i].y - coord[1]) < ytol):
+    #                     #print("stl coord: {} {}, calc coord: {} {}".format(latObjs[i].x, latObjs[i].y, coord[0], coord[1]))
+    #                     blockSurfMap[block].append(latObjs[i].surfId)
+    #                     latObjs[i].blockId = int(block)
+    #     for obj in latObjs:
+    #         if obj.blockId == None:
+    #             obj.blockId = outerId
+    #         if obj.blockId == outerId:
+
+    #             blockSurfMap[str(outerId)].append(obj.surfId)
+    #         #print("{}, {} | Area: {:.3f} | blockId: {}".format(obj.x, obj.y, obj.area, obj.blockId))
+    #     for block in blockSurfMap:
+    #         surfStr = str(blockSurfMap[block])
+    #         surfStr = surfStr.replace("[", "")
+    #         surfStr = surfStr.replace("]", "")
+    #         surfStr = surfStr.replace(",", "")
+            
+    #         cubit.cmd("block {} add surface {}".format(block, surfStr))
+    #     return blockMap, blockSurfMap
+    
+    # blockMap, blockSurfMap = setBlockIdsHexLattice(layout, nMidHex, hexPitch, outerBlockId, latSurfObjs)
+    # keysAsInt = []
+
+    # for key in blockMap:
+    #     keysAsInt.append(int(key))
+
+    # maxId = np.max(keysAsInt)
+
+    # # DEBUG LATER
+    # # blockFactor = 100
+    
+    # # drumBlockId = (maxId + 1)*blockFactor
+    # # barrelBlockId = (maxId + 2)*blockFactor
+    # # intRefBlockId = (maxId + 3)*blockFactor
+
+    # blockFactor = 100
+    
+    # drumBlockId = (maxId + 3)*blockFactor
+    # barrelBlockId = (maxId + 2)*blockFactor
+    # intRefBlockId = (maxId + 1)*blockFactor
+
+    # cubit.cmd("block {} add surface {}".format(drumBlockId, drumSurf))
+    # cubit.cmd("block {} add surface {}".format(barrelBlockId, barrelSurf))
+    # cubit.cmd("block {} add surface {}".format(intRefBlockId, intRefSurfs))
+    
+    # cubit.cmd("merge all")
+    # cubit.cmd('imprint all')
+
+    # # hexFullSize = 0.4
+    # # hexFullScheme = "trimesh"
+
+    # # for block in blockMap:
+    # #     if int(block) != outerBlockId:
+    # #         surfStr = cubit.string_from_id_list(blockSurfMap[block]).replace(",", "").replace("\n", "")
+    # #         cubit.cmd("surface {} size {}".format(surfStr, hexFullSize))
+    # #         cubit.cmd("surface {} scheme {}".format(surfStr, hexFullScheme))
+    # #         cubit.cmd("mesh surface {}".format(surfStr))
+
+    # # hexPartialMaxSize = 0.4
+    # # hexPartialMinSize = 0.2
+    # # hexPartialMaxGrad = 1
+    # # hexPartialScheme = "trimesh"
+
+    # # triMeshHexPartial = outerBlockId
+    # # surfStr = cubit.string_from_id_list(blockSurfMap[str(triMeshHexPartial)]).replace(",", "").replace("\n", "")
+    # # cubit.cmd("surface {} sizing function type skeleton min_size {} max_size {} max_gradient {} min_num_layers_2d 1 min_num_layers_1d 1".format(surfStr, hexPartialMinSize, hexPartialMaxSize, hexPartialMaxGrad))
+    # # cubit.cmd("surface {} scheme {}".format(surfStr, hexPartialScheme))
+    # # cubit.cmd("mesh surface {}".format(surfStr))
+
+    # intRefSize = 0.3
+    # intRefScheme = "trimesh"
+
+    # surfStr = intRefSurfs
+    # cubit.cmd("surface {} size {}".format(surfStr, intRefSize))
+    # cubit.cmd("surface {} scheme {}".format(surfStr, intRefScheme))
+    # cubit.cmd("mesh surface {}".format(surfStr))
+
+    # barrelSize = 0.3
+    # barrelScheme = "trimesh"
+
+    # surfStr = barrelSurf
+
+    # cubit.cmd("surface {} size {}".format(surfStr, barrelSize))
+    # cubit.cmd("surface {} scheme {}".format(surfStr, barrelScheme))
+    # cubit.cmd("mesh surface {}".format(surfStr))
+
+    # extRefSize = 0.3
+    # extRefScheme = "trimesh"
+
+    # surfStr = drumSurf
+    # cubit.cmd("surface {} sizing function type skeleton min_size auto max_size auto max_gradient 1.25 min_num_layers_2d 1 min_num_layers_1d 1".format(surfStr))
+    # cubit.cmd("surface {} scheme {}".format(surfStr, extRefScheme))
+    # cubit.cmd("mesh surface {}".format(surfStr))
+
+    cubit.cmd("save cub5 './{}.cub5' overwrite".format(baseFile))
+    cubit.cmd('set exodus netcdf4 on')
+    cubit.cmd('export mesh "./{}.e"  dimension 2  overwrite'.format(baseFile))
+    return
+
+def runDivRefFull(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBlockId):
+
+    def repLayout(layout):
+        for block in blockLayoutMap:
+            layout = layout.replace(block, str(blockLayoutMap[block]))
+        return layout
+
+    layout = repLayout(layout)
+    nMid = 19
+    nEnd = int(nMid/2) 
+    nRow = nEnd + 1
+    string = ""
+    string2 = ""
+    count = 1
+    xpitch = 1.4478
+    ypitch = xpitch*(np.sqrt(3)/2)
+    xi = (-1*(nRow-1)*xpitch)/2
+    yi = (-1*(nMid-1)*ypitch)/2
+
+    sIds = np.zeros((nMid, nMid))
+    vIds = np.zeros((nMid, nMid))
+
+    fpIds = []
+
+    gapThickness = 0.207772/4
+
+    gapThickness1 = 0.207772/4
+    gapThickness2 = 0.207772
+    gapThickness3 = 0.207772
+
+    drumApothem = 17.4732315 - gapThickness1
+    # shimAApothem = 19.35542598 - gapThickness1  - gapThickness2
+    # shimBApothem = 21.30540674 - gapThickness1 - gapThickness2 - gapThickness3
+
+    shimAApothem = 19.35542598 - gapThickness1 - gapThickness2
+    shimBApothem = 21.30540674 - gapThickness1 - gapThickness2 -gapThickness3
+    drumApothem4 = 17.4732315 - gapThickness1
+
+    shimBsurf, shimBid = makeHexSurf(shimBApothem)
+    drumOuter = 'outer'
+
+    curves = cubit.get_entities('curve')
+
+    cubit.cmd("sideset 1 add curve 1 2 3 4 5 6".format(curves))
+    cubit.cmd('sideset 1 name "{}"'.format(drumOuter))
+
+
+    barrelRad = 11.87704
+
+    drumApothem3 = barrelRad + 3*(drumApothem4 - barrelRad)/4
+    drumApothem2 = barrelRad + 2*(drumApothem4 - barrelRad)/4
+    drumApothem1 = barrelRad + 1*(drumApothem4 - barrelRad)/4
+
+    shimAsurf, shimAid = makeHexSurf(shimAApothem)
+
+    cubit.cmd('subtract surface {} from surface {} keep_tool'.format(shimAsurf, shimBsurf))
+    shimBsurf = cubit.get_last_id("surface")
+
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+
+    drumSurf4, drumId4 = makeHexSurf(drumApothem4)
+
+    cubit.cmd('subtract surface {} from surface {} keep_tool'.format(drumSurf4, shimAsurf))
+    shimAsurf = cubit.get_last_id("surface")
+
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+
+    drumSurf3, drumId3 = makeHexSurf(drumApothem3)
+
+    cubit.cmd('subtract surface {} from surface {} keep_tool'.format(drumSurf3, drumSurf4))
+    drumSurf4 = cubit.get_last_id("surface")
+
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+
+    drumSurf2, drumId2 = makeHexSurf(drumApothem2)
+
+    cubit.cmd('subtract surface {} from surface {} keep_tool'.format(drumSurf2, drumSurf3))
+    drumSurf3 = cubit.get_last_id("surface")
+
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+
+    drumSurf1, drumId1 = makeHexSurf(drumApothem1)
+
+    cubit.cmd('subtract surface {} from surface {} keep_tool'.format(drumSurf1, drumSurf2))
+    drumSurf2 = cubit.get_last_id("surface")
+
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+
+
+    cubit.cmd('create surface circle radius {} zplane'.format(barrelRad))   
+    barrelSurf = cubit.get_last_id("surface")
+
+    cubit.cmd('subtract surface {} from surface {} keep_tool'.format(barrelSurf, drumSurf1))
+    drumSurf1 = cubit.get_last_id("surface")
+
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+
+    intRefRad = 11.7475
+    cubit.cmd('create surface circle radius {} zplane'.format(intRefRad))   
+    intRefSurf = cubit.get_last_id("surface")
+
+    cubit.cmd('subtract surface {} from surface {} keep_tool'.format(intRefSurf, barrelSurf))
+    barrelSurf = cubit.get_last_id("surface")
+
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+
+    hexApothem = 11.43
+    airSurf, airId = makeHexSurf(hexApothem)
+    #cubit.cmd('rotate Surface {}  angle 30  about Z include_merged'.format(airSurf))
+
+    intRefRad = 11.7475
+    cubit.cmd('create surface circle radius {} zplane'.format(intRefRad))   
+    tempIntRefSurf = cubit.get_last_id("surface")
+
+    cubit.cmd('intersect surface {} {}'.format(tempIntRefSurf, airSurf))
+    latticeSurf = cubit.get_last_id("surface")
+
+    cubit.cmd('subtract surface {} from surface {} keep_tool'.format(latticeSurf, intRefSurf))
+
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+
+    intRefSections = np.linspace(latticeSurf + 1, latticeSurf + 6, 6).astype("int")
+    nSectionsStr = str(intRefSections).replace(",", " ")
+    nSectionsStr = nSectionsStr.replace("[", "")
+    nSectionsStr = nSectionsStr.replace("]", "")
+    intRefSurfs = nSectionsStr
+
+    for j in range(nMid):
+        for i in range(nRow):
+            string = string + str(count) + " "
+            string2 = string2 + "{:.2f}".format(xi) + " "
+            sIds, vIds[i][j] = makeFuelPin(xi, yi, xpitch/2)
+            fpIds.append(sIds)
+            #cubit.cmd('surface {}  size {}'.format(sIds[i][j], v1size))
+            #cubit.cmd('surface {}  scheme {}'.format(sIds[i][j], scheme))
+            #cubit.cmd('mesh surface {} '.format(sIds[i][j]))
+            #cubit.cmd('block {} surface {}'.format(count,sIds[i][j]))
+            count = count + 1
+            xi = xi + xpitch
+        string = string + "\n"
+        string2 = string2 + "\n"
+        if j < int(nMid/2):
+            nRow = nRow + 1
+        else:
+            nRow = nRow - 1
+        if ((j % 2) == 0):
+            xi = (-1*(nRow-1)*xpitch)/2 #- xpitch/2
+            #print("j", j, "j%2", j%2)
+        else: 
+            xi = (-1*(nRow-1)*xpitch)/2 
+            #print("j", j, "j%2", j%2)
+        yi = yi + ypitch
+
+    sIdsStr = str(np.array(fpIds).astype("int")).replace("\n", "")
+    sIdsStr = sIdsStr.replace("[", "")
+    sIdsStr = sIdsStr.replace("]", "")
+
+    print(sIdsStr)
+
+    cubit.cmd('intersect surface {} {}'.format(latticeSurf, sIdsStr))
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+
+    shiftIds = np.linspace(fpIds[-1]+1, len(fpIds) + fpIds[-1]+1, len(fpIds)).astype("int")
+
+    latSurfObjs = []
+
+    surfIds = cubit.get_entities("surface")
+
+    for i in range(0, len(shiftIds)):
+        if int(shiftIds[i]) in surfIds:
+            latSurfObj = cubit.surface(int(shiftIds[i]))
+            coords = latSurfObj.center_point()
+            latSurfObjs.append(Block(int(shiftIds[i]), coords[0], coords[1]))
+            #latSurfObjs[i].area = latSurfObj.area()
+
+    def setBlockIdsHexLattice(layout, nMid, pitch, outerId, latObjs):
+        blockMap = {}
+        blockSurfMap = {}
+        def makeRows(layout, nMid, pitch):
+            splitRows = layout.split(";")
+            for i in range(0, nMid):
+                blocks = splitRows[i].strip().split(" ")
+
+                hRowidx = np.floor(nMid/2) - i
+                
+                if i%2 != 0:
+                    offset = pitch/2
+                else:
+                    offset = 0
+                for jdx, j in enumerate(blocks):
+                    if jdx%2 != 0:
+                        hColidx = -1*np.floor(len(blocks)/2) + jdx
+                        x, y = hColidx*pitch + offset, hRowidx*pitch*(np.sqrt(3)/2)
+                    else:
+                        hColidx = -1*np.floor(len(blocks)/2) + jdx
+                        x, y = hColidx*pitch + offset, hRowidx*pitch*(np.sqrt(3)/2)
+        
+                    coords = (x, y)
+                    if j not in blockMap:
+                        blockMap[j] = []
+                        blockMap[j].append(coords)
+                    else:
+                        blockMap[j].append(coords)
+        makeRows(layout, nMid, pitch)
+
+        for block in blockMap:
+            blockSurfMap[block] = []
+
+        for i in range(0, len(latObjs)):
+            xtol = .0000001
+            ytol = .0000001
+            for block in blockMap:
+                coords = blockMap[block]
+                for coord in coords:
+                    #print(coord, i)
+                    if (abs(latObjs[i].x - coord[0]) < xtol) & (abs(latObjs[i].y - coord[1]) < ytol):
+                        #print("stl coord: {} {}, calc coord: {} {}".format(latObjs[i].x, latObjs[i].y, coord[0], coord[1]))
+                        blockSurfMap[block].append(latObjs[i].surfId)
+                        latObjs[i].blockId = int(block)
+        for obj in latObjs:
+            if obj.blockId == None:
+                obj.blockId = outerId
+            if obj.blockId == outerId:
+
+                blockSurfMap[str(outerId)].append(obj.surfId)
+            #print("{}, {} | Area: {:.3f} | blockId: {}".format(obj.x, obj.y, obj.area, obj.blockId))
+        for block in blockSurfMap:
+            surfStr = str(blockSurfMap[block])
+            surfStr = surfStr.replace("[", "")
+            surfStr = surfStr.replace("]", "")
+            surfStr = surfStr.replace(",", "")
+            
+            cubit.cmd("block {} add surface {}".format(block, surfStr))
+        return blockMap, blockSurfMap
+    
+    blockMap, blockSurfMap = setBlockIdsHexLattice(layout, nMidHex, hexPitch, outerBlockId, latSurfObjs)
+    keysAsInt = []
+
+    for key in blockMap:
+        keysAsInt.append(int(key))
+
+    maxId = np.max(keysAsInt)
+
+    # DEBUG LATER
+    # blockFactor = 100
+    
+    # drumBlockId = (maxId + 1)*blockFactor
+    # barrelBlockId = (maxId + 2)*blockFactor
+    # intRefBlockId = (maxId + 3)*blockFactor
+
+    blockFactor = 100
+
+    shimBBlockId = (maxId + 8)*blockFactor
+    shimABlockId = (maxId + 7)*blockFactor
+    drumBlockId4 = (maxId + 6)*blockFactor
+    drumBlockId3 = (maxId + 5)*blockFactor
+    drumBlockId2 = (maxId + 4)*blockFactor
+    drumBlockId1 = (maxId + 3)*blockFactor
+    barrelBlockId = (maxId + 2)*blockFactor
+    intRefBlockId = (maxId + 1)*blockFactor
+
+    cubit.cmd("block {} add surface {}".format(shimBBlockId, shimBsurf))
+    cubit.cmd("block {} add surface {}".format(shimABlockId, shimAsurf))
+
+    cubit.cmd("block {} add surface {}".format(drumBlockId4, drumSurf4))
+    cubit.cmd("block {} add surface {}".format(drumBlockId3, drumSurf3))
+    cubit.cmd("block {} add surface {}".format(drumBlockId2, drumSurf2))
+    cubit.cmd("block {} add surface {}".format(drumBlockId1, drumSurf1))
+    cubit.cmd("block {} add surface {}".format(barrelBlockId, barrelSurf))
+    cubit.cmd("block {} add surface {}".format(intRefBlockId, intRefSurfs))
+    
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
+
+    hexFullSize = 0.4
+    hexFullScheme = "trimesh"
+
+    for block in blockMap:
+        if int(block) != outerBlockId:
+            surfStr = cubit.string_from_id_list(blockSurfMap[block]).replace(",", "").replace("\n", "")
+            cubit.cmd("surface {} size {}".format(surfStr, hexFullSize))
+            cubit.cmd("surface {} scheme {}".format(surfStr, hexFullScheme))
+            cubit.cmd("mesh surface {}".format(surfStr))
+
+    hexPartialMaxSize = 0.4
+    hexPartialMinSize = 0.2
+    hexPartialMaxGrad = 1
+    hexPartialScheme = "trimesh"
+
+    triMeshHexPartial = outerBlockId
+    surfStr = cubit.string_from_id_list(blockSurfMap[str(triMeshHexPartial)]).replace(",", "").replace("\n", "")
+    cubit.cmd("surface {} sizing function type skeleton min_size {} max_size {} max_gradient {} min_num_layers_2d 1 min_num_layers_1d 1".format(surfStr, hexPartialMinSize, hexPartialMaxSize, hexPartialMaxGrad))
+    cubit.cmd("surface {} scheme {}".format(surfStr, hexPartialScheme))
+    cubit.cmd("mesh surface {}".format(surfStr))
+
+    intRefSize = 0.3
+    intRefScheme = "trimesh"
+
+    surfStr = intRefSurfs
+    cubit.cmd("surface {} size {}".format(surfStr, intRefSize))
+    cubit.cmd("surface {} scheme {}".format(surfStr, intRefScheme))
+    cubit.cmd("mesh surface {}".format(surfStr))
+
+    barrelSize = 0.3
+    barrelScheme = "trimesh"
+
+    surfStr = barrelSurf
+
+    cubit.cmd("surface {} size {}".format(surfStr, barrelSize))
+    cubit.cmd("surface {} scheme {}".format(surfStr, barrelScheme))
+    cubit.cmd("mesh surface {}".format(surfStr))
+
+    extRefSize1 = 4
+    extRefScheme = "trimesh"
+
+    surfStr = str(drumSurf1)
+    cubit.cmd("surface {} size auto factor {}".format(surfStr, extRefSize1))
+    cubit.cmd("surface {} scheme {}".format(surfStr, extRefScheme))
+    cubit.cmd("mesh surface {}".format(surfStr))
+
+    extRefSize1 = 5
+    extRefScheme = "trimesh"
+    surfStr = str(drumSurf2) 
+    cubit.cmd("surface {} size auto factor {}".format(surfStr, extRefSize1))
+    cubit.cmd("surface {} scheme {}".format(surfStr, extRefScheme))
+    cubit.cmd("mesh surface {}".format(surfStr))
+
+    extRefSize1 = 5
+    extRefScheme = "trimesh"
+    surfStr = str(drumSurf3) + " " + str(drumSurf4) + " " + str(shimAsurf) + " " + str(shimBsurf)
+    cubit.cmd("surface {} size auto factor {}".format(surfStr, extRefSize1))
+    cubit.cmd("surface {} scheme {}".format(surfStr, extRefScheme))
+    cubit.cmd("mesh surface {}".format(surfStr))
+
+    extRefSize1 = 5
+    extRefScheme = "trimesh"
+    surfStr = str(drumSurf4) + " " + str(shimAsurf) + " " + str(shimBsurf)
+    cubit.cmd("surface {} size auto factor {}".format(surfStr, extRefSize1))
+    cubit.cmd("surface {} scheme {}".format(surfStr, extRefScheme))
+    cubit.cmd("mesh surface {}".format(surfStr))
+
+    extRefSize1 = 5
+    extRefScheme = "trimesh"
+    surfStr = str(shimAsurf) + " " + str(shimBsurf)
+    cubit.cmd("surface {} size auto factor {}".format(surfStr, extRefSize1))
+    cubit.cmd("surface {} scheme {}".format(surfStr, extRefScheme))
+    cubit.cmd("mesh surface {}".format(surfStr))
+
+    extRefSize1 = 5
+    extRefScheme = "trimesh"
+    surfStr = str(shimBsurf)
+    cubit.cmd("surface {} size auto factor {}".format(surfStr, extRefSize1))
+    cubit.cmd("surface {} scheme {}".format(surfStr, extRefScheme))
+    cubit.cmd("mesh surface {}".format(surfStr))
+
+    cubit.cmd("save cub5 './{}.cub5' overwrite".format(baseFile))
+    cubit.cmd('set exodus netcdf4 on')
+    cubit.cmd('export mesh "./{}.e"  dimension 2  overwrite'.format(baseFile))
+    return
+
 def runDivRef(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBlockId):
 
     def repLayout(layout):
@@ -415,10 +1112,10 @@ def runDivRef(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBlockId)
     cubit.cmd('imprint all')
 
     hexApothem = 11.43
-    airSurf, airId = makeHexSurf(hexApothem)
-    cubit.cmd('rotate Surface {}  angle 30  about Z include_merged'.format(airSurf))
+    airSurf, airId = makeHexSurf(hexApothem, isPoint=False)
+    #cubit.cmd('rotate Surface {}  angle 30  about Z include_merged'.format(airSurf))
 
-    intRefRad = 11.7475
+    intRefRad = 11.7475 
     cubit.cmd('create surface circle radius {} zplane'.format(intRefRad))   
     tempIntRefSurf = cubit.get_last_id("surface")
 
@@ -852,6 +1549,19 @@ def createCubitMesh2D(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outer
         runDivRef(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBlockId)
     else:
         run(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBlockId)
+    return
+
+def createCubitMesh2DFull(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBlockId, useDivForRef = False):
+    init()
+    if useDivForRef:
+        runDivRefFull(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBlockId)
+    else:
+        run(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBlockId)
+    return
+
+def createCubitHCMesh(baseFile, hcLayout, blockLayoutMap, nMidHex, hexPitch, outerBlockId):
+    init()
+    runHeatConduction(baseFile, hcLayout, blockLayoutMap, nMidHex, hexPitch, outerBlockId)
     return
 
 # height = 35.56

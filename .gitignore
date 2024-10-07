@@ -6,6 +6,8 @@ __pycache__/
 # C extensions
 *.so
 
+
+
 # Debug functions
 ntpThermo/debug
 
@@ -132,3 +134,5 @@ dmypy.json
 .pyre/
 *.json
 snapReactors/.vscode/settings.json
+
+*.e
