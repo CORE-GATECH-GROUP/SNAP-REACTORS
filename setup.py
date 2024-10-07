@@ -1,20 +1,15 @@
 from os.path import join
 from glob import glob
-
 import setuptools
-
 
 DATA_EXTS = {'*.h5'}
 
-
 def getDataFiles():
     """Return all data files from ``snapReactors/library``"""
-
     files = []
     for ext in DATA_EXTS:
         files.extend(glob(join('snapReactors', 'library', ext)))
     return files
-
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -34,15 +29,10 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    packages=['snapReactors', 'snapReactors.functions',
-              'snapReactors.containers', 'snapReactors.databases',
-              'snapReactors.tests',
-              'snapReactors.reference_calc', 'snapReactors.reactor_models', 
-              'snapReactors.jupyter_notebooks', 'snapReactors.data_inputfiles'],
+    packages=setuptools.find_packages(include=['snapReactors', 'snapReactors.*']),
     package_data={
-        'snapReactors.databases':
-            ['databases/{}'.format(ext) for ext in DATA_EXTS],
+        'snapReactors.databases': ['databases/{}'.format(ext) for ext in DATA_EXTS],
     },
     include_package_data=True,
-    data_files=[('snapReactors/databases', getDataFiles()), ],
+    data_files=[('snapReactors/databases', getDataFiles())],
 )
