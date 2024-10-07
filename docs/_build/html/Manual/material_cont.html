@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Data Generation &#8212; snapReactors 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="snapReactors" href="database_cont.html" />
+    <link rel="prev" title="User’s Manual" href="index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="data-generation">
+<span id="material-cont"></span><h1>Data Generation<a class="headerlink" href="#data-generation" title="Permalink to this headline">¶</a></h1>
+<p>THIS IS JUST AN EXAMPLE - WILL BE UPDATED SOON.</p>
+<p>Collects the transmutation data (if provided) and
+prepares the transmutation matrix required for depletion or decay
+calculations.</p>
+<p>The dacay data can be read from a pre-generated hdf5 file.
+The pre-generated data files are located under the <code class="docutils literal notranslate"><span class="pre">pyIsoDep/data</span></code> directory.
+The hdf5 file also includes fission yields and branching ratios.</p>
+<ol class="arabic simple">
+<li><p>The user can use a built-in library to read decay data, fission yields, and branchin ratios.</p></li>
+<li><p>If only decay analysis is to be performed, no transmutation data needs to be provided.</p></li>
+<li><p>The user can filter the isotopes for which Bateman eqautions are solved.</p></li>
+</ol>
+<p><strong>Load module</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pyIsoDep</span><span class="o">.</span><span class="n">functions</span><span class="o">.</span><span class="n">generatedata</span> <span class="kn">import</span> <span class="nn">TransmutationData</span>
+</pre></div>
+</div>
+<p><strong>Execution</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">TransmutationData</span><span class="p">(</span><span class="n">libraryFlag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">h5path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wgtFY</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where,</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 83%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Input</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>libraryFlag</p></td>
+<td><p>Indicates whether data is read from a pre-generated library.</p></td>
+</tr>
+<tr class="row-odd"><td><p>h5path</p></td>
+<td><p>Full directory path to the hdf5 data library file</p></td>
+</tr>
+<tr class="row-even"><td><p>wgtFY</p></td>
+<td><p>Fission yield weighting factor</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li><p>The default value of <code class="docutils literal notranslate"><span class="pre">libraryFlag</span></code> is True. By default the decay data is read from the hdf5 file.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">h5path</span></code> is not provided or set to <code class="docutils literal notranslate"><span class="pre">None</span></code> a default library is used, provided <code class="docutils literal notranslate"><span class="pre">libraryFlag</span></code> is True.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wgtFY</span></code> represent the weighting factor between the thermal (<span class="math notranslate nohighlight">\(fy_{thermal}\)</span>) and fast (<span class="math notranslate nohighlight">\(fy_{fast}\)</span>) fission yields, as described in the following relation:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\bar{fy} = w_{fy}fy_{thermal} + (1-w_{fy})fy_{fast}\]</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<p><strong>Examples:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data1</span> <span class="o">=</span> <span class="n">TransmutationData</span><span class="p">(</span><span class="n">wgtFY</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="n">TransmutationData</span><span class="p">(</span><span class="n">libraryFlag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">h5path</span><span class="o">=</span><span class="s2">&quot;~C/fullpath/datafile.h5&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="readdata">
+<h2>ReadData<a class="headerlink" href="#readdata" title="Permalink to this headline">¶</a></h2>
+<p>Cross sections can be directly read via the <code class="docutils literal notranslate"><span class="pre">ReadData</span></code> method.
+The user can also use the <code class="docutils literal notranslate"><span class="pre">ReadData</span></code> method to define their own transmutation chains.</p>
+<p><strong>Execution</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">ReadData</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span> <span class="n">sig_f</span><span class="p">,</span> <span class="n">sig_c</span><span class="p">,</span> <span class="o">...</span> <span class="p">,</span> <span class="n">EfissMeV</span><span class="p">,</span> <span class="n">BR</span><span class="p">,</span> <span class="n">fymtx</span><span class="p">,</span> <span class="n">decaymtx</span><span class="p">,</span> <span class="n">flagBarns</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The following inputs can be inputted to the method:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 87%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Input</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ID</p></td>
+<td><p>Nuclides for which cross sections are provided (ZAID format)</p></td>
+</tr>
+<tr class="row-odd"><td><p>sig_f</p></td>
+<td><p>Fission cross sections in barns</p></td>
+</tr>
+<tr class="row-even"><td><p>sig_c</p></td>
+<td><p>Radiative capture cross sections in barn</p></td>
+</tr>
+<tr class="row-odd"><td><p>sig_c2m</p></td>
+<td><p>Radiative capture cross sections leading to metastable in barns</p></td>
+</tr>
+<tr class="row-even"><td><p>sig_n2n</p></td>
+<td><p>(n, 2n) in barns</p></td>
+</tr>
+<tr class="row-odd"><td><p>sig_n3n</p></td>
+<td><p>(n, 3n) in barns</p></td>
+</tr>
+<tr class="row-even"><td><p>sig_alpha</p></td>
+<td><p>(n, <span class="math notranslate nohighlight">\(\alpha\)</span>) in barns</p></td>
+</tr>
+<tr class="row-odd"><td><p>sig_p</p></td>
+<td><p>(n, proton) in barns</p></td>
+</tr>
+<tr class="row-even"><td><p>sig_d</p></td>
+<td><p>(n, deuterium) in barns</p></td>
+</tr>
+<tr class="row-odd"><td><p>sig_t</p></td>
+<td><p>(n, tritium) in barns</p></td>
+</tr>
+<tr class="row-even"><td><p>EfissMeV</p></td>
+<td><p>fission energy in MeV for all the isotopes</p></td>
+</tr>
+<tr class="row-odd"><td><p>BR</p></td>
+<td><p>Branching ratios that lead to an isomeric state</p></td>
+</tr>
+<tr class="row-even"><td><p>fymtx</p></td>
+<td><p>fission yields matrix for all the fathers-daughters isotopes</p></td>
+</tr>
+<tr class="row-odd"><td><p>decaymtx</p></td>
+<td><p>decay matrix (1/sec)</p></td>
+</tr>
+<tr class="row-even"><td><p>flagBarns</p></td>
+<td><p>if true cross sections are provided in barns otherwise in cm**2</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>This method is not required if only decay analysis are conducted.</p></li>
+<li><p>If fission yields or branching ratios are provided then they will be used to overwrite the data in the library.</p></li>
+<li><p>Not all (or any) the cross sections must be provided.</p></li>
+<li><p>Data can be provided as lists or arrays.</p></li>
+<li><p>If the pre-generated data library is used then the full transmutation chains will be considered. More specifically, the transmutation matrix and cross sections will be collected for the full isotopic list (e.g., 1743 isotopes).</p></li>
+<li><p>If the full size matrix is used, the depletion or decay calculations will take more time.</p></li>
+</ul>
+</div>
+<p><strong>Examples:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">ReadData</span><span class="p">([</span><span class="mi">541350</span><span class="p">,</span> <span class="mi">922350</span><span class="p">,</span> <span class="mi">922380</span><span class="p">],</span> <span class="n">sig_f</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">40.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span> <span class="n">sig_c</span><span class="o">=</span><span class="p">[</span><span class="mf">100E+3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mf">3.</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="condense">
+<h2>Condense<a class="headerlink" href="#condense" title="Permalink to this headline">¶</a></h2>
+<p>The user may want to condense the chains and limit these only to specific isotopes.
+The <code class="docutils literal notranslate"><span class="pre">Condense</span></code> method allows to reduce the chains and cross section data only to the selected isotopes.</p>
+<p><strong>Execution</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">Condense</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span> <span class="n">printWarnings</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where,</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ID</span></code> is a list/array of selected isotopes considered for the specific problem.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">printWarnings</span></code> is a boolean flag to indicate whether to print a warning that a specific expected attribute (e.g. <code class="docutils literal notranslate"><span class="pre">Q</span></code>) does not exist. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Examples:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">Condense</span><span class="p">([</span><span class="mi">531350</span><span class="p">,</span> <span class="mi">541350</span><span class="p">,</span> <span class="mi">611490</span><span class="p">,</span> <span class="mi">621490</span><span class="p">,</span> <span class="mi">922350</span><span class="p">,</span> <span class="mi">922380</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">snapReactors</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors.html">Developer Team</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User’s Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../develop/index.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">User’s Manual</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">User’s Manual</a></li>
+      <li>Next: <a href="database_cont.html" title="next chapter">snapReactors</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Dan Kotlyar.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Manual/material_cont.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

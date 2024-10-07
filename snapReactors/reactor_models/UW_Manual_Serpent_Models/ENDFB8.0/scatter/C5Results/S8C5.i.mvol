@@ -1,0 +1,19 @@
+% --- Material volumes:
+
+% Produced Thu Jan 26 11:40:18 2023 by MC volume calculation routine by
+% sampling 1000000000 random points in the geometry.
+
+set mvol
+
+UZrH            0 9.74009E+03 % (0.000)
+hasteC          0 3.38915E+02 % (0.001)
+hasteN          0 1.19823E+03 % (0.000)
+ss316           0 7.97121E+02 % (0.000)
+lucite          0 1.08095E+03 % (0.000)
+Be              0 3.75974E+04 % (0.000)
+BeO             0 0.00000E+00 % (0.000)
+Sm2O3           0 1.18750E+00 % (0.009)
+ceramic         0 1.73354E+02 % (0.001)
+intatm          0 2.05310E+02 % (0.001)
+air             0 2.70506E+03 % (0.000)
+reflMix         0 7.85179E+02 % (0.000)

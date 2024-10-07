@@ -1,0 +1,14 @@
+% --- Material volumes:
+
+% Produced Sun Feb  5 03:39:35 2023 by MC volume calculation routine by
+% sampling 1000000000 random points in the geometry.
+
+set mvol
+
+coolant         0 2.57197E+03 % (0.000)
+fuel            0 1.07597E+04 % (0.000)
+diffusion_barrier      0 0.00000E+00 % (0.000)
+burnable_poison      0 0.00000E+00 % (0.000)
+reflMix         0 1.78901E+02 % (0.001)
+gap             0 1.31031E+02 % (0.001)
+clad            0 9.37714E+02 % (0.000)
