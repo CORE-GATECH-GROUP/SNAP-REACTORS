@@ -11,6 +11,7 @@ cc_extension = [""]
 # Function to generate new filenames
 def generate_filename(i, j):
     return f"s83d_ac_c3_gcu_core_20lay_{i}_{j}.main", f"s83d_ac_c3_gcu_core_20lay_{i}_{j}.mat", f"s83d_ac_c3_gcu_core_20lay_{i}_{j}.geo"
+
 def new_density(T_c):
     # note that expansion is restricted axially
     alpha_A = 0.75* (7.38*10**-6+T_c*1.51*10**-8)
@@ -20,7 +21,7 @@ def new_density(T_c):
     area = np.pi*rad**2
     vol = area * height
     dA =  area*alpha_A*dT
-    new_area = dA * area + area
+    new_area = dA + area
     new_vol = new_area * height
     rho = 6.0600000000000005
     mass = rho * vol
@@ -28,37 +29,52 @@ def new_density(T_c):
     return new_rho
 
 def new_radius(T_c):
-    alpha_A = 0.75* (7.38*10**-6+T_c*1.51*10**-8)
+    alpha_A = 2 * (7.38*10**-6+T_c*1.51*10**-8)
     dT = T_c-(300-273.15) 
     rad = 0.67564
     area = np.pi*rad**2
     dA =  area*alpha_A*dT
-    new_area = dA * area + area
+    new_area = dA + area
     new_rad = np.sqrt(new_area / (np.pi))
+
     return new_rad
 
-def hex_shim_apothem(T_c, apothem):
-    alpha_A = 2 * 11.5*10**-6 * T_c
-    area = 2 * np.sqrt(3) * apothem ** 2
+def hex_shim_density(T_c):
+    alpha_A = 2 * 11.5*10**-6
     dT = T_c - (300-273.15)
-    dA = area * alpha_A * dT
-    new_area = dA * area + area
-    new_apothem = np.sqrt(new_area / (2 * np.sqrt(3)))
-    return new_apothem
-
-def hex_shim_density(T_c, apothem):
-    alpha_A = 2 * 11.5*10**-6 * T_c
     height = 36.7538
-    area = 2 * np.sqrt(3) * apothem ** 2
-    vol = area * height
-    dT = T_c - (300-273.15)
-    dA = area * alpha_A * dT
-    new_area = dA * area + area
-    new_vol = new_area * height
+    
+    hex_area = 2 * np.sqrt(3) * 19.09571098 ** 2
+    barrel_area = np.pi * 11.87704 ** 2
+    ref_area = hex_area - barrel_area
+    ref_vol = ref_area * height
+    dA = ref_area * alpha_A * dT
+    new_ref_area = dA + ref_area
+    new_ref_vol = new_ref_area * height
     rho = 1.84
-    mass = vol * rho
-    new_rho = mass/ new_vol
-    return new_rho
+    mass = ref_vol * rho
+    new_rho = mass/ new_ref_vol
+    
+    return new_rho, mass
+    
+def hex_shim_apothem(T_c):
+    height = 36.7538
+    barrel_area = np.pi * 11.87704 ** 2
+    
+    new_rho, mass = hex_shim_density(T_c)
+    new_ref_vol = mass/new_rho
+    new_ref_area = new_ref_vol / height
+    
+    new_hex_area = new_ref_area + barrel_area
+    new_apothem =np.sqrt(new_hex_area/(2 * np.sqrt(3)))
+    return new_apothem
+    
+def shim_length_additions(T_c):
+    new_apothem = hex_shim_apothem(T_c)
+    delta_apothem = new_apothem - 19.0957109
+    return delta_apothem / 4
+
+
 
 # Read base files
 with open("s83d_ac_c3_gcu_core_20lay_base.main", "r") as base_main:
