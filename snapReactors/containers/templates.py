@@ -13466,14 +13466,14 @@ class S8_GriffinTESTC3_HomogVoid(S8ER):
         return map
 
 class S8_Wet(S8ER):
-    def __init__(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, nActiveLayers = 12, config = 'C3', xsLibrary = 'ENDF7.1', hasThermScatt=False, baseFile = "s82D_gcu", geo = '2D', useRefLayoutForMesh = False):
+    def __init__(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, nActiveLayers = 12, config = 'C3', xsLibrary = 'ENDF7.1', hasThermScatt=False, baseFile = "s82D_gcu", geo = '2D', useRefLayoutForMesh = False):
         S8ER.__init__(self)
         self.config = config
         self.xsLibrary = xsLibrary
         self.hasThermScatt = hasThermScatt
-        self.map = self.setMap(fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, baseFile, nActiveLayers, geo, useRefLayoutForMesh)
+        self.map = self.setMap(fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, baseFile, nActiveLayers, geo, useRefLayoutForMesh)
 
-    def setMap(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, baseFile, nActiveLayers, geo, useRefLayoutForMesh):
+    def setMap(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, baseFile, nActiveLayers, geo, useRefLayoutForMesh):
         map = {}
         fuelMat = fuelElement.materialsDict['fuel']
         dbMat = fuelElement.materialsDict['diffusion_barrier']
@@ -13481,6 +13481,7 @@ class S8_Wet(S8ER):
         gapMat = fuelElement.materialsDict['gap']
         cladMat = fuelElement.materialsDict['clad']
         coolMat = coolElement.materialsDict['coolant']
+        airMat = airElement.materialsDict['air']
         intrefMat = internalReflector.materialsDict['internal_reflector']
         barrelMat = barrel.materialsDict['barrel']
         cdMat = controlDrums.materialsDict['control_drum']
@@ -13516,7 +13517,7 @@ class S8_Wet(S8ER):
         actdz = acudz+acmdz+acldz
         acthf = voiddz + actdz
 
-        serMatsList = super()._buildMaterials([fuelMat, coolMat, dbMat, bpMat, gapMat, cladMat, intrefMat, barrelMat, lgpMat, cdMat])
+        serMatsList = super()._buildMaterials([fuelMat, coolMat, dbMat, bpMat, gapMat, cladMat, intrefMat, barrelMat, lgpMat, cdMat, airMat])
 
         #replace 6000 with 6012 for endf8 lib
         if self.xsLibrary == 'ENDF8':
@@ -13546,8 +13547,9 @@ class S8_Wet(S8ER):
         cladMat = serMatsDict['clad']
         cladMat.set('rgb', "100 100 100")
         intrefMat = serMatsDict['internal_reflector']
-        airMat = serMatsDict['coolant']
-        airMat.set('rgb', "196 193 193")
+        nakMat = serMatsDict['coolant']
+        nakMat.set('rgb', "196 193 193")
+        airMat = serMatsDict['air']
         dbMat = serMatsDict['diffusion_barrier']
         bpMat = serMatsDict['burnable_poison']
         ugpMat = barMat.duplicateMat("upper_gridplate")
@@ -13599,8 +13601,8 @@ class S8_Wet(S8ER):
 
         ## New compcore verifaction induced comp
         fuelSerRadii = [fuelRad, dbRad, gapRad, cladRad]
-        fuelSerMats = [fuelMat, cerMat, gapMat, cladMat, airMat]
-        coolSerMats = [airMat]
+        fuelSerMats = [fuelMat, cerMat, gapMat, cladMat, nakMat]
+        coolSerMats = [nakMat]
 
         dzACM = acmdz/nActiveLayers
         nlayersACM = nActiveLayers
@@ -13612,13 +13614,13 @@ class S8_Wet(S8ER):
 
             fuelSer.setPin(fuelSerMats, fuelSerRadii)
             coolSer = pin('900', 1)
-            # coolSer.set('materials', [airMat])
-            coolSer.setPin([airMat], [])
+            # coolSer.set('materials', [nakMat])
+            coolSer.setPin([nakMat], [])
             coolSer.setGCU(900)
 
             if (self.config == 'C2') | (self.config =='C1') | (self.config =='C4'):
                 lucSerRadii = [ecPinRad]
-                lucSerMats = [lucMat, airMat]
+                lucSerMats = [lucMat, nakMat]
                 lucSer = pin('1700', 2)
                 lucSer.setPin(lucSerMats, lucSerRadii)
                 lucSer.setGCU(1000)
@@ -13634,12 +13636,12 @@ class S8_Wet(S8ER):
 
             ############################## active core middle
             coolSerACM = pin('900', 1)
-            # coolSer.set('materials', [airMat])
-            coolSerACM.setPin([airMat], [])
+            # coolSer.set('materials', [nakMat])
+            coolSerACM.setPin([nakMat], [])
             coolSerACM.setGCU(900)
 
             lucSerRadii = [ecPinRad]
-            lucSerMats = [lucMat, airMat]
+            lucSerMats = [lucMat, nakMat]
             lucSerACM = build3Dpin("9600", lucSerMats, lucSerRadii, nlayersACM, dz = dzACM, setGCUSeed=9600, z0 = 0)
             lucSerACM.setGCU(9600, setAllElementsGCU=True)
 
@@ -13656,12 +13658,12 @@ class S8_Wet(S8ER):
             fuelSerACL.setPin(fuelSerMats, fuelSerRadii)
             
             coolSerACL = pin('2000', 1)
-            # coolSer.set('materials', [airMat])
-            coolSerACL.setPin([airMat], [])
+            # coolSer.set('materials', [nakMat])
+            coolSerACL.setPin([nakMat], [])
             coolSerACL.setGCU(2000)
 
             lucSerRadii = [ecPinRad]
-            lucSerMats = [lucMat, airMat]
+            lucSerMats = [lucMat, nakMat]
             lucSerACL = pin('9700', 2)
             lucSerACL.setPin(lucSerMats, lucSerRadii)
             lucSerACL.setGCU(9700)
@@ -13674,12 +13676,12 @@ class S8_Wet(S8ER):
                 fesACL[i].setGCU(str(c+1)+"00")
 
             # coolSerACL = pin('2000', 1)
-            # # coolSer.set('materials', [airMat])
-            # coolSerACL.setPin([airMat], [])
+            # # coolSer.set('materials', [nakMat])
+            # coolSerACL.setPin([nakMat], [])
             # coolSerACL.setGCU(2000)
             # if (self.config == 'C2') | (self.config =='C1') | (self.config =='C4'):
             #     lucSerRadii = [ecPinRad]
-            #     lucSerMats = [lucMat, airMat]
+            #     lucSerMats = [lucMat, nakMat]
             #     lucSerACL = pin('2100', 2)
             #     lucSerACL.setPin(lucSerMats, lucSerRadii)
             #     lucSerACL = build3Dpin("2100", lucSerMats, lucSerRadii, nlayersACL, dz=dzACL, hasUniqueMatlayers=False, setGCUSeed=2100)
@@ -13699,11 +13701,11 @@ class S8_Wet(S8ER):
             fuelSerACU.setPin(fuelSerMats, fuelSerRadii)
 
             coolSerACU = pin('3100', 1)
-            coolSerACU.setPin([airMat], [])
+            coolSerACU.setPin([nakMat], [])
             coolSerACU.setGCU(3100)
 
             lucSerRadii = [ecPinRad]
-            lucSerMats = [lucMat, airMat]
+            lucSerMats = [lucMat, nakMat]
             lucSerACU = pin('9800', 2)
             lucSerACU.setPin(lucSerMats, lucSerRadii)
             lucSerACU.setGCU(9800)
@@ -13716,12 +13718,12 @@ class S8_Wet(S8ER):
                 fesACU[i].setGCU(str(c+1)+"00")
 
             # coolSerACU = pin('3100', 1)
-            # # coolSer.set('materials', [airMat])
-            # coolSerACU.setPin([airMat], [])
+            # # coolSer.set('materials', [nakMat])
+            # coolSerACU.setPin([nakMat], [])
             # coolSerACU.setGCU(3100)
             # if (self.config == 'C2') | (self.config =='C1') | (self.config =='C4'):
             #     lucSerRadii = [ecPinRad]
-            #     lucSerMats = [lucMat, airMat]
+            #     lucSerMats = [lucMat, nakMat]
             #     lucSerACU = pin('3200', 2)
             #     lucSerACU.setPin(lucSerMats, lucSerRadii)
             #     lucSerACU = build3Dpin("3200", lucSerMats, lucSerRadii, nlayersACU, dz=dzACU, hasUniqueMatlayers=False, setGCUSeed=3200)
@@ -14116,7 +14118,7 @@ class S8_Wet(S8ER):
         #ugp.setGCU(9300)
 
         ugph = pin("pUGH", 2)
-        ugph.setPin([airMat, ugpMat], [ughr])
+        ugph.setPin([nakMat, ugpMat], [ughr])
 
 
         lgp = pin("pLG", 1)
@@ -14124,7 +14126,7 @@ class S8_Wet(S8ER):
         #lgp.setGCU(9400)
 
         lgph = pin("pLGH", 2)
-        lgph.setPin([airMat, lgpMat], [lghr])
+        lgph.setPin([nakMat, lgpMat], [lghr])
 
         #univMap = {'1':ugph, '2':ugp, '0':ugp}
         univMap = {'1':ugph, '2':ugp, '0':ugp}
@@ -14163,16 +14165,16 @@ class S8_Wet(S8ER):
         cdSys1 = cell(uid+'cdSys1', isVoid = True)
         cdSys1.setSurfs([ugBarrel.boundary, drumSurf6], [0, 1])
 
-        # cdSys2 = cell(uid+'cdSys2', mat=airMat)
+        # cdSys2 = cell(uid+'cdSys2', mat=nakMat)
         # cdSys2.setSurfs([drumSurf1, drumSurf2], [0, 1])
 
-        # cdSys3 = cell(uid+'cdSys3', mat=airMat)
+        # cdSys3 = cell(uid+'cdSys3', mat=nakMat)
         # cdSys3.setSurfs([drumSurf2, drumSurf3], [0, 1])
 
-        # cdSys4 = cell(uid+'cdSys4', mat=airMat)
+        # cdSys4 = cell(uid+'cdSys4', mat=nakMat)
         # cdSys4.setSurfs([drumSurf3, drumSurf4], [0, 1])
 
-        # cdSys5 = cell(uid+'cdSys5', mat=airMat)
+        # cdSys5 = cell(uid+'cdSys5', mat=nakMat)
         # cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
 
         cdOnly1 = universe(uid+"control13")
@@ -14294,16 +14296,16 @@ class S8_Wet(S8ER):
         cdSys1 = cell(uid+'cdSys1', isVoid = True)
         cdSys1.setSurfs([lgBarrel.boundary, drumSurf6], [0, 1])
 
-        # cdSys2 = cell(uid+'cdSys2', mat=airMat)
+        # cdSys2 = cell(uid+'cdSys2', mat=nakMat)
         # cdSys2.setSurfs([drumSurf1, drumSurf2], [0, 1])
 
-        # cdSys3 = cell(uid+'cdSys3', mat=airMat)
+        # cdSys3 = cell(uid+'cdSys3', mat=nakMat)
         # cdSys3.setSurfs([drumSurf2, drumSurf3], [0, 1])
 
-        # cdSys4 = cell(uid+'cdSys4', mat=airMat)
+        # cdSys4 = cell(uid+'cdSys4', mat=nakMat)
         # cdSys4.setSurfs([drumSurf3, drumSurf4], [0, 1])
 
-        # cdSys5 = cell(uid+'cdSys5', mat=airMat)
+        # cdSys5 = cell(uid+'cdSys5', mat=nakMat)
         # cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
 
         cdOnly1 = universe(uid+"control13")
@@ -14368,20 +14370,20 @@ class S8_Wet(S8ER):
         lgVoid = buildPeripheralObject(lgBarrel, cdFull)
         
         uecv = pin("pLECV", 1)
-        uecv.setPin([airMat], [])
+        uecv.setPin([nakMat], [])
         #uecv.setGCU(9500)
 
         uec = pin("pUEC", 2)
-        uec.setPin([cladMat, airMat], [ecPinRad])
+        uec.setPin([cladMat, nakMat], [ecPinRad])
 
 
 
         lecv = pin("pLECV", 1)
-        lecv.setPin([airMat], [])
+        lecv.setPin([nakMat], [])
         #lecv.setGCU(9600)
 
         lec = pin("pLEC", 2)
-        lec.setPin([cladMat, airMat], [ecPinRad])
+        lec.setPin([cladMat, nakMat], [ecPinRad])
 
 
         univMap = {'1':uec, '2':uecv, '0':uecv}

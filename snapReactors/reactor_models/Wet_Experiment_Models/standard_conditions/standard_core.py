@@ -16,7 +16,7 @@ import numpy as np
 
 ##Loading and accessing inputfile data
 #reads in reactor state data
-rsFilePath = r"C:\Users\Sam\Documents\private_snap\snapReactors\data_inputfiles\s8er_coldpower.txt"
+rsFilePath = r"C:\Users\Sam\Documents\private_snap\snapReactors\data_inputfiles\s8er_hotpower.txt"
 #rsFilePath = r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\data_inputfiles\s8er_coldpower.txt"
 states = ReactorState.rsReader(rsFilePath, outputDict=True)
 #display states read in and access state being modeled
@@ -33,6 +33,7 @@ br = components['barrel']
 lgp = components['lower gridplate']
 ugp = components['upper gridplate']
 cds = components['control drum system']
+ae = components['air element']
 
 #acePath = r"/mnt/c/Users/user/Documents/endfb7/sss_endfb7u.xsdata"
 acePath = "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
@@ -46,7 +47,7 @@ acePath = "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
 # coreres =  S8_ActiveCoreGCU(fe, ce, ir, br, cds, config='C3_Core', xsLibrary="ENDF8", hasThermScatt=True, baseFile="s82d_ac_c3_gcu_coreres", geo = "2D")
 #ringres =  S8_ActiveCoreGCU(fe, ce, ir, br, cds, config='C3', xsLibrary="ENDF8", hasThermScatt=True, baseFile="s82d_ac_c3_gcu_ringres", geo = "2D")
 # elemres =  S8_ActiveCoreGCU(fe, ce, ir, br, cds, config='C3_Elem', xsLibrary="ENDF8", hasThermScatt=True, baseFile="s82d_ac_c3_gcu_elemres", geo = "2D")
-ringres = S8_Wet(fe, ce, ir, br, ugp, lgp, cds, config='C1', xsLibrary="ENDF8", hasThermScatt=True, baseFile="s82d_ac_c3_gcu_ringres", geo = "3D")
+ringres = S8_Wet(fe, ce, ir, br, ugp, lgp, cds, ae, config='C1', xsLibrary="ENDF8", hasThermScatt=True, baseFile="s82d_ac_c3_gcu_ringres", geo = "3D")
 #template.setSettings(geoType='3D', nps = 1E+06, nact = 100, nskip=100, 
 #    xsAbsPath=acePath, plotOptions=([3, 1], 1000, [0, 0], 1), xsLibrary="ENDF8", )
 

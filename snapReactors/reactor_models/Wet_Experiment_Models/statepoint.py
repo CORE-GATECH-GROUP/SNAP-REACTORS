@@ -14,8 +14,8 @@ be_met = ['be-met.40t', 'be-met.41t', 'be-met.42t', 'be-met.44t', 'be-met.45t', 
 
 cc_extension = [""]
 # Function to generate new filenames
-def generate_filename(i, j):
-    return f"s83d_ac_c3_gcu_core_20lay_{i}_{j}.main", f"s83d_ac_c3_gcu_core_20lay_{i}_{j}.mat", f"s83d_ac_c3_gcu_core_20lay_{i}_{j}.geo"
+def generate_filename(i, j, k):
+    return f"s82d_ac_c3_gcu_ringres_{i}_{j}_{k}.main", f"s82d_ac_c3_gcu_ringres_{i}_{j}_{k}.mat"
 def new_density_fuel(T_c):
     # note that expansion is restricted axially
     alpha_A = 2* (7.38*10**(-6)+T_c*1.51*10**(-8))
@@ -64,6 +64,69 @@ with open("s83d_ac_c3_gcu_core_20lay_base.mat", "r") as base_mat:
 for i, fuel_temp in enumerate(fuel_temps_K):
     for j, (coolant_temp, coolant_density) in enumerate(zip(coolant_temps_K, coolant_densities)):
         for k, reflector_temp in enumerate(reflector_temps_K):
+            # first update cc extensions
+            if fuel_temp>= 550 and fuel_temp<=700:
+
+                updated_mat_content = mat_content.replace(
+                """therm HZr h-zrh.40t therm ZrH zr-zrh.40t
+                mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
+                1001.00c	0.0596
+                1002.00c	8.79e-06
+                92235.00c	0.00143
+                92238.00c	0.000104
+                40090.00c	0.0183
+                40091.00c	0.004
+                40092.00c	0.00611
+                40094.00c	0.00619
+                40096.00c	0.000998""",
+                f"""therm HZr h-zrh.40t therm ZrH zr-zrh.40t
+                mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
+                1001.01c	0.0596
+                1002.01c	8.79e-06
+                92235.01c	0.00143
+                92238.01c	0.000104
+                40090.01c	0.0183
+                40091.01c	0.004
+                40092.01c	0.00611
+                40094.01c	0.00619
+                40096.01c	0.000998"""
+            )
+            if fuel_temp>700:
+                updated_mat_content = mat_content.replace(
+                """therm HZr h-zrh.40t therm ZrH zr-zrh.40t
+                mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
+                1001.00c	0.0596
+                1002.00c	8.79e-06
+                92235.00c	0.00143
+                92238.00c	0.000104
+                40090.00c	0.0183
+                40091.00c	0.004
+                40092.00c	0.00611
+                40094.00c	0.00619
+                40096.00c	0.000998""",
+                f"""therm HZr h-zrh.40t therm ZrH zr-zrh.40t
+                mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
+                1001.02c	0.0596
+                1002.02c	8.79e-06
+                92235.02c	0.00143
+                92238.02c	0.000104
+                40090.02c	0.0183
+                40091.02c	0.004
+                40092.02c	0.00611
+                40094.02c	0.00619
+                40096.02c	0.000998"""
+            )                
+            if coolant_temp >= 500 and coolant_temp<=700:
+                updated_mat_content = mat_content.replace(
+                    """mat coolant -0.8094    rgb 115 115 115
+                    11023.02c	-0.222
+                    19039.02c	-0.72305
+                    19040.02c	-9.30415e-05
+                    19041.02c	-0.0548566
+                    """)
+
+
+
             # Update materials information
             updated_mat_content = mat_content.replace("-0.8094", f"-{coolant_density}")
             updated_mat_content = updated_mat_content.replace(
@@ -72,7 +135,7 @@ for i, fuel_temp in enumerate(fuel_temps_K):
             )
             updated_mat_content = updated_mat_content.replace(
                 "mat internal_reflector -3.02 moder BeO 4009 moder OBe 8016",
-                f"mat internal_reflector -3.02 tmp {reflector_temp} moder BeO 4009 moder OBe 8016"
+                f"mat internal_reflector -{new_density_internal(reflector_temp-273.15)} tmp {reflector_temp} moder BeO 4009 moder OBe 8016"
             )
             updated_mat_content = updated_mat_content.replace(
                 "mat control_drum -1.84 moder Bem 4009   rgb 247 215 183",
@@ -81,15 +144,14 @@ for i, fuel_temp in enumerate(fuel_temps_K):
             
             # Update main information
             updated_main_content = main_content.replace(
-                "include s83d_ac_c3_gcu_core_20lay_1.mat",
-                f"include s83d_ac_c3_gcu_core_20lay_{i+1}_{j+1}_{k+1}.mat"
+                "include s82d_ac_c3_gcu_ringres.mat",
+                f"include s82d_ac_c3_gcu_ringres_{i+1}_{j+1}_{k+1}.mat"
             )
             
             # Generate filenames
             new_main_filename, new_mat_filename, new_geo_filename = generate_filename(i + 1, j + 1)
             new_main_filename = f"{new_main_filename[:-5]}_{k+1}.main"
             new_mat_filename = f"{new_mat_filename[:-4]}_{k+1}.mat"
-            new_geo_filename = f"{new_geo_filename[:-4]}_{k+1}.geo"
             
             # Write updated .mat file
             with open(new_mat_filename, "w") as new_mat_file:
@@ -99,9 +161,4 @@ for i, fuel_temp in enumerate(fuel_temps_K):
             with open(new_main_filename, "w") as new_main_file:
                 new_main_file.write(updated_main_content)
             
-            # Write updated .geo file
-            with open(new_geo_filename, "w") as new_geo_file:
-                new_geo_file.write(updated_geo_content)
-            
-            print(f"Generated: {new_main_filename}, {new_mat_filename}, and {new_geo_filename}")
-
+            print(f"Generated: {new_main_filename}, and {new_mat_filename}")
