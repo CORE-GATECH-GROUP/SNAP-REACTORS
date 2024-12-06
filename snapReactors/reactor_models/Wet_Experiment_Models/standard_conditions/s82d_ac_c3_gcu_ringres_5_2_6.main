@@ -1,0 +1,339 @@
+include s82d_ac_c3_gcu_ringres_5_2_6.mat
+include s82d_ac_c3_gcu_ringres.geo
+set bc 1 1 1
+set pop 100000 100 100
+set acelib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
+set gcu 0 9400  8000  9100  7000  7100  7200  7300  7400  9903  2000  1800  1700  1600  1500  1400  1300  1200  1100  3500  3600  5500  5600  5700  5800  5900  9900  900  800  801  802  803  804  805  806  807  808  809  810  811  812  700  701  702  703  704  705  706  707  708  709  710  711  712  600  601  602  603  604  605  606  607  608  609  610  611  612  500  501  502  503  504  505  506  507  508  509  510  511  512  400  401  402  403  404  405  406  407  408  409  410  411  412  300  301  302  303  304  305  306  307  308  309  310  311  312  200  201  202  203  204  205  206  207  208  209  210  211  212  100  101  102  103  104  105  106  107  108  109  110  111  112  3300  3400  3900  4000  4100  4200  4300  4400  3100  2800  2700  2600  2500  2400  2300  2200  2100  3700  3800  6000  6100  6200  6300  6400  9901  9500  6500  6600  6700  6800  6900  9902  9300  7500 
+ene fgs 1 5e-09 2.5e-08 1e-07 4e-07 9.96e-07 3e-06 9.877e-06 2.77e-05 0.0001 0.00055 0.003 0.01503 0.1 0.4 0.821 1.353 3.0 6.0655 20.0 
+set nfg fgs
+det scalarFlux9400 du 9400
+det scalarFlux8000 du 8000
+det scalarFlux9100 du 9100
+det scalarFlux7000 du 7000
+det scalarFlux7100 du 7100
+det scalarFlux7200 du 7200
+det scalarFlux7300 du 7300
+det scalarFlux7400 du 7400
+det scalarFlux9903 du 9903
+det scalarFlux2000 du 2000
+det scalarFlux1800 du 1800
+det scalarFlux1700 du 1700
+det scalarFlux1600 du 1600
+det scalarFlux1500 du 1500
+det scalarFlux1400 du 1400
+det scalarFlux1300 du 1300
+det scalarFlux1200 du 1200
+det scalarFlux1100 du 1100
+det scalarFlux3500 du 3500
+det scalarFlux3600 du 3600
+det scalarFlux5500 du 5500
+det scalarFlux5600 du 5600
+det scalarFlux5700 du 5700
+det scalarFlux5800 du 5800
+det scalarFlux5900 du 5900
+det scalarFlux9900 du 9900
+det scalarFlux900 du 900
+det scalarFlux800 du 800
+det scalarFlux801 du 801
+det scalarFlux802 du 802
+det scalarFlux803 du 803
+det scalarFlux804 du 804
+det scalarFlux805 du 805
+det scalarFlux806 du 806
+det scalarFlux807 du 807
+det scalarFlux808 du 808
+det scalarFlux809 du 809
+det scalarFlux810 du 810
+det scalarFlux811 du 811
+det scalarFlux812 du 812
+det scalarFlux700 du 700
+det scalarFlux701 du 701
+det scalarFlux702 du 702
+det scalarFlux703 du 703
+det scalarFlux704 du 704
+det scalarFlux705 du 705
+det scalarFlux706 du 706
+det scalarFlux707 du 707
+det scalarFlux708 du 708
+det scalarFlux709 du 709
+det scalarFlux710 du 710
+det scalarFlux711 du 711
+det scalarFlux712 du 712
+det scalarFlux600 du 600
+det scalarFlux601 du 601
+det scalarFlux602 du 602
+det scalarFlux603 du 603
+det scalarFlux604 du 604
+det scalarFlux605 du 605
+det scalarFlux606 du 606
+det scalarFlux607 du 607
+det scalarFlux608 du 608
+det scalarFlux609 du 609
+det scalarFlux610 du 610
+det scalarFlux611 du 611
+det scalarFlux612 du 612
+det scalarFlux500 du 500
+det scalarFlux501 du 501
+det scalarFlux502 du 502
+det scalarFlux503 du 503
+det scalarFlux504 du 504
+det scalarFlux505 du 505
+det scalarFlux506 du 506
+det scalarFlux507 du 507
+det scalarFlux508 du 508
+det scalarFlux509 du 509
+det scalarFlux510 du 510
+det scalarFlux511 du 511
+det scalarFlux512 du 512
+det scalarFlux400 du 400
+det scalarFlux401 du 401
+det scalarFlux402 du 402
+det scalarFlux403 du 403
+det scalarFlux404 du 404
+det scalarFlux405 du 405
+det scalarFlux406 du 406
+det scalarFlux407 du 407
+det scalarFlux408 du 408
+det scalarFlux409 du 409
+det scalarFlux410 du 410
+det scalarFlux411 du 411
+det scalarFlux412 du 412
+det scalarFlux300 du 300
+det scalarFlux301 du 301
+det scalarFlux302 du 302
+det scalarFlux303 du 303
+det scalarFlux304 du 304
+det scalarFlux305 du 305
+det scalarFlux306 du 306
+det scalarFlux307 du 307
+det scalarFlux308 du 308
+det scalarFlux309 du 309
+det scalarFlux310 du 310
+det scalarFlux311 du 311
+det scalarFlux312 du 312
+det scalarFlux200 du 200
+det scalarFlux201 du 201
+det scalarFlux202 du 202
+det scalarFlux203 du 203
+det scalarFlux204 du 204
+det scalarFlux205 du 205
+det scalarFlux206 du 206
+det scalarFlux207 du 207
+det scalarFlux208 du 208
+det scalarFlux209 du 209
+det scalarFlux210 du 210
+det scalarFlux211 du 211
+det scalarFlux212 du 212
+det scalarFlux100 du 100
+det scalarFlux101 du 101
+det scalarFlux102 du 102
+det scalarFlux103 du 103
+det scalarFlux104 du 104
+det scalarFlux105 du 105
+det scalarFlux106 du 106
+det scalarFlux107 du 107
+det scalarFlux108 du 108
+det scalarFlux109 du 109
+det scalarFlux110 du 110
+det scalarFlux111 du 111
+det scalarFlux112 du 112
+det scalarFlux3300 du 3300
+det scalarFlux3400 du 3400
+det scalarFlux3900 du 3900
+det scalarFlux4000 du 4000
+det scalarFlux4100 du 4100
+det scalarFlux4200 du 4200
+det scalarFlux4300 du 4300
+det scalarFlux4400 du 4400
+det scalarFlux3100 du 3100
+det scalarFlux2800 du 2800
+det scalarFlux2700 du 2700
+det scalarFlux2600 du 2600
+det scalarFlux2500 du 2500
+det scalarFlux2400 du 2400
+det scalarFlux2300 du 2300
+det scalarFlux2200 du 2200
+det scalarFlux2100 du 2100
+det scalarFlux3700 du 3700
+det scalarFlux3800 du 3800
+det scalarFlux6000 du 6000
+det scalarFlux6100 du 6100
+det scalarFlux6200 du 6200
+det scalarFlux6300 du 6300
+det scalarFlux6400 du 6400
+det scalarFlux9901 du 9901
+det scalarFlux9500 du 9500
+det scalarFlux6500 du 6500
+det scalarFlux6600 du 6600
+det scalarFlux6700 du 6700
+det scalarFlux6800 du 6800
+det scalarFlux6900 du 6900
+det scalarFlux9902 du 9902
+det scalarFlux9300 du 9300
+det scalarFlux7500 du 7500
+det nuFissRate9400 du 9400 dr -7 void
+det nuFissRate8000 du 8000 dr -7 void
+det nuFissRate9100 du 9100 dr -7 void
+det nuFissRate7000 du 7000 dr -7 void
+det nuFissRate7100 du 7100 dr -7 void
+det nuFissRate7200 du 7200 dr -7 void
+det nuFissRate7300 du 7300 dr -7 void
+det nuFissRate7400 du 7400 dr -7 void
+det nuFissRate9903 du 9903 dr -7 void
+det nuFissRate2000 du 2000 dr -7 void
+det nuFissRate1800 du 1800 dr -7 void
+det nuFissRate1700 du 1700 dr -7 void
+det nuFissRate1600 du 1600 dr -7 void
+det nuFissRate1500 du 1500 dr -7 void
+det nuFissRate1400 du 1400 dr -7 void
+det nuFissRate1300 du 1300 dr -7 void
+det nuFissRate1200 du 1200 dr -7 void
+det nuFissRate1100 du 1100 dr -7 void
+det nuFissRate3500 du 3500 dr -7 void
+det nuFissRate3600 du 3600 dr -7 void
+det nuFissRate5500 du 5500 dr -7 void
+det nuFissRate5600 du 5600 dr -7 void
+det nuFissRate5700 du 5700 dr -7 void
+det nuFissRate5800 du 5800 dr -7 void
+det nuFissRate5900 du 5900 dr -7 void
+det nuFissRate9900 du 9900 dr -7 void
+det nuFissRate900 du 900 dr -7 void
+det nuFissRate800 du 800 dr -7 void
+det nuFissRate801 du 801 dr -7 void
+det nuFissRate802 du 802 dr -7 void
+det nuFissRate803 du 803 dr -7 void
+det nuFissRate804 du 804 dr -7 void
+det nuFissRate805 du 805 dr -7 void
+det nuFissRate806 du 806 dr -7 void
+det nuFissRate807 du 807 dr -7 void
+det nuFissRate808 du 808 dr -7 void
+det nuFissRate809 du 809 dr -7 void
+det nuFissRate810 du 810 dr -7 void
+det nuFissRate811 du 811 dr -7 void
+det nuFissRate812 du 812 dr -7 void
+det nuFissRate700 du 700 dr -7 void
+det nuFissRate701 du 701 dr -7 void
+det nuFissRate702 du 702 dr -7 void
+det nuFissRate703 du 703 dr -7 void
+det nuFissRate704 du 704 dr -7 void
+det nuFissRate705 du 705 dr -7 void
+det nuFissRate706 du 706 dr -7 void
+det nuFissRate707 du 707 dr -7 void
+det nuFissRate708 du 708 dr -7 void
+det nuFissRate709 du 709 dr -7 void
+det nuFissRate710 du 710 dr -7 void
+det nuFissRate711 du 711 dr -7 void
+det nuFissRate712 du 712 dr -7 void
+det nuFissRate600 du 600 dr -7 void
+det nuFissRate601 du 601 dr -7 void
+det nuFissRate602 du 602 dr -7 void
+det nuFissRate603 du 603 dr -7 void
+det nuFissRate604 du 604 dr -7 void
+det nuFissRate605 du 605 dr -7 void
+det nuFissRate606 du 606 dr -7 void
+det nuFissRate607 du 607 dr -7 void
+det nuFissRate608 du 608 dr -7 void
+det nuFissRate609 du 609 dr -7 void
+det nuFissRate610 du 610 dr -7 void
+det nuFissRate611 du 611 dr -7 void
+det nuFissRate612 du 612 dr -7 void
+det nuFissRate500 du 500 dr -7 void
+det nuFissRate501 du 501 dr -7 void
+det nuFissRate502 du 502 dr -7 void
+det nuFissRate503 du 503 dr -7 void
+det nuFissRate504 du 504 dr -7 void
+det nuFissRate505 du 505 dr -7 void
+det nuFissRate506 du 506 dr -7 void
+det nuFissRate507 du 507 dr -7 void
+det nuFissRate508 du 508 dr -7 void
+det nuFissRate509 du 509 dr -7 void
+det nuFissRate510 du 510 dr -7 void
+det nuFissRate511 du 511 dr -7 void
+det nuFissRate512 du 512 dr -7 void
+det nuFissRate400 du 400 dr -7 void
+det nuFissRate401 du 401 dr -7 void
+det nuFissRate402 du 402 dr -7 void
+det nuFissRate403 du 403 dr -7 void
+det nuFissRate404 du 404 dr -7 void
+det nuFissRate405 du 405 dr -7 void
+det nuFissRate406 du 406 dr -7 void
+det nuFissRate407 du 407 dr -7 void
+det nuFissRate408 du 408 dr -7 void
+det nuFissRate409 du 409 dr -7 void
+det nuFissRate410 du 410 dr -7 void
+det nuFissRate411 du 411 dr -7 void
+det nuFissRate412 du 412 dr -7 void
+det nuFissRate300 du 300 dr -7 void
+det nuFissRate301 du 301 dr -7 void
+det nuFissRate302 du 302 dr -7 void
+det nuFissRate303 du 303 dr -7 void
+det nuFissRate304 du 304 dr -7 void
+det nuFissRate305 du 305 dr -7 void
+det nuFissRate306 du 306 dr -7 void
+det nuFissRate307 du 307 dr -7 void
+det nuFissRate308 du 308 dr -7 void
+det nuFissRate309 du 309 dr -7 void
+det nuFissRate310 du 310 dr -7 void
+det nuFissRate311 du 311 dr -7 void
+det nuFissRate312 du 312 dr -7 void
+det nuFissRate200 du 200 dr -7 void
+det nuFissRate201 du 201 dr -7 void
+det nuFissRate202 du 202 dr -7 void
+det nuFissRate203 du 203 dr -7 void
+det nuFissRate204 du 204 dr -7 void
+det nuFissRate205 du 205 dr -7 void
+det nuFissRate206 du 206 dr -7 void
+det nuFissRate207 du 207 dr -7 void
+det nuFissRate208 du 208 dr -7 void
+det nuFissRate209 du 209 dr -7 void
+det nuFissRate210 du 210 dr -7 void
+det nuFissRate211 du 211 dr -7 void
+det nuFissRate212 du 212 dr -7 void
+det nuFissRate100 du 100 dr -7 void
+det nuFissRate101 du 101 dr -7 void
+det nuFissRate102 du 102 dr -7 void
+det nuFissRate103 du 103 dr -7 void
+det nuFissRate104 du 104 dr -7 void
+det nuFissRate105 du 105 dr -7 void
+det nuFissRate106 du 106 dr -7 void
+det nuFissRate107 du 107 dr -7 void
+det nuFissRate108 du 108 dr -7 void
+det nuFissRate109 du 109 dr -7 void
+det nuFissRate110 du 110 dr -7 void
+det nuFissRate111 du 111 dr -7 void
+det nuFissRate112 du 112 dr -7 void
+det nuFissRate3300 du 3300 dr -7 void
+det nuFissRate3400 du 3400 dr -7 void
+det nuFissRate3900 du 3900 dr -7 void
+det nuFissRate4000 du 4000 dr -7 void
+det nuFissRate4100 du 4100 dr -7 void
+det nuFissRate4200 du 4200 dr -7 void
+det nuFissRate4300 du 4300 dr -7 void
+det nuFissRate4400 du 4400 dr -7 void
+det nuFissRate3100 du 3100 dr -7 void
+det nuFissRate2800 du 2800 dr -7 void
+det nuFissRate2700 du 2700 dr -7 void
+det nuFissRate2600 du 2600 dr -7 void
+det nuFissRate2500 du 2500 dr -7 void
+det nuFissRate2400 du 2400 dr -7 void
+det nuFissRate2300 du 2300 dr -7 void
+det nuFissRate2200 du 2200 dr -7 void
+det nuFissRate2100 du 2100 dr -7 void
+det nuFissRate3700 du 3700 dr -7 void
+det nuFissRate3800 du 3800 dr -7 void
+det nuFissRate6000 du 6000 dr -7 void
+det nuFissRate6100 du 6100 dr -7 void
+det nuFissRate6200 du 6200 dr -7 void
+det nuFissRate6300 du 6300 dr -7 void
+det nuFissRate6400 du 6400 dr -7 void
+det nuFissRate9901 du 9901 dr -7 void
+det nuFissRate9500 du 9500 dr -7 void
+det nuFissRate6500 du 6500 dr -7 void
+det nuFissRate6600 du 6600 dr -7 void
+det nuFissRate6700 du 6700 dr -7 void
+det nuFissRate6800 du 6800 dr -7 void
+det nuFissRate6900 du 6900 dr -7 void
+det nuFissRate9902 du 9902 dr -7 void
+det nuFissRate9300 du 9300 dr -7 void
+det nuFissRate7500 du 7500 dr -7 void
+det fgsdet du 0 de fgs

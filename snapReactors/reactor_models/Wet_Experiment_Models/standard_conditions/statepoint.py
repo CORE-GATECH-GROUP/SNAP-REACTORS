@@ -1,9 +1,9 @@
 import numpy as np
 
 # Define temperatures (K) and corresponding coolant densities (g/cm^3)
-coolant_temps_K =   [300,    450]#,    550,    700,    850,    1000]
-fuel_temps_K =      [300,    450]#,    550,    700,    850,    1000]
-reflector_temps_K = [300,    450]#,    550,    700,    850,    1000]
+coolant_temps_K =   [300,    450,    550,    700,    850,    1000]
+fuel_temps_K =      [300,    450,    550,    700,    850,    1000]
+reflector_temps_K = [300,    450,    550,    700,    850,    1000]
 coolant_densities = [0.8094, 0.7737]#, 0.7495, 0.7125, 0.6750, 0.6369]
 #   temp   300          450            550          700           850           1000
 h_zrh =  ['h-zrh.40t',  'h-zrh.41t',  'h-zrh.42t',  'h-zrh.44t',  'h-zrh.45t',  'h-zrh.46t']
@@ -35,7 +35,7 @@ def new_density_fuel(T_c):
 def new_density_reflector(T_c):
     T_o = 300
     T = T_c
-    new_rho = 1.84 - 6.8648*10**(-5) * (T-T_o)
+    new_rho = 1.83 - 6.8648*10**(-5) * (T-T_o)
     return new_rho
 
 def new_density_internal(T_c):
@@ -58,16 +58,16 @@ with open("s82d_ac_c3_gcu_ringres.mat", "r") as base_mat:
     mat_content = base_mat.read()
     
 
-
 # Generate new files for each combination of fuel and coolant temperatures
 # Generate new files for each combination of fuel, coolant, and reflector temperatures
-for i, fuel_temp in enumerate(fuel_temps_K):
+for i, (fuel_temp, hzrh, zrh) in enumerate(zip(fuel_temps_K, h_zrh, zr_zrh)):
     for j, (coolant_temp, coolant_density) in enumerate(zip(coolant_temps_K, coolant_densities)):
-        for k, reflector_temp in enumerate(reflector_temps_K):
+        for k, (reflector_temp, beo, obe,bem) in enumerate(zip(reflector_temps_K, be_o, o_be, be_met)):
+            updated_mat_content = mat_content
             # first update cc extensions
             if fuel_temp>= 550 and fuel_temp<=700:
 
-                updated_mat_content = mat_content.replace(
+                updated_mat_content = updated_mat_content.replace(
                 """therm HZr h-zrh.40t therm ZrH zr-zrh.40t
                 mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
                 1001.00c	0.0596
@@ -92,7 +92,7 @@ for i, fuel_temp in enumerate(fuel_temps_K):
                 40096.01c	0.000998"""
             )
             if fuel_temp>700:
-                updated_mat_content = mat_content.replace(
+                updated_mat_content = updated_mat_content.replace(
                 """therm HZr h-zrh.40t therm ZrH zr-zrh.40t
                 mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
                 1001.00c	0.0596
@@ -117,7 +117,7 @@ for i, fuel_temp in enumerate(fuel_temps_K):
                 40096.02c	0.000998"""
             )                
             if coolant_temp >= 500 and coolant_temp<=700:
-                updated_mat_content = mat_content.replace(
+                updated_mat_content = updated_mat_content.replace(
                     """mat coolant -0.8094    rgb 115 115 115
                     11023.00c	-0.222
                     19039.00c	-0.72305
@@ -131,7 +131,7 @@ for i, fuel_temp in enumerate(fuel_temps_K):
                     19041.01c	-0.0548566
                     """)
             if coolant_temp >700:
-                updated_mat_content = mat_content.replace(
+                updated_mat_content = updated_mat_content.replace(
                     """mat coolant -0.8094    rgb 115 115 115
                     11023.00c	-0.222
                     19039.00c	-0.72305
@@ -145,7 +145,7 @@ for i, fuel_temp in enumerate(fuel_temps_K):
                     19041.02c	-0.0548566
                     """)                
             if reflector_temp>= 550 and reflector_temp<=700:
-                updated_mat_content = mat_content.replace(
+                updated_mat_content = updated_mat_content.replace(
                     """mat internal_reflector -3.02 moder BeO 4009 moder OBe 8016   
                 8016.00c	-0.63968
                 4009.00c	-0.36032""",
@@ -153,14 +153,14 @@ for i, fuel_temp in enumerate(fuel_temps_K):
                 8016.01c	-0.63968
                 4009.01c	-0.36032"""
                 )
-                updated_mat_content = mat_content.replace(
+                updated_mat_content = updated_mat_content.replace(
                     """mat control_drum -1.84 moder Bem 4009   rgb 247 215 183
                 4009.00c	-1.0""",
                 """mat control_drum -1.84 moder Bem 4009   rgb 247 215 183
                 4009.01c	-1.0"""
                 )
             if reflector_temp>700:
-                updated_mat_content = mat_content.replace(
+                updated_mat_content = updated_mat_content.replace(
                     """mat internal_reflector -3.02 moder BeO 4009 moder OBe 8016   
                 8016.00c	-0.63968
                 4009.00c	-0.36032""",
@@ -168,7 +168,7 @@ for i, fuel_temp in enumerate(fuel_temps_K):
                 8016.02c	-0.63968
                 4009.02c	-0.36032"""
                 )
-                updated_mat_content = mat_content.replace(
+                updated_mat_content = updated_mat_content.replace(
                     """mat control_drum -1.84 moder Bem 4009   rgb 247 215 183
                 4009.00c	-1.0""",
                 """mat control_drum -1.84 moder Bem 4009   rgb 247 215 183
@@ -176,10 +176,19 @@ for i, fuel_temp in enumerate(fuel_temps_K):
                 )
 
             # second update cross-section libraries
-
-
+            updated_mat_content = updated_mat_content.replace(
+            """therm HZr h-zrh.40t therm ZrH zr-zrh.40t""",
+            f"""therm HZr {hzrh} therm {zrh}
+            """)
+            updated_mat_content = updated_mat_content.replace(
+            """therm BeO be-beo.40t therm OBe o-beo.40t""",
+            f"""therm BeO {beo} therm OBe {obe}
+            """)
+            updated_mat_content = updated_mat_content.replace(
+            """therm Bem be-met.40t""",
+            f"""therm Bem {bem}""")
             # last materials density and temperature
-            updated_mat_content = mat_content.replace("-0.8094", f"-{coolant_density}")
+            updated_mat_content = updated_mat_content.replace("-0.8094", f"-{coolant_density}")
             updated_mat_content = updated_mat_content.replace(
                 "mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89",
                 f"mat fuel -{new_density_fuel(fuel_temp-273.15)} tmp {fuel_temp}  moder HZr 1001  moder ZrH 40090   rgb 219 89 89"

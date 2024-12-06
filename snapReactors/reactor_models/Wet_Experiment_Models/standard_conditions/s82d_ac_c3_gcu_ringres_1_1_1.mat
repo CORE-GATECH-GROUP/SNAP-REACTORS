@@ -115,6 +115,7 @@ mat barrel -7.954    rgb 102 0 0
 26058.00c	-0.00184759
 
 therm BeO be-beo.40t therm OBe o-beo.40t
+            
 mat internal_reflector -3.019942703454552 tmp 300 moder BeO 4009 moder OBe 8016   
 8016.00c	-0.63968
 4009.00c	-0.36032
@@ -135,10 +136,11 @@ internal_reflector	0.41
 air	0.357
 
 therm Bem be-met.40t
-mat control_drum -1.8587512012 tmp 300 moder Bem 4009   rgb 247 215 183
+mat control_drum -1.8487512012 tmp 300 moder Bem 4009   rgb 247 215 183
 4009.00c	-1.0
 
-therm HZr h-zrh.40t therm ZrH zr-zrh.40t
+therm HZr h-zrh.40t therm zr-zrh.40t
+            
 mat fuel -6.0600000000000005 tmp 300  moder HZr 1001  moder ZrH 40090   rgb 219 89 89
 1001.00c	0.0596
 1002.00c	8.79e-06
