@@ -7,4 +7,8 @@
     "files.associations": {
         "bitset": "c"
     },
+    "[moose]": {
+        "outline.showProperties": false,
+        "outline.showStrings": false
+    },
 }
