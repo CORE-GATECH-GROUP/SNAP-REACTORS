@@ -16,12 +16,12 @@ import numpy as np
 
 ##Loading and accessing inputfile data
 #reads in reactor state data
-rsFilePath = r"C:\Users\Sam\Documents\private_snap\snapReactors\data_inputfiles\s8er_hotpower.txt"
+rsFilePath = r"C:\Users\Sam\Documents\SNAP-REACTORS-PRIVATE\snapReactors\data_inputfiles\s8er_hotpower.txt"
 #rsFilePath = r"C:\Users\user\Documents\GitHub\SNAP-REACTORS\snapReactors\data_inputfiles\s8er_coldpower.txt"
 states = ReactorState.rsReader(rsFilePath, outputDict=True)
 #display states read in and access state being modeled
 #print(states)
-coldpow = states['Cold Power']
+coldpow = states['Hot Power']
 #display components read in and access components being modeled
 components = coldpow.componentsDict
 #print(components)
