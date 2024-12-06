@@ -1,10 +1,10 @@
 import numpy as np
 
 # Define temperatures (K) and corresponding coolant densities (g/cm^3)
-coolant_temps_K =   [300,    450,    550,    700,    850,    1000]
-fuel_temps_K =      [300,    450,    550,    700,    850,    1000]
-reflector_temps_K = [300,    450,    550,    700,    850,    1000]
-coolant_densities = [0.8094, 0.7737, 0.7495, 0.7125, 0.6750, 0.6369]
+coolant_temps_K =   [300,    450]#,    550,    700,    850,    1000]
+fuel_temps_K =      [300,    450]#,    550,    700,    850,    1000]
+reflector_temps_K = [300,    450]#,    550,    700,    850,    1000]
+coolant_densities = [0.8094, 0.7737]#, 0.7495, 0.7125, 0.6750, 0.6369]
 #   temp   300          450            550          700           850           1000
 h_zrh =  ['h-zrh.40t',  'h-zrh.41t',  'h-zrh.42t',  'h-zrh.44t',  'h-zrh.45t',  'h-zrh.46t']
 zr_zrh = ['zr-zrh.40t', 'zr-zrh.41t', 'zr-zrh.42t', 'zr-zrh.44t', 'zr-zrh.45t', 'zr-zrh.46t']
@@ -51,10 +51,10 @@ def new_density_internal(T_c):
     return new_rho
 
 # Read base files
-with open("s83d_ac_c3_gcu_core_20lay_base.main", "r") as base_main:
+with open("s82d_ac_c3_gcu_ringres.main", "r") as base_main:
     main_content = base_main.read()
 
-with open("s83d_ac_c3_gcu_core_20lay_base.mat", "r") as base_mat:
+with open("s82d_ac_c3_gcu_ringres.mat", "r") as base_mat:
     mat_content = base_mat.read()
     
 
@@ -119,15 +119,66 @@ for i, fuel_temp in enumerate(fuel_temps_K):
             if coolant_temp >= 500 and coolant_temp<=700:
                 updated_mat_content = mat_content.replace(
                     """mat coolant -0.8094    rgb 115 115 115
+                    11023.00c	-0.222
+                    19039.00c	-0.72305
+                    19040.00c	-9.30415e-05
+                    19041.00c	-0.0548566
+                    """,
+                    f"""mat coolant -0.8094    rgb 115 115 115
+                    11023.01c	-0.222
+                    19039.01c	-0.72305
+                    19040.01c	-9.30415e-05
+                    19041.01c	-0.0548566
+                    """)
+            if coolant_temp >700:
+                updated_mat_content = mat_content.replace(
+                    """mat coolant -0.8094    rgb 115 115 115
+                    11023.00c	-0.222
+                    19039.00c	-0.72305
+                    19040.00c	-9.30415e-05
+                    19041.00c	-0.0548566
+                    """,
+                    f"""mat coolant -0.8094    rgb 115 115 115
                     11023.02c	-0.222
                     19039.02c	-0.72305
                     19040.02c	-9.30415e-05
                     19041.02c	-0.0548566
-                    """)
+                    """)                
+            if reflector_temp>= 550 and reflector_temp<=700:
+                updated_mat_content = mat_content.replace(
+                    """mat internal_reflector -3.02 moder BeO 4009 moder OBe 8016   
+                8016.00c	-0.63968
+                4009.00c	-0.36032""",
+                    """mat internal_reflector -3.02 moder BeO 4009 moder OBe 8016   
+                8016.01c	-0.63968
+                4009.01c	-0.36032"""
+                )
+                updated_mat_content = mat_content.replace(
+                    """mat control_drum -1.84 moder Bem 4009   rgb 247 215 183
+                4009.00c	-1.0""",
+                """mat control_drum -1.84 moder Bem 4009   rgb 247 215 183
+                4009.01c	-1.0"""
+                )
+            if reflector_temp>700:
+                updated_mat_content = mat_content.replace(
+                    """mat internal_reflector -3.02 moder BeO 4009 moder OBe 8016   
+                8016.00c	-0.63968
+                4009.00c	-0.36032""",
+                    """mat internal_reflector -3.02 moder BeO 4009 moder OBe 8016   
+                8016.02c	-0.63968
+                4009.02c	-0.36032"""
+                )
+                updated_mat_content = mat_content.replace(
+                    """mat control_drum -1.84 moder Bem 4009   rgb 247 215 183
+                4009.00c	-1.0""",
+                """mat control_drum -1.84 moder Bem 4009   rgb 247 215 183
+                4009.02c	-1.0"""
+                )
+
+            # second update cross-section libraries
 
 
-
-            # Update materials information
+            # last materials density and temperature
             updated_mat_content = mat_content.replace("-0.8094", f"-{coolant_density}")
             updated_mat_content = updated_mat_content.replace(
                 "mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89",
@@ -149,9 +200,7 @@ for i, fuel_temp in enumerate(fuel_temps_K):
             )
             
             # Generate filenames
-            new_main_filename, new_mat_filename, new_geo_filename = generate_filename(i + 1, j + 1)
-            new_main_filename = f"{new_main_filename[:-5]}_{k+1}.main"
-            new_mat_filename = f"{new_mat_filename[:-4]}_{k+1}.mat"
+            new_main_filename, new_mat_filename = generate_filename(i + 1, j + 1, k + 1)
             
             # Write updated .mat file
             with open(new_mat_filename, "w") as new_mat_file:
