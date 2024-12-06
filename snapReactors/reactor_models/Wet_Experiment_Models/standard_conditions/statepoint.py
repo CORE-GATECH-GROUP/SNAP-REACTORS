@@ -1,16 +1,16 @@
 import numpy as np
 
 # Define temperatures (K) and corresponding coolant densities (g/cm^3)
-coolant_temps_K =   [300,    450,    550,    700,    850,    1000]
-fuel_temps_K =      [300,    450,    550,    700,    850,    1000]
-reflector_temps_K = [300,    450,    550,    700,    850,    1000]
-coolant_densities = [0.8094, 0.7737]#, 0.7495, 0.7125, 0.6750, 0.6369]
-#   temp   300          450            550          700           850           1000
-h_zrh =  ['h-zrh.40t',  'h-zrh.41t',  'h-zrh.42t',  'h-zrh.44t',  'h-zrh.45t',  'h-zrh.46t']
-zr_zrh = ['zr-zrh.40t', 'zr-zrh.41t', 'zr-zrh.42t', 'zr-zrh.44t', 'zr-zrh.45t', 'zr-zrh.46t']
-be_o =   ['be-beo.40t', 'be-beo.41t', 'be-beo.42t', 'be-beo.44t', 'be-beo.45t', 'be-beo.46t']
-o_be =   ['o-beo.40t',  'o-beo.41t',  'o-beo.42t',  'o-beo.44t',  'o-beo.45t', 'o-beo.46t',]
-be_met = ['be-met.40t', 'be-met.41t', 'be-met.42t', 'be-met.44t', 'be-met.45t', 'be-met.46t']
+coolant_temps_K =   [300,       550,    700,    850,    1000]
+fuel_temps_K =      [300,       550,    700,    850,    1000]
+reflector_temps_K = [300,       550,    700,    850,    1000]
+coolant_densities = [0.8094, 0.7495, 0.7125, 0.6750, 0.6369]
+#   temp   300            550          700           850           1000
+h_zrh =  ['h-zrh.40t',    'h-zrh.42t',  'h-zrh.44t',  'h-zrh.45t',  'h-zrh.46t']
+zr_zrh = ['zr-zrh.40t',  'zr-zrh.42t', 'zr-zrh.44t', 'zr-zrh.45t', 'zr-zrh.46t']
+be_o =   ['be-beo.40t',  'be-beo.42t', 'be-beo.44t', 'be-beo.45t', 'be-beo.46t']
+o_be =   ['o-beo.40t',    'o-beo.42t',  'o-beo.44t',  'o-beo.45t', 'o-beo.46t',]
+be_met = ['be-met.40t',  'be-met.42t', 'be-met.44t', 'be-met.45t', 'be-met.46t']
 
 cc_extension = [""]
 # Function to generate new filenames
@@ -178,7 +178,7 @@ for i, (fuel_temp, hzrh, zrh) in enumerate(zip(fuel_temps_K, h_zrh, zr_zrh)):
             # second update cross-section libraries
             updated_mat_content = updated_mat_content.replace(
             """therm HZr h-zrh.40t therm ZrH zr-zrh.40t""",
-            f"""therm HZr {hzrh} therm {zrh}
+            f"""therm HZr {hzrh} therm ZrH {zrh}
             """)
             updated_mat_content = updated_mat_content.replace(
             """therm BeO be-beo.40t therm OBe o-beo.40t""",
