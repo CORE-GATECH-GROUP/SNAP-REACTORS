@@ -136,3 +136,4 @@ dmypy.json
 snapReactors/.vscode/settings.json
 
 *.e
+*_XS.xml
