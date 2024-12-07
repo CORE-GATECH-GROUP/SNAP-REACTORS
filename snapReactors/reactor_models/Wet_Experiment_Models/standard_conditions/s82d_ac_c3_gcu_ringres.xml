@@ -7,9 +7,9 @@
 </Controls>
 <Librarywise DataType="macro" L="1" LType="1">
 	<Tabulation>Tfuel Tcool Tref</Tabulation>
-	<Tfuel>300 450 550 700 850 1000</Tfuel>
-	<Tcool>300 450 550 700 850 1000</Tcool>
-	<Tref>300 450 550 700 850 1000</Tref>
+	<Tfuel>300 550 700 850 1000</Tfuel>
+	<Tcool>300 550 700 850 1000</Tcool>
+	<Tref>300 550 700 850 1000</Tref>
 	<AddData>Total Fission Absorption NGamma</AddData>
 	<Directory>./</Directory>
 	<BaseFile>s82d_ac_c3_gcu_ringres</BaseFile>
