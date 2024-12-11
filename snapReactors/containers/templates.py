@@ -13466,3 +13466,1290 @@ class S8_GriffinTESTC3(S8ER):
 #         #         createExtrudeGeom(baseFile, height, nlayers, REFbdict, convRefudict, edict, unextMesh)
 #         #     makeGriffinInput3D(baseFile)
 #         return map
+
+class S8_Wet(S8ER):
+    def __init__(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, nActiveLayers = 12, config = 'C3', xsLibrary = 'ENDF7.1', hasThermScatt=False, baseFile = "s82D_gcu", geo = '2D', useRefLayoutForMesh = False):
+        S8ER.__init__(self)
+        self.config = config
+        self.xsLibrary = xsLibrary
+        self.hasThermScatt = hasThermScatt
+        self.map = self.setMap(fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, baseFile, nActiveLayers, geo, useRefLayoutForMesh)
+
+    def setMap(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, baseFile, nActiveLayers, geo, useRefLayoutForMesh):
+        map = {}
+        fuelMat = fuelElement.materialsDict['fuel']
+        dbMat = fuelElement.materialsDict['diffusion_barrier']
+        bpMat = fuelElement.materialsDict['burnable_poison']
+        gapMat = fuelElement.materialsDict['gap']
+        cladMat = fuelElement.materialsDict['clad']
+        coolMat = coolElement.materialsDict['coolant']
+        airMat = airElement.materialsDict['air']
+        intrefMat = internalReflector.materialsDict['internal_reflector']
+        barrelMat = barrel.materialsDict['barrel']
+        cdMat = controlDrums.materialsDict['control_drum']
+        lgpMat = lowerGridplate.materialsDict['lower_gridplate']
+
+        ugt = upperGridplate.dimensionsDict['upper_gridplate_thickness'].valueSERP
+        ughr = upperGridplate.dimensionsDict['upper_gridplate_hole_radius'].valueSERP
+
+        lgt = lowerGridplate.dimensionsDict['lower_gridplate_thickness'].valueSERP
+        lghr = lowerGridplate.dimensionsDict['lower_gridplate_hole_radius'].valueSERP
+
+        fuelRad	            =0.67564
+        dbRad	            =0.681228
+        gapRad	            =0.685292
+        cladRad	            =0.71374
+        ecPinRad            =0.7112
+        elemPitch           =1.4478
+
+        latticeApothem = 11.43
+        intRefRad = 11.7475
+        barrelRad = barrel.dimensionsDict['barrel_radius'].valueSERP
+
+        ugdz = 0.87376
+        uecdz = 0.2286
+        acudz = 2.9083
+        acmdz = 2.54*12
+        acldz = 2.1717
+        lecdz = 0.9652
+        lggz = 0.79502
+        voiddz = 2
+        nlayers = nActiveLayers
+        dzACT = (acudz+acmdz+acldz)/nActiveLayers
+        actdz = acudz+acmdz+acldz
+        acthf = voiddz + actdz
+
+        serMatsList = super()._buildMaterials([fuelMat, coolMat, dbMat, bpMat, gapMat, cladMat, intrefMat, barrelMat, lgpMat, cdMat, airMat])
+
+        #replace 6000 with 6012 for endf8 lib
+        if self.xsLibrary == 'ENDF8':
+            for mat in serMatsList:
+                matNucs = np.array(mat.nuclides)
+                #print(matNucs)
+                matNucs[matNucs == 6000] = 6012
+                mat.nuclides = list(matNucs)
+        elif self.xsLibrary == 'ENDF7.1':
+            for mat in serMatsList:
+                matNucs = np.array(mat.nuclides)
+                #print(matNucs)
+                c13idx = np.where(matNucs == 6013)[0][0]
+                print(c13idx)
+                matNucs = np.delete(matNucs, c13idx)
+                print(matNucs)
+                mat.nuclides = list(matNucs) 
+
+        serMatsDict = createDictFromConatinerList(serMatsList)
+
+        def intRefMix(bar, clad, intref, air):
+            refMix = mix("reflMix", [bar, clad, intref, air], [0.191, 0.042, 0.410, 0.357])
+            return refMix
+
+        barMat = serMatsDict['barrel']
+        barMat.set('rgb', "102 0 0")
+        cladMat = serMatsDict['clad']
+        cladMat.set('rgb', "100 100 100")
+        intrefMat = serMatsDict['internal_reflector']
+        nakMat = serMatsDict['coolant']
+        nakMat.set('rgb', "196 193 193")
+        airMat = serMatsDict['air']
+        dbMat = serMatsDict['diffusion_barrier']
+        bpMat = serMatsDict['burnable_poison']
+        ugpMat = barMat.duplicateMat("upper_gridplate")
+        ugpMat.set('rgb', "102 0 0")
+        lgpMat = serMatsDict['lower_gridplate']
+        lgpMat.set('rgb', "124 138 197")
+
+        cdMat = serMatsDict['control_drum']
+        cdMat.set('rgb', "247 215 183")
+        nuclides = [1001, 6012, 6013, 8016]
+        fractions = [-0.080538, -0.5934296264, -0.0064183736, -0.319614]
+        lucMat = cdMat.duplicateMat("lucite")
+        lucMat.set('rgb', "11 229 229")
+        lucMat.set('dens', -1.19)
+        lucMat.set('nuclides', nuclides)
+        lucMat.set('fractions', fractions)
+
+        gapMat = serMatsDict['gap']
+        fuelMat = serMatsDict['fuel']
+        fuelMat.set('rgb', "219 89 89")
+
+        cerMat = mix("ceramic", [dbMat, bpMat], [0.994303206, 0.005696794])
+        cerMat.set('rgb', '255 174 66')
+
+        refMix = intRefMix(barMat, cladMat, intrefMat, airMat)
+        refMix.set('rgb', "186 152 117")   
+
+        if (self.hasThermScatt) & (self.xsLibrary == 'ENDF8'):
+            fuelMat.set('isModer', True)
+            fuelMat.set('thermLib', "HZr 1001  moder ZrH 40090")
+            fuelMat.set('aceTherm', "therm HZr h-zrh.40t therm ZrH zr-zrh.40t")
+
+            cdMat.set('isModer', True)
+            cdMat.set('thermLib', "Bem 4009")
+            cdMat.set('aceTherm', "therm Bem be-met.40t")
+
+            lucMat.set('isModer', True)
+            lucMat.set('thermLib', 'HLu 1001')
+            lucMat.set('aceTherm', "therm HLu h-luci.40t")
+
+            intrefMat.set('isModer', True)
+            intrefMat.set('thermLib', 'BeO 4009 moder OBe 8016')
+            intrefMat.set('aceTherm', "therm BeO be-beo.40t therm OBe o-beo.40t")
+            
+        elif (self.hasThermScatt) & (self.xsLibrary == 'ENDF7.1'):
+            fuelMat.set('isModer', True)
+            fuelMat.set('thermLib', "HZr 1001  moder ZrH 40090")
+            fuelMat.set('aceTherm', "therm HZr hzr.03t therm ZrH zrh.03t")
+
+        ## New compcore verifaction induced comp
+        fuelSerRadii = [fuelRad, dbRad, gapRad, cladRad]
+        fuelSerMats = [fuelMat, cerMat, gapMat, cladMat, nakMat]
+        coolSerMats = [nakMat]
+
+        dzACM = acmdz/nActiveLayers
+        nlayersACM = nActiveLayers
+
+        if geo == '2D':
+            fuelSer = pin('fuelElem', 2)
+            # fuelSer.set('materials', fuelSerMats)
+            # fuelSer.set('radii', fuelSerRadii)
+
+            fuelSer.setPin(fuelSerMats, fuelSerRadii)
+            coolSer = pin('900', 1)
+            # coolSer.set('materials', [nakMat])
+            coolSer.setPin([nakMat], [])
+            coolSer.setGCU(900)
+
+            if (self.config == 'C2') | (self.config =='C1') | (self.config =='C4'):
+                lucSerRadii = [ecPinRad]
+                lucSerMats = [lucMat, nakMat]
+                lucSer = pin('1700', 2)
+                lucSer.setPin(lucSerMats, lucSerRadii)
+                lucSer.setGCU(1000)
+        
+            nRings = 8
+            fes = [0]*nRings
+            for i in range(0, nRings):
+                fes[i] = fuelSer.duplicate(str(i+1)+"00")
+                fes[i].setGCU(str(i+1)+"00")
+        else:
+            # coolSer = build3Dpin("900", coolSerMats, [], nActiveLayers, dz=dz, hasUniqueMatlayers=False, setGCUSeed=900)
+            # coolSer.setGCU(900, setAllElementsGCU=True)
+
+            ############################## active core middle
+            coolSerACM = pin('900', 1)
+            # coolSer.set('materials', [nakMat])
+            coolSerACM.setPin([nakMat], [])
+            coolSerACM.setGCU(900)
+
+            lucSerRadii = [ecPinRad]
+            lucSerMats = [lucMat, nakMat]
+            lucSerACM = build3Dpin("9600", lucSerMats, lucSerRadii, nlayersACM, dz = dzACM, setGCUSeed=9600, z0 = 0)
+            lucSerACM.setGCU(9600, setAllElementsGCU=True)
+
+            nRings = 8
+            fesACM = [0]*nRings
+            for i in range(0, nRings):
+                fesACM[i] =  build3Dpin(str(i+1)+"00", fuelSerMats, fuelSerRadii, nlayersACM, dz = dzACM, setGCUSeed=(i+1)*100, z0 = 0)
+                fesACM[i].setGCU( (i+1)*100,  setAllElementsGCU = True)
+            ############################## active core lower
+
+            fuelSerACL = pin('fuelElem', 2)
+            # fuelSer.set('materials', fuelSerMats)
+            # fuelSer.set('radii', fuelSerRadii)
+            fuelSerACL.setPin(fuelSerMats, fuelSerRadii)
+            
+            coolSerACL = pin('2000', 1)
+            # coolSer.set('materials', [nakMat])
+            coolSerACL.setPin([nakMat], [])
+            coolSerACL.setGCU(2000)
+
+            lucSerRadii = [ecPinRad]
+            lucSerMats = [lucMat, nakMat]
+            lucSerACL = pin('9700', 2)
+            lucSerACL.setPin(lucSerMats, lucSerRadii)
+            lucSerACL.setGCU(9700)
+        
+            nRings = 8
+            fesACL = [0]*nRings
+            for i in range(0, nRings):
+                c = i+nRings + 2 
+                fesACL[i] = fuelSerACL.duplicate(str(c+1)+"00")
+                fesACL[i].setGCU(str(c+1)+"00")
+
+            # coolSerACL = pin('2000', 1)
+            # # coolSer.set('materials', [nakMat])
+            # coolSerACL.setPin([nakMat], [])
+            # coolSerACL.setGCU(2000)
+            # if (self.config == 'C2') | (self.config =='C1') | (self.config =='C4'):
+            #     lucSerRadii = [ecPinRad]
+            #     lucSerMats = [lucMat, nakMat]
+            #     lucSerACL = pin('2100', 2)
+            #     lucSerACL.setPin(lucSerMats, lucSerRadii)
+            #     lucSerACL = build3Dpin("2100", lucSerMats, lucSerRadii, nlayersACL, dz=dzACL, hasUniqueMatlayers=False, setGCUSeed=2100)
+            #     lucSerACL.setGCU(2100, setAllElementsGCU=True)
+            # nRings = 8
+            # fesACL = [0]*nRings
+            # for i in range(0, nRings):
+            #     c = i+nRings + 2 
+            #     fesACL[i] =  build3Dpin(str(c+1)+"00", fuelSerMats, fuelSerRadii, nlayersACL, dz=dzACL, hasUniqueMatlayers=False, setGCUSeed=(c+1)*100)
+            #     fesACL[i].setGCU( (c+1)*100,  setAllElementsGCU = True)
+
+            ############################## active core upper
+
+            fuelSerACU = pin('fuelElem', 2)
+            # fuelSer.set('materials', fuelSerMats)
+            # fuelSer.set('radii', fuelSerRadii)
+            fuelSerACU.setPin(fuelSerMats, fuelSerRadii)
+
+            coolSerACU = pin('3100', 1)
+            coolSerACU.setPin([nakMat], [])
+            coolSerACU.setGCU(3100)
+
+            lucSerRadii = [ecPinRad]
+            lucSerMats = [lucMat, nakMat]
+            lucSerACU = pin('9800', 2)
+            lucSerACU.setPin(lucSerMats, lucSerRadii)
+            lucSerACU.setGCU(9800)
+
+            nRings = 8
+            fesACU = [0]*nRings
+            for i in range(0, nRings):
+                c = i+nRings + 4 + nRings
+                fesACU[i] = fuelSerACU.duplicate(str(c+1)+"00")
+                fesACU[i].setGCU(str(c+1)+"00")
+
+            # coolSerACU = pin('3100', 1)
+            # # coolSer.set('materials', [nakMat])
+            # coolSerACU.setPin([nakMat], [])
+            # coolSerACU.setGCU(3100)
+            # if (self.config == 'C2') | (self.config =='C1') | (self.config =='C4'):
+            #     lucSerRadii = [ecPinRad]
+            #     lucSerMats = [lucMat, nakMat]
+            #     lucSerACU = pin('3200', 2)
+            #     lucSerACU.setPin(lucSerMats, lucSerRadii)
+            #     lucSerACU = build3Dpin("3200", lucSerMats, lucSerRadii, nlayersACU, dz=dzACU, hasUniqueMatlayers=False, setGCUSeed=3200)
+            #     lucSerACU.setGCU(3200, setAllElementsGCU=True)
+            # nRings = 8
+            # fesACU = [0]*nRings
+            # for i in range(0, nRings):
+            #     c = i+nRings + 4 + nRings
+            #     fesACU[i] =  build3Dpin(str(c+1)+"00", fuelSerMats, fuelSerRadii, nlayersACU, dz=dzACU, hasUniqueMatlayers=False, setGCUSeed=(c+1)*100)
+            #     fesACU[i].setGCU( (c+1)*100,  setAllElementsGCU = True)
+        if geo == '2D':
+            pass
+        else:
+            univMapACM = {'1': fesACM[0], '2': fesACM[1],'3': fesACM[2], '4': fesACM[3], '5': fesACM[4], '6': fesACM[5], '7': fesACM[6], '8': fesACM[7], '9': coolSerACM, 'L': lucSerACM, '0':coolSerACM}
+            univMapACL = {'1': fesACL[0], '2': fesACL[1],'3': fesACL[2], '4': fesACL[3], '5': fesACL[4], '6': fesACL[5], '7': fesACL[6], '8': fesACL[7], '9': coolSerACL, 'L': lucSerACL, '0':coolSerACL}
+            univMapACU = {'1': fesACU[0], '2': fesACU[1],'3': fesACU[2], '4': fesACU[3], '5': fesACU[4], '6': fesACU[5], '7': fesACU[6], '8': fesACU[7], '9': coolSerACU, 'L': lucSerACU, '0':coolSerACU}
+        
+        layoutACM = " 9 8 8 8 8 8 8 8 9;\
+                     8 7 7 7 7 7 7 7 7 8;\
+                    8 7 6 6 6 6 6 6 6 7 8;\
+                   8 7 6 5 5 5 5 5 5 6 7 8;\
+                  8 7 6 5 4 4 4 4 4 5 6 7 8;\
+                 8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+                8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+               8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+              9 7 6 5 4 3 2 1 1 1 2 3 4 5 6 7 9;\
+               8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+                8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+                 8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+                  8 7 6 5 4 4 4 4 4 5 6 7 8;\
+                   8 7 6 5 5 5 5 5 5 6 7 8;\
+                    8 7 6 6 6 6 6 6 6 7 8;\
+                     8 7 7 7 7 7 7 7 7 8;\
+                      9 8 8 8 8 8 8 8 9"
+        blockMapACM = {'1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, 'L': 10}
+        bdictACM = {'fuel': '1 2 3 4 5 6 7 8', 'air':'9', 'intref':'10', 'barrel':'11', 'extref1':'12', 'extref2':'13', 'extref3':'14', 'extref4':'15'}
+        udictACM = {'fuel': '100 200 300 400 500 600 700 800', 'air':'900', 'intref':'1100', 'barrel':'1200', 'extref1':'1300', 'extref2':'1400', 'extref3':'1500', 'extref4':'1600'}
+        #edict = {'fuel': nlayers, 'air':None, 'intref':None, 'extref1':None, 'barrel':None, 'extref2':None, 'extref3':None , 'extref4':None}
+        outerBlockIdACM = 9
+        #convRefudict = {'fuel': '800 800 800 800 800 800 800  800 700 700 700 700 700 700 700 700 800 800 700 600 600 600 600 600 600 600 700 800 800 700 600 500 500 500 500 500 500 600 700 800 800 700 600 500 400 400 400 400 400 500 600 700 800 800 700 600 500 400 300 300 300 300 400 500 600 700 800 800 700 600 500 400 300 200 200 200 300 400 500 600 700 800 800 700 600 500 400 300 200 100 100 200 300 400 500 600 700 800  700 600 500 400 300 200 100 100 100 200 300 400 500 600 700  800 700 600 500 400 300 200 100 100 200 300 400 500 600 700 800 800 700 600 500 400 300 200 200 200 300 400 500 600 700 800 800 700 600 500 400 300 300 300 300 400 500 600 700 800 800 700 600 500 400 400 400 400 400 500 600 700 800 800 700 600 500 500 500 500 500 500 600 700 800 800 700 600 600 600 600 600 600 600 700 800 800 700 700 700 700 700 700 700 700 800  800 800 800 800 800 800 800', 'air':'900', 'intref':'1100', 'barrel':'1200', 'extref1':'1300', 'extref2':'1400', 'extref3':'1500', 'extref4':'1600'}
+        if self.config == 'C1':
+            #univMap = {'1': fes[0], '2': fes[1],'3': fes[2], '4': fes[3], '5': fes[4], '6': fes[5], '7': fes[6], '8': fes[7], '9': coolSer, 'L': lucSer, '0':coolSer}
+            layout = " 9 8 8 8 8 8 8 8 9;\
+                      8 7 7 7 7 7 7 7 7 8;\
+                     8 7 6 6 6 6 6 6 6 7 8;\
+                    8 7 6 5 5 5 5 5 5 6 7 8;\
+                   8 7 6 5 4 4 4 4 4 5 6 7 8;\
+                  8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+                 8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+                8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+               9 7 6 5 4 3 2 1 1 1 2 3 4 5 6 7 9;\
+                8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+                 8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+                  8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+                   8 7 6 5 4 4 4 4 4 5 6 7 8;\
+                    8 7 6 5 5 5 5 5 5 6 7 8;\
+                     8 7 6 6 6 6 6 6 6 7 8;\
+                      8 7 7 7 7 7 7 7 7 8;\
+                       9 8 8 8 8 8 8 8 9"
+            blockMap = {'1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, 'L': 10}
+            bdict = {'fuel': '1 2 3 4 5 6 7 8', 'air':'9', 'lucite': '10','intref':'11', 'barrel':'12', 'extref':'13'}
+            udict = {'fuel': '100 200 300 400 500 600 700 800', 'lucite': '1000', 'air':'900', 'intref':'1100', 'barrel':'1200', 'extref':'1300'}
+            edict = {'fuel': nlayers, 'air':nlayers, 'lucite':nlayers, 'intref':None, 'extref':None, 'barrel':None}
+            outerBlockId = 9
+
+        nOuter = 2
+        hexLat1ACM = buildHexLattice("activeCoreLatACM", layout, univMapACM, nOuter, elemPitch, hexApothem = latticeApothem)
+        intref1ACM = buildPeripheralRing(hexLat1ACM, intRefRad, material= refMix, ringId="intrefACM", setGCU = 3300)
+        barrel1ACM = buildPeripheralRing(intref1ACM, barrelRad, material= barMat, ringId= "barrelACM", setGCU = 3400)
+
+        hexLat1ACL = buildHexLattice("activeCoreLatACL", layout, univMapACL, nOuter, elemPitch, hexApothem = latticeApothem)
+        intref1ACL = buildPeripheralRing(hexLat1ACL, intRefRad, material= refMix, ringId="intrefACL", setGCU = 3500)
+        barrel1ACL = buildPeripheralRing(intref1ACL, barrelRad, material= barMat, ringId= "barrelACL", setGCU = 3600)
+
+        hexLat1ACU = buildHexLattice("activeCoreLatACU", layout, univMapACU, nOuter, elemPitch, hexApothem = latticeApothem)
+        intref1ACU = buildPeripheralRing(hexLat1ACU, intRefRad, material= refMix, ringId="intrefACU", setGCU = 3700)
+        barrel1ACU = buildPeripheralRing(intref1ACU, barrelRad, material= barMat, ringId= "barrelACU", setGCU = 3800)
+
+        drumApothemUnadj = 17.4732315
+        shimAApothemUnadj = 19.35542598
+        shimBApothemUnadj = 21.30540674
+        #gapThickness = 0.1282315*(0.906937296) #Table 1 SR-9642
+        gapThickness1 = 0.207772/4
+        gapThickness2 = 0.207772
+        gapThickness3 = 0.207772
+
+        drumApothem = 17.4732315 - gapThickness1
+        shimAApothem = 19.35542598 - gapThickness1  - gapThickness2
+        shimBApothem = 21.30540674 - gapThickness1 - gapThickness2 - gapThickness3
+
+
+        drumVertex = calcVertexFromApothem(drumApothem)
+        shimAVertex = calcVertexFromApothem(shimAApothem)
+        shimBVertex = calcVertexFromApothem(shimBApothem)
+
+        uid = "barrelACM"
+        drumSurf1  = surf(uid+"h1", "hexyc", np.array([0.0, 0.0, barrelRad + 1*(drumApothem-barrelRad)/4]))
+        drumSurf2  = surf(uid+"h2", "hexyc", np.array([0.0, 0.0, barrelRad + 2*(drumApothem-barrelRad)/4]))
+        drumSurf3  = surf(uid+"h3", "hexyc", np.array([0.0, 0.0, barrelRad + 3*(drumApothem-barrelRad)/4]))
+        drumSurf4  = surf(uid+"h4", "hexyc", np.array([0.0, 0.0, drumApothem]))
+        drumSurf5  = surf(uid+"h5", "hexyc", np.array([0.0, 0.0, shimAApothem]))
+        drumSurf6  = surf(uid+"h6", "hexyc", np.array([0.0, 0.0, shimBApothem]))
+        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimBVertex]))
+
+        cdSys1 = cell(uid+'cdSys1', mat=cdMat)
+        cdSys1.setSurfs([barrel1ACM.boundary, drumSurf1], [0, 1])
+
+        cdSys2 = cell(uid+'cdSys2', mat=cdMat)
+        cdSys2.setSurfs([drumSurf1, drumSurf2], [0, 1])
+
+        cdSys3 = cell(uid+'cdSys3', mat=cdMat)
+        cdSys3.setSurfs([drumSurf2, drumSurf3], [0, 1])
+
+        cdSys4 = cell(uid+'cdSys4', mat=cdMat)
+        cdSys4.setSurfs([drumSurf3, drumSurf4], [0, 1])
+
+        cdSys5 = cell(uid+'cdSys5', mat=cdMat)
+        cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
+
+        cdSys6 = cell(uid+'cdSys6', mat=cdMat)
+        cdSys6.setSurfs([drumSurf5, drumSurf6], [0, 1])
+
+        cdOnly1 = universe(uid+"control13")
+        cdOnly1.setBoundary(drumSurf1)
+        cdOnly1.setGeom([cdSys1])
+        cdOnly1.collectAll()
+        cdOnly1.setGCU(3900)
+
+        cdOnly2 = universe(uid+"control14")
+        cdOnly2.setBoundary(drumSurf2)
+        cdOnly2.setGeom([cdSys2])
+        cdOnly2.collectAll()
+        cdOnly2.setGCU(4000)
+
+        cdOnly3 = universe(uid+"control15")
+        cdOnly3.setBoundary(drumSurf3)
+        cdOnly3.setGeom([cdSys3])
+        cdOnly3.collectAll()
+        cdOnly3.setGCU(4100)
+
+        cdOnly4 = universe(uid+"control16")
+        cdOnly4.setBoundary(drumSurf4)
+        cdOnly4.setGeom([cdSys4])
+        cdOnly4.collectAll()
+        cdOnly4.setGCU(4200)
+
+        cdOnly5 = universe(uid+"air17")
+        cdOnly5.setBoundary(drumSurf5)
+        cdOnly5.setGeom([cdSys5])
+        cdOnly5.collectAll()
+        cdOnly5.setGCU(4300)
+    
+        cdOnly6 = universe(uid+"air18")
+        cdOnly6.setBoundary(drumSurf6)
+        cdOnly6.setGeom([cdSys6])
+        cdOnly6.collectAll()
+        cdOnly6.setGCU(4400)
+
+        cdFull = universe(uid+"cdFull")
+
+        cdSysDV = cell(uid+'cdSysVoidDV', isVoid=True)
+        cdSysDV.setSurfs([drumSurf6, voidSurf], [0, 1]) 
+
+        cdSysD1 =  cell(uid+'cdSysD1')
+        cdSysD1.setFill(cdOnly1)
+        cdSysD1.setSurfs([barrel1ACM.boundary, drumSurf1], [0, 1])
+
+        cdSysD2 =  cell(uid+'cdSysD2')
+        cdSysD2.setFill(cdOnly2)
+        cdSysD2.setSurfs([drumSurf1, drumSurf2], [0, 1])
+
+        cdSysD3 =  cell(uid+'cdSysD3')
+        cdSysD3.setFill(cdOnly3)
+        cdSysD3.setSurfs([drumSurf2, drumSurf3], [0, 1])
+
+        cdSysD4 =  cell(uid+'cdSysD4')
+        cdSysD4.setFill(cdOnly4)
+        cdSysD4.setSurfs([drumSurf3, drumSurf4], [0, 1])
+
+        cdSysD5 =  cell(uid+'cdSysD5')
+        cdSysD5.setFill(cdOnly5)
+        cdSysD5.setSurfs([drumSurf4, drumSurf5], [0, 1])
+
+        cdSysD6 =  cell(uid+'cdSysD6')
+        cdSysD6.setFill(cdOnly6)
+        cdSysD6.setSurfs([drumSurf5, drumSurf6], [0, 1])
+
+        cdFull.setBoundary(voidSurf)
+        cdFull.setGeom([cdSysD1, cdSysD2, cdSysD3, cdSysD4, cdSysD5, cdSysD6, cdSysDV])
+        cdFull.collectAll()
+        cdBarrelACM = buildPeripheralObject(barrel1ACM, cdFull)
+
+
+        uid = "barrelACL" #5500 5600
+        drumSurf1  = surf(uid+"h1", "hexyc", np.array([0.0, 0.0, barrelRad + 1*(drumApothem-barrelRad)/4]))
+        drumSurf2  = surf(uid+"h2", "hexyc", np.array([0.0, 0.0, barrelRad + 2*(drumApothem-barrelRad)/4]))
+        drumSurf3  = surf(uid+"h3", "hexyc", np.array([0.0, 0.0, barrelRad + 3*(drumApothem-barrelRad)/4]))
+        drumSurf4  = surf(uid+"h4", "hexyc", np.array([0.0, 0.0, drumApothem]))
+        drumSurf5  = surf(uid+"h5", "hexyc", np.array([0.0, 0.0, shimAApothem]))
+        drumSurf6  = surf(uid+"h6", "hexyc", np.array([0.0, 0.0, shimBApothem]))
+        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimBVertex]))
+
+        cdSys1 = cell(uid+'cdSys1', mat=cdMat)
+        cdSys1.setSurfs([barrel1ACL.boundary, drumSurf1], [0, 1])
+
+        cdSys2 = cell(uid+'cdSys2', mat=cdMat)
+        cdSys2.setSurfs([drumSurf1, drumSurf2], [0, 1])
+
+        cdSys3 = cell(uid+'cdSys3', mat=cdMat)
+        cdSys3.setSurfs([drumSurf2, drumSurf3], [0, 1])
+
+        cdSys4 = cell(uid+'cdSys4', mat=cdMat)
+        cdSys4.setSurfs([drumSurf3, drumSurf4], [0, 1])
+
+        cdSys5 = cell(uid+'cdSys5', mat=cdMat)
+        cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
+
+        cdSys6 = cell(uid+'cdSys6', isVoid = True)
+        cdSys6.setSurfs([drumSurf5, drumSurf6], [0, 1])
+
+        cdOnly1 = universe(uid+"control13")
+        cdOnly1.setBoundary(drumSurf1)
+        cdOnly1.setGeom([cdSys1])
+        cdOnly1.collectAll()
+        cdOnly1.setGCU(5500)
+
+        cdOnly2 = universe(uid+"control14")
+        cdOnly2.setBoundary(drumSurf2)
+        cdOnly2.setGeom([cdSys2])
+        cdOnly2.collectAll()
+        cdOnly2.setGCU(5600)
+
+        cdOnly3 = universe(uid+"control15")
+        cdOnly3.setBoundary(drumSurf3)
+        cdOnly3.setGeom([cdSys3])
+        cdOnly3.collectAll()
+        cdOnly3.setGCU(5700)
+
+        cdOnly4 = universe(uid+"control16")
+        cdOnly4.setBoundary(drumSurf4)
+        cdOnly4.setGeom([cdSys4])
+        cdOnly4.collectAll()
+        cdOnly4.setGCU(5800)
+
+        cdOnly5 = universe(uid+"shima17")
+        cdOnly5.setBoundary(drumSurf5)
+        cdOnly5.setGeom([cdSys5])
+        cdOnly5.collectAll()
+        cdOnly5.setGCU(5900)
+
+        cdOnly6 = universe(uid+"air18")
+        cdOnly6.setBoundary(drumSurf6)
+        cdOnly6.setGeom([cdSys6])
+        cdOnly6.collectAll()
+        cdOnly6.setGCU(9900)
+
+        cdFull = universe(uid+"cdFull")
+
+        cdSysDV = cell(uid+'cdSysVoidDV', isVoid=True)
+        cdSysDV.setSurfs([drumSurf6, voidSurf], [0, 1]) 
+
+        cdSysD1 =  cell(uid+'cdSysD1')
+        cdSysD1.setFill(cdOnly1)
+        cdSysD1.setSurfs([barrel1ACL.boundary, drumSurf1], [0, 1])
+
+        cdSysD2 =  cell(uid+'cdSysD2')
+        cdSysD2.setFill(cdOnly2)
+        cdSysD2.setSurfs([drumSurf1, drumSurf2], [0, 1])
+
+        cdSysD3 =  cell(uid+'cdSysD3')
+        cdSysD3.setFill(cdOnly3)
+        cdSysD3.setSurfs([drumSurf2, drumSurf3], [0, 1])
+
+        cdSysD4 =  cell(uid+'cdSysD4')
+        cdSysD4.setFill(cdOnly4)
+        cdSysD4.setSurfs([drumSurf3, drumSurf4], [0, 1])
+
+        cdSysD5 =  cell(uid+'cdSysD5')
+        cdSysD5.setFill(cdOnly5)
+        cdSysD5.setSurfs([drumSurf4, drumSurf5], [0, 1])
+
+        cdSysD6 =  cell(uid+'cdSysD6')
+        cdSysD6.setFill(cdOnly6)
+        cdSysD6.setSurfs([drumSurf5, drumSurf6], [0, 1])
+
+        cdFull.setBoundary(voidSurf)
+        cdFull.setGeom([cdSysD1, cdSysD2, cdSysD3, cdSysD4, cdSysD5, cdSysD6, cdSysDV])
+        cdFull.collectAll()
+
+        cdBarrelACL = buildPeripheralObject(barrel1ACL, cdFull)
+
+        uid = "barrelACU" #57 58
+        drumSurf1  = surf(uid+"h1", "hexyc", np.array([0.0, 0.0, barrelRad + 1*(drumApothem-barrelRad)/4]))
+        drumSurf2  = surf(uid+"h2", "hexyc", np.array([0.0, 0.0, barrelRad + 2*(drumApothem-barrelRad)/4]))
+        drumSurf3  = surf(uid+"h3", "hexyc", np.array([0.0, 0.0, barrelRad + 3*(drumApothem-barrelRad)/4]))
+        drumSurf4  = surf(uid+"h4", "hexyc", np.array([0.0, 0.0, drumApothem]))
+        drumSurf5  = surf(uid+"h5", "hexyc", np.array([0.0, 0.0, shimAApothem]))
+        drumSurf6  = surf(uid+"h6", "hexyc", np.array([0.0, 0.0, shimBApothem]))
+        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimBVertex]))
+
+        cdSys1 = cell(uid+'cdSys1', mat=cdMat)
+        cdSys1.setSurfs([barrel1ACU.boundary, drumSurf1], [0, 1])
+
+        cdSys2 = cell(uid+'cdSys2', mat=cdMat)
+        cdSys2.setSurfs([drumSurf1, drumSurf2], [0, 1])
+
+        cdSys3 = cell(uid+'cdSys3', mat=cdMat)
+        cdSys3.setSurfs([drumSurf2, drumSurf3], [0, 1])
+
+        cdSys4 = cell(uid+'cdSys4', mat=cdMat)
+        cdSys4.setSurfs([drumSurf3, drumSurf4], [0, 1])
+
+        cdSys5 = cell(uid+'cdSys5', mat=cdMat)
+        cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
+
+        cdSys6 = cell(uid+'cdSys6', isVoid = True)
+        cdSys6.setSurfs([drumSurf5, drumSurf6], [0, 1])
+
+        cdOnly1 = universe(uid+"control13")
+        cdOnly1.setBoundary(drumSurf1)
+        cdOnly1.setGeom([cdSys1])
+        cdOnly1.collectAll()
+        cdOnly1.setGCU(6000)
+
+        cdOnly2 = universe(uid+"control14")
+        cdOnly2.setBoundary(drumSurf2)
+        cdOnly2.setGeom([cdSys2])
+        cdOnly2.collectAll()
+        cdOnly2.setGCU(6100)
+
+        cdOnly3 = universe(uid+"control15")
+        cdOnly3.setBoundary(drumSurf3)
+        cdOnly3.setGeom([cdSys3])
+        cdOnly3.collectAll()
+        cdOnly3.setGCU(6200)
+
+        cdOnly4 = universe(uid+"control16")
+        cdOnly4.setBoundary(drumSurf4)
+        cdOnly4.setGeom([cdSys4])
+        cdOnly4.collectAll()
+        cdOnly4.setGCU(6300)
+
+        cdOnly5 = universe(uid+"shima17")
+        cdOnly5.setBoundary(drumSurf5)
+        cdOnly5.setGeom([cdSys5])
+        cdOnly5.collectAll()
+        cdOnly5.setGCU(6400)
+
+        cdOnly6 = universe(uid+"air18")
+        cdOnly6.setBoundary(drumSurf6)
+        cdOnly6.setGeom([cdSys6])
+        cdOnly6.collectAll()
+        cdOnly6.setGCU(9901)
+
+        cdFull = universe(uid+"cdFull")
+
+        cdSysDV = cell(uid+'cdSysVoidDV', isVoid=True)
+        cdSysDV.setSurfs([drumSurf6, voidSurf], [0, 1]) 
+
+        cdSysD1 =  cell(uid+'cdSysD1')
+        cdSysD1.setFill(cdOnly1)
+        cdSysD1.setSurfs([barrel1ACU.boundary, drumSurf1], [0, 1])
+
+        cdSysD2 =  cell(uid+'cdSysD2')
+        cdSysD2.setFill(cdOnly2)
+        cdSysD2.setSurfs([drumSurf1, drumSurf2], [0, 1])
+
+        cdSysD3 =  cell(uid+'cdSysD3')
+        cdSysD3.setFill(cdOnly3)
+        cdSysD3.setSurfs([drumSurf2, drumSurf3], [0, 1])
+
+        cdSysD4 =  cell(uid+'cdSysD4')
+        cdSysD4.setFill(cdOnly4)
+        cdSysD4.setSurfs([drumSurf3, drumSurf4], [0, 1])
+
+        cdSysD5 =  cell(uid+'cdSysD5')
+        cdSysD5.setFill(cdOnly5)
+        cdSysD5.setSurfs([drumSurf4, drumSurf5], [0, 1])
+
+        cdSysD6 =  cell(uid+'cdSysD6')
+        cdSysD6.setFill(cdOnly6)
+        cdSysD6.setSurfs([drumSurf5, drumSurf6], [0, 1])
+
+        cdFull.setBoundary(voidSurf)
+        cdFull.setGeom([cdSysD1, cdSysD2, cdSysD3, cdSysD4, cdSysD5, cdSysD6, cdSysDV])
+        cdFull.collectAll()
+        cdBarrelACU = buildPeripheralObject(barrel1ACU, cdFull)
+
+        ugp = pin("pUG", 1)
+        #ugp.set('materials', [ugpMat])
+        ugp.setPin([ugpMat], [])
+        #ugp.setGCU(9300)
+
+        ugph = pin("pUGH", 2)
+        ugph.setPin([nakMat, ugpMat], [ughr])
+
+
+        lgp = pin("pLG", 1)
+        lgp.setPin([lgpMat], [])
+        #lgp.setGCU(9400)
+
+        lgph = pin("pLGH", 2)
+        lgph.setPin([nakMat, lgpMat], [lghr])
+
+        #univMap = {'1':ugph, '2':ugp, '0':ugp}
+        univMap = {'1':ugph, '2':ugp, '0':ugp}
+        layout = " 2 1 1 1 1 1 1 1 2;\
+                  1 1 1 1 1 1 1 1 1 1;\
+                 1 1 1 1 1 1 1 1 1 1 1;\
+                1 1 1 1 1 1 1 1 1 1 1 1;\
+               1 1 1 1 1 1 1 1 1 1 1 1 1;\
+              1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+           2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2;\
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+              1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+               1 1 1 1 1 1 1 1 1 1 1 1 1;\
+                1 1 1 1 1 1 1 1 1 1 1 1;\
+                 1 1 1 1 1 1 1 1 1 1 1;\
+                  1 1 1 1 1 1 1 1 1 1;\
+                   2 1 1 1 1 1 1 1 2"
+        nOuter = 2
+        controlDrumSystemRad = shimAVertex
+        ug = buildHexLattice("upperGridLat", layout, univMap, nOuter, elemPitch, latType="POINT")
+        ugBarrel = buildPeripheralRing(ug, barrelRad, ringId="ugBarrel")#, setGCU = 8800)
+        ugBarrel.setGCU(9300)
+
+        uid = "ugvoid"
+        drumSurf1  = surf(uid+"h1", "hexyc", np.array([0.0, 0.0, barrelRad + 1*(drumApothem-barrelRad)/4]))
+        drumSurf2  = surf(uid+"h2", "hexyc", np.array([0.0, 0.0, barrelRad + 2*(drumApothem-barrelRad)/4]))
+        drumSurf3  = surf(uid+"h3", "hexyc", np.array([0.0, 0.0, barrelRad + 3*(drumApothem-barrelRad)/4]))
+        drumSurf4  = surf(uid+"h4", "hexyc", np.array([0.0, 0.0, drumApothem]))
+        drumSurf5  = surf(uid+"h5", "hexyc", np.array([0.0, 0.0, shimAApothem]))
+        drumSurf6  = surf(uid+"h6", "hexyc", np.array([0.0, 0.0, shimBApothem]))
+        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimBVertex]))
+
+        cdSys1 = cell(uid+'cdSys1', isVoid = True)
+        cdSys1.setSurfs([ugBarrel.boundary, drumSurf6], [0, 1])
+
+        # cdSys2 = cell(uid+'cdSys2', mat=nakMat)
+        # cdSys2.setSurfs([drumSurf1, drumSurf2], [0, 1])
+
+        # cdSys3 = cell(uid+'cdSys3', mat=nakMat)
+        # cdSys3.setSurfs([drumSurf2, drumSurf3], [0, 1])
+
+        # cdSys4 = cell(uid+'cdSys4', mat=nakMat)
+        # cdSys4.setSurfs([drumSurf3, drumSurf4], [0, 1])
+
+        # cdSys5 = cell(uid+'cdSys5', mat=nakMat)
+        # cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
+
+        cdOnly1 = universe(uid+"control13")
+        cdOnly1.setBoundary(drumSurf6)
+        cdOnly1.setGeom([cdSys1])
+        cdOnly1.collectAll()
+        cdOnly1.setGCU(7500)
+
+        # cdOnly2 = universe(uid+"control14")
+        # cdOnly2.setBoundary(drumSurf2)
+        # cdOnly2.setGeom([cdSys2])
+        # cdOnly2.collectAll()
+        # cdOnly2.setGCU(7600)
+
+        # cdOnly3 = universe(uid+"control15")
+        # cdOnly3.setBoundary(drumSurf3)
+        # cdOnly3.setGeom([cdSys3])
+        # cdOnly3.collectAll()
+        # cdOnly3.setGCU(7700)
+
+        # cdOnly4 = universe(uid+"control16")
+        # cdOnly4.setBoundary(drumSurf4)
+        # cdOnly4.setGeom([cdSys4])
+        # cdOnly4.collectAll()
+        # cdOnly4.setGCU(7800)
+
+        # cdOnly5 = universe(uid+"shima17")
+        # cdOnly5.setBoundary(drumSurf5)
+        # cdOnly5.setGeom([cdSys5])
+        # cdOnly5.collectAll()
+        # cdOnly5.setGCU(7900)
+
+        cdFull = universe(uid+"cdFull")
+
+        cdSysDV = cell(uid+'cdSysVoidDV', isVoid=True)
+        cdSysDV.setSurfs([drumSurf6, voidSurf], [0, 1]) 
+
+        cdSysD1 =  cell(uid+'cdSysD1')
+        cdSysD1.setFill(cdOnly1)
+        cdSysD1.setSurfs([ugBarrel.boundary, drumSurf6], [0, 1])
+
+        # cdSysD2 =  cell(uid+'cdSysD2')
+        # cdSysD2.setFill(cdOnly2)
+        # cdSysD2.setSurfs([drumSurf1, drumSurf2], [0, 1])
+
+        # cdSysD3 =  cell(uid+'cdSysD3')
+        # cdSysD3.setFill(cdOnly3)
+        # cdSysD3.setSurfs([drumSurf2, drumSurf3], [0, 1])
+
+        # cdSysD4 =  cell(uid+'cdSysD4')
+        # cdSysD4.setFill(cdOnly4)
+        # cdSysD4.setSurfs([drumSurf3, drumSurf4], [0, 1])
+
+        # cdSysD5 =  cell(uid+'cdSysD5')
+        # cdSysD5.setFill(cdOnly5)
+        # cdSysD5.setSurfs([drumSurf4, drumSurf5], [0, 1])
+
+        cdFull.setBoundary(voidSurf)
+        cdFull.setGeom([cdSysD1, cdSysDV])
+        cdFull.collectAll()
+        ugVoid = buildPeripheralObject(ugBarrel, cdFull)
+    
+        #univMap = {'1':lgph, '2':lgp, '0':lgp}
+        # univMap = {'1': fesLGPH[0], '2': fesLGPH[1],'3': fesLGPH[2], '4': fesLGPH[3], '5': fesLGPH[4], '6': fesLGPH[5], '7': fesLGPH[6], '8': fesLGPH[7], '9':lgp, '0':lgp}
+        # layout = " 9 8 8 8 8 8 8 8 9;\
+        #           8 7 7 7 7 7 7 7 7 8;\
+        #          8 7 6 6 6 6 6 6 6 7 8;\
+        #         8 7 6 5 5 5 5 5 5 6 7 8;\
+        #        8 7 6 5 4 4 4 4 4 5 6 7 8;\
+        #       8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+        #      8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+        #     8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+        #    9 7 6 5 4 3 2 1 1 1 2 3 4 5 6 7 9;\
+        #     8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+        #      8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+        #       8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+        #        8 7 6 5 4 4 4 4 4 5 6 7 8;\
+        #         8 7 6 5 5 5 5 5 5 6 7 8;\
+        #          8 7 6 6 6 6 6 6 6 7 8;\
+        #           8 7 7 7 7 7 7 7 7 8;\
+        #            9 8 8 8 8 8 8 8 9"
+        univMap = {'1':lgph, '2':lgp, '0':lgp}
+        layout = " 2 1 1 1 1 1 1 1 2;\
+                  1 1 1 1 1 1 1 1 1 1;\
+                 1 1 1 1 1 1 1 1 1 1 1;\
+                1 1 1 1 1 1 1 1 1 1 1 1;\
+               1 1 1 1 1 1 1 1 1 1 1 1 1;\
+              1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+           2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2;\
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+              1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+               1 1 1 1 1 1 1 1 1 1 1 1 1;\
+                1 1 1 1 1 1 1 1 1 1 1 1;\
+                 1 1 1 1 1 1 1 1 1 1 1;\
+                  1 1 1 1 1 1 1 1 1 1;\
+                   2 1 1 1 1 1 1 1 2"
+        nOuter = 2
+        lg = buildHexLattice("lowerGridLat", layout, univMap, nOuter, elemPitch, latType="POINT")
+        lgBarrel = buildPeripheralRing(lg, barrelRad, ringId="lgBarrel")
+        lgBarrel.setGCU(9400)
+        
+        # nOuter = 2
+        # lg = buildHexLattice("lowerGridLat", layout, univMap, nOuter, elemPitch, latType="POINT")
+        # lgBarrel = buildPeripheralRing(lg, barrelRad, ringId="lgBarrel")#, setGCU = 8700)
+        # #lgBarrel.setGCU(8700)
+
+        uid = "lgvoid"
+        drumSurf1  = surf(uid+"h1", "hexyc", np.array([0.0, 0.0, barrelRad + 1*(drumApothem-barrelRad)/4]))
+        drumSurf2  = surf(uid+"h2", "hexyc", np.array([0.0, 0.0, barrelRad + 2*(drumApothem-barrelRad)/4]))
+        drumSurf3  = surf(uid+"h3", "hexyc", np.array([0.0, 0.0, barrelRad + 3*(drumApothem-barrelRad)/4]))
+        drumSurf4  = surf(uid+"h4", "hexyc", np.array([0.0, 0.0, drumApothem]))
+        drumSurf5  = surf(uid+"h5", "hexyc", np.array([0.0, 0.0, shimAApothem]))
+        drumSurf6  = surf(uid+"h6", "hexyc", np.array([0.0, 0.0, shimBApothem]))
+        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimBVertex]))
+
+        cdSys1 = cell(uid+'cdSys1', isVoid = True)
+        cdSys1.setSurfs([lgBarrel.boundary, drumSurf6], [0, 1])
+
+        # cdSys2 = cell(uid+'cdSys2', mat=nakMat)
+        # cdSys2.setSurfs([drumSurf1, drumSurf2], [0, 1])
+
+        # cdSys3 = cell(uid+'cdSys3', mat=nakMat)
+        # cdSys3.setSurfs([drumSurf2, drumSurf3], [0, 1])
+
+        # cdSys4 = cell(uid+'cdSys4', mat=nakMat)
+        # cdSys4.setSurfs([drumSurf3, drumSurf4], [0, 1])
+
+        # cdSys5 = cell(uid+'cdSys5', mat=nakMat)
+        # cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
+
+        cdOnly1 = universe(uid+"control13")
+        cdOnly1.setBoundary(drumSurf6)
+        cdOnly1.setGeom([cdSys1])
+        cdOnly1.collectAll()
+        cdOnly1.setGCU(8000)
+
+        # cdOnly2 = universe(uid+"control14")
+        # cdOnly2.setBoundary(drumSurf2)
+        # cdOnly2.setGeom([cdSys2])
+        # cdOnly2.collectAll()
+        # cdOnly2.setGCU(8100)
+
+        # cdOnly3 = universe(uid+"control15")
+        # cdOnly3.setBoundary(drumSurf3)
+        # cdOnly3.setGeom([cdSys3])
+        # cdOnly3.collectAll()
+        # cdOnly3.setGCU(8200)
+
+        # cdOnly4 = universe(uid+"control16")
+        # cdOnly4.setBoundary(drumSurf4)
+        # cdOnly4.setGeom([cdSys4])
+        # cdOnly4.collectAll()
+        # cdOnly4.setGCU(8300)
+
+        # cdOnly5 = universe(uid+"shima17")
+        # cdOnly5.setBoundary(drumSurf5)
+        # cdOnly5.setGeom([cdSys5])
+        # cdOnly5.collectAll()
+        # cdOnly5.setGCU(8400)
+
+        cdFull = universe(uid+"cdFull")
+
+        cdSysDV = cell(uid+'cdSysVoidDV', isVoid=True)
+        cdSysDV.setSurfs([drumSurf6, voidSurf], [0, 1]) 
+
+        cdSysD1 =  cell(uid+'cdSysD1')
+        cdSysD1.setFill(cdOnly1)
+        cdSysD1.setSurfs([lgBarrel.boundary, drumSurf6], [0, 1])
+
+        # cdSysD2 =  cell(uid+'cdSysD2')
+        # cdSysD2.setFill(cdOnly2)
+        # cdSysD2.setSurfs([drumSurf1, drumSurf2], [0, 1])
+
+        # cdSysD3 =  cell(uid+'cdSysD3')
+        # cdSysD3.setFill(cdOnly3)
+        # cdSysD3.setSurfs([drumSurf2, drumSurf3], [0, 1])
+
+        # cdSysD4 =  cell(uid+'cdSysD4')
+        # cdSysD4.setFill(cdOnly4)
+        # cdSysD4.setSurfs([drumSurf3, drumSurf4], [0, 1])
+
+        # cdSysD5 =  cell(uid+'cdSysD5')
+        # cdSysD5.setFill(cdOnly5)
+        # cdSysD5.setSurfs([drumSurf4, drumSurf5], [0, 1])
+
+        cdFull.setBoundary(voidSurf)
+        cdFull.setGeom([cdSysD1, cdSysDV])
+        cdFull.collectAll()
+
+        lgVoid = buildPeripheralObject(lgBarrel, cdFull)
+        
+        uecv = pin("pLECV", 1)
+        uecv.setPin([nakMat], [])
+        #uecv.setGCU(9500)
+
+        uec = pin("pUEC", 2)
+        uec.setPin([cladMat, nakMat], [ecPinRad])
+
+
+
+        lecv = pin("pLECV", 1)
+        lecv.setPin([nakMat], [])
+        #lecv.setGCU(9600)
+
+        lec = pin("pLEC", 2)
+        lec.setPin([cladMat, nakMat], [ecPinRad])
+
+
+        univMap = {'1':uec, '2':uecv, '0':uecv}
+        layout = " 2 1 1 1 1 1 1 1 2;\
+                  1 1 1 1 1 1 1 1 1 1;\
+                 1 1 1 1 1 1 1 1 1 1 1;\
+                1 1 1 1 1 1 1 1 1 1 1 1;\
+               1 1 1 1 1 1 1 1 1 1 1 1 1;\
+              1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+           2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2;\
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+              1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+               1 1 1 1 1 1 1 1 1 1 1 1 1;\
+                1 1 1 1 1 1 1 1 1 1 1 1;\
+                 1 1 1 1 1 1 1 1 1 1 1;\
+                  1 1 1 1 1 1 1 1 1 1;\
+                   2 1 1 1 1 1 1 1 2"
+        nOuter = 2
+        controlDrumSystemRad = shimAVertex
+        #uecLat = buildHexLattice("upperEndCapLat", layout, univMap, nOuter, elemPitch, latType="FLAT")
+        uecLat = buildHexLattice("upperEndCapLat", layout, univMap, nOuter, elemPitch, hexApothem = latticeApothem)
+        intref1uec= buildPeripheralRing(uecLat, intRefRad, material= refMix, ringId="intrefuec")#, setGCU = 8900)
+        barrel1uec = buildPeripheralRing(intref1uec, barrelRad, material= barMat, ringId= "barreluec")#, setGCU = 9000)
+        barrel1uec.setGCU(9500) #CHECK
+
+        uid = "uecCD" #59 60
+        drumSurf1  = surf(uid+"h1", "hexyc", np.array([0.0, 0.0, barrelRad + 1*(drumApothem-barrelRad)/4]))
+        drumSurf2  = surf(uid+"h2", "hexyc", np.array([0.0, 0.0, barrelRad + 2*(drumApothem-barrelRad)/4]))
+        drumSurf3  = surf(uid+"h3", "hexyc", np.array([0.0, 0.0, barrelRad + 3*(drumApothem-barrelRad)/4]))
+        drumSurf4  = surf(uid+"h4", "hexyc", np.array([0.0, 0.0, drumApothem]))
+        drumSurf5  = surf(uid+"h5", "hexyc", np.array([0.0, 0.0, shimAApothem]))
+        drumSurf6  = surf(uid+"h6", "hexyc", np.array([0.0, 0.0, shimBApothem]))
+        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimBVertex]))
+
+        cdSys1 = cell(uid+'cdSys1', mat=cdMat)
+        cdSys1.setSurfs([barrel1uec.boundary, drumSurf1], [0, 1])
+
+        cdSys2 = cell(uid+'cdSys2', mat=cdMat)
+        cdSys2.setSurfs([drumSurf1, drumSurf2], [0, 1])
+
+        cdSys3 = cell(uid+'cdSys3', mat=cdMat)
+        cdSys3.setSurfs([drumSurf2, drumSurf3], [0, 1])
+
+        cdSys4 = cell(uid+'cdSys4', mat=cdMat)
+        cdSys4.setSurfs([drumSurf3, drumSurf4], [0, 1])
+
+        cdSys5 = cell(uid+'cdSys5', mat=cdMat)
+        cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
+
+        cdSys6 = cell(uid+'cdSys6', isVoid = True)
+        cdSys6.setSurfs([drumSurf5, drumSurf6], [0, 1])
+
+        cdOnly1 = universe(uid+"control13")
+        cdOnly1.setBoundary(drumSurf1)
+        cdOnly1.setGeom([cdSys1])
+        cdOnly1.collectAll()
+        cdOnly1.setGCU(6500)
+
+        cdOnly2 = universe(uid+"control14")
+        cdOnly2.setBoundary(drumSurf2)
+        cdOnly2.setGeom([cdSys2])
+        cdOnly2.collectAll()
+        cdOnly2.setGCU(6600)
+
+        cdOnly3 = universe(uid+"control15")
+        cdOnly3.setBoundary(drumSurf3)
+        cdOnly3.setGeom([cdSys3])
+        cdOnly3.collectAll()
+        cdOnly3.setGCU(6700)
+
+        cdOnly4 = universe(uid+"control16")
+        cdOnly4.setBoundary(drumSurf4)
+        cdOnly4.setGeom([cdSys4])
+        cdOnly4.collectAll()
+        cdOnly4.setGCU(6800)
+
+        cdOnly5 = universe(uid+"shima17")
+        cdOnly5.setBoundary(drumSurf5)
+        cdOnly5.setGeom([cdSys5])
+        cdOnly5.collectAll()
+        cdOnly5.setGCU(6900)
+
+        cdOnly6 = universe(uid+"air18")
+        cdOnly6.setBoundary(drumSurf6)
+        cdOnly6.setGeom([cdSys6])
+        cdOnly6.collectAll()
+        cdOnly6.setGCU(9902)
+
+        cdFull = universe(uid+"cdFull")
+
+        cdSysDV = cell(uid+'cdSysVoidDV', isVoid=True)
+        cdSysDV.setSurfs([drumSurf6, voidSurf], [0, 1]) 
+
+        cdSysD1 =  cell(uid+'cdSysD1')
+        cdSysD1.setFill(cdOnly1)
+        cdSysD1.setSurfs([barrel1uec.boundary, drumSurf1], [0, 1])
+
+        cdSysD2 =  cell(uid+'cdSysD2')
+        cdSysD2.setFill(cdOnly2)
+        cdSysD2.setSurfs([drumSurf1, drumSurf2], [0, 1])
+
+        cdSysD3 =  cell(uid+'cdSysD3')
+        cdSysD3.setFill(cdOnly3)
+        cdSysD3.setSurfs([drumSurf2, drumSurf3], [0, 1])
+
+        cdSysD4 =  cell(uid+'cdSysD4')
+        cdSysD4.setFill(cdOnly4)
+        cdSysD4.setSurfs([drumSurf3, drumSurf4], [0, 1])
+
+        cdSysD5 =  cell(uid+'cdSysD5')
+        cdSysD5.setFill(cdOnly5)
+        cdSysD5.setSurfs([drumSurf4, drumSurf5], [0, 1])
+
+        cdSysD6 =  cell(uid+'cdSysD6')
+        cdSysD6.setFill(cdOnly6)
+        cdSysD6.setSurfs([drumSurf5, drumSurf6], [0, 1])
+
+        cdFull.setBoundary(voidSurf)
+        cdFull.setGeom([cdSysD1, cdSysD2, cdSysD3, cdSysD4, cdSysD5, cdSysD6, cdSysDV])
+        cdFull.collectAll()
+
+        cdUecFull = buildPeripheralObject(barrel1uec, cdFull)
+
+        # univMap = {'1': fesLEC[0], '2': fesLEC[1],'3': fesLEC[2], '4': fesLEC[3], '5': fesLEC[4], '6': fesLEC[5], '7': fesLEC[6], '8': fesLEC[7], '9':lecv, '0':lecv}
+        # layout = " 9 8 8 8 8 8 8 8 9;\
+        #           8 7 7 7 7 7 7 7 7 8;\
+        #          8 7 6 6 6 6 6 6 6 7 8;\
+        #         8 7 6 5 5 5 5 5 5 6 7 8;\
+        #        8 7 6 5 4 4 4 4 4 5 6 7 8;\
+        #       8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+        #      8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+        #     8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+        #    9 7 6 5 4 3 2 1 1 1 2 3 4 5 6 7 9;\
+        #     8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+        #      8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+        #       8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+        #        8 7 6 5 4 4 4 4 4 5 6 7 8;\
+        #         8 7 6 5 5 5 5 5 5 6 7 8;\
+        #          8 7 6 6 6 6 6 6 6 7 8;\
+        #           8 7 7 7 7 7 7 7 7 8;\
+        #            9 8 8 8 8 8 8 8 9"
+        
+        univMap = {'1':lec, '2':lecv, '0':lecv}
+        layout = " 2 1 1 1 1 1 1 1 2;\
+                  1 1 1 1 1 1 1 1 1 1;\
+                 1 1 1 1 1 1 1 1 1 1 1;\
+                1 1 1 1 1 1 1 1 1 1 1 1;\
+               1 1 1 1 1 1 1 1 1 1 1 1 1;\
+              1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+           2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2;\
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+              1 1 1 1 1 1 1 1 1 1 1 1 1 1;\
+               1 1 1 1 1 1 1 1 1 1 1 1 1;\
+                1 1 1 1 1 1 1 1 1 1 1 1;\
+                 1 1 1 1 1 1 1 1 1 1 1;\
+                  1 1 1 1 1 1 1 1 1 1;\
+                   2 1 1 1 1 1 1 1 2"
+        nOuter = 2
+        controlDrumSystemRad = shimAVertex
+        #lecLat = buildHexLattice("lowerEndCapLat", layout, univMap, nOuter, elemPitch, latType="FLAT")
+        lecLat = buildHexLattice("lowerEndCapLat", layout, univMap, nOuter, elemPitch, hexApothem = latticeApothem)
+        intref1lec= buildPeripheralRing(lecLat, intRefRad, material= refMix, ringId="intreflec")#, setGCU = 9100)
+        barrel1lec = buildPeripheralRing(intref1lec, barrelRad, material= barMat, ringId= "barrellec")#, setGCU = 9200)
+        barrel1lec.setGCU(9100) #CHECK
+        #lecVoid = buildPeripheralRing(barrel1lec, controlDrumSystemRad, ringId="lowerlecVoid", isVoid=True)
+
+        uid = "lecCD" #61 62 
+        drumSurf1  = surf(uid+"h1", "hexyc", np.array([0.0, 0.0, barrelRad + 1*(drumApothem-barrelRad)/4]))
+        drumSurf2  = surf(uid+"h2", "hexyc", np.array([0.0, 0.0, barrelRad + 2*(drumApothem-barrelRad)/4]))
+        drumSurf3  = surf(uid+"h3", "hexyc", np.array([0.0, 0.0, barrelRad + 3*(drumApothem-barrelRad)/4]))
+        drumSurf4  = surf(uid+"h4", "hexyc", np.array([0.0, 0.0, drumApothem]))
+        drumSurf5  = surf(uid+"h5", "hexyc", np.array([0.0, 0.0, shimAApothem]))
+        drumSurf6  = surf(uid+"h6", "hexyc", np.array([0.0, 0.0, shimBApothem]))
+        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimBVertex]))
+
+        cdSys1 = cell(uid+'cdSys1', mat=cdMat)
+        cdSys1.setSurfs([barrel1lec.boundary, drumSurf1], [0, 1])
+
+        cdSys2 = cell(uid+'cdSys2', mat=cdMat)
+        cdSys2.setSurfs([drumSurf1, drumSurf2], [0, 1])
+
+        cdSys3 = cell(uid+'cdSys3', mat=cdMat)
+        cdSys3.setSurfs([drumSurf2, drumSurf3], [0, 1])
+
+        cdSys4 = cell(uid+'cdSys4', mat=cdMat)
+        cdSys4.setSurfs([drumSurf3, drumSurf4], [0, 1])
+
+        cdSys5 = cell(uid+'cdSys5', mat=cdMat)
+        cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
+    
+        cdSys6 = cell(uid+'cdSys6', isVoid=True)
+        cdSys6.setSurfs([drumSurf5, drumSurf6], [0, 1])
+
+        cdOnly1 = universe(uid+"control13")
+        cdOnly1.setBoundary(drumSurf1)
+        cdOnly1.setGeom([cdSys1])
+        cdOnly1.collectAll()
+        cdOnly1.setGCU(7000)
+
+        cdOnly2 = universe(uid+"control14")
+        cdOnly2.setBoundary(drumSurf2)
+        cdOnly2.setGeom([cdSys2])
+        cdOnly2.collectAll()
+        cdOnly2.setGCU(7100)
+
+        cdOnly3 = universe(uid+"control15")
+        cdOnly3.setBoundary(drumSurf3)
+        cdOnly3.setGeom([cdSys3])
+        cdOnly3.collectAll()
+        cdOnly3.setGCU(7200)
+
+        cdOnly4 = universe(uid+"control16")
+        cdOnly4.setBoundary(drumSurf4)
+        cdOnly4.setGeom([cdSys4])
+        cdOnly4.collectAll()
+        cdOnly4.setGCU(7300)
+
+        cdOnly5 = universe(uid+"shima17")
+        cdOnly5.setBoundary(drumSurf5)
+        cdOnly5.setGeom([cdSys5])
+        cdOnly5.collectAll()
+        cdOnly5.setGCU(7400)
+
+        cdOnly6 = universe(uid+"air18")
+        cdOnly6.setBoundary(drumSurf6)
+        cdOnly6.setGeom([cdSys6])
+        cdOnly6.collectAll()
+        cdOnly6.setGCU(9903)
+
+        cdFull = universe(uid+"cdFull")
+
+        cdSysDV = cell(uid+'cdSysVoidDV', isVoid=True)
+        cdSysDV.setSurfs([drumSurf6, voidSurf], [0, 1]) 
+
+        cdSysD1 =  cell(uid+'cdSysD1')
+        cdSysD1.setFill(cdOnly1)
+        cdSysD1.setSurfs([barrel1lec.boundary, drumSurf1], [0, 1])
+
+        cdSysD2 =  cell(uid+'cdSysD2')
+        cdSysD2.setFill(cdOnly2)
+        cdSysD2.setSurfs([drumSurf1, drumSurf2], [0, 1])
+
+        cdSysD3 =  cell(uid+'cdSysD3')
+        cdSysD3.setFill(cdOnly3)
+        cdSysD3.setSurfs([drumSurf2, drumSurf3], [0, 1])
+
+        cdSysD4 =  cell(uid+'cdSysD4')
+        cdSysD4.setFill(cdOnly4)
+        cdSysD4.setSurfs([drumSurf3, drumSurf4], [0, 1])
+
+        cdSysD5 =  cell(uid+'cdSysD5')
+        cdSysD5.setFill(cdOnly5)
+        cdSysD5.setSurfs([drumSurf4, drumSurf5], [0, 1])
+
+        cdSysD6 =  cell(uid+'cdSysD6')
+        cdSysD6.setFill(cdOnly6)
+        cdSysD6.setSurfs([drumSurf5, drumSurf6], [0, 1])
+
+        cdFull.setBoundary(voidSurf)
+        cdFull.setGeom([cdSysD1, cdSysD2, cdSysD3, cdSysD4, cdSysD5, cdSysD6, cdSysDV])
+        cdFull.collectAll()
+
+        cdLecFull = buildPeripheralObject(barrel1lec, cdFull)
+        #0.79502 0.9652 2.1717 2.54*12 2.9083 0.2286 0.87376
+        ugdz = 0.87376
+        uecdz = 0.2286
+        acudz = 2.9083
+        acmdz = 2.54*12
+        acldz = 2.1717
+        lecdz = 0.9652
+        lggz = 0.79502
+
+        actdz = acudz+acmdz+acldz
+        acthf = voiddz + actdz
+
+        voidPin = pin("voidPin", 1, isVoid=True)
+        voiddz = 2
+
+        cdBarrelStack = buildStack("cdBarrelStack", [lgVoid, cdLecFull, cdBarrelACL, cdBarrelACM, cdBarrelACU, cdUecFull, ugVoid], [lggz, lecdz, acldz, acmdz, acudz, uecdz, ugdz], h0 = 0, boundary= cdBarrelACM.boundary)
+
+        if geo == "2D":
+            box1 = buildBoundingBox(cdBarrelStack)
+        else:
+            box1 = buildBoundingBox(cdBarrelStack, width=shimAVertex, length=shimAVertex, height=[0, lggz+lecdz+acldz + acmdz + acudz+uecdz+ugdz])# + acudz + uecdz + ugdz+voiddz]) 
+        #print(box1._geoString())
+        map = {'active_core': box1}
+
+        fgs_hr18 = [5.0000E-09, 2.5000E-08, 1.0000E-07, 4.0000E-07, 9.9600E-07, 3.0000E-06,
+        9.8770E-06, 2.7700E-05, 1.0000E-04, 5.5000E-04, 3.0000E-03, 1.5030E-02,
+        1.0000E-01, 4.0000E-01, 8.2100E-01, 1.3530E+00, 3.0000E+00, 6.0655E+00,
+        2.0000E+01]
+
+        hardened_fgs_hr = [1.0000E-11, 1.0000E-07, 4.0000E-07, 9.9600E-07, 3.0000E-06,
+        9.8770E-06, 2.7700E-05, 1.0000E-04, 5.5000E-04, 3.0000E-03, 1.5030E-02,
+        1.0000E-01, 4.0000E-01, 8.2100E-01, 1.3530E+00, 3.0000E+00, 6.0655E+00,
+        2.0000E+01]
+
+        c1 = core(box1, baseFile)
+        xsPath = "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
+
+        if geo =="2D":
+            c1.setSettings(geoType='2D', bc = 1, nps = 1E+05, nact = 100, nskip=100, xsAbsPath=xsPath, plotOptions=([3], 1000, [0], 1), setGCU = True, fgs = fgs_hr18, setDetectors = True, detTypes = ["scalar", "nuFiss"])
+            c1.toSerpent(exportUniverseAsNumber = True)
+        else:
+            c1.setSettings(geoType='3D', bc = 1, nps = 1E+05, nact = 100, nskip=100, xsAbsPath=xsPath, plotOptions=([3, 1], 1000, [0, 0], 1),setGCU = True, fgs = fgs_hr18, setDetectors = True, detTypes = ["scalar", "nuFiss"])
+            c1.toSerpent(exportUniverseAsNumber = True)
+
+        nfg = 18
+        anisDeg = 1
+        createISOXML(baseFile, nfg, anisDeg)
+
+        nMidHex = 17
+        hexPitch = elemPitch
+
+        REFlayout= "9 2 3 4 5 6 7 8 9;\
+        10 11 12 13 14 15 16 17 18 19;\
+        20 21 22 23 24 25 26 27 28 29 30;\
+        31 32 33 34 35 36 37 38 39 40 41 42;\
+        43 44 45 46 47 48 49 50 51 52 53 54 55;\
+        56 57 58 59 60 61 62 63 64 65 66 67 68 69;\
+        70 71 72 73 74 75 76 77 78 79 80 81 82 83 84;\
+        85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100;\
+        9 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 9;\
+        118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133;\
+        134 135 136 137 138 139 140 141 142 143 144 145 146 147 148;\
+        149 150 151 152 153 154 155 156 157 158 159 160 161 162;\
+        163 164 165 166 167 168 169 170 171 172 173 174 175;\
+        176 177 178 179 180 181 182 183 184 185 186 187;\
+        188 189 190 191 192 193 194 195 196 197 198;\
+        199 200 201 202 203 204 205 206 207 208;\
+        9 210 211 212 213 214 215 216 9"
+        REFblockMap = {'2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '10': 10, '11': 11, '12': 12, '13': 13, '14': 14, '15': 15, '16': 16, '17': 17, '18': 18, '19': 19, '20': 20, '21': 21, '22': 22, '23': 23, '24': 24, '25': 25, '26': 26, '27': 27, '28': 28, '29': 29, '30': 30, '31': 31, '32': 32, '33': 33, '34': 34, '35': 35, '36': 36, '37': 37, '38': 38, '39': 39, '40': 40, '41': 41, '42': 42, '43': 43, '44': 44, '45': 45, '46': 46, '47': 47, '48': 48, '49': 49, '50': 50, '51': 51, '52': 52, '53': 53, '54': 54, '55': 55, '56': 56, '57': 57, '58': 58, '59': 59, '60': 60, '61': 61, '62': 62, '63': 63, '64': 64, '65': 65, '66': 66, '67': 67, '68': 68, '69': 69, '70': 70, '71': 71, '72': 72, '73': 73, '74': 74, '75': 75, '76': 76, '77': 77, '78': 78, '79': 79, '80': 80, '81': 81, '82': 82, '83': 83, '84': 84, '85': 85, '86': 86, '87': 87, '88': 88, '89': 89, '90': 90, '91': 91, '92': 92, '93': 93, '94': 94, '95': 95, '96': 96, '97': 97, '98': 98, '99': 99, '100': 100, '102': 102, '103': 103, '104': 104, '105': 105, '106': 106, '107': 107, '108': 108, '109': 109, '110': 110, '111': 111, '112': 112, '113': 113, '114': 114, '115': 115, '116': 116, '118': 118, '119': 119, '120': 120, '121': 121, '122': 122, '123': 123, '124': 124, '125': 125, '126': 126, '127': 127, '128': 128, '129': 129, '130': 130, '131': 131, '132': 132, '133': 133, '134': 134, '135': 135, '136': 136, '137': 137, '138': 138, '139': 139, '140': 140, '141': 141, '142': 142, '143': 143, '144': 144, '145': 145, '146': 146, '147': 147, '148': 148, '149': 149, '150': 150, '151': 151, '152': 152, '153': 153, '154': 154, '155': 155, '156': 156, '157': 157, '158': 158, '159': 159, '160': 160, '161': 161, '162': 162, '163': 163, '164': 164, '165': 165, '166': 166, '167': 167, '168': 168, '169': 169, '170': 170, '171': 171, '172': 172, '173': 173, '174': 174, '175': 175, '176': 176, '177': 177, '178': 178, '179': 179, '180': 180, '181': 181, '182': 182, '183': 183, '184': 184, '185': 185, '186': 186, '187': 187, '188': 188, '189': 189, '190': 190, '191': 191, '192': 192, '193': 193, '194': 194, '195': 195, '196': 196, '197': 197, '198': 198, '199': 199, '200': 200, '201': 201, '202': 202, '203': 203, '204': 204, '205': 205, '206': 206, '207': 207, '208': 208, '210': 210, '211': 211, '212': 212, '213': 213, '214': 214, '215': 215, '216': 216, '9': 9}
+        REFbdict = {'fuel': '2 3 4 5 6 7 8 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 210 211 212 213 214 215 216', 'air':'9', 'intref':'21700', 'barrel':'21800', 'extref':'21900'}
+        REFudict = {'fuel': '20000 30000 40000 50000 60000 70000 80000 100000 110000 120000 130000 140000 150000 160000 170000 180000 190000 200000 210000 220000 230000 240000 250000 260000 270000 280000 290000 300000 310000 320000 330000 340000 350000 360000 370000 380000 390000 400000 410000 420000 430000 440000 450000 460000 470000 480000 490000 500000 510000 520000 530000 540000 550000 560000 570000 580000 590000 600000 610000 620000 630000 640000 650000 660000 670000 680000 690000 700000 710000 720000 730000 740000 750000 760000 770000 780000 790000 800000 810000 820000 830000 840000 850000 860000 870000 880000 890000 900000 910000 920000 930000 940000 950000 960000 970000 980000 990000 1000000 1020000 1030000 1040000 1050000 1060000 1070000 1080000 1090000 1100000 1110000 1120000 1130000 1140000 1150000 1160000 1180000 1190000 1200000 1210000 1220000 1230000 1240000 1250000 1260000 1270000 1280000 1290000 1300000 1310000 1320000 1330000 1340000 1350000 1360000 1370000 1380000 1390000 1400000 1410000 1420000 1430000 1440000 1450000 1460000 1470000 1480000 1490000 1500000 1510000 1520000 1530000 1540000 1550000 1560000 1570000 1580000 1590000 1600000 1610000 1620000 1630000 1640000 1650000 1660000 1670000 1680000 1690000 1700000 1710000 1720000 1730000 1740000 1750000 1760000 1770000 1780000 1790000 1800000 1810000 1820000 1830000 1840000 1850000 1860000 1870000 1880000 1890000 1900000 1910000 1920000 1930000 1940000 1950000 1960000 1970000 1980000 1990000 2000000 2010000 2020000 2030000 2040000 2050000 2060000 2070000 2080000 2100000 2110000 2120000 2130000 2140000 2150000 2160000', 'air':'900', 'intref':'1100', 'barrel':'1200', 'extref':'1300'}
+        # convRefudict = {'fuel': '800 800 800 800 800 800 800  800 700 700 700 700 700 700 700 700 800 800 700 600 600 600 600 600 600 600 700 800 800 700 600 500 500 500 500 500 500 600 700 800 800 700 600 500 400 400 400 400 400 500 600 700 800 800 700 600 500 400 300 300 300 300 400 500 600 700 800 800 700 600 500 400 300 200 200 200 300 400 500 600 700 800 800 700 600 500 400 300 200 100 100 200 300 400 500 600 700 800  700 600 500 400 300 200 100 100 100 200 300 400 500 600 700  800 700 600 500 400 300 200 100 100 200 300 400 500 600 700 800 800 700 600 500 400 300 200 200 200 300 400 500 600 700 800 800 700 600 500 400 300 300 300 300 400 500 600 700 800 800 700 600 500 400 400 400 400 400 500 600 700 800 800 700 600 500 500 500 500 500 500 600 700 800 800 700 600 600 600 600 600 600 600 700 800 800 700 700 700 700 700 700 700 700 800  800 800 800 800 800 800 800', 'air':'900', 'intref':'1100', 'barrel':'1200', 'extref':'1300'}
+        #REFedict = {'fuel': nlayers, 'air':nlayers, 'intref':None, 'extref':None, 'barrel':None}
+        REFouterBlockId = 9
+        REFMesh = "s82d_ac_c3_gcu_elemres.e"
+
+        if useRefLayoutForMesh:
+            createCubitMesh2DFull(baseFile, REFlayout, REFblockMap, nMidHex, hexPitch, REFouterBlockId, useDivForRef=True)
+        else:
+            createCubitMesh2DFull(baseFile, layoutACM, blockMapACM, nMidHex, hexPitch, REFouterBlockId , useDivForRef=True)
+        
+        #height = 35.56
+
+        # if geo == "2D":
+        #     unextMesh = baseFile+".e"
+        #     if not useRefLayoutForMesh:
+        #         create2DGeom(baseFile, bdict, udict, unextMesh)
+        #     else:
+        #         create2DGeom(baseFile, REFbdict, convRefudict, unextMesh)
+        #     makeGriffinInput2D(baseFile)
+        # else:
+        #     unextMesh = baseFile+".e"
+        #     if not useRefLayoutForMesh:
+        #         createExtrudeGeom(baseFile, height, nlayers, bdict, udict, edict, unextMesh)
+        #     else:
+        #         createExtrudeGeom(baseFile, height, nlayers, REFbdict, convRefudict, edict, unextMesh)
+        #     makeGriffinInput3D(baseFile)
+        return map
