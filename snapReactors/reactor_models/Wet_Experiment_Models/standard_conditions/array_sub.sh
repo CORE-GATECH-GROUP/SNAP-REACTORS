@@ -12,9 +12,9 @@ for i in "${fuel_temps[@]}"; do
             # Create a PBS script for each job
             cat << EOF > submit_job_${i}_${j}_${k}.pbs
 #!/bin/bash
-#PBS -l select=4:ncpus=40:mpiprocs=1:mem=64GB
+#PBS -l select=4:ncpus=40:mpiprocs=1
 #PBS -N SerpentJob_${i}_${j}_${k}
-#PBS -l walltime=0:50:00
+#PBS -l walltime=0:30:00
 #PBS -k doe
 #PBS -j oe
 #PBS -P edu_res
