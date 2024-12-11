@@ -317,7 +317,7 @@ acm_dz = 3.38666666667
 []
 
 total_power               = 600000.00 # (W). #total power
-inlet_T_fluid             = 300 # (K)
+inlet_T_fluid             = 700 # (K)
 # ==============================================================================
 # AUXVARIABLES AND AUXKERNELS
 # ==============================================================================
@@ -374,8 +374,8 @@ inlet_T_fluid             = 300 # (K)
     [core]
         type = CoupledFeedbackMatIDNeutronicsMaterial
         block =  '${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d} ${acm_fuel_blocks_lay9 } ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acm_air_blocks_2d    } ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_fuel_blocks_2d   } ${acl_air_blocks_2d    } ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_fuel_blocks_2d   } ${acu_air_blocks_2d    } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_active_blocks    } ${lgr_ext_blocks       } ${ugr_active_blocks    } ${ugr_ext_blocks       } ${lec_active_blocks    } ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  } ${uec_active_blocks    } ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
-		library_file = './../s83d_c1_XS.xml'
-		library_name = 's83d_c1_XS'
+		library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/s82d_ac_c3_gcu_ringres_XS.xml'
+		library_name = 's82d_ac_c3_gcu_ringres_XS'
         isotopes = 'pseudo'
         densities = '1.0'
         plus = 1
