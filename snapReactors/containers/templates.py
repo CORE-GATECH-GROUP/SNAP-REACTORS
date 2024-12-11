@@ -37,7 +37,7 @@ from serpentGenerator.functions.mats import mats as matsDict
 from serpentGenerator.functions.universe import universe
 from serpentGenerator.functions.hexLattice import hexLat
 from serpentGenerator.functions.sqLattice import sqLat
-from serpentGenerator.functions.pinStack import pinStack
+#from serpentGenerator.functions.pinStack import pinStack
 from serpentGenerator.functions.lats import lats as ldict
 from serpentGenerator.functions.cell import cell 
 from serpentGenerator.functions.pins import pins as pdict
@@ -13468,7 +13468,7 @@ class S8_GriffinTESTC3(S8ER):
 #         return map
 
 class S8_Wet(S8ER):
-    def __init__(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, nActiveLayers = 12, config = 'C3', xsLibrary = 'ENDF7.1', hasThermScatt=False, baseFile = "s82D_gcu", geo = '2D', useRefLayoutForMesh = False):
+    def __init__(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, nActiveLayers = 8, config = 'C3', xsLibrary = 'ENDF7.1', hasThermScatt=False, baseFile = "s82D_gcu", geo = '2D', useRefLayoutForMesh = False):
         S8ER.__init__(self)
         self.config = config
         self.xsLibrary = xsLibrary

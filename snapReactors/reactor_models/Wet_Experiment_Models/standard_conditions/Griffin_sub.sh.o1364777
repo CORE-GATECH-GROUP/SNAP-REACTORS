@@ -1,0 +1,59 @@
+
+******************************************************************************************************************
+
+                      _________                                                   _________
+                      \_________\----------____                   ____----------/_________/
+                          \________\-------\\\\\\               //////-------/________/
+                              \________\------\\||             ||//------/________/
+                                     \_____\----\\             //----/_____/
+                         ██████╗ ██████╗ ██╗███████╗███████╗██╗███╗  ██╗      ███╗   ███╗
+                        ██╔════╝ ██╔══██╗██║██╔════╝██╔════╝██║████╗ ██║      ████╗ ████║
+                        ██║  ██╗ ██████╔╝██║█████╗  █████╗  ██║██╔██╗██║█████╗██╔████╔██║
+                        ██║  ╚██╗██╔══██╗██║██╔══╝  ██╔══╝  ██║██║╚████║╚════╝██║╚██╔╝██║
+                        ╚██████╔╝██║  ██║██║██║     ██║     ██║██║ ╚███║      ██║ ╚═╝ ██║
+                         ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝     ╚═╝╚═╝  ╚══╝      ╚═╝     ╚═╝
+
+
+                                    Multiphysics Nuclear Reactor Analysis Code
+                                            Idaho National Laboratory
+                                           Argonne National Laboratory
+
+******************************************************************************************************************
+
+
+------------------------------------------------------------------------------------------------------------------
+Notice: These data were produced by Battelle Energy Alliance, LLC under contract No.
+DE-AC07-05ID14517 and UChicago Argonne under contract No. DE-AC02-06CH11357, LLC with
+the Department of Energy. During the period of commercialization or such other time
+period specified by the Department of Energy, the Government is granted for itself and
+others acting on its behalf a nonexclusive, paid-up, irrevocable worldwide license in
+this data to reproduce, prepare derivative works, and perform publicly and display
+publicly, by or on behalf of the Government. Subsequent to that period the Government is
+granted for itself and others acting on its behalf a nonexclusive, paid-up, irrevocable
+worldwide license in this data to reproduce, prepare derivative works, distribute copies
+to the public, perform publicly and display publicly, and to permit others to do so. The
+specific term of the license can be identified by inquiry made to the Contractor or DOE.
+NEITHER THE UNITED STATES NOR THE UNITED STATES DEPARTMENT OF ENERGY, NOR ANY OF THEIR
+EMPLOYEES, MAKES ANY WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY LEGAL LIABILITY OR
+RESPONSIBILITY FOR THE ACCURACY, COMPLETENESS, OR USEFULNESS OF ANY DATA, APPARATUS,
+PRODUCT, OR PROCESS DISCLOSED, OR REPRESENTS THAT ITS USE WOULD NOT INFRINGE PRIVATELY
+OWNED RIGHTS.
+------------------------------------------------------------------------------------------------------------------
+
+
+Griffin version:         git commit 08ded56f1 on 2024-11-30
+Framework Information:
+MOOSE Version:           git commit 4165fb130a on 2024-11-30
+LibMesh Version:         5483644b60cc538a4b54d312f28835bd94107627
+PETSc Version:           3.22.1
+SLEPc Version:           3.22.1
+Libtorch Version:        2.1.0
+Current Time:            Wed Dec 11 13:02:57 2024
+Executable Timestamp:    Sat Nov 30 19:08:16 2024
+
+Parallelism:
+  Num Processors:        40
+  Num Threads:           1
+
+Command line: griffin-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/wet_core.i
+
