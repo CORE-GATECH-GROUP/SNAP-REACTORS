@@ -171,7 +171,7 @@ acm_dz = 3.81
 [Mesh]
 	[core_unextruded]
 		type = FileMeshGenerator
-		file = s83d_c3_update.e
+		file = s82d_ac_c3_gcu_ringres.e
 	[]
 	[nue]
         type = NonuniformMeshExtruderGenerator
