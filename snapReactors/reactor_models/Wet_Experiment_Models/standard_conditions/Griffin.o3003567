@@ -1,0 +1,216 @@
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+r6i6n13.ib0.sawtooth.hpc.inl.gov
+
+******************************************************************************************************************
+
+                      _________                                                   _________
+                      \_________\----------____                   ____----------/_________/
+                          \________\-------\\\\\\               //////-------/________/
+                              \________\------\\||             ||//------/________/
+                                     \_____\----\\             //----/_____/
+                         ██████╗ ██████╗ ██╗███████╗███████╗██╗███╗  ██╗      ███╗   ███╗
+                        ██╔════╝ ██╔══██╗██║██╔════╝██╔════╝██║████╗ ██║      ████╗ ████║
+                        ██║  ██╗ ██████╔╝██║█████╗  █████╗  ██║██╔██╗██║█████╗██╔████╔██║
+                        ██║  ╚██╗██╔══██╗██║██╔══╝  ██╔══╝  ██║██║╚████║╚════╝██║╚██╔╝██║
+                        ╚██████╔╝██║  ██║██║██║     ██║     ██║██║ ╚███║      ██║ ╚═╝ ██║
+                         ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝     ╚═╝╚═╝  ╚══╝      ╚═╝     ╚═╝
+
+
+                                    Multiphysics Nuclear Reactor Analysis Code
+                                            Idaho National Laboratory
+                                           Argonne National Laboratory
+
+******************************************************************************************************************
+
+
+------------------------------------------------------------------------------------------------------------------
+Notice: These data were produced by Battelle Energy Alliance, LLC under contract No.
+DE-AC07-05ID14517 and UChicago Argonne under contract No. DE-AC02-06CH11357, LLC with
+the Department of Energy. During the period of commercialization or such other time
+period specified by the Department of Energy, the Government is granted for itself and
+others acting on its behalf a nonexclusive, paid-up, irrevocable worldwide license in
+this data to reproduce, prepare derivative works, and perform publicly and display
+publicly, by or on behalf of the Government. Subsequent to that period the Government is
+granted for itself and others acting on its behalf a nonexclusive, paid-up, irrevocable
+worldwide license in this data to reproduce, prepare derivative works, distribute copies
+to the public, perform publicly and display publicly, and to permit others to do so. The
+specific term of the license can be identified by inquiry made to the Contractor or DOE.
+NEITHER THE UNITED STATES NOR THE UNITED STATES DEPARTMENT OF ENERGY, NOR ANY OF THEIR
+EMPLOYEES, MAKES ANY WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY LEGAL LIABILITY OR
+RESPONSIBILITY FOR THE ACCURACY, COMPLETENESS, OR USEFULNESS OF ANY DATA, APPARATUS,
+PRODUCT, OR PROCESS DISCLOSED, OR REPRESENTS THAT ITS USE WOULD NOT INFRINGE PRIVATELY
+OWNED RIGHTS.
+------------------------------------------------------------------------------------------------------------------
+
+
+Griffin version:         git commit 08ded56f1 on 2024-11-30
+Framework Information:
+MOOSE Version:           git commit 4165fb130a on 2024-11-30
+LibMesh Version:         5483644b60cc538a4b54d312f28835bd94107627
+PETSc Version:           3.22.1
+SLEPc Version:           3.22.1
+Libtorch Version:        2.1.0
+Current Time:            Thu Dec 12 10:00:21 2024
+Executable Timestamp:    Sat Nov 30 19:08:16 2024
+
+Parallelism:
+  Num Processors:        20
+  Num Threads:           1
+
+Command line: griffin-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/wet_core.i
+
+Setting Up
+
+Angular quadrature type: Level-Symmetric
+SN order: 12
+
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9400 successfully in 0.14 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 8000 successfully in 0.14 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9100 successfully in 0.14 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7000 successfully in 0.15 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7100 successfully in 0.15 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7200 successfully in 0.15 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7300 successfully in 0.16 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7400 successfully in 0.16 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9903 successfully in 0.17 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2000 successfully in 0.17 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1800 successfully in 0.17 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1700 successfully in 0.18 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1600 successfully in 0.19 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1500 successfully in 0.19 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1400 successfully in 0.20 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1300 successfully in 0.20 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1200 successfully in 0.21 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1100 successfully in 0.22 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3500 successfully in 0.22 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3600 successfully in 0.22 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 5500 successfully in 0.23 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 5600 successfully in 0.23 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 5700 successfully in 0.23 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 5800 successfully in 0.24 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 5900 successfully in 0.24 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9900 successfully in 0.25 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 900 successfully in 0.25 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 801 successfully in 0.26 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 802 successfully in 0.26 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 803 successfully in 0.27 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 804 successfully in 0.27 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 805 successfully in 0.28 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 806 successfully in 0.28 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 807 successfully in 0.29 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 808 successfully in 0.30 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 701 successfully in 0.30 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 702 successfully in 0.31 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 703 successfully in 0.31 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 704 successfully in 0.32 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 705 successfully in 0.33 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 706 successfully in 0.33 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 707 successfully in 0.34 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 708 successfully in 0.34 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 601 successfully in 0.35 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 602 successfully in 0.35 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 603 successfully in 0.36 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 604 successfully in 0.37 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 605 successfully in 0.37 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 606 successfully in 0.38 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 607 successfully in 0.38 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 608 successfully in 0.39 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 501 successfully in 0.40 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 502 successfully in 0.40 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 503 successfully in 0.41 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 504 successfully in 0.41 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 505 successfully in 0.42 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 506 successfully in 0.42 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 507 successfully in 0.43 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 508 successfully in 0.44 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 401 successfully in 0.44 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 402 successfully in 0.45 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 403 successfully in 0.45 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 404 successfully in 0.46 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 405 successfully in 0.46 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 406 successfully in 0.47 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 407 successfully in 0.48 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 408 successfully in 0.48 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 301 successfully in 0.49 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 302 successfully in 0.49 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 303 successfully in 0.50 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 304 successfully in 0.51 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 305 successfully in 0.51 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 306 successfully in 0.52 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 307 successfully in 0.52 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 308 successfully in 0.53 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 201 successfully in 0.53 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 202 successfully in 0.54 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 203 successfully in 0.55 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 204 successfully in 0.55 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 205 successfully in 0.56 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 206 successfully in 0.56 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 207 successfully in 0.57 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 208 successfully in 0.57 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 101 successfully in 0.58 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 102 successfully in 0.59 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 103 successfully in 0.59 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 104 successfully in 0.60 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 105 successfully in 0.60 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 106 successfully in 0.61 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 107 successfully in 0.61 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 108 successfully in 0.62 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3300 successfully in 0.62 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3400 successfully in 0.63 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3900 successfully in 0.63 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 4000 successfully in 0.64 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 4100 successfully in 0.64 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 4200 successfully in 0.64 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 4300 successfully in 0.65 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 4400 successfully in 0.65 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3100 successfully in 0.66 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2800 successfully in 0.66 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2700 successfully in 0.67 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2600 successfully in 0.67 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2500 successfully in 0.68 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2400 successfully in 0.69 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2300 successfully in 0.69 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2200 successfully in 0.70 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2100 successfully in 0.70 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3700 successfully in 0.71 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3800 successfully in 0.71 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6000 successfully in 0.71 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6100 successfully in 0.72 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6200 successfully in 0.72 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6300 successfully in 0.73 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6400 successfully in 0.73 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9901 successfully in 0.73 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9500 successfully in 0.74 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6500 successfully in 0.74 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6600 successfully in 0.75 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6700 successfully in 0.75 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6800 successfully in 0.75 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6900 successfully in 0.76 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9902 successfully in 0.76 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9300 successfully in 0.76 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7500 successfully in 0.77 seconds.[39m
+Normalized power density griffin_power_density will be evaluated on the following neutron transport systems:  dsn
+
+  Initializing
+/hpc-common/moose/containers/griffin-openmpi/2024.11.30-08ded56_38b2846a1493a58c5c0545e44070f468aa0276c468b47cc6f6dc077b8df1d99c/bin/griffin-opt: line 183: 81153 Killed                  apptainer exec instance://${INSTANCE_NAME} griffin-opt $@
+/hpc-common/moose/containers/griffin-openmpi/2024.11.30-08ded56_38b2846a1493a58c5c0545e44070f468aa0276c468b47cc6f6dc077b8df1d99c/bin/griffin-opt: line 183: 81156 Killed                  apptainer exec instance://${INSTANCE_NAME} griffin-opt $@
+=>> PBS: job killed: walltime 2430 exceeded limit 2400
+    Initializing Equation Systems................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
