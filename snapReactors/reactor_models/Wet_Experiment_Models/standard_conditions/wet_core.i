@@ -203,99 +203,13 @@ acm_dz = 3.81
                     ${ugr_fuel_blocks_2d} ${ugr_air_blocks_2d} ${ugr_intref_blocks_2d} ${ugr_barrel_blocks_2d} ${ugr_extref1_blocks_2d} ${ugr_extref2_blocks_2d} ${ugr_extref3_blocks_2d} ${ugr_extref4_blocks_2d} ${ugr_shima_blocks_2d} ${ugr_shimb_blocks_2d}'
                   
     []
-    # [sideset_gen]
-    #     type = SideSetsBetweenSubdomainsGenerator
-    #     input = nue
-    #     new_boundary = 'outer'
-    #     primary_block = '${acm_shima_blocks_2d} ${acl_shima_blocks_2d} ${lec_shima_blocks_2d} ${acu_shima_blocks_2d} ${uec_shima_blocks_2d} ${lgr_shima_blocks_2d} ${ugr_shima_blocks_2d}'
-    #     paired_block =  '${acm_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acu_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lgr_shimb_blocks_2d} ${ugr_shimb_blocks_2d}'
-    # []
-#    [sideset_gen2]
-#        type = SideSetsBetweenSubdomainsGenerator
-#        input = sideset_gen
-#        new_boundary = 'outer'
-#        primary_block = '${acl_shima_blocks_2d}'
-#        paired_block= '${acl_shimb_blocks_2d}'
-#    []
-#    [sideset_gen3]
-#        type = SideSetsBetweenSubdomainsGenerator
-#        input = sideset_gen2
-#        new_boundary = 'outer'
-#        primary_block = '${lec_shima_blocks_2d}'
-#        paired_block= '${lec_shimb_blocks_2d}'
-#    []
-#    [sideset_gen4]
-#        type = SideSetsBetweenSubdomainsGenerator
-#        input = sideset_gen3
-#        new_boundary = 'outer'
-#        primary_block = '${acu_shima_blocks_2d}'
-#        paired_block= '${acu_shimb_blocks_2d}'
-#    []
-#    [sideset_gen5]
-#        type = SideSetsBetweenSubdomainsGenerator
-#        input = sideset_gen4
-#        new_boundary = 'outer'
-#        primary_block = '${uec_shima_blocks_2d}'
-#        paired_block= '${uec_shimb_blocks_2d}'
-#    []
-#    [sideset_gen6]
-#        type = SideSetsBetweenSubdomainsGenerator
-#        input = sideset_gen5
-#        new_boundary = 'outer'
-#        primary_block = '${lgr_barrel_blocks_2d}'
-#        paired_block= '${lgr_extref1_blocks_2d}'
-#    []
-#    [sideset_gen7]
-#        type = SideSetsBetweenSubdomainsGenerator
-#        input = sideset_gen6
-#        new_boundary = 'outer'
-#        primary_block = '${ugr_barrel_blocks_2d}'
-#        paired_block= '${ugr_extref1_blocks_2d}'
-#    []
-#    [sideset_gen8]
-#        type = SideSetsBetweenSubdomainsGenerator
-#        input = sideset_gen7
-#        new_boundary = 'outer'
-#        primary_block = '${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d}'
-#        paired_block = '${ugr_extref1_blocks_2d} ${ugr_extref2_blocks_2d} ${ugr_extref3_blocks_2d} ${ugr_extref4_blocks_2d} ${ugr_shima_blocks_2d}' 
-#    []
-#    [sideset_gen9]
-#        type = SideSetsBetweenSubdomainsGenerator
-#        input = sideset_gen8
-#        new_boundary = 'outer'
-#        primary_block = '${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d}'
-#        paired_block = '${lgr_extref1_blocks_2d} ${lgr_extref2_blocks_2d} ${lgr_extref3_blocks_2d} ${lgr_extref4_blocks_2d} ${lgr_shima_blocks_2d}' 
-#    []
-#    [sideset_gen10]
-#        type = SideSetsBetweenSubdomainsGenerator
-#        input = sideset_gen9
-#        new_boundary = 'outer'
-#        primary_block = '${acl_shima_blocks_2d} ${acu_shima_blocks_2d}'
-#        paired_block = '${acm_shima_blocks_2d} ${acm_shima_blocks_2d}'
-#    []
-#    [del_c3]
-#        type = BlockDeletionGenerator
-#        input = sideset_gen10
-#        block = '${lgr_extref1_blocks_2d} ${lgr_extref2_blocks_2d} ${lgr_extref3_blocks_2d} ${lgr_extref4_blocks_2d} ${lgr_shima_blocks_2d} ${lgr_shimb_blocks_2d}
-#                ${lec_shimb_blocks_2d}
-#                ${acl_shimb_blocks_2d}
-#                ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}   
-#                ${acu_shimb_blocks_2d}
-#                ${uec_shimb_blocks_2d}
-#                ${ugr_extref1_blocks_2d} ${ugr_extref2_blocks_2d} ${ugr_extref3_blocks_2d} ${ugr_extref4_blocks_2d} ${ugr_shima_blocks_2d} ${ugr_shimb_blocks_2d}'
-#    []
-    # [del_c3]
-    #     type = BlockDeletionGenerator
-    #     input = sideset_gen
-    #     block = '${acm_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${acu_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${ugr_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${lgr_shimb_blocks_2d}'
-    # []
 	[set_mat_id]
 		type = SubdomainExtraElementIDGenerator
 		input = 'nue'
 		subdomains =  '${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d} ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acm_air_blocks_2d} ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_fuel_blocks_2d   } ${acl_air_blocks_2d    } ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_fuel_blocks_2d   } ${acu_air_blocks_2d    } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_active_blocks    } ${lgr_ext_blocks       } ${ugr_active_blocks    } ${ugr_ext_blocks       } ${lec_active_blocks    } ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  } ${uec_active_blocks    } ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
 		extra_element_id_names = 'material_id'
 		extra_element_ids = '${acu_shimb_matids_2d} ${acl_shimb_matids_2d} ${uec_shimb_matids_2d} ${lec_shimb_matids_2d} ${acm_shimb_matids_2d} ${acm_fuel_matids_lay8 } ${acm_fuel_matids_lay7 } ${acm_fuel_matids_lay6 } ${acm_fuel_matids_lay5 } ${acm_fuel_matids_lay4 } ${acm_fuel_matids_lay3 } ${acm_fuel_matids_lay2 } ${acm_fuel_matids_lay1 } ${acm_air_matids_2d} ${acm_intref_matids_2d } ${acm_barrel_matids_2d } ${acm_extref1_matids_2d} ${acm_extref2_matids_2d} ${acm_extref3_matids_2d} ${acm_extref4_matids_2d} ${acm_shima_matids_2d} ${acl_fuel_matids_2d   } ${acl_air_matids_2d    } ${acl_intref_matids_2d } ${acl_barrel_matids_2d } ${acl_extref1_matids_2d} ${acl_extref2_matids_2d} ${acl_extref3_matids_2d} ${acl_extref4_matids_2d} ${acl_shima_matids_2d  } ${acu_fuel_matids_2d   } ${acu_air_matids_2d    } ${acu_intref_matids_2d } ${acu_barrel_matids_2d } ${acu_extref1_matids_2d} ${acu_extref2_matids_2d} ${acu_extref3_matids_2d} ${acu_extref4_matids_2d} ${acu_shima_matids_2d  } ${lgr_active_matids    } ${lgr_ext_matids       } ${ugr_active_matids    } ${ugr_ext_matids       } ${lec_active_matids    } ${lec_extref1_matids_2d} ${lec_extref2_matids_2d} ${lec_extref3_matids_2d} ${lec_extref4_matids_2d} ${lec_shima_matids_2d  } ${uec_active_matids    } ${uec_extref1_matids_2d} ${uec_extref2_matids_2d} ${uec_extref3_matids_2d} ${uec_extref4_matids_2d} ${uec_shima_matids_2d  }'
-	[]
+    []
     [coarse_mesh]
         type = GeneratedMeshGenerator
         dim = 3
@@ -314,6 +228,7 @@ acm_dz = 3.81
         input = set_mat_id
         coarse_mesh = coarse_mesh
         extra_element_id_name = coarse_element_id
+        
     []
 []
 
@@ -378,24 +293,10 @@ ext_T_ref                 = 500 # (K)
 # FLUID PROPERTIES, MATERIALS, AND USER OBJECTS
 # ==============================================================================
 [Materials]
-    [core]
-        type = CoupledFeedbackMatIDNeutronicsMaterial
-        block =  '${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d} ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acm_air_blocks_2d    } ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_fuel_blocks_2d   } ${acl_air_blocks_2d    } ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_fuel_blocks_2d   } ${acu_air_blocks_2d    } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_active_blocks    } ${lgr_ext_blocks       } ${ugr_active_blocks    } ${ugr_ext_blocks       } ${lec_active_blocks    } ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  } ${uec_active_blocks    } ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
-        library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/s82d_ac_c3_gcu_ringres_XS.xml'
-		library_name = 's82d_ac_c3_gcu_ringres_XS'
-        isotopes = 'pseudo'
-        densities = '1.0'
-        plus = 1
-        is_meter = false
-        grid_names = 'Tfuel'
-        grid_variables = 'griffin_Tfuel'
-    []
-
-
     # [core]
     #     type = CoupledFeedbackMatIDNeutronicsMaterial
-    #     block =  '${ugr_active_blocks    } ${uec_active_blocks    }${acu_fuel_blocks_2d   }${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acl_fuel_blocks_2d   } ${lec_active_blocks    } ${lgr_active_blocks    }'
-	# 	library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/s82d_ac_c3_gcu_ringres_XS.xml'
+    #     block =  '${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d} ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acm_air_blocks_2d    } ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_fuel_blocks_2d   } ${acl_air_blocks_2d    } ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_fuel_blocks_2d   } ${acu_air_blocks_2d    } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_active_blocks    } ${lgr_ext_blocks       } ${ugr_active_blocks    } ${ugr_ext_blocks       } ${lec_active_blocks    } ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  } ${uec_active_blocks    } ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
+    #     library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/s82d_ac_c3_gcu_ringres_XS.xml'
 	# 	library_name = 's82d_ac_c3_gcu_ringres_XS'
     #     isotopes = 'pseudo'
     #     densities = '1.0'
@@ -404,30 +305,44 @@ ext_T_ref                 = 500 # (K)
     #     grid_names = 'Tfuel'
     #     grid_variables = 'griffin_Tfuel'
     # []
-    # [extref]
-    #     type = CoupledFeedbackMatIDNeutronicsMaterial
-    #     block =  '${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d}  ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_ext_blocks       } ${ugr_ext_blocks       }  ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  }  ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
-	# 	library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/s82d_ac_c3_gcu_ringres_XS.xml'
-	# 	library_name = 's82d_ac_c3_gcu_ringres_XS'
-    #     isotopes = 'pseudo'
-    #     densities = '1.0'
-    #     plus = 1
-    #     is_meter = false
-    #     grid_names = 'Tref'
-    #     grid_variables = 'griffin_Tref'
-    # []
-    # [coolant]
-    #     type = CoupledFeedbackMatIDNeutronicsMaterial
-    #     block =  '${acu_air_blocks_2d    } ${acm_air_blocks_2d    } ${acl_air_blocks_2d    }'
-	# 	library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/s82d_ac_c3_gcu_ringres_XS.xml'
-	# 	library_name = 's82d_ac_c3_gcu_ringres_XS'
-    #     isotopes = 'pseudo'
-    #     densities = '1.0'
-    #     plus = 1
-    #     is_meter = false
-    #     grid_names = 'Tcool'
-    #     grid_variables = 'griffin_Tcool'
-    # []
+
+
+    [core]
+        type = CoupledFeedbackMatIDNeutronicsMaterial
+        block =  '${ugr_active_blocks    } ${uec_active_blocks    } ${acu_fuel_blocks_2d   } ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acl_fuel_blocks_2d   } ${lec_active_blocks    } ${lgr_active_blocks    }'
+		library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/s82d_ac_c3_gcu_ringres_XS.xml'
+		library_name = 's82d_ac_c3_gcu_ringres_XS'
+        isotopes = 'pseudo'
+        densities = '1.0'
+        plus = 1
+        is_meter = false
+        grid_names = 'Tfuel'
+        grid_variables = 'griffin_Tfuel'
+    []
+    [extref]
+        type = CoupledFeedbackMatIDNeutronicsMaterial
+        block =  '${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d}  ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_ext_blocks       } ${ugr_ext_blocks       }  ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  }  ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
+		library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/s82d_ac_c3_gcu_ringres_XS.xml'
+		library_name = 's82d_ac_c3_gcu_ringres_XS'
+        isotopes = 'pseudo'
+        densities = '1.0'
+        plus = 1
+        is_meter = false
+        grid_names = 'Tref'
+        grid_variables = 'griffin_Tref'
+    []
+    [coolant]
+        type = CoupledFeedbackMatIDNeutronicsMaterial
+        block =  '${acu_air_blocks_2d    } ${acm_air_blocks_2d    } ${acl_air_blocks_2d    }'
+		library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/s82d_ac_c3_gcu_ringres_XS.xml'
+		library_name = 's82d_ac_c3_gcu_ringres_XS'
+        isotopes = 'pseudo'
+        densities = '1.0'
+        plus = 1
+        is_meter = false
+        grid_names = 'Tcool'
+        grid_variables = 'griffin_Tcool'
+    []
 []
 
 [PowerDensity]

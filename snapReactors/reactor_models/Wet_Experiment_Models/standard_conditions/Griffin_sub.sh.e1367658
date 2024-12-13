@@ -1,5 +1,0 @@
-Killed
-/hpc-common/moose/containers/griffin-openmpi/2024.11.30-08ded56_38b2846a1493a58c5c0545e44070f468aa0276c468b47cc6f6dc077b8df1d99c/bin/griffin-opt: line 183: 123489 Killed                  apptainer exec instance://${INSTANCE_NAME} griffin-opt $@
-/hpc-common/moose/containers/griffin-openmpi/2024.11.30-08ded56_38b2846a1493a58c5c0545e44070f468aa0276c468b47cc6f6dc077b8df1d99c/bin/griffin-opt: line 183: 68172 Killed                  apptainer exec instance://${INSTANCE_NAME} griffin-opt $@
-slurmstepd: error: *** JOB 1367658 ON br083 CANCELLED AT 2024-12-12T09:55:36 DUE TO TIME LIMIT ***
-slurmstepd: error: Detected 1 oom_kill event in StepId=1367658.batch. Some of the step tasks have been OOM Killed.

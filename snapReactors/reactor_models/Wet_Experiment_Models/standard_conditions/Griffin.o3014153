@@ -1,0 +1,1212 @@
+r6i6n10.ib0.sawtooth.hpc.inl.gov
+r6i5n17.ib0.sawtooth.hpc.inl.gov
+r6i5n26.ib0.sawtooth.hpc.inl.gov
+r6i5n30.ib0.sawtooth.hpc.inl.gov
+
+******************************************************************************************************************
+
+                      _________                                                   _________
+                      \_________\----------____                   ____----------/_________/
+                          \________\-------\\\\\\               //////-------/________/
+                              \________\------\\||             ||//------/________/
+                                     \_____\----\\             //----/_____/
+                         ██████╗ ██████╗ ██╗███████╗███████╗██╗███╗  ██╗      ███╗   ███╗
+                        ██╔════╝ ██╔══██╗██║██╔════╝██╔════╝██║████╗ ██║      ████╗ ████║
+                        ██║  ██╗ ██████╔╝██║█████╗  █████╗  ██║██╔██╗██║█████╗██╔████╔██║
+                        ██║  ╚██╗██╔══██╗██║██╔══╝  ██╔══╝  ██║██║╚████║╚════╝██║╚██╔╝██║
+                        ╚██████╔╝██║  ██║██║██║     ██║     ██║██║ ╚███║      ██║ ╚═╝ ██║
+                         ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝     ╚═╝╚═╝  ╚══╝      ╚═╝     ╚═╝
+
+
+                                    Multiphysics Nuclear Reactor Analysis Code
+                                            Idaho National Laboratory
+                                           Argonne National Laboratory
+
+******************************************************************************************************************
+
+
+------------------------------------------------------------------------------------------------------------------
+Notice: These data were produced by Battelle Energy Alliance, LLC under contract No.
+DE-AC07-05ID14517 and UChicago Argonne under contract No. DE-AC02-06CH11357, LLC with
+the Department of Energy. During the period of commercialization or such other time
+period specified by the Department of Energy, the Government is granted for itself and
+others acting on its behalf a nonexclusive, paid-up, irrevocable worldwide license in
+this data to reproduce, prepare derivative works, and perform publicly and display
+publicly, by or on behalf of the Government. Subsequent to that period the Government is
+granted for itself and others acting on its behalf a nonexclusive, paid-up, irrevocable
+worldwide license in this data to reproduce, prepare derivative works, distribute copies
+to the public, perform publicly and display publicly, and to permit others to do so. The
+specific term of the license can be identified by inquiry made to the Contractor or DOE.
+NEITHER THE UNITED STATES NOR THE UNITED STATES DEPARTMENT OF ENERGY, NOR ANY OF THEIR
+EMPLOYEES, MAKES ANY WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY LEGAL LIABILITY OR
+RESPONSIBILITY FOR THE ACCURACY, COMPLETENESS, OR USEFULNESS OF ANY DATA, APPARATUS,
+PRODUCT, OR PROCESS DISCLOSED, OR REPRESENTS THAT ITS USE WOULD NOT INFRINGE PRIVATELY
+OWNED RIGHTS.
+------------------------------------------------------------------------------------------------------------------
+
+
+Griffin version:         git commit 3525cbd7a on 2024-06-27
+Framework Information:
+MOOSE Version:           git commit 462f0ad39e on 2024-06-26
+LibMesh Version:         1c5369aa05eaae8ebeb7930845fce3b1d59cbb37
+PETSc Version:           3.20.3
+SLEPc Version:           3.20.1
+Current Time:            Fri Dec 13 15:39:51 2024
+Executable Timestamp:    Mon Jul  1 03:31:41 2024
+
+Parallelism:
+  Num Processors:        30
+  Num Threads:           1
+
+Command line: griffin-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/wet_core.i
+
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m Mesh Information:
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  elem_dimensions()={3}
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  spatial_dimension()=3
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  n_nodes()=83340
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m    n_local_nodes()=3161
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  n_elem()=154196
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m    n_local_elem()=5275
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m    n_active_elem()=154196
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  n_subdomains()=125
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  n_elemsets()=0
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  n_partitions()=30
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  n_processors()=30
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  n_threads()=1
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  processor_id()=0
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  is_prepared()=false
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  is_replicated()=true
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m Mesh Bounding Box:
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Minimum: (x,y,z)=(-24.0616, -20.8379,        0)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Maximum: (x,y,z)=( 24.0616,  20.8379,  38.4226)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Delta:   (x,y,z)=( 48.1231,  41.6758,  38.4226)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m Mesh Element Type(s):
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  PRISM6
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m Mesh Nodesets:
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  None
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m Mesh Sidesets:
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Sideset 1 (outer), 1344 sides (QUAD4), 1344 elems (PRISM6), 1440 nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Side volume: 5547.04
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-24.0616, -20.8379,        0)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 24.0616,  20.8379,  38.4226)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 48.1231,  41.6758,  38.4226)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Sideset 4 (bottom), 11014 sides (TRI3), 11014 elems (PRISM6), 5556 nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Side volume: 1504.18
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-24.0616, -20.8379,        0)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 24.0616,  20.8379,        0)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 48.1231,  41.6758,        0)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Sideset 5 (top), 11014 sides (TRI3), 11014 elems (PRISM6), 5556 nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Side volume: 1504.18
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-24.0616, -20.8379,  38.4226)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 24.0616,  20.8379,  38.4226)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 48.1231,  41.6758,        0)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m Mesh Edgesets:
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  None
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m Mesh Subdomains:
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 9: 17472 elems (PRISM6, 17472 active), 12218 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 1329.06
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.7475,   -11.43,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 11.7475,    11.43,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  23.495,    22.86,    30.48)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 20: 2857 elems (PRISM6, 2857 active), 3250 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 843.554
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-24.0616, -20.8379,        0)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 24.0616,  20.8379,  0.79502)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 48.1231,  41.6758,  0.79502)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 40: 2857 elems (PRISM6, 2857 active), 3242 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 927.101
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-24.0616, -20.8379,  37.5488)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 24.0616,  20.8379,  38.4226)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 48.1231,  41.6758,  0.87376)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 71: 168 elems (PRISM6, 168 active), 200 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 36.956
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -2.1717, -2.08972,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  2.1717,  2.08972,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  4.3434,  4.17944,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 72: 288 elems (PRISM6, 288 active), 382 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 63.3532
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -3.6195, -3.34355,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  3.6195,  3.34355,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(   7.239,   6.6871,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 73: 432 elems (PRISM6, 432 active), 572 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 95.0297
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -5.0673, -4.59738,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  5.0673,  4.59738,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 10.1346,  9.19476,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 74: 576 elems (PRISM6, 576 active), 753 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 126.706
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -6.5151, -5.85121,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  6.5151,  5.85121,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 13.0302,  11.7024,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 75: 720 elems (PRISM6, 720 active), 937 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 158.383
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -7.9629, -7.10505,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  7.9629,  7.10505,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 15.9258,  14.2101,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 76: 864 elems (PRISM6, 864 active), 1120 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 190.059
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -9.4107, -8.35888,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  9.4107,  8.35888,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 18.8214,  16.7178,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 77: 1008 elems (PRISM6, 1008 active), 1334 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 221.736
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-10.8585, -9.61271,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 10.8585,  9.61271,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  21.717,  19.2254,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 78: 1008 elems (PRISM6, 1008 active), 1352 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 221.736
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.5824, -10.8665,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 11.5824,  10.8665,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.1648,  21.7331,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 79: 2184 elems (PRISM6, 2184 active), 2721 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 126.814
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.7475,   -11.43,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 11.7475,    11.43,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  23.495,    22.86,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 81: 168 elems (PRISM6, 168 active), 202 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 27.596
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -2.1717, -2.08972,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  2.1717,  2.08972,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  4.3434,  4.17944,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 82: 288 elems (PRISM6, 288 active), 379 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 47.3074
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -3.6195, -3.34355,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  3.6195,  3.34355,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(   7.239,   6.6871,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 83: 432 elems (PRISM6, 432 active), 568 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 70.9611
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -5.0673, -4.59738,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  5.0673,  4.59738,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 10.1346,  9.19476,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 84: 576 elems (PRISM6, 576 active), 759 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 94.6148
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -6.5151, -5.85121,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  6.5151,  5.85121,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 13.0302,  11.7024,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 85: 720 elems (PRISM6, 720 active), 933 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 118.268
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -7.9629, -7.10505,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  7.9629,  7.10505,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 15.9258,  14.2101,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 86: 864 elems (PRISM6, 864 active), 1130 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 141.922
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -9.4107, -8.35888,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  9.4107,  8.35888,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 18.8214,  16.7178,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 87: 1008 elems (PRISM6, 1008 active), 1319 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 165.576
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-10.8585, -9.61271,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 10.8585,  9.61271,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  21.717,  19.2254,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 88: 1008 elems (PRISM6, 1008 active), 1347 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 165.576
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.5824, -10.8665,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 11.5824,  10.8665,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.1648,  21.7331,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 89: 2184 elems (PRISM6, 2184 active), 2712 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 94.6953
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.7475,   -11.43,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 11.7475,    11.43,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  23.495,    22.86,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 101: 168 elems (PRISM6, 168 active), 201 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 48.414
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -2.1717, -2.08972,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  2.1717,  2.08972,  7.74192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  4.3434,  4.17944,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 102: 288 elems (PRISM6, 288 active), 379 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 82.9954
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -3.6195, -3.34355,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  3.6195,  3.34355,  7.74192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(   7.239,   6.6871,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 103: 432 elems (PRISM6, 432 active), 568 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 124.493
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -5.0673, -4.59738,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  5.0673,  4.59738,  7.74192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 10.1346,  9.19476,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 104: 576 elems (PRISM6, 576 active), 759 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 165.991
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -6.5151, -5.85121,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  6.5151,  5.85121,  7.74192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 13.0302,  11.7024,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 105: 720 elems (PRISM6, 720 active), 937 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 207.488
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -7.9629, -7.10505,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  7.9629,  7.10505,  7.74192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 15.9258,  14.2101,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 106: 864 elems (PRISM6, 864 active), 1125 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 248.986
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -9.4107, -8.35888,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  9.4107,  8.35888,  7.74192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 18.8214,  16.7178,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 107: 1008 elems (PRISM6, 1008 active), 1320 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 290.484
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-10.8585, -9.61271,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 10.8585,  9.61271,  7.74192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  21.717,  19.2254,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 108: 1008 elems (PRISM6, 1008 active), 1347 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 290.484
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.5824, -10.8665,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 11.5824,  10.8665,  7.74192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.1648,  21.7331,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 124: 1833 elems (PRISM6, 1833 active), 2248 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 160.453
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-15.3149, -13.2631,  0.79502)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 15.3149,  13.2631,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 30.6298,  26.5262,   0.9652)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 125: 358 elems (PRISM6, 358 active), 554 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 129.356
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-16.9154, -14.6492,  0.79502)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 16.9154,  14.6492,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 33.8308,  29.2983,   0.9652)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 126: 162 elems (PRISM6, 162 active), 308 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 142.203
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-18.5159, -16.0352,  0.79502)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 18.5159,  16.0352,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 37.0318,  32.0705,   0.9652)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 127: 150 elems (PRISM6, 150 active), 287 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 155.05
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-20.1164, -17.4213,  0.79502)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 20.1164,  17.4213,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 40.2327,  34.8426,   0.9652)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 128: 168 elems (PRISM6, 168 active), 335 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 204.441
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-22.0498, -19.0957,  0.79502)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 22.0498,  19.0957,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 44.0997,  38.1914,   0.9652)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 129: 186 elems (PRISM6, 186 active), 372 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 232.62
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-24.0616, -20.8379,  0.79502)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 24.0616,  20.8379,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 48.1231,  41.6758,   0.9652)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 133: 1833 elems (PRISM6, 1833 active), 2231 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 38.0021
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-15.3149, -13.2631,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 15.3149,  13.2631,  37.5488)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 30.6298,  26.5262,   0.2286)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 134: 358 elems (PRISM6, 358 active), 552 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 30.6369
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-16.9154, -14.6492,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 16.9154,  14.6492,  37.5488)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 33.8308,  29.2983,   0.2286)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 135: 162 elems (PRISM6, 162 active), 308 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 33.6796
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-18.5159, -16.0352,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 18.5159,  16.0352,  37.5488)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 37.0318,  32.0705,   0.2286)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 136: 150 elems (PRISM6, 150 active), 296 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 36.7223
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-20.1164, -17.4213,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 20.1164,  17.4213,  37.5488)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 40.2327,  34.8426,   0.2286)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 137: 168 elems (PRISM6, 168 active), 336 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 48.4202
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-22.0498, -19.0957,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 22.0498,  19.0957,  37.5488)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 44.0997,  38.1914,   0.2286)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 138: 186 elems (PRISM6, 186 active), 372 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 55.0942
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-24.0616, -20.8379,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 24.0616,  20.8379,  37.5488)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 48.1231,  41.6758,   0.2286)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 201: 168 elems (PRISM6, 168 active), 199 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 48.414
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -2.1717, -2.08972,  7.74192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  2.1717,  2.08972,  11.5519)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  4.3434,  4.17944,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 202: 288 elems (PRISM6, 288 active), 381 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 82.9954
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -3.6195, -3.34355,  7.74192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  3.6195,  3.34355,  11.5519)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(   7.239,   6.6871,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 203: 432 elems (PRISM6, 432 active), 566 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 124.493
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -5.0673, -4.59738,  7.74192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  5.0673,  4.59738,  11.5519)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 10.1346,  9.19476,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 204: 576 elems (PRISM6, 576 active), 756 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 165.991
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -6.5151, -5.85121,  7.74192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  6.5151,  5.85121,  11.5519)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 13.0302,  11.7024,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 205: 720 elems (PRISM6, 720 active), 936 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 207.488
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -7.9629, -7.10505,  7.74192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  7.9629,  7.10505,  11.5519)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 15.9258,  14.2101,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 206: 864 elems (PRISM6, 864 active), 1126 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 248.986
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -9.4107, -8.35888,  7.74192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  9.4107,  8.35888,  11.5519)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 18.8214,  16.7178,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 207: 1008 elems (PRISM6, 1008 active), 1319 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 290.484
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-10.8585, -9.61271,  7.74192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 10.8585,  9.61271,  11.5519)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  21.717,  19.2254,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 208: 1008 elems (PRISM6, 1008 active), 1344 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 290.484
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.5824, -10.8665,  7.74192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 11.5824,  10.8665,  11.5519)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.1648,  21.7331,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 210: 8157 elems (PRISM6, 8157 active), 8456 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 352.298
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.8765, -11.8769,        0)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  11.877,  11.8767,  0.79502)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.7535,  23.7536,  0.79502)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 251: 8157 elems (PRISM6, 8157 active), 8443 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 427.71
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.8765, -11.8769,  0.79502)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  11.877,  11.8767,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.7535,  23.7536,   0.9652)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 301: 168 elems (PRISM6, 168 active), 202 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 48.414
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -2.1717, -2.08972,  11.5519)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  2.1717,  2.08972,  15.3619)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  4.3434,  4.17944,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 302: 288 elems (PRISM6, 288 active), 382 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 82.9954
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -3.6195, -3.34355,  11.5519)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  3.6195,  3.34355,  15.3619)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(   7.239,   6.6871,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 303: 432 elems (PRISM6, 432 active), 566 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 124.493
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -5.0673, -4.59738,  11.5519)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  5.0673,  4.59738,  15.3619)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 10.1346,  9.19476,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 304: 576 elems (PRISM6, 576 active), 755 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 165.991
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -6.5151, -5.85121,  11.5519)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  6.5151,  5.85121,  15.3619)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 13.0302,  11.7024,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 305: 720 elems (PRISM6, 720 active), 940 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 207.488
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -7.9629, -7.10505,  11.5519)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  7.9629,  7.10505,  15.3619)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 15.9258,  14.2101,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 306: 864 elems (PRISM6, 864 active), 1126 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 248.986
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -9.4107, -8.35888,  11.5519)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  9.4107,  8.35888,  15.3619)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 18.8214,  16.7178,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 307: 1008 elems (PRISM6, 1008 active), 1330 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 290.484
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-10.8585, -9.61271,  11.5519)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 10.8585,  9.61271,  15.3619)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  21.717,  19.2254,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 308: 1008 elems (PRISM6, 1008 active), 1350 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 290.484
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.5824, -10.8665,  11.5519)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 11.5824,  10.8665,  15.3619)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.1648,  21.7331,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 340: 8157 elems (PRISM6, 8157 active), 8441 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 101.3
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.8765, -11.8769,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  11.877,  11.8767,  37.5488)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.7535,  23.7536,   0.2286)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 401: 168 elems (PRISM6, 168 active), 196 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 48.414
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -2.1717, -2.08972,  15.3619)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  2.1717,  2.08972,  19.1719)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  4.3434,  4.17944,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 402: 288 elems (PRISM6, 288 active), 381 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 82.9954
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -3.6195, -3.34355,  15.3619)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  3.6195,  3.34355,  19.1719)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(   7.239,   6.6871,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 403: 432 elems (PRISM6, 432 active), 567 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 124.493
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -5.0673, -4.59738,  15.3619)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  5.0673,  4.59738,  19.1719)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 10.1346,  9.19476,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 404: 576 elems (PRISM6, 576 active), 752 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 165.991
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -6.5151, -5.85121,  15.3619)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  6.5151,  5.85121,  19.1719)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 13.0302,  11.7024,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 405: 720 elems (PRISM6, 720 active), 938 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 207.488
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -7.9629, -7.10505,  15.3619)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  7.9629,  7.10505,  19.1719)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 15.9258,  14.2101,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 406: 864 elems (PRISM6, 864 active), 1128 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 248.986
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -9.4107, -8.35888,  15.3619)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  9.4107,  8.35888,  19.1719)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 18.8214,  16.7178,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 407: 1008 elems (PRISM6, 1008 active), 1330 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 290.484
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-10.8585, -9.61271,  15.3619)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 10.8585,  9.61271,  19.1719)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  21.717,  19.2254,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 408: 1008 elems (PRISM6, 1008 active), 1345 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 290.484
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.5824, -10.8665,  15.3619)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 11.5824,  10.8665,  19.1719)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.1648,  21.7331,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 410: 8157 elems (PRISM6, 8157 active), 8456 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 387.19
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.8765, -11.8769,  37.5488)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  11.877,  11.8767,  38.4226)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.7535,  23.7536,  0.87376)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 501: 168 elems (PRISM6, 168 active), 197 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 48.414
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -2.1717, -2.08972,  19.1719)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  2.1717,  2.08972,  22.9819)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  4.3434,  4.17944,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 502: 288 elems (PRISM6, 288 active), 381 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 82.9954
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -3.6195, -3.34355,  19.1719)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  3.6195,  3.34355,  22.9819)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(   7.239,   6.6871,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 503: 432 elems (PRISM6, 432 active), 572 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 124.493
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -5.0673, -4.59738,  19.1719)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  5.0673,  4.59738,  22.9819)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 10.1346,  9.19476,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 504: 576 elems (PRISM6, 576 active), 757 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 165.991
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -6.5151, -5.85121,  19.1719)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  6.5151,  5.85121,  22.9819)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 13.0302,  11.7024,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 505: 720 elems (PRISM6, 720 active), 936 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 207.488
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -7.9629, -7.10505,  19.1719)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  7.9629,  7.10505,  22.9819)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 15.9258,  14.2101,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 506: 864 elems (PRISM6, 864 active), 1126 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 248.986
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -9.4107, -8.35888,  19.1719)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  9.4107,  8.35888,  22.9819)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 18.8214,  16.7178,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 507: 1008 elems (PRISM6, 1008 active), 1331 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 290.484
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-10.8585, -9.61271,  19.1719)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 10.8585,  9.61271,  22.9819)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  21.717,  19.2254,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 508: 1008 elems (PRISM6, 1008 active), 1351 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 290.484
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.5824, -10.8665,  19.1719)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 11.5824,  10.8665,  22.9819)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.1648,  21.7331,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 601: 168 elems (PRISM6, 168 active), 199 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 48.414
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -2.1717, -2.08972,  22.9819)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  2.1717,  2.08972,  26.7919)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  4.3434,  4.17944,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 602: 288 elems (PRISM6, 288 active), 380 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 82.9954
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -3.6195, -3.34355,  22.9819)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  3.6195,  3.34355,  26.7919)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(   7.239,   6.6871,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 603: 432 elems (PRISM6, 432 active), 569 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 124.493
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -5.0673, -4.59738,  22.9819)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  5.0673,  4.59738,  26.7919)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 10.1346,  9.19476,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 604: 576 elems (PRISM6, 576 active), 755 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 165.991
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -6.5151, -5.85121,  22.9819)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  6.5151,  5.85121,  26.7919)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 13.0302,  11.7024,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 605: 720 elems (PRISM6, 720 active), 940 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 207.488
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -7.9629, -7.10505,  22.9819)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  7.9629,  7.10505,  26.7919)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 15.9258,  14.2101,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 606: 864 elems (PRISM6, 864 active), 1125 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 248.986
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -9.4107, -8.35888,  22.9819)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  9.4107,  8.35888,  26.7919)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 18.8214,  16.7178,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 607: 1008 elems (PRISM6, 1008 active), 1335 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 290.484
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-10.8585, -9.61271,  22.9819)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 10.8585,  9.61271,  26.7919)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  21.717,  19.2254,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 608: 1008 elems (PRISM6, 1008 active), 1357 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 290.484
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.5824, -10.8665,  22.9819)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 11.5824,  10.8665,  26.7919)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.1648,  21.7331,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 701: 168 elems (PRISM6, 168 active), 198 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 48.414
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -2.1717, -2.08972,  26.7919)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  2.1717,  2.08972,  30.6019)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  4.3434,  4.17944,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 702: 288 elems (PRISM6, 288 active), 384 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 82.9954
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -3.6195, -3.34355,  26.7919)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  3.6195,  3.34355,  30.6019)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(   7.239,   6.6871,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 703: 432 elems (PRISM6, 432 active), 572 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 124.493
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -5.0673, -4.59738,  26.7919)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  5.0673,  4.59738,  30.6019)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 10.1346,  9.19476,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 704: 576 elems (PRISM6, 576 active), 753 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 165.991
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -6.5151, -5.85121,  26.7919)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  6.5151,  5.85121,  30.6019)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 13.0302,  11.7024,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 705: 720 elems (PRISM6, 720 active), 943 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 207.488
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -7.9629, -7.10505,  26.7919)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  7.9629,  7.10505,  30.6019)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 15.9258,  14.2101,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 706: 864 elems (PRISM6, 864 active), 1120 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 248.986
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -9.4107, -8.35888,  26.7919)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  9.4107,  8.35888,  30.6019)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 18.8214,  16.7178,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 707: 1008 elems (PRISM6, 1008 active), 1331 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 290.484
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-10.8585, -9.61271,  26.7919)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 10.8585,  9.61271,  30.6019)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  21.717,  19.2254,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 708: 1008 elems (PRISM6, 1008 active), 1345 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 290.484
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.5824, -10.8665,  26.7919)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 11.5824,  10.8665,  30.6019)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.1648,  21.7331,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 801: 168 elems (PRISM6, 168 active), 202 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 48.414
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -2.1717, -2.08972,  30.6019)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  2.1717,  2.08972,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  4.3434,  4.17944,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 802: 288 elems (PRISM6, 288 active), 384 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 82.9954
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -3.6195, -3.34355,  30.6019)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  3.6195,  3.34355,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(   7.239,   6.6871,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 803: 432 elems (PRISM6, 432 active), 568 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 124.493
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -5.0673, -4.59738,  30.6019)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  5.0673,  4.59738,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 10.1346,  9.19476,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 804: 576 elems (PRISM6, 576 active), 750 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 165.991
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -6.5151, -5.85121,  30.6019)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  6.5151,  5.85121,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 13.0302,  11.7024,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 805: 720 elems (PRISM6, 720 active), 948 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 207.488
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -7.9629, -7.10505,  30.6019)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  7.9629,  7.10505,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 15.9258,  14.2101,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 806: 864 elems (PRISM6, 864 active), 1121 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 248.986
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -9.4107, -8.35888,  30.6019)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  9.4107,  8.35888,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 18.8214,  16.7178,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 807: 1008 elems (PRISM6, 1008 active), 1339 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 290.484
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-10.8585, -9.61271,  30.6019)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 10.8585,  9.61271,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=(  21.717,  19.2254,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 808: 1008 elems (PRISM6, 1008 active), 1341 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 290.484
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.5824, -10.8665,  30.6019)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 11.5824,  10.8665,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.1648,  21.7331,     3.81)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1000: 2160 elems (PRISM6, 2160 active), 2528 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 210.096
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -11.255, -11.7466,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  11.255,  11.7466,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 22.5101,  23.4933,    30.48)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1100: 5112 elems (PRISM6, 5112 active), 5731 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 292.797
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.8765, -11.8769,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  11.877,  11.8767,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.7535,  23.7536,    30.48)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1200: 14664 elems (PRISM6, 14664 active), 10095 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 5066.95
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-15.3149, -13.2631,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 15.3149,  13.2631,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 30.6298,  26.5262,    30.48)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1300: 2864 elems (PRISM6, 2864 active), 2475 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 4084.92
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-16.9154, -14.6492,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 16.9154,  14.6492,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 33.8308,  29.2983,    30.48)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1400: 1296 elems (PRISM6, 1296 active), 1372 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 4490.61
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-18.5159, -16.0352,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 18.5159,  16.0352,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 37.0318,  32.0705,    30.48)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1401: 270 elems (PRISM6, 270 active), 561 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 20.0467
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -11.255, -11.7466,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  11.255,  11.7466,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 22.5101,  23.4933,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1402: 270 elems (PRISM6, 270 active), 564 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 14.9694
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=( -11.255, -11.7466,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  11.255,  11.7466,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 22.5101,  23.4933,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1500: 1200 elems (PRISM6, 1200 active), 1323 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 4896.31
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-20.1164, -17.4213,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 20.1164,  17.4213,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 40.2327,  34.8426,    30.48)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1501: 639 elems (PRISM6, 639 active), 1264 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 27.9377
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.8765, -11.8769,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  11.877,  11.8767,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.7535,  23.7536,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1502: 639 elems (PRISM6, 639 active), 1278 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 20.8618
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-11.8765, -11.8769,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=(  11.877,  11.8767,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 23.7535,  23.7536,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1600: 1344 elems (PRISM6, 1344 active), 1509 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 6456.03
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-22.0498, -19.0957,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 22.0498,  19.0957,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 44.0997,  38.1914,    30.48)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1601: 1833 elems (PRISM6, 1833 active), 2229 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 483.472
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-15.3149, -13.2631,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 15.3149,  13.2631,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 30.6298,  26.5262,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1602: 1833 elems (PRISM6, 1833 active), 2247 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 361.02
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-15.3149, -13.2631,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 15.3149,  13.2631,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 30.6298,  26.5262,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1700: 1488 elems (PRISM6, 1488 active), 1674 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 7345.89
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-24.0616, -20.8379,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 24.0616,  20.8379,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 48.1231,  41.6758,    30.48)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1701: 358 elems (PRISM6, 358 active), 552 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 389.769
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-16.9154, -14.6492,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 16.9154,  14.6492,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 33.8308,  29.2983,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1702: 358 elems (PRISM6, 358 active), 547 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 291.05
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-16.9154, -14.6492,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 16.9154,  14.6492,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 33.8308,  29.2983,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1801: 162 elems (PRISM6, 162 active), 308 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 428.479
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-18.5159, -16.0352,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 18.5159,  16.0352,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 37.0318,  32.0705,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1802: 162 elems (PRISM6, 162 active), 303 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 319.956
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-18.5159, -16.0352,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 18.5159,  16.0352,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 37.0318,  32.0705,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1901: 150 elems (PRISM6, 150 active), 294 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 467.19
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-20.1164, -17.4213,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 20.1164,  17.4213,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 40.2327,  34.8426,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 1902: 150 elems (PRISM6, 150 active), 288 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 348.862
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-20.1164, -17.4213,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 20.1164,  17.4213,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 40.2327,  34.8426,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 2001: 168 elems (PRISM6, 168 active), 333 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 616.013
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-22.0498, -19.0957,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 22.0498,  19.0957,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 44.0997,  38.1914,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 2002: 168 elems (PRISM6, 168 active), 336 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 459.992
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-22.0498, -19.0957,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 22.0498,  19.0957,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 44.0997,  38.1914,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 2101: 186 elems (PRISM6, 186 active), 370 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 700.921
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-24.0616, -20.8379,  34.4119)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 24.0616,  20.8379,  37.3202)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 48.1231,  41.6758,   2.9083)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Subdomain 2102: 186 elems (PRISM6, 186 active), 372 active nodes
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Volume: 523.395
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box minimum: (x,y,z)=(-24.0616, -20.8379,  1.76022)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box maximum: (x,y,z)=( 24.0616,  20.8379,  3.93192)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m   Bounding box delta: (x,y,z)=( 48.1231,  41.6758,   2.1717)
+[36mSubdomainExtraElementIDGenerator 'set_mat_id': [39m  Global mesh volume = 57794.4
+
+Angular quadrature type: Level-Symmetric
+SN order: 12
+
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9400 successfully in 0.12 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9100 successfully in 0.12 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1800 successfully in 0.13 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1700 successfully in 0.14 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1600 successfully in 0.14 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1500 successfully in 0.15 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1400 successfully in 0.15 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1300 successfully in 0.16 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1200 successfully in 0.16 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1100 successfully in 0.17 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 801 successfully in 0.17 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 802 successfully in 0.18 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 803 successfully in 0.18 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 804 successfully in 0.19 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 805 successfully in 0.19 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 806 successfully in 0.20 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 807 successfully in 0.20 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 808 successfully in 0.21 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 701 successfully in 0.22 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 702 successfully in 0.22 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 703 successfully in 0.23 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 704 successfully in 0.23 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 705 successfully in 0.24 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 706 successfully in 0.24 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 707 successfully in 0.25 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 708 successfully in 0.25 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 601 successfully in 0.26 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 602 successfully in 0.26 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 603 successfully in 0.27 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 604 successfully in 0.28 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 605 successfully in 0.28 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 606 successfully in 0.29 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 607 successfully in 0.29 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 608 successfully in 0.30 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 501 successfully in 0.30 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 502 successfully in 0.31 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 503 successfully in 0.31 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 504 successfully in 0.32 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 505 successfully in 0.32 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 506 successfully in 0.33 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 507 successfully in 0.33 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 508 successfully in 0.34 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 401 successfully in 0.35 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 402 successfully in 0.35 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 403 successfully in 0.36 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 404 successfully in 0.36 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 405 successfully in 0.37 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 406 successfully in 0.37 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 407 successfully in 0.38 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 408 successfully in 0.38 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 301 successfully in 0.39 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 302 successfully in 0.39 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 303 successfully in 0.40 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 304 successfully in 0.40 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 305 successfully in 0.41 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 306 successfully in 0.42 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 307 successfully in 0.42 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 308 successfully in 0.43 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 201 successfully in 0.43 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 202 successfully in 0.44 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 203 successfully in 0.44 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 204 successfully in 0.45 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 205 successfully in 0.45 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 206 successfully in 0.46 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 207 successfully in 0.46 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 208 successfully in 0.47 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 101 successfully in 0.47 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 102 successfully in 0.48 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 103 successfully in 0.48 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 104 successfully in 0.49 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 105 successfully in 0.50 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 106 successfully in 0.50 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 107 successfully in 0.51 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 108 successfully in 0.51 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2800 successfully in 0.52 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2700 successfully in 0.52 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2600 successfully in 0.53 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2500 successfully in 0.53 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2400 successfully in 0.54 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2300 successfully in 0.54 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2200 successfully in 0.55 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2100 successfully in 0.55 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9500 successfully in 0.56 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9300 successfully in 0.56 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 8000 successfully in 0.10 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7000 successfully in 0.11 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7100 successfully in 0.11 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7200 successfully in 0.11 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7300 successfully in 0.12 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7400 successfully in 0.12 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9903 successfully in 0.12 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3500 successfully in 0.13 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3600 successfully in 0.13 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 5500 successfully in 0.13 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 5600 successfully in 0.14 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 5700 successfully in 0.14 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 5800 successfully in 0.14 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 5900 successfully in 0.15 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9900 successfully in 0.15 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3300 successfully in 0.15 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3400 successfully in 0.16 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3900 successfully in 0.16 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 4000 successfully in 0.16 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 4100 successfully in 0.17 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 4200 successfully in 0.17 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 4300 successfully in 0.17 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 4400 successfully in 0.18 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3700 successfully in 0.18 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3800 successfully in 0.18 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6000 successfully in 0.19 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6100 successfully in 0.19 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6200 successfully in 0.20 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6300 successfully in 0.20 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6400 successfully in 0.20 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9901 successfully in 0.20 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6500 successfully in 0.21 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6600 successfully in 0.21 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6700 successfully in 0.22 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6800 successfully in 0.22 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6900 successfully in 0.22 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9902 successfully in 0.22 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7500 successfully in 0.23 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2000 successfully in 0.09 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 900 successfully in 0.09 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3100 successfully in 0.09 seconds.[39m
+Normalized power density griffin_power_density will be evaluated on the following neutron transport systems:  dsn
+  Initializing
+    Finished Initializing Equation Systems                                               [[33m  6.01 s[39m] [[33m 4253 MB[39m]
+  Finished Initializing                                                                  [[33m  6.45 s[39m] [[33m 4328 MB[39m]
+
+Objects counting for the transport system *dsn* :
+      Variables - 18
+   AuxVariables - 72
+        Kernels - 53
+            BCs - 18
+            ICs - 18
+ Postprocessors - 1
+    UserObjects - 2
+   AuxMaterials - 2
+
+Finished Setting Up                                                                      [[33m 19.24 s[39m] [[33m 4328 MB[39m]
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 83340
+    Local:                 3210
+    Min/Max/Avg:           2371/3210/2778
+  Elems:                   
+    Total:                 154196
+    Local:                 5173
+    Min/Max/Avg:           4990/5293/5139
+  Num Subdomains:          125
+  Num Partitions:          30
+  Partitioner:             metis
+
+Nonlinear System:
+  Num DOFs:                1865154816
+  Num Local DOFs:          62572608
+  Variables:               { "aflux_g0_0" "aflux_g0_1" "aflux_g0_2" "aflux_g0_3" "aflux_g0_4" ... "aflux_g17_163" 
+                             "aflux_g17_164" "aflux_g17_165" "aflux_g17_166" "aflux_g17_167" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "FIRST" 
+
+Auxiliary System:
+  Num DOFs:                46258818
+  Num Local DOFs:          1551900
+  Variables:               { "griffin_Tfuel" "griffin_Tcool" "griffin_Tref" "Unity" } { "Flux1_aux" "Flux2_aux" 
+                             "Flux3_aux" "Flux4_aux" "Flux5_aux" ... "Flux14_aux" "Flux15_aux" "Flux16_aux" 
+                             "Flux17_aux" "Flux18_aux" } "griffin_power_density" { "flux_moment_g0_L0_M0" 
+                             "flux_moment_g0_L1_M-1" "flux_moment_g0_L1_M0" "flux_moment_g0_L1_M1" "flux_moment_g1_L0_M0" 
+                             ... "flux_moment_g16_L1_M1" "flux_moment_g17_L0_M0" "flux_moment_g17_L1_M-1" 
+                             "flux_moment_g17_L1_M0" "flux_moment_g17_L1_M1" } { "material_id" "coarse_element_id" 
+                             } 
+  Finite Element Types:    "MONOMIAL" "SCALAR" "L2_LAGRANGE" "MONOMIAL" "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" "FIRST" "FIRST" "FIRST" "CONSTANT" 
+
+Execution Information:
+  Executioner:             SweepUpdate
+  Solver Mode:             JFNK
+
+Currently Executing
+  Performing Initial Setup
+    Projecting Initial Solutions                                                         [[33m  8.53 s[39m] [[33m 4344 MB[39m]
+  Finished Performing Initial Setup                                                      [[33m 17.65 s[39m] [[33m 4347 MB[39m]
+[34m Total coarse elements: 112
+         Energy groups: 18
+            Processors: 2[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux1          | Flux10         | Flux10L0M0     | Flux10L1M0     | Flux10L1M1     | Flux11         |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux11L0M0     | Flux11L1M0     | Flux11L1M1     | Flux12         | Flux12L0M0     | Flux12L1M0     |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux12L1M1     | Flux13         | Flux13L0M0     | Flux13L1M0     | Flux13L1M1     | Flux14         |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux14L0M0     | Flux14L1M0     | Flux14L1M1     | Flux15         | Flux15L0M0     | Flux15L1M0     |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux15L1M1     | Flux16         | Flux16L0M0     | Flux16L1M0     | Flux16L1M1     | Flux17         |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux17L0M0     | Flux17L1M0     | Flux17L1M1     | Flux18         | Flux18L0M0     | Flux18L1M0     |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux18L1M1     | Flux1L0M0      | Flux1L1M0      | Flux1L1M1      | Flux2          | Flux2L0M0      |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux2L1M0      | Flux2L1M1      | Flux3          | Flux3L0M0      | Flux3L1M0      | Flux3L1M1      |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux4          | Flux4L0M0      | Flux4L1M0      | Flux4L1M1      | Flux5          | Flux5L0M0      |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux5L1M0      | Flux5L1M1      | Flux6          | Flux6L0M0      | Flux6L1M0      | Flux6L1M1      |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux7          | Flux7L0M0      | Flux7L1M0      | Flux7L1M1      | Flux8          | Flux8L0M0      |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux8L1M0      | Flux8L1M1      | Flux9          | Flux9L0M0      | Flux9L1M0      | Flux9L1M1      |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+------------------+----------------+
+| time           | eigenvalue     | integrated_power | power_scaling  |
++----------------+----------------+------------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |     6.000000e+05 |   6.024092e+28 |
++----------------+----------------+------------------+----------------+
+
+
+Scalar Variable Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux10_aux     | Flux11_aux     | Flux12_aux     | Flux13_aux     | Flux14_aux     | Flux15_aux     |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux16_aux     | Flux17_aux     | Flux18_aux     | Flux1_aux      | Flux2_aux      | Flux3_aux      |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux4_aux      | Flux5_aux      | Flux6_aux      | Flux7_aux      | Flux8_aux      | Flux9_aux      |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+Step 1:
+  Performing Richardson Iteration
+    Computing Residual                                                                   [[33m  9.49 s[39m] [[33m 4403 MB[39m]
+    Performing Transport Sweep........                                                   [[33m 52.24 s[39m] [[33m 5073 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 67.85 s[39m] [[33m 5073 MB[39m]
+Richardson iteration    1 Error: 4.253e-01 eigenvalue: 0.54080133 Execution time:     72.563 seconds.
+  Performing Richardson Iteration
+    Computing Residual                                                                   [[33m  9.57 s[39m] [[33m 5073 MB[39m]
+    Performing Transport Sweep........                                                   [[33m 52.15 s[39m] [[33m 5073 MB[39m]
+Richardson iteration    2 Error: 5.943e-02 eigenvalue: 0.97938174 Execution time:     72.461 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 67.83 s[39m] [[33m 5073 MB[39m]
+  Performing Richardson Iteration
+    Computing Residual                                                                   [[33m  9.57 s[39m] [[33m 5073 MB[39m]
+    Performing Transport Sweep........                                                   [[33m 52.12 s[39m] [[33m 5073 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 67.80 s[39m] [[33m 5073 MB[39m]
+Richardson iteration    3 Error: 2.813e-02 eigenvalue: 1.02210168 Execution time:     72.415 seconds.
+  Performing Richardson Iteration
+    Computing Residual                                                                   [[33m  9.57 s[39m] [[33m 5073 MB[39m]
+    Performing Transport Sweep........                                                   [[33m 52.14 s[39m] [[33m 5073 MB[39m]
+Richardson iteration    4 Error: 8.246e-03 eigenvalue: 1.03137292 Execution time:     72.445 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 67.82 s[39m] [[33m 5073 MB[39m]
+  Performing Richardson Iteration
+    Computing Residual                                                                   [[33m  9.58 s[39m] [[33m 5073 MB[39m]
+    Performing Transport Sweep........                                                   [[33m 52.12 s[39m] [[33m 5073 MB[39m]
+Richardson iteration    5 Error: 3.555e-03 eigenvalue: 1.03377295 Execution time:     72.434 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 67.81 s[39m] [[33m 5073 MB[39m]
+  Performing Richardson Iteration
+    Computing Residual                                                                   [[33m  9.56 s[39m] [[33m 5073 MB[39m]
+    Performing Transport Sweep........                                                   [[33m 52.12 s[39m] [[33m 5073 MB[39m]
+Richardson iteration    6 Error: 1.443e-03 eigenvalue: 1.03469266 Execution time:     72.410 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 67.79 s[39m] [[33m 5073 MB[39m]
+  Performing Richardson Iteration
+    Computing Residual                                                                   [[33m  9.57 s[39m] [[33m 5073 MB[39m]
+    Performing Transport Sweep........                                                   [[33m 51.89 s[39m] [[33m 5073 MB[39m]
+Richardson iteration    7 Error: 6.604e-04 eigenvalue: 1.03515298 Execution time:     72.197 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 67.57 s[39m] [[33m 5073 MB[39m]
+  Performing Richardson Iteration
+    Computing Residual                                                                   [[33m  9.57 s[39m] [[33m 5073 MB[39m]
+    Performing Transport Sweep........                                                   [[33m 51.97 s[39m] [[33m 5073 MB[39m]
+Richardson iteration    8 Error: 3.327e-04 eigenvalue: 1.03540006 Execution time:     72.270 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 67.64 s[39m] [[33m 5073 MB[39m]
+  Performing Richardson Iteration
+    Computing Residual                                                                   [[33m  9.57 s[39m] [[33m 5073 MB[39m]
+    Performing Transport Sweep........                                                   [[33m 51.93 s[39m] [[33m 5073 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 67.60 s[39m] [[33m 5073 MB[39m]
+Richardson iteration    9 Error: 1.684e-04 eigenvalue: 1.03553618 Execution time:     72.229 seconds.
+  Performing Richardson Iteration
+    Computing Residual                                                                   [[33m  9.57 s[39m] [[33m 5073 MB[39m]
+    Performing Transport Sweep........                                                   [[33m 51.96 s[39m] [[33m 5073 MB[39m]
+Richardson iteration   10 Error: 8.903e-05 eigenvalue: 1.03561029 Execution time:     72.270 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 67.65 s[39m] [[33m 5073 MB[39m]
+[32m Richardson iteration converged with richardson_abs_tol![39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux1          | Flux10         | Flux10L0M0     | Flux10L1M0     | Flux10L1M1     | Flux11         |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |   1.920261e+00 |   2.076272e+01 |   2.076272e+01 |   2.922610e-06 |  -3.129316e-06 |   1.405079e+01 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux11L0M0     | Flux11L1M0     | Flux11L1M1     | Flux12         | Flux12L0M0     | Flux12L1M0     |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |   1.405079e+01 |   2.111772e-06 |  -2.245708e-06 |   1.023349e+01 |   1.023349e+01 |   1.538225e-06 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux12L1M1     | Flux13         | Flux13L0M0     | Flux13L1M0     | Flux13L1M1     | Flux14         |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |  -1.635977e-06 |   1.091284e+01 |   1.091284e+01 |   1.723986e-06 |  -1.816583e-06 |   9.861938e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux14L0M0     | Flux14L1M0     | Flux14L1M1     | Flux15         | Flux15L0M0     | Flux15L1M0     |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |   9.861938e+00 |   1.604823e-06 |  -1.675960e-06 |   8.265847e+00 |   8.265847e+00 |   1.104340e-06 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux15L1M1     | Flux16         | Flux16L0M0     | Flux16L1M0     | Flux16L1M1     | Flux17         |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |  -1.119075e-06 |   1.841323e+01 |   1.841323e+01 |   1.817990e-06 |  -1.532752e-06 |   1.375850e+01 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux17L0M0     | Flux17L1M0     | Flux17L1M1     | Flux18         | Flux18L0M0     | Flux18L1M0     |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |   1.375850e+01 |   1.328938e-06 |  -1.721492e-06 |   2.344196e+00 |   2.344197e+00 |  -1.305172e-08 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux18L1M1     | Flux1L0M0      | Flux1L1M0      | Flux1L1M1      | Flux2          | Flux2L0M0      |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |  -6.050138e-07 |   1.920261e+00 |   2.116360e-07 |  -2.628341e-07 |   1.360445e+01 |   1.360445e+01 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux2L1M0      | Flux2L1M1      | Flux3          | Flux3L0M0      | Flux3L1M0      | Flux3L1M1      |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |   4.823773e-07 |  -6.906599e-07 |   3.564619e+01 |   3.564619e+01 |   5.592993e-07 |  -7.358897e-07 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux4          | Flux4L0M0      | Flux4L1M0      | Flux4L1M1      | Flux5          | Flux5L0M0      |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |   2.477271e+01 |   2.477271e+01 |   4.375149e-06 |  -5.016277e-06 |   3.046919e+01 |   3.046919e+01 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux5L1M0      | Flux5L1M1      | Flux6          | Flux6L0M0      | Flux6L1M0      | Flux6L1M1      |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |   7.319983e-06 |  -8.472387e-06 |   4.100820e+01 |   4.100820e+01 |   9.379498e-06 |  -1.066559e-05 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux7          | Flux7L0M0      | Flux7L1M0      | Flux7L1M1      | Flux8          | Flux8L0M0      |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |   3.502360e+01 |   3.502360e+01 |   6.044575e-06 |  -6.690886e-06 |   2.413581e+01 |   2.413581e+01 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux8L1M0      | Flux8L1M1      | Flux9          | Flux9L0M0      | Flux9L1M0      | Flux9L1M1      |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |   2.947106e-06 |  -3.214099e-06 |   2.290310e+01 |   2.290310e+01 |   2.972864e-06 |  -3.214149e-06 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+------------------+----------------+
+| time           | eigenvalue     | integrated_power | power_scaling  |
++----------------+----------------+------------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |     6.000000e+05 |   6.024092e+28 |
+|   1.000000e+00 |   1.035610e+00 |     6.000000e+05 |   4.585014e+15 |
++----------------+----------------+------------------+----------------+
+
+
+Scalar Variable Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux10_aux     | Flux11_aux     | Flux12_aux     | Flux13_aux     | Flux14_aux     | Flux15_aux     |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |   2.076272e+01 |   1.405079e+01 |   1.023349e+01 |   1.091284e+01 |   9.861938e+00 |   8.265847e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux16_aux     | Flux17_aux     | Flux18_aux     | Flux1_aux      | Flux2_aux      | Flux3_aux      |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |   1.841323e+01 |   1.375850e+01 |   2.344196e+00 |   1.920261e+00 |   1.360445e+01 |   3.564619e+01 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | Flux4_aux      | Flux5_aux      | Flux6_aux      | Flux7_aux      | Flux8_aux      | Flux9_aux      |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |   2.477271e+01 |   3.046919e+01 |   4.100820e+01 |   3.502360e+01 |   2.413581e+01 |   2.290310e+01 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+  Currently Outputting
+    Outputting Step.............Warning, Exodus files cannot have titles longer than 80 characters.  Your title will be truncated.
+                                                         [[33m 76.59 s[39m] [[33m 7798 MB[39m]
+    Outputting Step
+      Backing Up Application to File.                                                    [[33m 17.19 s[39m] [[33m 7799 MB[39m]
+    Finished Outputting Step                                                             [[33m 17.83 s[39m] [[33m 7799 MB[39m]
+  Finished Outputting                                                                    [[33m 94.60 s[39m] [[33m 7799 MB[39m]
+  Finished Computing User Objects                                                        [[33m  8.17 s[39m] [[33m 7799 MB[39m]
+
+
+Performance Graph:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|                                Section                               | Calls |   Self(s)  |   Avg(s)   |    %   | Mem(MB) |  Total(s)  |   Avg(s)   |    %   | Mem(MB) |
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| GriffinApp (main)                                                    |     1 |      0.013 |      0.013 |   0.00 |       4 |    870.061 |    870.061 | 100.00 |    7618 |
+|   Action::SetupMeshAction::Mesh::SetupMeshAction::act::setup_mesh    |     1 |      0.001 |      0.001 |   0.00 |       0 |      0.001 |      0.001 |   0.00 |       0 |
+|   Action::SetupMeshAction::Mesh::SetupMeshAction::act::set_mesh_base |     2 |      0.000 |      0.000 |   0.00 |       0 |      0.000 |      0.000 |   0.00 |       0 |
+|   MeshGeneratorSystem::createMeshGeneratorOrder                      |     1 |      0.000 |      0.000 |   0.00 |       0 |      0.000 |      0.000 |   0.00 |       0 |
+|   SweepUpdate::RichardsonInit                                        |     1 |      0.000 |      0.000 |   0.00 |       0 |     18.407 |     18.407 |   2.12 |      24 |
+|     SNFEProblem::computeUserObjects                                  |     3 |      1.756 |      0.585 |   0.20 |       1 |      1.756 |      0.585 |   0.20 |       1 |
+|   SweepUpdate::RichardsonFinal                                       |     1 |      0.000 |      0.000 |   0.00 |       0 |      8.334 |      8.334 |   0.96 |       0 |
+|     SNFEProblem::computeUserObjects                                  |     2 |      8.169 |      4.085 |   0.94 |       0 |      8.169 |      4.085 |   0.94 |       0 |
+|     SNFEProblem::outputStep                                          |     1 |      0.165 |      0.165 |   0.02 |       0 |      0.165 |      0.165 |   0.02 |       0 |
+|   SweepUpdate::TransportUpdate                                       |     1 |      0.001 |      0.001 |   0.00 |       0 |    823.694 |    823.694 |  94.67 |    3433 |
+|     SNFEProblem::computeUserObjects                                  |     4 |      1.869 |      0.467 |   0.21 |       0 |      1.869 |      0.467 |   0.21 |       0 |
+|     AuxiliarySystem::computeScalarVars                               |     1 |      0.004 |      0.004 |   0.00 |       0 |      0.004 |      0.004 |   0.00 |       0 |
+|     SNFEProblem::outputStep                                          |     1 |      0.166 |      0.166 |   0.02 |       0 |     94.597 |     94.597 |  10.87 |    2726 |
+|     SweepUpdate::PicardSolve                                         |    10 |      0.010 |      0.001 |   0.00 |       0 |     48.626 |      4.863 |   5.59 |      18 |
+|       SweepUpdate::DiffusionAcceleration                             |    10 |      0.000 |      0.000 |   0.00 |       0 |     12.423 |      1.242 |   1.43 |      18 |
+|         SweepUpdate::solveCMFD                                       |    10 |      0.002 |      0.000 |   0.00 |       0 |     12.423 |      1.242 |   1.43 |      18 |
+|       SNFEProblem::computeUserObjects                                |    80 |     18.742 |      0.234 |   2.15 |       0 |     18.742 |      0.234 |   2.15 |       0 |
+|       SNFEProblem::outputStep                                        |    30 |      5.017 |      0.167 |   0.58 |       0 |      5.017 |      0.167 |   0.58 |       0 |
+|       AuxiliarySystem::computeScalarVars                             |    10 |      0.043 |      0.004 |   0.00 |       0 |      0.044 |      0.004 |   0.01 |       0 |
+|     SweepUpdate::updateRichardson                                    |    10 |      4.347 |      0.435 |   0.50 |       0 |    677.357 |     67.736 |  77.85 |     689 |
+|       SNFEProblem::computeUserObjects                                |    20 |     18.710 |      0.935 |   2.15 |       0 |     18.710 |      0.935 |   2.15 |       0 |
+|       SNFEProblem::computeResidualInternal                           |    10 |      0.001 |      0.000 |   0.00 |       0 |    120.444 |     12.044 |  13.84 |      19 |
+|         SNFEProblem::computeUserObjects                              |    20 |     18.707 |      0.935 |   2.15 |       0 |     18.707 |      0.935 |   2.15 |       0 |
+|       SweepUpdate::transportSweep                                    |    10 |    520.622 |     52.062 |  59.84 |     670 |    520.622 |     52.062 |  59.84 |     670 |
+|   SNFEProblem::outputStep                                            |     1 |      0.167 |      0.167 |   0.02 |       0 |      0.303 |      0.303 |   0.03 |      14 |
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Finished Executing                                                                       [[33m850.76 s[39m] [[33m 7799 MB[39m]
