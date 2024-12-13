@@ -18,7 +18,7 @@ acm_fuel_blocks_lay3 = '301 302 303 304 305 306 307 308'
 acm_fuel_blocks_lay2 = '201 202 203 204 205 206 207 208'
 acm_fuel_blocks_lay1 = '101 102 103 104 105 106 107 108'
 
-acm_air_blocks_2d     = '9'
+acm_coolant_blocks_2d     = '9'
 acm_intref_blocks_2d  = '1000'
 acm_barrel_blocks_2d  = '1100'
 acm_extref1_blocks_2d = '1200'
@@ -29,7 +29,7 @@ acm_shima_blocks_2d   = '1600'
 acm_shimb_blocks_2d   = '1700'
 
 acl_fuel_blocks_2d    = '81 82 83 84 85 86 87 88'
-acl_air_blocks_2d     = '89'
+acl_coolant_blocks_2d     = '89'
 acl_intref_blocks_2d  = '1402'
 acl_barrel_blocks_2d  = '1502'
 acl_extref1_blocks_2d = '1602'
@@ -40,7 +40,7 @@ acl_shima_blocks_2d   = '2002'
 acl_shimb_blocks_2d   = '2102'
 
 acu_fuel_blocks_2d    = '71 72 73 74 75 76 77 78'
-acu_air_blocks_2d     = '79'
+acu_coolant_blocks_2d     = '79'
 acu_intref_blocks_2d  = '1401'
 acu_barrel_blocks_2d  = '1501'
 acu_extref1_blocks_2d = '1601'
@@ -189,16 +189,16 @@ acm_dz = 3.81
        
         new_ids = '${lgr_fuel_blocks_2d} ${lgr_air_blocks_2d} ${lgr_intref_blocks_2d} ${lgr_barrel_blocks_2d} ${lgr_extref1_blocks_2d} ${lgr_extref2_blocks_2d} ${lgr_extref3_blocks_2d} ${lgr_extref4_blocks_2d} ${lgr_shima_blocks_2d} ${lgr_shimb_blocks_2d}
                     ${lec_fuel_blocks_2d} ${lec_air_blocks_2d} ${lec_intref_blocks_2d} ${lec_barrel_blocks_2d} ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d} ${lec_shimb_blocks_2d}
-                    ${acl_fuel_blocks_2d} ${acl_air_blocks_2d} ${acl_intref_blocks_2d} ${acl_barrel_blocks_2d} ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d} ${acl_shimb_blocks_2d}
-                    ${acm_fuel_blocks_lay1} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}
-                    ${acm_fuel_blocks_lay2} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}
-                    ${acm_fuel_blocks_lay3} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}
-                    ${acm_fuel_blocks_lay4} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}
-                    ${acm_fuel_blocks_lay5} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}
-                    ${acm_fuel_blocks_lay6} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}
-                    ${acm_fuel_blocks_lay7} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}
-                    ${acm_fuel_blocks_lay8} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}
-                    ${acu_fuel_blocks_2d} ${acu_air_blocks_2d} ${acu_intref_blocks_2d} ${acu_barrel_blocks_2d} ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d} ${acu_shimb_blocks_2d}
+                    ${acl_fuel_blocks_2d} ${acl_coolant_blocks_2d} ${acl_intref_blocks_2d} ${acl_barrel_blocks_2d} ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d} ${acl_shimb_blocks_2d}
+                    ${acm_fuel_blocks_lay1} ${acm_coolant_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}
+                    ${acm_fuel_blocks_lay2} ${acm_coolant_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}
+                    ${acm_fuel_blocks_lay3} ${acm_coolant_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}
+                    ${acm_fuel_blocks_lay4} ${acm_coolant_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}
+                    ${acm_fuel_blocks_lay5} ${acm_coolant_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}
+                    ${acm_fuel_blocks_lay6} ${acm_coolant_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}
+                    ${acm_fuel_blocks_lay7} ${acm_coolant_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}
+                    ${acm_fuel_blocks_lay8} ${acm_coolant_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d}
+                    ${acu_fuel_blocks_2d} ${acu_coolant_blocks_2d} ${acu_intref_blocks_2d} ${acu_barrel_blocks_2d} ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d} ${acu_shimb_blocks_2d}
                     ${uec_fuel_blocks_2d} ${uec_air_blocks_2d} ${uec_intref_blocks_2d} ${uec_barrel_blocks_2d} ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d} ${uec_shimb_blocks_2d}
                     ${ugr_fuel_blocks_2d} ${ugr_air_blocks_2d} ${ugr_intref_blocks_2d} ${ugr_barrel_blocks_2d} ${ugr_extref1_blocks_2d} ${ugr_extref2_blocks_2d} ${ugr_extref3_blocks_2d} ${ugr_extref4_blocks_2d} ${ugr_shima_blocks_2d} ${ugr_shimb_blocks_2d}'
                   
@@ -292,7 +292,7 @@ acm_dz = 3.81
 	[set_mat_id]
 		type = SubdomainExtraElementIDGenerator
 		input = 'nue'
-		subdomains =  '${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d} ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acm_air_blocks_2d} ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_fuel_blocks_2d   } ${acl_air_blocks_2d    } ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_fuel_blocks_2d   } ${acu_air_blocks_2d    } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_active_blocks    } ${lgr_ext_blocks       } ${ugr_active_blocks    } ${ugr_ext_blocks       } ${lec_active_blocks    } ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  } ${uec_active_blocks    } ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
+		subdomains =  '${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d} ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acm_coolant_blocks_2d} ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_fuel_blocks_2d   } ${acl_coolant_blocks_2d    } ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_fuel_blocks_2d   } ${acu_coolant_blocks_2d    } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_active_blocks    } ${lgr_ext_blocks       } ${ugr_active_blocks    } ${ugr_ext_blocks       } ${lec_active_blocks    } ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  } ${uec_active_blocks    } ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
 		extra_element_id_names = 'material_id'
 		extra_element_ids = '${acu_shimb_matids_2d} ${acl_shimb_matids_2d} ${uec_shimb_matids_2d} ${lec_shimb_matids_2d} ${acm_shimb_matids_2d} ${acm_fuel_matids_lay8 } ${acm_fuel_matids_lay7 } ${acm_fuel_matids_lay6 } ${acm_fuel_matids_lay5 } ${acm_fuel_matids_lay4 } ${acm_fuel_matids_lay3 } ${acm_fuel_matids_lay2 } ${acm_fuel_matids_lay1 } ${acm_air_matids_2d} ${acm_intref_matids_2d } ${acm_barrel_matids_2d } ${acm_extref1_matids_2d} ${acm_extref2_matids_2d} ${acm_extref3_matids_2d} ${acm_extref4_matids_2d} ${acm_shima_matids_2d} ${acl_fuel_matids_2d   } ${acl_air_matids_2d    } ${acl_intref_matids_2d } ${acl_barrel_matids_2d } ${acl_extref1_matids_2d} ${acl_extref2_matids_2d} ${acl_extref3_matids_2d} ${acl_extref4_matids_2d} ${acl_shima_matids_2d  } ${acu_fuel_matids_2d   } ${acu_air_matids_2d    } ${acu_intref_matids_2d } ${acu_barrel_matids_2d } ${acu_extref1_matids_2d} ${acu_extref2_matids_2d} ${acu_extref3_matids_2d} ${acu_extref4_matids_2d} ${acu_shima_matids_2d  } ${lgr_active_matids    } ${lgr_ext_matids       } ${ugr_active_matids    } ${ugr_ext_matids       } ${lec_active_matids    } ${lec_extref1_matids_2d} ${lec_extref2_matids_2d} ${lec_extref3_matids_2d} ${lec_extref4_matids_2d} ${lec_shima_matids_2d  } ${uec_active_matids    } ${uec_extref1_matids_2d} ${uec_extref2_matids_2d} ${uec_extref3_matids_2d} ${uec_extref4_matids_2d} ${uec_shima_matids_2d  }'
 	[]
@@ -319,6 +319,7 @@ acm_dz = 3.81
 
 total_power               = 600000.00 # (W). #total power
 inlet_T_fluid             = 700 # (K)
+ext_T_ref                 = 500 # (K)
 # ==============================================================================
 # AUXVARIABLES AND AUXKERNELS
 # ==============================================================================
@@ -332,6 +333,11 @@ inlet_T_fluid             = 700 # (K)
         family = MONOMIAL
         order = constant
         initial_condition = '${inlet_T_fluid}'
+    []
+    [griffin_Tref]
+        family = MONOMIAL
+        order = constant
+        initial_condition = '${ext_T_ref}'
     []
     [Unity]
         order = CONSTANT
@@ -367,14 +373,14 @@ inlet_T_fluid             = 700 # (K)
         hide_angular_flux = true
     []
 []
-
+#         block =  '${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d} ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acm_coolant_blocks_2d    } ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_fuel_blocks_2d   } ${acl_coolant_blocks_2d    } ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_fuel_blocks_2d   } ${acu_coolant_blocks_2d    } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_active_blocks    } ${lgr_ext_blocks       } ${ugr_active_blocks    } ${ugr_ext_blocks       } ${lec_active_blocks    } ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  } ${uec_active_blocks    } ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
 # ==============================================================================
 # FLUID PROPERTIES, MATERIALS, AND USER OBJECTS
 # ==============================================================================
 [Materials]
     [core]
         type = CoupledFeedbackMatIDNeutronicsMaterial
-        block =  '${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d} ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acm_air_blocks_2d    } ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_fuel_blocks_2d   } ${acl_air_blocks_2d    } ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_fuel_blocks_2d   } ${acu_air_blocks_2d    } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_active_blocks    } ${lgr_ext_blocks       } ${ugr_active_blocks    } ${ugr_ext_blocks       } ${lec_active_blocks    } ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  } ${uec_active_blocks    } ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
+        block =  '${ugr_active_blocks    } ${uec_active_blocks    }${acu_fuel_blocks_2d   }${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acl_fuel_blocks_2d   } ${lec_active_blocks    } ${lgr_active_blocks    }'
 		library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/s82d_ac_c3_gcu_ringres_XS.xml'
 		library_name = 's82d_ac_c3_gcu_ringres_XS'
         isotopes = 'pseudo'
@@ -383,6 +389,30 @@ inlet_T_fluid             = 700 # (K)
         is_meter = false
         grid_names = 'Tfuel'
         grid_variables = 'griffin_Tfuel'
+    []
+    [extref]
+        type = CoupledFeedbackMatIDNeutronicsMaterial
+        block =  '${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d}  ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_ext_blocks       } ${ugr_ext_blocks       }  ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  }  ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
+		library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/s82d_ac_c3_gcu_ringres_XS.xml'
+		library_name = 's82d_ac_c3_gcu_ringres_XS'
+        isotopes = 'pseudo'
+        densities = '1.0'
+        plus = 1
+        is_meter = false
+        grid_names = 'Tref'
+        grid_variables = 'griffin_Tref'
+    []
+    [coolant]
+        type = CoupledFeedbackMatIDNeutronicsMaterial
+        block =  '${acu_coolant_blocks_2d    } ${acm_coolant_blocks_2d    } ${acl_coolant_blocks_2d    }'
+		library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/s82d_ac_c3_gcu_ringres_XS.xml'
+		library_name = 's82d_ac_c3_gcu_ringres_XS'
+        isotopes = 'pseudo'
+        densities = '1.0'
+        plus = 1
+        is_meter = false
+        grid_names = 'Tcool'
+        grid_variables = 'griffin_Tcool'
     []
 []
 
