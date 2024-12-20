@@ -6,9 +6,9 @@ import shutil
 # sys.path.append('/Applications/Coreform-Cubit-2022.4.app/Contents/MacOS')
 # sys.path.append('/Applications/Coreform-Cubit-2024.3.app/Contents/lib')
 # sys.path.append('/Applications/Coreform-Cubit-2024.3.app/Contents/MacOS')
-#sys.path.append('/Users/isaacnaupaaguirre/Documents/GitHub/seacas/lib')
+# sys.path.append('/Users/isaacnaupaaguirre/Documents/GitHub/seacas/lib')
 sys.path.append('C:/Program Files/Coreform Cubit 2024.3/bin')
-
+print(sys.path.append('C:/Program Files/Coreform Cubit 2024.3/bin'))
 import cubit
 import numpy
 import numpy as np
