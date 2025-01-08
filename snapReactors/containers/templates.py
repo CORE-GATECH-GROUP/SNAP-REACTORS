@@ -14753,3 +14753,38 @@ class S8_Wet(S8ER):
         #         createExtrudeGeom(baseFile, height, nlayers, REFbdict, convRefudict, edict, unextMesh)
         #     makeGriffinInput3D(baseFile)
         return map
+
+class HC_Test(S8ER):
+    def __init__(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, nActiveLayers = 8, config = 'C3', xsLibrary = 'ENDF7.1', hasThermScatt=False, baseFile = "s82D_gcu", geo = '2D', useRefLayoutForMesh = False):
+        S8ER.__init__(self)
+        self.config = config
+        self.xsLibrary = xsLibrary
+        self.hasThermScatt = hasThermScatt
+        self.map = self.setMap(fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, baseFile, nActiveLayers, geo, useRefLayoutForMesh)
+
+    def setMap(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, baseFile, nActiveLayers, geo, useRefLayoutForMesh):
+        map = {}
+        REFouterBlockId = 9
+        hexPitch = 1.4478
+        nMidHex = 17
+        blockMapACM = {'1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, 'L': 10}
+        layoutACM = " 9 8 8 8 8 8 8 8 9;\
+                     8 7 7 7 7 7 7 7 7 8;\
+                    8 7 6 6 6 6 6 6 6 7 8;\
+                   8 7 6 5 5 5 5 5 5 6 7 8;\
+                  8 7 6 5 4 4 4 4 4 5 6 7 8;\
+                 8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+                8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+               8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+              9 7 6 5 4 3 2 1 1 1 2 3 4 5 6 7 9;\
+               8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8;\
+                8 7 6 5 4 3 2 2 2 3 4 5 6 7 8;\
+                 8 7 6 5 4 3 3 3 3 4 5 6 7 8;\
+                  8 7 6 5 4 4 4 4 4 5 6 7 8;\
+                   8 7 6 5 5 5 5 5 5 6 7 8;\
+                    8 7 6 6 6 6 6 6 6 7 8;\
+                     8 7 7 7 7 7 7 7 7 8;\
+                      9 8 8 8 8 8 8 8 9"
+        createCubitHCMesh(baseFile, layoutACM, blockMapACM, nMidHex, hexPitch, REFouterBlockId)
+
+        return
