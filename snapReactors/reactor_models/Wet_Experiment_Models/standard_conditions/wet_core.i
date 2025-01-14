@@ -269,9 +269,10 @@ ext_T_ref                 = 600 # (K)
     #app_type = GriffinApp
     input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/SNAP_solid_test3_1.i'
     positions = '0 0 0'
-    execute_on = timestep_end
+    execute_on = 'FINAL'
     []
 []
+
 [Transfers]
     [to_htm_power_density]
         type = MultiAppProjectionTransfer
@@ -455,10 +456,6 @@ ext_T_ref                 = 600 # (K)
 []
 
 [Outputs]
-    [exodus]
-        type = Exodus
-        execute_on = 'timestep_end'
-    []
     [csv]
         type = CSV
         execute_on = 'initial timestep_end'
@@ -466,6 +463,9 @@ ext_T_ref                 = 600 # (K)
     [console]
         type = Console
         verbose = true
+    []
+    [nemesis]
+        type = Nemesis
     []
     perf_graph = true
 []

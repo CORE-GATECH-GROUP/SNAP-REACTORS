@@ -75,17 +75,17 @@ reflector_k = 216.0                        # Be Reflector thermal conductivity (
     boundary = 'fluid_solid_interface'
   []
 []
-fuel_diameter = 0.0135                # diameter of fuel compacts (m)
-n_fuel_pins = 211          # number of fuel compacts per assembly
-power = 6.0e+05                         # total power (W)
-[ICs]
-  [power_density]
-    type = ConstantIC
-    variable = power_density
-    value = ${fparse power / ((n_fuel_pins) * ( pi * fuel_diameter * fuel_diameter * unit_cell_height / 4.0 ))}
-    block = ${fuel_blocks}
-  []
-[]
+# fuel_diameter = 0.0135                # diameter of fuel compacts (m)
+# n_fuel_pins = 211          # number of fuel compacts per assembly
+# power = 6.0e+05                         # total power (W)
+# [ICs]
+#   [power_density]
+#     type = ConstantIC
+#     variable = power_density
+#     value = ${fparse power / ((n_fuel_pins) * ( pi * fuel_diameter * fuel_diameter * unit_cell_height / 4.0 ))}
+#     block = ${fuel_blocks}
+#   []
+# []
 
 [Functions]
   [k_Be]
@@ -297,7 +297,7 @@ power = 6.0e+05                         # total power (W)
   nl_rel_tol = 1e-7
   petsc_options_value = 'hypre boomeramg'
   petsc_options_iname = '-pc_type -pc_hypre_type'
-  dt = 0.1
+  dt = 0.05
   nl_max_its = 200
   steady_state_detection = true
   steady_state_tolerance = 5e-6
