@@ -13,7 +13,7 @@ fuel_blocks = 'Fuel'
 
 # Parameters in common_SNAP
 
-fuel_diameter = 0.0135                # diameter of fuel compacts (m)
+#
 #fuel_to_coolant_distance = 0.0145        # distance between center of fuel compact and coolant channel (m)
 #height = '${units 35.56 cm -> m}'        # SNAP height of the full core (m)
 unit_cell_height = '${units 35.56 cm -> m}' # segment height, default is total.
@@ -31,13 +31,13 @@ reflector_k = 216.0                        # Be Reflector thermal conductivity (
 
 # operating conditions for the full core
 
-power = 6.0e+05                         # total power (W)
+#
 #mdot = 0.0291                             # total fluid mass flowrate (kg/s): total / number of fuel pins
 #outlet_P = 253727.1                     # fluid outlet pressure (Pa)
 
 # other full core specifications used to construct the unit cell model
 
-n_fuel_pins = 211          # number of fuel compacts per assembly
+
 																
 
 
@@ -51,7 +51,6 @@ n_fuel_pins = 211          # number of fuel compacts per assembly
 
 [Variables]
   [T]
-    initial_condition = ${inlet_T}
   []
 []
 
@@ -66,7 +65,6 @@ n_fuel_pins = 211          # number of fuel compacts per assembly
     v = power_density
     block = ${fuel_blocks}
   []
-
 []
 
 [BCs]
@@ -77,7 +75,9 @@ n_fuel_pins = 211          # number of fuel compacts per assembly
     boundary = 'fluid_solid_interface'
   []
 []
-
+fuel_diameter = 0.0135                # diameter of fuel compacts (m)
+n_fuel_pins = 211          # number of fuel compacts per assembly
+power = 6.0e+05                         # total power (W)
 [ICs]
   [power_density]
     type = ConstantIC
@@ -152,42 +152,6 @@ n_fuel_pins = 211          # number of fuel compacts per assembly
   []
 []
 
-#[SolidProperties]
-#  [Clad]
-#    type = ThermalFunctionSolidProperties
-#    rho = 8860
-#    k = 20.3
-#    cp = 565
-#  []
-#
-#  [GAPHE]
-#  type = ThermalFunctionSolidProperties
-#    rho = 0.005607 
-#    k = 0.3271
-#    cp = 5193
-#  []
-#
-#  [Ceramic]
-#   type = ThermalFunctionSolidProperties 
-#    rho = 2242.584872
-#    cp = 837.36
-#    k = 1.730734666 
-#  []
-#
-#  [Fuel]
-#    type= ThermalFunctionSolidProperties
-#    rho = 5963
-#    cp = 763.3
-#    k = 38.31
-#  []
-#  
-#  [Reflector]
-#    type = ThermalFunctionSolidProperties
-#    rho = 1845.0
-#    k = 216.0
-#    cp = 1925.0
-#  []
-#[]
 
 [AuxVariables]
   [fluid_temp]
@@ -198,8 +162,8 @@ n_fuel_pins = 211          # number of fuel compacts per assembly
     order = CONSTANT
   []
   [power_density]
-    family = L2_LAGRANGE
-    order = First
+    family = MONOMIAL
+    order = CONSTANT
     block = ${fuel_blocks}
   []
 []
@@ -217,11 +181,10 @@ n_fuel_pins = 211          # number of fuel compacts per assembly
 
 [MultiApps]
   [thm]
-    type = FullSolveMultiApp
+    type = TransientMultiApp
     #app_type = ThermalHydraulicsApp
     input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/SNAP_thm_test3_1.i'
-    execute_on = timestep_end
-    max_procs_per_app = 1
+    execute_on =  timestep_end
     bounding_box_padding = '0.1 0.1 0'
   []
 []
@@ -278,6 +241,10 @@ n_fuel_pins = 211          # number of fuel compacts per assembly
     type = CSV
     file_base = 'csv_SNAP/test3_1'
   []
+  [console]
+    type = Console
+    verbose = True
+  []
   checkpoint = false
 []
 
@@ -294,10 +261,9 @@ n_fuel_pins = 211          # number of fuel compacts per assembly
     value_type = max
     block = ${fuel_blocks}
   []
-  [max_block_T]
-    type = ElementExtremeValue
+  [htm_Tref]
+    type = ElementAverageValue
     variable = T
-    value_type = max
     block = 'Reflector'
   []
   [power_source]
@@ -318,7 +284,7 @@ n_fuel_pins = 211          # number of fuel compacts per assembly
     value_type = max
     block = ${fuel_blocks}
   []
-  [avg_Tfuel]
+  [htm_Tfuel]
     type = ElementAverageValue
     variable = T
     block = ${fuel_blocks}
@@ -326,21 +292,20 @@ n_fuel_pins = 211          # number of fuel compacts per assembly
 []
 
 [Executioner]
-  type = Steady
+  type = Transient
   nl_abs_tol = 5e-7
   nl_rel_tol = 1e-7
   petsc_options_value = 'hypre boomeramg'
   petsc_options_iname = '-pc_type -pc_hypre_type'
-  # dt = 0.01
+  dt = 0.1
   nl_max_its = 200
-  # steady_state_detection = true
-  # steady_state_tolerance = 5e-6
+  steady_state_detection = true
+  steady_state_tolerance = 5e-6
   [./Quadrature]
     type = TRAP
     order = FIRST
   [../]
 []
-
 
 [VectorPostprocessors]
   [fuel_axial_avg]

@@ -26,7 +26,7 @@ A_flow = '${fparse (3 * (sqrt(3) / 2) * hex_a * hex_a) - A_pins - A_nonFuels }' 
 hydraulics_diameter = 0.0029    # diameter of the coolant channels (m)
 P_wet_core = 20.4774 # wetted perimeter
 
-num_layers_for_THM = 40
+num_layers_for_THM = 20
 
 unit_cell_height = '${units 35.56 cm -> m}' # segment height, default is total.
 
@@ -295,7 +295,7 @@ unit_cell_height = '${units 35.56 cm -> m}' # segment height, default is total.
 
 [Executioner]
   type = Transient
-  dt = 0.001
+  dt = 0.1
 
   steady_state_detection = true
   steady_state_tolerance = 1e-08
@@ -335,6 +335,7 @@ unit_cell_height = '${units 35.56 cm -> m}' # segment height, default is total.
   [console]
     type = Console
     outlier_variable_norms = false
+    verbose = True
   []
 
   [csv]

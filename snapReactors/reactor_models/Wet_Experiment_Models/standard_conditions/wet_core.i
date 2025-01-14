@@ -269,6 +269,7 @@ ext_T_ref                 = 600 # (K)
     #app_type = GriffinApp
     input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/SNAP_solid_test3_1.i'
     positions = '0 0 0'
+    execute_on = timestep_end
     []
 []
 [Transfers]
@@ -278,18 +279,25 @@ ext_T_ref                 = 600 # (K)
         source_variable = griffin_power_density
         variable = power_density
     []
-    [from_htm_Tcool]
-        type = MultiAppProjectionTransfer
+    [from_htm_Tfuel]
+        type = MultiAppUserObjectTransfer
         from_multi_app = Griffin_htm
-        source_variable = fluid_temp
-        variable = griffin_Tcool
-    []
-    # [from_htm_Tfuel]
+        user_object = htm_Tfuel
+        variable = griffin_Tfuel
+    []     
+    # [from_htm_ref_temp]
     #     type = MultiAppUserObjectTransfer
     #     from_multi_app = Griffin_htm
-    #     user_object = avg_Tfuel
-    #     variable = griffin_Tfuel
-    # [] 
+    #     source_variable = htm_Tref
+    #     variable = griffin_Tcool
+    # []
+    # [from_htm_Tcool]
+    #     type = MultiAppProjectionTransfer
+    #     from_multi_app = Griffin_htm
+    #     source_variable = fluid_temp
+    #     variable = griffin_Tcool
+    # []
+
        
 []
 # ==============================================================================
@@ -455,6 +463,9 @@ ext_T_ref                 = 600 # (K)
         type = CSV
         execute_on = 'initial timestep_end'
     []
-
+    [console]
+        type = Console
+        verbose = true
+    []
     perf_graph = true
 []
