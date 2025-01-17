@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -l select=4:ncpus=20:mpiprocs=1
 #PBS -N Griffin
-#PBS -l walltime=00:45:00
+#PBS -l walltime=03:45:00
 #PBS -k doe
 #PBS -j oe
 #PBS -P edu_res

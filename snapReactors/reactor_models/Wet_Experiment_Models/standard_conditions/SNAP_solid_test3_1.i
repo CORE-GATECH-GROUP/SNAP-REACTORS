@@ -184,7 +184,7 @@ reflector_k = 216.0                        # Be Reflector thermal conductivity (
     type = TransientMultiApp
     #app_type = ThermalHydraulicsApp
     input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/SNAP_thm_test3_1.i'
-    execute_on =  timestep_end
+    execute_on =  MULTIAPP_FIXED_POINT_END
     bounding_box_padding = '0.1 0.1 0'
   []
 []
@@ -269,7 +269,7 @@ reflector_k = 216.0                        # Be Reflector thermal conductivity (
   [power_source]
     type = ElementIntegralVariablePostprocessor
     variable = power_density
-    execute_on = 'transfer initial timestep_end'
+    execute_on = 'timestep_end'
     block = ${fuel_blocks}
   []
   [min_power]

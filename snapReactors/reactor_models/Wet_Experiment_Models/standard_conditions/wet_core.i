@@ -269,7 +269,7 @@ ext_T_ref                 = 600 # (K)
     #app_type = GriffinApp
     input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/SNAP_solid_test3_1.i'
     positions = '0 0 0'
-    execute_on = 'FINAL'
+    execute_on = 'TIMESTEP_END'
     []
 []
 
@@ -281,9 +281,9 @@ ext_T_ref                 = 600 # (K)
         variable = power_density
     []
     [from_htm_Tfuel]
-        type = MultiAppUserObjectTransfer
+        type = MultiAppGeneralFieldUserObjectTransfer
         from_multi_app = Griffin_htm
-        user_object = htm_Tfuel
+        source_user_object = htm_Tfuel
         variable = griffin_Tfuel
     []     
     # [from_htm_ref_temp]
@@ -415,20 +415,7 @@ ext_T_ref                 = 600 # (K)
 # DFEM-SN Executioner
 [Executioner]
     type = SweepUpdate
-    verbose = false
-
-    # richardson_max_its = 50
-    # richardson_value = fission_source_integral
-    # richardson_rel_tol = 1e-7
-    # richardson_abs_tol = 1e-7
-
-    # inner_solve_type = GMRes
-    # max_inner_its = 5
-
-    # fixed_point_max_its = 5
-    # custom_pp = fission_source_integral
-    # custom_rel_tol = 1e-7
-    # force_fixed_point_solve = true
+    verbose = True
 
     richardson_max_its = 50
     richardson_value = eigenvalue
@@ -436,10 +423,11 @@ ext_T_ref                 = 600 # (K)
     richardson_abs_tol = 1e-4
 
     inner_solve_type = GMRes
-    max_inner_its = 5
+    max_inner_its = 20
 
     cmfd_acceleration = true
     coarse_element_id = coarse_element_id
+    #force_fixed_point_solve = true
 []
 
 # ==============================================================================
@@ -452,6 +440,14 @@ ext_T_ref                 = 600 # (K)
         variable = 'Unity'
         id_name = 'material_id'
         execute_on = 'initial'
+    []
+[]
+[Postprocessors]
+    [griffin_power]
+        type = ElementIntegralVariablePostprocessor
+        variable = griffin_power_density
+        #use_displaced_mesh = true
+        execute_on = 'timestep_end'
     []
 []
 
