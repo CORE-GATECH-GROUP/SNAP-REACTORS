@@ -268,8 +268,8 @@ ext_T_ref                 = 600 # (K)
     type = FullSolveMultiApp
     #app_type = GriffinApp
     input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/SNAP_solid_test3_1.i'
-    positions = '0 0 0'
-    execute_on = 'TIMESTEP_END'
+    positions = '0 0 19.5'
+    execute_on = 'MULTIAPP_FIXED_POINT_END'
     []
 []
 
@@ -280,12 +280,12 @@ ext_T_ref                 = 600 # (K)
         source_variable = griffin_power_density
         variable = power_density
     []
-    [from_htm_Tfuel]
-        type = MultiAppGeneralFieldUserObjectTransfer
-        from_multi_app = Griffin_htm
-        source_user_object = htm_Tfuel
-        variable = griffin_Tfuel
-    []     
+    # [from_htm_Tfuel]
+    #     type = MultiAppGeneralFieldUserObjectTransfer
+    #     from_multi_app = Griffin_htm
+    #     source_user_object = htm_Tfuel
+    #     variable = griffin_Tfuel
+    # []     
     # [from_htm_ref_temp]
     #     type = MultiAppUserObjectTransfer
     #     from_multi_app = Griffin_htm
@@ -316,7 +316,7 @@ ext_T_ref                 = 600 # (K)
     # DFEM-Transport
     [dsn]
         scheme = DFEM-SN
-        family = MONOMIAL
+        family = L2_LAGRANGE
         order = FIRST
         NA = 1 # 1st degree anisotropy
         AQtype = Level-Symmetric # Gauss-Chebyshev (NP X NA X 4) LS ((AQ *(AQ+2))/2)
@@ -415,7 +415,7 @@ ext_T_ref                 = 600 # (K)
 # DFEM-SN Executioner
 [Executioner]
     type = SweepUpdate
-    verbose = True
+    #verbose = True
 
     richardson_max_its = 50
     richardson_value = eigenvalue
@@ -423,11 +423,13 @@ ext_T_ref                 = 600 # (K)
     richardson_abs_tol = 1e-4
 
     inner_solve_type = GMRes
-    max_inner_its = 20
+    max_inner_its = 2
 
     cmfd_acceleration = true
     coarse_element_id = coarse_element_id
-    #force_fixed_point_solve = true
+    fixed_point_solve_outer = true
+    force_fixed_point_solve = true
+    #debug_richardson = true
 []
 
 # ==============================================================================
@@ -447,7 +449,7 @@ ext_T_ref                 = 600 # (K)
         type = ElementIntegralVariablePostprocessor
         variable = griffin_power_density
         #use_displaced_mesh = true
-        execute_on = 'timestep_end'
+        execute_on = 'initial timestep_end'
     []
 []
 

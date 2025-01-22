@@ -162,8 +162,8 @@ reflector_k = 216.0                        # Be Reflector thermal conductivity (
     order = CONSTANT
   []
   [power_density]
-    family = MONOMIAL
-    order = CONSTANT
+    family = L2_LAGRANGE
+    order = FIRST
     block = ${fuel_blocks}
   []
 []
@@ -184,7 +184,7 @@ reflector_k = 216.0                        # Be Reflector thermal conductivity (
     type = TransientMultiApp
     #app_type = ThermalHydraulicsApp
     input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/SNAP_thm_test3_1.i'
-    execute_on =  MULTIAPP_FIXED_POINT_END
+    execute_on =  timestep_end
     bounding_box_padding = '0.1 0.1 0'
   []
 []
