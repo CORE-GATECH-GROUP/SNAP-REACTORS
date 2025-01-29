@@ -269,7 +269,7 @@ ext_T_ref                 = 600 # (K)
     #app_type = GriffinApp
     input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/SNAP_solid_test3_1.i'
     positions = '0 0 19.5'
-    execute_on = 'MULTIAPP_FIXED_POINT_END'
+    execute_on = 'timestep_end'#'MULTIAPP_FIXED_POINT_END'
     []
 []
 
@@ -280,25 +280,24 @@ ext_T_ref                 = 600 # (K)
         source_variable = griffin_power_density
         variable = power_density
     []
-    # [from_htm_Tfuel]
-    #     type = MultiAppGeneralFieldUserObjectTransfer
-    #     from_multi_app = Griffin_htm
-    #     source_user_object = htm_Tfuel
-    #     variable = griffin_Tfuel
-    # []     
+    [from_htm_Tfuel]
+        type = MultiAppGeneralFieldUserObjectTransfer
+        from_multi_app = Griffin_htm
+        source_user_object = htm_Tfuel
+        variable = griffin_Tfuel
+    []     
     # [from_htm_ref_temp]
-    #     type = MultiAppUserObjectTransfer
+    #     type = MultiAppGeneralFieldUserObjectTransfer
     #     from_multi_app = Griffin_htm
     #     source_variable = htm_Tref
     #     variable = griffin_Tcool
     # []
     # [from_htm_Tcool]
-    #     type = MultiAppProjectionTransfer
+    #     type = MultiAppGeneralFieldUserObjectTransfer
     #     from_multi_app = Griffin_htm
     #     source_variable = fluid_temp
     #     variable = griffin_Tcool
     # []
-
        
 []
 # ==============================================================================
@@ -449,6 +448,26 @@ ext_T_ref                 = 600 # (K)
         type = ElementIntegralVariablePostprocessor
         variable = griffin_power_density
         #use_displaced_mesh = true
+        execute_on = 'initial timestep_end'
+    []
+    [activecore_vol]
+        type = VolumePostprocessor
+        block = '${fuel_blocks_2d} ${air_blocks_2d}'
+        execute_on = 'initial timestep_end'
+    []
+    [intref_vol]
+        type = VolumePostprocessor
+        block = ${intref_blocks_2d}
+        execute_on = 'initial timestep_end'
+    []
+    [barrel_vol]
+        type = VolumePostprocessor
+        block = ${barrel_blocks_2d}
+        execute_on = 'initial timestep_end'
+    []
+    [extref_vol]
+        type = VolumePostprocessor
+        block = ${extref_blocks_2d}
         execute_on = 'initial timestep_end'
     []
 []

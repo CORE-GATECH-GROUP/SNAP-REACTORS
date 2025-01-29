@@ -295,7 +295,7 @@ unit_cell_height = '${units 35.56 cm -> m}' # segment height, default is total.
 
 [Executioner]
   type = Transient
-  dt = 0.05
+  dt = 0.005
 
   steady_state_detection = true
   steady_state_tolerance = 1e-08

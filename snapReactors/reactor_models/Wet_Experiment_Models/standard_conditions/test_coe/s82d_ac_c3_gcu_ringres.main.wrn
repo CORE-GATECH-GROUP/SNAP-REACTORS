@@ -1,0 +1,67 @@
+
+ ***** Warning: Group constant generation is not switched on
+
+
+ ***** Warning: Energy grid fgs is used for both group constant generation
+ and detector calculation (detector fgsdet)
+
+
+***** Fri Jan 24 13:25:10 2025 (seed = 1737750298095, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Mismatch in count 9 (200 198)
+
+
+***** Fri Jan 24 13:46:14 2025 (seed = 1737750298095, MPI task = 3)
+Warning message from function SamplePrecursorGroup:
+
+Precursor group sampling failed (92235.00c, mt 18, E = 1.540358E-05)
+
+
+***** Fri Jan 24 14:05:30 2025 (seed = 1737750298095, MPI task = 0)
+Warning message from function SamplePrecursorGroup:
+
+Precursor group sampling failed (92235.00c, mt 18, E = 4.051182E-05)
+
+
+ ***** Warning: Energy grid fgs is used for both group constant generation
+ and detector calculation (detector fgsdet)
+
+
+***** Fri Jan 24 14:11:16 2025 (seed = 1737753064421, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Mismatch in count 9 (200 198)
+
+
+ ***** Warning: Zero flux in energy group 13
+
+
+ ***** Warning: Zero flux in energy group 1
+
+
+***** Fri Jan 24 14:22:33 2025
+
+Input error:
+
+Burnup point 20.000 MWd/kgU not found in restart file
+
+
+***** Fri Jan 24 14:22:33 2025
+
+Input error:
+
+Burnup point 20.000 MWd/kgU not found in restart file
+
+
+***** Fri Jan 24 14:22:34 2025
+
+Input error:
+
+Burnup point 20.000 MWd/kgU not found in restart file
+
+
+Simulation aborted.
+------------------------------------------------- MPI task 2
+Fri Jan 24 14:22:34 2025  (errors: 1, warnings: 0, notes: 0)
+

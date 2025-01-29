@@ -1,0 +1,362 @@
+r6i4n24.ib0.sawtooth.hpc.inl.gov
+r6i4n24.ib0.sawtooth.hpc.inl.gov
+r6i4n29.ib0.sawtooth.hpc.inl.gov
+r6i4n29.ib0.sawtooth.hpc.inl.gov
+
+******************************************************************************************************************
+
+                      _________                                                   _________
+                      \_________\----------____                   ____----------/_________/
+                          \________\-------\\\\\\               //////-------/________/
+                              \________\------\\||             ||//------/________/
+                                     \_____\----\\             //----/_____/
+                         ██████╗ ██████╗ ██╗███████╗███████╗██╗███╗  ██╗      ███╗   ███╗
+                        ██╔════╝ ██╔══██╗██║██╔════╝██╔════╝██║████╗ ██║      ████╗ ████║
+                        ██║  ██╗ ██████╔╝██║█████╗  █████╗  ██║██╔██╗██║█████╗██╔████╔██║
+                        ██║  ╚██╗██╔══██╗██║██╔══╝  ██╔══╝  ██║██║╚████║╚════╝██║╚██╔╝██║
+                        ╚██████╔╝██║  ██║██║██║     ██║     ██║██║ ╚███║      ██║ ╚═╝ ██║
+                         ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝     ╚═╝╚═╝  ╚══╝      ╚═╝     ╚═╝
+
+
+                                    Multiphysics Nuclear Reactor Analysis Code
+                                            Idaho National Laboratory
+                                           Argonne National Laboratory
+
+******************************************************************************************************************
+
+
+------------------------------------------------------------------------------------------------------------------
+Notice: These data were produced by Battelle Energy Alliance, LLC under contract No.
+DE-AC07-05ID14517 and UChicago Argonne under contract No. DE-AC02-06CH11357, LLC with
+the Department of Energy. During the period of commercialization or such other time
+period specified by the Department of Energy, the Government is granted for itself and
+others acting on its behalf a nonexclusive, paid-up, irrevocable worldwide license in
+this data to reproduce, prepare derivative works, and perform publicly and display
+publicly, by or on behalf of the Government. Subsequent to that period the Government is
+granted for itself and others acting on its behalf a nonexclusive, paid-up, irrevocable
+worldwide license in this data to reproduce, prepare derivative works, distribute copies
+to the public, perform publicly and display publicly, and to permit others to do so. The
+specific term of the license can be identified by inquiry made to the Contractor or DOE.
+NEITHER THE UNITED STATES NOR THE UNITED STATES DEPARTMENT OF ENERGY, NOR ANY OF THEIR
+EMPLOYEES, MAKES ANY WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY LEGAL LIABILITY OR
+RESPONSIBILITY FOR THE ACCURACY, COMPLETENESS, OR USEFULNESS OF ANY DATA, APPARATUS,
+PRODUCT, OR PROCESS DISCLOSED, OR REPRESENTS THAT ITS USE WOULD NOT INFRINGE PRIVATELY
+OWNED RIGHTS.
+------------------------------------------------------------------------------------------------------------------
+
+
+Griffin version:         git commit 3525cbd7a on 2024-06-27
+Framework Information:
+MOOSE Version:           git commit 462f0ad39e on 2024-06-26
+LibMesh Version:         1c5369aa05eaae8ebeb7930845fce3b1d59cbb37
+PETSc Version:           3.20.3
+SLEPc Version:           3.20.1
+Current Time:            Mon Jan 27 07:41:57 2025
+Executable Timestamp:    Mon Jul  1 03:31:41 2024
+
+Parallelism:
+  Num Processors:        20
+  Num Threads:           1
+
+Command line: griffin-opt -i bison_mesh.i
+
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 16
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+[r6i4n24:mpi_rank_16][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 16: Inappropriate ioctl for device (25)
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 12
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+[r6i4n24:mpi_rank_12][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 12: Inappropriate ioctl for device (25)
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 1
+[r6i4n24:mpi_rank_1][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 1: Inappropriate ioctl for device (25)
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 5
+[r6i4n24:mpi_rank_5][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 5: Inappropriate ioctl for device (25)
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 9
+[r6i4n24:mpi_rank_9][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 9: Inappropriate ioctl for device (25)
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 17
+[r6i4n24:mpi_rank_17][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 17: Inappropriate ioctl for device (25)
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+[r6i4n24:mpi_rank_0][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0: Inappropriate ioctl for device (25)
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 4
+[r6i4n24:mpi_rank_4][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 4: Inappropriate ioctl for device (25)
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 13
+[r6i4n24:mpi_rank_13][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 13: Inappropriate ioctl for device (25)
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 8
+[r6i4n24:mpi_rank_8][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 8: Inappropriate ioctl for device (25)
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 14
+[r6i4n29:mpi_rank_14][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 14: Inappropriate ioctl for device (25)
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 18
+[r6i4n29:mpi_rank_18][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 18: Inappropriate ioctl for device (25)
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 19
+[r6i4n29:mpi_rank_19][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 19: Inappropriate ioctl for device (25)
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 15
+[r6i4n29:mpi_rank_15][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 15: Inappropriate ioctl for device (25)
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 2
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 3
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 7
+[r6i4n29:mpi_rank_7][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 7: Inappropriate ioctl for device (25)
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 10
+[r6i4n29:mpi_rank_10][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 10: Inappropriate ioctl for device (25)
+[r6i4n29:mpi_rank_2][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 2: Inappropriate ioctl for device (25)
+[r6i4n29:mpi_rank_3][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 3: Inappropriate ioctl for device (25)
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 6
+[r6i4n29:mpi_rank_6][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 6: Inappropriate ioctl for device (25)
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/bison_mesh.i:9.17: no variable 'acm_dz' found for substitution expression
+[39m
+
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 11
+[r6i4n29:mpi_rank_11][MPIDI_CH3_Abort] application called MPI_Abort(MPI_COMM_WORLD, 1) - process 11: Inappropriate ioctl for device (25)
