@@ -10,8 +10,7 @@ cat $PBS_NODEFILE
 module load use.exp_ctl use.moose moose-apps griffin
 cd $PBS_O_WORKDIR
 export TMPDIR=/tmp
-mpiexec -n 20 griffin-opt -i bison_mesh.i
-#/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/SNAP_solid_test3_1.i
+mpiexec -n 20 griffin-opt -i wet_core.i
 
 
 

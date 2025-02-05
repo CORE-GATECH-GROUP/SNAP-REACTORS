@@ -267,8 +267,8 @@ ext_T_ref                 = 600 # (K)
     [Griffin_htm]
     type = FullSolveMultiApp
     #app_type = GriffinApp
-    input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/SNAP_solid_test3_1.i'
-    positions = '0 0 19.5'
+    input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/core_2D_bison.i'
+    positions = '0 0 0'
     execute_on = 'timestep_end'#'MULTIAPP_FIXED_POINT_END'
     []
 []
@@ -283,7 +283,7 @@ ext_T_ref                 = 600 # (K)
     [from_htm_Tfuel]
         type = MultiAppGeneralFieldUserObjectTransfer
         from_multi_app = Griffin_htm
-        source_user_object = bison_Tfuel
+        source_user_object = htm_Tfuel
         variable = griffin_Tfuel
     []     
     # [from_htm_ref_temp]
@@ -463,11 +463,6 @@ ext_T_ref                 = 600 # (K)
     [barrel_vol]
         type = VolumePostprocessor
         block = ${barrel_blocks_2d}
-        execute_on = 'initial timestep_end'
-    []
-    [extref_vol]
-        type = VolumePostprocessor
-        block = ${extref1_blocks_2d} ${extref2_blocks_2d} ${extref3_blocks_2d} ${extref4_blocks_2d} ${shima_blocks_2d} ${shimb_blocks_2d}
         execute_on = 'initial timestep_end'
     []
 []
