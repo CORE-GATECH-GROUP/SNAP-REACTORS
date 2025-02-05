@@ -13811,15 +13811,17 @@ class S8_Wet(S8ER):
         gapThickness1 = 0.207772/4
         gapThickness2 = 0.207772
         gapThickness3 = 0.207772
+        gapThickness4 = 0.207772
 
         drumApothem = 17.4732315 - gapThickness1
         shimAApothem = 19.35542598 - gapThickness1  - gapThickness2
         shimBApothem = 21.30540674 - gapThickness1 - gapThickness2 - gapThickness3
-
+        shimCApothem = 23.56372 - gapThickness1 - gapThickness2 - gapThickness3 - gapThickness4
 
         drumVertex = calcVertexFromApothem(drumApothem)
         shimAVertex = calcVertexFromApothem(shimAApothem)
         shimBVertex = calcVertexFromApothem(shimBApothem)
+        shimCVertex = calcApothemFromVertex(shimCApothem)
 
         uid = "barrelACM"
         drumSurf1  = surf(uid+"h1", "hexyc", np.array([0.0, 0.0, barrelRad + 1*(drumApothem-barrelRad)/4]))
@@ -13828,7 +13830,8 @@ class S8_Wet(S8ER):
         drumSurf4  = surf(uid+"h4", "hexyc", np.array([0.0, 0.0, drumApothem]))
         drumSurf5  = surf(uid+"h5", "hexyc", np.array([0.0, 0.0, shimAApothem]))
         drumSurf6  = surf(uid+"h6", "hexyc", np.array([0.0, 0.0, shimBApothem]))
-        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimBVertex]))
+        drumSurf7  = surf(uid+"h7", "hexyc", np.array([0.0, 0.0, shimCApothem]))
+        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimCVertex]))
 
         cdSys1 = cell(uid+'cdSys1', mat=cdMat)
         cdSys1.setSurfs([barrel1ACM.boundary, drumSurf1], [0, 1])
@@ -13847,6 +13850,9 @@ class S8_Wet(S8ER):
 
         cdSys6 = cell(uid+'cdSys6', mat=cdMat)
         cdSys6.setSurfs([drumSurf5, drumSurf6], [0, 1])
+
+        cdSys7 = cell(uid+'cdSys7', mat=cdMat)
+        cdSys7.setSurfs([drumSurf6, drumSurf7], [0, 1])
 
         cdOnly1 = universe(uid+"control13")
         cdOnly1.setBoundary(drumSurf1)
@@ -13884,10 +13890,16 @@ class S8_Wet(S8ER):
         cdOnly6.collectAll()
         cdOnly6.setGCU(4400)
 
+        cdOnly7 = universe(uid+"air19")
+        cdOnly7.setBoundary(drumSurf7)
+        cdOnly7.setGeom([cdSys7])
+        cdOnly7.collectAll()
+        cdOnly7.setGCU(4500)
+
         cdFull = universe(uid+"cdFull")
 
         cdSysDV = cell(uid+'cdSysVoidDV', isVoid=True)
-        cdSysDV.setSurfs([drumSurf6, voidSurf], [0, 1]) 
+        cdSysDV.setSurfs([drumSurf7, voidSurf], [0, 1]) 
 
         cdSysD1 =  cell(uid+'cdSysD1')
         cdSysD1.setFill(cdOnly1)
@@ -13913,8 +13925,12 @@ class S8_Wet(S8ER):
         cdSysD6.setFill(cdOnly6)
         cdSysD6.setSurfs([drumSurf5, drumSurf6], [0, 1])
 
+        cdSysD7 =  cell(uid+'cdSysD7')
+        cdSysD7.setFill(cdOnly7)
+        cdSysD7.setSurfs([drumSurf6, drumSurf7], [0, 1])
+
         cdFull.setBoundary(voidSurf)
-        cdFull.setGeom([cdSysD1, cdSysD2, cdSysD3, cdSysD4, cdSysD5, cdSysD6, cdSysDV])
+        cdFull.setGeom([cdSysD1, cdSysD2, cdSysD3, cdSysD4, cdSysD5, cdSysD6, cdSysD7,cdSysDV])
         cdFull.collectAll()
         cdBarrelACM = buildPeripheralObject(barrel1ACM, cdFull)
 
@@ -13926,7 +13942,8 @@ class S8_Wet(S8ER):
         drumSurf4  = surf(uid+"h4", "hexyc", np.array([0.0, 0.0, drumApothem]))
         drumSurf5  = surf(uid+"h5", "hexyc", np.array([0.0, 0.0, shimAApothem]))
         drumSurf6  = surf(uid+"h6", "hexyc", np.array([0.0, 0.0, shimBApothem]))
-        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimBVertex]))
+        drumSurf7  = surf(uid+"h7", "hexyc", np.array([0.0, 0.0, shimCApothem]))
+        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimCVertex]))
 
         cdSys1 = cell(uid+'cdSys1', mat=cdMat)
         cdSys1.setSurfs([barrel1ACL.boundary, drumSurf1], [0, 1])
@@ -13943,49 +13960,58 @@ class S8_Wet(S8ER):
         cdSys5 = cell(uid+'cdSys5', mat=cdMat)
         cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
 
-        cdSys6 = cell(uid+'cdSys6', isVoid = True)
+        cdSys6 = cell(uid+'cdSys6', mat=cdMat)
         cdSys6.setSurfs([drumSurf5, drumSurf6], [0, 1])
+
+        cdSys7 = cell(uid+'cdSys7', mat=cdMat)
+        cdSys7.setSurfs([drumSurf6, drumSurf7], [0, 1])
 
         cdOnly1 = universe(uid+"control13")
         cdOnly1.setBoundary(drumSurf1)
         cdOnly1.setGeom([cdSys1])
         cdOnly1.collectAll()
-        cdOnly1.setGCU(5500)
+        cdOnly1.setGCU(5400)
 
         cdOnly2 = universe(uid+"control14")
         cdOnly2.setBoundary(drumSurf2)
         cdOnly2.setGeom([cdSys2])
         cdOnly2.collectAll()
-        cdOnly2.setGCU(5600)
+        cdOnly2.setGCU(5500)
 
         cdOnly3 = universe(uid+"control15")
         cdOnly3.setBoundary(drumSurf3)
         cdOnly3.setGeom([cdSys3])
         cdOnly3.collectAll()
-        cdOnly3.setGCU(5700)
+        cdOnly3.setGCU(5600)
 
         cdOnly4 = universe(uid+"control16")
         cdOnly4.setBoundary(drumSurf4)
         cdOnly4.setGeom([cdSys4])
         cdOnly4.collectAll()
-        cdOnly4.setGCU(5800)
+        cdOnly4.setGCU(5700)
 
-        cdOnly5 = universe(uid+"shima17")
+        cdOnly5 = universe(uid+"air17")
         cdOnly5.setBoundary(drumSurf5)
         cdOnly5.setGeom([cdSys5])
         cdOnly5.collectAll()
-        cdOnly5.setGCU(5900)
-
+        cdOnly5.setGCU(5800)
+    
         cdOnly6 = universe(uid+"air18")
         cdOnly6.setBoundary(drumSurf6)
         cdOnly6.setGeom([cdSys6])
         cdOnly6.collectAll()
-        cdOnly6.setGCU(9900)
+        cdOnly6.setGCU(5900)
+
+        cdOnly7 = universe(uid+"air19")
+        cdOnly7.setBoundary(drumSurf7)
+        cdOnly7.setGeom([cdSys7])
+        cdOnly7.collectAll()
+        cdOnly7.setGCU(9900)
 
         cdFull = universe(uid+"cdFull")
 
         cdSysDV = cell(uid+'cdSysVoidDV', isVoid=True)
-        cdSysDV.setSurfs([drumSurf6, voidSurf], [0, 1]) 
+        cdSysDV.setSurfs([drumSurf7, voidSurf], [0, 1]) 
 
         cdSysD1 =  cell(uid+'cdSysD1')
         cdSysD1.setFill(cdOnly1)
@@ -14011,8 +14037,13 @@ class S8_Wet(S8ER):
         cdSysD6.setFill(cdOnly6)
         cdSysD6.setSurfs([drumSurf5, drumSurf6], [0, 1])
 
+        cdSysD7 =  cell(uid+'cdSysD7')
+        cdSysD7.setFill(cdOnly7)
+        cdSysD7.setSurfs([drumSurf6, drumSurf7], [0, 1])
+
         cdFull.setBoundary(voidSurf)
-        cdFull.setGeom([cdSysD1, cdSysD2, cdSysD3, cdSysD4, cdSysD5, cdSysD6, cdSysDV])
+        cdFull.setGeom([cdSysD1, cdSysD2, cdSysD3, cdSysD4, cdSysD5, cdSysD6, cdSysD7,cdSysDV])
+
         cdFull.collectAll()
 
         cdBarrelACL = buildPeripheralObject(barrel1ACL, cdFull)
@@ -14024,7 +14055,8 @@ class S8_Wet(S8ER):
         drumSurf4  = surf(uid+"h4", "hexyc", np.array([0.0, 0.0, drumApothem]))
         drumSurf5  = surf(uid+"h5", "hexyc", np.array([0.0, 0.0, shimAApothem]))
         drumSurf6  = surf(uid+"h6", "hexyc", np.array([0.0, 0.0, shimBApothem]))
-        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimBVertex]))
+        drumSurf7  = surf(uid+"h7", "hexyc", np.array([0.0, 0.0, shimCApothem]))
+        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimCVertex]))
 
         cdSys1 = cell(uid+'cdSys1', mat=cdMat)
         cdSys1.setSurfs([barrel1ACU.boundary, drumSurf1], [0, 1])
@@ -14041,8 +14073,11 @@ class S8_Wet(S8ER):
         cdSys5 = cell(uid+'cdSys5', mat=cdMat)
         cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
 
-        cdSys6 = cell(uid+'cdSys6', isVoid = True)
+        cdSys6 = cell(uid+'cdSys6', mat=cdMat)
         cdSys6.setSurfs([drumSurf5, drumSurf6], [0, 1])
+
+        cdSys7 = cell(uid+'cdSys7', mat=cdMat)
+        cdSys7.setSurfs([drumSurf6, drumSurf7], [0, 1])
 
         cdOnly1 = universe(uid+"control13")
         cdOnly1.setBoundary(drumSurf1)
@@ -14068,22 +14103,28 @@ class S8_Wet(S8ER):
         cdOnly4.collectAll()
         cdOnly4.setGCU(6300)
 
-        cdOnly5 = universe(uid+"shima17")
+        cdOnly5 = universe(uid+"air17")
         cdOnly5.setBoundary(drumSurf5)
         cdOnly5.setGeom([cdSys5])
         cdOnly5.collectAll()
         cdOnly5.setGCU(6400)
-
+    
         cdOnly6 = universe(uid+"air18")
         cdOnly6.setBoundary(drumSurf6)
         cdOnly6.setGeom([cdSys6])
         cdOnly6.collectAll()
-        cdOnly6.setGCU(9901)
+        cdOnly6.setGCU(6500)
+
+        cdOnly7 = universe(uid+"air19")
+        cdOnly7.setBoundary(drumSurf7)
+        cdOnly7.setGeom([cdSys7])
+        cdOnly7.collectAll()
+        cdOnly7.setGCU(9901)
 
         cdFull = universe(uid+"cdFull")
 
         cdSysDV = cell(uid+'cdSysVoidDV', isVoid=True)
-        cdSysDV.setSurfs([drumSurf6, voidSurf], [0, 1]) 
+        cdSysDV.setSurfs([drumSurf7, voidSurf], [0, 1]) 
 
         cdSysD1 =  cell(uid+'cdSysD1')
         cdSysD1.setFill(cdOnly1)
@@ -14109,8 +14150,13 @@ class S8_Wet(S8ER):
         cdSysD6.setFill(cdOnly6)
         cdSysD6.setSurfs([drumSurf5, drumSurf6], [0, 1])
 
+        cdSysD7 =  cell(uid+'cdSysD7')
+        cdSysD7.setFill(cdOnly7)
+        cdSysD7.setSurfs([drumSurf6, drumSurf7], [0, 1])
+
         cdFull.setBoundary(voidSurf)
-        cdFull.setGeom([cdSysD1, cdSysD2, cdSysD3, cdSysD4, cdSysD5, cdSysD6, cdSysDV])
+        cdFull.setGeom([cdSysD1, cdSysD2, cdSysD3, cdSysD4, cdSysD5, cdSysD6, cdSysD7,cdSysDV])
+
         cdFull.collectAll()
         cdBarrelACU = buildPeripheralObject(barrel1ACU, cdFull)
 
@@ -14162,10 +14208,11 @@ class S8_Wet(S8ER):
         drumSurf4  = surf(uid+"h4", "hexyc", np.array([0.0, 0.0, drumApothem]))
         drumSurf5  = surf(uid+"h5", "hexyc", np.array([0.0, 0.0, shimAApothem]))
         drumSurf6  = surf(uid+"h6", "hexyc", np.array([0.0, 0.0, shimBApothem]))
-        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimBVertex]))
+        drumSurf7  = surf(uid+"h7", "hexyc", np.array([0.0, 0.0, shimCApothem]))
+        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimCVertex]))
 
         cdSys1 = cell(uid+'cdSys1', isVoid = True)
-        cdSys1.setSurfs([ugBarrel.boundary, drumSurf6], [0, 1])
+        cdSys1.setSurfs([ugBarrel.boundary, drumSurf7], [0, 1])
 
         # cdSys2 = cell(uid+'cdSys2', mat=nakMat)
         # cdSys2.setSurfs([drumSurf1, drumSurf2], [0, 1])
@@ -14180,7 +14227,7 @@ class S8_Wet(S8ER):
         # cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
 
         cdOnly1 = universe(uid+"control13")
-        cdOnly1.setBoundary(drumSurf6)
+        cdOnly1.setBoundary(drumSurf7)
         cdOnly1.setGeom([cdSys1])
         cdOnly1.collectAll()
         cdOnly1.setGCU(7500)
@@ -14212,11 +14259,11 @@ class S8_Wet(S8ER):
         cdFull = universe(uid+"cdFull")
 
         cdSysDV = cell(uid+'cdSysVoidDV', isVoid=True)
-        cdSysDV.setSurfs([drumSurf6, voidSurf], [0, 1]) 
+        cdSysDV.setSurfs([drumSurf7, voidSurf], [0, 1]) 
 
         cdSysD1 =  cell(uid+'cdSysD1')
         cdSysD1.setFill(cdOnly1)
-        cdSysD1.setSurfs([ugBarrel.boundary, drumSurf6], [0, 1])
+        cdSysD1.setSurfs([ugBarrel.boundary, drumSurf7], [0, 1])
 
         # cdSysD2 =  cell(uid+'cdSysD2')
         # cdSysD2.setFill(cdOnly2)
@@ -14293,10 +14340,11 @@ class S8_Wet(S8ER):
         drumSurf4  = surf(uid+"h4", "hexyc", np.array([0.0, 0.0, drumApothem]))
         drumSurf5  = surf(uid+"h5", "hexyc", np.array([0.0, 0.0, shimAApothem]))
         drumSurf6  = surf(uid+"h6", "hexyc", np.array([0.0, 0.0, shimBApothem]))
-        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimBVertex]))
+        drumSurf7  = surf(uid+"h7", "hexyc", np.array([0.0, 0.0, shimCApothem]))
+        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimCVertex]))
 
         cdSys1 = cell(uid+'cdSys1', isVoid = True)
-        cdSys1.setSurfs([lgBarrel.boundary, drumSurf6], [0, 1])
+        cdSys1.setSurfs([lgBarrel.boundary, drumSurf7], [0, 1])
 
         # cdSys2 = cell(uid+'cdSys2', mat=nakMat)
         # cdSys2.setSurfs([drumSurf1, drumSurf2], [0, 1])
@@ -14311,7 +14359,7 @@ class S8_Wet(S8ER):
         # cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
 
         cdOnly1 = universe(uid+"control13")
-        cdOnly1.setBoundary(drumSurf6)
+        cdOnly1.setBoundary(drumSurf7)
         cdOnly1.setGeom([cdSys1])
         cdOnly1.collectAll()
         cdOnly1.setGCU(8000)
@@ -14343,11 +14391,11 @@ class S8_Wet(S8ER):
         cdFull = universe(uid+"cdFull")
 
         cdSysDV = cell(uid+'cdSysVoidDV', isVoid=True)
-        cdSysDV.setSurfs([drumSurf6, voidSurf], [0, 1]) 
+        cdSysDV.setSurfs([drumSurf7, voidSurf], [0, 1]) 
 
         cdSysD1 =  cell(uid+'cdSysD1')
         cdSysD1.setFill(cdOnly1)
-        cdSysD1.setSurfs([lgBarrel.boundary, drumSurf6], [0, 1])
+        cdSysD1.setSurfs([lgBarrel.boundary, drumSurf7], [0, 1])
 
         # cdSysD2 =  cell(uid+'cdSysD2')
         # cdSysD2.setFill(cdOnly2)
@@ -14421,7 +14469,8 @@ class S8_Wet(S8ER):
         drumSurf4  = surf(uid+"h4", "hexyc", np.array([0.0, 0.0, drumApothem]))
         drumSurf5  = surf(uid+"h5", "hexyc", np.array([0.0, 0.0, shimAApothem]))
         drumSurf6  = surf(uid+"h6", "hexyc", np.array([0.0, 0.0, shimBApothem]))
-        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimBVertex]))
+        drumSurf7  = surf(uid+"h7", "hexyc", np.array([0.0, 0.0, shimCApothem]))
+        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimCVertex]))
 
         cdSys1 = cell(uid+'cdSys1', mat=cdMat)
         cdSys1.setSurfs([barrel1uec.boundary, drumSurf1], [0, 1])
@@ -14438,49 +14487,58 @@ class S8_Wet(S8ER):
         cdSys5 = cell(uid+'cdSys5', mat=cdMat)
         cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
 
-        cdSys6 = cell(uid+'cdSys6', isVoid = True)
+        cdSys6 = cell(uid+'cdSys6', mat=cdMat)
         cdSys6.setSurfs([drumSurf5, drumSurf6], [0, 1])
+
+        cdSys7 = cell(uid+'cdSys7', mat=cdMat)
+        cdSys7.setSurfs([drumSurf6, drumSurf7], [0, 1])
 
         cdOnly1 = universe(uid+"control13")
         cdOnly1.setBoundary(drumSurf1)
         cdOnly1.setGeom([cdSys1])
         cdOnly1.collectAll()
-        cdOnly1.setGCU(6500)
+        cdOnly1.setGCU(6401)
 
         cdOnly2 = universe(uid+"control14")
         cdOnly2.setBoundary(drumSurf2)
         cdOnly2.setGeom([cdSys2])
         cdOnly2.collectAll()
-        cdOnly2.setGCU(6600)
+        cdOnly2.setGCU(6501)
 
         cdOnly3 = universe(uid+"control15")
         cdOnly3.setBoundary(drumSurf3)
         cdOnly3.setGeom([cdSys3])
         cdOnly3.collectAll()
-        cdOnly3.setGCU(6700)
+        cdOnly3.setGCU(6600)
 
         cdOnly4 = universe(uid+"control16")
         cdOnly4.setBoundary(drumSurf4)
         cdOnly4.setGeom([cdSys4])
         cdOnly4.collectAll()
-        cdOnly4.setGCU(6800)
+        cdOnly4.setGCU(6700)
 
-        cdOnly5 = universe(uid+"shima17")
+        cdOnly5 = universe(uid+"air17")
         cdOnly5.setBoundary(drumSurf5)
         cdOnly5.setGeom([cdSys5])
         cdOnly5.collectAll()
-        cdOnly5.setGCU(6900)
-
+        cdOnly5.setGCU(6800)
+    
         cdOnly6 = universe(uid+"air18")
         cdOnly6.setBoundary(drumSurf6)
         cdOnly6.setGeom([cdSys6])
         cdOnly6.collectAll()
-        cdOnly6.setGCU(9902)
+        cdOnly6.setGCU(6900)
+
+        cdOnly7 = universe(uid+"air19")
+        cdOnly7.setBoundary(drumSurf7)
+        cdOnly7.setGeom([cdSys7])
+        cdOnly7.collectAll()
+        cdOnly7.setGCU(9902)
 
         cdFull = universe(uid+"cdFull")
 
         cdSysDV = cell(uid+'cdSysVoidDV', isVoid=True)
-        cdSysDV.setSurfs([drumSurf6, voidSurf], [0, 1]) 
+        cdSysDV.setSurfs([drumSurf7, voidSurf], [0, 1]) 
 
         cdSysD1 =  cell(uid+'cdSysD1')
         cdSysD1.setFill(cdOnly1)
@@ -14506,8 +14564,13 @@ class S8_Wet(S8ER):
         cdSysD6.setFill(cdOnly6)
         cdSysD6.setSurfs([drumSurf5, drumSurf6], [0, 1])
 
+        cdSysD7 =  cell(uid+'cdSysD7')
+        cdSysD7.setFill(cdOnly7)
+        cdSysD7.setSurfs([drumSurf6, drumSurf7], [0, 1])
+
         cdFull.setBoundary(voidSurf)
-        cdFull.setGeom([cdSysD1, cdSysD2, cdSysD3, cdSysD4, cdSysD5, cdSysD6, cdSysDV])
+        cdFull.setGeom([cdSysD1, cdSysD2, cdSysD3, cdSysD4, cdSysD5, cdSysD6, cdSysD7,cdSysDV])
+
         cdFull.collectAll()
 
         cdUecFull = buildPeripheralObject(barrel1uec, cdFull)
@@ -14565,7 +14628,8 @@ class S8_Wet(S8ER):
         drumSurf4  = surf(uid+"h4", "hexyc", np.array([0.0, 0.0, drumApothem]))
         drumSurf5  = surf(uid+"h5", "hexyc", np.array([0.0, 0.0, shimAApothem]))
         drumSurf6  = surf(uid+"h6", "hexyc", np.array([0.0, 0.0, shimBApothem]))
-        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimBVertex]))
+        drumSurf7  = surf(uid+"h7", "hexyc", np.array([0.0, 0.0, shimCApothem]))
+        voidSurf = surf(uid+"voidDrum"+"h1", "cyl", np.array([0.0, 0.0, shimCVertex]))
 
         cdSys1 = cell(uid+'cdSys1', mat=cdMat)
         cdSys1.setSurfs([barrel1lec.boundary, drumSurf1], [0, 1])
@@ -14581,50 +14645,59 @@ class S8_Wet(S8ER):
 
         cdSys5 = cell(uid+'cdSys5', mat=cdMat)
         cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
-    
-        cdSys6 = cell(uid+'cdSys6', isVoid=True)
+
+        cdSys6 = cell(uid+'cdSys6', mat=cdMat)
         cdSys6.setSurfs([drumSurf5, drumSurf6], [0, 1])
+
+        cdSys7 = cell(uid+'cdSys7', mat=cdMat)
+        cdSys7.setSurfs([drumSurf6, drumSurf7], [0, 1])
 
         cdOnly1 = universe(uid+"control13")
         cdOnly1.setBoundary(drumSurf1)
         cdOnly1.setGeom([cdSys1])
         cdOnly1.collectAll()
-        cdOnly1.setGCU(7000)
+        cdOnly1.setGCU(6901)
 
         cdOnly2 = universe(uid+"control14")
         cdOnly2.setBoundary(drumSurf2)
         cdOnly2.setGeom([cdSys2])
         cdOnly2.collectAll()
-        cdOnly2.setGCU(7100)
+        cdOnly2.setGCU(7000)
 
         cdOnly3 = universe(uid+"control15")
         cdOnly3.setBoundary(drumSurf3)
         cdOnly3.setGeom([cdSys3])
         cdOnly3.collectAll()
-        cdOnly3.setGCU(7200)
+        cdOnly3.setGCU(7100)
 
         cdOnly4 = universe(uid+"control16")
         cdOnly4.setBoundary(drumSurf4)
         cdOnly4.setGeom([cdSys4])
         cdOnly4.collectAll()
-        cdOnly4.setGCU(7300)
+        cdOnly4.setGCU(7200)
 
-        cdOnly5 = universe(uid+"shima17")
+        cdOnly5 = universe(uid+"air17")
         cdOnly5.setBoundary(drumSurf5)
         cdOnly5.setGeom([cdSys5])
         cdOnly5.collectAll()
-        cdOnly5.setGCU(7400)
-
+        cdOnly5.setGCU(7300)
+    
         cdOnly6 = universe(uid+"air18")
         cdOnly6.setBoundary(drumSurf6)
         cdOnly6.setGeom([cdSys6])
         cdOnly6.collectAll()
-        cdOnly6.setGCU(9903)
+        cdOnly6.setGCU(7400)
+
+        cdOnly7 = universe(uid+"air19")
+        cdOnly7.setBoundary(drumSurf7)
+        cdOnly7.setGeom([cdSys7])
+        cdOnly7.collectAll()
+        cdOnly7.setGCU(9903)
 
         cdFull = universe(uid+"cdFull")
 
         cdSysDV = cell(uid+'cdSysVoidDV', isVoid=True)
-        cdSysDV.setSurfs([drumSurf6, voidSurf], [0, 1]) 
+        cdSysDV.setSurfs([drumSurf7, voidSurf], [0, 1]) 
 
         cdSysD1 =  cell(uid+'cdSysD1')
         cdSysD1.setFill(cdOnly1)
@@ -14650,8 +14723,12 @@ class S8_Wet(S8ER):
         cdSysD6.setFill(cdOnly6)
         cdSysD6.setSurfs([drumSurf5, drumSurf6], [0, 1])
 
+        cdSysD7 =  cell(uid+'cdSysD7')
+        cdSysD7.setFill(cdOnly7)
+        cdSysD7.setSurfs([drumSurf6, drumSurf7], [0, 1])
+
         cdFull.setBoundary(voidSurf)
-        cdFull.setGeom([cdSysD1, cdSysD2, cdSysD3, cdSysD4, cdSysD5, cdSysD6, cdSysDV])
+        cdFull.setGeom([cdSysD1, cdSysD2, cdSysD3, cdSysD4, cdSysD5, cdSysD6, cdSysD7,cdSysDV])
         cdFull.collectAll()
 
         cdLecFull = buildPeripheralObject(barrel1lec, cdFull)
