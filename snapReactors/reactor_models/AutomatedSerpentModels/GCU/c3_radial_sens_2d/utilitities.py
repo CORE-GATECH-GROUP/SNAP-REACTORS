@@ -110,7 +110,7 @@ def makeFuelPinHC(x, y, radii):
 
 
 def init():
-    cubit.init(['cubit', '-nojournal'])
+    cubit.init(['cubit'])#, '-nojournal'])
     cubit.reset()
     return
 
@@ -688,16 +688,19 @@ def runDivRefFull(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBloc
     gapThickness1 = 0.207772/4
     gapThickness2 = 0.207772
     gapThickness3 = 0.207772
-
+    gapThickness4 = 0.207772
     drumApothem = 17.4732315 - gapThickness1
     # shimAApothem = 19.35542598 - gapThickness1  - gapThickness2
     # shimBApothem = 21.30540674 - gapThickness1 - gapThickness2 - gapThickness3
 
     shimAApothem = 19.35542598 - gapThickness1 - gapThickness2
     shimBApothem = 21.30540674 - gapThickness1 - gapThickness2 -gapThickness3
+    shimCApothem = 23.56372 - gapThickness1 - gapThickness2 - gapThickness3 - gapThickness4
     drumApothem4 = 17.4732315 - gapThickness1
 
+    shimCsurf, shimCid = makeHexSurf(shimCApothem)
     shimBsurf, shimBid = makeHexSurf(shimBApothem)
+    shimAsurf, shimAid = makeHexSurf(shimAApothem)
     drumOuter = 'outer'
 
     curves = cubit.get_entities('curve')
@@ -712,10 +715,18 @@ def runDivRefFull(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBloc
     drumApothem2 = barrelRad + 2*(drumApothem4 - barrelRad)/4
     drumApothem1 = barrelRad + 1*(drumApothem4 - barrelRad)/4
 
-    shimAsurf, shimAid = makeHexSurf(shimAApothem)
+    
+
+    cubit.cmd('subtract surface {} from surface {} keep_tool'.format(shimBsurf, shimCsurf))
+    shimCsurf = cubit.get_last_id("surface")
+
+    cubit.cmd("merge all")
+    cubit.cmd('imprint all')
 
     cubit.cmd('subtract surface {} from surface {} keep_tool'.format(shimAsurf, shimBsurf))
     shimBsurf = cubit.get_last_id("surface")
+    # TEMPORARY FIX NEED TO UNDERSTAND WHAT GET ID COMMAND IS NOT FUNCTIONING PROPERLY
+    shimBsurf = 5
 
     cubit.cmd("merge all")
     cubit.cmd('imprint all')
@@ -920,6 +931,7 @@ def runDivRefFull(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBloc
 
     blockFactor = 100
 
+    shimCBlockId = (maxId + 9)*blockFactor
     shimBBlockId = (maxId + 8)*blockFactor
     shimABlockId = (maxId + 7)*blockFactor
     drumBlockId4 = (maxId + 6)*blockFactor
@@ -929,6 +941,7 @@ def runDivRefFull(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBloc
     barrelBlockId = (maxId + 2)*blockFactor
     intRefBlockId = (maxId + 1)*blockFactor
 
+    cubit.cmd("block {} add surface {}".format(shimCBlockId, shimCsurf))
     cubit.cmd("block {} add surface {}".format(shimBBlockId, shimBsurf))
     cubit.cmd("block {} add surface {}".format(shimABlockId, shimAsurf))
 
@@ -997,28 +1010,35 @@ def runDivRefFull(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBloc
 
     extRefSize1 = 5
     extRefScheme = "trimesh"
-    surfStr = str(drumSurf3) + " " + str(drumSurf4) + " " + str(shimAsurf) + " " + str(shimBsurf)
+    surfStr = str(drumSurf3) + " " + str(drumSurf4) + " " + str(shimAsurf) + " " + str(shimBsurf) + " " + str(shimCsurf)
     cubit.cmd("surface {} size auto factor {}".format(surfStr, extRefSize1))
     cubit.cmd("surface {} scheme {}".format(surfStr, extRefScheme))
     cubit.cmd("mesh surface {}".format(surfStr))
 
     extRefSize1 = 5
     extRefScheme = "trimesh"
-    surfStr = str(drumSurf4) + " " + str(shimAsurf) + " " + str(shimBsurf)
+    surfStr = str(drumSurf4) + " " + str(shimAsurf) + " " + str(shimBsurf) + " " + str(shimCsurf)
     cubit.cmd("surface {} size auto factor {}".format(surfStr, extRefSize1))
     cubit.cmd("surface {} scheme {}".format(surfStr, extRefScheme))
     cubit.cmd("mesh surface {}".format(surfStr))
 
     extRefSize1 = 5
     extRefScheme = "trimesh"
-    surfStr = str(shimAsurf) + " " + str(shimBsurf)
+    surfStr = str(shimAsurf) + " " + str(shimBsurf) + " " + str(shimCsurf)
     cubit.cmd("surface {} size auto factor {}".format(surfStr, extRefSize1))
     cubit.cmd("surface {} scheme {}".format(surfStr, extRefScheme))
     cubit.cmd("mesh surface {}".format(surfStr))
 
     extRefSize1 = 5
     extRefScheme = "trimesh"
-    surfStr = str(shimBsurf)
+    surfStr = str(shimBsurf) + " " + str(shimCsurf)
+    cubit.cmd("surface {} size auto factor {}".format(surfStr, extRefSize1))
+    cubit.cmd("surface {} scheme {}".format(surfStr, extRefScheme))
+    cubit.cmd("mesh surface {}".format(surfStr))
+    
+    extRefSize1 = 5
+    extRefScheme = "trimesh"
+    surfStr = str(shimCsurf)
     cubit.cmd("surface {} size auto factor {}".format(surfStr, extRefSize1))
     cubit.cmd("surface {} scheme {}".format(surfStr, extRefScheme))
     cubit.cmd("mesh surface {}".format(surfStr))

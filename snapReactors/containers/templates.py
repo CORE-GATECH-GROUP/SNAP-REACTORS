@@ -13821,7 +13821,7 @@ class S8_Wet(S8ER):
         drumVertex = calcVertexFromApothem(drumApothem)
         shimAVertex = calcVertexFromApothem(shimAApothem)
         shimBVertex = calcVertexFromApothem(shimBApothem)
-        shimCVertex = calcApothemFromVertex(shimCApothem)
+        shimCVertex = calcVertexFromApothem(shimCApothem)
 
         uid = "barrelACM"
         drumSurf1  = surf(uid+"h1", "hexyc", np.array([0.0, 0.0, barrelRad + 1*(drumApothem-barrelRad)/4]))

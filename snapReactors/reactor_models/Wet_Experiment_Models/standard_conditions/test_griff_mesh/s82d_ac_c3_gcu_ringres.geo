@@ -1,10 +1,10 @@
-surf barrelACMvoidDrumh1 cyl 0.0 0.0 19.82198867952938 
-surf putBorder cuboid -19.82198867952938 19.82198867952938 -19.82198867952938 19.82198867952938 0.0 38.422579999999996 
+surf barrelACMvoidDrumh1 cyl 0.0 0.0 26.429318239372506 
+surf putBorder cuboid -26.429318239372506 26.429318239372506 -26.429318239372506 26.429318239372506 0.0 38.422579999999996 
 surf lgBarrelcc1 cyl 0.0 0.0 11.87704 
-surf lgvoidvoidDrumh1 cyl 0.0 0.0 19.82198867952938 
+surf lgvoidvoidDrumh1 cyl 0.0 0.0 26.429318239372506 
 surf lgvoidh7 hexyc 0.0 0.0 22.888461000000003 
 surf barrelleccc1 cyl 0.0 0.0 11.87704 
-surf lecCDvoidDrumh1 cyl 0.0 0.0 19.82198867952938 
+surf lecCDvoidDrumh1 cyl 0.0 0.0 26.429318239372506 
 surf intrefleccc1 cyl 0.0 0.0 11.7475 
 surf hexBorderlowerEndCapLat hexyc 0.0 0.0 11.43 
 surf lecCDh1 hexyc 0.0 0.0 13.263102125 
@@ -15,7 +15,7 @@ surf lecCDh5 hexyc 0.0 0.0 19.09571098
 surf lecCDh6 hexyc 0.0 0.0 20.83791974 
 surf lecCDh7 hexyc 0.0 0.0 22.888461000000003 
 surf barrelACLcc1 cyl 0.0 0.0 11.87704 
-surf barrelACLvoidDrumh1 cyl 0.0 0.0 19.82198867952938 
+surf barrelACLvoidDrumh1 cyl 0.0 0.0 26.429318239372506 
 surf intrefACLcc1 cyl 0.0 0.0 11.7475 
 surf hexBorderactiveCoreLatACL hexyc 0.0 0.0 11.43 
 surf barrelACLh1 hexyc 0.0 0.0 13.263102125 
@@ -36,7 +36,7 @@ surf barrelACMh5 hexyc 0.0 0.0 19.09571098
 surf barrelACMh6 hexyc 0.0 0.0 20.83791974 
 surf barrelACMh7 hexyc 0.0 0.0 22.888461000000003 
 surf barrelACUcc1 cyl 0.0 0.0 11.87704 
-surf barrelACUvoidDrumh1 cyl 0.0 0.0 19.82198867952938 
+surf barrelACUvoidDrumh1 cyl 0.0 0.0 26.429318239372506 
 surf intrefACUcc1 cyl 0.0 0.0 11.7475 
 surf hexBorderactiveCoreLatACU hexyc 0.0 0.0 11.43 
 surf barrelACUh1 hexyc 0.0 0.0 13.263102125 
@@ -47,7 +47,7 @@ surf barrelACUh5 hexyc 0.0 0.0 19.09571098
 surf barrelACUh6 hexyc 0.0 0.0 20.83791974 
 surf barrelACUh7 hexyc 0.0 0.0 22.888461000000003 
 surf barrelueccc1 cyl 0.0 0.0 11.87704 
-surf uecCDvoidDrumh1 cyl 0.0 0.0 19.82198867952938 
+surf uecCDvoidDrumh1 cyl 0.0 0.0 26.429318239372506 
 surf intrefueccc1 cyl 0.0 0.0 11.7475 
 surf hexBorderupperEndCapLat hexyc 0.0 0.0 11.43 
 surf uecCDh1 hexyc 0.0 0.0 13.263102125 
@@ -58,7 +58,7 @@ surf uecCDh5 hexyc 0.0 0.0 19.09571098
 surf uecCDh6 hexyc 0.0 0.0 20.83791974 
 surf uecCDh7 hexyc 0.0 0.0 22.888461000000003 
 surf ugBarrelcc1 cyl 0.0 0.0 11.87704 
-surf ugvoidvoidDrumh1 cyl 0.0 0.0 19.82198867952938 
+surf ugvoidvoidDrumh1 cyl 0.0 0.0 26.429318239372506 
 surf ugvoidh7 hexyc 0.0 0.0 22.888461000000003 
 cell fillRegion 1  fill cdBarrelStack -barrelACMvoidDrumh1 
 cell voidRegion 1  void barrelACMvoidDrumh1 -putBorder 
