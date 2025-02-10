@@ -3,7 +3,40 @@
  and detector calculation (detector fgsdet)
 
 
+ ***** Warning: No match for the following materials in the mvol card:
+
+
+***** Thu Feb  6 13:53:59 2025 (seed = 1738875219936, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74182.00c has 1 decay modes
+
+
+***** Thu Feb  6 13:53:59 2025 (seed = 1738875219936, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74183.00c has 1 decay modes
+
+
+***** Thu Feb  6 13:53:59 2025 (seed = 1738875219936, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74184.00c has 1 decay modes
+
+
+***** Thu Feb  6 13:53:59 2025 (seed = 1738875219936, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 20046.00c has 1 decay modes
+
+
+ ***** Warning: Zero flux in energy group 1
+
+
+ ***** Warning: Zero flux in energy group 1
+
+
 Simulation completed.
-------------------------------------------------------------
-Tue Jan 28 13:09:28 2025  (errors: 0, warnings: 0, notes: 1)
+------------------------------------------------- MPI task 3
+Thu Feb  6 14:04:48 2025  (errors: 0, warnings: 0, notes: 1)
 

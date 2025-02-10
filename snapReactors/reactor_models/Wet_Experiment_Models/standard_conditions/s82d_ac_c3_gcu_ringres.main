@@ -283,6 +283,6 @@ det fgsdet du 0 de fgs
 %dep daystep 1 10
 %set rfw 1
 %set rfr
-div fuel sep 2
-div ceramic sep 2
-include s82d_ac_c3_gcu_ringres.main.mvol
+%div fuel sep 2
+%div ceramic sep 2
+%include s82d_ac_c3_gcu_ringres.main.mvol
