@@ -19,7 +19,7 @@ from pathlib import Path
 
 # rsFilePath = hotFile.as_posix()
 
-rsFilePath = r"C:\Users\sgarc\OneDrive\Documents\SNAP-REACTORS-PRIVATE\snapReactors\data_inputfiles\s8er_hotpower.txt"
+rsFilePath = r"C:\Users\Sam\Documents\SNAP-REACTORS-PRIVATE\snapReactors\data_inputfiles\s8er_hotpower.txt"
 states = ReactorState.rsReader(rsFilePath, outputDict=True)
 coldpow = states['Hot Power']
 components = coldpow.componentsDict
@@ -36,5 +36,5 @@ ae = components['air element']
 acePath = "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
 
 
-ringres = S8_Wet(fe, ce, ir, br, ugp, lgp, cds, ae, config='C1', xsLibrary="ENDF8", hasThermScatt=True, baseFile="s82d_ac_c3_gcu_ringres", geo = "3D")
-# ringres = HC_Test(fe, ce, ir, br, ugp, lgp, cds, ae, config='C1', xsLibrary="ENDF8", hasThermScatt=True, baseFile="HC_TEST", geo = "3D")
+#ringres = S8_Wet(fe, ce, ir, br, ugp, lgp, cds, ae, config='C1', xsLibrary="ENDF8", hasThermScatt=True, baseFile="s82d_ac_c3_gcu_ringres", geo = "3D")
+ringres = HC_Test(fe, ce, ir, br, ugp, lgp, cds, ae, config='C1', xsLibrary="ENDF8", hasThermScatt=True, baseFile="HC_TEST", geo = "3D")
