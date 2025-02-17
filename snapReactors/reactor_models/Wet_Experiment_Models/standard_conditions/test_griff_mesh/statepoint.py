@@ -81,16 +81,16 @@ mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
 40094.00c	0.00619
 40096.00c	0.000998""",
                 f"""therm HZr h-zrh.40t therm ZrH zr-zrh.40t
-                mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
-                1001.01c	0.0596
-                1002.01c	8.79e-06
-                92235.01c	0.00143
-                92238.01c	0.000104
-                40090.01c	0.0183
-                40091.01c	0.004
-                40092.01c	0.00611
-                40094.01c	0.00619
-                40096.01c	0.000998"""
+mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
+1001.01c	0.0596
+1002.01c	8.79e-06
+92235.01c	0.00143
+92238.01c	0.000104
+40090.01c	0.0183
+40091.01c	0.004
+40092.01c	0.00611
+40094.01c	0.00619
+40096.01c	0.000998"""
             )
             if fuel_temp==1000:
                 updated_mat_content = updated_mat_content.replace(
@@ -106,57 +106,55 @@ mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
 40094.00c	0.00619
 40096.00c	0.000998""",
                 f"""therm HZr h-zrh.40t therm ZrH zr-zrh.40t
-                mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
-                1001.02c	0.0596
-                1002.02c	8.79e-06
-                92235.02c	0.00143
-                92238.02c	0.000104
-                40090.02c	0.0183
-                40091.02c	0.004
-                40092.02c	0.00611
-                40094.02c	0.00619
-                40096.02c	0.000998"""
+mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
+1001.02c	0.0596
+1002.02c	8.79e-06
+92235.02c	0.00143
+92238.02c	0.000104
+40090.02c	0.0183
+40091.02c	0.004
+40092.02c	0.00611
+40094.02c	0.00619
+40096.02c	0.000998"""
             )                
             if coolant_temp >= 700 and coolant_temp<=850:
                 updated_mat_content = updated_mat_content.replace(
-                    """mat coolant -0.8094    rgb 196 193 193
+                    """mat coolant -0.8094    rgb 115 115 115
 11023.00c	-0.222
 19039.00c	-0.72305
 19040.00c	-9.30415e-05
 19041.00c	-0.0548566""",
                     f"""mat coolant -0.8094    rgb 115 115 115
-                    11023.01c	-0.222
-                    19039.01c	-0.72305
-                    19040.01c	-9.30415e-05
-                    19041.01c	-0.0548566
-                    """)
+11023.01c	-0.222
+19039.01c	-0.72305
+19040.01c	-9.30415e-05
+19041.01c	-0.0548566""")
             if coolant_temp ==1000:
                 updated_mat_content = updated_mat_content.replace(
-                    """mat coolant -0.8094    rgb 196 193 193
+                    """mat coolant -0.8094    rgb 115 115 115
 11023.00c	-0.222
 19039.00c	-0.72305
 19040.00c	-9.30415e-05
 19041.00c	-0.0548566""",
                     f"""mat coolant -0.8094    rgb 115 115 115
-                    11023.02c	-0.222
-                    19039.02c	-0.72305
-                    19040.02c	-9.30415e-05
-                    19041.02c	-0.0548566
-                    """)                
+11023.02c	-0.222
+19039.02c	-0.72305
+19040.02c	-9.30415e-05
+19041.02c	-0.0548566""")                
             if reflector_temp>= 700 and reflector_temp<=850:
                 updated_mat_content = updated_mat_content.replace(
                     """mat internal_reflector -3.02 moder BeO 4009 moder OBe 8016   
 8016.00c	-0.63968
 4009.00c	-0.36032""",
                     """mat internal_reflector -3.02 moder BeO 4009 moder OBe 8016   
-                8016.01c	-0.63968
-                4009.01c	-0.36032"""
+8016.01c	-0.63968
+4009.01c	-0.36032"""
                 )
                 updated_mat_content = updated_mat_content.replace(
                     """mat control_drum -1.84 moder Bem 4009   rgb 247 215 183
 4009.00c	-1.0""",
                 """mat control_drum -1.84 moder Bem 4009   rgb 247 215 183
-                4009.01c	-1.0"""
+4009.01c	-1.0"""
                 )
             if reflector_temp>850:
                 updated_mat_content = updated_mat_content.replace(
@@ -164,14 +162,14 @@ mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
 8016.00c	-0.63968
 4009.00c	-0.36032""",
                     """mat internal_reflector -3.02 moder BeO 4009 moder OBe 8016   
-                8016.02c	-0.63968
-                4009.02c	-0.36032"""
+8016.02c	-0.63968
+4009.02c	-0.36032"""
                 )
                 updated_mat_content = updated_mat_content.replace(
                     """mat control_drum -1.84 moder Bem 4009   rgb 247 215 183
 4009.00c	-1.0""",
                 """mat control_drum -1.84 moder Bem 4009   rgb 247 215 183
-                4009.02c	-1.0"""
+4009.02c	-1.0"""
                 )
 
             # second update cross-section libraries
@@ -187,7 +185,7 @@ mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
             # last materials density and temperature
             updated_mat_content = updated_mat_content.replace(
                 "mat coolant -0.8094    rgb 196 193 193",
-                f"mat coolant -{coolant_density} tmp {coolant_temp}   rgb 196 193 193"
+                f"mat coolant -{coolant_density} tmp {coolant_temp}   rgb 115 115 115"
             )            
             updated_mat_content = updated_mat_content.replace(
                 "mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89",

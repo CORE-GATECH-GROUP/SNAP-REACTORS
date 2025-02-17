@@ -278,7 +278,7 @@ ext_T_ref                 = 600 # (K)
         type = MultiAppProjectionTransfer
         to_multi_app = Griffin_htm
         source_variable = griffin_power_density
-        variable = power_density
+        variable = bison_power_density
     []
     [from_htm_Tfuel]
         type = MultiAppGeneralFieldUserObjectTransfer
@@ -450,21 +450,29 @@ ext_T_ref                 = 600 # (K)
         #use_displaced_mesh = true
         execute_on = 'initial timestep_end'
     []
-    [activecore_vol]
+    [fuel_griffin_vol]
         type = VolumePostprocessor
-        block = '${fuel_blocks_2d} ${air_blocks_2d}'
+        block = '${acl_fuel_blocks_2d} ${acm_fuel_blocks_lay1}  ${acm_fuel_blocks_lay2} ${acm_fuel_blocks_lay3} ${acm_fuel_blocks_lay4} ${acm_fuel_blocks_lay5} ${acm_fuel_blocks_lay6} ${acm_fuel_blocks_lay7} ${acm_fuel_blocks_lay8}  ${acu_fuel_blocks_2d}'
         execute_on = 'initial timestep_end'
     []
-    [intref_vol]
+    [acl_acu_air_vol]
         type = VolumePostprocessor
-        block = ${intref_blocks_2d}
-        execute_on = 'initial timestep_end'
+        block = '${acl_air_blocks_2d} ${acu_air_blocks_2d}'
     []
-    [barrel_vol]
+    [single_acm_air_vol]
         type = VolumePostprocessor
-        block = ${barrel_blocks_2d}
-        execute_on = 'initial timestep_end'
+        block = '${acm_air_blocks_2d}'
     []
+    # [intref_vol]
+    #    type = VolumePostprocessor
+    #    block = ${intref_blocks_2d}
+    #    execute_on = 'initial timestep_end'
+    #[]
+    #[barrel_vol]
+    #    type = VolumePostprocessor
+    #    block = ${barrel_blocks_2d}
+    #    execute_on = 'initial timestep_end'
+    #[]
 []
 
 [Outputs]

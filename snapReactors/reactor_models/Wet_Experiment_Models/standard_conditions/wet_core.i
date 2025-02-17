@@ -233,7 +233,7 @@ acm_dz = 3.81
 []
 
 total_power               = 600000.00 # (W). #total power
-inlet_T_fluid             = 866 # (K)
+inlet_T_fluid             = 922 # (K)
 ext_T_ref                 = 600 # (K)
 # ==============================================================================
 # AUXVARIABLES AND AUXKERNELS
@@ -450,27 +450,31 @@ ext_T_ref                 = 600 # (K)
         #use_displaced_mesh = true
         execute_on = 'initial timestep_end'
     []
-    [activecore_vol]
+    [fuel_griffin_vol]
         type = VolumePostprocessor
-        block = '${fuel_blocks_2d} ${air_blocks_2d}'
+        block = '${acl_fuel_blocks_2d} ${acm_fuel_blocks_lay1}  ${acm_fuel_blocks_lay2} ${acm_fuel_blocks_lay3} ${acm_fuel_blocks_lay4} ${acm_fuel_blocks_lay5} ${acm_fuel_blocks_lay6} ${acm_fuel_blocks_lay7} ${acm_fuel_blocks_lay8}  ${acu_fuel_blocks_2d}'
         execute_on = 'initial timestep_end'
     []
-    [intref_vol]
+    [acl_acu_air_vol]
         type = VolumePostprocessor
-        block = ${intref_blocks_2d}
-        execute_on = 'initial timestep_end'
+        block = '${acl_air_blocks_2d} ${acu_air_blocks_2d}'
     []
-    [barrel_vol]
+    [single_acm_air_vol]
         type = VolumePostprocessor
-        block = ${barrel_blocks_2d}
-        execute_on = 'initial timestep_end'
+        block = '${acm_air_blocks_2d}'
     []
-    [extref_vol]
-        type = VolumePostprocessor
-        block = ${extref1_blocks_2d} ${extref2_blocks_2d} ${extref3_blocks_2d} ${extref4_blocks_2d} ${shima_blocks_2d} ${shimb_blocks_2d}
-        execute_on = 'initial timestep_end'
-    []
+    # [intref_vol]
+    #    type = VolumePostprocessor
+    #    block = ${intref_blocks_2d}
+    #    execute_on = 'initial timestep_end'
+    #[]
+    #[barrel_vol]
+    #    type = VolumePostprocessor
+    #    block = ${barrel_blocks_2d}
+    #    execute_on = 'initial timestep_end'
+    #[]
 []
+
 
 [Outputs]
     [csv]

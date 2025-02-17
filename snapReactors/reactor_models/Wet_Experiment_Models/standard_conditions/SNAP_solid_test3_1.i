@@ -62,7 +62,7 @@ reflector_k = 216.0                        # Be Reflector thermal conductivity (
   [source]
     type = CoupledForce
     variable = T
-    v = power_density
+    v = htm_norm_power_density
     block = ${fuel_blocks}
   []
 []
@@ -166,6 +166,11 @@ reflector_k = 216.0                        # Be Reflector thermal conductivity (
     order = FIRST
     block = ${fuel_blocks}
   []
+  [htm_norm_power_density]
+    family = L2_LAGRANGE
+    order = FIRST
+    block = ${fuel_blocks}
+  []
 []
 
 [AuxKernels]
@@ -176,6 +181,13 @@ reflector_k = 216.0                        # Be Reflector thermal conductivity (
     diffusivity = thermal_conductivity
     variable = flux
     boundary = 'fluid_solid_interface'
+  []
+  [norm_power_density]
+    type = NormalizationAux
+    variable = htm_norm_power_density
+    source_variable = power_density
+    normal_factor = 1409907.01011
+    execute_on = 'timestep_begin'
   []
 []
 
@@ -289,6 +301,10 @@ reflector_k = 216.0                        # Be Reflector thermal conductivity (
     variable = T
     block = ${fuel_blocks}
   []
+  [fuel_vol]
+  type = VolumePostprocessor
+  block = ${fuel_blocks}
+  []
 []
 
 [Executioner]
@@ -297,7 +313,7 @@ reflector_k = 216.0                        # Be Reflector thermal conductivity (
   nl_rel_tol = 1e-7
   petsc_options_value = 'hypre boomeramg'
   petsc_options_iname = '-pc_type -pc_hypre_type'
-  dt = 0.005
+  dt = 0.01
   nl_max_its = 200
   steady_state_detection = true
   steady_state_tolerance = 5e-6
