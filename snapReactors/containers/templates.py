@@ -13550,7 +13550,7 @@ class S8_Wet(S8ER):
         cladMat.set('rgb', "100 100 100")
         intrefMat = serMatsDict['internal_reflector']
         nakMat = serMatsDict['coolant']
-        nakMat.set('rgb', "196 193 193")
+        nakMat.set('rgb', "115 115 115")
         airMat = serMatsDict['air']
         dbMat = serMatsDict['diffusion_barrier']
         bpMat = serMatsDict['burnable_poison']
@@ -13960,10 +13960,10 @@ class S8_Wet(S8ER):
         cdSys5 = cell(uid+'cdSys5', mat=cdMat)
         cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
 
-        cdSys6 = cell(uid+'cdSys6', mat=cdMat)
+        cdSys6 = cell(uid+'cdSys6', isVoid = True)
         cdSys6.setSurfs([drumSurf5, drumSurf6], [0, 1])
 
-        cdSys7 = cell(uid+'cdSys7', mat=cdMat)
+        cdSys7 = cell(uid+'cdSys7', isVoid = True)
         cdSys7.setSurfs([drumSurf6, drumSurf7], [0, 1])
 
         cdOnly1 = universe(uid+"control13")
@@ -14073,10 +14073,10 @@ class S8_Wet(S8ER):
         cdSys5 = cell(uid+'cdSys5', mat=cdMat)
         cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
 
-        cdSys6 = cell(uid+'cdSys6', mat=cdMat)
+        cdSys6 = cell(uid+'cdSys6', isVoid = True)
         cdSys6.setSurfs([drumSurf5, drumSurf6], [0, 1])
 
-        cdSys7 = cell(uid+'cdSys7', mat=cdMat)
+        cdSys7 = cell(uid+'cdSys7', isVoid = True)
         cdSys7.setSurfs([drumSurf6, drumSurf7], [0, 1])
 
         cdOnly1 = universe(uid+"control13")
@@ -14487,10 +14487,10 @@ class S8_Wet(S8ER):
         cdSys5 = cell(uid+'cdSys5', mat=cdMat)
         cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
 
-        cdSys6 = cell(uid+'cdSys6', mat=cdMat)
+        cdSys6 = cell(uid+'cdSys6', isVoid = True)
         cdSys6.setSurfs([drumSurf5, drumSurf6], [0, 1])
 
-        cdSys7 = cell(uid+'cdSys7', mat=cdMat)
+        cdSys7 = cell(uid+'cdSys7', isVoid = True)
         cdSys7.setSurfs([drumSurf6, drumSurf7], [0, 1])
 
         cdOnly1 = universe(uid+"control13")
@@ -14646,10 +14646,10 @@ class S8_Wet(S8ER):
         cdSys5 = cell(uid+'cdSys5', mat=cdMat)
         cdSys5.setSurfs([drumSurf4, drumSurf5], [0, 1])
 
-        cdSys6 = cell(uid+'cdSys6', mat=cdMat)
+        cdSys6 = cell(uid+'cdSys6', isVoid = True)
         cdSys6.setSurfs([drumSurf5, drumSurf6], [0, 1])
 
-        cdSys7 = cell(uid+'cdSys7', mat=cdMat)
+        cdSys7 = cell(uid+'cdSys7', isVoid = True)
         cdSys7.setSurfs([drumSurf6, drumSurf7], [0, 1])
 
         cdOnly1 = universe(uid+"control13")

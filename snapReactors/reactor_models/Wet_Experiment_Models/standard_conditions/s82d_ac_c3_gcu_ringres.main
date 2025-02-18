@@ -1,7 +1,7 @@
 include s82d_ac_c3_gcu_ringres.mat
 include s82d_ac_c3_gcu_ringres.geo
 set bc 1 1 1
-set pop 1000000 120 100
+set pop 100000 100 100
 set power 600000
 plot 31 5000 5000 19.0
 plot 21 5000 5000 0.0
@@ -9,12 +9,13 @@ plot 11 5000 5000 0.0
 set acelib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata" "/hpc-common/data/serpent/xsdata/s2v0_endfb80/photon_endf80.xsdata"
 set nfylib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80.nfy"
 set declib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80.dec"
-set gcu 0 9400  8000  9100  7000  7100  7200  7300  7400  9903  2000  1800  1700  1600  1500  1400  1300  1200  1100  3500  3600  5500  5600  5700  5800  5900  9900  900  800  801  802  803  804  805  806  807  808  700  701  702  703  704  705  706  707  708  600  601  602  603  604  605  606  607  608  500  501  502  503  504  505  506  507  508  400  401  402  403  404  405  406  407  408  300  301  302  303  304  305  306  307  308  200  201  202  203  204  205  206  207  208  100  101  102  103  104  105  106  107  108  3300  3400  3900  4000  4100  4200  4300  4400  3100  2800  2700  2600  2500  2400  2300  2200  2100  3700  3800  6000  6100  6200  6300  6400  9901  9500  6500  6600  6700  6800  6900  9902  9300  7500 
+set gcu 0 9400  8000  9100  6901  7000  7100  7200  7300  7400  9903  2000  1800  1700  1600  1500  1400  1300  1200  1100  3500  3600  5400  5500  5600  5700  5800  5900  9900  900  800  801  802  803  804  805  806  807  808  700  701  702  703  704  705  706  707  708  600  601  602  603  604  605  606  607  608  500  501  502  503  504  505  506  507  508  400  401  402  403  404  405  406  407  408  300  301  302  303  304  305  306  307  308  200  201  202  203  204  205  206  207  208  100  101  102  103  104  105  106  107  108  3300  3400  3900  4000  4100  4200  4300  4400  4500  3100  2800  2700  2600  2500  2400  2300  2200  2100  3700  3800  6000  6100  6200  6300  6400  6500  9901  9500  6401  6501  6600  6700  6800  6900  9902  9300  7500 
 ene fgs 1 5e-09 2.5e-08 1e-07 4e-07 9.96e-07 3e-06 9.877e-06 2.77e-05 0.0001 0.00055 0.003 0.01503 0.1 0.4 0.821 1.353 3.0 6.0655 20.0 
 set nfg fgs
 det scalarFlux9400 du 9400
 det scalarFlux8000 du 8000
 det scalarFlux9100 du 9100
+det scalarFlux6901 du 6901
 det scalarFlux7000 du 7000
 det scalarFlux7100 du 7100
 det scalarFlux7200 du 7200
@@ -32,6 +33,7 @@ det scalarFlux1200 du 1200
 det scalarFlux1100 du 1100
 det scalarFlux3500 du 3500
 det scalarFlux3600 du 3600
+det scalarFlux5400 du 5400
 det scalarFlux5500 du 5500
 det scalarFlux5600 du 5600
 det scalarFlux5700 du 5700
@@ -119,6 +121,7 @@ det scalarFlux4100 du 4100
 det scalarFlux4200 du 4200
 det scalarFlux4300 du 4300
 det scalarFlux4400 du 4400
+det scalarFlux4500 du 4500
 det scalarFlux3100 du 3100
 det scalarFlux2800 du 2800
 det scalarFlux2700 du 2700
@@ -135,9 +138,11 @@ det scalarFlux6100 du 6100
 det scalarFlux6200 du 6200
 det scalarFlux6300 du 6300
 det scalarFlux6400 du 6400
+det scalarFlux6500 du 6500
 det scalarFlux9901 du 9901
 det scalarFlux9500 du 9500
-det scalarFlux6500 du 6500
+det scalarFlux6401 du 6401
+det scalarFlux6501 du 6501
 det scalarFlux6600 du 6600
 det scalarFlux6700 du 6700
 det scalarFlux6800 du 6800
@@ -148,6 +153,7 @@ det scalarFlux7500 du 7500
 det nuFissRate9400 du 9400 dr -7 void
 det nuFissRate8000 du 8000 dr -7 void
 det nuFissRate9100 du 9100 dr -7 void
+det nuFissRate6901 du 6901 dr -7 void
 det nuFissRate7000 du 7000 dr -7 void
 det nuFissRate7100 du 7100 dr -7 void
 det nuFissRate7200 du 7200 dr -7 void
@@ -165,6 +171,7 @@ det nuFissRate1200 du 1200 dr -7 void
 det nuFissRate1100 du 1100 dr -7 void
 det nuFissRate3500 du 3500 dr -7 void
 det nuFissRate3600 du 3600 dr -7 void
+det nuFissRate5400 du 5400 dr -7 void
 det nuFissRate5500 du 5500 dr -7 void
 det nuFissRate5600 du 5600 dr -7 void
 det nuFissRate5700 du 5700 dr -7 void
@@ -252,6 +259,7 @@ det nuFissRate4100 du 4100 dr -7 void
 det nuFissRate4200 du 4200 dr -7 void
 det nuFissRate4300 du 4300 dr -7 void
 det nuFissRate4400 du 4400 dr -7 void
+det nuFissRate4500 du 4500 dr -7 void
 det nuFissRate3100 du 3100 dr -7 void
 det nuFissRate2800 du 2800 dr -7 void
 det nuFissRate2700 du 2700 dr -7 void
@@ -268,9 +276,11 @@ det nuFissRate6100 du 6100 dr -7 void
 det nuFissRate6200 du 6200 dr -7 void
 det nuFissRate6300 du 6300 dr -7 void
 det nuFissRate6400 du 6400 dr -7 void
+det nuFissRate6500 du 6500 dr -7 void
 det nuFissRate9901 du 9901 dr -7 void
 det nuFissRate9500 du 9500 dr -7 void
-det nuFissRate6500 du 6500 dr -7 void
+det nuFissRate6401 du 6401 dr -7 void
+det nuFissRate6501 du 6501 dr -7 void
 det nuFissRate6600 du 6600 dr -7 void
 det nuFissRate6700 du 6700 dr -7 void
 det nuFissRate6800 du 6800 dr -7 void
@@ -279,10 +289,3 @@ det nuFissRate9902 du 9902 dr -7 void
 det nuFissRate9300 du 9300 dr -7 void
 det nuFissRate7500 du 7500 dr -7 void
 det fgsdet du 0 de fgs
-
-%dep daystep 1 10
-%set rfw 1
-%set rfr
-%div fuel sep 2
-%div ceramic sep 2
-%include s82d_ac_c3_gcu_ringres.main.mvol
