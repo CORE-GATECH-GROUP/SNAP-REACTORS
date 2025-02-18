@@ -110,7 +110,7 @@ def makeBaseFuelPinHC(x, y, radii):
     cubit.cmd('block 1 add surface {}'.format(sId5))
     cubit.cmd('block 2 add surface {}'.format(sId4))
     cubit.cmd('block 3 add surface {}'.format(sId2))
-    
+    cubit.cmd('block 1 2 3 element type quad4')
     #cubit.cmd('move Surface 3 6 7 x {} y {} include_merged '.format( x, y))
     return sId4, sId4
 
@@ -145,11 +145,11 @@ def CopyFuelPinHC(x, y, index):
 
     cubit.cmd('mesh surface 6 7')
     cubit.cmd('mesh surface 3')
-
+    
     cubit.cmd('sideset 1 add curve {}'.format(newGapIn))
     cubit.cmd('sideset 2 add curve {}'.format(newGapOut))
     cubit.cmd('sideset 3 add curve {}'.format(newCladOut))
-
+    cubit.cmd('block 1 2 3 element type quad4')
     return 
 
 def init():
