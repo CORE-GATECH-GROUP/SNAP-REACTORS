@@ -263,7 +263,7 @@ acm_dz = 3.81
         type = NormalizationAux
         variable = bison_norm_power_density
         source_variable = bison_power_density
-        normal_factor = 50.7136243189   #1.265805981 
+        normal_factor = 1.265805981 
         execute_on = 'timestep_begin' #check
     []
 []
