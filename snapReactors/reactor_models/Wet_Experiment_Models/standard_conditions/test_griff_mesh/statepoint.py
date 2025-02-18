@@ -5,7 +5,7 @@ coolant_temps_K =   [300,       500,    700,    800,    1000]
 fuel_temps_K =      [300,       500,    700,    800,    1000]
 reflector_temps_K = [300,       500,    700,    800,    1000]
 coolant_densities = [0.8094, 0.7495, 0.7125, 0.6750, 0.6369]
-#   temp   300            550          700           850           1000
+#   temp   300            500          700           800           1000
 # xs_ext [  00c            00c          01            01             02]
 h_zrh =  ['h-zrh.40t',    'h-zrh.42t',  'h-zrh.44t',  'h-zrh.45t',  'h-zrh.46t']
 zr_zrh = ['zr-zrh.40t',  'zr-zrh.42t', 'zr-zrh.44t', 'zr-zrh.45t', 'zr-zrh.46t']

@@ -1,18 +1,15 @@
 #!/bin/bash
-#PBS -l select=4:ncpus=20:mpiprocs=1
-#PBS -N Griffin
-#PBS -l walltime=03:45:00
-#PBS -k doe
-#PBS -j oe
-#PBS -P edu_res
+#SBATCH --job-name=Griffin          # Job name
+#SBATCH --nodes=4                   # Request 4 nodes
+#SBATCH --ntasks=20                 # Total MPI processes (matches mpiexec -n 20)
+#SBATCH --ntasks-per-node=5          # 5 MPI processes per node
+#SBATCH --cpus-per-task=4            # 4 CPU cores per MPI process (20 ncpus / 5 mpiprocs)
+#SBATCH --time=01:45:00              # Walltime (hh:mm:ss)
+#SBATCH --output=griffin_%j.out      # Standard output file
+#SBATCH --error=griffin_%j.err       # Standard error file
+#SBATCH --wckey=edu_res          # (If applicable, define the partition)
  
-cat $PBS_NODEFILE
-module load use.exp_ctl use.moose moose-apps griffin
-cd $PBS_O_WORKDIR
-export TMPDIR=/tmp
-mpiexec -n 20 griffin-opt -i wet_core.i
-
-
-
-
-#
+module load use.exp_ctl use.moose griffin-openmpi
+cd ${SLURM_SUBMIT_DIR:-$PWD}
+export TMPDIR=${SLURM_TMPDIR:-/tmp}
+mpiexec -n 20 griffin-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/core_2D_bison.i --mesh-only

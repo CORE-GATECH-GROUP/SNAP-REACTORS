@@ -131,14 +131,14 @@ clad_outer = 3
 core_inner = 4
 core_outer = 5
 
-#acm_dz = 3.81
+acm_dz = 3.81
 # ==============================================================================
 # GEOMETRY AND MESH
 # ==============================================================================
 [Mesh]
         [core_unextruded]
                 type = FileMeshGenerator
-                file = test_hc.e
+                file = heatconduction_test.e
         []
         [extruded]
             type = AdvancedExtruderGenerator
