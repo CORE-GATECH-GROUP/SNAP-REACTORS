@@ -131,23 +131,33 @@ clad_outer = 3
 #core_inner = 4
 core_outer = 5
 
-acm_dz = 3.81
+acm_dz = '${fparse 3.81/100}'
+lay1 = '${fparse 2.1717/100}'
+lay2 = '${fparse 2.9083/100}'
 # ==============================================================================
 # GEOMETRY AND MESH
 # ==============================================================================
 [Mesh]
-        [core_unextruded]
-                type = FileMeshGenerator
-                file = heatconduction_test.e
-        []
-        [extruded]
-            type = AdvancedExtruderGenerator
-            input = core_unextruded
-            heights = '2.1717 ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz}  2.9083'
-            num_layers = '1 2 3 4 5 6 7 8 9 10'
-            direction = '0 0 1'
-            show_info = true       
-    [] 
+    [core_unextruded]
+        type = FileMeshGenerator
+        file = heatconduction_test.e
+        show_info = true
+    []
+    [transform_core_unextruded]
+        type = TransformGenerator
+        input = core_unextruded
+        transform = SCALE
+        vector_value = '0.01 0.01 0.01'
+        show_info = true
+    []
+    [extruded]
+        type = AdvancedExtruderGenerator
+        input = transform_core_unextruded
+        heights = '${lay1} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz}  ${lay2}'
+        num_layers = '1 2 3 4 5 6 7 8 9 10'
+        direction = '0 0 1'
+        show_info = true       
+    []
 []
 
 # ==============================================================================
@@ -272,19 +282,19 @@ acm_dz = 3.81
 [Functions]
     [tk_f]
         type = ParsedFunction
-        vars = 'bison_temp'
-        vals = 'temp_av'
-        value = '27.73992+bison_temp*0.027428444'#Models/SNAP10A_dimensions
+        symbol_names = 'bison_temp'
+        symbol_values = 'temp_av'
+        expression = '27.73992+bison_temp*0.027428444'#Models/SNAP10A_dimensions
     []
     [cp_f]
         type = ParsedFunction
-        vars = 'bison_temp'
-        vals = 'temp_av'
-        value = '472.27104+bison_temp*0.7275728'#Models/SNAP10A_dimensions
+        symbol_names = 'bison_temp'
+        symbol_values = 'temp_av'
+        expression = '472.27104+bison_temp*0.7275728'#Models/SNAP10A_dimensions
     []
     [T_inf_f]
         type = ParsedFunction
-        value = '${inlet_T_fluid}'
+        expression = '${inlet_T_fluid}'
     []
 []
 
