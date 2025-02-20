@@ -128,7 +128,7 @@ extref_blocks = 6
 gap_inner = 1
 gap_outer = 2
 clad_outer = 3
-core_inner = 4
+#core_inner = 4
 core_outer = 5
 
 acm_dz = 3.81
@@ -146,8 +146,6 @@ acm_dz = 3.81
             heights = '2.1717 ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz}  2.9083'
             num_layers = '1 2 3 4 5 6 7 8 9 10'
             direction = '0 0 1'
-            bottom_sideset = bottom
-            top_sideset = top 
             show_info = true       
     [] 
 []
@@ -263,7 +261,7 @@ acm_dz = 3.81
         type = NormalizationAux
         variable = bison_norm_power_density
         source_variable = bison_power_density
-        normal_factor = 1.265805981 
+        normal_factor = 1.2803814
         execute_on = 'timestep_begin' #check
     []
 []
@@ -397,13 +395,13 @@ acm_dz = 3.81
         htc = '${ht_coeff}'
     []
     # Convective BC outer surface fuel pin
-    [convective_boundary_core]
-        type = CoupledConvectiveHeatFluxBC
-        variable = bison_temp
-        boundary = ${core_inner}
-        T_infinity = aux_T_inf
-        htc = '${ht_coeff}'
-    []
+    # [convective_boundary_core]
+    #     type = CoupledConvectiveHeatFluxBC
+    #     variable = bison_temp
+    #     boundary = '${intref_blocks}'
+    #     T_infinity = aux_T_inf
+    #     htc = '${ht_coeff}'
+    # []
     [convective_boundary_ambient]
         type = CoupledConvectiveHeatFluxBC
         variable = bison_temp
@@ -607,8 +605,11 @@ acm_dz = 3.81
 # []
 
 [Outputs]
-    exodus = true
+    #exodus = true
     [csv]
         type = CSV
+    []
+    [nemesis]
+        type = Nemesis
     []
 []

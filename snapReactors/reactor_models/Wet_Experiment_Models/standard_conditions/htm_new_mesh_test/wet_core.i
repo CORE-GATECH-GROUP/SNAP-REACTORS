@@ -293,15 +293,15 @@ ext_T_ref                 = 600 # (K)
         variable = bison_power_density
     []
     [from_htm_Tfuel]
-        type = MultiAppGeneralFieldUserObjectTransfer
+        type = MultiAppGeometricInterpolationTransfer
         from_multi_app = Griffin_htm
-        source_user_object = htm_Tfuel
+        source_variable = bison_Tfuel
         variable = griffin_Tfuel
     []     
     # [from_htm_ref_temp]
-    #     type = MultiAppGeneralFieldUserObjectTransfer
+    #     type = MultiAppGeometricInterpolationTransfer
     #     from_multi_app = Griffin_htm
-    #     source_variable = htm_Tref
+    #     source_variable = bison_Tref
     #     variable = griffin_Tcool
     # []
     # [from_htm_Tcool]
@@ -340,25 +340,10 @@ ext_T_ref                 = 600 # (K)
         hide_angular_flux = true
     []
 []
-#         block =  '${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d} ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acm_air_blocks_2d    } ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_fuel_blocks_2d   } ${acl_air_blocks_2d    } ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_fuel_blocks_2d   } ${acu_air_blocks_2d    } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_active_blocks    } ${lgr_ext_blocks       } ${ugr_active_blocks    } ${ugr_ext_blocks       } ${lec_active_blocks    } ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  } ${uec_active_blocks    } ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
 # ==============================================================================
 # FLUID PROPERTIES, MATERIALS, AND USER OBJECTS
 # ==============================================================================
 [Materials]
-    # [core]
-    #     type = CoupledFeedbackMatIDNeutronicsMaterial
-    #     block =  '${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d} ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acm_air_blocks_2d    } ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_fuel_blocks_2d   } ${acl_air_blocks_2d    } ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_fuel_blocks_2d   } ${acu_air_blocks_2d    } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_active_blocks    } ${lgr_ext_blocks       } ${ugr_active_blocks    } ${ugr_ext_blocks       } ${lec_active_blocks    } ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  } ${uec_active_blocks    } ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
-    #     library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/s82d_ac_c3_gcu_ringres_XS.xml'
-	# 	library_name = 's82d_ac_c3_gcu_ringres_XS'
-    #     isotopes = 'pseudo'
-    #     densities = '1.0'
-    #     plus = 1
-    #     is_meter = false
-    #     grid_names = 'Tfuel'
-    #     grid_variables = 'griffin_Tfuel'
-    # []
-
-
     [core]
         type = CoupledFeedbackMatIDNeutronicsMaterial
         block =  '${ugr_active_blocks    } ${uec_active_blocks    } ${acu_fuel_blocks_2d   } ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acl_fuel_blocks_2d   } ${lec_active_blocks    } ${lgr_active_blocks    }'
@@ -438,7 +423,7 @@ ext_T_ref                 = 600 # (K)
 
     cmfd_acceleration = true
     coarse_element_id = coarse_element_id
-    fixed_point_solve_outer = true
+    fixed_point_max_its = 2
     force_fixed_point_solve = true
     #debug_richardson = true
 []
