@@ -83,11 +83,11 @@ ht_coeff                  = 4539.6
 #     year = "1965",
 #     month = "2"
 # }
-clad_density              = 8617.9333 # (kg/m^3)
-clad_tc                   = 18.85239 # (W/m K)
-clad_cp                   = 418.68 # (J/kg-K)
-fuel_density              = 5963 # (kg/m^3)
-gap_tc                    = .346146933
+clad_density              = '${units 8617.9333 kg/m^3 -> g/cm^3}' # (kg/m^3)
+clad_tc                   = '${units 18.85239 W/m/K -> W/cm/K}'# (W/m K)
+clad_cp                   = '${units 418.68 J/kg/K -> J/g/K}'# (J/kg-K)
+fuel_density              = '${units 5963 kg/m^3 -> g/cm^3}'# (kg/m^3)
+gap_tc                    = '${units .346146933 W/m/K -> W/cm/K}'
 #gap_dens        = 0.016646998
 #gap_cp          = 5193.163779
 
@@ -98,21 +98,21 @@ gap_tc                    = .346146933
 ceramic_emiss             = .80
 clad_emiss                = .80
 
-ceramic_dens              = 2242.584872
-ceramic_cp                = 837.36
-ceramic_tc                = 1.730734666
+ceramic_dens              = '${units 2242.584872 kg/m^3 -> g/cm^3}'
+ceramic_cp                = '${units 837.36 J/kg/K -> J/g/K}'
+ceramic_tc                = '${units 1.730734666 W/m/K -> W/cm/K}'
         
-intref_dens               = 1810.086361
-intref_cp                 = 2721.42
-intref_tc                 = 131.5358346
+intref_dens               = '${units 1810.086361 kg/m^3 -> g/cm^3}'
+intref_cp                 = '${units 2721.42 J/kg/K -> J/g/K}'
+intref_tc                 = '${units 131.5358346 W/m/K -> W/cm/K}'
 
-barrel_dens               = 7954.00
-barrel_cp                 = 500
-barrel_tc                 = 16.2
+barrel_dens               = '${units 7954.00 kg/m^3 -> g/cm^3}'
+barrel_cp                 = '${units 500 J/kg/K -> J/g/K}'
+barrel_tc                 = '${units 16.2 W/m/K -> W/cm/K}'
 
-extref_dens               = 1840.00
-extref_cp                 = 1850
-extref_tc                 = 151.000
+extref_dens               = '${units 1840.00 kg/m^3 -> g/cm^3}'
+extref_cp                 = '${units 1850 J/kg/K -> J/g/K}'
+extref_tc                 = '${units 151.000 W/m/K -> W/cm/K}'
         
 #coolant_dens                  = 800
 #coolant_cp                    = 880
@@ -131,9 +131,9 @@ clad_outer = 3
 #core_inner = 4
 core_outer = 5
 
-acm_dz = '${fparse 3.81/100}'
-lay1 = '${fparse 2.1717/100}'
-lay2 = '${fparse 2.9083/100}'
+acm_dz = '${fparse 3.81}'
+lay1 = '${fparse 2.1717}'
+lay2 = '${fparse 2.9083}'
 # ==============================================================================
 # GEOMETRY AND MESH
 # ==============================================================================
@@ -143,16 +143,9 @@ lay2 = '${fparse 2.9083/100}'
         file = heatconduction_test.e
         show_info = true
     []
-    [transform_core_unextruded]
-        type = TransformGenerator
-        input = core_unextruded
-        transform = SCALE
-        vector_value = '0.01 0.01 0.01'
-        show_info = true
-    []
     [extruded]
         type = AdvancedExtruderGenerator
-        input = transform_core_unextruded
+        input = core_unextruded
         heights = '${lay1} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz}  ${lay2}'
         num_layers = '1 2 3 4 5 6 7 8 9 10'
         direction = '0 0 1'
@@ -213,7 +206,7 @@ lay2 = '${fparse 2.9083/100}'
         family = L2_LAGRANGE 
         order = FIRST 
         block = '${fuel_blocks} ${extref_blocks}'
-        #initial_condition = 2.01E+03
+        initial_condition = 7.3E+01
     []
     [aux_T_inf]
         family = LAGRANGE
