@@ -1,0 +1,312 @@
+
+******************************************************************************************************************
+
+                      _________                                                   _________
+                      \_________\----------____                   ____----------/_________/
+                          \________\-------\\\\\\               //////-------/________/
+                              \________\------\\||             ||//------/________/
+                                     \_____\----\\             //----/_____/
+                         ██████╗ ██████╗ ██╗███████╗███████╗██╗███╗  ██╗      ███╗   ███╗
+                        ██╔════╝ ██╔══██╗██║██╔════╝██╔════╝██║████╗ ██║      ████╗ ████║
+                        ██║  ██╗ ██████╔╝██║█████╗  █████╗  ██║██╔██╗██║█████╗██╔████╔██║
+                        ██║  ╚██╗██╔══██╗██║██╔══╝  ██╔══╝  ██║██║╚████║╚════╝██║╚██╔╝██║
+                        ╚██████╔╝██║  ██║██║██║     ██║     ██║██║ ╚███║      ██║ ╚═╝ ██║
+                         ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝     ╚═╝╚═╝  ╚══╝      ╚═╝     ╚═╝
+
+
+                                    Multiphysics Nuclear Reactor Analysis Code
+                                            Idaho National Laboratory
+                                           Argonne National Laboratory
+
+******************************************************************************************************************
+
+
+------------------------------------------------------------------------------------------------------------------
+Notice: These data were produced by Battelle Energy Alliance, LLC under contract No.
+DE-AC07-05ID14517 and UChicago Argonne under contract No. DE-AC02-06CH11357, LLC with
+the Department of Energy. During the period of commercialization or such other time
+period specified by the Department of Energy, the Government is granted for itself and
+others acting on its behalf a nonexclusive, paid-up, irrevocable worldwide license in
+this data to reproduce, prepare derivative works, and perform publicly and display
+publicly, by or on behalf of the Government. Subsequent to that period the Government is
+granted for itself and others acting on its behalf a nonexclusive, paid-up, irrevocable
+worldwide license in this data to reproduce, prepare derivative works, distribute copies
+to the public, perform publicly and display publicly, and to permit others to do so. The
+specific term of the license can be identified by inquiry made to the Contractor or DOE.
+NEITHER THE UNITED STATES NOR THE UNITED STATES DEPARTMENT OF ENERGY, NOR ANY OF THEIR
+EMPLOYEES, MAKES ANY WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY LEGAL LIABILITY OR
+RESPONSIBILITY FOR THE ACCURACY, COMPLETENESS, OR USEFULNESS OF ANY DATA, APPARATUS,
+PRODUCT, OR PROCESS DISCLOSED, OR REPRESENTS THAT ITS USE WOULD NOT INFRINGE PRIVATELY
+OWNED RIGHTS.
+------------------------------------------------------------------------------------------------------------------
+
+
+Griffin version:         git commit 98667aed7 on 2025-02-14
+Framework Information:
+MOOSE Version:           git commit 07c1d65b20 on 2025-02-14
+LibMesh Version:         6ef7d4395794104f48dae1fd48e64077207188e8
+PETSc Version:           3.22.1
+SLEPc Version:           3.22.1
+Libtorch Version:        2.1.0
+Current Time:            Fri Feb 21 13:23:34 2025
+Executable Timestamp:    Fri Feb 14 21:37:40 2025
+
+Parallelism:
+  Num Processors:        20
+  Num Threads:           1
+
+Command line: griffin-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/core_2D_bison.i
+
+[36mFileMeshGenerator 'core_unextruded': [39m Mesh Information:
+[36mFileMeshGenerator 'core_unextruded': [39m  elem_dimensions()={2}
+[36mFileMeshGenerator 'core_unextruded': [39m  elem_default_orders()={1}
+[36mFileMeshGenerator 'core_unextruded': [39m  supported_nodal_order()=1
+[36mFileMeshGenerator 'core_unextruded': [39m  spatial_dimension()=2
+[36mFileMeshGenerator 'core_unextruded': [39m  n_nodes()=37582
+[36mFileMeshGenerator 'core_unextruded': [39m    n_local_nodes()=2108
+[36mFileMeshGenerator 'core_unextruded': [39m  n_elem()=34705
+[36mFileMeshGenerator 'core_unextruded': [39m    n_local_elem()=1590
+[36mFileMeshGenerator 'core_unextruded': [39m    n_active_elem()=34705
+[36mFileMeshGenerator 'core_unextruded': [39m  n_subdomains()=6
+[36mFileMeshGenerator 'core_unextruded': [39m  n_elemsets()=0
+[36mFileMeshGenerator 'core_unextruded': [39m  n_partitions()=20
+[36mFileMeshGenerator 'core_unextruded': [39m  n_processors()=20
+[36mFileMeshGenerator 'core_unextruded': [39m  n_threads()=1
+[36mFileMeshGenerator 'core_unextruded': [39m  processor_id()=0
+[36mFileMeshGenerator 'core_unextruded': [39m  is_prepared()=true
+[36mFileMeshGenerator 'core_unextruded': [39m  is_replicated()=true
+[36mFileMeshGenerator 'core_unextruded': [39m
+[36mFileMeshGenerator 'core_unextruded': [39m Mesh Bounding Box:
+[36mFileMeshGenerator 'core_unextruded': [39m  Minimum: (x,y,z)=(-26.4293, -22.8885,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m  Maximum: (x,y,z)=( 26.4293,  22.8885,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m  Delta:   (x,y,z)=( 52.8586,  45.7769,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m
+[36mFileMeshGenerator 'core_unextruded': [39m Mesh Element Type(s):
+[36mFileMeshGenerator 'core_unextruded': [39m  TRI3, QUAD4
+[36mFileMeshGenerator 'core_unextruded': [39m
+[36mFileMeshGenerator 'core_unextruded': [39m Mesh Nodesets:
+[36mFileMeshGenerator 'core_unextruded': [39m  None
+[36mFileMeshGenerator 'core_unextruded': [39m
+[36mFileMeshGenerator 'core_unextruded': [39m Mesh Sidesets:
+[36mFileMeshGenerator 'core_unextruded': [39m  Sideset 1, 5064 sides (EDGE2), 5064 elems (QUAD4), 5064 nodes
+[36mFileMeshGenerator 'core_unextruded': [39m   Side volume: 900.562
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box minimum: (x,y,z)=(-11.5397, -10.7119,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box maximum: (x,y,z)=( 11.5397,  10.7119,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box delta: (x,y,z)=( 23.0795,  21.4238,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m  Sideset 2, 5908 sides (EDGE2), 5908 elems (QUAD4), 5908 nodes
+[36mFileMeshGenerator 'core_unextruded': [39m   Side volume: 906.622
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box minimum: (x,y,z)=(-11.5438, -10.7159,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box maximum: (x,y,z)=( 11.5438,  10.7159,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box delta: (x,y,z)=( 23.0876,  21.4319,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m  Sideset 3, 5908 sides (EDGE2), 5908 elems (QUAD4), 5908 nodes
+[36mFileMeshGenerator 'core_unextruded': [39m   Side volume: 944.258
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box minimum: (x,y,z)=(-11.5722, -10.7444,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box maximum: (x,y,z)=( 11.5722,  10.7444,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box delta: (x,y,z)=( 23.1445,  21.4888,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m
+[36mFileMeshGenerator 'core_unextruded': [39m Mesh Edgesets:
+[36mFileMeshGenerator 'core_unextruded': [39m  None
+[36mFileMeshGenerator 'core_unextruded': [39m
+[36mFileMeshGenerator 'core_unextruded': [39m Mesh Subdomains:
+[36mFileMeshGenerator 'core_unextruded': [39m  Subdomain 1: 11394 elems (QUAD4, 11394 active), 14137 active nodes
+[36mFileMeshGenerator 'core_unextruded': [39m   Volume: 299.151
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box minimum: (x,y,z)=(-11.5341, -10.7063,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box maximum: (x,y,z)=( 11.5341,  10.7063,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box delta: (x,y,z)=( 23.0683,  21.4126,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m  Subdomain 2: 5064 elems (QUAD4, 5064 active), 10128 active nodes
+[36mFileMeshGenerator 'core_unextruded': [39m   Volume: 4.96883
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box minimum: (x,y,z)=(-11.5397, -10.7119,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box maximum: (x,y,z)=( 11.5397,  10.7119,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box delta: (x,y,z)=( 23.0795,  21.4238,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m  Subdomain 3: 5908 elems (QUAD4, 5908 active), 11816 active nodes
+[36mFileMeshGenerator 'core_unextruded': [39m   Volume: 26.1614
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box minimum: (x,y,z)=(-11.5722, -10.7444,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box maximum: (x,y,z)=( 11.5722,  10.7444,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box delta: (x,y,z)=( 23.1445,  21.4888,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m  Subdomain 4: 204 elems (TRI3, 204 active), 216 active nodes
+[36mFileMeshGenerator 'core_unextruded': [39m   Volume: 6.8876
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box minimum: (x,y,z)=( -11.255, -11.7475,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box maximum: (x,y,z)=(  11.255,  11.7475,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box delta: (x,y,z)=( 22.5101,   23.495,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m  Subdomain 5: 494 elems (TRI3, 494 active), 494 active nodes
+[36mFileMeshGenerator 'core_unextruded': [39m   Volume: 9.61481
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box minimum: (x,y,z)=(-11.8761, -11.8768,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box maximum: (x,y,z)=(  11.877,  11.8768,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box delta: (x,y,z)=( 23.7531,  23.7536,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m  Subdomain 6: 11641 elems (TRI3, 11641 active), 6104 active nodes
+[36mFileMeshGenerator 'core_unextruded': [39m   Volume: 1371.66
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box minimum: (x,y,z)=(-26.4293, -22.8885,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box maximum: (x,y,z)=( 26.4293,  22.8885,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m   Bounding box delta: (x,y,z)=( 52.8586,  45.7769,        0)
+[36mFileMeshGenerator 'core_unextruded': [39m  Global mesh volume = 1718.44
+[36mAdvancedExtruderGenerator 'extruded': [39m Mesh Information:
+[36mAdvancedExtruderGenerator 'extruded': [39m  elem_dimensions()={3}
+[36mAdvancedExtruderGenerator 'extruded': [39m  supported_nodal_order()=0
+[36mAdvancedExtruderGenerator 'extruded': [39m  spatial_dimension()=1
+[36mAdvancedExtruderGenerator 'extruded': [39m  n_nodes()=2104592
+[36mAdvancedExtruderGenerator 'extruded': [39m    n_local_nodes()=118048
+[36mAdvancedExtruderGenerator 'extruded': [39m  n_elem()=1908775
+[36mAdvancedExtruderGenerator 'extruded': [39m    n_local_elem()=87450
+[36mAdvancedExtruderGenerator 'extruded': [39m    n_active_elem()=1908775
+[36mAdvancedExtruderGenerator 'extruded': [39m  n_subdomains()=6
+[36mAdvancedExtruderGenerator 'extruded': [39m  n_elemsets()=0
+[36mAdvancedExtruderGenerator 'extruded': [39m  n_partitions()=1
+[36mAdvancedExtruderGenerator 'extruded': [39m  n_processors()=20
+[36mAdvancedExtruderGenerator 'extruded': [39m  n_threads()=1
+[36mAdvancedExtruderGenerator 'extruded': [39m  processor_id()=0
+[36mAdvancedExtruderGenerator 'extruded': [39m  is_prepared()=false
+[36mAdvancedExtruderGenerator 'extruded': [39m  is_replicated()=true
+[36mAdvancedExtruderGenerator 'extruded': [39m
+[36mAdvancedExtruderGenerator 'extruded': [39m Mesh Bounding Box:
+[36mAdvancedExtruderGenerator 'extruded': [39m  Minimum: (x,y,z)=(-26.4293, -22.8885,        0)
+[36mAdvancedExtruderGenerator 'extruded': [39m  Maximum: (x,y,z)=( 26.4293,  22.8885,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m  Delta:   (x,y,z)=( 52.8586,  45.7769,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m
+[36mAdvancedExtruderGenerator 'extruded': [39m Mesh Element Type(s):
+[36mAdvancedExtruderGenerator 'extruded': [39m  HEX8, PRISM6
+[36mAdvancedExtruderGenerator 'extruded': [39m
+[36mAdvancedExtruderGenerator 'extruded': [39m Mesh Nodesets:
+[36mAdvancedExtruderGenerator 'extruded': [39m  None
+[36mAdvancedExtruderGenerator 'extruded': [39m
+[36mAdvancedExtruderGenerator 'extruded': [39m Mesh Sidesets:
+[36mAdvancedExtruderGenerator 'extruded': [39m  Sideset 1, 278520 sides (QUAD4), 278520 elems (HEX8), 283584 nodes
+[36mAdvancedExtruderGenerator 'extruded': [39m   Side volume: 32024
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box minimum: (x,y,z)=(-11.5397, -10.7119,        0)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box maximum: (x,y,z)=( 11.5397,  10.7119,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box delta: (x,y,z)=( 23.0795,  21.4238,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m  Sideset 2, 324940 sides (QUAD4), 324940 elems (HEX8), 330848 nodes
+[36mAdvancedExtruderGenerator 'extruded': [39m   Side volume: 32239.5
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box minimum: (x,y,z)=(-11.5438, -10.7159,        0)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box maximum: (x,y,z)=( 11.5438,  10.7159,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box delta: (x,y,z)=( 23.0876,  21.4319,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m  Sideset 3, 324940 sides (QUAD4), 324940 elems (HEX8), 330848 nodes
+[36mAdvancedExtruderGenerator 'extruded': [39m   Side volume: 33577.8
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box minimum: (x,y,z)=(-11.5722, -10.7444,        0)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box maximum: (x,y,z)=( 11.5722,  10.7444,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box delta: (x,y,z)=( 23.1445,  21.4888,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m  Sideset 4, 34705 sides (TRI3, QUAD4), 34705 elems (HEX8, PRISM6), 37582 nodes
+[36mAdvancedExtruderGenerator 'extruded': [39m   Side volume: 1718.44
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box minimum: (x,y,z)=(-26.4293, -22.8885,        0)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box maximum: (x,y,z)=( 26.4293,  22.8885,        0)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box delta: (x,y,z)=( 52.8586,  45.7769,        0)
+[36mAdvancedExtruderGenerator 'extruded': [39m  Sideset 5, 34705 sides (TRI3, QUAD4), 34705 elems (HEX8, PRISM6), 37582 nodes
+[36mAdvancedExtruderGenerator 'extruded': [39m   Side volume: 1718.44
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box minimum: (x,y,z)=(-26.4293, -22.8885,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box maximum: (x,y,z)=( 26.4293,  22.8885,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box delta: (x,y,z)=( 52.8586,  45.7769,        0)
+[36mAdvancedExtruderGenerator 'extruded': [39m
+[36mAdvancedExtruderGenerator 'extruded': [39m Mesh Edgesets:
+[36mAdvancedExtruderGenerator 'extruded': [39m  None
+[36mAdvancedExtruderGenerator 'extruded': [39m
+[36mAdvancedExtruderGenerator 'extruded': [39m Mesh Subdomains:
+[36mAdvancedExtruderGenerator 'extruded': [39m  Subdomain 1: 626670 elems (HEX8, 626670 active), 791672 active nodes
+[36mAdvancedExtruderGenerator 'extruded': [39m   Volume: 10637.8
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box minimum: (x,y,z)=(-11.5341, -10.7063,        0)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box maximum: (x,y,z)=( 11.5341,  10.7063,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box delta: (x,y,z)=( 23.0683,  21.4126,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m  Subdomain 2: 278520 elems (HEX8, 278520 active), 567168 active nodes
+[36mAdvancedExtruderGenerator 'extruded': [39m   Volume: 176.692
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box minimum: (x,y,z)=(-11.5397, -10.7119,        0)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box maximum: (x,y,z)=( 11.5397,  10.7119,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box delta: (x,y,z)=( 23.0795,  21.4238,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m  Subdomain 3: 324940 elems (HEX8, 324940 active), 661696 active nodes
+[36mAdvancedExtruderGenerator 'extruded': [39m   Volume: 930.299
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box minimum: (x,y,z)=(-11.5722, -10.7444,        0)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box maximum: (x,y,z)=( 11.5722,  10.7444,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box delta: (x,y,z)=( 23.1445,  21.4888,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m  Subdomain 4: 11220 elems (PRISM6, 11220 active), 12096 active nodes
+[36mAdvancedExtruderGenerator 'extruded': [39m   Volume: 244.923
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box minimum: (x,y,z)=( -11.255, -11.7475,        0)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box maximum: (x,y,z)=(  11.255,  11.7475,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box delta: (x,y,z)=( 22.5101,   23.495,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m  Subdomain 5: 27170 elems (PRISM6, 27170 active), 27664 active nodes
+[36mAdvancedExtruderGenerator 'extruded': [39m   Volume: 341.903
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box minimum: (x,y,z)=(-11.8761, -11.8768,        0)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box maximum: (x,y,z)=(  11.877,  11.8768,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box delta: (x,y,z)=( 23.7531,  23.7536,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m  Subdomain 6: 640255 elems (PRISM6, 640255 active), 341824 active nodes
+[36mAdvancedExtruderGenerator 'extruded': [39m   Volume: 48776.2
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box minimum: (x,y,z)=(-26.4293, -22.8885,        0)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box maximum: (x,y,z)=( 26.4293,  22.8885,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m   Bounding box delta: (x,y,z)=( 52.8586,  45.7769,    35.56)
+[36mAdvancedExtruderGenerator 'extruded': [39m  Global mesh volume = 61107.9
+Currently Setting Up
+  Setting Up Undisplaced Mesh
+    Preparing Mesh
+      Finished Updating Mesh                                                             [[33m  2.71 s[39m] [[33m 1598 MB[39m]
+    Finished Preparing Mesh                                                              [[33m 15.64 s[39m] [[33m 1598 MB[39m]
+  Finished Setting Up Undisplaced Mesh                                                   [[33m 15.64 s[39m] [[33m 1598 MB[39m]
+  Initializing
+    Initializing Equation Systems                                                        [[33m 14.32 s[39m] [[33m 2744 MB[39m]
+  Finished Initializing                                                                  [[33m 17.44 s[39m] [[33m 2744 MB[39m]
+Finished Setting Up                                                                      [[33m 36.54 s[39m] [[33m 2744 MB[39m]
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 2104592
+    Local:                 71850
+    Min/Max/Avg:           60190/133280/105229
+  Elems:                   
+    Total:                 1908775
+    Local:                 113803
+    Min/Max/Avg:           86460/116388/95438
+  Num Subdomains:          6
+  Num Partitions:          20
+  Partitioner:             metis
+
+Nonlinear System:
+  Num DOFs:                2104592
+  Num Local DOFs:          71850
+  Variables:               "bison_temp" 
+  Finite Element Types:    "LAGRANGE" 
+  Approximation Orders:    "FIRST" 
+
+Auxiliary System:
+  Num DOFs:                24945626
+  Num Local DOFs:          1561687
+  Variables:               { "aux_tk" "aux_cp" } "bison_power_density" "aux_T_inf" "bison_Tfuel" "bison_Tref" 
+                             "bison_norm_power_density" { "qpoint_penetration" "paired_bison_temp" } 
+  Finite Element Types:    "LAGRANGE" "L2_LAGRANGE" "LAGRANGE" "LAGRANGE" "LAGRANGE" "L2_LAGRANGE" "MONOMIAL" 
+                             
+  Approximation Orders:    "FIRST" "FIRST" "FIRST" "FIRST" "FIRST" "FIRST" "CONSTANT" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             ConstantDT
+  TimeIntegrator(s):       ImplicitEuler
+  Solver Mode              : Preconditioned JFNK
+  PETSc Preconditioner:    hypre boomeramg strong_threshold: 0.7 (auto)
+
+Currently Executing
+  Performing Initial Setup
+    Reinitializing Because of Geometric Search Objects....                               [[33m 33.62 s[39m] [[33m 4021 MB[39m]
+    Building SemiLocalElemMap.                                                           [[33m 18.06 s[39m] [[33m 4021 MB[39m]
+  Still Performing Initial Setup
+  Finished Performing Initial Setup                                                      [[33m 69.37 s[39m] [[33m 4021 MB[39m]
+
+Time Step 0, time = 0
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | ceramic_vol    | clad_vol       | cp_av          | fuel_vol       | intref_vol     | norm_power     |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
++----------------+------------------------+----------------+-------------------+----------------+----------------+
+| time           | norm_power_density_avg | power          | power_density_avg | tc_av          | temp_av        |
++----------------+------------------------+----------------+-------------------+----------------+----------------+
+|   0.000000e+00 |           0.000000e+00 |   0.000000e+00 |      0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+------------------------+----------------+-------------------+----------------+----------------+
++----------------+----------------+----------------+
+| time           | temp_max       | temp_min       |
++----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+
+
+
+Time Step 1, time = 0.01, dt = 0.01
+ 0 Nonlinear |R| = [32m2.937132e+08[39m
+

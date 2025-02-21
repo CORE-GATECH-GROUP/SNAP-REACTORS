@@ -285,7 +285,7 @@ ext_T_ref                 = 600 # (K)
     type = FullSolveMultiApp
     #app_type = GriffinApp
     input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/core_2D_bison.i'
-    positions = '0 0 0'
+    positions = '0 0 1.76022' # lay1 + lay2
     execute_on = 'timestep_end'#'MULTIAPP_FIXED_POINT_END'
     []
 []

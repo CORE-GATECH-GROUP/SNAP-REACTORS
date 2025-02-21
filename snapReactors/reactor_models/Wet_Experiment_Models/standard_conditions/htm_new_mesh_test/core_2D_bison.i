@@ -83,11 +83,11 @@ ht_coeff                  = 4539.6
 #     year = "1965",
 #     month = "2"
 # }
-clad_density              = '${units 8617.9333 kg/m^3 -> g/cm^3}' # (kg/m^3)
-clad_tc                   = '${units 18.85239 W/m/K -> W/cm/K}'# (W/m K)
-clad_cp                   = '${units 418.68 J/kg/K -> J/g/K}'# (J/kg-K)
-fuel_density              = '${units 5963 kg/m^3 -> g/cm^3}'# (kg/m^3)
-gap_tc                    = '${units .346146933 W/m/K -> W/cm/K}'
+clad_density              = 8617.9333 # (kg/m^3)
+clad_tc                   = 18.85239 # (W/m K)
+clad_cp                   = 418.68 # (J/kg-K)
+fuel_density              = 5963 # (kg/m^3)
+gap_tc                    = .346146933
 #gap_dens        = 0.016646998
 #gap_cp          = 5193.163779
 
@@ -98,21 +98,21 @@ gap_tc                    = '${units .346146933 W/m/K -> W/cm/K}'
 ceramic_emiss             = .80
 clad_emiss                = .80
 
-ceramic_dens              = '${units 2242.584872 kg/m^3 -> g/cm^3}'
-ceramic_cp                = '${units 837.36 J/kg/K -> J/g/K}'
-ceramic_tc                = '${units 1.730734666 W/m/K -> W/cm/K}'
+ceramic_dens              = 2242.584872
+ceramic_cp                = 837.36
+ceramic_tc                = 1.730734666
         
-intref_dens               = '${units 1810.086361 kg/m^3 -> g/cm^3}'
-intref_cp                 = '${units 2721.42 J/kg/K -> J/g/K}'
-intref_tc                 = '${units 131.5358346 W/m/K -> W/cm/K}'
+intref_dens               = 1810.086361
+intref_cp                 = 2721.42
+intref_tc                 = 131.5358346
 
-barrel_dens               = '${units 7954.00 kg/m^3 -> g/cm^3}'
-barrel_cp                 = '${units 500 J/kg/K -> J/g/K}'
-barrel_tc                 = '${units 16.2 W/m/K -> W/cm/K}'
+barrel_dens               = 7954.00
+barrel_cp                 = 500
+barrel_tc                 = 16.2
 
-extref_dens               = '${units 1840.00 kg/m^3 -> g/cm^3}'
-extref_cp                 = '${units 1850 J/kg/K -> J/g/K}'
-extref_tc                 = '${units 151.000 W/m/K -> W/cm/K}'
+extref_dens               = 1840.00
+extref_cp                 = 1850
+extref_tc                 = 151.000
         
 #coolant_dens                  = 800
 #coolant_cp                    = 880
@@ -128,7 +128,7 @@ extref_blocks = 6
 gap_inner = 1
 gap_outer = 2
 clad_outer = 3
-#core_inner = 4
+core_inner = 4
 core_outer = 5
 
 acm_dz = '${fparse 3.81}'
@@ -206,7 +206,7 @@ lay2 = '${fparse 2.9083}'
         family = L2_LAGRANGE 
         order = FIRST 
         block = '${fuel_blocks} ${extref_blocks}'
-        initial_condition = 7.3E+01
+        #initial_condition = 7.3E+01
     []
     [aux_T_inf]
         family = LAGRANGE
@@ -270,6 +270,34 @@ lay2 = '${fparse 2.9083}'
 []
 
 # ==============================================================================
+# MULTIAPPS AND TRANSFERS
+# ==============================================================================
+# [MultiApps]
+#     [thm]
+#       type = TransientMultiApp
+#       #app_type = ThermalHydraulicsApp
+#       input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/SNAP_thm_test3_1.i'
+#       execute_on =  timestep_end
+#       bounding_box_padding = '0.1 0.1 0'
+#     []
+#   []
+  
+#   [Transfers]
+#     [q_wall_to_thm]
+#       type = MultiAppGeneralFieldUserObjectTransfer
+#       variable = q_wall
+#       to_multi_app = thm
+#       source_user_object = q_wall_avg 
+#     []
+#     [T_wall_from_thm]
+#       type = MultiAppGeneralFieldNearestLocationTransfer
+#       source_variable = T_wall
+#       from_multi_app = thm
+#       variable = fluid_temp
+#     []
+#   []
+
+# ==============================================================================
 # INITIAL CONDITIONS AND FUNCTIONS
 # ==============================================================================
 [Functions]
@@ -327,6 +355,13 @@ lay2 = '${fparse 2.9083}'
         prop_values = '${clad_density} ${clad_cp} ${ clad_tc}'
         block = ${clad_blocks}
     []
+    # [clad_thermal_conduction]
+    #     type = ADHeatConductionMaterial
+    #     temp = bison_temp
+    #     specific_heat = '${clad_cp}'
+    #     thermal_conductivity =  '${clad_tc}'
+    #     block = '${clad_blocks}'
+    # []
     [gap_heat_transfer]
         #Models/SNAP10A_dimensions
         type = GenericConstantMaterial
@@ -348,25 +383,60 @@ lay2 = '${fparse 2.9083}'
         prop_values = '${ceramic_dens} ${ ceramic_cp} ${ ceramic_tc}'
         block = ${ceram_blocks}
     []
+    # [ceramic_thermal_conduction]
+    #     type = ADHeatConductionMaterial
+    #     temp = bison_temp
+    #     specific_heat = '${ceramic_cp}'
+    #     thermal_conductivity =  '${ceramic_tc}'
+    #     block = '${ceram_blocks}'    
+    # []
+    # [intref_thermal_conduction]
+    #     #Models/SNAP10A_dimensions
+    #     type = ADGenericConstantMaterial
+    #     prop_names = 'density specific_heat thermal_conductivity'
+    #     prop_values = '${intref_dens} ${intref_cp} ${ intref_tc}'
+    #     boundary = ${core_inner}
+    #     block = ${intref_blocks}
+    # []
     [intref_thermal_conduction]
-        #Models/SNAP10A_dimensions
+        type = ADHeatConductionMaterial
+        temp = bison_temp
+        specific_heat = '${intref_cp}'
+        thermal_conductivity =  '${intref_tc}'
+        block = '${intref_blocks}' 
+    []
+    [intref_density]
         type = ADGenericConstantMaterial
-        prop_names = 'density specific_heat thermal_conductivity'
-        prop_values = '${intref_dens} ${intref_cp} ${ intref_tc}'
-        block = ${intref_blocks}
+        prop_names = 'density'
+        prop_values = '${intref_dens}'
+        block = ${fuel_blocks}
     []
     [barrel_thermal_conduction]
+        type = ADHeatConductionMaterial
+        temp = bison_temp
+        specific_heat = '${barrel_cp}'
+        thermal_conductivity =  '${barrel_tc}'
+        block = '${barrel_blocks}' 
+    []    
+    [barrel_density]
         #Models/SNAP10A_dimensions
         type = ADGenericConstantMaterial
-        prop_names = 'density specific_heat thermal_conductivity'
-        prop_values = '${barrel_dens} ${barrel_cp} ${barrel_tc}'
+        prop_names = 'density'
+        prop_values = '${barrel_dens}'
         block = ${barrel_blocks}
     []
     [extref_thermal_conduction]
+        type = ADHeatConductionMaterial
+        temp = bison_temp
+        specific_heat = '${extref_cp}'
+        thermal_conductivity =  '${extref_tc}'
+        block = '${extref_blocks}' 
+    []    
+    [extref_density]
         #Models/SNAP10A_dimensions
         type = ADGenericConstantMaterial
-        prop_names = 'density specific_heat thermal_conductivity'
-        prop_values = '${extref_dens} ${extref_cp} ${extref_tc}'
+        prop_names = 'density'
+        prop_values = '${extref_dens}'
         block = ${extref_blocks}
     []
     # [air_thermal_conduction]
@@ -398,20 +468,20 @@ lay2 = '${fparse 2.9083}'
         htc = '${ht_coeff}'
     []
     # Convective BC outer surface fuel pin
-    # [convective_boundary_core]
+    [convective_boundary_core]
+        type = CoupledConvectiveHeatFluxBC
+        variable = bison_temp
+        boundary = '${core_inner}'
+        T_infinity = aux_T_inf
+        htc = '${ht_coeff}'
+    []
+    # [convective_boundary_ambient]
     #     type = CoupledConvectiveHeatFluxBC
     #     variable = bison_temp
-    #     boundary = '${intref_blocks}'
+    #     boundary = ${core_outer}
     #     T_infinity = aux_T_inf
     #     htc = '${ht_coeff}'
     # []
-    [convective_boundary_ambient]
-        type = CoupledConvectiveHeatFluxBC
-        variable = bison_temp
-        boundary = ${core_outer}
-        T_infinity = 293.15
-        htc = 10
-    []
 []
 
 [ThermalContact]
@@ -452,6 +522,19 @@ lay2 = '${fparse 2.9083}'
     solve_type = NEWTON
     petsc_options_iname = '-pc_type -pc_hypre_type'
     petsc_options_value = 'hypre boomeramg'
+    # type = Transient
+    # nl_abs_tol = 5e-7
+    # nl_rel_tol = 1e-7
+    # petsc_options_value = 'hypre boomeramg'
+    # petsc_options_iname = '-pc_type -pc_hypre_type'
+    # dt = 0.01
+    # nl_max_its = 200
+    # steady_state_detection = true
+    # steady_state_tolerance = 5e-6
+    # [./Quadrature]
+    #   type = TRAP
+    #   order = FIRST
+    # [../]
 []
 
 # ==============================================================================
