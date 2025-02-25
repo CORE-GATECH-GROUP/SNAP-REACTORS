@@ -14,8 +14,8 @@ N = 211                                # Number of fuel pins
 core_dia = 1.42748 # fuel pin diameter
 core_pitch = 1.4478 # core pitch
 pd_ratio = '${fparse core_pitch / core_dia}' # pitch-to-diameter
-hex_a = '${fparse 0.13856*100}' # hexagon side size
-hex_b = '${fparse 0.00843*100}' # hexagon side size for one pin.
+hex_a = '${fparse 0.13856*100}' # hexagon side size cm
+hex_b = '${fparse 0.00843*100}' # hexagon side size for one pin. cm
 
 # Calculated based on the hexagon geometry with flat sides
 A_pins = '${fparse (N * 3.14 * core_dia * core_dia / 4)}'
@@ -23,10 +23,10 @@ A_nonFuels= '${fparse (6 * (3 * (sqrt(3) / 2) * hex_b * hex_b))}'
 
 A_flow = '${fparse (3 * (sqrt(3) / 2) * hex_a * hex_a) - A_pins - A_nonFuels }'               # Cross section flow area (m2)
 
-hydraulics_diameter = 0.29    # diameter of the coolant channels (m)
-P_wet_core = 2047.74 # wetted perimeter
+hydraulics_diameter = 0.29    # diameter of the coolant channels (cm)
+P_wet_core = 2047.74 # wetted perimeter cm
 
-num_layers_for_THM = 20
+num_layers_for_THM = 10
 
 unit_cell_height = 35.56 # segment height, default is total.
 

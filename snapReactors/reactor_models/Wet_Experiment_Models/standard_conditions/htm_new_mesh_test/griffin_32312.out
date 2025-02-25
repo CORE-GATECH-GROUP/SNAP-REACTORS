@@ -1,0 +1,802 @@
+
+******************************************************************************************************************
+
+                      _________                                                   _________
+                      \_________\----------____                   ____----------/_________/
+                          \________\-------\\\\\\               //////-------/________/
+                              \________\------\\||             ||//------/________/
+                                     \_____\----\\             //----/_____/
+                         ██████╗ ██████╗ ██╗███████╗███████╗██╗███╗  ██╗      ███╗   ███╗
+                        ██╔════╝ ██╔══██╗██║██╔════╝██╔════╝██║████╗ ██║      ████╗ ████║
+                        ██║  ██╗ ██████╔╝██║█████╗  █████╗  ██║██╔██╗██║█████╗██╔████╔██║
+                        ██║  ╚██╗██╔══██╗██║██╔══╝  ██╔══╝  ██║██║╚████║╚════╝██║╚██╔╝██║
+                        ╚██████╔╝██║  ██║██║██║     ██║     ██║██║ ╚███║      ██║ ╚═╝ ██║
+                         ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝     ╚═╝╚═╝  ╚══╝      ╚═╝     ╚═╝
+
+
+                                    Multiphysics Nuclear Reactor Analysis Code
+                                            Idaho National Laboratory
+                                           Argonne National Laboratory
+
+******************************************************************************************************************
+
+
+------------------------------------------------------------------------------------------------------------------
+Notice: These data were produced by Battelle Energy Alliance, LLC under contract No.
+DE-AC07-05ID14517 and UChicago Argonne under contract No. DE-AC02-06CH11357, LLC with
+the Department of Energy. During the period of commercialization or such other time
+period specified by the Department of Energy, the Government is granted for itself and
+others acting on its behalf a nonexclusive, paid-up, irrevocable worldwide license in
+this data to reproduce, prepare derivative works, and perform publicly and display
+publicly, by or on behalf of the Government. Subsequent to that period the Government is
+granted for itself and others acting on its behalf a nonexclusive, paid-up, irrevocable
+worldwide license in this data to reproduce, prepare derivative works, distribute copies
+to the public, perform publicly and display publicly, and to permit others to do so. The
+specific term of the license can be identified by inquiry made to the Contractor or DOE.
+NEITHER THE UNITED STATES NOR THE UNITED STATES DEPARTMENT OF ENERGY, NOR ANY OF THEIR
+EMPLOYEES, MAKES ANY WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY LEGAL LIABILITY OR
+RESPONSIBILITY FOR THE ACCURACY, COMPLETENESS, OR USEFULNESS OF ANY DATA, APPARATUS,
+PRODUCT, OR PROCESS DISCLOSED, OR REPRESENTS THAT ITS USE WOULD NOT INFRINGE PRIVATELY
+OWNED RIGHTS.
+------------------------------------------------------------------------------------------------------------------
+
+
+Griffin version:         git commit 98667aed7 on 2025-02-14
+Framework Information:
+MOOSE Version:           git commit 07c1d65b20 on 2025-02-14
+LibMesh Version:         6ef7d4395794104f48dae1fd48e64077207188e8
+PETSc Version:           3.22.1
+SLEPc Version:           3.22.1
+Libtorch Version:        2.1.0
+Current Time:            Tue Feb 25 11:28:36 2025
+Executable Timestamp:    Fri Feb 14 21:37:40 2025
+
+Parallelism:
+  Num Processors:        10
+  Num Threads:           1
+
+Command line: griffin-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/wet_core.i
+
+
+Angular quadrature type: Level-Symmetric
+SN order: 12
+
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9400 successfully in 0.08 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9100 successfully in 0.08 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1800 successfully in 0.09 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1700 successfully in 0.09 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1600 successfully in 0.10 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1500 successfully in 0.10 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1400 successfully in 0.10 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1300 successfully in 0.11 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1200 successfully in 0.11 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 1100 successfully in 0.11 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 801 successfully in 0.12 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 802 successfully in 0.12 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 803 successfully in 0.12 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 804 successfully in 0.13 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 805 successfully in 0.13 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 806 successfully in 0.13 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 807 successfully in 0.14 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 808 successfully in 0.14 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 701 successfully in 0.14 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 702 successfully in 0.15 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 703 successfully in 0.15 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 704 successfully in 0.15 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 705 successfully in 0.16 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 706 successfully in 0.16 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 707 successfully in 0.17 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 708 successfully in 0.17 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 601 successfully in 0.17 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 602 successfully in 0.18 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 603 successfully in 0.18 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 604 successfully in 0.18 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 605 successfully in 0.19 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 606 successfully in 0.19 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 607 successfully in 0.19 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 608 successfully in 0.20 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 501 successfully in 0.20 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 502 successfully in 0.20 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 503 successfully in 0.21 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 504 successfully in 0.21 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 505 successfully in 0.21 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 506 successfully in 0.22 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 507 successfully in 0.22 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 508 successfully in 0.22 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 401 successfully in 0.23 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 402 successfully in 0.23 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 403 successfully in 0.24 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 404 successfully in 0.24 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 405 successfully in 0.24 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 406 successfully in 0.25 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 407 successfully in 0.25 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 408 successfully in 0.25 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 301 successfully in 0.26 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 302 successfully in 0.26 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 303 successfully in 0.26 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 304 successfully in 0.27 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 305 successfully in 0.27 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 306 successfully in 0.27 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 307 successfully in 0.28 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 308 successfully in 0.28 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 201 successfully in 0.28 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 202 successfully in 0.29 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 203 successfully in 0.29 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 204 successfully in 0.30 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 205 successfully in 0.30 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 206 successfully in 0.30 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 207 successfully in 0.31 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 208 successfully in 0.31 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 101 successfully in 0.31 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 102 successfully in 0.32 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 103 successfully in 0.32 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 104 successfully in 0.32 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 105 successfully in 0.33 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 106 successfully in 0.33 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 107 successfully in 0.33 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 108 successfully in 0.34 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2800 successfully in 0.34 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2700 successfully in 0.34 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2600 successfully in 0.35 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2500 successfully in 0.35 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2400 successfully in 0.35 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2300 successfully in 0.36 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2200 successfully in 0.36 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2100 successfully in 0.37 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9500 successfully in 0.37 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9300 successfully in 0.37 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 8000 successfully in 0.07 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6901 successfully in 0.08 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7000 successfully in 0.08 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7100 successfully in 0.08 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7200 successfully in 0.08 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7300 successfully in 0.09 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7400 successfully in 0.09 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9903 successfully in 0.09 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3500 successfully in 0.09 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3600 successfully in 0.09 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 5400 successfully in 0.10 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 5500 successfully in 0.10 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 5600 successfully in 0.10 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 5700 successfully in 0.10 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 5800 successfully in 0.11 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 5900 successfully in 0.11 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9900 successfully in 0.11 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3300 successfully in 0.11 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3400 successfully in 0.12 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3900 successfully in 0.12 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 4000 successfully in 0.12 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 4100 successfully in 0.12 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 4200 successfully in 0.13 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 4300 successfully in 0.13 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 4400 successfully in 0.13 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 4500 successfully in 0.13 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3700 successfully in 0.14 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3800 successfully in 0.14 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6000 successfully in 0.14 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6100 successfully in 0.14 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6200 successfully in 0.15 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6300 successfully in 0.15 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6400 successfully in 0.15 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6500 successfully in 0.15 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9901 successfully in 0.16 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6401 successfully in 0.16 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6501 successfully in 0.16 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6600 successfully in 0.16 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6700 successfully in 0.17 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6800 successfully in 0.17 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 6900 successfully in 0.17 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 9902 successfully in 0.17 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 7500 successfully in 0.17 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 2000 successfully in 0.08 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 900 successfully in 0.08 seconds.[39m
+[36mLoaded multigroup library in file "s82d_ac_c3_gcu_ringres_XS.xml" from library 's82d_ac_c3_gcu_ringres_XS' with ID 3100 successfully in 0.08 seconds.[39m
+Normalized power density griffin_power_density will be evaluated on the following neutron transport systems:  dsn
+Currently Setting Up
+  Initializing
+    Finished Initializing Equation Systems                                               [[33m  6.86 s[39m] [[33m 9415 MB[39m]
+  Finished Initializing                                                                  [[33m  7.15 s[39m] [[33m 9558 MB[39m]
+
+Objects counting for the transport system *dsn* :
+      Variables - 18
+   AuxVariables - 72
+        Kernels - 53
+            BCs - 18
+            ICs - 18
+ Postprocessors - 1
+    UserObjects - 2
+   AuxMaterials - 2
+
+Finished Setting Up                                                                      [[33m 13.63 s[39m] [[33m 9561 MB[39m]
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 62505
+    Local:                 6725
+    Min/Max/Avg:           5783/6966/6250
+  Elems:                   
+    Total:                 115304
+    Local:                 11431
+    Min/Max/Avg:           11271/11841/11530
+  Num Subdomains:          130
+  Num Partitions:          10
+  Partitioner:             metis
+
+Nonlinear System:
+  Num DOFs:                2092075776
+  Num Local DOFs:          207404064
+  Variables:               { "aflux_g0_0" "aflux_g0_1" "aflux_g0_2" "aflux_g0_3" "aflux_g0_4" ... "aflux_g17_163" 
+                             "aflux_g17_164" "aflux_g17_165" "aflux_g17_166" "aflux_g17_167" } 
+  Finite Element Types:    "L2_LAGRANGE" 
+  Approximation Orders:    "FIRST" 
+
+Auxiliary System:
+  Num DOFs:                50964368
+  Num Local DOFs:          5052502
+  Variables:               { "griffin_Tfuel" "griffin_Tcool" "griffin_Tref" "Unity" } "griffin_power_density" 
+                             { "flux_moment_g0_L0_M0" "flux_moment_g0_L1_M-1" "flux_moment_g0_L1_M0" 
+                             "flux_moment_g0_L1_M1" "flux_moment_g1_L0_M0" ... "flux_moment_g16_L1_M1" 
+                             "flux_moment_g17_L0_M0" "flux_moment_g17_L1_M-1" "flux_moment_g17_L1_M0" 
+                             "flux_moment_g17_L1_M1" } 
+  Finite Element Types:    "MONOMIAL" "L2_LAGRANGE" "L2_LAGRANGE" 
+  Approximation Orders:    "CONSTANT" "FIRST" "FIRST" 
+
+Execution Information:
+  Executioner:             SweepUpdate
+  Solver Mode              : JFNK
+
+Currently Executing
+  Performing Initial Setup
+    Projecting Initial Solutions.                                                        [[33m 16.67 s[39m] [[33m 9693 MB[39m]
+  Finished Performing Initial Setup                                                      [[33m 24.57 s[39m] [[33m 9700 MB[39m]
+[34m Total coarse elements: 112
+         Energy groups: 18
+            Processors: 2[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+------------------+----------------+------------------+----------------+--------------------+
+| time           | acl_acu_air_vol| eigenvalue     | fuel_griffin_vol | griffin_power  | integrated_power | power_scaling  | single_acm_air_vol |
++----------------+----------------+----------------+------------------+----------------+------------------+----------------+--------------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |     1.362047e-02 |   6.000000e+05 |     6.000000e+05 |   6.131057e+32 |       0.000000e+00 |
++----------------+----------------+----------------+------------------+----------------+------------------+----------------+--------------------+
+
+Step 1:
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.57 s[39m] [[33m 9793 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.18 s[39m] [[33m 9793 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.58 s[39m] [[33m 9874 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 91.72 s[39m] [[33m 9874 MB[39m]
+Richardson iteration    1 Error: 8.542e+03 eigenvalue: 0.53719039 Execution time:    101.872 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.79 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.18 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.52 s[39m] [[33m 9874 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 91.91 s[39m] [[33m 9874 MB[39m]
+Richardson iteration    2 Error: 1.506e+03 eigenvalue: 0.90576196 Execution time:    101.852 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.79 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.19 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.51 s[39m] [[33m 9874 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 91.92 s[39m] [[33m 9874 MB[39m]
+Richardson iteration    3 Error: 6.250e+02 eigenvalue: 1.00667467 Execution time:    101.877 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.79 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.18 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.58 s[39m] [[33m 9874 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 91.98 s[39m] [[33m 9874 MB[39m]
+Richardson iteration    4 Error: 3.548e+02 eigenvalue: 1.03634811 Execution time:    101.957 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.81 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.18 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.57 s[39m] [[33m 9874 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 91.97 s[39m] [[33m 9874 MB[39m]
+Richardson iteration    5 Error: 2.283e+02 eigenvalue: 1.04707859 Execution time:    101.931 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.80 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.18 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.58 s[39m] [[33m 9874 MB[39m]
+Richardson iteration    6 Error: 1.397e+02 eigenvalue: 1.05170276 Execution time:    101.961 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 92.01 s[39m] [[33m 9874 MB[39m]
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.81 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.18 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.55 s[39m] [[33m 9874 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 91.96 s[39m] [[33m 9874 MB[39m]
+Richardson iteration    7 Error: 8.224e+01 eigenvalue: 1.05389564 Execution time:    101.941 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.78 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.18 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.51 s[39m] [[33m 9874 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 91.90 s[39m] [[33m 9874 MB[39m]
+Richardson iteration    8 Error: 4.941e+01 eigenvalue: 1.05497210 Execution time:    101.850 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.80 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.18 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.56 s[39m] [[33m 9874 MB[39m]
+Richardson iteration    9 Error: 3.016e+01 eigenvalue: 1.05550242 Execution time:    101.933 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 91.95 s[39m] [[33m 9874 MB[39m]
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.82 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.18 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.54 s[39m] [[33m 9874 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 91.97 s[39m] [[33m 9874 MB[39m]
+Richardson iteration   10 Error: 1.846e+01 eigenvalue: 1.05580364 Execution time:    101.947 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.80 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.18 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.54 s[39m] [[33m 9874 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 91.95 s[39m] [[33m 9874 MB[39m]
+Richardson iteration   11 Error: 1.122e+01 eigenvalue: 1.05599696 Execution time:    101.906 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.82 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.18 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.51 s[39m] [[33m 9874 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 91.91 s[39m] [[33m 9874 MB[39m]
+Richardson iteration   12 Error: 6.840e+00 eigenvalue: 1.05612657 Execution time:    101.867 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.70 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.18 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.39 s[39m] [[33m 9874 MB[39m]
+Richardson iteration   13 Error: 4.245e+00 eigenvalue: 1.05621504 Execution time:    101.558 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 91.64 s[39m] [[33m 9874 MB[39m]
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.58 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.18 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.34 s[39m] [[33m 9874 MB[39m]
+Richardson iteration   14 Error: 2.698e+00 eigenvalue: 1.05627664 Execution time:    101.256 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 91.44 s[39m] [[33m 9874 MB[39m]
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.53 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.17 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.35 s[39m] [[33m 9874 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 91.42 s[39m] [[33m 9874 MB[39m]
+Richardson iteration   15 Error: 1.756e+00 eigenvalue: 1.05632041 Execution time:    101.197 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.55 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.17 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.36 s[39m] [[33m 9874 MB[39m]
+Richardson iteration   16 Error: 1.171e+00 eigenvalue: 1.05635188 Execution time:    101.209 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 91.43 s[39m] [[33m 9874 MB[39m]
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.54 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.17 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.39 s[39m] [[33m 9874 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 91.43 s[39m] [[33m 9874 MB[39m]
+Richardson iteration   17 Error: 8.024e-01 eigenvalue: 1.05637461 Execution time:    101.192 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.54 s[39m] [[33m 9874 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.18 s[39m] [[33m 9874 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 67.36 s[39m] [[33m 9874 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 91.40 s[39m] [[33m 9874 MB[39m]
+Richardson iteration   18 Error: 5.633e-01 eigenvalue: 1.05639109 Execution time:    101.152 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.55 s[39m] [[33m 9875 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.18 s[39m] [[33m 9875 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 66.42 s[39m] [[33m 9878 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 90.49 s[39m] [[33m 9878 MB[39m]
+Richardson iteration   19 Error: 4.032e-01 eigenvalue: 1.05640305 Execution time:    100.248 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.53 s[39m] [[33m 9878 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.17 s[39m] [[33m 9878 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 66.31 s[39m] [[33m 9878 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 90.33 s[39m] [[33m 9878 MB[39m]
+Richardson iteration   20 Error: 2.927e-01 eigenvalue: 1.05641176 Execution time:    100.083 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.50 s[39m] [[33m 9878 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.16 s[39m] [[33m 9878 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 66.26 s[39m] [[33m 9878 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 90.25 s[39m] [[33m 9878 MB[39m]
+Richardson iteration   21 Error: 2.146e-01 eigenvalue: 1.05641810 Execution time:     99.989 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.50 s[39m] [[33m 9878 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.17 s[39m] [[33m 9878 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 66.26 s[39m] [[33m 9878 MB[39m]
+Richardson iteration   22 Error: 1.584e-01 eigenvalue: 1.05642273 Execution time:     99.989 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 90.24 s[39m] [[33m 9878 MB[39m]
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.49 s[39m] [[33m 9878 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.17 s[39m] [[33m 9878 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 66.29 s[39m] [[33m 9878 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 90.27 s[39m] [[33m 9878 MB[39m]
+Richardson iteration   23 Error: 1.175e-01 eigenvalue: 1.05642612 Execution time:    100.014 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.48 s[39m] [[33m 9878 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.17 s[39m] [[33m 9878 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 66.27 s[39m] [[33m 9878 MB[39m]
+Richardson iteration   24 Error: 8.744e-02 eigenvalue: 1.05642860 Execution time:     99.976 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 90.24 s[39m] [[33m 9878 MB[39m]
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.50 s[39m] [[33m 9878 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.17 s[39m] [[33m 9878 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 66.24 s[39m] [[33m 9878 MB[39m]
+Richardson iteration   25 Error: 6.523e-02 eigenvalue: 1.05643043 Execution time:     99.962 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 90.22 s[39m] [[33m 9878 MB[39m]
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.48 s[39m] [[33m 9878 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.18 s[39m] [[33m 9878 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 66.27 s[39m] [[33m 9878 MB[39m]
+Richardson iteration   26 Error: 4.875e-02 eigenvalue: 1.05643177 Execution time:     99.959 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 90.24 s[39m] [[33m 9878 MB[39m]
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.51 s[39m] [[33m 9878 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.17 s[39m] [[33m 9878 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 66.24 s[39m] [[33m 9878 MB[39m]
+Richardson iteration   27 Error: 3.649e-02 eigenvalue: 1.05643275 Execution time:     99.991 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 90.25 s[39m] [[33m 9878 MB[39m]
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.48 s[39m] [[33m 9878 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.17 s[39m] [[33m 9878 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 66.26 s[39m] [[33m 9878 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 90.22 s[39m] [[33m 9878 MB[39m]
+Richardson iteration   28 Error: 2.734e-02 eigenvalue: 1.05643348 Execution time:     99.961 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.53 s[39m] [[33m 9878 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.17 s[39m] [[33m 9878 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 66.28 s[39m] [[33m 9878 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 90.32 s[39m] [[33m 9878 MB[39m]
+Richardson iteration   29 Error: 2.051e-02 eigenvalue: 1.05643402 Execution time:    100.049 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.50 s[39m] [[33m 9878 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.17 s[39m] [[33m 9878 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 66.27 s[39m] [[33m 9878 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 90.26 s[39m] [[33m 9878 MB[39m]
+Richardson iteration   30 Error: 1.539e-02 eigenvalue: 1.05643442 Execution time:    100.035 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.49 s[39m] [[33m 9878 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.17 s[39m] [[33m 9878 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 66.29 s[39m] [[33m 9878 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 90.26 s[39m] [[33m 9878 MB[39m]
+Richardson iteration   31 Error: 1.156e-02 eigenvalue: 1.05643471 Execution time:    100.011 seconds.
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.49 s[39m] [[33m 9878 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.16 s[39m] [[33m 9878 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 66.28 s[39m] [[33m 9878 MB[39m]
+Richardson iteration   32 Error: 8.690e-03 eigenvalue: 1.05643493 Execution time:     99.999 seconds.
+  Finished Performing Richardson Iteration                                               [[33m 90.25 s[39m] [[33m 9878 MB[39m]
+[35mBeginning fixed point iteration 0[39m
+
+[35m
+Main app solve:[39m
+[35mBeginning fixed point iteration 1[39m
+
+[35m
+Main app solve:[39m
+Fixed point convergence reason: REACH_MAX_ITS
+  Performing Richardson Iteration
+    Computing Residual.                                                                  [[33m 14.49 s[39m] [[33m 9878 MB[39m]
+    Currently Computing Upwind Residual                                                  [[33m  5.16 s[39m] [[33m 9878 MB[39m]
+    Performing Transport Sweep...........                                                [[33m 66.28 s[39m] [[33m 9878 MB[39m]
+  Finished Performing Richardson Iteration                                               [[33m 90.24 s[39m] [[33m 9878 MB[39m]
+Richardson iteration   33 Error: 6.535e-03 eigenvalue: 1.05643509 Execution time:     99.971 seconds.
+[32m Richardson iteration converged with richardson_rel_tol![39m
+
+Postprocessor Values:
++----------------+----------------+----------------+------------------+----------------+------------------+----------------+--------------------+
+| time           | acl_acu_air_vol| eigenvalue     | fuel_griffin_vol | griffin_power  | integrated_power | power_scaling  | single_acm_air_vol |
++----------------+----------------+----------------+------------------+----------------+------------------+----------------+--------------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |     1.362047e-02 |   6.000000e+05 |     6.000000e+05 |   6.131057e+32 |       0.000000e+00 |
+|   1.000000e+00 |   2.212987e-04 |   1.056435e+00 |     1.362047e-02 |   6.000000e+05 |     6.000000e+05 |   4.495686e+15 |       1.327792e-03 |
++----------------+----------------+----------------+------------------+----------------+------------------+----------------+--------------------+
+
+
+
+Performance Graph:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|                                Section                               | Calls |   Self(s)  |   Avg(s)   |    %   | Mem(MB) |  Total(s)  |   Avg(s)   |    %   | Mem(MB) |
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| GriffinApp (main)                                                    |     1 |      0.011 |      0.011 |   0.00 |       3 |   3382.345 |   3382.345 | 100.00 |    9583 |
+|   Action::SetupMeshAction::Mesh::SetupMeshAction::act::setup_mesh    |     1 |      0.001 |      0.001 |   0.00 |       1 |      0.001 |      0.001 |   0.00 |       1 |
+|   Action::SetupMeshAction::Mesh::SetupMeshAction::act::set_mesh_base |     2 |      0.000 |      0.000 |   0.00 |       0 |      0.000 |      0.000 |   0.00 |       0 |
+|   MeshGeneratorSystem::createMeshGeneratorOrder                      |     1 |      0.000 |      0.000 |   0.00 |       0 |      0.000 |      0.000 |   0.00 |       0 |
+|   SweepUpdate::RichardsonInit                                        |     1 |      0.000 |      0.000 |   0.00 |       0 |     25.330 |     25.330 |   0.75 |     144 |
+|     SNFEProblem::computeUserObjects                                  |     3 |      1.640 |      0.547 |   0.05 |       3 |      1.640 |      0.547 |   0.05 |       3 |
+|   SweepUpdate::RichardsonFinal                                       |     1 |      0.000 |      0.000 |   0.00 |       0 |      1.112 |      1.112 |   0.03 |       0 |
+|     SNFEProblem::computeUserObjects                                  |     2 |      0.945 |      0.473 |   0.03 |       0 |      0.945 |      0.473 |   0.03 |       0 |
+|     SNFEProblem::outputStep                                          |     1 |      0.166 |      0.166 |   0.00 |       0 |      0.166 |      0.166 |   0.00 |       0 |
+|   SweepUpdate::TransportUpdate                                       |     1 |      0.003 |      0.003 |   0.00 |       0 |   3341.732 |   3341.732 |  98.80 |     165 |
+|     SNFEProblem::computeUserObjects                                  |     4 |      1.726 |      0.432 |   0.05 |       0 |      1.726 |      0.432 |   0.05 |       0 |
+|     SNFEProblem::outputStep                                          |     1 |      0.180 |      0.180 |   0.01 |       0 |      0.331 |      0.331 |   0.01 |       0 |
+|     SweepUpdate::PicardSolve                                         |    33 |      0.042 |      0.001 |   0.00 |       0 |    332.314 |     10.070 |   9.82 |      53 |
+|       SweepUpdate::DiffusionAcceleration                             |    66 |      0.001 |      0.000 |   0.00 |       0 |    100.580 |      1.524 |   2.97 |      52 |
+|         SweepUpdate::solveCMFD                                       |    66 |      0.011 |      0.000 |   0.00 |       0 |    100.579 |      1.524 |   2.97 |      52 |
+|       SNFEProblem::computeUserObjects                                |   396 |    115.571 |      0.292 |   3.42 |       1 |    115.571 |      0.292 |   3.42 |       1 |
+|       SNFEProblem::outputStep                                        |   132 |     22.553 |      0.171 |   0.67 |       0 |     22.554 |      0.171 |   0.67 |       0 |
+|     SweepUpdate::updateRichardson                                    |    33 |     18.304 |      0.555 |   0.54 |       0 |   3005.957 |     91.090 |  88.87 |     112 |
+|       SNFEProblem::computeUserObjects                                |    66 |     57.713 |      0.874 |   1.71 |       0 |     57.713 |      0.874 |   1.71 |       0 |
+|       SNFEProblem::computeResidualInternal                           |    33 |      0.003 |      0.000 |   0.00 |       0 |    669.534 |     20.289 |  19.79 |      28 |
+|         SNFEProblem::computeUserObjects                              |    66 |     57.623 |      0.873 |   1.70 |       0 |     57.623 |      0.873 |   1.70 |       0 |
+|       SweepUpdate::transportSweep                                    |    33 |   2208.984 |     66.939 |  65.31 |      84 |   2208.984 |     66.939 |  65.31 |      84 |
+|   SNFEProblem::outputStep                                            |     1 |      0.168 |      0.168 |   0.00 |       0 |      0.479 |      0.479 |   0.01 |       8 |
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Finished Executing                                                                       [[33m3368.65 s[39m] [[33m 9878 MB[39m]

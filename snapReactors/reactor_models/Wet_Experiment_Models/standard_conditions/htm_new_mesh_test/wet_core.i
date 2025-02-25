@@ -178,21 +178,27 @@ acu_shima_matids_2d   = '6400'
 acu_shimb_matids_2d   = '6500'
 acu_shimc_matids_2d   = '9901'
 
-acm_dz = '${fparse 3.81}'
-lay1 = '${fparse 0.79502}'
-lay2 = '${fparse 0.9652}'
-lay3 = '${fparse 2.1717}'
-lay4 = '${fparse 2.9083}'
-lay5 = '${fparse 0.2286}'
-lay6 = '${fparse 0.87376}'
+acm_dz = '${fparse 3.81/100}'
+lay1 = '${fparse 0.79502/100}'
+lay2 = '${fparse 0.9652/100}'
+lay3 = '${fparse 2.1717/100}'
+lay4 = '${fparse 2.9083/100}'
+lay5 = '${fparse 0.2286/100}'
+lay6 = '${fparse 0.87376/100}'
 [Mesh]
 	[core_unextruded]
 		type = FileMeshGenerator
 		file = s82d_ac_c3_gcu_ringres.e
 	[]
+    [transform_core_unextruded]
+        type = TransformGenerator
+        input = core_unextruded
+        transform = SCALE
+        vector_value = '0.01 0.01 0.01'
+    []
 	[nue]
         type = NonuniformMeshExtruderGenerator
-        input = core_unextruded
+        input = transform_core_unextruded
         extrusion_vector = '0 0 1'
         layer_thickness = '${lay1} ${lay2} ${lay3} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${lay4} ${lay5} ${lay6}'
         layer_subdivisions = '1    1       1       1         1         1         1         1         1         1         1          1       1      1'
@@ -230,12 +236,12 @@ lay6 = '${fparse 0.87376}'
     [coarse_mesh]
         type = GeneratedMeshGenerator
         dim = 3
-        xmin = -27
-        xmax = 27
-        ymin = -27
-        ymax = 27
+        xmin = -0.27
+        xmax = 0.27
+        ymin = -0.27
+        ymax = 0.27
         zmin = 0
-        zmax = 39
+        zmax = 0.39
         nx = 4
         ny = 4
         nz = 7
@@ -280,43 +286,43 @@ ext_T_ref                 = 600 # (K)
 # ==============================================================================
 # MULTIAPPS AND TRANSFERS
 # ==============================================================================
-[MultiApps]
-    [Griffin_htm]
-    type = FullSolveMultiApp
-    #app_type = GriffinApp
-    input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/core_2D_bison.i'
-    positions = '0 0 1.76022' # lay1 + lay2
-    execute_on = 'timestep_end'#'MULTIAPP_FIXED_POINT_END'
-    []
-[]
+# [MultiApps]
+#     [Griffin_htm]
+#     type = FullSolveMultiApp
+#     #app_type = GriffinApp
+#     input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/core_2D_bison.i'
+#     positions = '0 0 1.76022' # lay1 + lay2
+#     execute_on = 'timestep_end'#'MULTIAPP_FIXED_POINT_END'
+#     []
+# []
 
-[Transfers]
-    [to_htm_power_density]
-        type = MultiAppProjectionTransfer
-        to_multi_app = Griffin_htm
-        source_variable = griffin_power_density
-        variable = bison_power_density
-    []
-    [from_htm_Tfuel]
-        type = MultiAppGeometricInterpolationTransfer
-        from_multi_app = Griffin_htm
-        source_variable = bison_Tfuel
-        variable = griffin_Tfuel
-    []     
-    [from_htm_ref_temp]
-        type = MultiAppGeometricInterpolationTransfer
-        from_multi_app = Griffin_htm
-        source_variable = bison_Tref
-        variable = griffin_Tref
-    []
-    [from_htm_Tcool]
-        type = MultiAppGeometricInterpolationTransfer
-        from_multi_app = Griffin_htm
-        source_variable = aux_T_inf
-        variable = griffin_Tcool
-    []
+# [Transfers]
+#     [to_htm_power_density]
+#         type = MultiAppProjectionTransfer
+#         to_multi_app = Griffin_htm
+#         source_variable = griffin_power_density
+#         variable = bison_power_density
+#     []
+#     [from_htm_Tfuel]
+#         type = MultiAppGeometricInterpolationTransfer
+#         from_multi_app = Griffin_htm
+#         source_variable = bison_Tfuel
+#         variable = griffin_Tfuel
+#     []     
+#     [from_htm_ref_temp]
+#         type = MultiAppGeometricInterpolationTransfer
+#         from_multi_app = Griffin_htm
+#         source_variable = bison_Tref
+#         variable = griffin_Tref
+#     []
+#     [from_htm_Tcool]
+#         type = MultiAppGeometricInterpolationTransfer
+#         from_multi_app = Griffin_htm
+#         source_variable = aux_T_inf
+#         variable = griffin_Tcool
+#     []
        
-[]
+# []
 # ==============================================================================
 # TRANSPORT SYSTEMS
 # ==============================================================================
@@ -357,7 +363,7 @@ ext_T_ref                 = 600 # (K)
         isotopes = 'pseudo'
         densities = '1.0'
         plus = 1
-        is_meter = false
+        is_meter = True
         grid_names = 'Tfuel'
         grid_variables = 'griffin_Tfuel'
     []
@@ -369,7 +375,7 @@ ext_T_ref                 = 600 # (K)
         isotopes = 'pseudo'
         densities = '1.0'
         plus = 1
-        is_meter = false
+        is_meter = True
         grid_names = 'Tref'
         grid_variables = 'griffin_Tref'
     []
@@ -381,7 +387,7 @@ ext_T_ref                 = 600 # (K)
         isotopes = 'pseudo'
         densities = '1.0'
         plus = 1
-        is_meter = false
+        is_meter = True
         grid_names = 'Tcool'
         grid_variables = 'griffin_Tcool'
     []
