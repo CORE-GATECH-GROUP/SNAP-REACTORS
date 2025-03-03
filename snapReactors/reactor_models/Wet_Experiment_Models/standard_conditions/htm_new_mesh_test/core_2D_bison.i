@@ -131,9 +131,9 @@ clad_outer = 3
 #core_inner = 4
 core_outer = 5
 
-acm_dz = '${fparse 3.81}'
-lay1 = '${fparse 2.1717}'
-lay2 = '${fparse 2.9083}'
+acm_dz = '${fparse 3.81/100}'
+lay1 = '${fparse 2.1717/100}'
+lay2 = '${fparse 2.9083/100}'
 # ==============================================================================
 # GEOMETRY AND MESH
 # ==============================================================================
@@ -141,14 +141,19 @@ lay2 = '${fparse 2.9083}'
     [core_unextruded]
         type = FileMeshGenerator
         file = heatconduction_test.e
-        show_info = true
+    []
+    [transform_core_unextruded]
+        type = TransformGenerator
+        input = core_unextruded
+        transform = SCALE
+        vector_value = '0.01 0.01 0.01'
     []
     [extruded]
         type = AdvancedExtruderGenerator
-        input = core_unextruded
+        input = transform_core_unextruded
         heights = '${lay1} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz}  ${lay2}'
         num_layers = '1 2 3 4 5 6 7 8 9 10'
-        direction = '0 0 1'     
+        direction = '0 0 1'    
     []
 []
 
@@ -211,6 +216,7 @@ lay2 = '${fparse 2.9083}'
         family = LAGRANGE
         order = FIRST
         block = '${clad_blocks} ${intref_blocks} ${barrel_blocks}'
+        initial_condition = '${inlet_T_fluid}'
     []
     [bison_Tfuel]
         block = ${fuel_blocks}
@@ -224,6 +230,10 @@ lay2 = '${fparse 2.9083}'
         order = FIRST
         block = '${fuel_blocks} ${extref_blocks}'
         #initial_condition = 2.01E+03
+    []
+    [flux]
+        family = MONOMIAL
+        order = CONSTANT
     []
 []
 
@@ -241,12 +251,12 @@ lay2 = '${fparse 2.9083}'
         variable = aux_cp
         block = ${fuel_blocks}
     []
-    [aux_T_inf]
-        type = FunctionAux
-        function = T_inf_f
-        variable = aux_T_inf
-        block = '${clad_blocks} ${intref_blocks} ${barrel_blocks}'
-    []
+    # [aux_T_inf]
+    #     type = FunctionAux
+    #     function = T_inf_f
+    #     variable = aux_T_inf
+    #     block = '${clad_blocks} ${intref_blocks} ${barrel_blocks}'
+    # []
     [norm_Tfuel]
         type = NormalizationAux
         variable = bison_Tfuel
@@ -265,36 +275,95 @@ lay2 = '${fparse 2.9083}'
         source_variable = bison_power_density
         normal_factor = 1.2803814
         execute_on = 'timestep_begin' #check
+    []    
+    [flux]
+        #this is heat flux
+        type = DiffusionFluxAux
+        diffusion_variable = bison_temp
+        component = normal
+        diffusivity = thermal_conductivity
+        variable = flux
+        boundary = '${clad_outer}'
     []
 []
 
+[UserObjects]
+    [q_wall_avg_lay1]
+        type = LayeredSideAverage
+        boundary = '${clad_outer}'
+        variable = flux
+
+        # Note: make this to match the num_elems in the channel
+        direction = z
+        num_layers = 1
+
+        direction_min = 0.0
+        direction_max = '${lay1}'
+  []
+  [q_wall_avg_acmdz]
+        type = LayeredSideAverage
+        boundary = '${clad_outer}'
+        variable = flux
+
+        # Note: make this to match the num_elems in the channel
+        direction = z
+        num_layers = 8
+
+        direction_min = '${lay1}'
+        direction_max = '${fparse acm_dz * 8}'
+    []
+    [q_wall_avg_lay2]
+        type = LayeredSideAverage
+        boundary = '${clad_outer}'
+        variable = flux
+
+        # Note: make this to match the num_elems in the channel
+        direction = z
+        num_layers = 1
+
+        direction_min = '${fparse lay1 + (acm_dz * 8)}'
+        direction_max = '${fparse lay1 + (acm_dz * 8) + lay2}'
+    []  
+[]
 # ==============================================================================
 # MULTIAPPS AND TRANSFERS
 # ==============================================================================
-# [MultiApps]
-#     [thm]
-#       type = TransientMultiApp
-#       #app_type = ThermalHydraulicsApp
-#       input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/SNAP_thm_test3_1.i'
-#       execute_on =  timestep_end
-#       bounding_box_padding = '0.1 0.1 0'
-#     []
-#   []
+[MultiApps]
+    [thm]
+      type = TransientMultiApp
+      #app_type = ThermalHydraulicsApp
+      input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/SNAP_thm_ref_2.i'
+      execute_on =  timestep_end
+      bounding_box_padding = '0.1 0.1 0'
+    []
+  []
   
-#   [Transfers]
-#     [q_wall_to_thm]
-#       type = MultiAppGeneralFieldUserObjectTransfer
-#       variable = q_wall
-#       to_multi_app = thm
-#       source_user_object = q_wall_avg 
-#     []
-#     [T_wall_from_thm]
-#       type = MultiAppGeneralFieldNearestLocationTransfer
-#       source_variable = T_wall
-#       from_multi_app = thm
-#       variable = fluid_temp
-#     []
-#   []
+  [Transfers]
+    [q_wall_lay1_to_thm]
+      type = MultiAppGeneralFieldUserObjectTransfer
+      variable = q_wall_lay1
+      to_multi_app = thm
+      source_user_object = q_wall_avg_lay1
+    []
+    [q_wall_acmdz_to_thm]
+        type = MultiAppGeneralFieldUserObjectTransfer
+        variable = q_wall
+        to_multi_app = thm
+        source_user_object = q_wall_avg_acmdz
+    []
+    [q_wall_lay2_to_thm]
+        type = MultiAppGeneralFieldUserObjectTransfer
+        variable = q_wall
+        to_multi_app = thm
+        source_user_object = q_wall_avg_lay2
+    []
+    [T_wall_from_thm]
+      type = MultiAppGeneralFieldNearestLocationTransfer
+      source_variable = T_wall
+      from_multi_app = thm
+      variable = aux_T_inf
+    []
+  []
 
 # ==============================================================================
 # INITIAL CONDITIONS AND FUNCTIONS
@@ -312,10 +381,10 @@ lay2 = '${fparse 2.9083}'
         symbol_values = 'temp_av'
         expression = '472.27104+bison_temp*0.7275728'#Models/SNAP10A_dimensions
     []
-    [T_inf_f]
-        type = ParsedFunction
-        expression = '${inlet_T_fluid}'
-    []
+    # [T_inf_f]
+    #     type = ParsedFunction
+    #     expression = '${inlet_T_fluid}'
+    # []
 []
 
 # ==============================================================================
@@ -354,13 +423,6 @@ lay2 = '${fparse 2.9083}'
         prop_values = '${clad_density} ${clad_cp} ${ clad_tc}'
         block = ${clad_blocks}
     []
-    # [clad_thermal_conduction]
-    #     type = ADHeatConductionMaterial
-    #     temp = bison_temp
-    #     specific_heat = '${clad_cp}'
-    #     thermal_conductivity =  '${clad_tc}'
-    #     block = '${clad_blocks}'
-    # []
     [gap_heat_transfer]
         #Models/SNAP10A_dimensions
         type = GenericConstantMaterial
@@ -382,60 +444,25 @@ lay2 = '${fparse 2.9083}'
         prop_values = '${ceramic_dens} ${ ceramic_cp} ${ ceramic_tc}'
         block = ${ceram_blocks}
     []
-    # [ceramic_thermal_conduction]
-    #     type = ADHeatConductionMaterial
-    #     temp = bison_temp
-    #     specific_heat = '${ceramic_cp}'
-    #     thermal_conductivity =  '${ceramic_tc}'
-    #     block = '${ceram_blocks}'    
-    # []
-    # [intref_thermal_conduction]
-    #     #Models/SNAP10A_dimensions
-    #     type = ADGenericConstantMaterial
-    #     prop_names = 'density specific_heat thermal_conductivity'
-    #     prop_values = '${intref_dens} ${intref_cp} ${ intref_tc}'
-    #     boundary = ${core_inner}
-    #     block = ${intref_blocks}
-    # []
     [intref_thermal_conduction]
-        type = ADHeatConductionMaterial
-        temp = bison_temp
-        specific_heat = '${intref_cp}'
-        thermal_conductivity =  '${intref_tc}'
-        block = '${intref_blocks}' 
-    []
-    [intref_density]
-        type = ADGenericConstantMaterial
-        prop_names = 'density'
-        prop_values = '${intref_dens}'
-        block = '${intref_blocks}'
-    []
-    [barrel_thermal_conduction]
-        type = ADHeatConductionMaterial
-        temp = bison_temp
-        specific_heat = '${barrel_cp}'
-        thermal_conductivity =  '${barrel_tc}'
-        block = '${barrel_blocks}' 
-    []    
-    [barrel_density]
         #Models/SNAP10A_dimensions
         type = ADGenericConstantMaterial
-        prop_names = 'density'
-        prop_values = '${barrel_dens}'
+        prop_names = 'density specific_heat thermal_conductivity'
+        prop_values = '${intref_dens} ${intref_cp} ${ intref_tc}'
+        block = ${intref_blocks}
+    []
+    [barrel_thermal_conduction]
+        #Models/SNAP10A_dimensions
+        type = ADGenericConstantMaterial
+        prop_names = 'density specific_heat thermal_conductivity'
+        prop_values = '${barrel_dens} ${barrel_cp} ${barrel_tc}'
         block = ${barrel_blocks}
     []
     [extref_thermal_conduction]
-        type = ADHeatConductionMaterial
-        temp = bison_temp
-        specific_heat = '${extref_cp}'
-        thermal_conductivity =  '${extref_tc}'
-        block = '${extref_blocks}' 
-    []    
-    [extref_density]
         #Models/SNAP10A_dimensions
         type = ADGenericConstantMaterial
-        prop_names = 'density'
-        prop_values = '${extref_dens}'
+        prop_names = 'density specific_heat thermal_conductivity'
+        prop_values = '${extref_dens} ${extref_cp} ${extref_tc}'
         block = ${extref_blocks}
     []
     # [air_thermal_conduction]
@@ -450,7 +477,7 @@ lay2 = '${fparse 2.9083}'
     #    type = ADGenericConstantMaterial
     #    prop_names = 'density specific_heat thermal_conductivity'
     #    prop_values = '${coolant_dens} ${coolant_cp} ${coolant_tc}'
-    #    block = air
+    #    block = 
     #[]
 []
 
@@ -478,8 +505,8 @@ lay2 = '${fparse 2.9083}'
         type = CoupledConvectiveHeatFluxBC
         variable = bison_temp
         boundary = ${core_outer}
-        T_infinity = aux_T_inf
-        htc = '${ht_coeff}'
+        T_infinity = 293.15
+        htc = 10
     []
 []
 
@@ -513,27 +540,27 @@ lay2 = '${fparse 2.9083}'
 # EXECUTION PARAMETERS
 # ==============================================================================
 [Executioner]
-    type = Steady
-    nl_rel_tol = 1e-8
-    nl_abs_tol = 1e-8
-    nl_abs_step_tol = 1e-8
-    l_tol = 1e-8
-    solve_type = NEWTON
-    petsc_options_iname = '-pc_type -pc_hypre_type'
-    petsc_options_value = 'hypre boomeramg'
-    # type = Transient
-    # nl_abs_tol = 5e-7
-    # nl_rel_tol = 1e-7
-    # petsc_options_value = 'hypre boomeramg'
+    # type = Steady
+    # nl_rel_tol = 1e-8
+    # nl_abs_tol = 1e-8
+    # nl_abs_step_tol = 1e-8
+    # l_tol = 1e-8
+    # solve_type = NEWTON
     # petsc_options_iname = '-pc_type -pc_hypre_type'
-    # dt = 0.01
-    # nl_max_its = 200
-    # steady_state_detection = true
-    # steady_state_tolerance = 5e-6
-    # [./Quadrature]
-    #   type = TRAP
-    #   order = FIRST
-    # [../]
+    # petsc_options_value = 'hypre boomeramg'
+    type = Transient
+    nl_abs_tol = 5e-7
+    nl_rel_tol = 1e-7
+    petsc_options_value = 'hypre boomeramg'
+    petsc_options_iname = '-pc_type -pc_hypre_type'
+    dt = 0.1
+    nl_max_its = 200
+    steady_state_detection = true
+    steady_state_tolerance = 5e-6
+    [./Quadrature]
+      type = TRAP
+      order = FIRST
+    [../]
 []
 
 # ==============================================================================
@@ -560,12 +587,14 @@ lay2 = '${fparse 2.9083}'
     [temp_max]
         type = ElementExtremeValue
         variable = bison_temp
+        block = '${fuel_blocks}'
     []
     # Temp min value
     [temp_min]
         type = ElementExtremeValue
         variable = bison_temp
         value_type = min
+        block ='${fuel_blocks}'
     []
     [power]
         type = ElementIntegralVariablePostprocessor
