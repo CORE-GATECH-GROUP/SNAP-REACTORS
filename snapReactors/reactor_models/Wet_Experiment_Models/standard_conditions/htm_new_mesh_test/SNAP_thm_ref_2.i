@@ -48,7 +48,7 @@ lay2 = '${fparse 2.9083/100}'
 
 [Closures]
   [no_closures]
-    type = Closures1PhaseNone
+    type = WallTemperature1PhaseClosures
   []
 []
 
@@ -84,6 +84,18 @@ lay2 = '${fparse 2.9083/100}'
     family = monomial
     order = constant
     block = 'channel:lay1 channel:acmdz channel:lay2'
+  []
+  [q_wall_lay1]
+    family = monomial
+    order = constant
+  []
+  [q_wall_acmdz]
+    family = monomial
+    order = constant
+  []
+  [q_wall_lay2]
+    family = monomial
+    order = constant
   []
 []
 
@@ -145,6 +157,27 @@ lay2 = '${fparse 2.9083/100}'
     D_h = D_h
     Nu = Nu
     k = k
+  []
+  [q_wall1]
+    type = ADParsedMaterial
+    property_name = 'q_wall_lay1'
+    coupled_variables =  'q_wall'
+    expression = 'q_wall'
+    block = 'channel:lay1'
+  []
+  [q_wallacm]
+    type = ADParsedMaterial
+    property_name = 'q_wall_acmdz'
+    coupled_variables =  'q_wall'
+    expression = 'q_wall'
+    block = 'channel:acmdz'
+  []
+  [q_wall2]
+    type = ADParsedMaterial
+    property_name = 'q_wall_lay2'
+    coupled_variables =  'q_wall'
+    expression = 'q_wall'
+    block = 'channel:lay2'
   []
   [T_wall_lay1]
     type = ADTemperatureWall3EqnMaterial

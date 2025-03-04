@@ -347,13 +347,13 @@ lay2 = '${fparse 2.9083/100}'
     []
     [q_wall_acmdz_to_thm]
         type = MultiAppGeneralFieldUserObjectTransfer
-        variable = q_wall
+        variable = q_wall_acmdz
         to_multi_app = thm
         source_user_object = q_wall_avg_acmdz
     []
     [q_wall_lay2_to_thm]
         type = MultiAppGeneralFieldUserObjectTransfer
-        variable = q_wall
+        variable = q_wall_lay2
         to_multi_app = thm
         source_user_object = q_wall_avg_lay2
     []
