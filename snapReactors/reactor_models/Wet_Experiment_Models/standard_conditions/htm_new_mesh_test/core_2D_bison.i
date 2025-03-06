@@ -134,6 +134,7 @@ core_outer = 5
 acm_dz = '${fparse 3.81/100}'
 lay1 = '${fparse 2.1717/100}'
 lay2 = '${fparse 2.9083/100}'
+multi_app_z_pos = 0.0176022
 # ==============================================================================
 # GEOMETRY AND MESH
 # ==============================================================================
@@ -335,6 +336,7 @@ lay2 = '${fparse 2.9083/100}'
       input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/SNAP_thm_ref_2.i'
       execute_on =  timestep_end
       bounding_box_padding = '0.1 0.1 0'
+      positions = '0 0 0'
     []
   []
   
@@ -485,14 +487,21 @@ lay2 = '${fparse 2.9083/100}'
 # BOUNDARY CONDITIONS
 # ==============================================================================
 [BCs]
-    # Convective BC outer surface fuel pin
-    [convective_boundary]
-        type = CoupledConvectiveHeatFluxBC
+    [pin_outer]
+        type = MatchedValueBC
         variable = bison_temp
+        v = aux_T_inf
         boundary = ${clad_outer}
-        T_infinity = aux_T_inf
-        htc = '${ht_coeff}'
+      []
     []
+    # Convective BC outer surface fuel pin
+    # [convective_boundary]
+    #     type = CoupledConvectiveHeatFluxBC
+    #     variable = bison_temp
+    #     boundary = ${clad_outer}
+    #     T_infinity = aux_T_inf
+    #     htc = '${ht_coeff}'
+    # []
     # Convective BC outer surface fuel pin
     # [convective_boundary_core]
     #     type = CoupledConvectiveHeatFluxBC

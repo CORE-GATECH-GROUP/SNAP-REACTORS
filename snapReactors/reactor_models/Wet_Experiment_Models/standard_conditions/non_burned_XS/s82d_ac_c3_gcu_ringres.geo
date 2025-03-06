@@ -76,7 +76,7 @@ cell active_core_univlowerEndCapLatintreflec_cell1 active_core_univlowerEndCapLa
 cell active_core_univlowerEndCapLatintreflec_cell2 active_core_univlowerEndCapLatintreflec_univ  fill intreflec_univ hexBorderlowerEndCapLat -intrefleccc1 
 cell active_core_celllowerEndCapLat active_core_univlowerEndCapLat  fill lowerEndCapLat -hexBorderlowerEndCapLat 
 cell intreflec_cell intreflec_univ  reflMix hexBorderlowerEndCapLat -intrefleccc1 
-cell barrellec_cell barrellec_univ  control_drum intrefleccc1 -barrelleccc1 
+cell barrellec_cell barrellec_univ  barrel intrefleccc1 -barrelleccc1 
 cell lecCDcdSysD1 lecCDcdFull fill 6901 barrelleccc1 -lecCDh1
 cell lecCDcdSysD2 lecCDcdFull fill 7000 lecCDh1 -lecCDh2
 cell lecCDcdSysD3 lecCDcdFull fill 7100 lecCDh2 -lecCDh3
@@ -90,8 +90,8 @@ cell lecCDcdSys2 7000 control_drum lecCDh1 -lecCDh2
 cell lecCDcdSys3 7100 control_drum lecCDh2 -lecCDh3
 cell lecCDcdSys4 7200 control_drum lecCDh3 -lecCDh4
 cell lecCDcdSys5 7300 control_drum lecCDh4 -lecCDh5
-cell lecCDcdSys6 7400 control_drum lecCDh5 -lecCDh6
-cell lecCDcdSys7 9903 control_drum lecCDh6 -lecCDh7
+cell lecCDcdSys6 7400 void lecCDh5 -lecCDh6
+cell lecCDcdSys7 9903 void lecCDh6 -lecCDh7
 cell active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univbarrelACLcdFull_cell1 active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univbarrelACLcdFull_univ  fill active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univ -barrelACLcc1 
 cell active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univbarrelACLcdFull_cell2 active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univbarrelACLcdFull_univ  fill barrelACLcdFull barrelACLcc1 -barrelACLvoidDrumh1 
 cell active_core_univactiveCoreLatACLintrefACL_univbarrelACL_cell1 active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univ  fill active_core_univactiveCoreLatACLintrefACL_univ -intrefACLcc1 
@@ -100,7 +100,7 @@ cell active_core_univactiveCoreLatACLintrefACL_cell1 active_core_univactiveCoreL
 cell active_core_univactiveCoreLatACLintrefACL_cell2 active_core_univactiveCoreLatACLintrefACL_univ fill 3500 hexBorderactiveCoreLatACL -intrefACLcc1
 cell active_core_cellactiveCoreLatACL active_core_univactiveCoreLatACL  fill activeCoreLatACL -hexBorderactiveCoreLatACL 
 cell intrefACL_cell 3500 reflMix hexBorderactiveCoreLatACL -intrefACLcc1
-cell barrelACL_cell 3600 control_drum intrefACLcc1 -barrelACLcc1
+cell barrelACL_cell 3600 barrel intrefACLcc1 -barrelACLcc1
 cell barrelACLcdSysD1 barrelACLcdFull fill 5400 barrelACLcc1 -barrelACLh1
 cell barrelACLcdSysD2 barrelACLcdFull fill 5500 barrelACLh1 -barrelACLh2
 cell barrelACLcdSysD3 barrelACLcdFull fill 5600 barrelACLh2 -barrelACLh3
@@ -114,8 +114,8 @@ cell barrelACLcdSys2 5500 control_drum barrelACLh1 -barrelACLh2
 cell barrelACLcdSys3 5600 control_drum barrelACLh2 -barrelACLh3
 cell barrelACLcdSys4 5700 control_drum barrelACLh3 -barrelACLh4
 cell barrelACLcdSys5 5800 control_drum barrelACLh4 -barrelACLh5
-cell barrelACLcdSys6 5900 control_drum barrelACLh5 -barrelACLh6
-cell barrelACLcdSys7 9900 control_drum barrelACLh6 -barrelACLh7
+cell barrelACLcdSys6 5900 void barrelACLh5 -barrelACLh6
+cell barrelACLcdSys7 9900 void barrelACLh6 -barrelACLh7
 cell active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univbarrelACMcdFull_cell1 active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univbarrelACMcdFull_univ  fill active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univ -barrelACMcc1 
 cell active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univbarrelACMcdFull_cell2 active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univbarrelACMcdFull_univ  fill barrelACMcdFull barrelACMcc1 -barrelACMvoidDrumh1 
 cell active_core_univactiveCoreLatACMintrefACM_univbarrelACM_cell1 active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univ  fill active_core_univactiveCoreLatACMintrefACM_univ -intrefACMcc1 
@@ -124,7 +124,7 @@ cell active_core_univactiveCoreLatACMintrefACM_cell1 active_core_univactiveCoreL
 cell active_core_univactiveCoreLatACMintrefACM_cell2 active_core_univactiveCoreLatACMintrefACM_univ fill 3300 hexBorderactiveCoreLatACM -intrefACMcc1
 cell active_core_cellactiveCoreLatACM active_core_univactiveCoreLatACM  fill activeCoreLatACM -hexBorderactiveCoreLatACM 
 cell intrefACM_cell 3300 reflMix hexBorderactiveCoreLatACM -intrefACMcc1
-cell barrelACM_cell 3400 control_drum intrefACMcc1 -barrelACMcc1
+cell barrelACM_cell 3400 barrel intrefACMcc1 -barrelACMcc1
 cell barrelACMcdSysD1 barrelACMcdFull fill 3900 barrelACMcc1 -barrelACMh1
 cell barrelACMcdSysD2 barrelACMcdFull fill 4000 barrelACMh1 -barrelACMh2
 cell barrelACMcdSysD3 barrelACMcdFull fill 4100 barrelACMh2 -barrelACMh3
@@ -148,7 +148,7 @@ cell active_core_univactiveCoreLatACUintrefACU_cell1 active_core_univactiveCoreL
 cell active_core_univactiveCoreLatACUintrefACU_cell2 active_core_univactiveCoreLatACUintrefACU_univ fill 3700 hexBorderactiveCoreLatACU -intrefACUcc1
 cell active_core_cellactiveCoreLatACU active_core_univactiveCoreLatACU  fill activeCoreLatACU -hexBorderactiveCoreLatACU 
 cell intrefACU_cell 3700 reflMix hexBorderactiveCoreLatACU -intrefACUcc1
-cell barrelACU_cell 3800 control_drum intrefACUcc1 -barrelACUcc1
+cell barrelACU_cell 3800 barrel intrefACUcc1 -barrelACUcc1
 cell barrelACUcdSysD1 barrelACUcdFull fill 6000 barrelACUcc1 -barrelACUh1
 cell barrelACUcdSysD2 barrelACUcdFull fill 6100 barrelACUh1 -barrelACUh2
 cell barrelACUcdSysD3 barrelACUcdFull fill 6200 barrelACUh2 -barrelACUh3
@@ -162,8 +162,8 @@ cell barrelACUcdSys2 6100 control_drum barrelACUh1 -barrelACUh2
 cell barrelACUcdSys3 6200 control_drum barrelACUh2 -barrelACUh3
 cell barrelACUcdSys4 6300 control_drum barrelACUh3 -barrelACUh4
 cell barrelACUcdSys5 6400 control_drum barrelACUh4 -barrelACUh5
-cell barrelACUcdSys6 6500 control_drum barrelACUh5 -barrelACUh6
-cell barrelACUcdSys7 9901 control_drum barrelACUh6 -barrelACUh7
+cell barrelACUcdSys6 6500 void barrelACUh5 -barrelACUh6
+cell barrelACUcdSys7 9901 void barrelACUh6 -barrelACUh7
 cell active_core_univupperEndCapLatintrefuec_univbarreluec_univuecCDcdFull_cell1 active_core_univupperEndCapLatintrefuec_univbarreluec_univuecCDcdFull_univ fill 9500 -barrelueccc1
 cell active_core_univupperEndCapLatintrefuec_univbarreluec_univuecCDcdFull_cell2 active_core_univupperEndCapLatintrefuec_univbarreluec_univuecCDcdFull_univ  fill uecCDcdFull barrelueccc1 -uecCDvoidDrumh1 
 cell active_core_univupperEndCapLatintrefuec_univbarreluec_cell1 9500 fill active_core_univupperEndCapLatintrefuec_univ -intrefueccc1
@@ -172,7 +172,7 @@ cell active_core_univupperEndCapLatintrefuec_cell1 active_core_univupperEndCapLa
 cell active_core_univupperEndCapLatintrefuec_cell2 active_core_univupperEndCapLatintrefuec_univ  fill intrefuec_univ hexBorderupperEndCapLat -intrefueccc1 
 cell active_core_cellupperEndCapLat active_core_univupperEndCapLat  fill upperEndCapLat -hexBorderupperEndCapLat 
 cell intrefuec_cell intrefuec_univ  reflMix hexBorderupperEndCapLat -intrefueccc1 
-cell barreluec_cell barreluec_univ  control_drum intrefueccc1 -barrelueccc1 
+cell barreluec_cell barreluec_univ  barrel intrefueccc1 -barrelueccc1 
 cell uecCDcdSysD1 uecCDcdFull fill 6401 barrelueccc1 -uecCDh1
 cell uecCDcdSysD2 uecCDcdFull fill 6501 uecCDh1 -uecCDh2
 cell uecCDcdSysD3 uecCDcdFull fill 6600 uecCDh2 -uecCDh3
@@ -186,8 +186,8 @@ cell uecCDcdSys2 6501 control_drum uecCDh1 -uecCDh2
 cell uecCDcdSys3 6600 control_drum uecCDh2 -uecCDh3
 cell uecCDcdSys4 6700 control_drum uecCDh3 -uecCDh4
 cell uecCDcdSys5 6800 control_drum uecCDh4 -uecCDh5
-cell uecCDcdSys6 6900 control_drum uecCDh5 -uecCDh6
-cell uecCDcdSys7 9902 control_drum uecCDh6 -uecCDh7
+cell uecCDcdSys6 6900 void uecCDh5 -uecCDh6
+cell uecCDcdSys7 9902 void uecCDh6 -uecCDh7
 cell ugBarrel_univugvoidcdFull_cell1 ugBarrel_univugvoidcdFull_univ fill 9300 -ugBarrelcc1
 cell ugBarrel_univugvoidcdFull_cell2 ugBarrel_univugvoidcdFull_univ  fill ugvoidcdFull ugBarrelcc1 -ugvoidvoidDrumh1 
 cell ugBarrel_cell 9300 fill upperGridLat -ugBarrelcc1

@@ -1,0 +1,18 @@
+<ISOXML Format="SERPENT2" Name="s82d_ac_c3_gcu_ringres_XS" NGroup="18" NDLGroup="6" Description="s82d_ac_c3_gcu_ringres">
+<Controls>
+	<ScatMatrixTol>1E-32</ScatMatrixTol>
+	<ForceConsistency>false</ForceConsistency>
+	<Debug>false</Debug>
+	<EnergyUnit>MeV</EnergyUnit>
+</Controls>
+<Librarywise DataType="macro" L="1" LType="1">
+	<Tabulation>Tfuel Tcool Tref</Tabulation>
+	<Tfuel>300 500 700 800 1000</Tfuel>
+	<Tcool>300 500 700 800 1000</Tcool>
+	<Tref>300 500 700 800 1000</Tref>
+	<AddData>Total Fission Absorption NGamma</AddData>
+	<Directory>./</Directory>
+	<BaseFile>s82d_ac_c3_gcu_ringres</BaseFile>
+	<BaseExtension>main</BaseExtension>
+</Librarywise>
+</ISOXML>

@@ -184,7 +184,7 @@ mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090   rgb 219 89 89
             f"""therm Bem {bem}""")
             # last materials density and temperature
             updated_mat_content = updated_mat_content.replace(
-                "mat coolant -0.8094    rgb 196 193 193",
+                "mat coolant -0.8094    rgb 115 115 115",
                 f"mat coolant -{coolant_density} tmp {coolant_temp}   rgb 115 115 115"
             )            
             updated_mat_content = updated_mat_content.replace(
