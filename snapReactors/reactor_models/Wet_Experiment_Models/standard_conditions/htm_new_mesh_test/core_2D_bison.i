@@ -128,7 +128,7 @@ extref_blocks = 6
 gap_inner = 1
 gap_outer = 2
 clad_outer = 3
-#core_inner = 4
+core_inner = 4
 core_outer = 5
 
 acm_dz = '${fparse 3.81/100}'
@@ -347,27 +347,28 @@ lay2 = '${fparse 2.9083/100}'
       variable = q_wall_lay1
       to_multi_app = thm
       source_user_object = q_wall_avg_lay1
-      fixed_meshes = True
+      to_blocks = 'channel:lay1'
     []
     [q_wall_acmdz_to_thm]
         type = MultiAppGeneralFieldUserObjectTransfer
         variable = q_wall_acmdz
         to_multi_app = thm
         source_user_object = q_wall_avg_acmdz
-        fixed_meshes = True
+        to_blocks = 'channel:acmdz'
     []
     [q_wall_lay2_to_thm]
         type = MultiAppGeneralFieldUserObjectTransfer
         variable = q_wall_lay2
         to_multi_app = thm
         source_user_object = q_wall_avg_lay2
-        fixed_meshes = True
+        to_blocks = 'channel:lay2'
     []
     [T_wall_from_thm]
       type = MultiAppGeneralFieldNearestLocationTransfer
       source_variable = T_wall
       from_multi_app = thm
       variable = aux_T_inf
+      to_boundaries = ${clad_outer}
     []
   []
 
@@ -506,13 +507,13 @@ lay2 = '${fparse 2.9083/100}'
         htc = '${ht_coeff}'
     []
     # Convective BC outer surface fuel pin
-    # [convective_boundary_core]
-    #     type = CoupledConvectiveHeatFluxBC
-    #     variable = bison_temp
-    #     boundary = '${core_inner}'
-    #     T_infinity = aux_T_inf
-    #     htc = '${ht_coeff}'
-    # []
+    [convective_boundary_core]
+        type = CoupledConvectiveHeatFluxBC
+        variable = bison_temp
+        boundary = '${core_inner}'
+        T_infinity = aux_T_inf
+        htc = '${ht_coeff}'
+    []
     [convective_boundary_ambient]
         type = CoupledConvectiveHeatFluxBC
         variable = bison_temp
