@@ -32,7 +32,7 @@ P_wet_core = 20.4774 # wetted perimeter
 #unit_cell_height = '${units 35.56 cm -> m}' # SNAP height
 
 #num_layers_for_THM = 10
-acm_dz = '${fparse 3.81/100}'
+acm_dz = '${fparse 30.48/100}' # this is 3.81*8
 lay1 = '${fparse 2.1717/100}'
 lay2 = '${fparse 2.9083/100}'
 [GlobalParams]
@@ -73,17 +73,17 @@ lay2 = '${fparse 2.9083/100}'
   [Hw]
     family = monomial
     order = constant
-    block = 'channel:lay1 channel:acmdz channel:lay2'
+    # block = 'channel:lay1 channel:acmdz channel:lay2'
   []
-  [vel]
-    family = monomial
-    order = constant
-    block = 'channel:lay1 channel:acmdz channel:lay2'
-  []
+  # [vel]
+  #   family = monomial
+  #   order = constant
+  #   # block = 'channel:lay1 channel:acmdz channel:lay2'
+  # []
   [P]
     family = monomial
     order = constant
-    block = 'channel:lay1 channel:acmdz channel:lay2'
+    # block = 'channel:lay1 channel:acmdz channel:lay2'
   []
   [q_wall_lay1]
     family = monomial
@@ -97,23 +97,33 @@ lay2 = '${fparse 2.9083/100}'
     family = monomial
     order = constant
   []
+  [q_wall]
+    family = monomial
+    order = constant
+  []
+  [vel_scalar]
+    family = monomial
+    order = constant
+  []
 []
 
 [AuxKernels]
   [Tw_aux]
     type = ADMaterialRealAux
-    block = 'channel:lay1 channel:acmdz channel:lay2'
+    #block = 'channel:lay1 channel:acmdz channel:lay2'
     variable = T_wall
     property = T_wall
   []
   [Hw_ak]
     type = ADMaterialRealAux
+    #block = 'channel:lay1 channel:acmdz channel:lay2'
     variable = Hw
     property = 'Hw'
   []
   [vel_ak]
     type = ADMaterialRealAux
-    variable = vel
+    #block = 'channel:lay1 channel:acmdz channel:lay2'
+    variable = vel_scalar
     property = 'vel'
   []
 []
@@ -128,7 +138,7 @@ lay2 = '${fparse 2.9083/100}'
   # Wall heat transfer closure (all important is in Nu_mat)
   [Re_mat]
     type = ADReynoldsNumberMaterial
-    block = 'channel:lay1 channel:acmdz channel:lay2'
+    #block = 'channel:lay1 channel:acmdz channel:lay2'
     Re = Re
     D_h = 0.0029
     mu = 0.0001582
@@ -138,14 +148,14 @@ lay2 = '${fparse 2.9083/100}'
 
   [Pr_mat]
     type = ADPrandtlNumberMaterial
-    block = 'channel:lay1 channel:acmdz channel:lay2'
+    #block = 'channel:lay1 channel:acmdz channel:lay2'
     cp = cp
     mu = mu
     k = k
   []
   [Nu_mat]
     type = ADParsedMaterial
-    block = 'channel:lay1 channel:acmdz channel:lay2'
+    #block = 'channel:lay1 channel:acmdz channel:lay2'
     # Dittus-Boelter
     expression = '0.021 * pow(Re, 0.8) * pow(Pr, 0.4)'
     property_name = 'Nu'
@@ -153,7 +163,7 @@ lay2 = '${fparse 2.9083/100}'
   []
   [Hw_mat]
     type = ADConvectiveHeatTransferCoefficientMaterial
-    block = 'channel:lay1 channel:acmdz channel:lay2'
+    #block = 'channel:lay1 channel:acmdz channel:lay2'
     D_h = D_h
     Nu = Nu
     k = k
@@ -241,7 +251,7 @@ lay2 = '${fparse 2.9083/100}'
 
   [vel_avg]
     type = ElementAverageValue
-    variable = vel
+    variable = vel_scalar
     execute_on = 'TIMESTEP_END'
   []
   
@@ -273,12 +283,22 @@ lay2 = '${fparse 2.9083/100}'
     execute_on = 'TIMESTEP_END'
   []
 
-#  [T_wall_avg]
-#    type = ElementAverageValue
-#    variable = T_wall
-#    execute_on = 'TIMESTEP_END'
-#  []
-#
+  [qlay1]
+    type = ElementAverageValue
+    variable = q_wall_lay1
+    execute_on = 'TIMESTEP_END'
+  []
+  [qlay2]
+    type = ElementAverageValue
+    variable = q_wall_lay2
+    execute_on = 'TIMESTEP_END'
+  []
+  [qlayacm]
+    type = ElementAverageValue
+    variable = q_wall_acmdz
+    execute_on = 'TIMESTEP_END'
+  []
+  #
 #  [htc_avg]
 #    type = ElementAverageValue
 #    variable = Hw
@@ -327,7 +347,7 @@ lay2 = '${fparse 2.9083/100}'
 
 [Executioner]
   type = Transient
-  dt = 0.1
+  dt = 0.05
 
   steady_state_detection = true
   steady_state_tolerance = 1e-05

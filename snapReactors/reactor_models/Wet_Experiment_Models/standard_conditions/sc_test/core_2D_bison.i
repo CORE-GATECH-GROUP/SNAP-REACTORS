@@ -211,7 +211,7 @@ lay2 = '${fparse 2.9083/100}'
         family = L2_LAGRANGE 
         order = FIRST 
         block = '${fuel_blocks} ${extref_blocks}'
-        initial_condition = 4.680269e+05
+        #initial_condition = 7.3E+01
     []
     [aux_T_inf]
         family = LAGRANGE
@@ -347,21 +347,18 @@ lay2 = '${fparse 2.9083/100}'
       variable = q_wall_lay1
       to_multi_app = thm
       source_user_object = q_wall_avg_lay1
-      fixed_meshes = True
     []
     [q_wall_acmdz_to_thm]
         type = MultiAppGeneralFieldUserObjectTransfer
         variable = q_wall_acmdz
         to_multi_app = thm
         source_user_object = q_wall_avg_acmdz
-        fixed_meshes = True
     []
     [q_wall_lay2_to_thm]
         type = MultiAppGeneralFieldUserObjectTransfer
         variable = q_wall_lay2
         to_multi_app = thm
         source_user_object = q_wall_avg_lay2
-        fixed_meshes = True
     []
     [T_wall_from_thm]
       type = MultiAppGeneralFieldNearestLocationTransfer
