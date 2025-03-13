@@ -1,0 +1,3107 @@
+## cubit
+## Coreform Cubit Version 2024.3
+## Coreform Cubit Build ce90958e
+## Revised Mon Mar 4 17:28:41 2024 +0000
+## Running 03/13/2025 12:44:58 PM
+## Command Options:
+create surface circle radius 0.71374 zplane
+create surface circle radius 0.685292 zplane
+subtract surface 2 from surface 1 keep_tool
+merge all
+imprint all
+create surface circle radius 0.681228 zplane
+subtract surface 4 from surface 2 keep_tool
+merge all
+imprint all
+create surface circle radius 0.67564 zplane
+subtract surface 6 from surface 4 keep_tool
+merge all
+imprint all
+sideset 1 add curve 4
+sideset 2 add curve 2
+sideset 3 add curve 1
+block 1 add surface 6
+block 2 add surface 7
+block 3 add surface 3
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.7912 y -10.0306526367929 z 0
+block 1 add surface 10
+block 2 add surface 9
+block 3 add surface 8
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 11
+sideset 2 add curve 8
+sideset 3 add curve 9
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -4.3434 y -10.0306526367929 z 0
+block 1 add surface 13
+block 2 add surface 12
+block 3 add surface 11
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 15
+sideset 2 add curve 12
+sideset 3 add curve 13
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.8956 y -10.0306526367929 z 0
+block 1 add surface 16
+block 2 add surface 15
+block 3 add surface 14
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 19
+sideset 2 add curve 16
+sideset 3 add curve 17
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -1.4478 y -10.0306526367929 z 0
+block 1 add surface 19
+block 2 add surface 18
+block 3 add surface 17
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 23
+sideset 2 add curve 20
+sideset 3 add curve 21
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 0 y -10.0306526367929 z 0
+block 1 add surface 22
+block 2 add surface 21
+block 3 add surface 20
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 27
+sideset 2 add curve 24
+sideset 3 add curve 25
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 1.4478 y -10.0306526367929 z 0
+block 1 add surface 25
+block 2 add surface 24
+block 3 add surface 23
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 31
+sideset 2 add curve 28
+sideset 3 add curve 29
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.8956 y -10.0306526367929 z 0
+block 1 add surface 28
+block 2 add surface 27
+block 3 add surface 26
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 35
+sideset 2 add curve 32
+sideset 3 add curve 33
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 4.3434 y -10.0306526367929 z 0
+block 1 add surface 31
+block 2 add surface 30
+block 3 add surface 29
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 39
+sideset 2 add curve 36
+sideset 3 add curve 37
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.7912 y -10.0306526367929 z 0
+block 1 add surface 34
+block 2 add surface 33
+block 3 add surface 32
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 43
+sideset 2 add curve 40
+sideset 3 add curve 41
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -6.5151 y -8.77682105719377 z 0
+block 1 add surface 37
+block 2 add surface 36
+block 3 add surface 35
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 47
+sideset 2 add curve 44
+sideset 3 add curve 45
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.0673 y -8.77682105719377 z 0
+block 1 add surface 40
+block 2 add surface 39
+block 3 add surface 38
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 51
+sideset 2 add curve 48
+sideset 3 add curve 49
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -3.6195 y -8.77682105719377 z 0
+block 1 add surface 43
+block 2 add surface 42
+block 3 add surface 41
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 55
+sideset 2 add curve 52
+sideset 3 add curve 53
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.1717 y -8.77682105719377 z 0
+block 1 add surface 46
+block 2 add surface 45
+block 3 add surface 44
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 59
+sideset 2 add curve 56
+sideset 3 add curve 57
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -0.7239 y -8.77682105719377 z 0
+block 1 add surface 49
+block 2 add surface 48
+block 3 add surface 47
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 63
+sideset 2 add curve 60
+sideset 3 add curve 61
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 0.7239 y -8.77682105719377 z 0
+block 1 add surface 52
+block 2 add surface 51
+block 3 add surface 50
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 67
+sideset 2 add curve 64
+sideset 3 add curve 65
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.1717 y -8.77682105719377 z 0
+block 1 add surface 55
+block 2 add surface 54
+block 3 add surface 53
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 71
+sideset 2 add curve 68
+sideset 3 add curve 69
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 3.6195 y -8.77682105719377 z 0
+block 1 add surface 58
+block 2 add surface 57
+block 3 add surface 56
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 75
+sideset 2 add curve 72
+sideset 3 add curve 73
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.0673 y -8.77682105719377 z 0
+block 1 add surface 61
+block 2 add surface 60
+block 3 add surface 59
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 79
+sideset 2 add curve 76
+sideset 3 add curve 77
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 6.5151 y -8.77682105719377 z 0
+block 1 add surface 64
+block 2 add surface 63
+block 3 add surface 62
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 83
+sideset 2 add curve 80
+sideset 3 add curve 81
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -7.239 y -7.52298947759466 z 0
+block 1 add surface 67
+block 2 add surface 66
+block 3 add surface 65
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 87
+sideset 2 add curve 84
+sideset 3 add curve 85
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.7912 y -7.52298947759466 z 0
+block 1 add surface 70
+block 2 add surface 69
+block 3 add surface 68
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 91
+sideset 2 add curve 88
+sideset 3 add curve 89
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -4.3434 y -7.52298947759466 z 0
+block 1 add surface 73
+block 2 add surface 72
+block 3 add surface 71
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 95
+sideset 2 add curve 92
+sideset 3 add curve 93
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.8956 y -7.52298947759466 z 0
+block 1 add surface 76
+block 2 add surface 75
+block 3 add surface 74
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 99
+sideset 2 add curve 96
+sideset 3 add curve 97
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -1.4478 y -7.52298947759466 z 0
+block 1 add surface 79
+block 2 add surface 78
+block 3 add surface 77
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 103
+sideset 2 add curve 100
+sideset 3 add curve 101
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 0 y -7.52298947759466 z 0
+block 1 add surface 82
+block 2 add surface 81
+block 3 add surface 80
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 107
+sideset 2 add curve 104
+sideset 3 add curve 105
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 1.4478 y -7.52298947759466 z 0
+block 1 add surface 85
+block 2 add surface 84
+block 3 add surface 83
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 111
+sideset 2 add curve 108
+sideset 3 add curve 109
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.8956 y -7.52298947759466 z 0
+block 1 add surface 88
+block 2 add surface 87
+block 3 add surface 86
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 115
+sideset 2 add curve 112
+sideset 3 add curve 113
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 4.3434 y -7.52298947759466 z 0
+block 1 add surface 91
+block 2 add surface 90
+block 3 add surface 89
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 119
+sideset 2 add curve 116
+sideset 3 add curve 117
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.7912 y -7.52298947759466 z 0
+block 1 add surface 94
+block 2 add surface 93
+block 3 add surface 92
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 123
+sideset 2 add curve 120
+sideset 3 add curve 121
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 7.239 y -7.52298947759466 z 0
+block 1 add surface 97
+block 2 add surface 96
+block 3 add surface 95
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 127
+sideset 2 add curve 124
+sideset 3 add curve 125
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -7.9629 y -6.26915789799555 z 0
+block 1 add surface 100
+block 2 add surface 99
+block 3 add surface 98
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 131
+sideset 2 add curve 128
+sideset 3 add curve 129
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -6.5151 y -6.26915789799555 z 0
+block 1 add surface 103
+block 2 add surface 102
+block 3 add surface 101
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 135
+sideset 2 add curve 132
+sideset 3 add curve 133
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.0673 y -6.26915789799555 z 0
+block 1 add surface 106
+block 2 add surface 105
+block 3 add surface 104
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 139
+sideset 2 add curve 136
+sideset 3 add curve 137
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -3.6195 y -6.26915789799555 z 0
+block 1 add surface 109
+block 2 add surface 108
+block 3 add surface 107
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 143
+sideset 2 add curve 140
+sideset 3 add curve 141
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.1717 y -6.26915789799555 z 0
+block 1 add surface 112
+block 2 add surface 111
+block 3 add surface 110
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 147
+sideset 2 add curve 144
+sideset 3 add curve 145
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -0.7239 y -6.26915789799555 z 0
+block 1 add surface 115
+block 2 add surface 114
+block 3 add surface 113
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 151
+sideset 2 add curve 148
+sideset 3 add curve 149
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 0.7239 y -6.26915789799555 z 0
+block 1 add surface 118
+block 2 add surface 117
+block 3 add surface 116
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 155
+sideset 2 add curve 152
+sideset 3 add curve 153
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.1717 y -6.26915789799555 z 0
+block 1 add surface 121
+block 2 add surface 120
+block 3 add surface 119
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 159
+sideset 2 add curve 156
+sideset 3 add curve 157
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 3.6195 y -6.26915789799555 z 0
+block 1 add surface 124
+block 2 add surface 123
+block 3 add surface 122
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 163
+sideset 2 add curve 160
+sideset 3 add curve 161
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.0673 y -6.26915789799555 z 0
+block 1 add surface 127
+block 2 add surface 126
+block 3 add surface 125
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 167
+sideset 2 add curve 164
+sideset 3 add curve 165
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 6.5151 y -6.26915789799555 z 0
+block 1 add surface 130
+block 2 add surface 129
+block 3 add surface 128
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 171
+sideset 2 add curve 168
+sideset 3 add curve 169
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 7.9629 y -6.26915789799555 z 0
+block 1 add surface 133
+block 2 add surface 132
+block 3 add surface 131
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 175
+sideset 2 add curve 172
+sideset 3 add curve 173
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -8.6868 y -5.01532631839644 z 0
+block 1 add surface 136
+block 2 add surface 135
+block 3 add surface 134
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 179
+sideset 2 add curve 176
+sideset 3 add curve 177
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -7.239 y -5.01532631839644 z 0
+block 1 add surface 139
+block 2 add surface 138
+block 3 add surface 137
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 183
+sideset 2 add curve 180
+sideset 3 add curve 181
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.7912 y -5.01532631839644 z 0
+block 1 add surface 142
+block 2 add surface 141
+block 3 add surface 140
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 187
+sideset 2 add curve 184
+sideset 3 add curve 185
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -4.3434 y -5.01532631839644 z 0
+block 1 add surface 145
+block 2 add surface 144
+block 3 add surface 143
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 191
+sideset 2 add curve 188
+sideset 3 add curve 189
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.8956 y -5.01532631839644 z 0
+block 1 add surface 148
+block 2 add surface 147
+block 3 add surface 146
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 195
+sideset 2 add curve 192
+sideset 3 add curve 193
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -1.4478 y -5.01532631839644 z 0
+block 1 add surface 151
+block 2 add surface 150
+block 3 add surface 149
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 199
+sideset 2 add curve 196
+sideset 3 add curve 197
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 0 y -5.01532631839644 z 0
+block 1 add surface 154
+block 2 add surface 153
+block 3 add surface 152
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 203
+sideset 2 add curve 200
+sideset 3 add curve 201
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 1.4478 y -5.01532631839644 z 0
+block 1 add surface 157
+block 2 add surface 156
+block 3 add surface 155
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 207
+sideset 2 add curve 204
+sideset 3 add curve 205
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.8956 y -5.01532631839644 z 0
+block 1 add surface 160
+block 2 add surface 159
+block 3 add surface 158
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 211
+sideset 2 add curve 208
+sideset 3 add curve 209
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 4.3434 y -5.01532631839644 z 0
+block 1 add surface 163
+block 2 add surface 162
+block 3 add surface 161
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 215
+sideset 2 add curve 212
+sideset 3 add curve 213
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.7912 y -5.01532631839644 z 0
+block 1 add surface 166
+block 2 add surface 165
+block 3 add surface 164
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 219
+sideset 2 add curve 216
+sideset 3 add curve 217
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 7.239 y -5.01532631839644 z 0
+block 1 add surface 169
+block 2 add surface 168
+block 3 add surface 167
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 223
+sideset 2 add curve 220
+sideset 3 add curve 221
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 8.6868 y -5.01532631839644 z 0
+block 1 add surface 172
+block 2 add surface 171
+block 3 add surface 170
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 227
+sideset 2 add curve 224
+sideset 3 add curve 225
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -9.4107 y -3.76149473879733 z 0
+block 1 add surface 175
+block 2 add surface 174
+block 3 add surface 173
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 231
+sideset 2 add curve 228
+sideset 3 add curve 229
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -7.9629 y -3.76149473879733 z 0
+block 1 add surface 178
+block 2 add surface 177
+block 3 add surface 176
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 235
+sideset 2 add curve 232
+sideset 3 add curve 233
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -6.5151 y -3.76149473879733 z 0
+block 1 add surface 181
+block 2 add surface 180
+block 3 add surface 179
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 239
+sideset 2 add curve 236
+sideset 3 add curve 237
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.0673 y -3.76149473879733 z 0
+block 1 add surface 184
+block 2 add surface 183
+block 3 add surface 182
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 243
+sideset 2 add curve 240
+sideset 3 add curve 241
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -3.6195 y -3.76149473879733 z 0
+block 1 add surface 187
+block 2 add surface 186
+block 3 add surface 185
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 247
+sideset 2 add curve 244
+sideset 3 add curve 245
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.1717 y -3.76149473879733 z 0
+block 1 add surface 190
+block 2 add surface 189
+block 3 add surface 188
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 251
+sideset 2 add curve 248
+sideset 3 add curve 249
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -0.7239 y -3.76149473879733 z 0
+block 1 add surface 193
+block 2 add surface 192
+block 3 add surface 191
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 255
+sideset 2 add curve 252
+sideset 3 add curve 253
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 0.7239 y -3.76149473879733 z 0
+block 1 add surface 196
+block 2 add surface 195
+block 3 add surface 194
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 259
+sideset 2 add curve 256
+sideset 3 add curve 257
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.1717 y -3.76149473879733 z 0
+block 1 add surface 199
+block 2 add surface 198
+block 3 add surface 197
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 263
+sideset 2 add curve 260
+sideset 3 add curve 261
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 3.6195 y -3.76149473879733 z 0
+block 1 add surface 202
+block 2 add surface 201
+block 3 add surface 200
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 267
+sideset 2 add curve 264
+sideset 3 add curve 265
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.0673 y -3.76149473879733 z 0
+block 1 add surface 205
+block 2 add surface 204
+block 3 add surface 203
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 271
+sideset 2 add curve 268
+sideset 3 add curve 269
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 6.5151 y -3.76149473879733 z 0
+block 1 add surface 208
+block 2 add surface 207
+block 3 add surface 206
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 275
+sideset 2 add curve 272
+sideset 3 add curve 273
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 7.9629 y -3.76149473879733 z 0
+block 1 add surface 211
+block 2 add surface 210
+block 3 add surface 209
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 279
+sideset 2 add curve 276
+sideset 3 add curve 277
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 9.4107 y -3.76149473879733 z 0
+block 1 add surface 214
+block 2 add surface 213
+block 3 add surface 212
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 283
+sideset 2 add curve 280
+sideset 3 add curve 281
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -10.1346 y -2.50766315919822 z 0
+block 1 add surface 217
+block 2 add surface 216
+block 3 add surface 215
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 287
+sideset 2 add curve 284
+sideset 3 add curve 285
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -8.6868 y -2.50766315919822 z 0
+block 1 add surface 220
+block 2 add surface 219
+block 3 add surface 218
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 291
+sideset 2 add curve 288
+sideset 3 add curve 289
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -7.239 y -2.50766315919822 z 0
+block 1 add surface 223
+block 2 add surface 222
+block 3 add surface 221
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 295
+sideset 2 add curve 292
+sideset 3 add curve 293
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.7912 y -2.50766315919822 z 0
+block 1 add surface 226
+block 2 add surface 225
+block 3 add surface 224
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 299
+sideset 2 add curve 296
+sideset 3 add curve 297
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -4.3434 y -2.50766315919822 z 0
+block 1 add surface 229
+block 2 add surface 228
+block 3 add surface 227
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 303
+sideset 2 add curve 300
+sideset 3 add curve 301
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.8956 y -2.50766315919822 z 0
+block 1 add surface 232
+block 2 add surface 231
+block 3 add surface 230
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 307
+sideset 2 add curve 304
+sideset 3 add curve 305
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -1.4478 y -2.50766315919822 z 0
+block 1 add surface 235
+block 2 add surface 234
+block 3 add surface 233
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 311
+sideset 2 add curve 308
+sideset 3 add curve 309
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 1.77635683940025e-15 y -2.50766315919822 z 0
+block 1 add surface 238
+block 2 add surface 237
+block 3 add surface 236
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 315
+sideset 2 add curve 312
+sideset 3 add curve 313
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 1.4478 y -2.50766315919822 z 0
+block 1 add surface 241
+block 2 add surface 240
+block 3 add surface 239
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 319
+sideset 2 add curve 316
+sideset 3 add curve 317
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.8956 y -2.50766315919822 z 0
+block 1 add surface 244
+block 2 add surface 243
+block 3 add surface 242
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 323
+sideset 2 add curve 320
+sideset 3 add curve 321
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 4.3434 y -2.50766315919822 z 0
+block 1 add surface 247
+block 2 add surface 246
+block 3 add surface 245
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 327
+sideset 2 add curve 324
+sideset 3 add curve 325
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.7912 y -2.50766315919822 z 0
+block 1 add surface 250
+block 2 add surface 249
+block 3 add surface 248
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 331
+sideset 2 add curve 328
+sideset 3 add curve 329
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 7.239 y -2.50766315919822 z 0
+block 1 add surface 253
+block 2 add surface 252
+block 3 add surface 251
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 335
+sideset 2 add curve 332
+sideset 3 add curve 333
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 8.6868 y -2.50766315919822 z 0
+block 1 add surface 256
+block 2 add surface 255
+block 3 add surface 254
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 339
+sideset 2 add curve 336
+sideset 3 add curve 337
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 10.1346 y -2.50766315919822 z 0
+block 1 add surface 259
+block 2 add surface 258
+block 3 add surface 257
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 343
+sideset 2 add curve 340
+sideset 3 add curve 341
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -10.8585 y -1.25383157959911 z 0
+block 1 add surface 262
+block 2 add surface 261
+block 3 add surface 260
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 347
+sideset 2 add curve 344
+sideset 3 add curve 345
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -9.4107 y -1.25383157959911 z 0
+block 1 add surface 265
+block 2 add surface 264
+block 3 add surface 263
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 351
+sideset 2 add curve 348
+sideset 3 add curve 349
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -7.9629 y -1.25383157959911 z 0
+block 1 add surface 268
+block 2 add surface 267
+block 3 add surface 266
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 355
+sideset 2 add curve 352
+sideset 3 add curve 353
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -6.5151 y -1.25383157959911 z 0
+block 1 add surface 271
+block 2 add surface 270
+block 3 add surface 269
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 359
+sideset 2 add curve 356
+sideset 3 add curve 357
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.0673 y -1.25383157959911 z 0
+block 1 add surface 274
+block 2 add surface 273
+block 3 add surface 272
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 363
+sideset 2 add curve 360
+sideset 3 add curve 361
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -3.6195 y -1.25383157959911 z 0
+block 1 add surface 277
+block 2 add surface 276
+block 3 add surface 275
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 367
+sideset 2 add curve 364
+sideset 3 add curve 365
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.1717 y -1.25383157959911 z 0
+block 1 add surface 280
+block 2 add surface 279
+block 3 add surface 278
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 371
+sideset 2 add curve 368
+sideset 3 add curve 369
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -0.723899999999999 y -1.25383157959911 z 0
+block 1 add surface 283
+block 2 add surface 282
+block 3 add surface 281
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 375
+sideset 2 add curve 372
+sideset 3 add curve 373
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 0.723900000000001 y -1.25383157959911 z 0
+block 1 add surface 286
+block 2 add surface 285
+block 3 add surface 284
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 379
+sideset 2 add curve 376
+sideset 3 add curve 377
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.1717 y -1.25383157959911 z 0
+block 1 add surface 289
+block 2 add surface 288
+block 3 add surface 287
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 383
+sideset 2 add curve 380
+sideset 3 add curve 381
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 3.6195 y -1.25383157959911 z 0
+block 1 add surface 292
+block 2 add surface 291
+block 3 add surface 290
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 387
+sideset 2 add curve 384
+sideset 3 add curve 385
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.0673 y -1.25383157959911 z 0
+block 1 add surface 295
+block 2 add surface 294
+block 3 add surface 293
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 391
+sideset 2 add curve 388
+sideset 3 add curve 389
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 6.5151 y -1.25383157959911 z 0
+block 1 add surface 298
+block 2 add surface 297
+block 3 add surface 296
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 395
+sideset 2 add curve 392
+sideset 3 add curve 393
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 7.9629 y -1.25383157959911 z 0
+block 1 add surface 301
+block 2 add surface 300
+block 3 add surface 299
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 399
+sideset 2 add curve 396
+sideset 3 add curve 397
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 9.4107 y -1.25383157959911 z 0
+block 1 add surface 304
+block 2 add surface 303
+block 3 add surface 302
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 403
+sideset 2 add curve 400
+sideset 3 add curve 401
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 10.8585 y -1.25383157959911 z 0
+block 1 add surface 307
+block 2 add surface 306
+block 3 add surface 305
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 407
+sideset 2 add curve 404
+sideset 3 add curve 405
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -11.5824 y -1.33226762955019e-15 z 0
+block 1 add surface 310
+block 2 add surface 309
+block 3 add surface 308
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 411
+sideset 2 add curve 408
+sideset 3 add curve 409
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -10.1346 y -1.33226762955019e-15 z 0
+block 1 add surface 313
+block 2 add surface 312
+block 3 add surface 311
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 415
+sideset 2 add curve 412
+sideset 3 add curve 413
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -8.6868 y -1.33226762955019e-15 z 0
+block 1 add surface 316
+block 2 add surface 315
+block 3 add surface 314
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 419
+sideset 2 add curve 416
+sideset 3 add curve 417
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -7.239 y -1.33226762955019e-15 z 0
+block 1 add surface 319
+block 2 add surface 318
+block 3 add surface 317
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 423
+sideset 2 add curve 420
+sideset 3 add curve 421
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.7912 y -1.33226762955019e-15 z 0
+block 1 add surface 322
+block 2 add surface 321
+block 3 add surface 320
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 427
+sideset 2 add curve 424
+sideset 3 add curve 425
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -4.3434 y -1.33226762955019e-15 z 0
+block 1 add surface 325
+block 2 add surface 324
+block 3 add surface 323
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 431
+sideset 2 add curve 428
+sideset 3 add curve 429
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.8956 y -1.33226762955019e-15 z 0
+block 1 add surface 328
+block 2 add surface 327
+block 3 add surface 326
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 435
+sideset 2 add curve 432
+sideset 3 add curve 433
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -1.4478 y -1.33226762955019e-15 z 0
+block 1 add surface 331
+block 2 add surface 330
+block 3 add surface 329
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 439
+sideset 2 add curve 436
+sideset 3 add curve 437
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 1.77635683940025e-15 y -1.33226762955019e-15 z 0
+block 1 add surface 334
+block 2 add surface 333
+block 3 add surface 332
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 443
+sideset 2 add curve 440
+sideset 3 add curve 441
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 1.4478 y -1.33226762955019e-15 z 0
+block 1 add surface 337
+block 2 add surface 336
+block 3 add surface 335
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 447
+sideset 2 add curve 444
+sideset 3 add curve 445
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.8956 y -1.33226762955019e-15 z 0
+block 1 add surface 340
+block 2 add surface 339
+block 3 add surface 338
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 451
+sideset 2 add curve 448
+sideset 3 add curve 449
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 4.3434 y -1.33226762955019e-15 z 0
+block 1 add surface 343
+block 2 add surface 342
+block 3 add surface 341
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 455
+sideset 2 add curve 452
+sideset 3 add curve 453
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.7912 y -1.33226762955019e-15 z 0
+block 1 add surface 346
+block 2 add surface 345
+block 3 add surface 344
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 459
+sideset 2 add curve 456
+sideset 3 add curve 457
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 7.239 y -1.33226762955019e-15 z 0
+block 1 add surface 349
+block 2 add surface 348
+block 3 add surface 347
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 463
+sideset 2 add curve 460
+sideset 3 add curve 461
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 8.6868 y -1.33226762955019e-15 z 0
+block 1 add surface 352
+block 2 add surface 351
+block 3 add surface 350
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 467
+sideset 2 add curve 464
+sideset 3 add curve 465
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 10.1346 y -1.33226762955019e-15 z 0
+block 1 add surface 355
+block 2 add surface 354
+block 3 add surface 353
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 471
+sideset 2 add curve 468
+sideset 3 add curve 469
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 11.5824 y -1.33226762955019e-15 z 0
+block 1 add surface 358
+block 2 add surface 357
+block 3 add surface 356
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 475
+sideset 2 add curve 472
+sideset 3 add curve 473
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -10.8585 y 1.25383157959911 z 0
+block 1 add surface 361
+block 2 add surface 360
+block 3 add surface 359
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 479
+sideset 2 add curve 476
+sideset 3 add curve 477
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -9.4107 y 1.25383157959911 z 0
+block 1 add surface 364
+block 2 add surface 363
+block 3 add surface 362
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 483
+sideset 2 add curve 480
+sideset 3 add curve 481
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -7.9629 y 1.25383157959911 z 0
+block 1 add surface 367
+block 2 add surface 366
+block 3 add surface 365
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 487
+sideset 2 add curve 484
+sideset 3 add curve 485
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -6.5151 y 1.25383157959911 z 0
+block 1 add surface 370
+block 2 add surface 369
+block 3 add surface 368
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 491
+sideset 2 add curve 488
+sideset 3 add curve 489
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.0673 y 1.25383157959911 z 0
+block 1 add surface 373
+block 2 add surface 372
+block 3 add surface 371
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 495
+sideset 2 add curve 492
+sideset 3 add curve 493
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -3.6195 y 1.25383157959911 z 0
+block 1 add surface 376
+block 2 add surface 375
+block 3 add surface 374
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 499
+sideset 2 add curve 496
+sideset 3 add curve 497
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.1717 y 1.25383157959911 z 0
+block 1 add surface 379
+block 2 add surface 378
+block 3 add surface 377
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 503
+sideset 2 add curve 500
+sideset 3 add curve 501
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -0.723899999999999 y 1.25383157959911 z 0
+block 1 add surface 382
+block 2 add surface 381
+block 3 add surface 380
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 507
+sideset 2 add curve 504
+sideset 3 add curve 505
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 0.723900000000001 y 1.25383157959911 z 0
+block 1 add surface 385
+block 2 add surface 384
+block 3 add surface 383
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 511
+sideset 2 add curve 508
+sideset 3 add curve 509
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.1717 y 1.25383157959911 z 0
+block 1 add surface 388
+block 2 add surface 387
+block 3 add surface 386
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 515
+sideset 2 add curve 512
+sideset 3 add curve 513
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 3.6195 y 1.25383157959911 z 0
+block 1 add surface 391
+block 2 add surface 390
+block 3 add surface 389
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 519
+sideset 2 add curve 516
+sideset 3 add curve 517
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.0673 y 1.25383157959911 z 0
+block 1 add surface 394
+block 2 add surface 393
+block 3 add surface 392
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 523
+sideset 2 add curve 520
+sideset 3 add curve 521
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 6.5151 y 1.25383157959911 z 0
+block 1 add surface 397
+block 2 add surface 396
+block 3 add surface 395
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 527
+sideset 2 add curve 524
+sideset 3 add curve 525
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 7.9629 y 1.25383157959911 z 0
+block 1 add surface 400
+block 2 add surface 399
+block 3 add surface 398
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 531
+sideset 2 add curve 528
+sideset 3 add curve 529
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 9.4107 y 1.25383157959911 z 0
+block 1 add surface 403
+block 2 add surface 402
+block 3 add surface 401
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 535
+sideset 2 add curve 532
+sideset 3 add curve 533
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 10.8585 y 1.25383157959911 z 0
+block 1 add surface 406
+block 2 add surface 405
+block 3 add surface 404
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 539
+sideset 2 add curve 536
+sideset 3 add curve 537
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -10.1346 y 2.50766315919822 z 0
+block 1 add surface 409
+block 2 add surface 408
+block 3 add surface 407
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 543
+sideset 2 add curve 540
+sideset 3 add curve 541
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -8.6868 y 2.50766315919822 z 0
+block 1 add surface 412
+block 2 add surface 411
+block 3 add surface 410
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 547
+sideset 2 add curve 544
+sideset 3 add curve 545
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -7.239 y 2.50766315919822 z 0
+block 1 add surface 415
+block 2 add surface 414
+block 3 add surface 413
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 551
+sideset 2 add curve 548
+sideset 3 add curve 549
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.7912 y 2.50766315919822 z 0
+block 1 add surface 418
+block 2 add surface 417
+block 3 add surface 416
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 555
+sideset 2 add curve 552
+sideset 3 add curve 553
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -4.3434 y 2.50766315919822 z 0
+block 1 add surface 421
+block 2 add surface 420
+block 3 add surface 419
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 559
+sideset 2 add curve 556
+sideset 3 add curve 557
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.8956 y 2.50766315919822 z 0
+block 1 add surface 424
+block 2 add surface 423
+block 3 add surface 422
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 563
+sideset 2 add curve 560
+sideset 3 add curve 561
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -1.4478 y 2.50766315919822 z 0
+block 1 add surface 427
+block 2 add surface 426
+block 3 add surface 425
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 567
+sideset 2 add curve 564
+sideset 3 add curve 565
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 1.77635683940025e-15 y 2.50766315919822 z 0
+block 1 add surface 430
+block 2 add surface 429
+block 3 add surface 428
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 571
+sideset 2 add curve 568
+sideset 3 add curve 569
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 1.4478 y 2.50766315919822 z 0
+block 1 add surface 433
+block 2 add surface 432
+block 3 add surface 431
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 575
+sideset 2 add curve 572
+sideset 3 add curve 573
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.8956 y 2.50766315919822 z 0
+block 1 add surface 436
+block 2 add surface 435
+block 3 add surface 434
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 579
+sideset 2 add curve 576
+sideset 3 add curve 577
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 4.3434 y 2.50766315919822 z 0
+block 1 add surface 439
+block 2 add surface 438
+block 3 add surface 437
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 583
+sideset 2 add curve 580
+sideset 3 add curve 581
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.7912 y 2.50766315919822 z 0
+block 1 add surface 442
+block 2 add surface 441
+block 3 add surface 440
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 587
+sideset 2 add curve 584
+sideset 3 add curve 585
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 7.239 y 2.50766315919822 z 0
+block 1 add surface 445
+block 2 add surface 444
+block 3 add surface 443
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 591
+sideset 2 add curve 588
+sideset 3 add curve 589
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 8.6868 y 2.50766315919822 z 0
+block 1 add surface 448
+block 2 add surface 447
+block 3 add surface 446
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 595
+sideset 2 add curve 592
+sideset 3 add curve 593
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 10.1346 y 2.50766315919822 z 0
+block 1 add surface 451
+block 2 add surface 450
+block 3 add surface 449
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 599
+sideset 2 add curve 596
+sideset 3 add curve 597
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -9.4107 y 3.76149473879733 z 0
+block 1 add surface 454
+block 2 add surface 453
+block 3 add surface 452
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 603
+sideset 2 add curve 600
+sideset 3 add curve 601
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -7.9629 y 3.76149473879733 z 0
+block 1 add surface 457
+block 2 add surface 456
+block 3 add surface 455
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 607
+sideset 2 add curve 604
+sideset 3 add curve 605
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -6.5151 y 3.76149473879733 z 0
+block 1 add surface 460
+block 2 add surface 459
+block 3 add surface 458
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 611
+sideset 2 add curve 608
+sideset 3 add curve 609
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.0673 y 3.76149473879733 z 0
+block 1 add surface 463
+block 2 add surface 462
+block 3 add surface 461
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 615
+sideset 2 add curve 612
+sideset 3 add curve 613
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -3.6195 y 3.76149473879733 z 0
+block 1 add surface 466
+block 2 add surface 465
+block 3 add surface 464
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 619
+sideset 2 add curve 616
+sideset 3 add curve 617
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.1717 y 3.76149473879733 z 0
+block 1 add surface 469
+block 2 add surface 468
+block 3 add surface 467
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 623
+sideset 2 add curve 620
+sideset 3 add curve 621
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -0.7239 y 3.76149473879733 z 0
+block 1 add surface 472
+block 2 add surface 471
+block 3 add surface 470
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 627
+sideset 2 add curve 624
+sideset 3 add curve 625
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 0.7239 y 3.76149473879733 z 0
+block 1 add surface 475
+block 2 add surface 474
+block 3 add surface 473
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 631
+sideset 2 add curve 628
+sideset 3 add curve 629
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.1717 y 3.76149473879733 z 0
+block 1 add surface 478
+block 2 add surface 477
+block 3 add surface 476
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 635
+sideset 2 add curve 632
+sideset 3 add curve 633
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 3.6195 y 3.76149473879733 z 0
+block 1 add surface 481
+block 2 add surface 480
+block 3 add surface 479
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 639
+sideset 2 add curve 636
+sideset 3 add curve 637
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.0673 y 3.76149473879733 z 0
+block 1 add surface 484
+block 2 add surface 483
+block 3 add surface 482
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 643
+sideset 2 add curve 640
+sideset 3 add curve 641
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 6.5151 y 3.76149473879733 z 0
+block 1 add surface 487
+block 2 add surface 486
+block 3 add surface 485
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 647
+sideset 2 add curve 644
+sideset 3 add curve 645
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 7.9629 y 3.76149473879733 z 0
+block 1 add surface 490
+block 2 add surface 489
+block 3 add surface 488
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 651
+sideset 2 add curve 648
+sideset 3 add curve 649
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 9.4107 y 3.76149473879733 z 0
+block 1 add surface 493
+block 2 add surface 492
+block 3 add surface 491
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 655
+sideset 2 add curve 652
+sideset 3 add curve 653
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -8.6868 y 5.01532631839644 z 0
+block 1 add surface 496
+block 2 add surface 495
+block 3 add surface 494
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 659
+sideset 2 add curve 656
+sideset 3 add curve 657
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -7.239 y 5.01532631839644 z 0
+block 1 add surface 499
+block 2 add surface 498
+block 3 add surface 497
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 663
+sideset 2 add curve 660
+sideset 3 add curve 661
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.7912 y 5.01532631839644 z 0
+block 1 add surface 502
+block 2 add surface 501
+block 3 add surface 500
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 667
+sideset 2 add curve 664
+sideset 3 add curve 665
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -4.3434 y 5.01532631839644 z 0
+block 1 add surface 505
+block 2 add surface 504
+block 3 add surface 503
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 671
+sideset 2 add curve 668
+sideset 3 add curve 669
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.8956 y 5.01532631839644 z 0
+block 1 add surface 508
+block 2 add surface 507
+block 3 add surface 506
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 675
+sideset 2 add curve 672
+sideset 3 add curve 673
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -1.4478 y 5.01532631839644 z 0
+block 1 add surface 511
+block 2 add surface 510
+block 3 add surface 509
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 679
+sideset 2 add curve 676
+sideset 3 add curve 677
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 0 y 5.01532631839644 z 0
+block 1 add surface 514
+block 2 add surface 513
+block 3 add surface 512
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 683
+sideset 2 add curve 680
+sideset 3 add curve 681
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 1.4478 y 5.01532631839644 z 0
+block 1 add surface 517
+block 2 add surface 516
+block 3 add surface 515
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 687
+sideset 2 add curve 684
+sideset 3 add curve 685
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.8956 y 5.01532631839644 z 0
+block 1 add surface 520
+block 2 add surface 519
+block 3 add surface 518
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 691
+sideset 2 add curve 688
+sideset 3 add curve 689
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 4.3434 y 5.01532631839644 z 0
+block 1 add surface 523
+block 2 add surface 522
+block 3 add surface 521
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 695
+sideset 2 add curve 692
+sideset 3 add curve 693
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.7912 y 5.01532631839644 z 0
+block 1 add surface 526
+block 2 add surface 525
+block 3 add surface 524
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 699
+sideset 2 add curve 696
+sideset 3 add curve 697
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 7.239 y 5.01532631839644 z 0
+block 1 add surface 529
+block 2 add surface 528
+block 3 add surface 527
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 703
+sideset 2 add curve 700
+sideset 3 add curve 701
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 8.6868 y 5.01532631839644 z 0
+block 1 add surface 532
+block 2 add surface 531
+block 3 add surface 530
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 707
+sideset 2 add curve 704
+sideset 3 add curve 705
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -7.9629 y 6.26915789799555 z 0
+block 1 add surface 535
+block 2 add surface 534
+block 3 add surface 533
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 711
+sideset 2 add curve 708
+sideset 3 add curve 709
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -6.5151 y 6.26915789799555 z 0
+block 1 add surface 538
+block 2 add surface 537
+block 3 add surface 536
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 715
+sideset 2 add curve 712
+sideset 3 add curve 713
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.0673 y 6.26915789799555 z 0
+block 1 add surface 541
+block 2 add surface 540
+block 3 add surface 539
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 719
+sideset 2 add curve 716
+sideset 3 add curve 717
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -3.6195 y 6.26915789799555 z 0
+block 1 add surface 544
+block 2 add surface 543
+block 3 add surface 542
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 723
+sideset 2 add curve 720
+sideset 3 add curve 721
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.1717 y 6.26915789799555 z 0
+block 1 add surface 547
+block 2 add surface 546
+block 3 add surface 545
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 727
+sideset 2 add curve 724
+sideset 3 add curve 725
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -0.7239 y 6.26915789799555 z 0
+block 1 add surface 550
+block 2 add surface 549
+block 3 add surface 548
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 731
+sideset 2 add curve 728
+sideset 3 add curve 729
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 0.7239 y 6.26915789799555 z 0
+block 1 add surface 553
+block 2 add surface 552
+block 3 add surface 551
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 735
+sideset 2 add curve 732
+sideset 3 add curve 733
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.1717 y 6.26915789799555 z 0
+block 1 add surface 556
+block 2 add surface 555
+block 3 add surface 554
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 739
+sideset 2 add curve 736
+sideset 3 add curve 737
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 3.6195 y 6.26915789799555 z 0
+block 1 add surface 559
+block 2 add surface 558
+block 3 add surface 557
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 743
+sideset 2 add curve 740
+sideset 3 add curve 741
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.0673 y 6.26915789799555 z 0
+block 1 add surface 562
+block 2 add surface 561
+block 3 add surface 560
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 747
+sideset 2 add curve 744
+sideset 3 add curve 745
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 6.5151 y 6.26915789799555 z 0
+block 1 add surface 565
+block 2 add surface 564
+block 3 add surface 563
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 751
+sideset 2 add curve 748
+sideset 3 add curve 749
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 7.9629 y 6.26915789799555 z 0
+block 1 add surface 568
+block 2 add surface 567
+block 3 add surface 566
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 755
+sideset 2 add curve 752
+sideset 3 add curve 753
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -7.239 y 7.52298947759466 z 0
+block 1 add surface 571
+block 2 add surface 570
+block 3 add surface 569
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 759
+sideset 2 add curve 756
+sideset 3 add curve 757
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.7912 y 7.52298947759466 z 0
+block 1 add surface 574
+block 2 add surface 573
+block 3 add surface 572
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 763
+sideset 2 add curve 760
+sideset 3 add curve 761
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -4.3434 y 7.52298947759466 z 0
+block 1 add surface 577
+block 2 add surface 576
+block 3 add surface 575
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 767
+sideset 2 add curve 764
+sideset 3 add curve 765
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.8956 y 7.52298947759466 z 0
+block 1 add surface 580
+block 2 add surface 579
+block 3 add surface 578
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 771
+sideset 2 add curve 768
+sideset 3 add curve 769
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -1.4478 y 7.52298947759466 z 0
+block 1 add surface 583
+block 2 add surface 582
+block 3 add surface 581
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 775
+sideset 2 add curve 772
+sideset 3 add curve 773
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 0 y 7.52298947759466 z 0
+block 1 add surface 586
+block 2 add surface 585
+block 3 add surface 584
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 779
+sideset 2 add curve 776
+sideset 3 add curve 777
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 1.4478 y 7.52298947759466 z 0
+block 1 add surface 589
+block 2 add surface 588
+block 3 add surface 587
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 783
+sideset 2 add curve 780
+sideset 3 add curve 781
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.8956 y 7.52298947759466 z 0
+block 1 add surface 592
+block 2 add surface 591
+block 3 add surface 590
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 787
+sideset 2 add curve 784
+sideset 3 add curve 785
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 4.3434 y 7.52298947759466 z 0
+block 1 add surface 595
+block 2 add surface 594
+block 3 add surface 593
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 791
+sideset 2 add curve 788
+sideset 3 add curve 789
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.7912 y 7.52298947759466 z 0
+block 1 add surface 598
+block 2 add surface 597
+block 3 add surface 596
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 795
+sideset 2 add curve 792
+sideset 3 add curve 793
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 7.239 y 7.52298947759466 z 0
+block 1 add surface 601
+block 2 add surface 600
+block 3 add surface 599
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 799
+sideset 2 add curve 796
+sideset 3 add curve 797
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -6.5151 y 8.77682105719377 z 0
+block 1 add surface 604
+block 2 add surface 603
+block 3 add surface 602
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 803
+sideset 2 add curve 800
+sideset 3 add curve 801
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.0673 y 8.77682105719377 z 0
+block 1 add surface 607
+block 2 add surface 606
+block 3 add surface 605
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 807
+sideset 2 add curve 804
+sideset 3 add curve 805
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -3.6195 y 8.77682105719377 z 0
+block 1 add surface 610
+block 2 add surface 609
+block 3 add surface 608
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 811
+sideset 2 add curve 808
+sideset 3 add curve 809
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.1717 y 8.77682105719377 z 0
+block 1 add surface 613
+block 2 add surface 612
+block 3 add surface 611
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 815
+sideset 2 add curve 812
+sideset 3 add curve 813
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -0.7239 y 8.77682105719377 z 0
+block 1 add surface 616
+block 2 add surface 615
+block 3 add surface 614
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 819
+sideset 2 add curve 816
+sideset 3 add curve 817
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 0.7239 y 8.77682105719377 z 0
+block 1 add surface 619
+block 2 add surface 618
+block 3 add surface 617
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 823
+sideset 2 add curve 820
+sideset 3 add curve 821
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.1717 y 8.77682105719377 z 0
+block 1 add surface 622
+block 2 add surface 621
+block 3 add surface 620
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 827
+sideset 2 add curve 824
+sideset 3 add curve 825
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 3.6195 y 8.77682105719377 z 0
+block 1 add surface 625
+block 2 add surface 624
+block 3 add surface 623
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 831
+sideset 2 add curve 828
+sideset 3 add curve 829
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.0673 y 8.77682105719377 z 0
+block 1 add surface 628
+block 2 add surface 627
+block 3 add surface 626
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 835
+sideset 2 add curve 832
+sideset 3 add curve 833
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 6.5151 y 8.77682105719377 z 0
+block 1 add surface 631
+block 2 add surface 630
+block 3 add surface 629
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 839
+sideset 2 add curve 836
+sideset 3 add curve 837
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -5.7912 y 10.0306526367929 z 0
+block 1 add surface 634
+block 2 add surface 633
+block 3 add surface 632
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 843
+sideset 2 add curve 840
+sideset 3 add curve 841
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -4.3434 y 10.0306526367929 z 0
+block 1 add surface 637
+block 2 add surface 636
+block 3 add surface 635
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 847
+sideset 2 add curve 844
+sideset 3 add curve 845
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -2.8956 y 10.0306526367929 z 0
+block 1 add surface 640
+block 2 add surface 639
+block 3 add surface 638
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 851
+sideset 2 add curve 848
+sideset 3 add curve 849
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x -1.4478 y 10.0306526367929 z 0
+block 1 add surface 643
+block 2 add surface 642
+block 3 add surface 641
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 855
+sideset 2 add curve 852
+sideset 3 add curve 853
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 0 y 10.0306526367929 z 0
+block 1 add surface 646
+block 2 add surface 645
+block 3 add surface 644
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 859
+sideset 2 add curve 856
+sideset 3 add curve 857
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 1.4478 y 10.0306526367929 z 0
+block 1 add surface 649
+block 2 add surface 648
+block 3 add surface 647
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 863
+sideset 2 add curve 860
+sideset 3 add curve 861
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 2.8956 y 10.0306526367929 z 0
+block 1 add surface 652
+block 2 add surface 651
+block 3 add surface 650
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 867
+sideset 2 add curve 864
+sideset 3 add curve 865
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 4.3434 y 10.0306526367929 z 0
+block 1 add surface 655
+block 2 add surface 654
+block 3 add surface 653
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 871
+sideset 2 add curve 868
+sideset 3 add curve 869
+block 1 2 3 element type QUAD4
+surface 3 7 6 copy move x 5.7912 y 10.0306526367929 z 0
+block 1 add surface 658
+block 2 add surface 657
+block 3 add surface 656
+surface 6 7 size auto factor 6
+surface 3 size auto factor 9
+surface 6 7 scheme polyhedron
+surface 3 scheme pave
+mesh surface 6 7
+mesh surface 3
+sideset 1 add curve 875
+sideset 2 add curve 872
+sideset 3 add curve 873
+block 1 2 3 element type QUAD4
+delete surface 310 309 308 10 9 8 34 33 32 358 357 356 634 633 632 658 657 656
+delete body 1 2 3 4
+create vertex 26.4293182393725 0 0
+create vertex 13.2146591196863 22.888461 0
+create vertex -13.2146591196863 22.888461 0
+create vertex -26.4293182393725 0 0
+create vertex -13.2146591196863 -22.888461 0
+create vertex 13.2146591196863 -22.888461 0
+create surface vertex 876 877 878 879 880 881
+create surface circle radius 11.87704 zplane
+subtract surface 660 from surface 659 keep_tool
+merge all
+create surface circle radius 11.7475 zplane
+subtract surface 662 from surface 660 keep_tool
+create vertex 13.1982271536748 0 0
+create vertex 6.59911357683742 11.43 0
+create vertex -6.59911357683742 11.43 0
+create vertex -13.1982271536748 0 0
+create vertex -6.59911357683742 -11.43 0
+create vertex 6.59911357683742 -11.43 0
+create surface vertex 886 887 888 889 890 891
+create surface circle radius 11.7475 zplane
+intersect surface 665 664
+subtract surface 666 from surface 662 keep_tool
+block 4 add surface 667 668 669 670 671 672
+block 5 add surface 663
+block 6 add surface 661
+merge all
+imprint all
+sideset 4 add curve 893 894 895 896 897 898 899 900 902 903 904 917 929
+sideset 5 add curve 876 877 878 879 880 881
+surface 667 668 669 670 671 672 size 0.3
+surface 667 668 669 670 671 672 scheme trimesh
+mesh surface 667 668 669 670 671 672
+surface 663 size 0.3
+surface 663 scheme trimesh
+mesh surface 663
+surface 661 size 0.5
+surface 661 scheme trimesh
+mesh surface 661
+save cub5 "./heatconduction_test.cub5" overwrite
+set exodus netcdf4 on
+export mesh "./heatconduction_test.e" dimension 2 overwrite

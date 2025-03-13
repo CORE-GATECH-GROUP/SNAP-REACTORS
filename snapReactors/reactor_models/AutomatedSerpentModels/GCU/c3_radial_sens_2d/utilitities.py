@@ -566,7 +566,11 @@ def runHeatConduction():
     cubit.cmd(f'block 6 add surface {drumSurf}')
     cubit.cmd("merge all")
     cubit.cmd("imprint all")
-    
+    # this adds sideset for inner core
+    cubit.cmd('sideset 4 add curve 893 894 895 896 897 898 899 900 902 903 904 917 929')
+    # this adds sideset for outer core
+    cubit.cmd('sideset 5 add curve 876 877 878 879 880 881')
+
     intRefSize = 0.3
     intRefScheme = "trimesh"
     surfStr = intRefSurfs
