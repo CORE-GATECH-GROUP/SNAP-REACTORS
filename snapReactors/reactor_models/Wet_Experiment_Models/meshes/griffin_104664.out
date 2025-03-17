@@ -1,0 +1,773 @@
+
+******************************************************************************************************************
+
+                      _________                                                   _________
+                      \_________\----------____                   ____----------/_________/
+                          \________\-------\\\\\\               //////-------/________/
+                              \________\------\\||             ||//------/________/
+                                     \_____\----\\             //----/_____/
+                         ██████╗ ██████╗ ██╗███████╗███████╗██╗███╗  ██╗      ███╗   ███╗
+                        ██╔════╝ ██╔══██╗██║██╔════╝██╔════╝██║████╗ ██║      ████╗ ████║
+                        ██║  ██╗ ██████╔╝██║█████╗  █████╗  ██║██╔██╗██║█████╗██╔████╔██║
+                        ██║  ╚██╗██╔══██╗██║██╔══╝  ██╔══╝  ██║██║╚████║╚════╝██║╚██╔╝██║
+                        ╚██████╔╝██║  ██║██║██║     ██║     ██║██║ ╚███║      ██║ ╚═╝ ██║
+                         ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝     ╚═╝╚═╝  ╚══╝      ╚═╝     ╚═╝
+
+
+                                    Multiphysics Nuclear Reactor Analysis Code
+                                            Idaho National Laboratory
+                                           Argonne National Laboratory
+
+******************************************************************************************************************
+
+
+------------------------------------------------------------------------------------------------------------------
+Notice: These data were produced by Battelle Energy Alliance, LLC under contract No.
+DE-AC07-05ID14517 and UChicago Argonne under contract No. DE-AC02-06CH11357, LLC with
+the Department of Energy. During the period of commercialization or such other time
+period specified by the Department of Energy, the Government is granted for itself and
+others acting on its behalf a nonexclusive, paid-up, irrevocable worldwide license in
+this data to reproduce, prepare derivative works, and perform publicly and display
+publicly, by or on behalf of the Government. Subsequent to that period the Government is
+granted for itself and others acting on its behalf a nonexclusive, paid-up, irrevocable
+worldwide license in this data to reproduce, prepare derivative works, distribute copies
+to the public, perform publicly and display publicly, and to permit others to do so. The
+specific term of the license can be identified by inquiry made to the Contractor or DOE.
+NEITHER THE UNITED STATES NOR THE UNITED STATES DEPARTMENT OF ENERGY, NOR ANY OF THEIR
+EMPLOYEES, MAKES ANY WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY LEGAL LIABILITY OR
+RESPONSIBILITY FOR THE ACCURACY, COMPLETENESS, OR USEFULNESS OF ANY DATA, APPARATUS,
+PRODUCT, OR PROCESS DISCLOSED, OR REPRESENTS THAT ITS USE WOULD NOT INFRINGE PRIVATELY
+OWNED RIGHTS.
+------------------------------------------------------------------------------------------------------------------
+
+
+Griffin version:         git commit ddd8d4520 on 2025-03-13
+Framework Information:
+MOOSE Version:           git commit c614a59dc8 on 2025-03-13
+LibMesh Version:         b30db56c835158b7f36397e4339c493a28592480
+PETSc Version:           3.22.1
+SLEPc Version:           3.22.1
+Libtorch Version:        2.1.0
+Current Time:            Mon Mar 17 12:47:11 2025
+Executable Timestamp:    Thu Mar 13 22:02:03 2025
+
+Parallelism:
+  Num Processors:        2
+  Num Threads:           1
+
+Command line: griffin-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/meshes/wet_core_mesh.i --mesh-only
+
+ Mesh Information:
+  elem_dimensions()={3}
+  elem_default_orders()={FIRST}
+  supported_nodal_order()=1
+  spatial_dimension()=3
+  n_nodes()=62505
+    n_local_nodes()=32025
+  n_elem()=115304
+    n_local_elem()=57652
+    n_active_elem()=115304
+  n_subdomains()=130
+  n_elemsets()=0
+  n_partitions()=2
+  n_processors()=2
+  n_threads()=1
+  processor_id()=0
+  is_prepared()=true
+  is_replicated()=true
+
+ Mesh Bounding Box:
+  Minimum: (x,y,z)=(-0.264293, -0.228885,        0)
+  Maximum: (x,y,z)=(0.264293, 0.228885, 0.384226)
+  Delta:   (x,y,z)=(0.528586, 0.457769, 0.384226)
+
+ Mesh Element Type(s):
+  PRISM6
+
+ Mesh Nodesets:
+  Nodeset 1, 1440 nodes
+   Bounding box minimum: (x,y,z)=(-0.264293, -0.228885,        0)
+   Bounding box maximum: (x,y,z)=(0.264293, 0.228885, 0.384226)
+   Bounding box delta: (x,y,z)=(0.528586, 0.457769, 0.384226)
+  Nodeset 4, 4167 nodes
+   Bounding box minimum: (x,y,z)=(-0.264293, -0.228885,        0)
+   Bounding box maximum: (x,y,z)=(0.264293, 0.228885,        0)
+   Bounding box delta: (x,y,z)=(0.528586, 0.457769,        0)
+  Nodeset 5, 4167 nodes
+   Bounding box minimum: (x,y,z)=(-0.264293, -0.228885, 0.384226)
+   Bounding box maximum: (x,y,z)=(0.264293, 0.228885, 0.384226)
+   Bounding box delta: (x,y,z)=(0.528586, 0.457769,        0)
+
+ Mesh Sidesets:
+  Sideset 1 (outer), 1344 sides (QUAD4), 1344 elems (PRISM6), 1440 nodes
+   Side volume: 0.60929
+   Bounding box minimum: (x,y,z)=(-0.264293, -0.228885,        0)
+   Bounding box maximum: (x,y,z)=(0.264293, 0.228885, 0.384226)
+   Bounding box delta: (x,y,z)=(0.528586, 0.457769, 0.384226)
+  Sideset 4 (bottom), 8236 sides (TRI3), 8236 elems (PRISM6), 4167 nodes
+   Side volume: 0.181478
+   Bounding box minimum: (x,y,z)=(-0.264293, -0.228885,        0)
+   Bounding box maximum: (x,y,z)=(0.264293, 0.228885,        0)
+   Bounding box delta: (x,y,z)=(0.528586, 0.457769,        0)
+  Sideset 5 (top), 8236 sides (TRI3), 8236 elems (PRISM6), 4167 nodes
+   Side volume: 0.181478
+   Bounding box minimum: (x,y,z)=(-0.264293, -0.228885, 0.384226)
+   Bounding box maximum: (x,y,z)=(0.264293, 0.228885, 0.384226)
+   Bounding box delta: (x,y,z)=(0.528586, 0.457769,        0)
+
+ Mesh Edgesets:
+  None
+
+ Mesh Subdomains:
+  Subdomain 9: 4928 elems (PRISM6, 4928 active), 4464 active nodes
+   Volume: 0.00132779
+   Bounding box minimum: (x,y,z)=(-0.117443,  -0.1143, 0.0393192)
+   Bounding box maximum: (x,y,z)=(0.117475,   0.1143, 0.344119)
+   Bounding box delta: (x,y,z)=(0.234918,   0.2286,   0.3048)
+  Subdomain 20: 2070 elems (PRISM6, 2070 active), 2350 active nodes
+   Volume: 0.00109054
+   Bounding box minimum: (x,y,z)=(-0.264293, -0.228885,        0)
+   Bounding box maximum: (x,y,z)=(0.264293, 0.228885, 0.0079502)
+   Bounding box delta: (x,y,z)=(0.528586, 0.457769, 0.0079502)
+  Subdomain 40: 2070 elems (PRISM6, 2070 active), 2350 active nodes
+   Volume: 0.00119854
+   Bounding box minimum: (x,y,z)=(-0.264293, -0.228885, 0.375488)
+   Bounding box maximum: (x,y,z)=(0.264293, 0.228885, 0.384226)
+   Bounding box delta: (x,y,z)=(0.528586, 0.457769, 0.0087376)
+  Subdomain 71: 168 elems (PRISM6, 168 active), 202 active nodes
+   Volume: 3.6956e-05
+   Bounding box minimum: (x,y,z)=(-0.021717, -0.0208972, 0.344119)
+   Bounding box maximum: (x,y,z)=(0.021717, 0.0208972, 0.373202)
+   Bounding box delta: (x,y,z)=(0.043434, 0.0417944, 0.029083)
+  Subdomain 72: 288 elems (PRISM6, 288 active), 382 active nodes
+   Volume: 6.33532e-05
+   Bounding box minimum: (x,y,z)=(-0.036195, -0.0334355, 0.344119)
+   Bounding box maximum: (x,y,z)=(0.036195, 0.0334355, 0.373202)
+   Bounding box delta: (x,y,z)=( 0.07239, 0.066871, 0.029083)
+  Subdomain 73: 432 elems (PRISM6, 432 active), 574 active nodes
+   Volume: 9.50297e-05
+   Bounding box minimum: (x,y,z)=(-0.050673, -0.0459738, 0.344119)
+   Bounding box maximum: (x,y,z)=(0.050673, 0.0459738, 0.373202)
+   Bounding box delta: (x,y,z)=(0.101346, 0.0919476, 0.029083)
+  Subdomain 74: 576 elems (PRISM6, 576 active), 766 active nodes
+   Volume: 0.000126706
+   Bounding box minimum: (x,y,z)=(-0.065151, -0.0585121, 0.344119)
+   Bounding box maximum: (x,y,z)=(0.065151, 0.0585121, 0.373202)
+   Bounding box delta: (x,y,z)=(0.130302, 0.117024, 0.029083)
+  Subdomain 75: 720 elems (PRISM6, 720 active), 960 active nodes
+   Volume: 0.000158383
+   Bounding box minimum: (x,y,z)=(-0.079629, -0.0710505, 0.344119)
+   Bounding box maximum: (x,y,z)=(0.079629, 0.0710505, 0.373202)
+   Bounding box delta: (x,y,z)=(0.159258, 0.142101, 0.029083)
+  Subdomain 76: 864 elems (PRISM6, 864 active), 1150 active nodes
+   Volume: 0.000190059
+   Bounding box minimum: (x,y,z)=(-0.094107, -0.0835888, 0.344119)
+   Bounding box maximum: (x,y,z)=(0.094107, 0.0835888, 0.373202)
+   Bounding box delta: (x,y,z)=(0.188214, 0.167178, 0.029083)
+  Subdomain 77: 1008 elems (PRISM6, 1008 active), 1342 active nodes
+   Volume: 0.000221736
+   Bounding box minimum: (x,y,z)=(-0.108585, -0.0961271, 0.344119)
+   Bounding box maximum: (x,y,z)=(0.108585, 0.0961271, 0.373202)
+   Bounding box delta: (x,y,z)=( 0.21717, 0.192254, 0.029083)
+  Subdomain 78: 1008 elems (PRISM6, 1008 active), 1378 active nodes
+   Volume: 0.000221736
+   Bounding box minimum: (x,y,z)=(-0.115824, -0.108665, 0.344119)
+   Bounding box maximum: (x,y,z)=(0.115824, 0.108665, 0.373202)
+   Bounding box delta: (x,y,z)=(0.231648, 0.217331, 0.029083)
+  Subdomain 79: 616 elems (PRISM6, 616 active), 992 active nodes
+   Volume: 0.000126694
+   Bounding box minimum: (x,y,z)=(-0.117443,  -0.1143, 0.344119)
+   Bounding box maximum: (x,y,z)=(0.117475,   0.1143, 0.373202)
+   Bounding box delta: (x,y,z)=(0.234918,   0.2286, 0.029083)
+  Subdomain 81: 168 elems (PRISM6, 168 active), 202 active nodes
+   Volume: 2.7596e-05
+   Bounding box minimum: (x,y,z)=(-0.021717, -0.0208972, 0.0176022)
+   Bounding box maximum: (x,y,z)=(0.021717, 0.0208972, 0.0393192)
+   Bounding box delta: (x,y,z)=(0.043434, 0.0417944, 0.021717)
+  Subdomain 82: 288 elems (PRISM6, 288 active), 382 active nodes
+   Volume: 4.73074e-05
+   Bounding box minimum: (x,y,z)=(-0.036195, -0.0334355, 0.0176022)
+   Bounding box maximum: (x,y,z)=(0.036195, 0.0334355, 0.0393192)
+   Bounding box delta: (x,y,z)=( 0.07239, 0.066871, 0.021717)
+  Subdomain 83: 432 elems (PRISM6, 432 active), 574 active nodes
+   Volume: 7.09611e-05
+   Bounding box minimum: (x,y,z)=(-0.050673, -0.0459738, 0.0176022)
+   Bounding box maximum: (x,y,z)=(0.050673, 0.0459738, 0.0393192)
+   Bounding box delta: (x,y,z)=(0.101346, 0.0919476, 0.021717)
+  Subdomain 84: 576 elems (PRISM6, 576 active), 766 active nodes
+   Volume: 9.46148e-05
+   Bounding box minimum: (x,y,z)=(-0.065151, -0.0585121, 0.0176022)
+   Bounding box maximum: (x,y,z)=(0.065151, 0.0585121, 0.0393192)
+   Bounding box delta: (x,y,z)=(0.130302, 0.117024, 0.021717)
+  Subdomain 85: 720 elems (PRISM6, 720 active), 960 active nodes
+   Volume: 0.000118268
+   Bounding box minimum: (x,y,z)=(-0.079629, -0.0710505, 0.0176022)
+   Bounding box maximum: (x,y,z)=(0.079629, 0.0710505, 0.0393192)
+   Bounding box delta: (x,y,z)=(0.159258, 0.142101, 0.021717)
+  Subdomain 86: 864 elems (PRISM6, 864 active), 1150 active nodes
+   Volume: 0.000141922
+   Bounding box minimum: (x,y,z)=(-0.094107, -0.0835888, 0.0176022)
+   Bounding box maximum: (x,y,z)=(0.094107, 0.0835888, 0.0393192)
+   Bounding box delta: (x,y,z)=(0.188214, 0.167178, 0.021717)
+  Subdomain 87: 1008 elems (PRISM6, 1008 active), 1342 active nodes
+   Volume: 0.000165576
+   Bounding box minimum: (x,y,z)=(-0.108585, -0.0961271, 0.0176022)
+   Bounding box maximum: (x,y,z)=(0.108585, 0.0961271, 0.0393192)
+   Bounding box delta: (x,y,z)=( 0.21717, 0.192254, 0.021717)
+  Subdomain 88: 1008 elems (PRISM6, 1008 active), 1378 active nodes
+   Volume: 0.000165576
+   Bounding box minimum: (x,y,z)=(-0.115824, -0.108665, 0.0176022)
+   Bounding box maximum: (x,y,z)=(0.115824, 0.108665, 0.0393192)
+   Bounding box delta: (x,y,z)=(0.231648, 0.217331, 0.021717)
+  Subdomain 89: 616 elems (PRISM6, 616 active), 992 active nodes
+   Volume: 9.46052e-05
+   Bounding box minimum: (x,y,z)=(-0.117443,  -0.1143, 0.0176022)
+   Bounding box maximum: (x,y,z)=(0.117475,   0.1143, 0.0393192)
+   Bounding box delta: (x,y,z)=(0.234918,   0.2286, 0.021717)
+  Subdomain 101: 168 elems (PRISM6, 168 active), 202 active nodes
+   Volume: 4.8414e-05
+   Bounding box minimum: (x,y,z)=(-0.021717, -0.0208972, 0.0393192)
+   Bounding box maximum: (x,y,z)=(0.021717, 0.0208972, 0.0774192)
+   Bounding box delta: (x,y,z)=(0.043434, 0.0417944,   0.0381)
+  Subdomain 102: 288 elems (PRISM6, 288 active), 382 active nodes
+   Volume: 8.29954e-05
+   Bounding box minimum: (x,y,z)=(-0.036195, -0.0334355, 0.0393192)
+   Bounding box maximum: (x,y,z)=(0.036195, 0.0334355, 0.0774192)
+   Bounding box delta: (x,y,z)=( 0.07239, 0.066871,   0.0381)
+  Subdomain 103: 432 elems (PRISM6, 432 active), 574 active nodes
+   Volume: 0.000124493
+   Bounding box minimum: (x,y,z)=(-0.050673, -0.0459738, 0.0393192)
+   Bounding box maximum: (x,y,z)=(0.050673, 0.0459738, 0.0774192)
+   Bounding box delta: (x,y,z)=(0.101346, 0.0919476,   0.0381)
+  Subdomain 104: 576 elems (PRISM6, 576 active), 766 active nodes
+   Volume: 0.000165991
+   Bounding box minimum: (x,y,z)=(-0.065151, -0.0585121, 0.0393192)
+   Bounding box maximum: (x,y,z)=(0.065151, 0.0585121, 0.0774192)
+   Bounding box delta: (x,y,z)=(0.130302, 0.117024,   0.0381)
+  Subdomain 105: 720 elems (PRISM6, 720 active), 960 active nodes
+   Volume: 0.000207488
+   Bounding box minimum: (x,y,z)=(-0.079629, -0.0710505, 0.0393192)
+   Bounding box maximum: (x,y,z)=(0.079629, 0.0710505, 0.0774192)
+   Bounding box delta: (x,y,z)=(0.159258, 0.142101,   0.0381)
+  Subdomain 106: 864 elems (PRISM6, 864 active), 1150 active nodes
+   Volume: 0.000248986
+   Bounding box minimum: (x,y,z)=(-0.094107, -0.0835888, 0.0393192)
+   Bounding box maximum: (x,y,z)=(0.094107, 0.0835888, 0.0774192)
+   Bounding box delta: (x,y,z)=(0.188214, 0.167178,   0.0381)
+  Subdomain 107: 1008 elems (PRISM6, 1008 active), 1342 active nodes
+   Volume: 0.000290484
+   Bounding box minimum: (x,y,z)=(-0.108585, -0.0961271, 0.0393192)
+   Bounding box maximum: (x,y,z)=(0.108585, 0.0961271, 0.0774192)
+   Bounding box delta: (x,y,z)=( 0.21717, 0.192254,   0.0381)
+  Subdomain 108: 1008 elems (PRISM6, 1008 active), 1378 active nodes
+   Volume: 0.000290484
+   Bounding box minimum: (x,y,z)=(-0.115824, -0.108665, 0.0393192)
+   Bounding box maximum: (x,y,z)=(0.115824, 0.108665, 0.0774192)
+   Bounding box delta: (x,y,z)=(0.231648, 0.217331,   0.0381)
+  Subdomain 124: 970 elems (PRISM6, 970 active), 1268 active nodes
+   Volume: 0.000160511
+   Bounding box minimum: (x,y,z)=(-0.153149, -0.132631, 0.0079502)
+   Bounding box maximum: (x,y,z)=(0.153149, 0.132631, 0.0176022)
+   Bounding box delta: (x,y,z)=(0.306298, 0.265262, 0.009652)
+  Subdomain 125: 302 elems (PRISM6, 302 active), 506 active nodes
+   Volume: 0.000129356
+   Bounding box minimum: (x,y,z)=(-0.169154, -0.146492, 0.0079502)
+   Bounding box maximum: (x,y,z)=(0.169154, 0.146492, 0.0176022)
+   Bounding box delta: (x,y,z)=(0.338308, 0.292983, 0.009652)
+  Subdomain 126: 162 elems (PRISM6, 162 active), 324 active nodes
+   Volume: 0.000142203
+   Bounding box minimum: (x,y,z)=(-0.185159, -0.160352, 0.0079502)
+   Bounding box maximum: (x,y,z)=(0.185159, 0.160352, 0.0176022)
+   Bounding box delta: (x,y,z)=(0.370318, 0.320705, 0.009652)
+  Subdomain 127: 144 elems (PRISM6, 144 active), 288 active nodes
+   Volume: 0.00015505
+   Bounding box minimum: (x,y,z)=(-0.201164, -0.174213, 0.0079502)
+   Bounding box maximum: (x,y,z)=(0.201164, 0.174213, 0.0176022)
+   Bounding box delta: (x,y,z)=(0.402327, 0.348426, 0.009652)
+  Subdomain 128: 150 elems (PRISM6, 150 active), 300 active nodes
+   Volume: 0.000204441
+   Bounding box minimum: (x,y,z)=(-0.220498, -0.190957, 0.0079502)
+   Bounding box maximum: (x,y,z)=(0.220498, 0.190957, 0.0176022)
+   Bounding box delta: (x,y,z)=(0.440997, 0.381914, 0.009652)
+  Subdomain 129: 162 elems (PRISM6, 162 active), 324 active nodes
+   Volume: 0.00023262
+   Bounding box minimum: (x,y,z)=(-0.240616, -0.208379, 0.0079502)
+   Bounding box maximum: (x,y,z)=(0.240616, 0.208379, 0.0176022)
+   Bounding box delta: (x,y,z)=(0.481231, 0.416758, 0.009652)
+  Subdomain 130: 180 elems (PRISM6, 180 active), 360 active nodes
+   Volume: 0.000299792
+   Bounding box minimum: (x,y,z)=(-0.264293, -0.228885, 0.0079502)
+   Bounding box maximum: (x,y,z)=(0.264293, 0.228885, 0.0176022)
+   Bounding box delta: (x,y,z)=(0.528586, 0.457769, 0.009652)
+  Subdomain 133: 970 elems (PRISM6, 970 active), 1268 active nodes
+   Volume: 3.80159e-05
+   Bounding box minimum: (x,y,z)=(-0.153149, -0.132631, 0.373202)
+   Bounding box maximum: (x,y,z)=(0.153149, 0.132631, 0.375488)
+   Bounding box delta: (x,y,z)=(0.306298, 0.265262, 0.002286)
+  Subdomain 134: 302 elems (PRISM6, 302 active), 506 active nodes
+   Volume: 3.06369e-05
+   Bounding box minimum: (x,y,z)=(-0.169154, -0.146492, 0.373202)
+   Bounding box maximum: (x,y,z)=(0.169154, 0.146492, 0.375488)
+   Bounding box delta: (x,y,z)=(0.338308, 0.292983, 0.002286)
+  Subdomain 135: 162 elems (PRISM6, 162 active), 324 active nodes
+   Volume: 3.36796e-05
+   Bounding box minimum: (x,y,z)=(-0.185159, -0.160352, 0.373202)
+   Bounding box maximum: (x,y,z)=(0.185159, 0.160352, 0.375488)
+   Bounding box delta: (x,y,z)=(0.370318, 0.320705, 0.002286)
+  Subdomain 136: 144 elems (PRISM6, 144 active), 288 active nodes
+   Volume: 3.67223e-05
+   Bounding box minimum: (x,y,z)=(-0.201164, -0.174213, 0.373202)
+   Bounding box maximum: (x,y,z)=(0.201164, 0.174213, 0.375488)
+   Bounding box delta: (x,y,z)=(0.402327, 0.348426, 0.002286)
+  Subdomain 137: 150 elems (PRISM6, 150 active), 300 active nodes
+   Volume: 4.84202e-05
+   Bounding box minimum: (x,y,z)=(-0.220498, -0.190957, 0.373202)
+   Bounding box maximum: (x,y,z)=(0.220498, 0.190957, 0.375488)
+   Bounding box delta: (x,y,z)=(0.440997, 0.381914, 0.002286)
+  Subdomain 138: 162 elems (PRISM6, 162 active), 324 active nodes
+   Volume: 5.50942e-05
+   Bounding box minimum: (x,y,z)=(-0.240616, -0.208379, 0.373202)
+   Bounding box maximum: (x,y,z)=(0.240616, 0.208379, 0.375488)
+   Bounding box delta: (x,y,z)=(0.481231, 0.416758, 0.002286)
+  Subdomain 139: 180 elems (PRISM6, 180 active), 360 active nodes
+   Volume: 7.10034e-05
+   Bounding box minimum: (x,y,z)=(-0.264293, -0.228885, 0.373202)
+   Bounding box maximum: (x,y,z)=(0.264293, 0.228885, 0.375488)
+   Bounding box delta: (x,y,z)=(0.528586, 0.457769, 0.002286)
+  Subdomain 201: 168 elems (PRISM6, 168 active), 202 active nodes
+   Volume: 4.8414e-05
+   Bounding box minimum: (x,y,z)=(-0.021717, -0.0208972, 0.0774192)
+   Bounding box maximum: (x,y,z)=(0.021717, 0.0208972, 0.115519)
+   Bounding box delta: (x,y,z)=(0.043434, 0.0417944,   0.0381)
+  Subdomain 202: 288 elems (PRISM6, 288 active), 382 active nodes
+   Volume: 8.29954e-05
+   Bounding box minimum: (x,y,z)=(-0.036195, -0.0334355, 0.0774192)
+   Bounding box maximum: (x,y,z)=(0.036195, 0.0334355, 0.115519)
+   Bounding box delta: (x,y,z)=( 0.07239, 0.066871,   0.0381)
+  Subdomain 203: 432 elems (PRISM6, 432 active), 574 active nodes
+   Volume: 0.000124493
+   Bounding box minimum: (x,y,z)=(-0.050673, -0.0459738, 0.0774192)
+   Bounding box maximum: (x,y,z)=(0.050673, 0.0459738, 0.115519)
+   Bounding box delta: (x,y,z)=(0.101346, 0.0919476,   0.0381)
+  Subdomain 204: 576 elems (PRISM6, 576 active), 766 active nodes
+   Volume: 0.000165991
+   Bounding box minimum: (x,y,z)=(-0.065151, -0.0585121, 0.0774192)
+   Bounding box maximum: (x,y,z)=(0.065151, 0.0585121, 0.115519)
+   Bounding box delta: (x,y,z)=(0.130302, 0.117024,   0.0381)
+  Subdomain 205: 720 elems (PRISM6, 720 active), 960 active nodes
+   Volume: 0.000207488
+   Bounding box minimum: (x,y,z)=(-0.079629, -0.0710505, 0.0774192)
+   Bounding box maximum: (x,y,z)=(0.079629, 0.0710505, 0.115519)
+   Bounding box delta: (x,y,z)=(0.159258, 0.142101,   0.0381)
+  Subdomain 206: 864 elems (PRISM6, 864 active), 1150 active nodes
+   Volume: 0.000248986
+   Bounding box minimum: (x,y,z)=(-0.094107, -0.0835888, 0.0774192)
+   Bounding box maximum: (x,y,z)=(0.094107, 0.0835888, 0.115519)
+   Bounding box delta: (x,y,z)=(0.188214, 0.167178,   0.0381)
+  Subdomain 207: 1008 elems (PRISM6, 1008 active), 1342 active nodes
+   Volume: 0.000290484
+   Bounding box minimum: (x,y,z)=(-0.108585, -0.0961271, 0.0774192)
+   Bounding box maximum: (x,y,z)=(0.108585, 0.0961271, 0.115519)
+   Bounding box delta: (x,y,z)=( 0.21717, 0.192254,   0.0381)
+  Subdomain 208: 1008 elems (PRISM6, 1008 active), 1378 active nodes
+   Volume: 0.000290484
+   Bounding box minimum: (x,y,z)=(-0.115824, -0.108665, 0.0774192)
+   Bounding box maximum: (x,y,z)=(0.115824, 0.108665, 0.115519)
+   Bounding box delta: (x,y,z)=(0.231648, 0.217331,   0.0381)
+  Subdomain 210: 6166 elems (PRISM6, 6166 active), 6352 active nodes
+   Volume: 0.00035225
+   Bounding box minimum: (x,y,z)=(-0.118764, -0.118744,        0)
+   Bounding box maximum: (x,y,z)=( 0.11877,  0.11877, 0.0079502)
+   Bounding box delta: (x,y,z)=(0.237535, 0.237514, 0.0079502)
+  Subdomain 251: 6166 elems (PRISM6, 6166 active), 6352 active nodes
+   Volume: 0.000427652
+   Bounding box minimum: (x,y,z)=(-0.118764, -0.118744, 0.0079502)
+   Bounding box maximum: (x,y,z)=( 0.11877,  0.11877, 0.0176022)
+   Bounding box delta: (x,y,z)=(0.237535, 0.237514, 0.009652)
+  Subdomain 301: 168 elems (PRISM6, 168 active), 202 active nodes
+   Volume: 4.8414e-05
+   Bounding box minimum: (x,y,z)=(-0.021717, -0.0208972, 0.115519)
+   Bounding box maximum: (x,y,z)=(0.021717, 0.0208972, 0.153619)
+   Bounding box delta: (x,y,z)=(0.043434, 0.0417944,   0.0381)
+  Subdomain 302: 288 elems (PRISM6, 288 active), 382 active nodes
+   Volume: 8.29954e-05
+   Bounding box minimum: (x,y,z)=(-0.036195, -0.0334355, 0.115519)
+   Bounding box maximum: (x,y,z)=(0.036195, 0.0334355, 0.153619)
+   Bounding box delta: (x,y,z)=( 0.07239, 0.066871,   0.0381)
+  Subdomain 303: 432 elems (PRISM6, 432 active), 574 active nodes
+   Volume: 0.000124493
+   Bounding box minimum: (x,y,z)=(-0.050673, -0.0459738, 0.115519)
+   Bounding box maximum: (x,y,z)=(0.050673, 0.0459738, 0.153619)
+   Bounding box delta: (x,y,z)=(0.101346, 0.0919476,   0.0381)
+  Subdomain 304: 576 elems (PRISM6, 576 active), 766 active nodes
+   Volume: 0.000165991
+   Bounding box minimum: (x,y,z)=(-0.065151, -0.0585121, 0.115519)
+   Bounding box maximum: (x,y,z)=(0.065151, 0.0585121, 0.153619)
+   Bounding box delta: (x,y,z)=(0.130302, 0.117024,   0.0381)
+  Subdomain 305: 720 elems (PRISM6, 720 active), 960 active nodes
+   Volume: 0.000207488
+   Bounding box minimum: (x,y,z)=(-0.079629, -0.0710505, 0.115519)
+   Bounding box maximum: (x,y,z)=(0.079629, 0.0710505, 0.153619)
+   Bounding box delta: (x,y,z)=(0.159258, 0.142101,   0.0381)
+  Subdomain 306: 864 elems (PRISM6, 864 active), 1150 active nodes
+   Volume: 0.000248986
+   Bounding box minimum: (x,y,z)=(-0.094107, -0.0835888, 0.115519)
+   Bounding box maximum: (x,y,z)=(0.094107, 0.0835888, 0.153619)
+   Bounding box delta: (x,y,z)=(0.188214, 0.167178,   0.0381)
+  Subdomain 307: 1008 elems (PRISM6, 1008 active), 1342 active nodes
+   Volume: 0.000290484
+   Bounding box minimum: (x,y,z)=(-0.108585, -0.0961271, 0.115519)
+   Bounding box maximum: (x,y,z)=(0.108585, 0.0961271, 0.153619)
+   Bounding box delta: (x,y,z)=( 0.21717, 0.192254,   0.0381)
+  Subdomain 308: 1008 elems (PRISM6, 1008 active), 1378 active nodes
+   Volume: 0.000290484
+   Bounding box minimum: (x,y,z)=(-0.115824, -0.108665, 0.115519)
+   Bounding box maximum: (x,y,z)=(0.115824, 0.108665, 0.153619)
+   Bounding box delta: (x,y,z)=(0.231648, 0.217331,   0.0381)
+  Subdomain 340: 6166 elems (PRISM6, 6166 active), 6352 active nodes
+   Volume: 0.000101286
+   Bounding box minimum: (x,y,z)=(-0.118764, -0.118744, 0.373202)
+   Bounding box maximum: (x,y,z)=( 0.11877,  0.11877, 0.375488)
+   Bounding box delta: (x,y,z)=(0.237535, 0.237514, 0.002286)
+  Subdomain 401: 168 elems (PRISM6, 168 active), 202 active nodes
+   Volume: 4.8414e-05
+   Bounding box minimum: (x,y,z)=(-0.021717, -0.0208972, 0.153619)
+   Bounding box maximum: (x,y,z)=(0.021717, 0.0208972, 0.191719)
+   Bounding box delta: (x,y,z)=(0.043434, 0.0417944,   0.0381)
+  Subdomain 402: 288 elems (PRISM6, 288 active), 382 active nodes
+   Volume: 8.29954e-05
+   Bounding box minimum: (x,y,z)=(-0.036195, -0.0334355, 0.153619)
+   Bounding box maximum: (x,y,z)=(0.036195, 0.0334355, 0.191719)
+   Bounding box delta: (x,y,z)=( 0.07239, 0.066871,   0.0381)
+  Subdomain 403: 432 elems (PRISM6, 432 active), 574 active nodes
+   Volume: 0.000124493
+   Bounding box minimum: (x,y,z)=(-0.050673, -0.0459738, 0.153619)
+   Bounding box maximum: (x,y,z)=(0.050673, 0.0459738, 0.191719)
+   Bounding box delta: (x,y,z)=(0.101346, 0.0919476,   0.0381)
+  Subdomain 404: 576 elems (PRISM6, 576 active), 766 active nodes
+   Volume: 0.000165991
+   Bounding box minimum: (x,y,z)=(-0.065151, -0.0585121, 0.153619)
+   Bounding box maximum: (x,y,z)=(0.065151, 0.0585121, 0.191719)
+   Bounding box delta: (x,y,z)=(0.130302, 0.117024,   0.0381)
+  Subdomain 405: 720 elems (PRISM6, 720 active), 960 active nodes
+   Volume: 0.000207488
+   Bounding box minimum: (x,y,z)=(-0.079629, -0.0710505, 0.153619)
+   Bounding box maximum: (x,y,z)=(0.079629, 0.0710505, 0.191719)
+   Bounding box delta: (x,y,z)=(0.159258, 0.142101,   0.0381)
+  Subdomain 406: 864 elems (PRISM6, 864 active), 1150 active nodes
+   Volume: 0.000248986
+   Bounding box minimum: (x,y,z)=(-0.094107, -0.0835888, 0.153619)
+   Bounding box maximum: (x,y,z)=(0.094107, 0.0835888, 0.191719)
+   Bounding box delta: (x,y,z)=(0.188214, 0.167178,   0.0381)
+  Subdomain 407: 1008 elems (PRISM6, 1008 active), 1342 active nodes
+   Volume: 0.000290484
+   Bounding box minimum: (x,y,z)=(-0.108585, -0.0961271, 0.153619)
+   Bounding box maximum: (x,y,z)=(0.108585, 0.0961271, 0.191719)
+   Bounding box delta: (x,y,z)=( 0.21717, 0.192254,   0.0381)
+  Subdomain 408: 1008 elems (PRISM6, 1008 active), 1378 active nodes
+   Volume: 0.000290484
+   Bounding box minimum: (x,y,z)=(-0.115824, -0.108665, 0.153619)
+   Bounding box maximum: (x,y,z)=(0.115824, 0.108665, 0.191719)
+   Bounding box delta: (x,y,z)=(0.231648, 0.217331,   0.0381)
+  Subdomain 410: 6166 elems (PRISM6, 6166 active), 6352 active nodes
+   Volume: 0.000387138
+   Bounding box minimum: (x,y,z)=(-0.118764, -0.118744, 0.375488)
+   Bounding box maximum: (x,y,z)=( 0.11877,  0.11877, 0.384226)
+   Bounding box delta: (x,y,z)=(0.237535, 0.237514, 0.0087376)
+  Subdomain 501: 168 elems (PRISM6, 168 active), 202 active nodes
+   Volume: 4.8414e-05
+   Bounding box minimum: (x,y,z)=(-0.021717, -0.0208972, 0.191719)
+   Bounding box maximum: (x,y,z)=(0.021717, 0.0208972, 0.229819)
+   Bounding box delta: (x,y,z)=(0.043434, 0.0417944,   0.0381)
+  Subdomain 502: 288 elems (PRISM6, 288 active), 382 active nodes
+   Volume: 8.29954e-05
+   Bounding box minimum: (x,y,z)=(-0.036195, -0.0334355, 0.191719)
+   Bounding box maximum: (x,y,z)=(0.036195, 0.0334355, 0.229819)
+   Bounding box delta: (x,y,z)=( 0.07239, 0.066871,   0.0381)
+  Subdomain 503: 432 elems (PRISM6, 432 active), 574 active nodes
+   Volume: 0.000124493
+   Bounding box minimum: (x,y,z)=(-0.050673, -0.0459738, 0.191719)
+   Bounding box maximum: (x,y,z)=(0.050673, 0.0459738, 0.229819)
+   Bounding box delta: (x,y,z)=(0.101346, 0.0919476,   0.0381)
+  Subdomain 504: 576 elems (PRISM6, 576 active), 766 active nodes
+   Volume: 0.000165991
+   Bounding box minimum: (x,y,z)=(-0.065151, -0.0585121, 0.191719)
+   Bounding box maximum: (x,y,z)=(0.065151, 0.0585121, 0.229819)
+   Bounding box delta: (x,y,z)=(0.130302, 0.117024,   0.0381)
+  Subdomain 505: 720 elems (PRISM6, 720 active), 960 active nodes
+   Volume: 0.000207488
+   Bounding box minimum: (x,y,z)=(-0.079629, -0.0710505, 0.191719)
+   Bounding box maximum: (x,y,z)=(0.079629, 0.0710505, 0.229819)
+   Bounding box delta: (x,y,z)=(0.159258, 0.142101,   0.0381)
+  Subdomain 506: 864 elems (PRISM6, 864 active), 1150 active nodes
+   Volume: 0.000248986
+   Bounding box minimum: (x,y,z)=(-0.094107, -0.0835888, 0.191719)
+   Bounding box maximum: (x,y,z)=(0.094107, 0.0835888, 0.229819)
+   Bounding box delta: (x,y,z)=(0.188214, 0.167178,   0.0381)
+  Subdomain 507: 1008 elems (PRISM6, 1008 active), 1342 active nodes
+   Volume: 0.000290484
+   Bounding box minimum: (x,y,z)=(-0.108585, -0.0961271, 0.191719)
+   Bounding box maximum: (x,y,z)=(0.108585, 0.0961271, 0.229819)
+   Bounding box delta: (x,y,z)=( 0.21717, 0.192254,   0.0381)
+  Subdomain 508: 1008 elems (PRISM6, 1008 active), 1378 active nodes
+   Volume: 0.000290484
+   Bounding box minimum: (x,y,z)=(-0.115824, -0.108665, 0.191719)
+   Bounding box maximum: (x,y,z)=(0.115824, 0.108665, 0.229819)
+   Bounding box delta: (x,y,z)=(0.231648, 0.217331,   0.0381)
+  Subdomain 601: 168 elems (PRISM6, 168 active), 202 active nodes
+   Volume: 4.8414e-05
+   Bounding box minimum: (x,y,z)=(-0.021717, -0.0208972, 0.229819)
+   Bounding box maximum: (x,y,z)=(0.021717, 0.0208972, 0.267919)
+   Bounding box delta: (x,y,z)=(0.043434, 0.0417944,   0.0381)
+  Subdomain 602: 288 elems (PRISM6, 288 active), 382 active nodes
+   Volume: 8.29954e-05
+   Bounding box minimum: (x,y,z)=(-0.036195, -0.0334355, 0.229819)
+   Bounding box maximum: (x,y,z)=(0.036195, 0.0334355, 0.267919)
+   Bounding box delta: (x,y,z)=( 0.07239, 0.066871,   0.0381)
+  Subdomain 603: 432 elems (PRISM6, 432 active), 574 active nodes
+   Volume: 0.000124493
+   Bounding box minimum: (x,y,z)=(-0.050673, -0.0459738, 0.229819)
+   Bounding box maximum: (x,y,z)=(0.050673, 0.0459738, 0.267919)
+   Bounding box delta: (x,y,z)=(0.101346, 0.0919476,   0.0381)
+  Subdomain 604: 576 elems (PRISM6, 576 active), 766 active nodes
+   Volume: 0.000165991
+   Bounding box minimum: (x,y,z)=(-0.065151, -0.0585121, 0.229819)
+   Bounding box maximum: (x,y,z)=(0.065151, 0.0585121, 0.267919)
+   Bounding box delta: (x,y,z)=(0.130302, 0.117024,   0.0381)
+  Subdomain 605: 720 elems (PRISM6, 720 active), 960 active nodes
+   Volume: 0.000207488
+   Bounding box minimum: (x,y,z)=(-0.079629, -0.0710505, 0.229819)
+   Bounding box maximum: (x,y,z)=(0.079629, 0.0710505, 0.267919)
+   Bounding box delta: (x,y,z)=(0.159258, 0.142101,   0.0381)
+  Subdomain 606: 864 elems (PRISM6, 864 active), 1150 active nodes
+   Volume: 0.000248986
+   Bounding box minimum: (x,y,z)=(-0.094107, -0.0835888, 0.229819)
+   Bounding box maximum: (x,y,z)=(0.094107, 0.0835888, 0.267919)
+   Bounding box delta: (x,y,z)=(0.188214, 0.167178,   0.0381)
+  Subdomain 607: 1008 elems (PRISM6, 1008 active), 1342 active nodes
+   Volume: 0.000290484
+   Bounding box minimum: (x,y,z)=(-0.108585, -0.0961271, 0.229819)
+   Bounding box maximum: (x,y,z)=(0.108585, 0.0961271, 0.267919)
+   Bounding box delta: (x,y,z)=( 0.21717, 0.192254,   0.0381)
+  Subdomain 608: 1008 elems (PRISM6, 1008 active), 1378 active nodes
+   Volume: 0.000290484
+   Bounding box minimum: (x,y,z)=(-0.115824, -0.108665, 0.229819)
+   Bounding box maximum: (x,y,z)=(0.115824, 0.108665, 0.267919)
+   Bounding box delta: (x,y,z)=(0.231648, 0.217331,   0.0381)
+  Subdomain 701: 168 elems (PRISM6, 168 active), 202 active nodes
+   Volume: 4.8414e-05
+   Bounding box minimum: (x,y,z)=(-0.021717, -0.0208972, 0.267919)
+   Bounding box maximum: (x,y,z)=(0.021717, 0.0208972, 0.306019)
+   Bounding box delta: (x,y,z)=(0.043434, 0.0417944,   0.0381)
+  Subdomain 702: 288 elems (PRISM6, 288 active), 382 active nodes
+   Volume: 8.29954e-05
+   Bounding box minimum: (x,y,z)=(-0.036195, -0.0334355, 0.267919)
+   Bounding box maximum: (x,y,z)=(0.036195, 0.0334355, 0.306019)
+   Bounding box delta: (x,y,z)=( 0.07239, 0.066871,   0.0381)
+  Subdomain 703: 432 elems (PRISM6, 432 active), 574 active nodes
+   Volume: 0.000124493
+   Bounding box minimum: (x,y,z)=(-0.050673, -0.0459738, 0.267919)
+   Bounding box maximum: (x,y,z)=(0.050673, 0.0459738, 0.306019)
+   Bounding box delta: (x,y,z)=(0.101346, 0.0919476,   0.0381)
+  Subdomain 704: 576 elems (PRISM6, 576 active), 766 active nodes
+   Volume: 0.000165991
+   Bounding box minimum: (x,y,z)=(-0.065151, -0.0585121, 0.267919)
+   Bounding box maximum: (x,y,z)=(0.065151, 0.0585121, 0.306019)
+   Bounding box delta: (x,y,z)=(0.130302, 0.117024,   0.0381)
+  Subdomain 705: 720 elems (PRISM6, 720 active), 960 active nodes
+   Volume: 0.000207488
+   Bounding box minimum: (x,y,z)=(-0.079629, -0.0710505, 0.267919)
+   Bounding box maximum: (x,y,z)=(0.079629, 0.0710505, 0.306019)
+   Bounding box delta: (x,y,z)=(0.159258, 0.142101,   0.0381)
+  Subdomain 706: 864 elems (PRISM6, 864 active), 1150 active nodes
+   Volume: 0.000248986
+   Bounding box minimum: (x,y,z)=(-0.094107, -0.0835888, 0.267919)
+   Bounding box maximum: (x,y,z)=(0.094107, 0.0835888, 0.306019)
+   Bounding box delta: (x,y,z)=(0.188214, 0.167178,   0.0381)
+  Subdomain 707: 1008 elems (PRISM6, 1008 active), 1342 active nodes
+   Volume: 0.000290484
+   Bounding box minimum: (x,y,z)=(-0.108585, -0.0961271, 0.267919)
+   Bounding box maximum: (x,y,z)=(0.108585, 0.0961271, 0.306019)
+   Bounding box delta: (x,y,z)=( 0.21717, 0.192254,   0.0381)
+  Subdomain 708: 1008 elems (PRISM6, 1008 active), 1378 active nodes
+   Volume: 0.000290484
+   Bounding box minimum: (x,y,z)=(-0.115824, -0.108665, 0.267919)
+   Bounding box maximum: (x,y,z)=(0.115824, 0.108665, 0.306019)
+   Bounding box delta: (x,y,z)=(0.231648, 0.217331,   0.0381)
+  Subdomain 801: 168 elems (PRISM6, 168 active), 202 active nodes
+   Volume: 4.8414e-05
+   Bounding box minimum: (x,y,z)=(-0.021717, -0.0208972, 0.306019)
+   Bounding box maximum: (x,y,z)=(0.021717, 0.0208972, 0.344119)
+   Bounding box delta: (x,y,z)=(0.043434, 0.0417944,   0.0381)
+  Subdomain 802: 288 elems (PRISM6, 288 active), 382 active nodes
+   Volume: 8.29954e-05
+   Bounding box minimum: (x,y,z)=(-0.036195, -0.0334355, 0.306019)
+   Bounding box maximum: (x,y,z)=(0.036195, 0.0334355, 0.344119)
+   Bounding box delta: (x,y,z)=( 0.07239, 0.066871,   0.0381)
+  Subdomain 803: 432 elems (PRISM6, 432 active), 574 active nodes
+   Volume: 0.000124493
+   Bounding box minimum: (x,y,z)=(-0.050673, -0.0459738, 0.306019)
+   Bounding box maximum: (x,y,z)=(0.050673, 0.0459738, 0.344119)
+   Bounding box delta: (x,y,z)=(0.101346, 0.0919476,   0.0381)
+  Subdomain 804: 576 elems (PRISM6, 576 active), 766 active nodes
+   Volume: 0.000165991
+   Bounding box minimum: (x,y,z)=(-0.065151, -0.0585121, 0.306019)
+   Bounding box maximum: (x,y,z)=(0.065151, 0.0585121, 0.344119)
+   Bounding box delta: (x,y,z)=(0.130302, 0.117024,   0.0381)
+  Subdomain 805: 720 elems (PRISM6, 720 active), 960 active nodes
+   Volume: 0.000207488
+   Bounding box minimum: (x,y,z)=(-0.079629, -0.0710505, 0.306019)
+   Bounding box maximum: (x,y,z)=(0.079629, 0.0710505, 0.344119)
+   Bounding box delta: (x,y,z)=(0.159258, 0.142101,   0.0381)
+  Subdomain 806: 864 elems (PRISM6, 864 active), 1150 active nodes
+   Volume: 0.000248986
+   Bounding box minimum: (x,y,z)=(-0.094107, -0.0835888, 0.306019)
+   Bounding box maximum: (x,y,z)=(0.094107, 0.0835888, 0.344119)
+   Bounding box delta: (x,y,z)=(0.188214, 0.167178,   0.0381)
+  Subdomain 807: 1008 elems (PRISM6, 1008 active), 1342 active nodes
+   Volume: 0.000290484
+   Bounding box minimum: (x,y,z)=(-0.108585, -0.0961271, 0.306019)
+   Bounding box maximum: (x,y,z)=(0.108585, 0.0961271, 0.344119)
+   Bounding box delta: (x,y,z)=( 0.21717, 0.192254,   0.0381)
+  Subdomain 808: 1008 elems (PRISM6, 1008 active), 1378 active nodes
+   Volume: 0.000290484
+   Bounding box minimum: (x,y,z)=(-0.115824, -0.108665, 0.306019)
+   Bounding box maximum: (x,y,z)=(0.115824, 0.108665, 0.344119)
+   Bounding box delta: (x,y,z)=(0.231648, 0.217331,   0.0381)
+  Subdomain 1000: 992 elems (PRISM6, 992 active), 1224 active nodes
+   Volume: 0.000208745
+   Bounding box minimum: (x,y,z)=(-0.11255, -0.117446, 0.0393192)
+   Bounding box maximum: (x,y,z)=( 0.11255, 0.117452, 0.344119)
+   Bounding box delta: (x,y,z)=(0.225101, 0.234898,   0.3048)
+  Subdomain 1100: 2896 elems (PRISM6, 2896 active), 3258 active nodes
+   Volume: 0.000293584
+   Bounding box minimum: (x,y,z)=(-0.118764, -0.118744, 0.0393192)
+   Bounding box maximum: (x,y,z)=( 0.11877,  0.11877, 0.344119)
+   Bounding box delta: (x,y,z)=(0.237535, 0.237514,   0.3048)
+  Subdomain 1200: 7760 elems (PRISM6, 7760 active), 5706 active nodes
+   Volume: 0.00506878
+   Bounding box minimum: (x,y,z)=(-0.153149, -0.132631, 0.0393192)
+   Bounding box maximum: (x,y,z)=(0.153149, 0.132631, 0.344119)
+   Bounding box delta: (x,y,z)=(0.306298, 0.265262,   0.3048)
+  Subdomain 1300: 2416 elems (PRISM6, 2416 active), 2277 active nodes
+   Volume: 0.00408492
+   Bounding box minimum: (x,y,z)=(-0.169154, -0.146492, 0.0393192)
+   Bounding box maximum: (x,y,z)=(0.169154, 0.146492, 0.344119)
+   Bounding box delta: (x,y,z)=(0.338308, 0.292983,   0.3048)
+  Subdomain 1400: 1296 elems (PRISM6, 1296 active), 1458 active nodes
+   Volume: 0.00449061
+   Bounding box minimum: (x,y,z)=(-0.185159, -0.160352, 0.0393192)
+   Bounding box maximum: (x,y,z)=(0.185159, 0.160352, 0.344119)
+   Bounding box delta: (x,y,z)=(0.370318, 0.320705,   0.3048)
+  Subdomain 1401: 124 elems (PRISM6, 124 active), 272 active nodes
+   Volume: 1.99177e-05
+   Bounding box minimum: (x,y,z)=(-0.11255, -0.117446, 0.344119)
+   Bounding box maximum: (x,y,z)=( 0.11255, 0.117452, 0.373202)
+   Bounding box delta: (x,y,z)=(0.225101, 0.234898, 0.029083)
+  Subdomain 1402: 124 elems (PRISM6, 124 active), 272 active nodes
+   Volume: 1.48731e-05
+   Bounding box minimum: (x,y,z)=(-0.11255, -0.117446, 0.0176022)
+   Bounding box maximum: (x,y,z)=( 0.11255, 0.117452, 0.0393192)
+   Bounding box delta: (x,y,z)=(0.225101, 0.234898, 0.021717)
+  Subdomain 1500: 1152 elems (PRISM6, 1152 active), 1296 active nodes
+   Volume: 0.00489631
+   Bounding box minimum: (x,y,z)=(-0.201164, -0.174213, 0.0393192)
+   Bounding box maximum: (x,y,z)=(0.201164, 0.174213, 0.344119)
+   Bounding box delta: (x,y,z)=(0.402327, 0.348426,   0.3048)
+  Subdomain 1501: 362 elems (PRISM6, 362 active), 724 active nodes
+   Volume: 2.80128e-05
+   Bounding box minimum: (x,y,z)=(-0.118764, -0.118744, 0.344119)
+   Bounding box maximum: (x,y,z)=( 0.11877,  0.11877, 0.373202)
+   Bounding box delta: (x,y,z)=(0.237535, 0.237514, 0.029083)
+  Subdomain 1502: 362 elems (PRISM6, 362 active), 724 active nodes
+   Volume: 2.09178e-05
+   Bounding box minimum: (x,y,z)=(-0.118764, -0.118744, 0.0176022)
+   Bounding box maximum: (x,y,z)=( 0.11877,  0.11877, 0.0393192)
+   Bounding box delta: (x,y,z)=(0.237535, 0.237514, 0.021717)
+  Subdomain 1600: 1200 elems (PRISM6, 1200 active), 1350 active nodes
+   Volume: 0.00645603
+   Bounding box minimum: (x,y,z)=(-0.220498, -0.190957, 0.0393192)
+   Bounding box maximum: (x,y,z)=(0.220498, 0.190957, 0.344119)
+   Bounding box delta: (x,y,z)=(0.440997, 0.381914,   0.3048)
+  Subdomain 1601: 970 elems (PRISM6, 970 active), 1268 active nodes
+   Volume: 0.000483646
+   Bounding box minimum: (x,y,z)=(-0.153149, -0.132631, 0.344119)
+   Bounding box maximum: (x,y,z)=(0.153149, 0.132631, 0.373202)
+   Bounding box delta: (x,y,z)=(0.306298, 0.265262, 0.029083)
+  Subdomain 1602: 970 elems (PRISM6, 970 active), 1268 active nodes
+   Volume: 0.000361151
+   Bounding box minimum: (x,y,z)=(-0.153149, -0.132631, 0.0176022)
+   Bounding box maximum: (x,y,z)=(0.153149, 0.132631, 0.0393192)
+   Bounding box delta: (x,y,z)=(0.306298, 0.265262, 0.021717)
+  Subdomain 1700: 1296 elems (PRISM6, 1296 active), 1458 active nodes
+   Volume: 0.00734589
+   Bounding box minimum: (x,y,z)=(-0.240616, -0.208379, 0.0393192)
+   Bounding box maximum: (x,y,z)=(0.240616, 0.208379, 0.344119)
+   Bounding box delta: (x,y,z)=(0.481231, 0.416758,   0.3048)
+  Subdomain 1701: 302 elems (PRISM6, 302 active), 506 active nodes
+   Volume: 0.000389769
+   Bounding box minimum: (x,y,z)=(-0.169154, -0.146492, 0.344119)
+   Bounding box maximum: (x,y,z)=(0.169154, 0.146492, 0.373202)
+   Bounding box delta: (x,y,z)=(0.338308, 0.292983, 0.029083)
+  Subdomain 1702: 302 elems (PRISM6, 302 active), 506 active nodes
+   Volume: 0.00029105
+   Bounding box minimum: (x,y,z)=(-0.169154, -0.146492, 0.0176022)
+   Bounding box maximum: (x,y,z)=(0.169154, 0.146492, 0.0393192)
+   Bounding box delta: (x,y,z)=(0.338308, 0.292983, 0.021717)
+  Subdomain 1800: 1440 elems (PRISM6, 1440 active), 1620 active nodes
+   Volume: 0.00946711
+   Bounding box minimum: (x,y,z)=(-0.264293, -0.228885, 0.0393192)
+   Bounding box maximum: (x,y,z)=(0.264293, 0.228885, 0.344119)
+   Bounding box delta: (x,y,z)=(0.528586, 0.457769,   0.3048)
+  Subdomain 1801: 162 elems (PRISM6, 162 active), 324 active nodes
+   Volume: 0.000428479
+   Bounding box minimum: (x,y,z)=(-0.185159, -0.160352, 0.344119)
+   Bounding box maximum: (x,y,z)=(0.185159, 0.160352, 0.373202)
+   Bounding box delta: (x,y,z)=(0.370318, 0.320705, 0.029083)
+  Subdomain 1802: 162 elems (PRISM6, 162 active), 324 active nodes
+   Volume: 0.000319956
+   Bounding box minimum: (x,y,z)=(-0.185159, -0.160352, 0.0176022)
+   Bounding box maximum: (x,y,z)=(0.185159, 0.160352, 0.0393192)
+   Bounding box delta: (x,y,z)=(0.370318, 0.320705, 0.021717)
+  Subdomain 1901: 144 elems (PRISM6, 144 active), 288 active nodes
+   Volume: 0.00046719
+   Bounding box minimum: (x,y,z)=(-0.201164, -0.174213, 0.344119)
+   Bounding box maximum: (x,y,z)=(0.201164, 0.174213, 0.373202)
+   Bounding box delta: (x,y,z)=(0.402327, 0.348426, 0.029083)
+  Subdomain 1902: 144 elems (PRISM6, 144 active), 288 active nodes
+   Volume: 0.000348862
+   Bounding box minimum: (x,y,z)=(-0.201164, -0.174213, 0.0176022)
+   Bounding box maximum: (x,y,z)=(0.201164, 0.174213, 0.0393192)
+   Bounding box delta: (x,y,z)=(0.402327, 0.348426, 0.021717)
+  Subdomain 2001: 150 elems (PRISM6, 150 active), 300 active nodes
+   Volume: 0.000616013
+   Bounding box minimum: (x,y,z)=(-0.220498, -0.190957, 0.344119)
+   Bounding box maximum: (x,y,z)=(0.220498, 0.190957, 0.373202)
+   Bounding box delta: (x,y,z)=(0.440997, 0.381914, 0.029083)
+  Subdomain 2002: 150 elems (PRISM6, 150 active), 300 active nodes
+   Volume: 0.000459992
+   Bounding box minimum: (x,y,z)=(-0.220498, -0.190957, 0.0176022)
+   Bounding box maximum: (x,y,z)=(0.220498, 0.190957, 0.0393192)
+   Bounding box delta: (x,y,z)=(0.440997, 0.381914, 0.021717)
+  Subdomain 2101: 162 elems (PRISM6, 162 active), 324 active nodes
+   Volume: 0.000700921
+   Bounding box minimum: (x,y,z)=(-0.240616, -0.208379, 0.344119)
+   Bounding box maximum: (x,y,z)=(0.240616, 0.208379, 0.373202)
+   Bounding box delta: (x,y,z)=(0.481231, 0.416758, 0.029083)
+  Subdomain 2102: 162 elems (PRISM6, 162 active), 324 active nodes
+   Volume: 0.000523395
+   Bounding box minimum: (x,y,z)=(-0.240616, -0.208379, 0.0176022)
+   Bounding box maximum: (x,y,z)=(0.240616, 0.208379, 0.0393192)
+   Bounding box delta: (x,y,z)=(0.481231, 0.416758, 0.021717)
+  Subdomain 2201: 180 elems (PRISM6, 180 active), 360 active nodes
+   Volume: 0.000903321
+   Bounding box minimum: (x,y,z)=(-0.264293, -0.228885, 0.344119)
+   Bounding box maximum: (x,y,z)=(0.264293, 0.228885, 0.373202)
+   Bounding box delta: (x,y,z)=(0.528586, 0.457769, 0.029083)
+  Subdomain 2202: 180 elems (PRISM6, 180 active), 360 active nodes
+   Volume: 0.000674532
+   Bounding box minimum: (x,y,z)=(-0.264293, -0.228885, 0.0176022)
+   Bounding box maximum: (x,y,z)=(0.264293, 0.228885, 0.0393192)
+   Bounding box delta: (x,y,z)=(0.528586, 0.457769, 0.021717)
+  Global mesh volume = 0.0697285
+

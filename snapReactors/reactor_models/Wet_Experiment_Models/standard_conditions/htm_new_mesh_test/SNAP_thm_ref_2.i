@@ -64,38 +64,18 @@ lay2 = '${fparse 2.9083/100}'
     thermal_expansion = 2.77e-4
   []
 []
+# do not need to create a T_wall AuxVar since HeatTransferFromExternalAppTemperature1Phase creates it for you, also don't need to create vel AuxVar
 
 [AuxVariables]
-  [T_wall]
-    family = MONOMIAL
-    order = CONSTANT
-  []
   [Hw]
     family = monomial
     order = constant
     # block = 'channel:lay1 channel:acmdz channel:lay2'
   []
-  # [vel]
-  #   family = monomial
-  #   order = constant
-  #   # block = 'channel:lay1 channel:acmdz channel:lay2'
-  # []
   [P]
     family = monomial
     order = constant
     # block = 'channel:lay1 channel:acmdz channel:lay2'
-  []
-  [q_wall_lay1]
-    family = monomial
-    order = constant
-  []
-  [q_wall_acmdz]
-    family = monomial
-    order = constant
-  []
-  [q_wall_lay2]
-    family = monomial
-    order = constant
   []
   [q_wall]
     family = monomial
@@ -108,12 +88,6 @@ lay2 = '${fparse 2.9083/100}'
 []
 
 [AuxKernels]
-  [Tw_aux]
-    type = ADMaterialRealAux
-    #block = 'channel:lay1 channel:acmdz channel:lay2'
-    variable = T_wall
-    property = T_wall
-  []
   [Hw_ak]
     type = ADMaterialRealAux
     #block = 'channel:lay1 channel:acmdz channel:lay2'
@@ -168,48 +142,48 @@ lay2 = '${fparse 2.9083/100}'
     Nu = Nu
     k = k
   []
-  [q_wall1]
-    type = ADParsedMaterial
-    property_name = 'q_wall_lay1'
-    coupled_variables =  'q_wall'
-    expression = 'q_wall'
-    block = 'channel:lay1'
-  []
-  [q_wallacm]
-    type = ADParsedMaterial
-    property_name = 'q_wall_acmdz'
-    coupled_variables =  'q_wall'
-    expression = 'q_wall'
-    block = 'channel:acmdz'
-  []
-  [q_wall2]
-    type = ADParsedMaterial
-    property_name = 'q_wall_lay2'
-    coupled_variables =  'q_wall'
-    expression = 'q_wall'
-    block = 'channel:lay2'
-  []
-  [T_wall_lay1]
-    type = ADTemperatureWall3EqnMaterial
-    Hw = Hw
-    T = T
-    q_wall = q_wall_lay1
-    block = 'channel:lay1'
-  []
-  [T_wall_acmdz]
-    type = ADTemperatureWall3EqnMaterial
-    Hw = Hw
-    T = T
-    q_wall = q_wall_acmdz
-    block = 'channel:acmdz'
-  []
-  [T_wall_lay2]
-    type = ADTemperatureWall3EqnMaterial
-    Hw = Hw
-    T = T
-    q_wall = q_wall_lay2
-    block = 'channel:lay2'
-  []
+  # [q_wall1]
+  #   type = ADParsedMaterial
+  #   property_name = 'q_wall_lay1'
+  #   coupled_variables =  'q_wall'
+  #   expression = 'q_wall'
+  #   block = 'channel:lay1'
+  # []
+  # [q_wallacm]
+  #   type = ADParsedMaterial
+  #   property_name = 'q_wall_acmdz'
+  #   coupled_variables =  'q_wall'
+  #   expression = 'q_wall'
+  #   block = 'channel:acmdz'
+  # []
+  # [q_wall2]
+  #   type = ADParsedMaterial
+  #   property_name = 'q_wall_lay2'
+  #   coupled_variables =  'q_wall'
+  #   expression = 'q_wall'
+  #   block = 'channel:lay2'
+  # []
+  # [T_wall_lay1]
+  #   type = ADTemperatureWall3EqnMaterial
+  #   Hw = Hw
+  #   T = T
+  #   q_wall = q_wall_lay1
+  #   block = 'channel:lay1'
+  # []
+  # [T_wall_acmdz]
+  #   type = ADTemperatureWall3EqnMaterial
+  #   Hw = Hw
+  #   T = T
+  #   q_wall = q_wall_acmdz
+  #   block = 'channel:acmdz'
+  # []
+  # [T_wall_lay2]
+  #   type = ADTemperatureWall3EqnMaterial
+  #   Hw = Hw
+  #   T = T
+  #   q_wall = q_wall_lay2
+  #   block = 'channel:lay2'
+  # []
 []
 
 [Components]
@@ -217,7 +191,6 @@ lay2 = '${fparse 2.9083/100}'
     type = FlowChannel1Phase
     position = '0 0 0'
     orientation = '0 0 1'
-
     A = ${A_flow}
     D_h = ${hydraulics_diameter}
     length = '${lay1} ${acm_dz} ${lay2}'
@@ -241,9 +214,11 @@ lay2 = '${fparse 2.9083/100}'
   []
 
   [ht_ext]
-    type = HeatTransferFromExternalAppHeatFlux1Phase
+    type = HeatTransferFromExternalAppTemperature1Phase
     flow_channel = channel
     P_hf = '${P_wet_core}'
+    T_ext = T_wall
+    var_type = elemental
   []
 []
 
@@ -280,22 +255,6 @@ lay2 = '${fparse 2.9083/100}'
     type = SideAverageValue
     boundary = channel:out
     variable = p
-    execute_on = 'TIMESTEP_END'
-  []
-
-  [qlay1]
-    type = ElementAverageValue
-    variable = q_wall_lay1
-    execute_on = 'TIMESTEP_END'
-  []
-  [qlay2]
-    type = ElementAverageValue
-    variable = q_wall_lay2
-    execute_on = 'TIMESTEP_END'
-  []
-  [qlayacm]
-    type = ElementAverageValue
-    variable = q_wall_acmdz
     execute_on = 'TIMESTEP_END'
   []
   #

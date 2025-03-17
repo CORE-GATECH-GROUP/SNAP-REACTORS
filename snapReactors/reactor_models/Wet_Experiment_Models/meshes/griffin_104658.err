@@ -1,0 +1,38 @@
+
+[31m
+*** ERROR ***
+Unable to open file "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/meshes/wet_core_mesh.i". Check to make sure that it exists and that you have read permission.[39m
+
+
+[31m
+*** ERROR ***
+Unable to open file "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/meshes/wet_core_mesh.i". Check to make sure that it exists and that you have read permission.[39m
+
+Stack frames: 9
+0: libMesh::print_trace(std::ostream&)
+1: moose::internal::mooseErrorRaw(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+2: void mooseError<char const*>(char const*&&)
+3: MooseUtils::checkFileReadable(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, bool, bool)
+4: Parser::parse()
+5: Moose::createMooseApp(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int, char**)
+6: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x50de) [0x5555555590de]
+7: __libc_start_main
+8: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x538a) [0x55555555938a]
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+Stack frames: 9
+0: libMesh::print_trace(std::ostream&)
+1: moose::internal::mooseErrorRaw(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+2: void mooseError<char const*>(char const*&&)
+3: MooseUtils::checkFileReadable(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, bool, bool)
+4: Parser::parse()
+5: Moose::createMooseApp(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int, char**)
+6: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x50de) [0x5555555590de]
+7: __libc_start_main
+8: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x538a) [0x55555555938a]
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+--------------------------------------------------------------------------
+prterun detected that one or more processes exited with non-zero status,
+thus causing the job to be terminated. The first process to do so was:
+
+   Process name: [prterun-wr13n37-362352@1,0] Exit code:    1
+--------------------------------------------------------------------------

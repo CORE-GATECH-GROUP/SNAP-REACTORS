@@ -67,7 +67,7 @@
 #      doi = "10.2172/4393793",
 #      url = "https://www.osti.gov/biblio/4393793"
 #  }
-inlet_T_fluid             = 949.81667 # (K) 
+inlet_T_fluid             = 866.0  # (K) 
 ht_coeff                  = 4539.6
 
 
@@ -128,7 +128,7 @@ extref_blocks = 6
 gap_inner = 1
 gap_outer = 2
 clad_outer = 3
-core_inner = 4
+#core_inner = 4
 core_outer = 5
 
 acm_dz = '${fparse 3.81/100}'
@@ -141,21 +141,21 @@ lay2 = '${fparse 2.9083/100}'
 [Mesh]
     [core_unextruded]
         type = FileMeshGenerator
-        file = heatconduction_test.e
+        file = /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/meshes/heat_conduction_mesh_in.e
     []
-    [transform_core_unextruded]
-        type = TransformGenerator
-        input = core_unextruded
-        transform = SCALE
-        vector_value = '0.01 0.01 0.01'
-    []
-    [extruded]
-        type = AdvancedExtruderGenerator
-        input = transform_core_unextruded
-        heights = '${lay1} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz}  ${lay2}'
-        num_layers = '1 2 3 4 5 6 7 8 9 10'
-        direction = '0 0 1'    
-    []
+    # [transform_core_unextruded]
+    #     type = TransformGenerator
+    #     input = core_unextruded
+    #     transform = SCALE
+    #     vector_value = '0.01 0.01 0.01'
+    # []
+    # [extruded]
+    #     type = AdvancedExtruderGenerator
+    #     input = transform_core_unextruded
+    #     heights = '${lay1} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz}  ${lay2}'
+    #     num_layers = '1 2 3 4 5 6 7 8 9 10'
+    #     direction = '0 0 1'    
+    # []
 []
 
 # ==============================================================================
@@ -211,12 +211,9 @@ lay2 = '${fparse 2.9083/100}'
         family = L2_LAGRANGE 
         order = FIRST 
         block = '${fuel_blocks} ${extref_blocks}'
-        initial_condition = 4.680269e+05
+        #initial_condition = 4.680269e+07
     []
-    [aux_T_inf]
-        family = LAGRANGE
-        order = FIRST
-        block = '${clad_blocks} ${intref_blocks} ${barrel_blocks}'
+    [T_inf]
         initial_condition = '${inlet_T_fluid}'
     []
     [bison_Tfuel]
@@ -237,6 +234,11 @@ lay2 = '${fparse 2.9083/100}'
         order = CONSTANT
         block = '${clad_blocks}'
     []
+    [HTC]
+        family = MONOMIAL
+        order = CONSTANT
+        initial_condition = '${ht_coeff}'
+    []
 []
 
 [AuxKernels]
@@ -253,12 +255,7 @@ lay2 = '${fparse 2.9083/100}'
         variable = aux_cp
         block = ${fuel_blocks}
     []
-    # [aux_T_inf]
-    #     type = FunctionAux
-    #     function = T_inf_f
-    #     variable = aux_T_inf
-    #     block = '${clad_blocks} ${intref_blocks} ${barrel_blocks}'
-    # []
+
     [norm_Tfuel]
         type = NormalizationAux
         variable = bison_Tfuel
@@ -290,42 +287,52 @@ lay2 = '${fparse 2.9083/100}'
 []
 
 [UserObjects]
-    [q_wall_avg_lay1]
+#     [q_wall_avg_lay1]
+#         type = LayeredSideAverage
+#         boundary = '${clad_outer}'
+#         variable = flux
+
+#         # Note: make this to match the num_elems in the channel
+#         direction = y
+#         num_layers = 1
+
+#         direction_min = 0.0
+#         direction_max = '${lay1}'
+#   []
+#   [q_wall_avg_acmdz]
+#         type = LayeredSideAverage
+#         boundary = '${clad_outer}'
+#         variable = flux
+
+#         # Note: make this to match the num_elems in the channel
+#         direction = y
+#         num_layers = 8
+
+#         direction_min = '${lay1}'
+#         direction_max = '${fparse acm_dz * 8}'
+#     []
+#     [q_wall_avg_lay2]
+#         type = LayeredSideAverage
+#         boundary = '${clad_outer}'
+#         variable = flux
+
+#         # Note: make this to match the num_elems in the channel
+#         direction = y
+#         num_layers = 1
+
+#         direction_min = '${fparse lay1 + (acm_dz * 8)}'
+#         direction_max = '${fparse lay1 + (acm_dz * 8) + lay2}'
+#     []  
+    [T_wall_avg]
         type = LayeredSideAverage
         boundary = '${clad_outer}'
-        variable = flux
-
-        # Note: make this to match the num_elems in the channel
-        direction = z
-        num_layers = 1
-
-        direction_min = 0.0
-        direction_max = '${lay1}'
-  []
-  [q_wall_avg_acmdz]
-        type = LayeredSideAverage
-        boundary = '${clad_outer}'
-        variable = flux
-
-        # Note: make this to match the num_elems in the channel
-        direction = z
-        num_layers = 8
-
-        direction_min = '${lay1}'
-        direction_max = '${fparse acm_dz * 8}'
-    []
-    [q_wall_avg_lay2]
-        type = LayeredSideAverage
-        boundary = '${clad_outer}'
-        variable = flux
-
-        # Note: make this to match the num_elems in the channel
-        direction = z
-        num_layers = 1
-
-        direction_min = '${fparse lay1 + (acm_dz * 8)}'
+        variable = bison_temp
+        direction = y
+        num_layers = 10
+        direction_min = '0.0'
         direction_max = '${fparse lay1 + (acm_dz * 8) + lay2}'
-    []  
+        execute_on = 'initial timestep_end'
+    []
 []
 # ==============================================================================
 # MULTIAPPS AND TRANSFERS
@@ -342,34 +349,53 @@ lay2 = '${fparse 2.9083/100}'
   []
   
   [Transfers]
-    [q_wall_lay1_to_thm]
-      type = MultiAppGeneralFieldUserObjectTransfer
-      variable = q_wall_lay1
-      to_multi_app = thm
-      source_user_object = q_wall_avg_lay1
-      to_blocks = 'channel:lay1'
-    []
-    [q_wall_acmdz_to_thm]
+    # [q_wall_lay1_to_thm]
+    #   type = MultiAppGeneralFieldUserObjectTransfer
+    #   variable = q_wall_lay1
+    #   to_multi_app = thm
+    #   source_user_object = q_wall_avg_lay1
+    #   to_blocks = 'channel:lay1'
+    # []
+    # [q_wall_acmdz_to_thm]
+    #     type = MultiAppGeneralFieldUserObjectTransfer
+    #     variable = q_wall_acmdz
+    #     to_multi_app = thm
+    #     source_user_object = q_wall_avg_acmdz
+    #     to_blocks = 'channel:acmdz'
+    # []
+    # [q_wall_lay2_to_thm]
+    #     type = MultiAppGeneralFieldUserObjectTransfer
+    #     variable = q_wall_lay2
+    #     to_multi_app = thm
+    #     source_user_object = q_wall_avg_lay2
+    #     to_blocks = 'channel:lay2'
+    # []
+    [T_wall_avg_to_THM]
         type = MultiAppGeneralFieldUserObjectTransfer
-        variable = q_wall_acmdz
         to_multi_app = thm
-        source_user_object = q_wall_avg_acmdz
-        to_blocks = 'channel:acmdz'
+        source_user_object = T_wall_avg
+        variable = T_wall
+        error_on_miss = true
+        search_value_conflicts = false
     []
-    [q_wall_lay2_to_thm]
-        type = MultiAppGeneralFieldUserObjectTransfer
-        variable = q_wall_lay2
-        to_multi_app = thm
-        source_user_object = q_wall_avg_lay2
-        to_blocks = 'channel:lay2'
-    []
-    [T_wall_from_thm]
-      type = MultiAppGeneralFieldNearestLocationTransfer
-      source_variable = T_wall
-      from_multi_app = thm
-      variable = aux_T_inf
-      to_boundaries = ${clad_outer}
-    []
+    [T_inf_from_THM]
+        type = MultiAppGeneralFieldNearestLocationTransfer
+        source_variable = T
+        variable = T_inf
+        from_multi_app = thm
+        to_boundaries = '${clad_outer}'
+        error_on_miss = true
+        search_value_conflicts = false
+      []
+      [HTC_from_THM]
+        type = MultiAppGeneralFieldNearestLocationTransfer
+        source_variable = Hw
+        variable = HTC
+        from_multi_app = thm
+        to_boundaries = '${clad_outer}'
+        error_on_miss = true
+        search_value_conflicts = false
+      []
   []
 
 # ==============================================================================
@@ -388,10 +414,6 @@ lay2 = '${fparse 2.9083/100}'
         symbol_values = 'temp_av'
         expression = '472.27104+bison_temp*0.7275728'#Models/SNAP10A_dimensions
     []
-    # [T_inf_f]
-    #     type = ParsedFunction
-    #     expression = '${inlet_T_fluid}'
-    # []
 []
 
 # ==============================================================================
@@ -492,28 +514,22 @@ lay2 = '${fparse 2.9083/100}'
 # BOUNDARY CONDITIONS
 # ==============================================================================
 [BCs]
-    # [pin_outer]
-    #     type = MatchedValueBC
-    #     variable = bison_temp
-    #     v = aux_T_inf
-    #     boundary = ${clad_outer}
-    # []
     # Convective BC outer surface fuel pin
     [convective_boundary]
         type = CoupledConvectiveHeatFluxBC
         variable = bison_temp
         boundary = ${clad_outer}
-        T_infinity = aux_T_inf
-        htc = '${ht_coeff}'
+        T_infinity = T_inf
+        htc = HTC
     []
     # Convective BC outer surface fuel pin
-    [convective_boundary_core]
-        type = CoupledConvectiveHeatFluxBC
-        variable = bison_temp
-        boundary = '${core_inner}'
-        T_infinity = aux_T_inf
-        htc = '${ht_coeff}'
-    []
+    # [convective_boundary_core]
+    #     type = CoupledConvectiveHeatFluxBC
+    #     variable = bison_temp
+    #     boundary = '${core_inner}'
+    #     T_infinity = T_inf
+    #     htc = HTC
+    # []
     [convective_boundary_ambient]
         type = CoupledConvectiveHeatFluxBC
         variable = bison_temp
