@@ -128,7 +128,7 @@ extref_blocks = 6
 gap_inner = 1
 gap_outer = 2
 clad_outer = 3
-#core_inner = 4
+core_inner = 4
 core_outer = 5
 
 acm_dz = '${fparse 3.81/100}'
@@ -272,7 +272,7 @@ lay2 = '${fparse 2.9083/100}'
         type = NormalizationAux
         variable = bison_norm_power_density
         source_variable = bison_power_density
-        normal_factor = 1.2803814
+        normal_factor = 1.2803814 # if using Amer mesh 1.2658064684
         execute_on = 'timestep_begin' #check
     []    
     [flux]
@@ -523,13 +523,13 @@ lay2 = '${fparse 2.9083/100}'
         htc = HTC
     []
     # Convective BC outer surface fuel pin
-    # [convective_boundary_core]
-    #     type = CoupledConvectiveHeatFluxBC
-    #     variable = bison_temp
-    #     boundary = '${core_inner}'
-    #     T_infinity = T_inf
-    #     htc = HTC
-    # []
+    [convective_boundary_core]
+        type = CoupledConvectiveHeatFluxBC
+        variable = bison_temp
+        boundary = '${core_inner}'
+        T_infinity = T_inf
+        htc = HTC
+    []
     [convective_boundary_ambient]
         type = CoupledConvectiveHeatFluxBC
         variable = bison_temp

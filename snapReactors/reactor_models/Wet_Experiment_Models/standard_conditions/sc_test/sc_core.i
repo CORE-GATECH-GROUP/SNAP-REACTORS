@@ -20,16 +20,25 @@ mass_flow = '${fparse 6.15}' # kg/(s)
 scale_factor = 0.01
 #duct_thickness = '${fparse 0.3*scale_factor}'
 fuel_pin_pitch = '${fparse 1.4478*scale_factor}'
-fuel_pin_diameter = '${fparse 1.42748*scale_factor}'
+fuel_pin_diameter = '${fparse 1.4268*scale_factor}'
 wire_z_spacing = '${fparse 0*scale_factor}'
 wire_diameter = '${fparse 0*scale_factor}'
 n_rings = 9
-length_entry_fuel = '${fparse 0*scale_factor}'
+#length_entry_fuel = '${fparse 0*scale_factor}'
 length_heated_fuel = '${fparse 35.56*scale_factor}'
-length_outlet_fuel = '${fparse 0*scale_factor}'
+#length_outlet_fuel = '${fparse 0*scale_factor}'
 #height = '${fparse length_entry_fuel+length_heated_fuel+length_outlet_fuel}'
-orifice_plate_height = '${fparse 0*scale_factor}'
+#orifice_plate_height = '${fparse 0*scale_factor}'
 duct_inside = '${fparse 11.43*2*scale_factor}'
+
+entry1 = '${fparse 0.79502/100}'
+entry2 = '${fparse 0.9652/100}'
+entry3 = '${fparse 2.1717/100}'
+entry_length = '${fparse entry1 + entry2 + entry3}'
+exit1 = '${fparse 2.9083/100}'
+exit2 = '${fparse 0.2286/100}'
+exit3 = '${fparse 0.87376/100}'
+exit_length = '${fparse exit1 + exit2 + exit3}'
 ###################################################
 
 [TriSubChannelMesh]
@@ -38,15 +47,15 @@ duct_inside = '${fparse 11.43*2*scale_factor}'
     nrings = '${fparse n_rings}'
     n_cells = 10
     flat_to_flat = '${fparse duct_inside}'
-    unheated_length_entry = '${fparse length_entry_fuel}'
+    unheated_length_entry = '${fparse entry_length}'
     heated_length = '${fparse length_heated_fuel}'
-    unheated_length_exit = '${fparse length_outlet_fuel}'
+    unheated_length_exit = '${fparse exit_length}'
     pin_diameter = '${fparse fuel_pin_diameter}'
     pitch = '${fparse fuel_pin_pitch}'
     dwire = '${fparse wire_diameter}'
     hwire = '${fparse wire_z_spacing}'
-    spacer_z = '${fparse orifice_plate_height} ${fparse length_entry_fuel}'
-    spacer_k = '0 0'
+    spacer_z = '0'
+    spacer_k = '0'
   []
 
   [fuel_pins]
@@ -54,9 +63,9 @@ duct_inside = '${fparse 11.43*2*scale_factor}'
     input = subchannel
     nrings = '${fparse n_rings}'
     n_cells = 10
-    unheated_length_entry = '${fparse length_entry_fuel}'
+    unheated_length_entry = '${fparse entry_length}'
     heated_length = '${fparse length_heated_fuel}'
-    unheated_length_exit = '${fparse length_outlet_fuel}'
+    unheated_length_exit = '${fparse exit_length}'
     pitch = '${fparse fuel_pin_pitch}'
   []
 
@@ -66,13 +75,22 @@ duct_inside = '${fparse 11.43*2*scale_factor}'
     nrings = '${fparse n_rings}'
     n_cells = 10
     flat_to_flat = '${fparse duct_inside}'
-    unheated_length_entry = '${fparse length_entry_fuel}'
+    unheated_length_entry = '${fparse entry_length}'
     heated_length = '${fparse length_heated_fuel}'
-    unheated_length_exit = '${fparse length_outlet_fuel}'
+    unheated_length_exit = '${fparse exit_length}'
     pitch = '${fparse fuel_pin_pitch}'
   []
 []
 
+[Functions]
+  [axial_heat_rate]
+    type = ParsedFunction
+    expression = 'if(z>l1 & z<l2, 1.0, 0.0)'
+    #'(pi/2)*sin(pi*z/L)'
+    symbol_names = 'l1 l2'
+    symbol_values = '${entry_length} ${fparse length_heated_fuel}'
+  []
+[]
 
 [AuxVariables]
   [mdot]
@@ -120,6 +138,10 @@ duct_inside = '${fparse 11.43*2*scale_factor}'
   []
   [Tduct]
     block = duct
+  []
+  [displacement]
+    block = subchannel
+    initial_condition = 0
   []
 []
 
@@ -214,12 +236,6 @@ duct_inside = '${fparse 11.43*2*scale_factor}'
     fp = sodium
   []
 
-  [mdot_ic]
-    type = ConstantIC
-    variable = mdot
-    value = 0.0
-  []
-
   [T_duct_ic]
     type = ConstantIC
     variable = Tduct
@@ -266,32 +282,35 @@ duct_inside = '${fparse 11.43*2*scale_factor}'
 
 [Executioner]
   type = Transient
-  petsc_options_iname = '-pc_type -pc_hypre_type'
   petsc_options_value = 'hypre boomeramg'
+  petsc_options_iname = '-pc_type -pc_hypre_type'
+  steady_state_detection = true
+  steady_state_tolerance = 1e-4
+
 []
 
 ################################################################################
 # A multiapp that projects data to a detailed mesh
 ################################################################################
-# [MultiApps]
-#   #active = ''
-#   [viz]
-#     type = TransientMultiApp
-#     input_files = "3d.i"
-#     execute_on = "final"
-#   []
-# []
-#
-# [Transfers]
-#   #active = ''
-#   [subchannel_transfer]
-#     type = SCMSolutionTransfer
-#     to_multi_app = viz
-#     variable = 'mdot SumWij P DP h T rho mu S'
-#   []
-#   [pin_transfer]
-#     type = SCMPinSolutionTransfer
-#     to_multi_app = viz
-#     variable = 'Tpin q_prime'
-#   []
-# []
+[MultiApps]
+  #active = ''
+  [viz]
+    type = FullSolveMultiApp
+    input_files = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_core_viz.i"
+    execute_on = "final"
+  []
+[]
+
+[Transfers]
+  #active = ''
+  [subchannel_transfer]
+    type = SCMSolutionTransfer
+    to_multi_app = viz
+    variable = 'mdot SumWij P DP h T rho mu S'
+  []
+  [pin_transfer]
+    type = SCMPinSolutionTransfer
+    to_multi_app = viz
+    variable = 'Tpin q_prime'
+  []
+[]

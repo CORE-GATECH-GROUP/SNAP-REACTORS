@@ -187,73 +187,73 @@ lay5 = '${fparse 0.2286/100}'
 lay6 = '${fparse 0.87376/100}'
 multi_app_z_pos = '${fparse lay1 + lay2}'
 [Mesh]
-	[core]
+	[core_unextruded]
 		type = FileMeshGenerator
-		file = /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/meshes/wet_core_mesh_in.e
+		file = s82d_ac_c3_gcu_ringres.e
 	[]
-    # [transform_core_unextruded]
-    #     type = TransformGenerator
-    #     input = core_unextruded
-    #     transform = SCALE
-    #     vector_value = '0.01 0.01 0.01'
-    # []
-	# [nue]
-    #     type = NonuniformMeshExtruderGenerator
-    #     input = transform_core_unextruded
-    #     extrusion_vector = '0 0 1'
-    #     layer_thickness = '${lay1} ${lay2} ${lay3} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${lay4} ${lay5} ${lay6}'
-    #     layer_subdivisions = '1    1       1       1         1         1         1         1         1         1         1          1       1      1'
-    #     bottom_sideset = bottom
-    #     top_sideset = top
+    [transform_core_unextruded]
+        type = TransformGenerator
+        input = core_unextruded
+        transform = SCALE
+        vector_value = '0.01 0.01 0.01'
+    []
+	[nue]
+        type = NonuniformMeshExtruderGenerator
+        input = transform_core_unextruded
+        extrusion_vector = '0 0 1'
+        layer_thickness = '${lay1} ${lay2} ${lay3} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${acm_dz} ${lay4} ${lay5} ${lay6}'
+        layer_subdivisions = '1    1       1       1         1         1         1         1         1         1         1          1       1      1'
+        bottom_sideset = bottom
+        top_sideset = top
     
-    #     existing_subdomains = '${fuel_blocks_2d} ${air_blocks_2d} ${intref_blocks_2d} ${barrel_blocks_2d} ${extref1_blocks_2d} ${extref2_blocks_2d} ${extref3_blocks_2d} ${extref4_blocks_2d} ${shima_blocks_2d} ${shimb_blocks_2d} ${shimc_blocks_2d}'
+        existing_subdomains = '${fuel_blocks_2d} ${air_blocks_2d} ${intref_blocks_2d} ${barrel_blocks_2d} ${extref1_blocks_2d} ${extref2_blocks_2d} ${extref3_blocks_2d} ${extref4_blocks_2d} ${shima_blocks_2d} ${shimb_blocks_2d} ${shimc_blocks_2d}'
     
-    #     # Unrodded
-    #     layers = '0 1 2 3 4 5 6 7 8 9 10 11 12 13'
+        # Unrodded
+        layers = '0 1 2 3 4 5 6 7 8 9 10 11 12 13'
        
-    #     new_ids = '${lgr_fuel_blocks_2d} ${lgr_air_blocks_2d} ${lgr_intref_blocks_2d} ${lgr_barrel_blocks_2d} ${lgr_extref1_blocks_2d} ${lgr_extref2_blocks_2d} ${lgr_extref3_blocks_2d} ${lgr_extref4_blocks_2d} ${lgr_shima_blocks_2d} ${lgr_shimb_blocks_2d} ${lgr_shimc_blocks_2d}
-    #                 ${lec_fuel_blocks_2d} ${lec_air_blocks_2d} ${lec_intref_blocks_2d} ${lec_barrel_blocks_2d} ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d} ${lec_shimb_blocks_2d} ${lec_shimc_blocks_2d}
-    #                 ${acl_fuel_blocks_2d} ${acl_air_blocks_2d} ${acl_intref_blocks_2d} ${acl_barrel_blocks_2d} ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d} ${acl_shimb_blocks_2d} ${acl_shimc_blocks_2d}
-    #                 ${acm_fuel_blocks_lay1} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d} ${acm_shimc_blocks_2d}
-    #                 ${acm_fuel_blocks_lay2} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d} ${acm_shimc_blocks_2d}
-    #                 ${acm_fuel_blocks_lay3} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d} ${acm_shimc_blocks_2d}
-    #                 ${acm_fuel_blocks_lay4} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d} ${acm_shimc_blocks_2d}
-    #                 ${acm_fuel_blocks_lay5} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d} ${acm_shimc_blocks_2d}
-    #                 ${acm_fuel_blocks_lay6} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d} ${acm_shimc_blocks_2d}
-    #                 ${acm_fuel_blocks_lay7} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d} ${acm_shimc_blocks_2d}
-    #                 ${acm_fuel_blocks_lay8} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d} ${acm_shimc_blocks_2d}
-    #                 ${acu_fuel_blocks_2d} ${acu_air_blocks_2d} ${acu_intref_blocks_2d} ${acu_barrel_blocks_2d} ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d} ${acu_shimb_blocks_2d} ${acu_shimc_blocks_2d}
-    #                 ${uec_fuel_blocks_2d} ${uec_air_blocks_2d} ${uec_intref_blocks_2d} ${uec_barrel_blocks_2d} ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d} ${uec_shimb_blocks_2d} ${uec_shimc_blocks_2d}
-    #                 ${ugr_fuel_blocks_2d} ${ugr_air_blocks_2d} ${ugr_intref_blocks_2d} ${ugr_barrel_blocks_2d} ${ugr_extref1_blocks_2d} ${ugr_extref2_blocks_2d} ${ugr_extref3_blocks_2d} ${ugr_extref4_blocks_2d} ${ugr_shima_blocks_2d} ${ugr_shimb_blocks_2d} ${ugr_shimc_blocks_2d}'
+        new_ids = '${lgr_fuel_blocks_2d} ${lgr_air_blocks_2d} ${lgr_intref_blocks_2d} ${lgr_barrel_blocks_2d} ${lgr_extref1_blocks_2d} ${lgr_extref2_blocks_2d} ${lgr_extref3_blocks_2d} ${lgr_extref4_blocks_2d} ${lgr_shima_blocks_2d} ${lgr_shimb_blocks_2d} ${lgr_shimc_blocks_2d}
+                    ${lec_fuel_blocks_2d} ${lec_air_blocks_2d} ${lec_intref_blocks_2d} ${lec_barrel_blocks_2d} ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d} ${lec_shimb_blocks_2d} ${lec_shimc_blocks_2d}
+                    ${acl_fuel_blocks_2d} ${acl_air_blocks_2d} ${acl_intref_blocks_2d} ${acl_barrel_blocks_2d} ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d} ${acl_shimb_blocks_2d} ${acl_shimc_blocks_2d}
+                    ${acm_fuel_blocks_lay1} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d} ${acm_shimc_blocks_2d}
+                    ${acm_fuel_blocks_lay2} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d} ${acm_shimc_blocks_2d}
+                    ${acm_fuel_blocks_lay3} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d} ${acm_shimc_blocks_2d}
+                    ${acm_fuel_blocks_lay4} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d} ${acm_shimc_blocks_2d}
+                    ${acm_fuel_blocks_lay5} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d} ${acm_shimc_blocks_2d}
+                    ${acm_fuel_blocks_lay6} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d} ${acm_shimc_blocks_2d}
+                    ${acm_fuel_blocks_lay7} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d} ${acm_shimc_blocks_2d}
+                    ${acm_fuel_blocks_lay8} ${acm_air_blocks_2d} ${acm_intref_blocks_2d} ${acm_barrel_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acm_shimb_blocks_2d} ${acm_shimc_blocks_2d}
+                    ${acu_fuel_blocks_2d} ${acu_air_blocks_2d} ${acu_intref_blocks_2d} ${acu_barrel_blocks_2d} ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d} ${acu_shimb_blocks_2d} ${acu_shimc_blocks_2d}
+                    ${uec_fuel_blocks_2d} ${uec_air_blocks_2d} ${uec_intref_blocks_2d} ${uec_barrel_blocks_2d} ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d} ${uec_shimb_blocks_2d} ${uec_shimc_blocks_2d}
+                    ${ugr_fuel_blocks_2d} ${ugr_air_blocks_2d} ${ugr_intref_blocks_2d} ${ugr_barrel_blocks_2d} ${ugr_extref1_blocks_2d} ${ugr_extref2_blocks_2d} ${ugr_extref3_blocks_2d} ${ugr_extref4_blocks_2d} ${ugr_shima_blocks_2d} ${ugr_shimb_blocks_2d} ${ugr_shimc_blocks_2d}'
                   
-    # []
-	# [set_mat_id]
-	# 	type = SubdomainExtraElementIDGenerator
-	# 	input = 'nue'
-	# 	subdomains =        '${acu_shimc_blocks_2d} ${acl_shimc_blocks_2d} ${uec_shimc_blocks_2d} ${lec_shimc_blocks_2d} ${acm_shimc_blocks_2d} ${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d} ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acm_air_blocks_2d} ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_fuel_blocks_2d   } ${acl_air_blocks_2d    } ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_fuel_blocks_2d   } ${acu_air_blocks_2d    } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_active_blocks    } ${lgr_ext_blocks       } ${ugr_active_blocks    } ${ugr_ext_blocks       } ${lec_active_blocks    } ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  } ${uec_active_blocks    } ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
-	# 	extra_element_id_names = 'material_id'
-	# 	extra_element_ids = '${acu_shimc_matids_2d} ${acl_shimc_matids_2d} ${uec_shimc_matids_2d} ${lec_shimc_matids_2d} ${acm_shimc_matids_2d} ${acu_shimb_matids_2d} ${acl_shimb_matids_2d} ${uec_shimb_matids_2d} ${lec_shimb_matids_2d} ${acm_shimb_matids_2d} ${acm_fuel_matids_lay8 } ${acm_fuel_matids_lay7 } ${acm_fuel_matids_lay6 } ${acm_fuel_matids_lay5 } ${acm_fuel_matids_lay4 } ${acm_fuel_matids_lay3 } ${acm_fuel_matids_lay2 } ${acm_fuel_matids_lay1 } ${acm_air_matids_2d} ${acm_intref_matids_2d } ${acm_barrel_matids_2d } ${acm_extref1_matids_2d} ${acm_extref2_matids_2d} ${acm_extref3_matids_2d} ${acm_extref4_matids_2d} ${acm_shima_matids_2d} ${acl_fuel_matids_2d   } ${acl_air_matids_2d    } ${acl_intref_matids_2d } ${acl_barrel_matids_2d } ${acl_extref1_matids_2d} ${acl_extref2_matids_2d} ${acl_extref3_matids_2d} ${acl_extref4_matids_2d} ${acl_shima_matids_2d  } ${acu_fuel_matids_2d   } ${acu_air_matids_2d    } ${acu_intref_matids_2d } ${acu_barrel_matids_2d } ${acu_extref1_matids_2d} ${acu_extref2_matids_2d} ${acu_extref3_matids_2d} ${acu_extref4_matids_2d} ${acu_shima_matids_2d  } ${lgr_active_matids    } ${lgr_ext_matids       } ${ugr_active_matids    } ${ugr_ext_matids       } ${lec_active_matids    } ${lec_extref1_matids_2d} ${lec_extref2_matids_2d} ${lec_extref3_matids_2d} ${lec_extref4_matids_2d} ${lec_shima_matids_2d  } ${uec_active_matids    } ${uec_extref1_matids_2d} ${uec_extref2_matids_2d} ${uec_extref3_matids_2d} ${uec_extref4_matids_2d} ${uec_shima_matids_2d  }'
-    # []
-    # [coarse_mesh]
-    #     type = GeneratedMeshGenerator
-    #     dim = 3
-    #     xmin = -0.27
-    #     xmax = 0.27
-    #     ymin = -0.27
-    #     ymax = 0.27
-    #     zmin = 0
-    #     zmax = 0.39
-    #     nx = 4
-    #     ny = 4
-    #     nz = 7
-    # []
-    # [coarse_element_id_gen]
-    #     type = CoarseMeshExtraElementIDGenerator
-    #     input = set_mat_id
-    #     coarse_mesh = coarse_mesh
-    #     extra_element_id_name = coarse_element_id
+    []
+	[set_mat_id]
+		type = SubdomainExtraElementIDGenerator
+		input = 'nue'
+		subdomains =        '${acu_shimc_blocks_2d} ${acl_shimc_blocks_2d} ${uec_shimc_blocks_2d} ${lec_shimc_blocks_2d} ${acm_shimc_blocks_2d} ${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d} ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acm_air_blocks_2d} ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_fuel_blocks_2d   } ${acl_air_blocks_2d    } ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_fuel_blocks_2d   } ${acu_air_blocks_2d    } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_active_blocks    } ${lgr_ext_blocks       } ${ugr_active_blocks    } ${ugr_ext_blocks       } ${lec_active_blocks    } ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  } ${uec_active_blocks    } ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
+		extra_element_id_names = 'material_id'
+		extra_element_ids = '${acu_shimc_matids_2d} ${acl_shimc_matids_2d} ${uec_shimc_matids_2d} ${lec_shimc_matids_2d} ${acm_shimc_matids_2d} ${acu_shimb_matids_2d} ${acl_shimb_matids_2d} ${uec_shimb_matids_2d} ${lec_shimb_matids_2d} ${acm_shimb_matids_2d} ${acm_fuel_matids_lay8 } ${acm_fuel_matids_lay7 } ${acm_fuel_matids_lay6 } ${acm_fuel_matids_lay5 } ${acm_fuel_matids_lay4 } ${acm_fuel_matids_lay3 } ${acm_fuel_matids_lay2 } ${acm_fuel_matids_lay1 } ${acm_air_matids_2d} ${acm_intref_matids_2d } ${acm_barrel_matids_2d } ${acm_extref1_matids_2d} ${acm_extref2_matids_2d} ${acm_extref3_matids_2d} ${acm_extref4_matids_2d} ${acm_shima_matids_2d} ${acl_fuel_matids_2d   } ${acl_air_matids_2d    } ${acl_intref_matids_2d } ${acl_barrel_matids_2d } ${acl_extref1_matids_2d} ${acl_extref2_matids_2d} ${acl_extref3_matids_2d} ${acl_extref4_matids_2d} ${acl_shima_matids_2d  } ${acu_fuel_matids_2d   } ${acu_air_matids_2d    } ${acu_intref_matids_2d } ${acu_barrel_matids_2d } ${acu_extref1_matids_2d} ${acu_extref2_matids_2d} ${acu_extref3_matids_2d} ${acu_extref4_matids_2d} ${acu_shima_matids_2d  } ${lgr_active_matids    } ${lgr_ext_matids       } ${ugr_active_matids    } ${ugr_ext_matids       } ${lec_active_matids    } ${lec_extref1_matids_2d} ${lec_extref2_matids_2d} ${lec_extref3_matids_2d} ${lec_extref4_matids_2d} ${lec_shima_matids_2d  } ${uec_active_matids    } ${uec_extref1_matids_2d} ${uec_extref2_matids_2d} ${uec_extref3_matids_2d} ${uec_extref4_matids_2d} ${uec_shima_matids_2d  }'
+    []
+    [coarse_mesh]
+        type = GeneratedMeshGenerator
+        dim = 3
+        xmin = -0.27
+        xmax = 0.27
+        ymin = -0.27
+        ymax = 0.27
+        zmin = 0
+        zmax = 0.39
+        nx = 4
+        ny = 4
+        nz = 7
+    []
+    [coarse_element_id_gen]
+        type = CoarseMeshExtraElementIDGenerator
+        input = set_mat_id
+        coarse_mesh = coarse_mesh
+        extra_element_id_name = coarse_element_id
         
-    # []
+    []
 []
 
 total_power               = 600000.00 # (W). #total power
@@ -291,7 +291,7 @@ ext_T_ref                 = 600 # (K)
     [Griffin_htm]
     type = FullSolveMultiApp
     #app_type = GriffinApp
-    input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/core_2D_bison.i'
+    input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/core_2D_Amer.i'
     positions = '0 0 ${multi_app_z_pos}' # lay1 + lay2
     execute_on = 'timestep_end'
     []
