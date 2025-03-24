@@ -13480,6 +13480,7 @@ class S8_Wet(S8ER):
         fuelMat = fuelElement.materialsDict['fuel']
         dbMat = fuelElement.materialsDict['diffusion_barrier']
         bpMat = fuelElement.materialsDict['burnable_poison']
+        cerMat = fuelElement.materialsDict['ceramic']
         gapMat = fuelElement.materialsDict['gap']
         cladMat = fuelElement.materialsDict['clad']
         coolMat = coolElement.materialsDict['coolant']
@@ -13519,7 +13520,7 @@ class S8_Wet(S8ER):
         actdz = acudz+acmdz+acldz
         acthf = voiddz + actdz
 
-        serMatsList = super()._buildMaterials([fuelMat, coolMat, dbMat, bpMat, gapMat, cladMat, intrefMat, barrelMat, lgpMat, cdMat, airMat])
+        serMatsList = super()._buildMaterials([fuelMat, coolMat, dbMat, bpMat, cerMat, gapMat, cladMat, intrefMat, barrelMat, lgpMat, cdMat, airMat])
 
         #replace 6000 with 6012 for endf8 lib
         if self.xsLibrary == 'ENDF8':
@@ -13554,6 +13555,7 @@ class S8_Wet(S8ER):
         airMat = serMatsDict['air']
         dbMat = serMatsDict['diffusion_barrier']
         bpMat = serMatsDict['burnable_poison']
+        cerMat = serMatsDict['ceramic']
         ugpMat = barMat.duplicateMat("upper_gridplate")
         ugpMat.set('rgb', "102 0 0")
         lgpMat = serMatsDict['lower_gridplate']
@@ -13573,7 +13575,7 @@ class S8_Wet(S8ER):
         fuelMat = serMatsDict['fuel']
         fuelMat.set('rgb', "219 89 89")
 
-        cerMat = mix("ceramic", [dbMat, bpMat], [0.994303206, 0.005696794])
+        #cerMat = mix("ceramic", [dbMat, bpMat], [0.994303206, 0.005696794])
         cerMat.set('rgb', '255 174 66')
 
         refMix = intRefMix(barMat, cladMat, intrefMat, airMat)
@@ -14808,10 +14810,10 @@ class S8_Wet(S8ER):
         REFouterBlockId = 9
         REFMesh = "s82d_ac_c3_gcu_elemres.e"
 
-        if useRefLayoutForMesh:
-            createCubitMesh2DFull(baseFile, REFlayout, REFblockMap, nMidHex, hexPitch, REFouterBlockId, useDivForRef=True)
-        else:
-            createCubitMesh2DFull(baseFile, layoutACM, blockMapACM, nMidHex, hexPitch, REFouterBlockId , useDivForRef=True)
+        # if useRefLayoutForMesh:
+        #     createCubitMesh2DFull(baseFile, REFlayout, REFblockMap, nMidHex, hexPitch, REFouterBlockId, useDivForRef=True)
+        # else:
+        #     createCubitMesh2DFull(baseFile, layoutACM, blockMapACM, nMidHex, hexPitch, REFouterBlockId , useDivForRef=True)
         
         #height = 35.56
 

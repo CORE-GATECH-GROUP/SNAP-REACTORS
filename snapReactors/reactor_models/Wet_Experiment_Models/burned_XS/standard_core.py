@@ -19,7 +19,7 @@ from pathlib import Path
 
 # rsFilePath = hotFile.as_posix()
 
-rsFilePath = r"C:\Users\sgarc\OneDrive\Documents\SNAP-REACTORS-PRIVATE\snapReactors\data_inputfiles\s8er_hotpower.txt"
+rsFilePath = r"/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/data_inputfiles/s8er_hotpower.txt"
 states = ReactorState.rsReader(rsFilePath, outputDict=True)
 coldpow = states['Hot Power']
 components = coldpow.componentsDict

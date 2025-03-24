@@ -2,7 +2,7 @@ include s82d_ac_c3_gcu_ringres.mat
 include s82d_ac_c3_gcu_ringres.geo
 set bc 1 1 1
 set pop 1000000 100 100
-set power 600000
+set powdens 14.47408537
 set acelib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
 plot 31 1000 1000 19.0
 plot 11 1000 1000 0.0
