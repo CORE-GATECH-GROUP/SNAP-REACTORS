@@ -10,8 +10,6 @@
 module load use.exp_ctl
 module load serpent2
 
-cd \$PBS_O_WORKDIR
-
 export TMPDIR=/tmp
 export SERPENT_DATA=/hpc-common/data/serpent/xsdata/s2v0_endfb80
 

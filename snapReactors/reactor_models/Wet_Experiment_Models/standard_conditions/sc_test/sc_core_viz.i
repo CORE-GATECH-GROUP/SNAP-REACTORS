@@ -118,9 +118,9 @@ exit_length = '${fparse exit1 + exit2 + exit3}'
 []
 
 [Executioner]
-  type = Transient
+  type = Steady
   petsc_options_value = 'hypre boomeramg'
   petsc_options_iname = '-pc_type -pc_hypre_type'
-  steady_state_detection = true
-  steady_state_tolerance = 1e-4
+  # steady_state_detection = true
+  # steady_state_tolerance = 1e-4
 []

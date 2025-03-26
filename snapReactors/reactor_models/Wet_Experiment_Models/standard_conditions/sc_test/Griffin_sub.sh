@@ -11,4 +11,4 @@
 module load use.exp_ctl use.moose griffin-openmpi
 cd ${SLURM_SUBMIT_DIR:-$PWD}
 export TMPDIR=${SLURM_TMPDIR:-/tmp}
-mpiexec -n 2 /home/garcsamu/moose_exec/snapbench/snapbench-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_core.i
+mpiexec -n 2 /home/garcsamu/moose_exec/snapbench/snapbench-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/core_2D_Amer.i

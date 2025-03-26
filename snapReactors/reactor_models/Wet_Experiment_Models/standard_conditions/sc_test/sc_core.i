@@ -5,10 +5,10 @@
 ###################################################
 T_in = 866.0 
 P_out = 253727.1   # Pa
-reactor_power = 600000 #WTh
-fuel_assemblies_per_power_unit = '${fparse 1}'
-fuel_pins_per_assembly = 211
-pin_power = '${fparse reactor_power/(fuel_assemblies_per_power_unit*fuel_pins_per_assembly)}' # Approx.
+# reactor_power = 600000 #WTh
+#fuel_assemblies_per_power_unit = '${fparse 1}'
+#fuel_pins_per_assembly = 211
+#pin_power = '${fparse reactor_power/(fuel_assemblies_per_power_unit*fuel_pins_per_assembly)}' # Approx.
 mass_flow = '${fparse 6.15}' # kg/(s)
 
 ###################################################
@@ -33,12 +33,12 @@ duct_inside = '${fparse 11.43*2*scale_factor}'
 
 entry1 = '${fparse 0.79502/100}'
 entry2 = '${fparse 0.9652/100}'
-entry3 = '${fparse 2.1717/100}'
-entry_length = '${fparse entry1 + entry2 + entry3}'
-exit1 = '${fparse 2.9083/100}'
+#entry3 = '${fparse 2.1717/100}'
+entry_length = '${fparse entry1 + entry2 }'#+ entry3}'
+#exit1 = '${fparse 2.9083/100}'
 exit2 = '${fparse 0.2286/100}'
 exit3 = '${fparse 0.87376/100}'
-exit_length = '${fparse exit1 + exit2 + exit3}'
+exit_length = '${fparse exit2 + exit3}'#'${fparse exit1 + exit2 + exit3}'
 ###################################################
 
 [TriSubChannelMesh]
@@ -147,7 +147,14 @@ exit_length = '${fparse exit1 + exit2 + exit3}'
 
 [FluidProperties]
   [sodium]
-    type = PBSodiumFluidProperties
+    type = SimpleFluidProperties
+    molar_mass = 0.0355
+    cp = 873.0
+    cv = 873.0
+    specific_entropy = 1055
+    viscosity = 0.0001582
+    thermal_conductivity = 25.9
+    thermal_expansion = 2.77e-4
   []
 []
 
@@ -181,12 +188,13 @@ exit_length = '${fparse exit1 + exit2 + exit3}'
     variable = w_perim
   []
 
-  [q_prime_IC]
-    type = SCMTriPowerIC
-    variable = q_prime
-    power = ${pin_power} # W
-    filename = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/S8ER_pin.txt"
-  []
+  # [q_prime_IC]
+  #   type = SCMTriPowerIC
+  #   variable = q_prime
+  #   power = ${reactor_power} # W
+  #   filename = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/S8ER_pin.txt"
+  #   axial_heat_rate = axial_heat_rate
+  # []
 
   [T_ic]
     type = ConstantIC
@@ -281,11 +289,11 @@ exit_length = '${fparse exit1 + exit2 + exit3}'
 []
 
 [Executioner]
-  type = Transient
+  type = Steady
   petsc_options_value = 'hypre boomeramg'
   petsc_options_iname = '-pc_type -pc_hypre_type'
-  steady_state_detection = true
-  steady_state_tolerance = 1e-4
+  # steady_state_detection = true
+  # steady_state_tolerance = 1e-4
 
 []
 

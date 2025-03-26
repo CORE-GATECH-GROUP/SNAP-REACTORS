@@ -1,0 +1,48 @@
+libMesh terminating:
+Element type not supported:EDGE2
+Stack frames: 15
+0: libMesh::print_trace(std::ostream&)
+1: libMesh::MacroFunctions::report_error(char const*, int, char const*, char const*, std::ostream&)
+2: libMesh::QGauss::init_2D(libMesh::ElemType, unsigned int)
+3: libMesh::FE<2u, (libMesh::FEFamily)0>::reinit(libMesh::Elem const*, std::vector<libMesh::Point, std::allocator<libMesh::Point> > const*, std::vector<double, std::allocator<double> > const*)
+4: MultiAppProjectionTransfer::execute()
+5: FEProblemBase::execMultiAppTransfers(MooseEnumItem, Transfer::DIRECTION)
+6: FEProblemBase::execMultiApps(MooseEnumItem, bool)
+7: FixedPointSolve::solveStep(double&, double&, std::set<unsigned long, std::less<unsigned long>, std::allocator<unsigned long> > const&)
+8: FixedPointSolve::solve()
+9: SteadyBase::execute()
+10: MooseApp::executeExecutioner()
+11: MooseApp::run()
+12: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x50e8) [0x5555555590e8]
+13: __libc_start_main
+14: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x538a) [0x55555555938a]
+[0] ../src/quadrature/quadrature_gauss_2D.C, line 1300, compiled Mar  4 2025 at 21:19:48
+
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+libMesh terminating:
+Element type not supported:EDGE2
+Stack frames: 15
+0: libMesh::print_trace(std::ostream&)
+1: libMesh::MacroFunctions::report_error(char const*, int, char const*, char const*, std::ostream&)
+2: libMesh::QGauss::init_2D(libMesh::ElemType, unsigned int)
+3: libMesh::FE<2u, (libMesh::FEFamily)0>::reinit(libMesh::Elem const*, std::vector<libMesh::Point, std::allocator<libMesh::Point> > const*, std::vector<double, std::allocator<double> > const*)
+4: MultiAppProjectionTransfer::execute()
+5: FEProblemBase::execMultiAppTransfers(MooseEnumItem, Transfer::DIRECTION)
+6: FEProblemBase::execMultiApps(MooseEnumItem, bool)
+7: FixedPointSolve::solveStep(double&, double&, std::set<unsigned long, std::less<unsigned long>, std::allocator<unsigned long> > const&)
+8: FixedPointSolve::solve()
+9: SteadyBase::execute()
+10: MooseApp::executeExecutioner()
+11: MooseApp::run()
+12: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x50e8) [0x5555555590e8]
+13: __libc_start_main
+14: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x538a) [0x55555555938a]
+[0] ../src/quadrature/quadrature_gauss_2D.C, line 1300, compiled Mar  4 2025 at 21:19:48
+
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+--------------------------------------------------------------------------
+prterun detected that one or more processes exited with non-zero status,
+thus causing the job to be terminated. The first process to do so was:
+
+   Process name: [prterun-wr4n47-320180@1,1] Exit code:    1
+--------------------------------------------------------------------------

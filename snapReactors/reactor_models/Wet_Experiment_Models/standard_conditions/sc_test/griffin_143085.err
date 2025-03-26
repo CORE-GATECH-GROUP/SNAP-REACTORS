@@ -1,0 +1,14 @@
+Warning, Exodus files cannot have titles longer than 80 characters.  Your title will be truncated.
+Warning, Exodus files cannot have titles longer than 80 characters.  Your title will be truncated.
+libMesh terminating:
+sodium::T_from_p_h: Newton solve convergence failed: maximum number of iterations, 100, exceeded
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+libMesh terminating:
+sodium::T_from_p_h: Newton solve convergence failed: maximum number of iterations, 100, exceeded
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+--------------------------------------------------------------------------
+prterun detected that one or more processes exited with non-zero status,
+thus causing the job to be terminated. The first process to do so was:
+
+   Process name: [prterun-wr3n29-397283@1,1] Exit code:    1
+--------------------------------------------------------------------------

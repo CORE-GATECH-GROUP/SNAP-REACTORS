@@ -137,7 +137,7 @@ intref_blocks = 'Reflector'
 # n_fuel_pins = 211
 # fuel_diameter = '${fparse 0.67564 * 2 * 0.01}'
 # unit_cell_height = '${units 35.56 cm -> m}'
-pow_dens = 55760474.8606
+#pow_dens = 55760474.8606
 
 acm_dz = '${fparse 3.81/100}'
 lay1 = '${fparse 2.1717/100}'
@@ -219,14 +219,14 @@ lay2 = '${fparse 2.9083/100}'
         family = L2_LAGRANGE 
         order = FIRST 
         block = 'Fuel'
-        initial_condition = '${pow_dens}' #
+        #initial_condition = '${pow_dens}' #
     []
     [T_inf]
         initial_condition = '${inlet_T_fluid}'
     []
-    # [bison_Tfuel]
-    #     block = ${fuel_blocks}
-    # []
+    [bison_Tfuel]
+        block = ${fuel_blocks}
+    []
 
     # [bison_Tref]
     #     block = ${extref_blocks}
@@ -309,45 +309,45 @@ lay2 = '${fparse 2.9083/100}'
 # ==============================================================================
 # MULTIAPPS AND TRANSFERS
 # ==============================================================================
-[MultiApps]
-    [thm]
-      type = TransientMultiApp
-      #app_type = ThermalHydraulicsApp
-      input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/SNAP_thm_ref_2.i'
-      execute_on =  timestep_end
-      bounding_box_padding = '0.1 0.1 0'
-      positions = '0 0 0'
-    []
-  []
+# [MultiApps]
+#     [thm]
+#       type = TransientMultiApp
+#       #app_type = ThermalHydraulicsApp
+#       input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/SNAP_thm_ref_2.i'
+#       execute_on =  timestep_end
+#       bounding_box_padding = '0.1 0.1 0'
+#       positions = '0 0 0'
+#     []
+#   []
   
-  [Transfers]
-    [T_wall_avg_to_THM]
-        type = MultiAppGeneralFieldUserObjectTransfer
-        to_multi_app = thm
-        source_user_object = T_wall_avg
-        variable = T_wall
-        error_on_miss = true
-        search_value_conflicts = false
-    []
-    [T_inf_from_THM]
-        type = MultiAppGeneralFieldNearestLocationTransfer
-        source_variable = T
-        variable = T_inf
-        from_multi_app = thm
-        to_boundaries = 'fluid_solid_interface'
-        error_on_miss = true
-        search_value_conflicts = false
-      []
-      [HTC_from_THM]
-        type = MultiAppGeneralFieldNearestLocationTransfer
-        source_variable = Hw
-        variable = HTC
-        from_multi_app = thm
-        to_boundaries = 'fluid_solid_interface'
-        error_on_miss = true
-        search_value_conflicts = false
-      []
-  []
+#   [Transfers]
+#     [T_wall_avg_to_THM]
+#         type = MultiAppGeneralFieldUserObjectTransfer
+#         to_multi_app = thm
+#         source_user_object = T_wall_avg
+#         variable = T_wall
+#         error_on_miss = true
+#         search_value_conflicts = false
+#     []
+#     [T_inf_from_THM]
+#         type = MultiAppGeneralFieldNearestLocationTransfer
+#         source_variable = T
+#         variable = T_inf
+#         from_multi_app = thm
+#         to_boundaries = 'fluid_solid_interface'
+#         error_on_miss = true
+#         search_value_conflicts = false
+#       []
+#       [HTC_from_THM]
+#         type = MultiAppGeneralFieldNearestLocationTransfer
+#         source_variable = Hw
+#         variable = HTC
+#         from_multi_app = thm
+#         to_boundaries = 'fluid_solid_interface'
+#         error_on_miss = true
+#         search_value_conflicts = false
+#       []
+#   []
 
 # ==============================================================================
 # INITIAL CONDITIONS AND FUNCTIONS
@@ -461,27 +461,27 @@ lay2 = '${fparse 2.9083/100}'
 # EXECUTION PARAMETERS
 # ==============================================================================
 [Executioner]
-    # type = Steady
-    # nl_rel_tol = 1e-8
-    # nl_abs_tol = 1e-8
-    # nl_abs_step_tol = 1e-8
-    # l_tol = 1e-8
-    # solve_type = NEWTON
-    # petsc_options_iname = '-pc_type -pc_hypre_type'
-    # petsc_options_value = 'hypre boomeramg'
-    type = Transient
-    nl_abs_tol = 5e-7
-    nl_rel_tol = 1e-7
-    petsc_options_value = 'hypre boomeramg'
+    type = Steady
+    nl_rel_tol = 1e-8
+    nl_abs_tol = 1e-8
+    nl_abs_step_tol = 1e-8
+    l_tol = 1e-8
+    solve_type = NEWTON
     petsc_options_iname = '-pc_type -pc_hypre_type'
-    dt = 0.05
-    nl_max_its = 200
-    steady_state_detection = true
-    steady_state_tolerance = 5e-6
-    [./Quadrature]
-      type = TRAP
-      order = FIRST
-    [../]
+    petsc_options_value = 'hypre boomeramg'
+    # type = Transient
+    # nl_abs_tol = 5e-7
+    # nl_rel_tol = 1e-7
+    # petsc_options_value = 'hypre boomeramg'
+    # petsc_options_iname = '-pc_type -pc_hypre_type'
+    # dt = 0.05
+    # nl_max_its = 200
+    # steady_state_detection = true
+    # steady_state_tolerance = 5e-6
+    # [./Quadrature]
+    #   type = TRAP
+    #   order = FIRST
+    # [../]
 []
 
 # ==============================================================================
