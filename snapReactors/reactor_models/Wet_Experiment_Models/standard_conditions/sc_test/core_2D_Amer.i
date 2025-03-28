@@ -142,7 +142,7 @@ pow_dens = 55760474.8606
 acm_dz = '${fparse 3.81/100}'
 lay1 = '${fparse 2.1717/100}'
 lay2 = '${fparse 2.9083/100}'
-multi_app_z_pos = 0.0176022
+multi_app_z_pos = 0.0393192 #0.0176022
 # ==============================================================================
 # GEOMETRY AND MESH
 # ==============================================================================
@@ -205,16 +205,6 @@ multi_app_z_pos = 0.0176022
 # AUXVARIABLES AND AUXKERNELS
 # ==============================================================================
 [AuxVariables]
-    # [aux_tk]
-    #     family = LAGRANGE
-    #     order = FIRST
-    #     block = 'Fuel'
-    # []
-    # [aux_cp]
-    #     family = LAGRANGE
-    #     order = FIRST
-    #     block = 'Fuel'
-    # []
     [bison_power_density]
         family = L2_LAGRANGE 
         order = FIRST 
@@ -237,44 +227,31 @@ multi_app_z_pos = 0.0176022
         block = 'Fuel'
         #initial_condition = 2.01E+03
     []
-    [flux]
-        family = MONOMIAL
-        order = CONSTANT
-        block = 'Clad'
-    []
     [HTC]
         family = MONOMIAL
         order = CONSTANT
         initial_condition = '${ht_coeff}'
     []
+    [q_prime]
+        family = MONOMIAL
+        order = CONSTANT
+    []
 []
 
 [AuxKernels]
-
-    # [aux_tk]
-    #     type = FunctionAux
-    #     function = tk_f
-    #     variable = aux_tk
-    #     block = 'Fuel'
-    # []
-    # [aux_cp]
-    #     type = FunctionAux
-    #     function = cp_f
-    #     variable = aux_cp
-    #     block = 'Fuel'
-    # []
-
-    # [norm_Tfuel]
-    #     type = NormalizationAux
-    #     variable = bison_Tfuel
-    #     source_variable = bison_temp
-    #     execute_on = 'timestep_end' #check
-    # []
+    [norm_Tfuel]
+        type = NormalizationAux
+        variable = bison_Tfuel
+        source_variable = bison_temp
+        normal_factor = 1
+        execute_on = 'timestep_begin' #check
+    []
     # [norm_Tref]
     #     type = NormalizationAux
     #     variable = bison_Tref
     #     source_variable = bison_temp
-    #     execute_on = 'timestep_end' #check
+    #     normal_factor = 1
+    #     execute_on = 'timestep_begin' #check
     # []
     [norm_power_density]
         type = NormalizationAux
@@ -282,23 +259,29 @@ multi_app_z_pos = 0.0176022
         source_variable = bison_power_density
         normal_factor = 1#1.2658064684
         execute_on = 'timestep_begin' #check
-    []    
-    [flux]
-        #this is heat flux
-        type = DiffusionFluxAux
-        diffusion_variable = bison_temp
+    []
+    # [norm_power_linear]
+    #     type = NormalizationAux
+    #     variable = q_prime
+    #     source_variable = bison_power_density
+    #     normal_factor = 1.43410377564#1.2658064684
+    #     execute_on = 'timestep_begin' #check
+    # []   
+    [Qprime]
+        type = SCMRZPinQPrimeAux
         component = normal
+        diffusion_variable = bison_temp
         diffusivity = thermal_conductivity
-        variable = flux
+        variable = q_prime
         boundary = 'fluid_solid_interface'
     []
 []
 
 [UserObjects]
-    [T_wall_avg]
+    [Q_prime_avg]
         type = LayeredSideAverage
         boundary = 'fluid_solid_interface'
-        variable = bison_temp
+        variable = q_prime
         direction = y
         num_layers = 10
         direction_min = '0.0'
@@ -321,39 +304,22 @@ multi_app_z_pos = 0.0176022
   []
   
   [Transfers]
-    [Power_to_SC]
-        type = MultiAppProjectionTransfer
+    # [Power_to_SC]
+    #     type = MultiAppGeneralFieldNearestLocationTransfer
+    #     to_multi_app = sc
+    #     source_variable = q_prime
+    #     variable = q_prime
+    #     to_boundaries = right
+    # []
+    [Q_prime_avg_to_SC]
+        type = MultiAppGeneralFieldUserObjectTransfer
         to_multi_app = sc
+        source_user_object = Q_prime_avg
         variable = q_prime
-        source_variable = bison_power_density
+        error_on_miss = true
+        search_value_conflicts = false
         #to_blocks = fuel_pins
     []
-    # [T_wall_avg_to_THM]
-    #     type = MultiAppGeneralFieldUserObjectTransfer
-    #     to_multi_app = thm
-    #     source_user_object = T_wall_avg
-    #     variable = T_wall
-    #     error_on_miss = true
-    #     search_value_conflicts = false
-    # []
-    # [T_inf_from_THM]
-    #     type = MultiAppGeneralFieldNearestLocationTransfer
-    #     source_variable = T
-    #     variable = T_inf
-    #     from_multi_app = thm
-    #     to_boundaries = 'fluid_solid_interface'
-    #     error_on_miss = true
-    #     search_value_conflicts = false
-    #   []
-    #   [HTC_from_THM]
-    #     type = MultiAppGeneralFieldNearestLocationTransfer
-    #     source_variable = Hw
-    #     variable = HTC
-    #     from_multi_app = thm
-    #     to_boundaries = 'fluid_solid_interface'
-    #     error_on_miss = true
-    #     search_value_conflicts = false
-    #   []
   []
 
 # ==============================================================================
@@ -476,19 +442,6 @@ multi_app_z_pos = 0.0176022
     solve_type = NEWTON
     petsc_options_iname = '-pc_type -pc_hypre_type'
     petsc_options_value = 'hypre boomeramg'
-    # type = Transient
-    # nl_abs_tol = 5e-7
-    # nl_rel_tol = 1e-7
-    # petsc_options_value = 'hypre boomeramg'
-    # petsc_options_iname = '-pc_type -pc_hypre_type'
-    # dt = 0.05
-    # nl_max_its = 200
-    # steady_state_detection = true
-    # steady_state_tolerance = 5e-6
-    # [./Quadrature]
-    #   type = TRAP
-    #   order = FIRST
-    # [../]
 []
 
 # ==============================================================================
@@ -535,6 +488,11 @@ multi_app_z_pos = 0.0176022
         block = ${fuel_blocks}
         execute_on = 'initial timestep_end'
     []
+    [q_prime_avg]
+        type = SideAverageValue
+        variable = q_prime
+        boundary = 'fluid_solid_interface'
+    []
     [fuel_vol]
         type = VolumePostprocessor
         block = ${fuel_blocks}
@@ -554,11 +512,11 @@ multi_app_z_pos = 0.0176022
 []
 
 [Outputs]
-    #exodus = true
+    exodus = true
     [csv]
         type = CSV
     []
-    [nemesis]
-        type = Nemesis
-    []
+    # [nemesis]
+    #     type = Nemesis
+    # []
 []

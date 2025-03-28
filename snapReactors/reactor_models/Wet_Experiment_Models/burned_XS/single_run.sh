@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -l select=10:ncpus=50:mpiprocs=1:mem=200gb
+#PBS -l select=10:ncpus=50:mpiprocs=1:mem=220gb
 #PBS -N Depletion_Run
 #PBS -l walltime=15:30:00
 #PBS -k doe
