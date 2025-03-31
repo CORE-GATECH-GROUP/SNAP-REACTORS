@@ -236,6 +236,10 @@ multi_app_z_pos = 0.0393192 #0.0176022
         family = MONOMIAL
         order = CONSTANT
     []
+    [q_prime_node]
+        family = LAGRANGE
+        order = FIRST
+    []
 []
 
 [AuxKernels]
@@ -274,6 +278,13 @@ multi_app_z_pos = 0.0393192 #0.0176022
         diffusivity = thermal_conductivity
         variable = q_prime
         boundary = 'fluid_solid_interface'
+        execute_on = 'timestep_begin'
+    []
+    [q_prime_to_node]
+        type = ProjectionAux
+        v = q_prime
+        variable = q_prime_node
+        execute_on = 'timestep_begin'
     []
 []
 
@@ -300,26 +311,28 @@ multi_app_z_pos = 0.0393192 #0.0176022
       execute_on =  timestep_end
       bounding_box_padding = '0.1 0.1 0'
       positions = '0 0 -${multi_app_z_pos}'
+      output_in_position = true
     []
   []
   
   [Transfers]
-    # [Power_to_SC]
-    #     type = MultiAppGeneralFieldNearestLocationTransfer
-    #     to_multi_app = sc
-    #     source_variable = q_prime
-    #     variable = q_prime
-    #     to_boundaries = right
-    # []
-    [Q_prime_avg_to_SC]
-        type = MultiAppGeneralFieldUserObjectTransfer
+    [Power_to_SC]
+        type = MultiAppGeneralFieldNearestLocationTransfer
         to_multi_app = sc
-        source_user_object = Q_prime_avg
+        source_variable = q_prime_node
         variable = q_prime
-        error_on_miss = true
-        search_value_conflicts = false
-        #to_blocks = fuel_pins
+        to_boundaries = right
+        greedy_search = true
     []
+    # [Q_prime_avg_to_SC]
+    #     type = MultiAppGeneralFieldUserObjectTransfer
+    #     to_multi_app = sc
+    #     source_user_object = Q_prime_avg
+    #     variable = q_prime
+    #     error_on_miss = true
+    #     search_value_conflicts = false
+    #     #to_blocks = fuel_pins
+    # []
   []
 
 # ==============================================================================

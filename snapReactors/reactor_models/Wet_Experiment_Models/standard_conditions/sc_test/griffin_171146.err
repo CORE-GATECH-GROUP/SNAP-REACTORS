@@ -1,0 +1,81 @@
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/core_2D_Amer.i:316.5:
+The following error occurred in the Transfer 'Power_to_SC' of type MultiAppGeneralFieldNearestLocationTransfer.
+
+Cannot find variable q_prime_node for Power_to_SC Transfer[39m
+
+Stack frames: 15
+0: libMesh::print_trace(std::ostream&)
+1: moose::internal::mooseErrorRaw(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+2: MooseBase::callMooseError(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool) const
+3: /home/garcsamu/moose_exec/moose/framework/libmoose-opt.so.0(+0x23aff37) [0x155554922f37]
+4: /home/garcsamu/moose_exec/moose/framework/libmoose-opt.so.0(+0x23b00c3) [0x1555549230c3]
+5: MultiAppFieldTransfer::initialSetup()
+6: MultiAppConservativeTransfer::initialSetup()
+7: MultiAppGeneralFieldTransfer::initialSetup()
+8: MultiAppGeneralFieldNearestLocationTransfer::initialSetup()
+9: FEProblemBase::initialSetup()
+10: MooseApp::executeExecutioner()
+11: MooseApp::run()
+12: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x50e8) [0x5555555590e8]
+13: __libc_start_main
+14: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x538a) [0x55555555938a]
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/core_2D_Amer.i:316.5:
+The following error occurred in the Transfer 'Power_to_SC' of type MultiAppGeneralFieldNearestLocationTransfer.
+
+Cannot find variable q_prime_node for Power_to_SC Transfer[39m
+
+Stack frames: 15
+0: libMesh::print_trace(std::ostream&)
+1: moose::internal::mooseErrorRaw(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+2: MooseBase::callMooseError(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool) const
+3: /home/garcsamu/moose_exec/moose/framework/libmoose-opt.so.0(+0x23aff37) [0x155554922f37]
+4: /home/garcsamu/moose_exec/moose/framework/libmoose-opt.so.0(+0x23b00c3) [0x1555549230c3]
+5: MultiAppFieldTransfer::initialSetup()
+6: MultiAppConservativeTransfer::initialSetup()
+7: MultiAppGeneralFieldTransfer::initialSetup()
+8: MultiAppGeneralFieldNearestLocationTransfer::initialSetup()
+9: FEProblemBase::initialSetup()
+10: MooseApp::executeExecutioner()
+11: MooseApp::run()
+12: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x50e8) [0x5555555590e8]
+13: __libc_start_main
+14: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x538a) [0x55555555938a]
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/core_2D_Amer.i:316.5:
+The following error occurred in the Transfer 'Power_to_SC' of type MultiAppGeneralFieldNearestLocationTransfer.
+
+Cannot find variable q_prime_node for Power_to_SC Transfer[39m
+
+Stack frames: 15
+0: libMesh::print_trace(std::ostream&)
+1: moose::internal::mooseErrorRaw(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+2: MooseBase::callMooseError(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool) const
+3: /home/garcsamu/moose_exec/moose/framework/libmoose-opt.so.0(+0x23aff37) [0x155554922f37]
+4: /home/garcsamu/moose_exec/moose/framework/libmoose-opt.so.0(+0x23b00c3) [0x1555549230c3]
+5: MultiAppFieldTransfer::initialSetup()
+6: MultiAppConservativeTransfer::initialSetup()
+7: MultiAppGeneralFieldTransfer::initialSetup()
+8: MultiAppGeneralFieldNearestLocationTransfer::initialSetup()
+9: FEProblemBase::initialSetup()
+10: MooseApp::executeExecutioner()
+11: MooseApp::run()
+12: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x50e8) [0x5555555590e8]
+13: __libc_start_main
+14: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x538a) [0x55555555938a]
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+--------------------------------------------------------------------------
+prterun detected that one or more processes exited with non-zero status,
+thus causing the job to be terminated. The first process to do so was:
+
+   Process name: [prterun-wr1n30-509247@1,2] Exit code:    1
+--------------------------------------------------------------------------
