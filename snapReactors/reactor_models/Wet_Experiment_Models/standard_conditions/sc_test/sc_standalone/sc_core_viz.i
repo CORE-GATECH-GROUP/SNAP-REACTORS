@@ -49,7 +49,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   [subchannel]
     type = SCMDetailedTriSubChannelMeshGenerator
     nrings = '${fparse n_rings}'
-    n_cells = 10
+    n_cells = 12
     flat_to_flat = '${fparse duct_inside}'
     unheated_length_entry = '${fparse entry_length}'
     heated_length = '${fparse length_heated_fuel}'
@@ -62,7 +62,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     type = SCMDetailedTriPinMeshGenerator
     input = subchannel
     nrings = '${fparse n_rings}'
-    n_cells = 10
+    n_cells = 12
     unheated_length_entry = '${fparse entry_length}'
     heated_length = '${fparse length_heated_fuel}'
     unheated_length_exit = '${fparse exit_length}'

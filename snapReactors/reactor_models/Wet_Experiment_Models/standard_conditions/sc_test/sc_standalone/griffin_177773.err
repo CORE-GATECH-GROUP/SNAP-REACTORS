@@ -1,0 +1,93 @@
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_standalone/sc_core.i:167.1:
+The following error occurred in the Problem 'MOOSE Problem' of type TriSubChannel1PhaseProblem.
+
+MOOSE Problem: When implicit number of blocks can't be equal to number of cells. This will cause problems with the subchannel interpolation scheme.[39m
+
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_standalone/sc_core.i:167.1:
+The following error occurred in the Problem 'MOOSE Problem' of type TriSubChannel1PhaseProblem.
+
+MOOSE Problem: When implicit number of blocks can't be equal to number of cells. This will cause problems with the subchannel interpolation scheme.[39m
+
+
+[31m
+*** ERROR ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_standalone/sc_core.i:167.1:
+The following error occurred in the Problem 'MOOSE Problem' of type TriSubChannel1PhaseProblem.
+
+MOOSE Problem: When implicit number of blocks can't be equal to number of cells. This will cause problems with the subchannel interpolation scheme.[39m
+
+Stack frames: 19
+0: libMesh::print_trace(std::ostream&)
+1: moose::internal::mooseErrorRaw(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+2: MooseBase::callMooseError(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool) const
+3: /home/garcsamu/moose_exec/moose/modules/subchannel/lib/libsubchannel-opt.so.0(+0x107f34) [0x15555242df34]
+4: SubChannel1PhaseProblem::SubChannel1PhaseProblem(InputParameters const&)
+5: TriSubChannel1PhaseProblem::TriSubChannel1PhaseProblem(InputParameters const&)
+6: RegistryEntry<TriSubChannel1PhaseProblem>::build(InputParameters const&)
+7: Factory::createUnique(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, InputParameters const&, unsigned int, bool)
+8: std::unique_ptr<FEProblemBase, std::default_delete<FEProblemBase> > Factory::createUnique<FEProblemBase>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, InputParameters const&, unsigned int)
+9: std::shared_ptr<FEProblemBase> Factory::create<FEProblemBase>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, InputParameters const&, unsigned int)
+10: CreateProblemAction::act()
+11: Action::timedAct()
+12: ActionWarehouse::executeActionsWithAction(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+13: ActionWarehouse::executeAllActions()
+14: MooseApp::runInputFile()
+15: MooseApp::run()
+16: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x50e8) [0x5555555590e8]
+17: __libc_start_main
+18: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x538a) [0x55555555938a]
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+Stack frames: 19
+0: libMesh::print_trace(std::ostream&)
+1: moose::internal::mooseErrorRaw(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+2: MooseBase::callMooseError(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool) const
+3: /home/garcsamu/moose_exec/moose/modules/subchannel/lib/libsubchannel-opt.so.0(+0x107f34) [0x15555242df34]
+4: SubChannel1PhaseProblem::SubChannel1PhaseProblem(InputParameters const&)
+5: TriSubChannel1PhaseProblem::TriSubChannel1PhaseProblem(InputParameters const&)
+6: RegistryEntry<TriSubChannel1PhaseProblem>::build(InputParameters const&)
+7: Factory::createUnique(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, InputParameters const&, unsigned int, bool)
+8: std::unique_ptr<FEProblemBase, std::default_delete<FEProblemBase> > Factory::createUnique<FEProblemBase>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, InputParameters const&, unsigned int)
+9: std::shared_ptr<FEProblemBase> Factory::create<FEProblemBase>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, InputParameters const&, unsigned int)
+10: CreateProblemAction::act()
+11: Action::timedAct()
+12: ActionWarehouse::executeActionsWithAction(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+13: ActionWarehouse::executeAllActions()
+14: MooseApp::runInputFile()
+15: MooseApp::run()
+16: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x50e8) [0x5555555590e8]
+17: __libc_start_main
+18: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x538a) [0x55555555938a]
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+Stack frames: 19
+0: libMesh::print_trace(std::ostream&)
+1: moose::internal::mooseErrorRaw(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+2: MooseBase::callMooseError(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool) const
+3: /home/garcsamu/moose_exec/moose/modules/subchannel/lib/libsubchannel-opt.so.0(+0x107f34) [0x15555242df34]
+4: SubChannel1PhaseProblem::SubChannel1PhaseProblem(InputParameters const&)
+5: TriSubChannel1PhaseProblem::TriSubChannel1PhaseProblem(InputParameters const&)
+6: RegistryEntry<TriSubChannel1PhaseProblem>::build(InputParameters const&)
+7: Factory::createUnique(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, InputParameters const&, unsigned int, bool)
+8: std::unique_ptr<FEProblemBase, std::default_delete<FEProblemBase> > Factory::createUnique<FEProblemBase>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, InputParameters const&, unsigned int)
+9: std::shared_ptr<FEProblemBase> Factory::create<FEProblemBase>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, InputParameters const&, unsigned int)
+10: CreateProblemAction::act()
+11: Action::timedAct()
+12: ActionWarehouse::executeActionsWithAction(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+13: ActionWarehouse::executeAllActions()
+14: MooseApp::runInputFile()
+15: MooseApp::run()
+16: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x50e8) [0x5555555590e8]
+17: __libc_start_main
+18: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x538a) [0x55555555938a]
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+--------------------------------------------------------------------------
+prterun detected that one or more processes exited with non-zero status,
+thus causing the job to be terminated. The first process to do so was:
+
+   Process name: [prterun-wr11n13-900085@1,0] Exit code:    1
+--------------------------------------------------------------------------
