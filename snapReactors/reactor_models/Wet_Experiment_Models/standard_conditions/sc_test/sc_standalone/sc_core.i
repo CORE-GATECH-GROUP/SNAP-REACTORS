@@ -5,7 +5,7 @@
 ###################################################
 T_in = 866.0 
 P_out = 253727.1   # Pa
-# reactor_power = 600000 #WTh
+reactor_power = 600000 #WTh
 #fuel_assemblies_per_power_unit = '${fparse 1}'
 #fuel_pins_per_assembly = 211
 #pin_power = '${fparse reactor_power/(fuel_assemblies_per_power_unit*fuel_pins_per_assembly)}' # Approx.
@@ -31,17 +31,27 @@ length_heated_fuel = '${fparse 35.56*scale_factor}'
 #orifice_plate_height = '${fparse 0*scale_factor}'
 duct_inside = '${fparse 11.43*2*scale_factor}'
 
+# entry1 = '${fparse 0.79502/100}'
+# entry2 = '${fparse 0.9652/100}'
+# entry3 = '${fparse 2.1717/100}'
 entry1 = '${fparse 3.556/100}'
-entry_length = '${fparse entry1}'
-exit1 = '${fparse 3.556/100}'
-exit_length = '${fparse exit1}'#'${fparse exit2 + exit3}'#
+entry2 = '${fparse 0/100}'
+entry3 = '${fparse 0/100}'
+entry_length = '${fparse entry1 + entry2 + entry3}'
+# exit1 = '${fparse 2.9083/100}'
+# exit2 = '${fparse 0.2286/100}'
+# exit3 = '${fparse 0.87376/100}'
+exit1 = '${fparse 0/100}'
+exit2 = '${fparse 0/100}'
+exit3 = '${fparse 3.556/100}'
+exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
 ###################################################
 
 [TriSubChannelMesh]
   [subchannel]
     type = SCMTriSubChannelMeshGenerator
     nrings = '${fparse n_rings}'
-    n_cells = 12
+    n_cells = 10
     flat_to_flat = '${fparse duct_inside}'
     unheated_length_entry = '${fparse entry_length}'
     heated_length = '${fparse length_heated_fuel}'
@@ -58,7 +68,7 @@ exit_length = '${fparse exit1}'#'${fparse exit2 + exit3}'#
     type = SCMTriPinMeshGenerator
     input = subchannel
     nrings = '${fparse n_rings}'
-    n_cells = 12
+    n_cells = 10
     unheated_length_entry = '${fparse entry_length}'
     heated_length = '${fparse length_heated_fuel}'
     unheated_length_exit = '${fparse exit_length}'
@@ -69,7 +79,7 @@ exit_length = '${fparse exit1}'#'${fparse exit2 + exit3}'#
     type = SCMTriDuctMeshGenerator
     input = fuel_pins
     nrings = '${fparse n_rings}'
-    n_cells = 12
+    n_cells = 10
     flat_to_flat = '${fparse duct_inside}'
     unheated_length_entry = '${fparse entry_length}'
     heated_length = '${fparse length_heated_fuel}'
@@ -78,15 +88,15 @@ exit_length = '${fparse exit1}'#'${fparse exit2 + exit3}'#
   []
 []
 
-# [Functions]
-#   [axial_heat_rate]
-#     type = ParsedFunction
-#     expression = 'if(z>l1 & z<l2, 1.0, 0.0)'
-#     #'(pi/2)*sin(pi*z/L)'
-#     symbol_names = 'l1 l2'
-#     symbol_values = '${entry_length} ${fparse length_heated_fuel}'
-#   []
-# []
+[Functions]
+  [axial_heat_rate]
+    type = ParsedFunction
+    expression = 'if(z>l1 & z<l2, 1.0, 0.0)'
+    #'(pi/2)*sin(pi*z/L)'
+    symbol_names = 'l1 l2'
+    symbol_values = '${entry_length} ${fparse length_heated_fuel}'
+  []
+[]
 
 [AuxVariables]
   [mdot]
@@ -121,9 +131,6 @@ exit_length = '${fparse exit1}'#'${fparse exit2 + exit3}'#
   []
   [w_perim]
     block = subchannel
-  []
-  [q_flux]
-    block = fuel_pins
   []
   [q_prime]
     block = fuel_pins
@@ -160,14 +167,14 @@ exit_length = '${fparse exit1}'#'${fparse exit2 + exit3}'#
 [Problem]
   type = TriSubChannel1PhaseProblem
   fp = sodium
-  n_blocks = 12
+  n_blocks = 10
   P_out = ${P_out}
   CT = 1.0
   compute_density = false #true
   compute_viscosity = true #true
   compute_power = true #true
-  P_tol = 1.0e-4
-  T_tol = 1.0e-4
+  P_tol = 1.0e-3
+  T_tol = 1.0e-3
   implicit = false
   segregated = true
   staggered_pressure = false
@@ -187,13 +194,13 @@ exit_length = '${fparse exit1}'#'${fparse exit2 + exit3}'#
     variable = w_perim
   []
 
-  # [q_prime_IC]
-  #   type = SCMTriPowerIC
-  #   variable = q_prime
-  #   power = ${reactor_power} # W
-  #   filename = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/S8ER_pin.txt"
-  #   axial_heat_rate = axial_heat_rate
-  # []
+  [q_prime_IC]
+    type = SCMTriPowerIC
+    variable = q_prime
+    power = ${reactor_power} # W
+    filename = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/S8ER_pin.txt"
+    axial_heat_rate = axial_heat_rate
+  []
 
   [T_ic]
     type = ConstantIC
@@ -248,6 +255,11 @@ exit_length = '${fparse exit1}'#'${fparse exit2 + exit3}'#
     variable = Tduct
     value = ${T_in}
   []
+  [mdot_ic]
+    type = ConstantIC
+    variable = mdot
+    value = 0.0
+  []
 []
 
 [AuxKernels]
@@ -268,13 +280,6 @@ exit_length = '${fparse exit1}'#'${fparse exit2 + exit3}'#
     execute_on = 'timestep_begin'
     block = subchannel
   []
-  [norm_q_lin]
-    type = NormalizationAux
-    variable = q_prime
-    source_variable = q_flux
-    normal_factor = 0.0448242439814
-    execute_on = 'timestep_begin' #check
-  [] 
 []
 
 [UserObjects]
@@ -310,7 +315,7 @@ exit_length = '${fparse exit1}'#'${fparse exit2 + exit3}'#
   #active = ''
   [viz]
     type = FullSolveMultiApp
-    input_files = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_core_viz.i"
+    input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_standalone/sc_core_viz.i'
     execute_on = "final"
   []
 []
