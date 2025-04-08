@@ -5,11 +5,11 @@
 ###################################################
 T_in = 866.0 
 P_out = 253727.1   # Pa
-# reactor_power = 600000 #WTh
+reactor_power = '${fparse 600000/211 * 7}' #WTh
 #fuel_assemblies_per_power_unit = '${fparse 1}'
 #fuel_pins_per_assembly = 211
 #pin_power = '${fparse reactor_power/(fuel_assemblies_per_power_unit*fuel_pins_per_assembly)}' # Approx.
-mass_flow = '${fparse 6.15}' # kg/(s)
+mass_flow = '${fparse 6.15/438*18}' # kg/(s)
 
 ###################################################
 # Geometric parameters
@@ -23,28 +23,18 @@ fuel_pin_pitch = '${fparse 1.4478*scale_factor}'
 fuel_pin_diameter = '${fparse 1.4268*scale_factor}'
 wire_z_spacing = '${fparse 0*scale_factor}'
 wire_diameter = '${fparse 0*scale_factor}'
-n_rings = 9
+n_rings = 2
 #length_entry_fuel = '${fparse 0*scale_factor}'
 length_heated_fuel = '${fparse 35.56*scale_factor}'
 #length_outlet_fuel = '${fparse 0*scale_factor}'
 #height = '${fparse length_entry_fuel+length_heated_fuel+length_outlet_fuel}'
 #orifice_plate_height = '${fparse 0*scale_factor}'
-duct_inside = '${fparse 11.43*2*scale_factor}'
+duct_inside = '${fparse 4.43*2*scale_factor}'
 
-# entry1 = '${fparse 0.79502/100}'
-# entry2 = '${fparse 0.9652/100}'
-# entry3 = '${fparse 2.1717/100}'
 entry1 = '${fparse 0/100}'
-entry2 = '${fparse 0/100}'
-entry3 = '${fparse 0/100}'
-entry_length = '${fparse entry1 + entry2 + entry3}'
-# exit1 = '${fparse 2.9083/100}'
-# exit2 = '${fparse 0.2286/100}'
-# exit3 = '${fparse 0.87376/100}'
+entry_length = '${fparse entry1}'
 exit1 = '${fparse 0/100}'
-exit2 = '${fparse 0/100}'
-exit3 = '${fparse 0/100}'
-exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
+exit_length = '${fparse exit1}'#'${fparse exit2 + exit3}'#
 ###################################################
 
 [TriSubChannelMesh]
@@ -88,18 +78,13 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   []
 []
 
-
 [Functions]
-  # [axial_heat_rate]
-  #   type = ParsedFunction
-  #   expression = 'if(z>l1 & z<l2, 1.0, 0.0)'
-  #   #'(pi/2)*sin(pi*z/L)'
-  #   symbol_names = 'l1 l2'
-  #   symbol_values = '${entry_length} ${fparse length_heated_fuel}'
-  # []
-  [q_pow_to_lin]
+  [axial_heat_rate]
     type = ParsedFunction
-    expression = 'x * 0.000143410377564'
+    expression = 'if(z>l1 & z<l2, 1.0, 0.0)'
+    #'(pi/2)*sin(pi*z/L)'
+    symbol_names = 'l1 l2'
+    symbol_values = '${entry_length} ${fparse length_heated_fuel}'
   []
 []
 
@@ -137,12 +122,11 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   [w_perim]
     block = subchannel
   []
-  # [q_dens]
-  #   block = fuel_pins
-  # []
+  [q_flux]
+    block = fuel_pins
+  []
   [q_prime]
     block = fuel_pins
-    #initial_condition = 7000
   []
   [mu]
     block = subchannel
@@ -189,10 +173,9 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   staggered_pressure = false
   monolithic_thermal = false
   verbose_multiapps = true
-  verbose_subchannel = true
+  verbose_subchannel = false
   # type = NoSolveProblem
 []
-
 
 [ICs]
   [S_IC]
@@ -203,6 +186,14 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   [w_perim_IC]
     type = SCMTriWettedPerimIC
     variable = w_perim
+  []
+
+  [q_prime_IC]
+    type = SCMTriPowerIC
+    variable = q_prime
+    power = ${reactor_power} # W
+    filename = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_simple/S8ER_pin.txt"
+    axial_heat_rate = axial_heat_rate
   []
 
   [T_ic]
@@ -258,11 +249,6 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     variable = Tduct
     value = ${T_in}
   []
-  [mdot_ic]
-    type = ConstantIC
-    variable = mdot
-    value = 0.0
-  []
 []
 
 [AuxKernels]
@@ -283,21 +269,13 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     execute_on = 'timestep_begin'
     block = subchannel
   []
-  # [norm_q_pow]
+  # [norm_q_lin]
   #   type = NormalizationAux
   #   variable = q_prime
-  #   # source_variable = q_prime
-  #   source_variable = q_dens
-  #   normal_factor = 0.000143410377564 # cross_sectional_area
-  #   execute_on = 'linear timestep_begin' #check
+  #   source_variable = q_flux
+  #   normal_factor = 0.0448242439814
+  #   execute_on = 'timestep_begin' #check
   # [] 
-  # [norm_q_lin_via_func]
-  #   type = FunctionAux
-  #   variable = q_prime
-  #   function = q_pow_to_lin
-  #   block = fuel_pins
-  #   execute_on = 'timestep_begin'
-  # []
 []
 
 [UserObjects]
@@ -333,7 +311,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   #active = ''
   [viz]
     type = FullSolveMultiApp
-    input_files = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/pow_den/sc_core_viz.i"
+    input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_simple/sc_core_viz.i'
     execute_on = "final"
   []
 []

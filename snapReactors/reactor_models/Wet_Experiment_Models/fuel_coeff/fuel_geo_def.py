@@ -69,10 +69,10 @@ exp_unc = exp_data['abs_unc'].values
 plt.figure(figsize=(10, 6))
 plt.title("Fuel Temperature Reactivity")
 plt.xlabel('Fuel Temperature [K]')
-plt.ylabel('Fuel Temperature Coefficient [rho/K]')
+plt.ylabel('Fuel Temperature Coefficient [rho (pcm)/K]')
 
 # Plot analytical data
-plt.errorbar(temp_list[:3], reac_list[:3], yerr=reac_unc_list[:3], fmt='x', label="Modeled", color='red')
+plt.errorbar(temp_list[0:-1], reac_list[:], yerr=reac_unc_list[:], fmt='x', label="Modeled", color='red')
 plt.errorbar(x_data, y_data, yerr = exp_unc, fmt = 'o', label = 'Experimental', color = 'blue')
 
 

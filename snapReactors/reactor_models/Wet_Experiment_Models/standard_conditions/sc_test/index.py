@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 ###################################
 # Control parameters
 ###################################
-_n_rings = 9
+_n_rings = 2
 f = np.sqrt(3) / 2
 scale_factor = 0.01
 pitch = 1.4478 * scale_factor

@@ -142,7 +142,7 @@ pow_dens = 55760474.8606
 # acm_dz = '${fparse 3.81/100}'
 # lay1 = '${fparse 2.1717/100}'
 # lay2 = '${fparse 2.9083/100}'
-multi_app_z_pos = 0.03556 #0.0176022
+#multi_app_z_pos = 0.03556 #0.0176022
 # ==============================================================================
 # GEOMETRY AND MESH
 # ==============================================================================
@@ -232,24 +232,16 @@ multi_app_z_pos = 0.03556 #0.0176022
         order = CONSTANT
         initial_condition = '${ht_coeff}'
     []
-    [q_flux]
-        family = MONOMIAL
-        order = CONSTANT
-        block = 'Clad'
-    []
-    [q_flux_node]
-        family = LAGRANGE
-        order = FIRST
-    []
     [power_dens_node]
         family = LAGRANGE
         order = FIRST
         block = 'Fuel'
     []
-    # [q_prime_node]
-    #     family = LAGRANGE
-    #     order = FIRST
-    # []
+    [pow_lin]
+        family = LAGRANGE
+        order = FIRST
+        block = 'Fuel'
+    []
 []
 
 [AuxKernels]
@@ -274,57 +266,21 @@ multi_app_z_pos = 0.03556 #0.0176022
         normal_factor = 1#1.2658064684
         execute_on = 'timestep_begin' #check
     []  
-    # [Qprime]
-    #     type = SCMRZPinQPrimeAux
-    #     component = normal
-    #     diffusion_variable = bison_temp
-    #     diffusivity = thermal_conductivity
-    #     variable = q_prime
-    #     boundary = 'fuel_boundary'
-    #     execute_on = 'timestep_end'
-    # []
     [pow_dens_to_node]
         type = ProjectionAux
         v = bison_power_density
         variable = power_dens_node
         execute_on = 'timestep_end'
     []
-    [q_flux_elem]
-        type = DiffusionFluxAux
-        diffusion_variable = bison_temp
-        component = normal
-        diffusivity = thermal_conductivity
-        variable = q_flux
-        boundary = 'fluid_solid_interface'
-        execute_on = 'linear timestep_end'
+    [make_powdens_linear]
+        type = NormalizationAux
+        variable = pow_lin
+        source_variable = power_dens_node
+        normal_factor = 0.000155981906099#1.2658064684
+        execute_on = 'timestep_end' #check
     []
-    [q_flux_to_node]
-        type = ProjectionAux
-        v = q_flux
-        variable = q_flux_node
-        execute_on = 'linear timestep_end'
-        block = 'Clad'
-    []
-    # [q_prime_to_node]
-    #     type = ProjectionAux
-    #     v = q_prime
-    #     variable = q_prime_node
-    #     execute_on = 'timestep_end'
-    # []
 []
 
-# [UserObjects]
-#     [Q_prime_avg]
-#         type = LayeredSideAverage
-#         boundary = 'fluid_solid_interface'
-#         variable = q_prime
-#         direction = y
-#         num_layers = 10
-#         direction_min = '0.0'
-#         direction_max = '${fparse lay1 + (acm_dz * 8) + lay2}'
-#         execute_on = 'initial timestep_end'
-#     []
-# []
 # ==============================================================================
 # MULTIAPPS AND TRANSFERS
 # ==============================================================================
@@ -332,10 +288,10 @@ multi_app_z_pos = 0.03556 #0.0176022
     [sc]
       type = FullSolveMultiApp
       #app_type = ThermalHydraulicsApp
-      input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_core.i'
+      input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/pow_den/sc_core.i'
       execute_on =  timestep_end
       bounding_box_padding = '0.1 0.1 0'
-      positions = '0 0 -${multi_app_z_pos}'
+      positions = '0 0 0'
       output_in_position = true
     []
   []
@@ -344,29 +300,13 @@ multi_app_z_pos = 0.03556 #0.0176022
     [flux_to_SC]
         type = MultiAppGeneralFieldNearestLocationTransfer
         to_multi_app = sc
-        source_variable = q_flux_node
-        variable = q_flux
-        #from_boundaries = 'fluid_solid_interface'
+        source_variable = pow_lin
+        # variable = q_dens
+        variable = q_prime
+        from_blocks = 'Fuel'
         to_blocks = fuel_pins
         greedy_search = true
     []
-    # [Power_lin_to_SC]
-    #     type = MultiAppGeneralFieldNearestLocationTransfer
-    #     to_multi_app = sc
-    #     source_variable = q_prime
-    #     variable = q_prime_elem
-    #     to_blocks = fuel_pins
-    #     greedy_search = true
-    # []
-    # [Q_prime_avg_to_SC]
-    #     type = MultiAppGeneralFieldUserObjectTransfer
-    #     to_multi_app = sc
-    #     source_user_object = Q_prime_avg
-    #     variable = q_prime
-    #     error_on_miss = true
-    #     search_value_conflicts = false
-    #     to_blocks = fuel_pins
-    # []
   []
 
 # ==============================================================================
@@ -535,18 +475,6 @@ multi_app_z_pos = 0.03556 #0.0176022
         block = ${fuel_blocks}
         execute_on = 'initial timestep_end'
     []
-    [q_prime_avg_element]
-        type = SideAverageValue
-        variable = q_flux
-        boundary = 'fluid_solid_interface'
-        execute_on = 'timestep_end'
-    []
-    [q_prime_avg_nodal]
-        type = SideAverageValue
-        variable = q_flux_node
-        boundary = 'fluid_solid_interface'
-        execute_on = 'timestep_end'
-    []
     [fuel_vol]
         type = VolumePostprocessor
         block = ${fuel_blocks}
@@ -564,28 +492,7 @@ multi_app_z_pos = 0.03556 #0.0176022
         block = ${ceram_blocks}
     []
 []
-# [VectorPostprocessors]
-#     [node_q]
-#         type = LineValueSampler
-#         start_point = '0 0 0'
-#         end_point = '0 0 35'
-#         num_points = 10
-#         sort_by = z
-#         variable = q_prime_node
-#         execute_on = timestep_end
 
-#     []
-#     [ele_q]
-#         type = LineValueSampler
-#         start_point = '0 0 0'
-#         end_point = '0 0 35'
-#         num_points = 10
-#         variable = q_prime
-#         sort_by = z
-#         execute_on = timestep_end
-
-#     []
-# []
 [Outputs]
     exodus = true
     [csv]
