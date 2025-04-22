@@ -20,17 +20,14 @@ dep_17 = st.read(burn_17_path)
 burnup_17 = st.read('/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/H_Zr_1.7/s82d_ac_c3_gcu_ringres.main_dep.m').burnup
 anakeff_17 = dep_17['impKeff'][:,0]
 rho_17 = np.zeros_like(anakeff_17)
-rho_17 = (1 - 1/anakeff_17)*10**5
-rho_17_match = rho_17 + 1618.51446362
+rho_17 = (1 - 1/anakeff_17)*1e5
+rho_17_match = rho_17 + 684.2
 hy_loss = 161.91174391612 * burnup_17
 rho_17_adjusted = rho_17_match - hy_loss
 anakeff_17_err = dep_17['impKeff'][:,1]
-rho_17_err = np.sqrt((1/anakeff_17)**2 * anakeff_17_err**2)
-rho_17_err = 3 * rho_17_err
-rho_17_err = abs(np.multiply(rho_17_err, rho_17_adjusted))
-anakeff_17_err  = np.multiply(anakeff_17_err, anakeff_17)
-
-
+rho_17_err = 3* np.sqrt((1/anakeff_17**2)**2 * anakeff_17_err**2)*1e5
+rho_17_unadj_err = rho_17_err
+print(rho_17)
 exp_rel_path = Path('H_Zr_1.7/burn-data.csv')
 exp_path = (current_dir/exp_rel_path).resolve()
 exp_data = pd.read_csv(exp_path)
@@ -38,17 +35,20 @@ x_data = exp_data['x (MWd/kgU)'].values
 y_data = exp_data['y(pcm)'].values
 
 plt.figure(figsize = (10,6))
-plt.title('Lifetime Excess Reactivity')
 plt.xlabel("Burnup [MWd/kgU]")
 plt.ylabel("Keff")
 plt.errorbar(x_data, y_data, yerr=None, fmt='o', label="Experimental Data", color='blue')
+plt.errorbar(burnup_17[:-3], rho_17_adjusted[:-3], yerr = rho_17_err[:-3], fmt = 'x', label = 'Adjusted', color = 'green')
+plt.xlabel("Burnup [MWd/kgU]")
+plt.ylabel("ρ [pcm]")
 # plt.errorbar(burnup_16, anakeff_16, yerr = anakeff_16_err, fmt = 'x', label = 'H/Zr = 1.6', color = 'red')
-plt.errorbar(burnup_17[:-3], rho_17_adjusted[:-3], yerr = rho_17_err[:-3], fmt = 'x', label = 'H/Zr = 1.7', color = 'green')
+plt.errorbar(burnup_17[:-3], rho_17[:-3], yerr = rho_17_unadj_err[:-3], fmt = 'x', label = 'Unadjusted', color = 'red')
 
 plt.legend()
 plt.grid(True, linestyle = '--', alpha = 0.7)
 plt.tight_layout()
-plt.savefig('burnup.png')
+plt.savefig('combined_burnup.png')
+
 
 ## comparing hydrogen effects at start of life
 

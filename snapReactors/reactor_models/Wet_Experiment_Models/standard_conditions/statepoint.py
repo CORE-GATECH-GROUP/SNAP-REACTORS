@@ -16,17 +16,20 @@ cc_extension = [""]
 # Function to generate new filenames
 def generate_filename(i, j, k):
     return f"s82d_ac_c3_gcu_ringres_{i}_{j}_{k}.main", f"s82d_ac_c3_gcu_ringres_{i}_{j}_{k}.mat"
+
 def new_density_fuel(T_c):
     # note that expansion is restricted axially
-    alpha_A = 2* (7.38*10**(-6)+T_c*1.51*10**(-8))
+    alpha_L = (7.38*10**(-6)+T_c*1.51*10**(-8))
     dT = T_c-(300-273.15) 
     rad = 0.67564
     height = 35.56
     area = np.pi*rad**2
     vol = area * height
-    dA =  area*alpha_A*dT
-    new_area = dA  + area
-    new_vol = new_area * height
+    dL =  height*alpha_L*dT
+    print(dL)
+    new_height = dL  + height
+    print(new_height)
+    new_vol = new_height * area
     rho = 6.0600000000000005
     mass = rho * vol
     new_rho = mass / new_vol

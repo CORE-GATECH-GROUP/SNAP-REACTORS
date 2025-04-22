@@ -67,8 +67,6 @@
 #      doi = "10.2172/4393793",
 #      url = "https://www.osti.gov/biblio/4393793"
 #  }
-inlet_T_fluid             = 860.0  # (K) 
-ht_coeff                  = 4539.6
 
 
 # Material Properties ------------------------------------------------------------
@@ -118,6 +116,9 @@ ht_coeff                  = 4539.6
 #coolant_cp                    = 880
 #coolant_tc                    = 30
 
+
+inlet_T_fluid             = 860.0  # (K) 
+ht_coeff                  = 4539.6
 fuel_blocks = 'Fuel'
 ceram_blocks = 'Ceramic'
 clad_blocks = 'Clad'
@@ -137,7 +138,7 @@ intref_blocks = 'Reflector'
 # n_fuel_pins = 211
 # fuel_diameter = '${fparse 0.67564 * 2 * 0.01}'
 # unit_cell_height = '${units 35.56 cm -> m}'
-pow_dens = 55760474.8606
+#pow_dens = 55760474.8606
 
 # acm_dz = '${fparse 3.81/100}'
 # lay1 = '${fparse 2.1717/100}'
@@ -171,7 +172,7 @@ pow_dens = 55760474.8606
 # ==============================================================================
 
 # ==============================================================================
-# AUXVARIABLES AND AUXKERNELS
+# VARIABLES AND KERNELS
 # ==============================================================================
 [Variables]
     [bison_temp]
@@ -209,9 +210,9 @@ pow_dens = 55760474.8606
         family = L2_LAGRANGE 
         order = FIRST 
         block = 'Fuel'
-        initial_condition = '${pow_dens}' #
+        #initial_condition = '${pow_dens}' #
     []
-    [T_inf]
+    [bison_T_inf]
         initial_condition = '${inlet_T_fluid}'
     []
     [bison_Tfuel]
@@ -232,26 +233,26 @@ pow_dens = 55760474.8606
         order = CONSTANT
         initial_condition = '${ht_coeff}'
     []
-    [power_dens_node]
-        family = LAGRANGE
+    [bison_pow_lin]
+        family = L2_LAGRANGE
         order = FIRST
         block = 'Fuel'
     []
-    [pow_lin]
-        family = LAGRANGE
+    [bison_dummy_lin]
+        family = L2_LAGRANGE
         order = FIRST
         block = 'Fuel'
     []
 []
 
 [AuxKernels]
-    [norm_Tfuel]
-        type = NormalizationAux
-        variable = bison_Tfuel
-        source_variable = bison_temp
-        normal_factor = 1
-        execute_on = 'timestep_begin' #check
-    []
+    # [norm_Tfuel]
+    #     type = NormalizationAux
+    #     variable = bison_Tfuel
+    #     source_variable = bison_temp
+    #     normal_factor = 1
+    #     execute_on = 'timestep_end' #check
+    # []
     # [norm_Tref]
     #     type = NormalizationAux
     #     variable = bison_Tref
@@ -259,6 +260,13 @@ pow_dens = 55760474.8606
     #     normal_factor = 1
     #     execute_on = 'timestep_begin' #check
     # []
+    [aux_power]
+        type = FunctionAux
+        function = axial_heat_rate
+        variable = bison_power_density
+        block = 'Fuel'
+        execute_on = 'timestep_begin'
+    []
     [norm_power_density]
         type = NormalizationAux
         variable = bison_norm_power_density
@@ -266,19 +274,19 @@ pow_dens = 55760474.8606
         normal_factor = 1#1.2658064684
         execute_on = 'timestep_begin' #check
     []  
-    [pow_dens_to_node]
-        type = ProjectionAux
-        v = bison_power_density
-        variable = power_dens_node
-        execute_on = 'timestep_end'
-    []
     [make_powdens_linear]
         type = NormalizationAux
-        variable = pow_lin
-        source_variable = power_dens_node
+        variable = bison_pow_lin
+        source_variable = bison_power_density
         normal_factor = 0.000155981906099#1.2658064684
         execute_on = 'timestep_end' #check
-    []
+    []    
+    # [pow_dens_to_node]
+    #     type = ProjectionAux
+    #     v = pow_lin
+    #     variable = dummy_lin
+    #     execute_on = 'timestep_end'
+    # []
 []
 
 # ==============================================================================
@@ -294,38 +302,45 @@ pow_dens = 55760474.8606
       positions = '0 0 0'
       output_in_position = true
     []
-  []
+[]
   
-  [Transfers]
-    [flux_to_SC]
-        type = MultiAppGeneralFieldNearestLocationTransfer
-        to_multi_app = sc
-        source_variable = pow_lin
-        # variable = q_dens
-        variable = q_prime
-        from_blocks = 'Fuel'
-        to_blocks = fuel_pins
-        greedy_search = true
-    []
-  []
+#   [Transfers]
+#     [flux_to_SC]
+#         type = MultiAppGeneralFieldNearestLocationTransfer
+#         to_multi_app = sc
+#         source_variable = bison_pow_lin
+#         # variable = q_dens
+#         # variable = q_prime_element
+#         variable = q_prime
+#         from_blocks = 'Fuel'
+#         to_blocks = fuel_pins
+#         greedy_search = true
+#     []
+#   []
 
 # ==============================================================================
 # INITIAL CONDITIONS AND FUNCTIONS
 # ==============================================================================
-# [Functions]
-#     [tk_f]
-#         type = ParsedFunction
-#         symbol_names = 'bison_temp'
-#         symbol_values = 'temp_av'
-#         expression = '27.73992+bison_temp*0.027428444'#Models/SNAP10A_dimensions
-#     []
-#     [cp_f]
-#         type = ParsedFunction
-#         symbol_names = 'bison_temp'
-#         symbol_values = 'temp_av'
-#         expression = '472.27104+bison_temp*0.7275728'#Models/SNAP10A_dimensions
-#     []
-# []
+[Functions]
+    # [tk_f]
+    #     type = ParsedFunction
+    #     symbol_names = 'bison_temp'
+    #     symbol_values = 'temp_av'
+    #     expression = '27.73992+bison_temp*0.027428444'#Models/SNAP10A_dimensions
+    # []
+    # [cp_f]
+    #     type = ParsedFunction
+    #     symbol_names = 'bison_temp'
+    #     symbol_values = 'temp_av'
+    #     expression = '472.27104+bison_temp*0.7275728'#Models/SNAP10A_dimensions
+    # []
+    [axial_heat_rate]
+        type = ParsedFunction
+        expression = '55760474.8606'#"if(z > l1 & z < l2, 55760474.8606, 0)"
+        symbol_names = 'l1 l2'
+        symbol_values = '0 35.56'
+    []
+[]
 
 # ==============================================================================
 # FLUID PROPERTIES, MATERIALS, AND USER OBJECTS
@@ -385,7 +400,7 @@ pow_dens = 55760474.8606
         type = CoupledConvectiveHeatFluxBC
         variable = bison_temp
         boundary = 'fluid_solid_interface'
-        T_infinity = T_inf
+        T_infinity = bison_T_inf
         htc = HTC
     []
     # Convective BC outer surface fuel pin
@@ -493,10 +508,25 @@ pow_dens = 55760474.8606
     []
 []
 
+[VectorPostprocessors]
+    [pow_dens]
+        type = LineValueSampler
+        start_point = '0 0 0.05'
+        end_point = '0 0 0.355'
+        num_points = 10
+        variable = bison_pow_lin
+        sort_by = 'z'
+    []
+[]
+
 [Outputs]
-    exodus = true
+    [exodus]
+        type = Exodus
+        execute_on = 'timestep_end'
+    []
     [csv]
         type = CSV
+        execute_on = 'initial timestep_end'
     []
     # [nemesis]
     #     type = Nemesis

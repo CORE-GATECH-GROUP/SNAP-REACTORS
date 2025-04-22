@@ -5,7 +5,7 @@
 ###################################################
 T_in = 866.0 
 P_out = 253727.1   # Pa
-reactor_power = 600000 #WTh
+reactor_power = 671337.24 #WTh
 #fuel_assemblies_per_power_unit = '${fparse 1}'
 #fuel_pins_per_assembly = 211
 #pin_power = '${fparse reactor_power/(fuel_assemblies_per_power_unit*fuel_pins_per_assembly)}' # Approx.
@@ -34,7 +34,7 @@ duct_inside = '${fparse 11.43*2*scale_factor}'
 # entry1 = '${fparse 0.79502/100}'
 # entry2 = '${fparse 0.9652/100}'
 # entry3 = '${fparse 2.1717/100}'
-#entry1 = '${fparse 3.556/100}'
+# entry1 = '${fparse 3.556/100}'
 entry1 = '${fparse 0/100}'
 entry2 = '${fparse 0/100}'
 entry3 = '${fparse 0/100}'
@@ -93,7 +93,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
 [Functions]
   [axial_heat_rate]
     type = ParsedFunction
-    expression = 'if(z>l1 & z<l2, 1.0, 0.0)'
+    expression = '1.0'#'if(z>l1 & z<l2, 1.0, 0.0)'
     #'(pi/2)*sin(pi*z/L)'
     symbol_names = 'l1 l2'
     symbol_values = '${entry_length} ${fparse length_heated_fuel}'
@@ -200,7 +200,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     type = SCMTriPowerIC
     variable = q_prime
     power = ${reactor_power} # W
-    filename = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/S8ER_pin.txt"
+    filename = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_standalone/S8ER_pin.txt"
     axial_heat_rate = axial_heat_rate
   []
 

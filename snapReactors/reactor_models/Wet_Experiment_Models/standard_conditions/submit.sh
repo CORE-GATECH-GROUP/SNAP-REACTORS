@@ -15,4 +15,4 @@ cd $PBS_O_WORKDIR
 
 export TMPDIR=/tmp
 export SERPENT_DATA=/hpc-common/data/serpent/xsdata/s2v0_endfb80
-mpirun sss2 /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/s82d_ac_c3_gcu_ringres.main -omp 40  -plot
+mpirun sss2 /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/s82d_ac_c3_gcu_ringres.main -omp 40

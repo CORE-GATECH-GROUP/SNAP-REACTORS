@@ -5,7 +5,7 @@
 ###################################################
 T_in = 866.0 
 P_out = 253727.1   # Pa
-# reactor_power = 600000 #WTh
+reactor_power = 671337.24 #WTh
 #fuel_assemblies_per_power_unit = '${fparse 1}'
 #fuel_pins_per_assembly = 211
 #pin_power = '${fparse reactor_power/(fuel_assemblies_per_power_unit*fuel_pins_per_assembly)}' # Approx.
@@ -90,16 +90,11 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
 
 
 [Functions]
-  # [axial_heat_rate]
-  #   type = ParsedFunction
-  #   expression = 'if(z>l1 & z<l2, 1.0, 0.0)'
-  #   #'(pi/2)*sin(pi*z/L)'
-  #   symbol_names = 'l1 l2'
-  #   symbol_values = '${entry_length} ${fparse length_heated_fuel}'
-  # []
-  [q_pow_to_lin]
+  [axial_heat_rate]
     type = ParsedFunction
-    expression = 'x * 0.000143410377564'
+    expression = '1.0'
+    symbol_names = 'l1 l2'
+    symbol_values = '${entry_length} ${fparse length_heated_fuel}'
   []
 []
 
@@ -137,9 +132,6 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   [w_perim]
     block = subchannel
   []
-  # [q_dens]
-  #   block = fuel_pins
-  # []
   [q_prime]
     block = fuel_pins
     #initial_condition = 7000
@@ -187,7 +179,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   implicit = true
   segregated = false
   staggered_pressure = false
-  monolithic_thermal = false
+  monolithic_thermal = true
   verbose_multiapps = true
   verbose_subchannel = true
   # type = NoSolveProblem
@@ -203,6 +195,14 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   [w_perim_IC]
     type = SCMTriWettedPerimIC
     variable = w_perim
+  []
+  
+  [q_prime_IC]
+    type = SCMTriPowerIC
+    variable = q_prime
+    power = ${reactor_power} # W
+    filename = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_standalone/S8ER_pin.txt"
+    axial_heat_rate = axial_heat_rate
   []
 
   [T_ic]
@@ -271,7 +271,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     variable = T
     boundary = inlet
     value = ${T_in}
-    execute_on = 'timestep_begin'
+    execute_on = 'initial timestep_begin'
     block = subchannel
   []
   [mdot_in_bc]
@@ -280,24 +280,9 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     boundary = inlet
     #area = S
     mass_flow = ${mass_flow}
-    execute_on = 'timestep_begin'
+    execute_on = 'initial timestep_begin'
     block = subchannel
   []
-  # [norm_q_pow]
-  #   type = NormalizationAux
-  #   variable = q_prime
-  #   # source_variable = q_prime
-  #   source_variable = q_dens
-  #   normal_factor = 0.000143410377564 # cross_sectional_area
-  #   execute_on = 'linear timestep_begin' #check
-  # [] 
-  # [norm_q_lin_via_func]
-  #   type = FunctionAux
-  #   variable = q_prime
-  #   function = q_pow_to_lin
-  #   block = fuel_pins
-  #   execute_on = 'timestep_begin'
-  # []
 []
 
 [UserObjects]
@@ -313,8 +298,26 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   []
 []
 
+[VectorPostprocessors]
+  [pow_dens]
+      type = LineValueSampler
+      start_point = '0 0 0.05'
+      end_point = '0 0 0.355'
+      num_points = 10
+      variable = q_prime
+      sort_by = 'z'
+      execute_on = 'initial timestep_begin'
+  []
+[]
 [Outputs]
-  exodus = true
+  [exodus]
+    type = Exodus
+    execute_on = 'timestep_end'
+[]
+[csv]
+    type = CSV
+    execute_on = 'initial timestep_end'
+[]
 []
 
 [Executioner]
