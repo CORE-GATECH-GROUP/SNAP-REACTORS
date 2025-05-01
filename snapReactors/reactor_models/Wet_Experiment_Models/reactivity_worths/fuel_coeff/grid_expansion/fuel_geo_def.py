@@ -39,7 +39,7 @@ def compute_expanded_pitch(T_c):
     return new_pitch
 
 # # List of temperatures in Kelvin
-T_kelvin = [300,530, 639, 721, 816, 898, 977, 1070]
+T_kelvin = [300,530, 639, 721, 816, 901, 977, 1070]
 for T in T_kelvin:
     expanded_pitch = compute_expanded_pitch((T-273.15))
     print(f"At {T} K: Expanded Pitch = {expanded_pitch:.4f} cm")
@@ -50,8 +50,8 @@ for T in T_kelvin:
 # ## Plotting    
 current_dir = Path.cwd()
 res_name = 's82d_ac_c3_gcu_ringres.main_res.m'
-temp_name = ['639', '721','816','898','977','1070']
-temp_list = [639, 721, 816, 898, 977, 1070]
+temp_name = ['639', '721','816','901','977','1070']
+temp_list = [639, 721, 816, 901, 977, 1070]
 rho_list = []
 unc_list = []
 reac_list = []

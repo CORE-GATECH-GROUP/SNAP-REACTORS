@@ -5,7 +5,7 @@
 ###################################################
 T_in = 866.0 
 P_out = 253727.1   # Pa
-reactor_power = 671337.24 #WTh
+# reactor_power = 671337.24 #WTh
 #fuel_assemblies_per_power_unit = '${fparse 1}'
 #fuel_pins_per_assembly = 211
 #pin_power = '${fparse reactor_power/(fuel_assemblies_per_power_unit*fuel_pins_per_assembly)}' # Approx.
@@ -89,14 +89,14 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
 []
 
 
-[Functions]
-  [axial_heat_rate]
-    type = ParsedFunction
-    expression = '1.0'
-    symbol_names = 'l1 l2'
-    symbol_values = '${entry_length} ${fparse length_heated_fuel}'
-  []
-[]
+# [Functions]
+#   [axial_heat_rate]
+#     type = ParsedFunction
+#     expression = '1.0'
+#     symbol_names = 'l1 l2'
+#     symbol_values = '${entry_length} ${fparse length_heated_fuel}'
+#   []
+# []
 
 [AuxVariables]
   [mdot]
@@ -197,13 +197,13 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     variable = w_perim
   []
   
-  [q_prime_IC]
-    type = SCMTriPowerIC
-    variable = q_prime
-    power = ${reactor_power} # W
-    filename = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_standalone/S8ER_pin.txt"
-    axial_heat_rate = axial_heat_rate
-  []
+  # [q_prime_IC]
+  #   type = SCMTriPowerIC
+  #   variable = q_prime
+  #   power = ${reactor_power} # W
+  #   filename = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_standalone/S8ER_pin.txt"
+  #   axial_heat_rate = axial_heat_rate
+  # []
 
   [T_ic]
     type = ConstantIC

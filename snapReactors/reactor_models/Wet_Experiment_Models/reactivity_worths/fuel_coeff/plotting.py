@@ -8,8 +8,8 @@ def compute_reactivity_coefficients(directory_path):
     """Compute temperature reactivity coefficients for a specific effect directory."""
     current_dir = Path(directory_path)
     res_name = 's82d_ac_c3_gcu_ringres.main_res.m'
-    temp_name = ['639', '721', '816', '898', '977', '1070']
-    temp_list = [639, 721, 816, 898, 977, 1070]
+    temp_name = ['639', '721', '816', '900', '977', '1070']
+    temp_list = [639, 721, 816, 900, 977, 1070]
     rho_list = []
     unc_list = []
     reac_list = []

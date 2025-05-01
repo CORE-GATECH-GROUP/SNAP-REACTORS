@@ -39,7 +39,7 @@ def new_density_ceramic(T_c):
 T_c = 925 - 273.15
 print(new_density_ceramic(T_c))
 # # List of temperatures in Kelvin
-T_kelvin = [300,530, 639, 721, 816, 898, 977, 1070]
+T_kelvin = [300,530, 639, 721, 816, 901, 977, 1070]
 with open("temperature_output.txt", "w") as f:
     for T_K in T_kelvin:
         T_C = T_K - 273.15  # Convert to Celsius
@@ -102,8 +102,8 @@ New Poison Density: {new_ceram_rho: .8f}
 ## Plotting    
 current_dir = Path.cwd()
 res_name = 's82d_ac_c3_gcu_ringres.main_res.m'
-temp_name = ['639', '721','816','898','977','1070']
-temp_list = [639, 721, 816, 898, 977, 1070]
+temp_name = ['639', '721','816','901','977','1070']
+temp_list = [639, 721, 816, 901, 977, 1070]
 rho_list = []
 unc_list = []
 reac_list = []

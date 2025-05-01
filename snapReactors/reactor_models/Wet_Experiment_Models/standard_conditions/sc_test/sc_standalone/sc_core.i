@@ -5,7 +5,7 @@
 ###################################################
 T_in = 866.0 
 P_out = 253727.1   # Pa
-reactor_power = 671337.24 #WTh
+reactor_power = 600000 #WTh
 #fuel_assemblies_per_power_unit = '${fparse 1}'
 #fuel_pins_per_assembly = 211
 #pin_power = '${fparse reactor_power/(fuel_assemblies_per_power_unit*fuel_pins_per_assembly)}' # Approx.

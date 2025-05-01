@@ -124,7 +124,7 @@ ceram_blocks = 'Ceramic'
 clad_blocks = 'Clad'
 intref_blocks = 'Reflector'
 #barrel_blocks = 'barrel'
-#extref_blocks = 'Reflector'
+extref_blocks = 'Reflector'
 
 #gap_inner = 1
 #gap_outer = 2
@@ -219,9 +219,9 @@ intref_blocks = 'Reflector'
         block = ${fuel_blocks}
     []
 
-    # [bison_Tref]
-    #     block = ${extref_blocks}
-    # []
+    [bison_Tref]
+        block = ${extref_blocks}
+    []
     [bison_norm_power_density]
         family = L2_LAGRANGE
         order = FIRST
@@ -238,28 +238,28 @@ intref_blocks = 'Reflector'
         order = FIRST
         block = 'Fuel'
     []
-    [bison_dummy_lin]
-        family = L2_LAGRANGE
+    [bison_pow_lin_node]
+        family = LAGRANGE
         order = FIRST
         block = 'Fuel'
     []
 []
 
 [AuxKernels]
-    # [norm_Tfuel]
-    #     type = NormalizationAux
-    #     variable = bison_Tfuel
-    #     source_variable = bison_temp
-    #     normal_factor = 1
-    #     execute_on = 'timestep_end' #check
-    # []
-    # [norm_Tref]
-    #     type = NormalizationAux
-    #     variable = bison_Tref
-    #     source_variable = bison_temp
-    #     normal_factor = 1
-    #     execute_on = 'timestep_begin' #check
-    # []
+    [norm_Tfuel]
+        type = NormalizationAux
+        variable = bison_Tfuel
+        source_variable = bison_temp
+        normal_factor = 1
+        execute_on = 'timestep_end' #check
+    []
+    [norm_Tref]
+        type = NormalizationAux
+        variable = bison_Tref
+        source_variable = bison_temp
+        normal_factor = 1
+        execute_on = 'timestep_begin' #check
+    []
     [aux_power]
         type = FunctionAux
         function = axial_heat_rate
@@ -278,13 +278,13 @@ intref_blocks = 'Reflector'
         type = NormalizationAux
         variable = bison_pow_lin
         source_variable = bison_power_density
-        normal_factor = 0.000155981906099#1.2658064684
+        normal_factor = 0.000143410377564#1.2658064684
         execute_on = 'timestep_end' #check
     []    
-    # [pow_dens_to_node]
+    # [pow_lins_to_node]
     #     type = ProjectionAux
-    #     v = pow_lin
-    #     variable = dummy_lin
+    #     v = bison_pow_lin
+    #     variable = bison_pow_lin_node
     #     execute_on = 'timestep_end'
     # []
 []
@@ -304,19 +304,20 @@ intref_blocks = 'Reflector'
     []
 []
   
-#   [Transfers]
-#     [flux_to_SC]
-#         type = MultiAppGeneralFieldNearestLocationTransfer
-#         to_multi_app = sc
-#         source_variable = bison_pow_lin
-#         # variable = q_dens
-#         # variable = q_prime_element
-#         variable = q_prime
-#         from_blocks = 'Fuel'
-#         to_blocks = fuel_pins
-#         greedy_search = true
-#     []
-#   []
+  [Transfers]
+    [flux_to_SC]
+        type = MultiAppGeneralFieldNearestLocationTransfer
+        to_multi_app = sc
+        source_variable = bison_pow_lin
+        # source_variable = bison_pow_lin
+        # variable = q_dens
+        # variable = q_prime_element
+        variable = q_prime
+        from_blocks = 'Fuel'
+        to_blocks = fuel_pins
+        greedy_search = true
+    []
+  []
 
 # ==============================================================================
 # INITIAL CONDITIONS AND FUNCTIONS
@@ -442,8 +443,10 @@ intref_blocks = 'Reflector'
     nl_abs_step_tol = 1e-8
     l_tol = 1e-8
     solve_type = NEWTON
-    petsc_options_iname = '-pc_type -pc_hypre_type'
-    petsc_options_value = 'hypre boomeramg'
+  # petsc_options_value = 'hypre boomeramg'
+  # petsc_options_iname = '-pc_type -pc_hypre_type'
+  petsc_options_value = 'bjacobi'
+  petsc_options_iname = '-pc_type'
 []
 
 # ==============================================================================

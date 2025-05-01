@@ -34,8 +34,8 @@ def new_density_fuel(T_c):
     
 current_dir = Path.cwd()
 res_name = 's82d_ac_c3_gcu_ringres.main_res.m'
-temp_name = ['639', '721','816','898','977','1070']
-temp_list = [639, 721, 816, 898, 977]
+temp_name = ['639', '721','816','901','977', '1070']
+temp_list = [639, 721, 816, 901, 977, 1070]
 rho_list = []
 unc_list = []
 reac_list = []

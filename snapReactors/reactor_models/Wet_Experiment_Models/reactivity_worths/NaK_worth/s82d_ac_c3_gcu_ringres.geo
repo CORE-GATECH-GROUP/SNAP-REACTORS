@@ -232,7 +232,7 @@ pin pLG
 lower_gridplate
 
 pin pLGH
-coolant	0.15875
+void	0.15875
 lower_gridplate
 
 lat lowerEndCapLat 2 0 0 21 21 1.4478
@@ -259,11 +259,11 @@ pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pL
                     pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
                      
 pin pLECV
-coolant
+void
 
 pin pLEC
 clad	0.7112
-coolant
+void
 
 lat activeCoreLatACL 2 0 0 21 21 1.4478
 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000
@@ -289,63 +289,63 @@ lat activeCoreLatACL 2 0 0 21 21 1.4478
 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000
                      
 pin 2000
-coolant
+void
 
 pin 1800
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 1700
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 1600
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 1500
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 1400
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 1300
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 1200
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 1100
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 lat activeCoreLatACM 2 0 0 21 21 1.4478
 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900
@@ -371,7 +371,7 @@ lat activeCoreLatACM 2 0 0 21 21 1.4478
 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900
                      
 pin 900
-coolant
+void
 
 lat 800 9 0 0 8
 0.0	801
@@ -388,56 +388,56 @@ fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 802
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 803
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 804
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 805
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 806
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 807
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 808
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 lat 700 9 0 0 8
 0.0	701
@@ -454,56 +454,56 @@ fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 702
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 703
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 704
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 705
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 706
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 707
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 708
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 lat 600 9 0 0 8
 0.0	601
@@ -520,56 +520,56 @@ fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 602
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 603
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 604
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 605
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 606
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 607
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 608
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 lat 500 9 0 0 8
 0.0	501
@@ -586,56 +586,56 @@ fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 502
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 503
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 504
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 505
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 506
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 507
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 508
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 lat 400 9 0 0 8
 0.0	401
@@ -652,56 +652,56 @@ fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 402
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 403
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 404
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 405
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 406
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 407
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 408
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 lat 300 9 0 0 8
 0.0	301
@@ -718,56 +718,56 @@ fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 302
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 303
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 304
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 305
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 306
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 307
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 308
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 lat 200 9 0 0 8
 0.0	201
@@ -784,56 +784,56 @@ fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 202
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 203
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 204
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 205
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 206
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 207
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 208
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 lat 100 9 0 0 8
 0.0	101
@@ -850,56 +850,56 @@ fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 102
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 103
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 104
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 105
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 106
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 107
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 108
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 lat activeCoreLatACU 2 0 0 21 21 1.4478
 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100
@@ -925,63 +925,63 @@ lat activeCoreLatACU 2 0 0 21 21 1.4478
 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100
                      
 pin 3100
-coolant
+void
 
 pin 2800
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 2700
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 2600
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 2500
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 2400
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 2300
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 2200
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 pin 2100
 fuel	0.67564
 ceramic	0.681228
 gap	0.685292
 clad	0.71374
-coolant
+void
 
 lat upperEndCapLat 2 0 0 21 21 1.4478
 pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
@@ -1008,7 +1008,7 @@ pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pL
                      
 pin pUEC
 clad	0.7112
-coolant
+void
 
 lat upperGridLat 3 0 0 21 21 1.4478
 pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG 
@@ -1037,6 +1037,6 @@ pin pUG
 upper_gridplate
 
 pin pUGH
-coolant	0.19840000000000002
+void	0.19840000000000002
 upper_gridplate
 
