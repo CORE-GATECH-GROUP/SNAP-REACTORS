@@ -43,6 +43,7 @@ y_data = exp_data['y(pcm/K)'].values
 
 
 plt.figure(figsize=(10, 6))
+plt.title("Isothermal Temperature Coefficient")
 plt.xlabel('Fuel Temperature [K]')
 plt.ylabel('Fuel Temperature Coefficient [ρ (pcm)/K]')
 
@@ -55,7 +56,7 @@ plt.legend()
 plt.grid(True, linestyle='--', alpha=0.5)
 plt.ylim(-4.5,0)
 plt.tight_layout()
-plt.savefig('fig.png', dpi = 400)
+plt.savefig('itc.png', dpi = 400)
 
 
 

@@ -67,7 +67,7 @@ exp_unc = 1*exp_data['abs_unc'].values
 
 
 plt.figure(figsize=(10, 6))
-plt.title("Fuel Dopppler Reactivity Feedback")
+plt.title("Total Fuel Temperature Coefficient")
 plt.xlabel('Fuel Temperature [K]')
 plt.ylabel('Fuel Temperature Coefficient [rho (pcm)/K]')
 
@@ -80,7 +80,7 @@ plt.legend()
 plt.grid(True, linestyle='--', alpha=0.7)
 #plt.ylim(-2.5,0)
 plt.tight_layout()
-plt.savefig('fig.png')
+plt.savefig('ftc.png')
 
 
 

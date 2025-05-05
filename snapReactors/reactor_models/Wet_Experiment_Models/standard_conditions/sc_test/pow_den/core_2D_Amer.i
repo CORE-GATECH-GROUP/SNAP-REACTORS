@@ -295,12 +295,14 @@ extref_blocks = 'Reflector'
 [MultiApps]
     [sc]
       type = FullSolveMultiApp
-      #app_type = ThermalHydraulicsApp
+      app_type = SubChannelApp
       input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/pow_den/sc_core.i'
       execute_on =  timestep_end
       bounding_box_padding = '0.1 0.1 0'
       positions = '0 0 0'
       output_in_position = true
+      library_name = 'libsnapbench-opt.la'
+      library_path = '/home/garcsamu/moose_exec/snapbench/lib'
     []
 []
   

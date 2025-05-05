@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # List of directories to process
-directories=("1070" "530" "639" "721" "816" "898" "977")
+directories=("1070" "530" "639" "721" "816" "901" "977")
 
 # Current directory before we start
 start_dir=$(pwd)
@@ -15,7 +15,12 @@ for dir in "${directories[@]}"; do
         echo "Failed to change to directory: $dir"
         continue
     }
-    
+    echo "Deleting old results in $dir"
+    rm *_res.m 
+
+    echo "Deleting old .out .e in $dir"
+    rm single_run.sh.*
+
     # Run the qsub command
     echo "Running qsub single_run.sh in $dir"
     qsub single_run.sh
