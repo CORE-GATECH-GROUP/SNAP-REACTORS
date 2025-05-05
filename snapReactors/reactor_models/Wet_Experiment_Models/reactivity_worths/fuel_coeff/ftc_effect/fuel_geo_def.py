@@ -78,7 +78,7 @@ plt.errorbar(x_data, y_data, yerr = exp_unc, fmt = 'o', label = 'Experimental', 
 
 plt.legend()
 plt.grid(True, linestyle='--', alpha=0.7)
-plt.ylim(-2.5,0)
+#plt.ylim(-2.5,0)
 plt.tight_layout()
 plt.savefig('fig.png')
 

@@ -7,51 +7,11 @@ import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# def compute_expanded_pitch(T_c):
-
-#     initial_pitch = 1.4478
-#     delta_T = T_c - 20  # Assuming initial is 20°C
-
-#     # Mean CTE values (1/°C), approx from Hastelloy N data
-#     # Keys are the upper bounds of the temperature range
-#     # https://haynesintl.com/en/alloys/alloy-portfolio/corrosion-resistant-alloys/hastelloy-n/?utm_source=chatgpt.com#physical-properties
-#     cte_table = {
-#         300: 12.7e-6,
-#         400: 13.0e-6,
-#         500: 13.3e-6,
-#         600: 13.6e-6,
-#         700: 13.9e-6,
-#         800: 14.1e-6
-#     }
-
-#     # Select appropriate CTE based on the target temperature
-#     selected_cte = None
-#     for temp_limit, cte in sorted(cte_table.items()):
-#         if T_c <= temp_limit:
-#             selected_cte = cte
-#             break
-#     else:
-#         # Use the highest if temp exceeds all ranges
-#         selected_cte = cte_table[max(cte_table)]
-
-#     # Compute new pitch
-#     new_pitch = initial_pitch * (1 + selected_cte * delta_T)
-#     return new_pitch
-
-# # # List of temperatures in Kelvin
-# T_kelvin = [300,530, 639, 721, 816, 898, 977, 1070]
-# for T in T_kelvin:
-#     expanded_pitch = compute_expanded_pitch((T-273.15))
-#     print(f"At {T} K: Expanded Pitch = {expanded_pitch:.4f} cm")
-
-
-
-
 # ## Plotting    
 current_dir = Path.cwd()
 res_name = 's82d_ac_c3_gcu_ringres.main_res.m'
-temp_name = ['639', '721','816','898','977','1070']
-temp_list = [639, 721, 816, 898, 977, 1070]
+temp_name = ['639', '721','816','901','977','1070']
+temp_list = [639, 721, 816, 901, 977, 1070]
 rho_list = []
 unc_list = []
 reac_list = []
@@ -75,10 +35,10 @@ for i,temp in enumerate(temp_list):
     else:
         pass
 
-exp_data = pd.read_csv((current_dir/'plot-data.csv').resolve())
+exp_data = pd.read_csv((current_dir/'itc_data.csv').resolve())
 x_data = exp_data['x(kelvin)'].values
 y_data = exp_data['y(pcm/K)'].values
-exp_unc = 1*exp_data['abs_unc'].values
+# exp_unc = 1*exp_data['abs_unc'].values
 
 
 
@@ -88,7 +48,7 @@ plt.ylabel('Fuel Temperature Coefficient [ρ (pcm)/K]')
 
 # Plot analytical data
 plt.errorbar(temp_list[0:-1], reac_list[:], yerr=reac_unc_list[:], fmt='x', label="Modeled", color='red')
-plt.errorbar(x_data, y_data, yerr = exp_unc, fmt = 'o', label = 'Experimental', color = 'blue')
+plt.errorbar(x_data, y_data, yerr = None, fmt = 'o', label = 'Experimental', color = 'blue')
 
 
 plt.legend()

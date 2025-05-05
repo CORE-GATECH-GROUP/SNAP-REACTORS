@@ -203,7 +203,7 @@ mat burnable_poison -8.35
 %diffusion_barrier	0.994303206
 %burnable_poison	0.005696794
 
-mat ceramic  6.01358E-02 tmp 925 burn 1
+mat ceramic  0.05967484 tmp 925 burn 1
   8016.01c  3.82260E-02
  14028.01c  1.22916E-02
  14029.01c  5.97119E-04
