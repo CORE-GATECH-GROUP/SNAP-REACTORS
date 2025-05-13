@@ -17,7 +17,6 @@ def new_density_fuel(T_c):
     vol = area * height
     dL =  height*alpha_L*dT
     new_height = dL  + height
-    print(new_height)
     new_vol = new_height * area
     rho = 6.0600000000000005
     mass = rho * vol
@@ -36,10 +35,10 @@ def new_density_ceramic(T_c):
     new_rho = atoms / new_vol
     return new_rho
 
-T_c = 925 - 273.15
+T_c = 934.6035 - 273.15
 print(new_density_ceramic(T_c))
 # # List of temperatures in Kelvin
-T_kelvin = [300,530, 639, 721, 816, 901, 977, 1070]
+T_kelvin = [300,530, 639, 721, 816, 901, 934.6035, 977, 1070]
 with open("temperature_output.txt", "w") as f:
     for T_K in T_kelvin:
         T_C = T_K - 273.15  # Convert to Celsius
@@ -99,56 +98,56 @@ New Poison Density: {new_ceram_rho: .8f}
 
 
 
-## Plotting    
-current_dir = Path.cwd()
-res_name = 's82d_ac_c3_gcu_ringres.main_res.m'
-temp_name = ['639', '721','816','901','977','1070']
-temp_list = [639, 721, 816, 901, 977, 1070]
-rho_list = []
-unc_list = []
-reac_list = []
-reac_unc_list = []
-for i in temp_name:
-    res_path = Path((current_dir/i/res_name).resolve())
-    res = st.read(res_path)
-    k = res['anaKeff'][0]
-    k_unc = res['anaKeff'][1]
-    rho = (k - 1)/k
-    err_rho =  np.sqrt((1/k**2)**2 * k_unc**2)
-    rho_list.append(rho)
-    unc_list.append(err_rho * 3)
+# ## Plotting    
+# current_dir = Path.cwd()
+# res_name = 's82d_ac_c3_gcu_ringres.main_res.m'
+# temp_name = ['639', '721','816','901','977','1070']
+# temp_list = [639, 721, 816, 901, 977, 1070]
+# rho_list = []
+# unc_list = []
+# reac_list = []
+# reac_unc_list = []
+# for i in temp_name:
+#     res_path = Path((current_dir/i/res_name).resolve())
+#     res = st.read(res_path)
+#     k = res['anaKeff'][0]
+#     k_unc = res['anaKeff'][1]
+#     rho = (k - 1)/k
+#     err_rho =  np.sqrt((1/k**2)**2 * k_unc**2)
+#     rho_list.append(rho)
+#     unc_list.append(err_rho * 3)
 
-for i,temp in enumerate(temp_list):
-    if temp != 1070:
-        reac = ((rho_list[i] - rho_list[i+1]) / (temp_list[i] - temp_list[i+1])) * 10**5
-        unc = np.sqrt((1/(temp_list[i] - temp_list[i+1]))**2 * unc_list[i]**2 + (1/(temp_list[i] - temp_list[i+1]))**2 * unc_list[i+1]**2)*10**5
-        reac_list.append(reac)
-        reac_unc_list.append(unc * 1)
-    else:
-        pass
+# for i,temp in enumerate(temp_list):
+#     if temp != 1070:
+#         reac = ((rho_list[i] - rho_list[i+1]) / (temp_list[i] - temp_list[i+1])) * 10**5
+#         unc = np.sqrt((1/(temp_list[i] - temp_list[i+1]))**2 * unc_list[i]**2 + (1/(temp_list[i] - temp_list[i+1]))**2 * unc_list[i+1]**2)*10**5
+#         reac_list.append(reac)
+#         reac_unc_list.append(unc * 1)
+#     else:
+#         pass
 
-exp_data = pd.read_csv((current_dir/'plot-data.csv').resolve())
-x_data = exp_data['x(kelvin)'].values
-y_data = exp_data['y(pcm/K)'].values
-exp_unc = 1*exp_data['abs_unc'].values
-
-
-
-plt.figure(figsize=(10, 6))
-plt.title("Fuel Temperature Reactivity")
-plt.xlabel('Fuel Temperature [K]')
-plt.ylabel('Fuel Temperature Coefficient [rho (pcm)/K]')
-
-# Plot analytical data
-plt.errorbar(temp_list[0:-1], reac_list[:], yerr=reac_unc_list[:], fmt='x', label="Modeled", color='red')
-plt.errorbar(x_data, y_data, yerr = exp_unc, fmt = 'o', label = 'Experimental', color = 'blue')
+# exp_data = pd.read_csv((current_dir/'plot-data.csv').resolve())
+# x_data = exp_data['x(kelvin)'].values
+# y_data = exp_data['y(pcm/K)'].values
+# exp_unc = 1*exp_data['abs_unc'].values
 
 
-plt.legend()
-plt.grid(True, linestyle='--', alpha=0.7)
-plt.ylim(-2.5,0)
-plt.tight_layout()
-plt.savefig('fig.png')
+
+# plt.figure(figsize=(10, 6))
+# plt.title("Fuel Temperature Reactivity")
+# plt.xlabel('Fuel Temperature [K]')
+# plt.ylabel('Fuel Temperature Coefficient [rho (pcm)/K]')
+
+# # Plot analytical data
+# plt.errorbar(temp_list[0:-1], reac_list[:], yerr=reac_unc_list[:], fmt='x', label="Modeled", color='red')
+# plt.errorbar(x_data, y_data, yerr = exp_unc, fmt = 'o', label = 'Experimental', color = 'blue')
+
+
+# plt.legend()
+# plt.grid(True, linestyle='--', alpha=0.7)
+# plt.ylim(-2.5,0)
+# plt.tight_layout()
+# plt.savefig('fig.png')
 
 
 

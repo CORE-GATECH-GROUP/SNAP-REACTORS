@@ -89,6 +89,21 @@ New Poison Density:  0.05954156
 37.90371853	ugBarrel_univugvoidcdFull_univ
 --------------------------------------------------------------------------------
 
+Temperature: 934.6035 K (661.45°C)
+New Height: 35.94934
+Height Addition: 0.38934
+New Fuel Density: 5.99436885
+New Poison Density:  0.05948452
+
+0.0	lgBarrel_univlgvoidcdFull_univ
+0.79502	active_core_univlowerEndCapLatintreflec_univbarrellec_univlecCDcdFull_univ
+1.76022	active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univbarrelACLcdFull_univ
+3.93192	active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univbarrelACMcdFull_univ
+34.80125938	active_core_univactiveCoreLatACUintrefACU_univbarrelACU_univbarrelACUcdFull_univ
+37.70955938	active_core_univupperEndCapLatintrefuec_univbarreluec_univuecCDcdFull_univ
+37.93815938	ugBarrel_univugvoidcdFull_univ
+--------------------------------------------------------------------------------
+
 Temperature: 977 K (703.85°C)
 New Height: 35.99500
 Height Addition: 0.43500

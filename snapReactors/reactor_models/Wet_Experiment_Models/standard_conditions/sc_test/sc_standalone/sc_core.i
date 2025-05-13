@@ -3,7 +3,7 @@
 ###################################################
 # Thermal-hydraulics parameters
 ###################################################
-T_in = 921.15
+T_in = 866.5
 P_out = 253727.1   # Pa
 reactor_power = 600000 #WTh
 #fuel_assemblies_per_power_unit = '${fparse 1}'

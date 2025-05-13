@@ -79,10 +79,10 @@ for i,temp in enumerate(temp_list):
         print(reac_ftc)
         dP, UA = power_change(temp_list[i], fuel_temp_list[i])
         WC = coolant_flow_heat_capacity(temp_list[i], fuel_temp_list[i])
-        pow_coeff = reac_ftc/UA + (0.41*reac_ftc+reac_grid/2)/WC
+        pow_coeff = reac_ftc/UA - (0.41*reac_ftc+reac_grid/2)/WC
         unc_ftc = np.sqrt((1/(temp_list[i] - temp_list[i+1]))**2 * unc_ftc_list[i]**2 + (1/(temp_list[i] - temp_list[i+1]))**2 * unc_ftc_list[i+1]**2)*10**5
         unc_grid = np.sqrt((1/(temp_list[i] - temp_list[i+1]))**2 * unc_grid_list[i]**2 + (1/(temp_list[i] - temp_list[i+1]))**2 * unc_grid_list[i+1]**2)*10**5
-        unc_pow_coeff = np.sqrt((1/UA+1/WC)**2 *unc_ftc**2 + (1/(2*WC))**2 * unc_grid**2)
+        unc_pow_coeff = np.sqrt((1/UA-1/WC)**2 *unc_ftc**2 + (1/(2*WC))**2 * unc_grid**2)
         reac_list.append(pow_coeff)
         reac_unc_list.append(unc_pow_coeff * 3)
     else:
@@ -95,7 +95,7 @@ y_data = exp_data['y(pcm/kW)'].values
 exp_unc = 3*exp_data['unc'].values
 temp_list = [639, 721, 816, 901, 977]
 plt.figure(figsize=(10, 6))
-plt.title("Power Coefficient (Method B)")
+plt.title("Power Coefficient (Method C)")
 plt.xlabel('Fuel Temperature [K]')
 plt.ylabel('Power Coefficient [ρ (pcm)/K]')
 
@@ -105,4 +105,4 @@ plt.errorbar(x_data[-3:], y_data[-3:], yerr = exp_unc[-3:], fmt = 'o', label = '
 plt.legend()
 plt.grid(True, linestyle='--', alpha=0.5)
 plt.tight_layout()
-plt.savefig('pow_coeff_B.png', dpi = 400)
+plt.savefig('pow_coeff_C.png', dpi = 400)

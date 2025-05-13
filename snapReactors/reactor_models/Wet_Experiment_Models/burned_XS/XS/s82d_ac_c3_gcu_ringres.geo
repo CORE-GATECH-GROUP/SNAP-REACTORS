@@ -197,15 +197,15 @@ cell ugvoidcdSys1 7500 void ugBarrelcc1 -ugvoidh7
 cell outRegionIn 0  fill 1 -putBorder 
 cell outRegionOut 0  outside putBorder 
 lat cdBarrelStack 9 0 0 7
-0.0	lgBarrel_univlgvoidcdFull_univ
-0.79502	active_core_univlowerEndCapLatintreflec_univbarrellec_univlecCDcdFull_univ
-1.76022	active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univbarrelACLcdFull_univ
-3.93192	active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univbarrelACMcdFull_univ
-34.794699730375	active_core_univactiveCoreLatACUintrefACU_univbarrelACU_univbarrelACUcdFull_univ
-37.702999730375	active_core_univupperEndCapLatintrefuec_univbarreluec_univuecCDcdFull_univ
-37.931599730375	ugBarrel_univugvoidcdFull_univ
+0.0     lgBarrel_univlgvoidcdFull_univ
+0.79502 active_core_univlowerEndCapLatintreflec_univbarrellec_univlecCDcdFull_univ
+1.76022 active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univbarrelACLcdFull_univ
+3.93192 active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univbarrelACMcdFull_univ
+34.80125938     active_core_univactiveCoreLatACUintrefACU_univbarrelACU_univbarrelACUcdFull_univ
+37.70955938     active_core_univupperEndCapLatintrefuec_univbarreluec_univuecCDcdFull_univ
+37.93815938     ugBarrel_univugvoidcdFull_univ
 
-lat lowerGridLat 3 0 0 21 21 1.4478
+lat lowerGridLat 3 0 0 21 21 1.4605
 pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG 
  pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG 
   pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG pLG 
@@ -235,7 +235,7 @@ pin pLGH
 coolant	0.15875
 lower_gridplate
 
-lat lowerEndCapLat 2 0 0 21 21 1.4478
+lat lowerEndCapLat 2 0 0 21 21 1.4605
 pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
  pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
   pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV pLECV 
@@ -265,7 +265,7 @@ pin pLEC
 clad	0.7112
 coolant
 
-lat activeCoreLatACL 2 0 0 21 21 1.4478
+lat activeCoreLatACL 2 0 0 21 21 1.4605
 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000
 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000
 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 1800 1800 1800 1800 1800 1800 1800 2000 2000 2000
@@ -347,7 +347,7 @@ gap	0.685292
 clad	0.71374
 coolant
 
-lat activeCoreLatACM 2 0 0 21 21 1.4478
+lat activeCoreLatACM 2 0 0 21 21 1.4605
 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900
 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900
 900 900 900 900 900 900 900 900 900 900 900 800 800 800 800 800 800 800 900 900 900
@@ -901,7 +901,7 @@ gap	0.685292
 clad	0.71374
 coolant
 
-lat activeCoreLatACU 2 0 0 21 21 1.4478
+lat activeCoreLatACU 2 0 0 21 21 1.4605
 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100
 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100
 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 2800 2800 2800 2800 2800 2800 2800 3100 3100 3100
@@ -983,7 +983,7 @@ gap	0.685292
 clad	0.71374
 coolant
 
-lat upperEndCapLat 2 0 0 21 21 1.4478
+lat upperEndCapLat 2 0 0 21 21 1.4605
 pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
  pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
   pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pLECV pLECV pLECV 
@@ -1010,7 +1010,7 @@ pin pUEC
 clad	0.7112
 coolant
 
-lat upperGridLat 3 0 0 21 21 1.4478
+lat upperGridLat 3 0 0 21 21 1.4605
 pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG 
  pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG 
   pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG pUG 

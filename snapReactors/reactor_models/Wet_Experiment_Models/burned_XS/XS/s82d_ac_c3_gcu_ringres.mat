@@ -33,7 +33,7 @@ mat lower_gridplate -8.89    rgb 124 138 197
 29063.00c	-0.0034575
 29065.00c	-0.0015425
 
-mat coolant -0.6369 tmp 925   rgb 115 115 115
+mat coolant -0.712284 tmp 922.03   rgb 115 115 115
 11023.01c	-0.222
 19039.01c	-0.72305
 19040.01c	-9.30415e-05
@@ -114,10 +114,10 @@ mat barrel -7.954    rgb 102 0 0
 26057.00c	-0.0138832
 26058.00c	-0.00184759
 
-therm BeO be-beo.42t therm OBe o-beo.42t
-mat internal_reflector -3.0063991184829235 tmp 500 moder BeO 4009 moder OBe 8016
-8016.00c	-0.63968
-4009.00c	-0.36032
+therm BeO be-beo.46t therm OBe o-beo.46t
+mat internal_reflector -2.959797 tmp 922.03 moder BeO 4009 moder OBe 8016
+8016.02c	-0.63968
+4009.02c	-0.36032
 
 mat air -0.0012250000000000002    
 7014.00c	-0.752
@@ -134,12 +134,12 @@ clad	0.042
 internal_reflector	0.41
 air	0.357
 
-therm Bem be-met.42t
-mat control_drum -1.8350216012 tmp 500 moder Bem 4009   rgb 247 215 183
-4009.00c	-1.0
+therm Bem be-met.46t
+mat control_drum -1.80332 tmp 922.03 moder Bem 4009   rgb 247 215 183
+4009.02c	-1.0
 
 therm HZr h-zrh.46t therm ZrH zr-zrh.46t
-mat fuel -5.995462833329161 tmp 925 tms 925 moder HZr 1001  moder ZrH 40090   rgb 219 89 89 burn 1
+mat fuel -5.99436885 tmp 934.6035 moder HZr 1001  moder ZrH 40090   rgb 219 89 89 burn 1
 1001.02c	0.06
 1002.02c	8.7e-06
 92235.02c	0.001455002
@@ -203,7 +203,7 @@ mat burnable_poison -8.35
 %diffusion_barrier	0.994303206
 %burnable_poison	0.005696794
 
-mat ceramic  5.949537192285738E-02 tmp 925 burn 1
+mat ceramic  0.05948452 tmp 934.6035 burn 1
   8016.02c  3.82260E-02
  14028.02c  1.22916E-02
  14029.02c  5.97119E-04

@@ -13,7 +13,7 @@ csv_path = Path('exp_data.csv')  # Replace with actual file name
 csv_df = pd.read_csv(csv_path)
 x_csv = csv_df['x(power[kw])']
 y_csv = csv_df['y(pcm)']
-unc_csv = csv_df['unc(pcm)']
+unc_csv = 3*csv_df['unc(pcm)']
 
 # --- Prepare simulation data ---
 power_levels = [f"{i}kw" for i in range(100, 701, 100)]
