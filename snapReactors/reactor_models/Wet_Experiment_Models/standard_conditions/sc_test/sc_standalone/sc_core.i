@@ -3,7 +3,7 @@
 ###################################################
 # Thermal-hydraulics parameters
 ###################################################
-T_in = 866.0 
+T_in = 921.15
 P_out = 253727.1   # Pa
 reactor_power = 600000 #WTh
 #fuel_assemblies_per_power_unit = '${fparse 1}'
@@ -296,9 +296,36 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     execute_on = timestep_end
   []
 []
-
+[Postprocessors]
+  [Tcool_out]
+    type = SideAverageValue
+    boundary = outlet
+    variable = T
+    execute_on = TIMESTEP_END
+  []
+  [Tfuel_avg]
+    type = ElementAverageValue
+    variable = Tpin
+    block = fuel_pins
+  []
+[]
+[VectorPostprocessors]
+  [T_fuel_cen]
+        type = LineValueSampler
+        start_point = '0 0 0.05'
+        end_point = '0 0 0.355'
+        num_points = 10
+        variable = Tpin
+        sort_by = 'z'
+        execute_on = 'timestep_end'
+  []
+[]
 [Outputs]
   exodus = true
+      [csv]
+        type = CSV
+        execute_on = 'timestep_end'
+    []
 []
 
 [Executioner]

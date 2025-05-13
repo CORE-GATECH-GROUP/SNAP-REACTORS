@@ -117,7 +117,7 @@
 #coolant_tc                    = 30
 
 
-inlet_T_fluid             = 860.0  # (K) 
+inlet_T_fluid             = 639  # (K) 
 ht_coeff                  = 4539.6
 fuel_blocks = 'Fuel'
 ceram_blocks = 'Ceramic'
@@ -295,14 +295,14 @@ extref_blocks = 'Reflector'
 [MultiApps]
     [sc]
       type = FullSolveMultiApp
-      app_type = SubChannelApp
+    #   app_type = SubChannelApp
       input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/pow_den/sc_core.i'
       execute_on =  timestep_end
       bounding_box_padding = '0.1 0.1 0'
       positions = '0 0 0'
       output_in_position = true
-      library_name = 'libsnapbench-opt.la'
-      library_path = '/home/garcsamu/moose_exec/snapbench/lib'
+    #   library_name = 'libsnapbench-opt.la'
+    #   library_path = '/home/garcsamu/moose_exec/snapbench/lib'
     []
 []
   
@@ -318,6 +318,12 @@ extref_blocks = 'Reflector'
         from_blocks = 'Fuel'
         to_blocks = fuel_pins
         greedy_search = true
+    []
+    [coolant_temp_from_SC]
+    type = MultiAppGeneralFieldNearestLocationTransfer
+    from_multi_app = sc
+    source_variable = T
+    variable = bison_T_inf
     []
   []
 
@@ -445,10 +451,12 @@ extref_blocks = 'Reflector'
     nl_abs_step_tol = 1e-8
     l_tol = 1e-8
     solve_type = NEWTON
-  # petsc_options_value = 'hypre boomeramg'
-  # petsc_options_iname = '-pc_type -pc_hypre_type'
+#   petsc_options_value = 'hypre boomeramg'
+#   petsc_options_iname = '-pc_type -pc_hypre_type'
   petsc_options_value = 'bjacobi'
   petsc_options_iname = '-pc_type'
+#   fixed_point_max_its = 10
+  #force_fixed_point_solve = true
 []
 
 # ==============================================================================
@@ -525,10 +533,6 @@ extref_blocks = 'Reflector'
 []
 
 [Outputs]
-    [exodus]
-        type = Exodus
-        execute_on = 'timestep_end'
-    []
     [csv]
         type = CSV
         execute_on = 'initial timestep_end'

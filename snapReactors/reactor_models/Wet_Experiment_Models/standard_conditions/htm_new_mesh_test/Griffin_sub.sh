@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=Griffin          # Job name
-#SBATCH --nodes=3                   # Request 4 nodes
+#SBATCH --nodes=12                   # Request 4 nodes
 #SBATCH --ntasks-per-node=1          # 5 MPI processes per node
 #SBATCH --cpus-per-task=30           # 4 CPU cores per MPI process (20 ncpus / 5 mpiprocs)
 #SBATCH --time=10:45:00              # Walltime (hh:mm:ss)
@@ -11,4 +11,4 @@
 module load use.exp_ctl use.moose griffin-openmpi
 cd ${SLURM_SUBMIT_DIR:-$PWD}
 export TMPDIR=${SLURM_TMPDIR:-/tmp}
-mpiexec -n 3 griffin-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/wet_core.i
+mpiexec -n 12 griffin-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/wet_core.i

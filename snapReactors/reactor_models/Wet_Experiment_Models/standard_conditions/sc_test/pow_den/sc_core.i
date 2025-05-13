@@ -180,8 +180,8 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   segregated = false
   staggered_pressure = false
   monolithic_thermal = true
-  verbose_multiapps = true
-  verbose_subchannel = true
+  # verbose_multiapps = true
+  # verbose_subchannel = true
   # type = NoSolveProblem
 []
 
