@@ -13818,7 +13818,7 @@ class S8_Wet(S8ER):
         drumApothem = 17.4732315 - gapThickness1
         shimAApothem = 19.35542598 - gapThickness1  - gapThickness2
         shimBApothem = 21.30540674 - gapThickness1 - gapThickness2 - gapThickness3
-        shimCApothem = 23.56372 - gapThickness1 - gapThickness2 - gapThickness3 - gapThickness4
+        shimCApothem = 24.21556068 - gapThickness1 - gapThickness2 - gapThickness3 - gapThickness4
 
         drumVertex = calcVertexFromApothem(drumApothem)
         shimAVertex = calcVertexFromApothem(shimAApothem)

@@ -441,7 +441,7 @@ for l,burnup in enumerate(burnup_steps):
                 """therm Bem be-met.40t""",
                 f"""therm Bem {bem}""")
                 # last materials density and temperature
-                updated_mat_content = updated_mat_content.replace("-0.8094", f"-{coolant_density}")
+                updated_mat_content = updated_mat_content.replace("-0.8094", f"-{calculate_nak_density_mixing(coolant_temp)}")
                 updated_mat_content = updated_mat_content.replace(
                     "mat fuel -6.0600000000000005 moder HZr 1001  moder ZrH 40090",
                     f"mat fuel -{new_density_fuel(fuel_temp-273.15)} tmp {fuel_temp}  moder HZr 1001  moder ZrH 40090"
