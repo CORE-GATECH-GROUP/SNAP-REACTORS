@@ -74,8 +74,11 @@ class S8ER(SerpentTemplate):
         SerpentTemplate.__init__(self, id)
         # self.map = self.setMap(fuelElement, coolElement, internalReflector, barrel)
 
-    def _buildMaterials(self, dbMats):
+    def _buildMaterials(self, dbMats, fuelTemp, coolantTemp, refTemp):
         serMats = []
+        fuelList = ['fuel', 'diffusion_barrier', 'burnable_poison', 'ceramic', 'gap', 'clad']
+        coolList = ['coolant', 'air', 'internal_reflector', 'barrel', 'lower_gridplate']
+        refList = ['control_drum']
         for mat in dbMats:
             serMat = material(mat.id, isBurn=False, isModer=False)
             if 'r'in mat._propertiesDict:
@@ -89,7 +92,33 @@ class S8ER(SerpentTemplate):
             if self.xsLibrary == 'ENDF7.1':
                 serMat.set('xsLib', "03c")
             elif self.xsLibrary == 'ENDF8':
-                serMat.set('xsLib', "00c")
+                if serMat.id in fuelList:
+                    if fuelTemp < 600:
+                        serMat.set('xsLib', "00c")
+                    if fuelTemp >= 600 and fuelTemp < 900: 
+                        serMat.set('xsLib', "01c")
+                    if fuelTemp >= 900 and fuelTemp < 1200: 
+                        serMat.set('xsLib', "02c")
+                    if fuelTemp >= 1200:
+                        serMat.set('xsLib', "03c")
+                if serMat.id in coolList:
+                    if coolantTemp < 600:
+                        serMat.set('xsLib', "00c")
+                    if coolantTemp >= 600 and coolantTemp < 900: 
+                        serMat.set('xsLib', "01c")
+                    if coolantTemp >= 900 and coolantTemp < 1200: 
+                        serMat.set('xsLib', "02c")
+                    if coolantTemp >= 1200:
+                        serMat.set('xsLib', "03c")
+                if serMat.id in refList:
+                    if refTemp < 600:
+                        serMat.set('xsLib', "00c")
+                    if refTemp >= 600 and refTemp < 900: 
+                        serMat.set('xsLib', "01c")
+                    if refTemp >= 900 and refTemp < 1200: 
+                        serMat.set('xsLib', "02c")
+                    if refTemp >= 1200:
+                        serMat.set('xsLib', "03c")
             # refStr = mat.reference
             # descStr = mat.description
 
@@ -13468,14 +13497,14 @@ class S8_GriffinTESTC3(S8ER):
 #         return map
 
 class S8_Wet(S8ER):
-    def __init__(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, nActiveLayers = 8, config = 'C3', xsLibrary = 'ENDF7.1', hasThermScatt=False, baseFile = "s82D_gcu", geo = '2D', useRefLayoutForMesh = False):
+    def __init__(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, fuelTemp=296, coolantTemp=296, refTemp=296,nActiveLayers = 8, config = 'C1', xsLibrary = 'ENDF8', hasThermScatt=True, baseFile = "s82D_gcu", geo = '2D', useRefLayoutForMesh = False):
         S8ER.__init__(self)
         self.config = config
         self.xsLibrary = xsLibrary
         self.hasThermScatt = hasThermScatt
-        self.map = self.setMap(fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, baseFile, nActiveLayers, geo, useRefLayoutForMesh)
+        self.map = self.setMap(fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, baseFile, nActiveLayers, geo, useRefLayoutForMesh, fuelTemp, coolantTemp, refTemp)
 
-    def setMap(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, baseFile, nActiveLayers, geo, useRefLayoutForMesh):
+    def setMap(self, fuelElement, coolElement, internalReflector, barrel, upperGridplate, lowerGridplate, controlDrums, airElement, baseFile, nActiveLayers, geo, useRefLayoutForMesh, fuelTemp, coolantTemp, refTemp,):
         map = {}
         fuelMat = fuelElement.materialsDict['fuel']
         dbMat = fuelElement.materialsDict['diffusion_barrier']
@@ -13520,7 +13549,7 @@ class S8_Wet(S8ER):
         actdz = acudz+acmdz+acldz
         acthf = voiddz + actdz
 
-        serMatsList = super()._buildMaterials([fuelMat, coolMat, dbMat, bpMat, cerMat, gapMat, cladMat, intrefMat, barrelMat, lgpMat, cdMat, airMat])
+        serMatsList = super()._buildMaterials([fuelMat, coolMat, dbMat, bpMat, cerMat, gapMat, cladMat, intrefMat, barrelMat, lgpMat, cdMat, airMat], fuelTemp, coolantTemp, refTemp)
 
         #replace 6000 with 6012 for endf8 lib
         if self.xsLibrary == 'ENDF8':

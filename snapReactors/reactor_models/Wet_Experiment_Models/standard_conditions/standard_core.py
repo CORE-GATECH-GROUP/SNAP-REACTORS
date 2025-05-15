@@ -36,5 +36,5 @@ ae = components['air element']
 acePath = "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
 
 
-ringres = S8_Wet(fe, ce, ir, br, ugp, lgp, cds, ae, config='C1', xsLibrary="ENDF8", hasThermScatt=True, baseFile="s82d_ac_c3_gcu_ringres", geo = "3D")
+ringres = S8_Wet(fe, ce, ir, br, ugp, lgp, cds, ae, fuelTemp = 901, coolantTemp = 750, refTemp = 500, baseFile="s82d_ac_c3_gcu_ringres", geo = "3D")
 #ringres = HC_Test(fe, ce, ir, br, ugp, lgp, cds, ae, config='C1', xsLibrary="ENDF8", hasThermScatt=True, baseFile="HC_TEST", geo = "3D")
