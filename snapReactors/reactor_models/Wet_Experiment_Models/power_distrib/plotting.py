@@ -19,9 +19,10 @@ def volume_normalize(valarr, minLen, maxLen):
 pinFile = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/power_distrib/s82d_ac_c3_gcu_ringres.main_det0.m'
 pin = st.read(pinFile)
 
-pinMesh1 = pin.detectors['PinMesh2']
+pinMesh1 = pin.detectors['PinMesh1']
 #pinPower = pin.slice({'reaction':0})
 pinMesh1.hexType = 3
 pinMesh1.pitch = 1.4605
-pinMesh1.hexPlot(thresh = 4e10,cbarLabel = 'Normalized Power')
+# pinMesh1.hexPlot(thresh = 4e10,cbarLabel = 'Normalized Power')
+pinMesh1.hexPlot(thresh = 0.25, cbarLabel = 'Normalized Power')
 plt.savefig("PinPower.png")

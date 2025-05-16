@@ -1,156 +1,192 @@
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 20046.02c has 1 decay modes
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 74182.00c has 1 decay modes
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 74183.00c has 1 decay modes
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 74184.00c has 1 decay modes
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 34080.02c has 1 decay modes
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 52123.02c has 1 decay modes
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 52130.02c has 1 decay modes
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 54134.02c has 1 decay modes
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 54136.02c has 1 decay modes
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 58142.02c has 1 decay modes
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 63151.02c has 1 decay modes
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 30070.02c has 1 decay modes
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 64160.02c has 1 decay modes
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Mismatch in library ID
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Mismatch in library ID
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Mismatch in library ID
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Mismatch in library ID
 
 
-***** Thu May 15 08:50:38 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 16:11:26 2025 (seed = 1747346973363, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Mismatch in library ID
 
 
-***** Thu May 15 08:59:54 2025 (seed = 1747320521075, MPI task = 7)
+***** Thu May 15 16:41:56 2025 (seed = 1747346973363, MPI task = 7)
 Warning message from function SamplePrecursorGroup:
 
-Precursor group sampling failed (92235.02c, mt 18, E = 2.298974E-03)
+Precursor group sampling failed (92235.02c, mt 18, E = 9.761453E-08)
 
 
-***** Thu May 15 08:59:54 2025 (seed = 1747320521075, MPI task = 1)
+***** Thu May 15 17:09:00 2025 (seed = 1747346973363, MPI task = 6)
 Warning message from function SamplePrecursorGroup:
 
-Precursor group sampling failed (92235.02c, mt 18, E = 9.454347E-08)
+Precursor group sampling failed (92235.02c, mt 18, E = 2.463490E-07)
 
 
-***** Thu May 15 09:48:01 2025 (seed = 1747320521075, MPI task = 8)
+***** Thu May 15 17:29:39 2025 (seed = 1747346973363, MPI task = 7)
 Warning message from function SamplePrecursorGroup:
 
-Precursor group sampling failed (92235.02c, mt 18, E = 1.822237E-09)
+Precursor group sampling failed (92235.02c, mt 18, E = 3.336799E-07)
 
 
-***** Thu May 15 10:14:17 2025 (seed = 1747320521075, MPI task = 5)
+***** Thu May 15 17:35:22 2025 (seed = 1747346973363, MPI task = 1)
 Warning message from function SamplePrecursorGroup:
 
-Precursor group sampling failed (92235.02c, mt 18, E = 1.100594E-07)
+Precursor group sampling failed (92235.02c, mt 18, E = 6.732096E-08)
 
 
-***** Thu May 15 10:41:35 2025 (seed = 1747320521075, MPI task = 5)
+***** Thu May 15 17:45:57 2025 (seed = 1747346973363, MPI task = 9)
 Warning message from function SamplePrecursorGroup:
 
-Precursor group sampling failed (92235.02c, mt 18, E = 2.170013E-08)
+Precursor group sampling failed (92235.02c, mt 18, E = 2.962502E-07)
 
 
-***** Thu May 15 10:50:55 2025 (seed = 1747320521075, MPI task = 9)
+***** Thu May 15 17:46:21 2025 (seed = 1747346973363, MPI task = 4)
 Warning message from function SamplePrecursorGroup:
 
-Precursor group sampling failed (92235.02c, mt 18, E = 3.520085E-05)
+Precursor group sampling failed (92235.02c, mt 18, E = 1.141301E-07)
 
 
-***** Thu May 15 11:02:53 2025 (seed = 1747320521075, MPI task = 4)
+***** Thu May 15 17:57:26 2025 (seed = 1747346973363, MPI task = 2)
 Warning message from function SamplePrecursorGroup:
 
-Precursor group sampling failed (92235.02c, mt 18, E = 8.557196E-06)
+Precursor group sampling failed (92235.02c, mt 18, E = 7.018382E-05)
 
 
-***** Thu May 15 11:08:26 2025 (seed = 1747320521075, MPI task = 0)
+***** Thu May 15 18:40:14 2025 (seed = 1747346973363, MPI task = 8)
 Warning message from function SamplePrecursorGroup:
 
-Precursor group sampling failed (92235.02c, mt 18, E = 1.027469E-07)
+Precursor group sampling failed (92235.02c, mt 18, E = 1.931381E-02)
+
+
+***** Thu May 15 18:50:45 2025 (seed = 1747346973363, MPI task = 2)
+Warning message from function SamplePrecursorGroup:
+
+Precursor group sampling failed (92235.02c, mt 18, E = 3.531151E-05)
+
+
+***** Thu May 15 19:21:09 2025 (seed = 1747346973363, MPI task = 8)
+Warning message from function SamplePrecursorGroup:
+
+Precursor group sampling failed (92235.02c, mt 18, E = 1.310235E-07)
+
+
+***** Thu May 15 19:48:24 2025 (seed = 1747346973363, MPI task = 0)
+Warning message from function SamplePrecursorGroup:
+
+Precursor group sampling failed (92235.02c, mt 18, E = 6.281745E-06)
+
+
+***** Thu May 15 20:21:48 2025 (seed = 1747346973363, MPI task = 1)
+Warning message from function SamplePrecursorGroup:
+
+Precursor group sampling failed (92235.02c, mt 18, E = 6.533697E-08)
+
+
+***** Thu May 15 22:03:31 2025 (seed = 1747346973363, MPI task = 1)
+Warning message from function SamplePrecursorGroup:
+
+Precursor group sampling failed (92235.02c, mt 18, E = 9.431800E-08)
+
+
+Simulation completed.
+------------------------------------------------- MPI task 7
+Thu May 15 22:20:57 2025  (errors: 0, warnings: 2, notes: 0)
+
 

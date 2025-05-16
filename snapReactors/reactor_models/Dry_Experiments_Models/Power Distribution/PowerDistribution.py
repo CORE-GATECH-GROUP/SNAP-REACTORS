@@ -15,7 +15,7 @@ c8 = serpentTools.read(c8File)
 ## RADIAL PLOT
 # ------------
 left = c8.detectors['xymesh']
-tallies = left.slice({'energy':0})#[20:]
+tallies = left.slice({'energy':1})#[20:]
 print(np.mean(tallies))
 tallies = tallies/22034600000000.0
 xvals = left.grids['X'][:,0]*-1
@@ -26,8 +26,8 @@ mean_error = error/np.mean(error)
 norm_tallies = tallies#/np.mean(tallies)
 xvals_exp = [0.6777163904235728, 3.233885819521179, 5.723756906077348, 8.27255985267035, 10.83609576427256]
 norm_exp = [1.1935045317220545, 1.1731117824773414, 1.1021148036253776, 1.0031722054380665, 1.1391238670694865]
-plt.errorbar(xvals_exp, norm_exp, marker = "o", linestyle = "-.", 
-             label = "Experimental")
+#plt.errorbar(xvals_exp, norm_exp, marker = "o", linestyle = "-.", 
+#             label = "Experimental")
 plt.errorbar(xvals, norm_tallies, error, marker = "", linestyle = "--", 
              label = "Model", barsabove=True, alpha=1)
 plt.xlabel("Radius [cm]")
@@ -35,8 +35,9 @@ plt.ylabel("Normalized Power")
 plt.grid()
 plt.legend()
 plt.xlim(0,12)
-plt.ylim(0.8, 1.3)
+# plt.ylim(0.8, 1.3)
 plt.show()
+plt.savefig('radial.png')
 
 ## AXIAL PLOT
 #------------

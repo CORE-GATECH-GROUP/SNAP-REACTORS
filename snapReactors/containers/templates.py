@@ -73,12 +73,148 @@ class S8ER(SerpentTemplate):
         id = "SNAP"
         SerpentTemplate.__init__(self, id)
         # self.map = self.setMap(fuelElement, coolElement, internalReflector, barrel)
+    def _nak_density(self, t_kelvin, n_k = 0.77, n_na = 0.23):
+       
+        t_celsius = t_kelvin - 273.15
+        
+        # Sodium densities taken from NaK Engineering Handbook
+        rho_na = 0.9501 - 2.2976E-4 * t_celsius - 1.460E-8 * t_celsius**2 + 5.638E-12 * t_celsius**3
+        
+        rho_k = 0.8415 - 2.172E-4 * t_celsius - 2.70E-8 * t_celsius**2 + 4.77E-12 * t_celsius**3
+        
+        # Calculate specific volumes (1/density)
+        v_na = 1.0 / rho_na
+        v_k = 1.0 / rho_k
+        
+        # Calculate specific volume of NaK mixture
+        v_nak = n_k * v_k + n_na * v_na
+        
+        # Convert specific volume back to density
+        rho_nak = 1.0 / v_nak
+        
+        return rho_nak
+    
+    def _fuel_density(self, t_kelvin):
+        t_celsius = t_kelvin - 273.15
+        alpha_L = 4.52e-6 + t_celsius * 1.925e-8
+        dT = t_celsius - (300 - 273.15)
+        rad = 0.67564
+        height = 35.56
+        area = np.pi * rad**2
+        vol = area * height
+        dL =  height * alpha_L * dT
+        new_height = dL  + height
+        new_vol = new_height * area
+        rho = 6.0600000000000005
+        mass = rho * vol
+        new_rho = mass / new_vol
+        return new_rho, new_height
+    
+    def _ceramic_density(self, t_kelvin):
+        unused_rho, new_height = self._fuel_density(t_kelvin)
+        inner_rad = 0.67564
+        outer_rad = 0.681228
+        area = np.pi * (outer_rad**2 - inner_rad **2)
+        vol = area * 35.56
+        new_vol = area * new_height
+        rho =  6.01358E-02
+        atoms = rho * vol
+        new_rho = atoms / new_vol
+        return new_rho
+
+    def _drum_density(self, t_kelvin):
+        unushed_rho, new_height = self._fuel_density(t_kelvin)
+        old_height = 35.56
+        epsilon = (new_height - old_height)/old_height
+        rho = 1.83
+        new_rho = rho * (1 - epsilon)
+        return new_rho
+
+    def _internalref_density(self, t_kelvin):
+        unushed_rho, new_height = self._fuel_density(t_kelvin)
+        old_height = 35.56
+        epsilon = (new_height - old_height)/old_height
+        rho = 3.02
+        new_rho = rho * (1 - epsilon)
+        return new_rho
+    
+    def _grid_expansion(self, t_kelvin):
+        t_celsius = t_kelvin - 273.15
+        initial_pitch = 1.4478
+        delta_T = t_celsius - 26.85  # Assuming initial is 26.85°C
+
+        # Mean CTE values (1/°C), approx from Hastelloy N data
+        # Keys are the upper bounds of the temperature range
+        # https://haynesintl.com/en/alloys/alloy-portfolio/corrosion-resistant-alloys/hastelloy-n/?utm_source=chatgpt.com#physical-properties
+        cte_table = {
+            300: 12.7e-6,
+            400: 13.0e-6,
+            500: 13.3e-6,
+            600: 13.6e-6,
+            700: 13.9e-6,
+            800: 14.1e-6
+        }
+
+        # Select appropriate CTE based on the target temperature
+        selected_cte = None
+        for temp_limit, cte in sorted(cte_table.items()):
+            if t_celsius <= temp_limit:
+                selected_cte = cte
+                break
+        else:
+            # Use the highest if temp exceeds all ranges
+            selected_cte = cte_table[max(cte_table)]
+
+        # Compute new pitch
+        new_pitch = initial_pitch * (1 + selected_cte * delta_T)
+        return new_pitch
+
+    def _xs_from_temp_ENDF8(self, temp):
+        # keep in mind these XS extensions are with ENDF8
+            if temp < 600:
+                return "00c"
+            elif temp < 900:
+                return "01c"
+            elif temp < 1200:
+                return "02c"
+            else:
+                return "03c"
+    
+    def _sab_from_temp_ENDF8(self,temp):
+        # these extensions are only for ENDF8
+        if temp < 400:
+            return "40t"
+        elif temp < 500:
+            return "41t"
+        elif temp < 600:
+            return "42t"
+        elif temp < 700:
+            return "43t"
+        elif temp < 800:
+            return "44t"
+        elif temp < 901:
+            return "45t"
+        elif temp < 1200:
+            return "46t"
+        else:
+            return "47t"
 
     def _buildMaterials(self, dbMats, fuelTemp, coolantTemp, refTemp):
         serMats = []
-        fuelList = ['fuel', 'diffusion_barrier', 'burnable_poison', 'ceramic', 'gap', 'clad']
-        coolList = ['coolant', 'air', 'internal_reflector', 'barrel', 'lower_gridplate']
-        refList = ['control_drum']
+        material_component_dict = {
+            'fuel': 'fuel',
+            'diffusion_barrier': 'fuel',
+            'burnable_poison': 'fuel',
+            'ceramic': 'fuel',
+            'gap': 'fuel',
+            'clad': 'coolant',
+            'coolant': 'coolant',
+            'air': 'coolant',
+            'internal_reflector': 'coolant',
+            'barrel': 'coolant',
+            'lower_gridplate': 'coolant',
+            'control_drum': 'reflector'
+        }
         for mat in dbMats:
             serMat = material(mat.id, isBurn=False, isModer=False)
             if 'r'in mat._propertiesDict:
@@ -89,42 +225,20 @@ class S8ER(SerpentTemplate):
             else:
                 mult = 1
             serMat.set('fractions', list(mat.abundances*mult))
+
             if self.xsLibrary == 'ENDF7.1':
                 serMat.set('xsLib', "03c")
             elif self.xsLibrary == 'ENDF8':
-                if serMat.id in fuelList:
-                    if fuelTemp < 600:
-                        serMat.set('xsLib', "00c")
-                    if fuelTemp >= 600 and fuelTemp < 900: 
-                        serMat.set('xsLib', "01c")
-                    if fuelTemp >= 900 and fuelTemp < 1200: 
-                        serMat.set('xsLib', "02c")
-                    if fuelTemp >= 1200:
-                        serMat.set('xsLib', "03c")
-                if serMat.id in coolList:
-                    if coolantTemp < 600:
-                        serMat.set('xsLib', "00c")
-                    if coolantTemp >= 600 and coolantTemp < 900: 
-                        serMat.set('xsLib', "01c")
-                    if coolantTemp >= 900 and coolantTemp < 1200: 
-                        serMat.set('xsLib', "02c")
-                    if coolantTemp >= 1200:
-                        serMat.set('xsLib', "03c")
-                if serMat.id in refList:
-                    if refTemp < 600:
-                        serMat.set('xsLib', "00c")
-                    if refTemp >= 600 and refTemp < 900: 
-                        serMat.set('xsLib', "01c")
-                    if refTemp >= 900 and refTemp < 1200: 
-                        serMat.set('xsLib', "02c")
-                    if refTemp >= 1200:
-                        serMat.set('xsLib', "03c")
-            # refStr = mat.reference
-            # descStr = mat.description
-
-            # header = "/*\nReference: "+refStr+"\nDescription: "+descStr+"\n"\
-            #         "*/\n"
-            # matStr = matStr + header+ serMat.toString()
+                material_type = material_component_dict.get(serMat.id)
+                if material_type == 'fuel':
+                    serMat.set('xsLib', self._xs_from_temp_ENDF8(fuelTemp))
+                    serMat.set('temp', fuelTemp)
+                elif material_type == 'coolant':
+                    serMat.set('xsLib', self._xs_from_temp_ENDF8(coolantTemp))
+                    serMat.set('temp', coolantTemp)
+                elif material_type == 'reflector':
+                    serMat.set('xsLib', self._xs_from_temp_ENDF8(refTemp))
+                    serMat.set('temp', refTemp)
             serMats.append(serMat)
         return serMats
 
@@ -13530,17 +13644,24 @@ class S8_Wet(S8ER):
         gapRad	            =0.685292
         cladRad	            =0.71374
         ecPinRad            =0.7112
-        elemPitch           =1.4478
+        elemPitch           = super()._grid_expansion(coolantTemp)
 
         latticeApothem = 11.43
         intRefRad = 11.7475
         barrelRad = barrel.dimensionsDict['barrel_radius'].valueSERP
-
+        fueldens, fuelHeight = super()._fuel_density(fuelTemp)
+        # upper grid
         ugdz = 0.87376
+        #upper end cap
         uecdz = 0.2286
+        # active core upper
         acudz = 2.9083
-        acmdz = 2.54*12
+        # active core lower
         acldz = 2.1717
+        # active core middle
+        acmdz = fuelHeight - acudz - acldz
+
+
         lecdz = 0.9652
         lggz = 0.79502
         voiddz = 2
@@ -13608,24 +13729,33 @@ class S8_Wet(S8ER):
         cerMat.set('rgb', '255 174 66')
 
         refMix = intRefMix(barMat, cladMat, intrefMat, airMat)
-        refMix.set('rgb', "186 152 117")   
+        refMix.set('rgb', "186 152 117")  
+
+        # set densities
+        fuelMat.set('dens', -fueldens)
+        cerMat.set('dens', super()._ceramic_density(fuelTemp))
+        intrefMat.set('dens', -super()._internalref_density(fuelTemp))
+        cdMat.set('dens', -super()._drum_density(fuelTemp)) 
+        nakMat.set('dens', -super()._nak_density(coolantTemp))
 
         if (self.hasThermScatt) & (self.xsLibrary == 'ENDF8'):
+            fuelext = super()._sab_from_temp_ENDF8(fuelTemp)
+            coolantext = super()._sab_from_temp_ENDF8(coolantTemp)
+            refext = super()._sab_from_temp_ENDF8(refTemp)
+
             fuelMat.set('isModer', True)
             fuelMat.set('thermLib', "HZr 1001  moder ZrH 40090")
-            fuelMat.set('aceTherm', "therm HZr h-zrh.40t therm ZrH zr-zrh.40t")
-
+            fuelMat.set('aceTherm', f"therm HZr h-zrh.{fuelext} therm ZrH zr-zrh.{fuelext}")
+            fuelMat.set('isBurn', True)
+            cerMat.set('isBurn', True)
+            
             cdMat.set('isModer', True)
             cdMat.set('thermLib', "Bem 4009")
-            cdMat.set('aceTherm', "therm Bem be-met.40t")
-
-            lucMat.set('isModer', True)
-            lucMat.set('thermLib', 'HLu 1001')
-            lucMat.set('aceTherm', "therm HLu h-luci.40t")
+            cdMat.set('aceTherm', f"therm Bem be-met.{refext}")
 
             intrefMat.set('isModer', True)
             intrefMat.set('thermLib', 'BeO 4009 moder OBe 8016')
-            intrefMat.set('aceTherm', "therm BeO be-beo.40t therm OBe o-beo.40t")
+            intrefMat.set('aceTherm', f"therm BeO be-beo.{coolantext} therm OBe o-beo.{coolantext}")
             
         elif (self.hasThermScatt) & (self.xsLibrary == 'ENDF7.1'):
             fuelMat.set('isModer', True)
@@ -14763,11 +14893,11 @@ class S8_Wet(S8ER):
         cdFull.collectAll()
 
         cdLecFull = buildPeripheralObject(barrel1lec, cdFull)
-        #0.79502 0.9652 2.1717 2.54*12 2.9083 0.2286 0.87376
+
         ugdz = 0.87376
         uecdz = 0.2286
         acudz = 2.9083
-        acmdz = 2.54*12
+        acmdz = fuelHeight - acudz - acldz
         acldz = 2.1717
         lecdz = 0.9652
         lggz = 0.79502
