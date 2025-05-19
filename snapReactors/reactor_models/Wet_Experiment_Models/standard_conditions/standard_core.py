@@ -11,7 +11,6 @@ from snapReactors.containers.templates import S83D_Revised
 from snapReactors.containers.dimension import Dimension
 from snapReactors.functions.utilities import createDictFromConatinerList
 from snapReactors.reactor_models.AutomatedSerpentModels.GCU.c3_radial_sens_2d.utilitities import *
-# from snapReactors.functions.utilities import createISOXML
 import numpy as np
 from pathlib import Path
 # snap_base = Path(snapReactors.__file__).parent
@@ -21,8 +20,8 @@ from pathlib import Path
 
 rsFilePath = r"/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/data_inputfiles/s8er_hotpower.txt"
 states = ReactorState.rsReader(rsFilePath, outputDict=True)
-coldpow = states['Hot Power']
-components = coldpow.componentsDict
+hotpow = states['Hot Power']
+components = hotpow.componentsDict
 
 fe = components['fuel element']
 ce = components['coolant element']
@@ -36,5 +35,5 @@ ae = components['air element']
 acePath = "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
 
 
-ringres = S8_Wet(fe, ce, ir, br, ugp, lgp, cds, ae, fuelTemp = 934.6035, coolantTemp = 922.03, refTemp = 922.03, baseFile="s82d_ac_c3_gcu_ringres", geo = "3D")
+ringres = S8_Wet(fe, ce, ir, br, ugp, lgp, cds, ae, fuelTemp = 934.6035, coolantTemp = 922.03, refTemp = 866, baseFile="standardconditions", geo = "3D")
 #ringres = HC_Test(fe, ce, ir, br, ugp, lgp, cds, ae, config='C1', xsLibrary="ENDF8", hasThermScatt=True, baseFile="HC_TEST", geo = "3D")

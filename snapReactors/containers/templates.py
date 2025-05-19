@@ -14931,15 +14931,15 @@ class S8_Wet(S8ER):
         xsPath = "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
 
         if geo =="2D":
-            c1.setSettings(geoType='2D', bc = 1, nps = 1E+05, nact = 100, nskip=100, xsAbsPath=xsPath, plotOptions=([3], 1000, [0], 1), setGCU = True, fgs = fgs_hr18, setDetectors = True, detTypes = ["scalar", "nuFiss"])
+            c1.setSettings(geoType='2D', bc = 1, nps = 3E+06, nact = 100, nskip=100, xsAbsPath=xsPath, plotOptions=([3], 1000, [0], 1), setGCU = True, fgs = fgs_hr18)#, setDetectors = False, detTypes = ["scalar", "nuFiss"])
             c1.toSerpent(exportUniverseAsNumber = True)
         else:
-            c1.setSettings(geoType='3D', bc = 1, nps = 1E+05, nact = 100, nskip=100, xsAbsPath=xsPath, plotOptions=([3, 1], 1000, [0, 0], 1),setGCU = True, fgs = fgs_hr18, setDetectors = True, detTypes = ["scalar", "nuFiss"])
+            c1.setSettings(geoType='3D', bc = 1, nps = 3E+06, nact = 100, nskip=100, xsAbsPath=xsPath, plotOptions=([3, 1], 1000, [35.56/2, 0], 1),setGCU = True, fgs = fgs_hr18)#, setDetectors = True, detTypes = ["scalar", "nuFiss"])
             c1.toSerpent(exportUniverseAsNumber = True)
 
         nfg = 18
         anisDeg = 1
-        createISOXML(baseFile, nfg, anisDeg)
+        #createISOXML(baseFile, nfg, anisDeg)
 
         nMidHex = 17
         hexPitch = elemPitch

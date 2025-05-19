@@ -10,9 +10,9 @@ include s8c4_RevisedDrum.mat
 include s8c4_RevisedDrum.geo
 % ==================================================
 % Energy Grid:
-ene egrid 4 default2
+% ene egrid 4 default2
 % Mesh Tally:
-det xymesh n de egrid dx -12 0.5 50 dy -0.33782 0.33782 1
+det xymesh n dx -12 0.5 50 dy -0.33782 0.33782 1
 %det zmesh n dr -8 void dz -18.3769 18.3769 100
 %det ymesh n dy -12 12 100
 %det xmesh n dr -8 void dx -12 12 100

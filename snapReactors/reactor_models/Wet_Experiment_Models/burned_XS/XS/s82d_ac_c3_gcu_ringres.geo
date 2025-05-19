@@ -1,10 +1,10 @@
-surf barrelACMvoidDrumh1 cyl 0.0 0.0 27.181999023506005 
-surf putBorder cuboid -27.181999023506005 27.181999023506005 -27.181999023506005 27.181999023506005 0.0 38.422579999999996 
+surf barrelACMvoidDrumh1 cyl 0.0 0.0 26.429318239372506 
+surf putBorder cuboid -26.429318239372506 26.429318239372506 -26.429318239372506 26.429318239372506 0.0 38.422579999999996 
 surf lgBarrelcc1 cyl 0.0 0.0 11.87704 
-surf lgvoidvoidDrumh1 cyl 0.0 0.0 27.181999023506005 
-surf lgvoidh7 hexyc 0.0 0.0 23.540301680000002 
+surf lgvoidvoidDrumh1 cyl 0.0 0.0 26.429318239372506 
+surf lgvoidh7 hexyc 0.0 0.0 22.888461000000003 
 surf barrelleccc1 cyl 0.0 0.0 11.87704 
-surf lecCDvoidDrumh1 cyl 0.0 0.0 27.181999023506005 
+surf lecCDvoidDrumh1 cyl 0.0 0.0 26.429318239372506 
 surf intrefleccc1 cyl 0.0 0.0 11.7475 
 surf hexBorderlowerEndCapLat hexyc 0.0 0.0 11.43 
 surf lecCDh1 hexyc 0.0 0.0 13.263102125 
@@ -13,9 +13,9 @@ surf lecCDh3 hexyc 0.0 0.0 16.035226375
 surf lecCDh4 hexyc 0.0 0.0 17.4212885 
 surf lecCDh5 hexyc 0.0 0.0 19.09571098 
 surf lecCDh6 hexyc 0.0 0.0 20.83791974 
-surf lecCDh7 hexyc 0.0 0.0 23.540301680000002 
+surf lecCDh7 hexyc 0.0 0.0 22.888461000000003 
 surf barrelACLcc1 cyl 0.0 0.0 11.87704 
-surf barrelACLvoidDrumh1 cyl 0.0 0.0 27.181999023506005 
+surf barrelACLvoidDrumh1 cyl 0.0 0.0 26.429318239372506 
 surf intrefACLcc1 cyl 0.0 0.0 11.7475 
 surf hexBorderactiveCoreLatACL hexyc 0.0 0.0 11.43 
 surf barrelACLh1 hexyc 0.0 0.0 13.263102125 
@@ -24,7 +24,7 @@ surf barrelACLh3 hexyc 0.0 0.0 16.035226375
 surf barrelACLh4 hexyc 0.0 0.0 17.4212885 
 surf barrelACLh5 hexyc 0.0 0.0 19.09571098 
 surf barrelACLh6 hexyc 0.0 0.0 20.83791974 
-surf barrelACLh7 hexyc 0.0 0.0 23.540301680000002 
+surf barrelACLh7 hexyc 0.0 0.0 22.888461000000003 
 surf barrelACMcc1 cyl 0.0 0.0 11.87704 
 surf intrefACMcc1 cyl 0.0 0.0 11.7475 
 surf hexBorderactiveCoreLatACM hexyc 0.0 0.0 11.43 
@@ -34,9 +34,9 @@ surf barrelACMh3 hexyc 0.0 0.0 16.035226375
 surf barrelACMh4 hexyc 0.0 0.0 17.4212885 
 surf barrelACMh5 hexyc 0.0 0.0 19.09571098 
 surf barrelACMh6 hexyc 0.0 0.0 20.83791974 
-surf barrelACMh7 hexyc 0.0 0.0 23.540301680000002 
+surf barrelACMh7 hexyc 0.0 0.0 22.888461000000003 
 surf barrelACUcc1 cyl 0.0 0.0 11.87704 
-surf barrelACUvoidDrumh1 cyl 0.0 0.0 27.181999023506005 
+surf barrelACUvoidDrumh1 cyl 0.0 0.0 26.429318239372506 
 surf intrefACUcc1 cyl 0.0 0.0 11.7475 
 surf hexBorderactiveCoreLatACU hexyc 0.0 0.0 11.43 
 surf barrelACUh1 hexyc 0.0 0.0 13.263102125 
@@ -45,9 +45,9 @@ surf barrelACUh3 hexyc 0.0 0.0 16.035226375
 surf barrelACUh4 hexyc 0.0 0.0 17.4212885 
 surf barrelACUh5 hexyc 0.0 0.0 19.09571098 
 surf barrelACUh6 hexyc 0.0 0.0 20.83791974 
-surf barrelACUh7 hexyc 0.0 0.0 23.540301680000002 
+surf barrelACUh7 hexyc 0.0 0.0 22.888461000000003 
 surf barrelueccc1 cyl 0.0 0.0 11.87704 
-surf uecCDvoidDrumh1 cyl 0.0 0.0 27.181999023506005 
+surf uecCDvoidDrumh1 cyl 0.0 0.0 26.429318239372506 
 surf intrefueccc1 cyl 0.0 0.0 11.7475 
 surf hexBorderupperEndCapLat hexyc 0.0 0.0 11.43 
 surf uecCDh1 hexyc 0.0 0.0 13.263102125 
@@ -56,10 +56,10 @@ surf uecCDh3 hexyc 0.0 0.0 16.035226375
 surf uecCDh4 hexyc 0.0 0.0 17.4212885 
 surf uecCDh5 hexyc 0.0 0.0 19.09571098 
 surf uecCDh6 hexyc 0.0 0.0 20.83791974 
-surf uecCDh7 hexyc 0.0 0.0 23.540301680000002 
+surf uecCDh7 hexyc 0.0 0.0 22.888461000000003 
 surf ugBarrelcc1 cyl 0.0 0.0 11.87704 
-surf ugvoidvoidDrumh1 cyl 0.0 0.0 27.181999023506005 
-surf ugvoidh7 hexyc 0.0 0.0 23.540301680000002 
+surf ugvoidvoidDrumh1 cyl 0.0 0.0 26.429318239372506 
+surf ugvoidh7 hexyc 0.0 0.0 22.888461000000003 
 cell fillRegion 1  fill cdBarrelStack -barrelACMvoidDrumh1 
 cell voidRegion 1  void barrelACMvoidDrumh1 -putBorder 
 cell lgBarrel_univlgvoidcdFull_cell1 lgBarrel_univlgvoidcdFull_univ fill 9400 -lgBarrelcc1
@@ -197,15 +197,15 @@ cell ugvoidcdSys1 7500 void ugBarrelcc1 -ugvoidh7
 cell outRegionIn 0  fill 1 -putBorder 
 cell outRegionOut 0  outside putBorder 
 lat cdBarrelStack 9 0 0 7
-0.0     lgBarrel_univlgvoidcdFull_univ
-0.79502 active_core_univlowerEndCapLatintreflec_univbarrellec_univlecCDcdFull_univ
-1.76022 active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univbarrelACLcdFull_univ
-3.93192 active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univbarrelACMcdFull_univ
-34.80125938     active_core_univactiveCoreLatACUintrefACU_univbarrelACU_univbarrelACUcdFull_univ
-37.70955938     active_core_univupperEndCapLatintrefuec_univbarreluec_univuecCDcdFull_univ
-37.93815938     ugBarrel_univugvoidcdFull_univ
+0.0	lgBarrel_univlgvoidcdFull_univ
+0.79502	active_core_univlowerEndCapLatintreflec_univbarrellec_univlecCDcdFull_univ
+1.76022	active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univbarrelACLcdFull_univ
+3.93192	active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univbarrelACMcdFull_univ
+34.794699730375	active_core_univactiveCoreLatACUintrefACU_univbarrelACU_univbarrelACUcdFull_univ
+37.702999730375	active_core_univupperEndCapLatintrefuec_univbarreluec_univuecCDcdFull_univ
+37.931599730375	ugBarrel_univugvoidcdFull_univ
 
-lat lowerGridLat 3 0 0 21 21 1.4605
+lat lowerGridLat 3 0 0 21 21 1.4478
 pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG 
  pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG 
   pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG pLG 
@@ -235,7 +235,7 @@ pin pLGH
 coolant	0.15875
 lower_gridplate
 
-lat lowerEndCapLat 2 0 0 21 21 1.4605
+lat lowerEndCapLat 2 0 0 21 21 1.4478
 pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
  pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
   pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV pLECV 
@@ -265,7 +265,7 @@ pin pLEC
 clad	0.7112
 coolant
 
-lat activeCoreLatACL 2 0 0 21 21 1.4605
+lat activeCoreLatACL 2 0 0 21 21 1.4478
 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000
 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000
 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 1800 1800 1800 1800 1800 1800 1800 2000 2000 2000
@@ -347,7 +347,7 @@ gap	0.685292
 clad	0.71374
 coolant
 
-lat activeCoreLatACM 2 0 0 21 21 1.4605
+lat activeCoreLatACM 2 0 0 21 21 1.4478
 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900
 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900
 900 900 900 900 900 900 900 900 900 900 900 800 800 800 800 800 800 800 900 900 900
@@ -901,7 +901,7 @@ gap	0.685292
 clad	0.71374
 coolant
 
-lat activeCoreLatACU 2 0 0 21 21 1.4605
+lat activeCoreLatACU 2 0 0 21 21 1.4478
 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100
 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100
 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 2800 2800 2800 2800 2800 2800 2800 3100 3100 3100
@@ -983,7 +983,7 @@ gap	0.685292
 clad	0.71374
 coolant
 
-lat upperEndCapLat 2 0 0 21 21 1.4605
+lat upperEndCapLat 2 0 0 21 21 1.4478
 pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
  pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
   pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pLECV pLECV pLECV 
@@ -1010,7 +1010,7 @@ pin pUEC
 clad	0.7112
 coolant
 
-lat upperGridLat 3 0 0 21 21 1.4605
+lat upperGridLat 3 0 0 21 21 1.4478
 pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG 
  pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG 
   pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG pUG 
