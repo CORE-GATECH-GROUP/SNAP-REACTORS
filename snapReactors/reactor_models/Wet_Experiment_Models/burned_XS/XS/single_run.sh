@@ -1,7 +1,7 @@
 #!/bin/bash
-#PBS -l select=8:ncpus=40:mpiprocs=1:mem=220gb
+#PBS -l select=10:ncpus=40:mpiprocs=1:mem=220gb
 #PBS -N Depletion_Run
-#PBS -l walltime=1:30:00
+#PBS -l walltime=15:30:00
 #PBS -k doe
 #PBS -j oe
 #PBS -P edu_res
@@ -14,4 +14,4 @@ export TMPDIR=/tmp
 export SERPENT_DATA=/hpc-common/data/serpent/xsdata/s2v0_endfb80
 
 # Run Serpent job with 4 nodes and 40 CPUs per node
-mpirun sss2 standardconditions_1_1_1_1.main -omp 40
+mpirun sss2 s82d_ac_c3_gcu_ringres.main -omp 40

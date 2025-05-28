@@ -311,19 +311,16 @@ extref_blocks = 'Reflector'
         type = MultiAppGeneralFieldNearestLocationTransfer
         to_multi_app = sc
         source_variable = bison_pow_lin
-        # source_variable = bison_pow_lin
-        # variable = q_dens
-        # variable = q_prime_element
         variable = q_prime
         from_blocks = 'Fuel'
         to_blocks = fuel_pins
         greedy_search = true
     []
     [coolant_temp_from_SC]
-    type = MultiAppGeneralFieldNearestLocationTransfer
-    from_multi_app = sc
-    source_variable = T
-    variable = bison_T_inf
+        type = MultiAppGeneralFieldNearestLocationTransfer
+        from_multi_app = sc
+        source_variable = T
+        variable = bison_T_inf
     []
   []
 

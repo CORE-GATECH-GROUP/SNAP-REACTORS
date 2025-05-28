@@ -636,7 +636,7 @@ def runDivRefFull(baseFile, layout, blockLayoutMap, nMidHex, hexPitch, outerBloc
 
     shimAApothem = 19.35542598 - gapThickness1 - gapThickness2
     shimBApothem = 21.30540674 - gapThickness1 - gapThickness2 -gapThickness3
-    shimCApothem = 23.56372 - gapThickness1 - gapThickness2 - gapThickness3 - gapThickness4
+    shimCApothem = 24.21556068 - gapThickness1 - gapThickness2 - gapThickness3 - gapThickness4
     drumApothem4 = 17.4732315 - gapThickness1
 
     shimCsurf, shimCid = makeHexSurf(shimCApothem)
