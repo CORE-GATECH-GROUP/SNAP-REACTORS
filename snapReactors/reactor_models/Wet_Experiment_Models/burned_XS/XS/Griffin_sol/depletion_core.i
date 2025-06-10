@@ -10,14 +10,85 @@ shima_blocks_2d = '1600'
 shimb_blocks_2d = '1700'
 shimc_blocks_2d = '1800'
 
-acm_fuel_blocks_lay8 = '801 802 803 804 805 806 807 808'
-acm_fuel_blocks_lay7 = '701 702 703 704 705 706 707 708'
-acm_fuel_blocks_lay6 = '601 602 603 604 605 606 607 608'
-acm_fuel_blocks_lay5 = '501 502 503 504 505 506 507 508'
-acm_fuel_blocks_lay4 = '401 402 403 404 405 406 407 408'
-acm_fuel_blocks_lay3 = '301 302 303 304 305 306 307 308'
-acm_fuel_blocks_lay2 = '201 202 203 204 205 206 207 208'
-acm_fuel_blocks_lay1 = '101 102 103 104 105 106 107 108'
+# acm_fuel_blocks_lay8
+acm_fuel_blocks_lay8801 = '801'
+acm_fuel_blocks_lay8802 = '802'
+acm_fuel_blocks_lay8803 = '803'
+acm_fuel_blocks_lay8804 = '804'
+acm_fuel_blocks_lay8805 = '805'
+acm_fuel_blocks_lay8806 = '806'
+acm_fuel_blocks_lay8807 = '807'
+acm_fuel_blocks_lay8808 = '808'
+
+# acm_fuel_blocks_lay7
+acm_fuel_blocks_lay7701 = '701'
+acm_fuel_blocks_lay7702 = '702'
+acm_fuel_blocks_lay7703 = '703'
+acm_fuel_blocks_lay7704 = '704'
+acm_fuel_blocks_lay7705 = '705'
+acm_fuel_blocks_lay7706 = '706'
+acm_fuel_blocks_lay7707 = '707'
+acm_fuel_blocks_lay7708 = '708'
+
+# acm_fuel_blocks_lay6
+acm_fuel_blocks_lay6601 = '601'
+acm_fuel_blocks_lay6602 = '602'
+acm_fuel_blocks_lay6603 = '603'
+acm_fuel_blocks_lay6604 = '604'
+acm_fuel_blocks_lay6605 = '605'
+acm_fuel_blocks_lay6606 = '606'
+acm_fuel_blocks_lay6607 = '607'
+acm_fuel_blocks_lay6608 = '608'
+
+# acm_fuel_blocks_lay5
+acm_fuel_blocks_lay5501 = '501'
+acm_fuel_blocks_lay5502 = '502'
+acm_fuel_blocks_lay5503 = '503'
+acm_fuel_blocks_lay5504 = '504'
+acm_fuel_blocks_lay5505 = '505'
+acm_fuel_blocks_lay5506 = '506'
+acm_fuel_blocks_lay5507 = '507'
+acm_fuel_blocks_lay5508 = '508'
+
+# acm_fuel_blocks_lay4
+acm_fuel_blocks_lay4401 = '401'
+acm_fuel_blocks_lay4402 = '402'
+acm_fuel_blocks_lay4403 = '403'
+acm_fuel_blocks_lay4404 = '404'
+acm_fuel_blocks_lay4405 = '405'
+acm_fuel_blocks_lay4406 = '406'
+acm_fuel_blocks_lay4407 = '407'
+acm_fuel_blocks_lay4408 = '408'
+
+# acm_fuel_blocks_lay3
+acm_fuel_blocks_lay3301 = '301'
+acm_fuel_blocks_lay3302 = '302'
+acm_fuel_blocks_lay3303 = '303'
+acm_fuel_blocks_lay3304 = '304'
+acm_fuel_blocks_lay3305 = '305'
+acm_fuel_blocks_lay3306 = '306'
+acm_fuel_blocks_lay3307 = '307'
+acm_fuel_blocks_lay3308 = '308' 
+
+# acm_fuel_blocks_lay2
+acm_fuel_blocks_lay2201 = '201'
+acm_fuel_blocks_lay2202 = '202'
+acm_fuel_blocks_lay2203 = '203'
+acm_fuel_blocks_lay2204 = '204'
+acm_fuel_blocks_lay2205 = '205'
+acm_fuel_blocks_lay2206 = '206'
+acm_fuel_blocks_lay2207 = '207'
+acm_fuel_blocks_lay2208 = '208'
+
+# acm_fuel_blocks_lay1
+acm_fuel_blocks_lay1101 = '101'
+acm_fuel_blocks_lay1102 = '102'
+acm_fuel_blocks_lay1103 = '103'
+acm_fuel_blocks_lay1104 = '104'
+acm_fuel_blocks_lay1105 = '105'
+acm_fuel_blocks_lay1106 = '106'
+acm_fuel_blocks_lay1107 = '107'
+acm_fuel_blocks_lay1108 = '108'
 
 acm_air_blocks_2d     = '9'
 acm_intref_blocks_2d  = '1000'
@@ -30,7 +101,16 @@ acm_shima_blocks_2d   = '1600'
 acm_shimb_blocks_2d   = '1700'
 acm_shimc_blocks_2d   = '1800'
 
-acl_fuel_blocks_2d    = '81 82 83 84 85 86 87 88'
+# acl_fuel_blocks_2d
+acl_fuel_blocks_2d81 = '81'
+acl_fuel_blocks_2d82 = '82'
+acl_fuel_blocks_2d83 = '83'
+acl_fuel_blocks_2d84 = '84'
+acl_fuel_blocks_2d85 = '85'
+acl_fuel_blocks_2d86 = '86'
+acl_fuel_blocks_2d87 = '87'
+acl_fuel_blocks_2d88 = '88'
+
 acl_air_blocks_2d     = '89'
 acl_intref_blocks_2d  = '1402'
 acl_barrel_blocks_2d  = '1502'
@@ -42,7 +122,16 @@ acl_shima_blocks_2d   = '2002'
 acl_shimb_blocks_2d   = '2102'
 acl_shimc_blocks_2d   = '2202'
 
-acu_fuel_blocks_2d    = '71 72 73 74 75 76 77 78'
+# acu_fuel_blocks_2d
+acu_fuel_blocks_2d71 = '71'
+acu_fuel_blocks_2d72 = '72'
+acu_fuel_blocks_2d73 = '73'
+acu_fuel_blocks_2d74 = '74'
+acu_fuel_blocks_2d75 = '75'
+acu_fuel_blocks_2d76 = '76'
+acu_fuel_blocks_2d77 = '77'
+acu_fuel_blocks_2d78 = '78'
+
 acu_air_blocks_2d     = '79'
 acu_intref_blocks_2d  = '1401'
 acu_barrel_blocks_2d  = '1501'
@@ -230,9 +319,19 @@ multi_app_z_pos = '${fparse lay1 + lay2}'
 	[set_mat_id]
 		type = SubdomainExtraElementIDGenerator
 		input = 'nue'
-		subdomains =        '${acu_shimc_blocks_2d} ${acl_shimc_blocks_2d} ${uec_shimc_blocks_2d} ${lec_shimc_blocks_2d} ${acm_shimc_blocks_2d} ${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d} ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acm_air_blocks_2d} ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_fuel_blocks_2d   } ${acl_air_blocks_2d    } ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_fuel_blocks_2d   } ${acu_air_blocks_2d    } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_active_blocks    } ${lgr_ext_blocks       } ${ugr_active_blocks    } ${ugr_ext_blocks       } ${lec_active_blocks    } ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  } ${uec_active_blocks    } ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
+		subdomains =        '${acu_shimc_blocks_2d} ${acl_shimc_blocks_2d} ${uec_shimc_blocks_2d} ${lec_shimc_blocks_2d} ${acm_shimc_blocks_2d} ${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d} ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } 
+                             ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acm_air_blocks_2d} ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} 
+                             ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_fuel_blocks_2d   } ${acl_air_blocks_2d    } ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} 
+                             ${acl_shima_blocks_2d  } ${acu_fuel_blocks_2d   } ${acu_air_blocks_2d    } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_active_blocks    } 
+                             ${lgr_ext_blocks       } ${ugr_active_blocks    } ${ugr_ext_blocks       } ${lec_active_blocks    } ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  } ${uec_active_blocks    } ${uec_extref1_blocks_2d} 
+                             ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
 		extra_element_id_names = 'material_id'
-		extra_element_ids = '${acu_shimc_matids_2d} ${acl_shimc_matids_2d} ${uec_shimc_matids_2d} ${lec_shimc_matids_2d} ${acm_shimc_matids_2d} ${acu_shimb_matids_2d} ${acl_shimb_matids_2d} ${uec_shimb_matids_2d} ${lec_shimb_matids_2d} ${acm_shimb_matids_2d} ${acm_fuel_matids_lay8 } ${acm_fuel_matids_lay7 } ${acm_fuel_matids_lay6 } ${acm_fuel_matids_lay5 } ${acm_fuel_matids_lay4 } ${acm_fuel_matids_lay3 } ${acm_fuel_matids_lay2 } ${acm_fuel_matids_lay1 } ${acm_air_matids_2d} ${acm_intref_matids_2d } ${acm_barrel_matids_2d } ${acm_extref1_matids_2d} ${acm_extref2_matids_2d} ${acm_extref3_matids_2d} ${acm_extref4_matids_2d} ${acm_shima_matids_2d} ${acl_fuel_matids_2d   } ${acl_air_matids_2d    } ${acl_intref_matids_2d } ${acl_barrel_matids_2d } ${acl_extref1_matids_2d} ${acl_extref2_matids_2d} ${acl_extref3_matids_2d} ${acl_extref4_matids_2d} ${acl_shima_matids_2d  } ${acu_fuel_matids_2d   } ${acu_air_matids_2d    } ${acu_intref_matids_2d } ${acu_barrel_matids_2d } ${acu_extref1_matids_2d} ${acu_extref2_matids_2d} ${acu_extref3_matids_2d} ${acu_extref4_matids_2d} ${acu_shima_matids_2d  } ${lgr_active_matids    } ${lgr_ext_matids       } ${ugr_active_matids    } ${ugr_ext_matids       } ${lec_active_matids    } ${lec_extref1_matids_2d} ${lec_extref2_matids_2d} ${lec_extref3_matids_2d} ${lec_extref4_matids_2d} ${lec_shima_matids_2d  } ${uec_active_matids    } ${uec_extref1_matids_2d} ${uec_extref2_matids_2d} ${uec_extref3_matids_2d} ${uec_extref4_matids_2d} ${uec_shima_matids_2d  }'
+		extra_element_ids = '${acu_shimc_matids_2d} ${acl_shimc_matids_2d} ${uec_shimc_matids_2d} ${lec_shimc_matids_2d} ${acm_shimc_matids_2d} ${acu_shimb_matids_2d} ${acl_shimb_matids_2d} ${uec_shimb_matids_2d} ${lec_shimb_matids_2d} ${acm_shimb_matids_2d} ${acm_fuel_matids_lay8 } ${acm_fuel_matids_lay7 } 
+                            ${acm_fuel_matids_lay6 } ${acm_fuel_matids_lay5 } ${acm_fuel_matids_lay4 } ${acm_fuel_matids_lay3 } ${acm_fuel_matids_lay2 } ${acm_fuel_matids_lay1 } ${acm_air_matids_2d} ${acm_intref_matids_2d } ${acm_barrel_matids_2d } ${acm_extref1_matids_2d} ${acm_extref2_matids_2d} 
+                            ${acm_extref3_matids_2d} ${acm_extref4_matids_2d} ${acm_shima_matids_2d} ${acl_fuel_matids_2d   } ${acl_air_matids_2d    } ${acl_intref_matids_2d } ${acl_barrel_matids_2d } ${acl_extref1_matids_2d} ${acl_extref2_matids_2d} ${acl_extref3_matids_2d} ${acl_extref4_matids_2d} 
+                            ${acl_shima_matids_2d  } ${acu_fuel_matids_2d   } ${acu_air_matids_2d    } ${acu_intref_matids_2d } ${acu_barrel_matids_2d } ${acu_extref1_matids_2d} ${acu_extref2_matids_2d} ${acu_extref3_matids_2d} ${acu_extref4_matids_2d} ${acu_shima_matids_2d  } ${lgr_active_matids    } 
+                            ${lgr_ext_matids       } ${ugr_active_matids    } ${ugr_ext_matids       } ${lec_active_matids    } ${lec_extref1_matids_2d} ${lec_extref2_matids_2d} ${lec_extref3_matids_2d} ${lec_extref4_matids_2d} ${lec_shima_matids_2d  } ${uec_active_matids    } ${uec_extref1_matids_2d} 
+                            ${uec_extref2_matids_2d} ${uec_extref3_matids_2d} ${uec_extref4_matids_2d} ${uec_shima_matids_2d  }'
     []
     [coarse_mesh]
         type = GeneratedMeshGenerator
@@ -357,41 +456,886 @@ fuel_temp                 = 934.6035 # (K)
 # FLUID PROPERTIES, MATERIALS, AND USER OBJECTS
 # ==============================================================================
 [Materials]
-    [core]
-        type = BurnupCoupledFeedbackNeutronicsMaterial
-        block =  '${ugr_active_blocks    } ${uec_active_blocks    } ${acu_fuel_blocks_2d   } ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acl_fuel_blocks_2d   } ${lec_active_blocks    } ${lgr_active_blocks    }'
-		library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
-		library_name = 'standardconditions_XS'
-        isotopes = 'pseudo'
-        densities = '1.0'
-        plus = 1
-        is_meter = True
-        grid_names = 'Burnup Tfuel'
-        grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+    # [core]
+    #     type = BurnupCoupledFeedbackNeutronicsMaterial
+    #     block =  '${ugr_active_blocks    } ${uec_active_blocks    } ${acu_fuel_blocks_2d   } ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acl_fuel_blocks_2d   } ${lec_active_blocks    } ${lgr_active_blocks    }'
+	# 	material_id = '${ugr_active_matids} ${uec_active_matids} ${acu_fuel_matids_2d} ${acm_fuel_matids_lay8} ${acm_fuel_matids_lay7} ${acm_fuel_matids_lay6} ${acm_fuel_matids_lay5} ${acm_fuel_matids_lay4} ${acm_fuel_matids_lay3} ${acm_fuel_matids_lay2} ${acm_fuel_matids_lay1} ${acl_fuel_matids_2d} ${lec_active_matids} ${lgr_active_matids}'
+    #     library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+	# 	library_name = 'standardconditions_XS'
+    #     isotopes = 'pseudo'
+    #     densities = '1.0'
+    #     plus = 1
+    #     is_meter = True
+    #     grid_names = 'Burnup Tfuel'
+    #     grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+    # []
+    # [extref]
+    #     type = BurnupCoupledFeedbackNeutronicsMaterial
+    #     block =  '${acu_shimc_blocks_2d} ${acl_shimc_blocks_2d} ${uec_shimc_blocks_2d} ${lec_shimc_blocks_2d} ${acm_shimc_blocks_2d} ${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d}   ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d}  ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  }  ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_ext_blocks       } ${ugr_ext_blocks       }  ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  }  ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
+	# 	material_id = '${acu_shimc_matids_2d} ${acl_shimc_matids_2d} ${uec_shimc_matids_2d} ${lec_shimc_matids_2d} ${acm_shimc_matids_2d} ${acu_shimb_matids_2d} ${acl_shimb_matids_2d} ${uec_shimb_matids_2d} ${lec_shimb_matids_2d} ${acm_shimb_matids_2d} ${acm_extref1_matids_2d} ${acm_extref2_matids_2d} ${acm_extref3_matids_2d} ${acm_extref4_matids_2d} ${acm_shima_matids_2d} ${acl_extref1_matids_2d} ${acl_extref2_matids_2d} ${acl_extref3_matids_2d} ${acl_extref4_matids_2d} ${acl_shima_matids_2d} ${acu_extref1_matids_2d} ${acu_extref2_matids_2d} ${acu_extref3_matids_2d} ${acu_extref4_matids_2d} ${acu_shima_matids_2d} ${lgr_ext_matids} ${ugr_ext_matids} ${lec_extref1_matids_2d} ${lec_extref2_matids_2d} ${lec_extref3_matids_2d} ${lec_extref4_matids_2d} ${lec_shima_matids_2d} ${uec_extref1_matids_2d} ${uec_extref2_matids_2d} ${uec_extref3_matids_2d} ${uec_extref4_matids_2d} ${uec_shima_matids_2d}'
+    #     library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+	# 	library_name = 'standardconditions_XS'
+    #     isotopes = 'pseudo'
+    #     densities = '1.0'
+    #     plus = 1
+    #     is_meter = True
+    #     grid_names = 'Burnup Tref'
+    #     grid_variables = 'burnup_MWd/kg griffin_Tref'
+    # []
+    # [coolant]
+    #     type = BurnupCoupledFeedbackNeutronicsMaterial
+    #     block =  '${acu_air_blocks_2d    } ${acm_air_blocks_2d    } ${acl_air_blocks_2d    } ${acm_intref_blocks_2d } ${acl_intref_blocks_2d } ${acu_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acm_barrel_blocks_2d } ${acu_barrel_blocks_2d }'
+	# 	material_id = '${acu_air_matids_2d} ${acm_air_matids_2d} ${acl_air_matids_2d} ${acm_intref_matids_2d} ${acl_intref_matids_2d} ${acu_intref_matids_2d} ${acl_barrel_matids_2d} ${acm_barrel_matids_2d} ${acu_barrel_matids_2d}'
+    #     library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+	# 	library_name = 'standardconditions_XS'
+    #     isotopes = 'pseudo'
+    #     densities = '1.0'
+    #     plus = 1
+    #     is_meter = True
+    #     grid_names = 'Burnup Tcool'
+    #     grid_variables = 'burnup_MWd/kg griffin_Tcool'
+    # []
+# Tfuel Materials
+    [ugr_active_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${ugr_active_blocks}'
+    material_id = '${ugr_active_matids}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tfuel'
+    grid_variables = 'burnup_MWd/kg griffin_Tfuel'
     []
-    [extref]
-        type = BurnupCoupledFeedbackNeutronicsMaterial
-        block =  '${acu_shimc_blocks_2d} ${acl_shimc_blocks_2d} ${uec_shimc_blocks_2d} ${lec_shimc_blocks_2d} ${acm_shimc_blocks_2d} ${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d}   ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d}  ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  }  ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_ext_blocks       } ${ugr_ext_blocks       }  ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  }  ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
-		library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
-		library_name = 'standardconditions_XS'
-        isotopes = 'pseudo'
-        densities = '1.0'
-        plus = 1
-        is_meter = True
-        grid_names = 'Burnup Tref'
-        grid_variables = 'burnup_MWd/kg griffin_Tref'
+    
+    [uec_active_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${uec_active_blocks}'
+    material_id = '${uec_active_matids}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tfuel'
+    grid_variables = 'burnup_MWd/kg griffin_Tfuel'
     []
-    [coolant]
-        type = BurnupCoupledFeedbackNeutronicsMaterial
-        block =  '${acu_air_blocks_2d    } ${acm_air_blocks_2d    } ${acl_air_blocks_2d    } ${acm_intref_blocks_2d } ${acl_intref_blocks_2d } ${acu_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acm_barrel_blocks_2d } ${acu_barrel_blocks_2d }'
-		library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
-		library_name = 'standardconditions_XS'
-        isotopes = 'pseudo'
-        densities = '1.0'
-        plus = 1
-        is_meter = True
-        grid_names = 'Burnup Tcool'
-        grid_variables = 'burnup_MWd/kg griffin_Tcool'
+    
+    [acu_fuel_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acu_fuel_blocks_2d}'
+    material_id = '${acu_fuel_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tfuel'
+    grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+    []
+    
+    [acm_fuel_lay8_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_fuel_blocks_lay8}'
+    material_id = '${acm_fuel_matids_lay8}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tfuel'
+    grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+    []
+    
+    [acm_fuel_lay7_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_fuel_blocks_lay7}'
+    material_id = '${acm_fuel_matids_lay7}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tfuel'
+    grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+    []
+    
+    [acm_fuel_lay6_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_fuel_blocks_lay6}'
+    material_id = '${acm_fuel_matids_lay6}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tfuel'
+    grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+    []
+    
+    [acm_fuel_lay5_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_fuel_blocks_lay5}'
+    material_id = '${acm_fuel_matids_lay5}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tfuel'
+    grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+    []
+    
+    [acm_fuel_lay4_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_fuel_blocks_lay4}'
+    material_id = '${acm_fuel_matids_lay4}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tfuel'
+    grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+    []
+    
+    [acm_fuel_lay3_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_fuel_blocks_lay3}'
+    material_id = '${acm_fuel_matids_lay3}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tfuel'
+    grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+    []
+    
+    [acm_fuel_lay2_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_fuel_blocks_lay2}'
+    material_id = '${acm_fuel_matids_lay2}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tfuel'
+    grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+    []
+    
+    [acm_fuel_lay1_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_fuel_blocks_lay1}'
+    material_id = '${acm_fuel_matids_lay1}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tfuel'
+    grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+    []
+    
+    [acl_fuel_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acl_fuel_blocks_2d}'
+    material_id = '${acl_fuel_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tfuel'
+    grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+    []
+    
+    [lec_active_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${lec_active_blocks}'
+    material_id = '${lec_active_matids}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tfuel'
+    grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+    []
+    
+    [lgr_active_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${lgr_active_blocks}'
+    material_id = '${lgr_active_matids}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tfuel'
+    grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+    []
+    
+    # Tref Materials
+    [acu_shimc_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acu_shimc_blocks_2d}'
+    material_id = '${acu_shimc_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acl_shimc_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acl_shimc_blocks_2d}'
+    material_id = '${acl_shimc_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [uec_shimc_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${uec_shimc_blocks_2d}'
+    material_id = '${uec_shimc_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [lec_shimc_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${lec_shimc_blocks_2d}'
+    material_id = '${lec_shimc_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acm_shimc_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_shimc_blocks_2d}'
+    material_id = '${acm_shimc_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acu_shimb_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acu_shimb_blocks_2d}'
+    material_id = '${acu_shimb_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acl_shimb_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acl_shimb_blocks_2d}'
+    material_id = '${acl_shimb_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [uec_shimb_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${uec_shimb_blocks_2d}'
+    material_id = '${uec_shimb_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [lec_shimb_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${lec_shimb_blocks_2d}'
+    material_id = '${lec_shimb_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acm_shimb_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_shimb_blocks_2d}'
+    material_id = '${acm_shimb_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acm_extref1_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_extref1_blocks_2d}'
+    material_id = '${acm_extref1_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acm_extref2_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_extref2_blocks_2d}'
+    material_id = '${acm_extref2_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acm_extref3_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_extref3_blocks_2d}'
+    material_id = '${acm_extref3_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acm_extref4_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_extref4_blocks_2d}'
+    material_id = '${acm_extref4_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acm_shima_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_shima_blocks_2d}'
+    material_id = '${acm_shima_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acl_extref1_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acl_extref1_blocks_2d}'
+    material_id = '${acl_extref1_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acl_extref2_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acl_extref2_blocks_2d}'
+    material_id = '${acl_extref2_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acl_extref3_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acl_extref3_blocks_2d}'
+    material_id = '${acl_extref3_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acl_extref4_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acl_extref4_blocks_2d}'
+    material_id = '${acl_extref4_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acl_shima_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acl_shima_blocks_2d}'
+    material_id = '${acl_shima_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acu_extref1_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acu_extref1_blocks_2d}'
+    material_id = '${acu_extref1_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acu_extref2_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acu_extref2_blocks_2d}'
+    material_id = '${acu_extref2_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acu_extref3_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acu_extref3_blocks_2d}'
+    material_id = '${acu_extref3_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acu_extref4_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acu_extref4_blocks_2d}'
+    material_id = '${acu_extref4_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [acu_shima_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acu_shima_blocks_2d}'
+    material_id = '${acu_shima_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [lgr_ext_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${lgr_ext_blocks}'
+    material_id = '${lgr_ext_matids}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [ugr_ext_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${ugr_ext_blocks}'
+    material_id = '${ugr_ext_matids}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [lec_extref1_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${lec_extref1_blocks_2d}'
+    material_id = '${lec_extref1_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [lec_extref2_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${lec_extref2_blocks_2d}'
+    material_id = '${lec_extref2_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [lec_extref3_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${lec_extref3_blocks_2d}'
+    material_id = '${lec_extref3_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [lec_extref4_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${lec_extref4_blocks_2d}'
+    material_id = '${lec_extref4_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [lec_shima_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${lec_shima_blocks_2d}'
+    material_id = '${lec_shima_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [uec_extref1_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${uec_extref1_blocks_2d}'
+    material_id = '${uec_extref1_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [uec_extref2_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${uec_extref2_blocks_2d}'
+    material_id = '${uec_extref2_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [uec_extref3_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${uec_extref3_blocks_2d}'
+    material_id = '${uec_extref3_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [uec_extref4_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${uec_extref4_blocks_2d}'
+    material_id = '${uec_extref4_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    [uec_shima_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${uec_shima_blocks_2d}'
+    material_id = '${uec_shima_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tref'
+    grid_variables = 'burnup_MWd/kg griffin_Tref'
+    []
+    
+    # Tcool Materials
+    [acu_air_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acu_air_blocks_2d}'
+    material_id = '${acu_air_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tcool'
+    grid_variables = 'burnup_MWd/kg griffin_Tcool'
+    []
+    
+    [acm_air_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_air_blocks_2d}'
+    material_id = '${acm_air_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tcool'
+    grid_variables = 'burnup_MWd/kg griffin_Tcool'
+    []
+    
+    [acl_air_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acl_air_blocks_2d}'
+    material_id = '${acl_air_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tcool'
+    grid_variables = 'burnup_MWd/kg griffin_Tcool'
+    []
+    
+    [acm_intref_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_intref_blocks_2d}'
+    material_id = '${acm_intref_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tcool'
+    grid_variables = 'burnup_MWd/kg griffin_Tcool'
+    []
+    
+    [acl_intref_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acl_intref_blocks_2d}'
+    material_id = '${acl_intref_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tcool'
+    grid_variables = 'burnup_MWd/kg griffin_Tcool'
+    []
+    
+    [acu_intref_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acu_intref_blocks_2d}'
+    material_id = '${acu_intref_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tcool'
+    grid_variables = 'burnup_MWd/kg griffin_Tcool'
+    []
+    
+    [acl_barrel_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acl_barrel_blocks_2d}'
+    material_id = '${acl_barrel_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tcool'
+    grid_variables = 'burnup_MWd/kg griffin_Tcool'
+    []
+    
+    [acm_barrel_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acm_barrel_blocks_2d}'
+    material_id = '${acm_barrel_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tcool'
+    grid_variables = 'burnup_MWd/kg griffin_Tcool'
+    []
+    
+    [acu_barrel_material]
+    type = BurnupCoupledFeedbackNeutronicsMaterial
+    block = '${acu_barrel_blocks_2d}'
+    material_id = '${acu_barrel_matids_2d}'
+    library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+    library_name = 'standardconditions_XS'
+    isotopes = 'pseudo'
+    densities = '1.0'
+    plus = 1
+    is_meter = True
+    grid_names = 'Burnup Tcool'
+    grid_variables = 'burnup_MWd/kg griffin_Tcool'
     []
 []
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=SC_Test          # Job name
-#SBATCH --nodes=3                   # Request 4 nodes
+#SBATCH --nodes=1                   # Request 4 nodes
 #SBATCH --ntasks-per-node=1          # 5 MPI processes per node
 #SBATCH --cpus-per-task=30           # 4 CPU cores per MPI process (20 ncpus / 5 mpiprocs)
 #SBATCH --time=00:45:00              # Walltime (hh:mm:ss)
@@ -12,6 +12,6 @@ module load use.exp_ctl use.moose griffin-openmpi
 module load use.moose moose-apps moose
 cd ${SLURM_SUBMIT_DIR:-$PWD}
 export TMPDIR=${SLURM_TMPDIR:-/tmp}
-mpiexec -n 3 /home/garcsamu/moose_exec/snapbench/snapbench-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/pow_den/core_2D_Amer.i
+mpiexec -n 1 griffin-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/pow_den/core_2D_Amer.i
 
-# mpiexec -n 3 griffin-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/pow_den/core_2D_Amer.i
+# mpiexec -n 3 /home/garcsamu/moose_exec/snapbench/snapbench-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/pow_den/core_2D_Amer.i
