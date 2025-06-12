@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Coding Style &#8212; snapReactors 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Coding Templates" href="templates/index.html" />
+    <link rel="prev" title="Documentation" href="documentation.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="coding-style">
+<span id="code-style"></span><h1>Coding Style<a class="headerlink" href="#coding-style" title="Permalink to this headline">¶</a></h1>
+<p>For the most part, this project follows the
+<span class="target" id="index-0"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0008"><strong>PEP 8</strong></a> standard with a few differences. Some points are included here</p>
+<ul>
+<li><p>79 characters per line</p></li>
+<li><p>Four spaces per indentation level</p></li>
+<li><p>Avoiding extraneous whitespace:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Yes</span><span class="p">:</span> <span class="n">spam</span><span class="p">(</span><span class="n">ham</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">{</span><span class="n">eggs</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+<span class="n">No</span><span class="p">:</span>  <span class="n">spam</span><span class="p">(</span> <span class="n">ham</span><span class="p">[</span> <span class="mi">1</span> <span class="p">],</span> <span class="p">{</span> <span class="n">eggs</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span> <span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Some of the specific style points for this project are included below</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">mixedCase</span></code> for variables, methods, and functions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CamelCase</span></code> for classes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DemoClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">doSomething</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg0</span><span class="p">,</span> <span class="n">longerArgumentName</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</li>
+<li><p>Directly call the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method from a parent class, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyQueue</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
+        <span class="nb">list</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Arrange imports in the following order:</p>
+<ol class="arabic simple">
+<li><p>imports from the standard library: os, sys, etc.</p></li>
+<li><p>imports from third party code: numpy, matplotlib, etc.</p></li>
+<li><p>imports from the serpentTools package</p></li>
+</ol>
+</li>
+<li><p>Longer import paths are preferred to shorter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># yes</span>
+<span class="kn">from</span> <span class="nn">really.long.path.to.a</span> <span class="kn">import</span> <span class="n">function</span>
+<span class="n">function</span><span class="p">()</span>
+<span class="c1"># not preferred</span>
+<span class="kn">import</span> <span class="nn">really</span>
+<span class="n">really</span><span class="o">.</span><span class="n">long</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">to</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">function</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">snapReactors</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors.html">Developer Team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Manual/index.html">User’s Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Developer’s Guide</a><ul>
+      <li>Previous: <a href="documentation.html" title="previous chapter">Documentation</a></li>
+      <li>Next: <a href="templates/index.html" title="next chapter">Coding Templates</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Dan Kotlyar.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/develop/codestyle.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

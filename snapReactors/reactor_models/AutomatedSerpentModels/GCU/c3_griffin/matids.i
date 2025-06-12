@@ -1,0 +1,3 @@
+${lgr_fuel_blocks_2d  } ${lgr_air_blocks_2d   } ${ugr_fuel_blocks_2d  } ${ugr_air_blocks_2d   } ${uec_fuel_blocks_2d  } ${uec_air_blocks_2d   } ${uec_intref_blocks_2d} ${uec_barrel_blocks_2d} ${lec_fuel_blocks_2d  } ${lec_air_blocks_2d   } ${lec_intref_blocks_2d} ${lec_barrel_blocks_2d}
+
+${lgr_fuel_matids_2d  } ${lgr_air_matids_2d   } ${ugr_fuel_matids_2d  } ${ugr_air_matids_2d   } ${uec_fuel_matids_2d  } ${uec_air_matids_2d   } ${uec_intref_matids_2d} ${uec_barrel_matids_2d} ${lec_fuel_matids_2d  } ${lec_air_matids_2d   } ${lec_intref_matids_2d} ${lec_barrel_matids_2d}

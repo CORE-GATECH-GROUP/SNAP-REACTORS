@@ -1,0 +1,14 @@
+include standardconditions.mat
+include standardconditions.geo
+set bc 1 1 1
+set pop 3000000 100 100
+set acelib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata" "/hpc-common/data/serpent/xsdata/s2v0_endfb80/photon_endf80.xsdata" 
+set nfylib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80.nfy"
+set declib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80.dec" 
+plot 31 1000 1000 17.78
+plot 11 1000 1000 0.0
+set powdens 0.0685975609756 fuel
+div fuel sep 2
+div ceramic sep 2
+set xenon 1 fuel 
+set mcvol -1e8

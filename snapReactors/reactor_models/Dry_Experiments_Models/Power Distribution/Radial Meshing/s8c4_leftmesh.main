@@ -1,0 +1,31 @@
+% ==================================================
+% Main File
+% --------------------------------------------------
+% Description: S8ER C3 Critcal Configuration Experiment, Dry Conditions 300 K
+% --------------------------------------------------
+% Materials:
+include s8c4_RevisedDrum.mat
+% --------------------------------------------------
+% Geometry:
+include s8c4_RevisedDrum.geo
+% ==================================================
+% Energy Grid:
+% ene egrid 4 default2
+% Mesh Tally:
+det xymesh n dx -12 0.5 50 dy -0.33782 0.33782 1
+%det zmesh n dr -8 void dz -18.3769 18.3769 100
+%det ymesh n dy -12 12 100
+%det xmesh n dr -8 void dx -12 12 100
+%det cylmesh n de egrid dn 1 0 11.5 5 0 360 5 -18.3769 18.3769 1
+set power 600000
+
+
+set nbuf 10
+set bc 1 1 1
+set pop 7000000 100 100
+set acelib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
+set declib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80.dec"
+set nfylib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80.nfy"
+ 
+plot 31 1000 1000 0.0
+plot 11 1000 1000 0.0

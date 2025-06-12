@@ -1,0 +1,55 @@
+lemhi0229.ib
+lemhi0229.ib
+lemhi0229.ib
+lemhi0229.ib
+lemhi0230.ib
+lemhi0230.ib
+lemhi0230.ib
+lemhi0230.ib
+
+  _                   .-=-.           .-=-.          .-==-.       
+ { }      __        .' O o '.       .' O o '.       /  -<' )--<   
+ { }    .' O'.     / o .-. O \     / o .-. O \     /  .---`       
+ { }   / .-. o\   /O  /   \  o\   /O  /   \  o\   /O /            
+  \ `-` /   \ O`-'o  /     \  O`-'o  /     \  O`-`o /             
+   `-.-`     '.____.'       `._____.'       `.____.'              
+
+Serpent 2 beta
+
+A Continuous-energy Monte Carlo Reactor Physics Burnup Calculation Code
+
+ - Version 2.1.32 (February 24, 2021) -- Contact: serpent@vtt.fi
+
+ - Reference: J. Leppanen, et al. "The Serpent Monte Carlo code: Status,
+              development and applications in 2013." Ann. Nucl. Energy,
+              82 (2015) 142-150.
+
+ - Compiled Oct 21 2021 21:30:09
+
+ - MPI Parallel calculation mode available
+
+ - OpenMP Parallel calculation mode available
+
+ - Geometry and mesh plotting available
+
+ - Default data path set to: "/hpc-common/data/serpent/xsdata/"
+
+ - Full command used to run Serpent:
+
+   sss2 s8c4_air_I1.main -omp 48 -nofatal
+
+Begin calculation on Tue May 23 09:03:35 2023 at lemhi0229
+
+Reading input file "s8c4_air_I1.main"...
+
+***** Tue May 23 09:03:35 2023
+
+Input error:
+
+File:
+
+"s8c4_air_I1.main"
+
+must be converted from DOS to UNIX format
+
+=>> PBS: job killed: walltime 30648 exceeded limit 30600

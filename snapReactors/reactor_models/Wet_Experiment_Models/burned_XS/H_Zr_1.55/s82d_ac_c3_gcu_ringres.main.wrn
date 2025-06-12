@@ -1,0 +1,32 @@
+
+ ***** Warning: No match for the following materials in the mvol card:
+
+
+***** Wed Apr  9 08:52:38 2025 (seed = 1744210344031, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74182.00c has 1 decay modes
+
+
+***** Wed Apr  9 08:52:38 2025 (seed = 1744210344031, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74183.00c has 1 decay modes
+
+
+***** Wed Apr  9 08:52:38 2025 (seed = 1744210344031, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74184.00c has 1 decay modes
+
+
+***** Wed Apr  9 08:52:38 2025 (seed = 1744210344031, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 20046.01c has 1 decay modes
+
+
+Simulation completed.
+------------------------------------------------- MPI task 8
+Wed Apr  9 08:56:22 2025  (errors: 0, warnings: 0, notes: 0)
+

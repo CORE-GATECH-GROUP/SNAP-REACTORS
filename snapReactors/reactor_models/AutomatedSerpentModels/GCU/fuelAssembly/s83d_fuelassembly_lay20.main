@@ -1,0 +1,53 @@
+include s83d_fuelassembly_lay20.mat
+include s83d_fuelassembly_lay20.geo
+set bc 2 2 1
+set pop 500000 100 100
+set acelib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
+plot 31 1000 1000 0.0
+plot 11 1000 1000 0.0
+set his 1
+set gcu 0 100  101  102  103  104  105  106  107  108  109  110  111  112  113  114  115  116  117  118  119  120 
+ene fgs 1 5e-09 2.5e-08 1e-07 4e-07 9.96e-07 3e-06 9.877e-06 2.77e-05 0.0001 0.00055 0.003 0.01503 0.1 0.4 0.821 1.353 3.0 6.0655 20.0 
+set nfg fgs
+det scalarFlux100 du 100
+det scalarFlux101 du 101
+det scalarFlux102 du 102
+det scalarFlux103 du 103
+det scalarFlux104 du 104
+det scalarFlux105 du 105
+det scalarFlux106 du 106
+det scalarFlux107 du 107
+det scalarFlux108 du 108
+det scalarFlux109 du 109
+det scalarFlux110 du 110
+det scalarFlux111 du 111
+det scalarFlux112 du 112
+det scalarFlux113 du 113
+det scalarFlux114 du 114
+det scalarFlux115 du 115
+det scalarFlux116 du 116
+det scalarFlux117 du 117
+det scalarFlux118 du 118
+det scalarFlux119 du 119
+det scalarFlux120 du 120
+det nuFissRate100 du 100 dr -7 void
+det nuFissRate101 du 101 dr -7 void
+det nuFissRate102 du 102 dr -7 void
+det nuFissRate103 du 103 dr -7 void
+det nuFissRate104 du 104 dr -7 void
+det nuFissRate105 du 105 dr -7 void
+det nuFissRate106 du 106 dr -7 void
+det nuFissRate107 du 107 dr -7 void
+det nuFissRate108 du 108 dr -7 void
+det nuFissRate109 du 109 dr -7 void
+det nuFissRate110 du 110 dr -7 void
+det nuFissRate111 du 111 dr -7 void
+det nuFissRate112 du 112 dr -7 void
+det nuFissRate113 du 113 dr -7 void
+det nuFissRate114 du 114 dr -7 void
+det nuFissRate115 du 115 dr -7 void
+det nuFissRate116 du 116 dr -7 void
+det nuFissRate117 du 117 dr -7 void
+det nuFissRate118 du 118 dr -7 void
+det nuFissRate119 du 119 dr -7 void
+det nuFissRate120 du 120 dr -7 void

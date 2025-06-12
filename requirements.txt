@@ -1,0 +1,12 @@
+numpy
+pandas
+h5py
+matplotlib
+pytest
+sympy
+zstandard
+serpentTools
+tabulate
+setuptools
+serpentGenerator
+paraview

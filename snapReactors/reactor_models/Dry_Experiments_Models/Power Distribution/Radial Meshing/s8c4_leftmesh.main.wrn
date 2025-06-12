@@ -1,0 +1,135 @@
+
+ ***** Warning: Cell fuelElemcpz0E181 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz1E181 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz2E181 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz0E672 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz1E672 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz2E672 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz0E669 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz1E669 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz2E669 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz0E671 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz1E671 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz2E671 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz0E661_I1 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz1E661_I1 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz2E661_I1 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz0E660 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz1E660 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz2E660 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz0E661_V23 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz1E661_V23 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz2E661_V23 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz0E661_IX45 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz1E661_IX45 is not used in geometry
+
+
+ ***** Warning: Cell fuelElemcpz2E661_IX45 is not used in geometry
+
+
+ ***** Warning: Cell aircpz0 is not used in geometry
+
+
+ ***** Warning: Cell aircpz1 is not used in geometry
+
+
+ ***** Warning: Cell aircpz2 is not used in geometry
+
+
+ ***** Warning: Nest E181z0 is not used in geometry
+
+
+ ***** Warning: Nest E672z0 is not used in geometry
+
+
+ ***** Warning: Nest E669z0 is not used in geometry
+
+
+ ***** Warning: Nest E671z0 is not used in geometry
+
+
+ ***** Warning: Nest E661_I1z0 is not used in geometry
+
+
+ ***** Warning: Nest E660z0 is not used in geometry
+
+
+ ***** Warning: Nest E661_V23z0 is not used in geometry
+
+
+ ***** Warning: Nest E661_IX45z0 is not used in geometry
+
+
+***** Mon May 19 08:48:07 2025 (seed = 1747666074170, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74182.00c has 1 decay modes
+
+
+***** Mon May 19 08:48:07 2025 (seed = 1747666074170, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74183.00c has 1 decay modes
+
+
+***** Mon May 19 08:48:07 2025 (seed = 1747666074170, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74184.00c has 1 decay modes
+
+
+***** Mon May 19 08:48:07 2025 (seed = 1747666074170, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 20046.00c has 1 decay modes
+
+
+Simulation completed.
+------------------------------------------------- MPI task 2
+Mon May 19 09:16:38 2025  (errors: 0, warnings: 0, notes: 0)
+
+

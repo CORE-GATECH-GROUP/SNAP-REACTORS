@@ -1,0 +1,18 @@
+% ==================================================
+% Main File
+% --------------------------------------------------
+% Description: S8ER C3 Critcal Configuration Experiment, Dry Conditions 300 K
+% --------------------------------------------------
+% Materials:
+include s8c3_corecomp.mat
+% --------------------------------------------------
+% Geometry:
+include s8c3_corecomp.geo
+% ==================================================
+
+set bc 1 1 1
+set pop 100000 100 100
+set acelib "/mnt/c/Users/user/Documents/endfb7/sss_endfb7u.xsdata"
+plot 31 1000 1000 0.0
+plot 11 1000 1000 0.0
+set his 1

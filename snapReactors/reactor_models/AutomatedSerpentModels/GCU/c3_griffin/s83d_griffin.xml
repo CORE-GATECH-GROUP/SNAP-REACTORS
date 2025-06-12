@@ -1,0 +1,16 @@
+<ISOXML Format="SERPENT2" Name="s83d_griffin_XS" NGroup="18" NDLGroup="6" Description="s83d_griffin">
+<Controls>
+	<ScatMatrixTol>1E-32</ScatMatrixTol>
+	<ForceConsistency>false</ForceConsistency>
+	<Debug>false</Debug>
+	<EnergyUnit>MeV</EnergyUnit>
+</Controls>
+<Librarywise DataType="macro" L="1" LType="1">
+	<Tabulation>Tfuel</Tabulation>
+	<Tfuel>300</Tfuel>
+	<AddData>Total Fission Absorption NGamma</AddData>
+	<Directory>./</Directory>
+	<BaseFile>s83d_griffin</BaseFile>
+	<BaseExtension>main</BaseExtension>
+</Librarywise>
+</ISOXML>

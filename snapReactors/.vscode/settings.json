@@ -1,0 +1,17 @@
+{
+    "editor.rulers": [
+        78
+    ],
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
+    "python.analysis.extraPaths": [
+        "C:/Users/garcs2/Documents/GitHub/SNAP-REACTORS/"
+    ],
+    "[moose]": {
+        "outline.showProperties": false,
+        "outline.showStrings": false,
+        "gitlens.codeLens.scopes": [
+            "document"
+        ]
+    }
+}
