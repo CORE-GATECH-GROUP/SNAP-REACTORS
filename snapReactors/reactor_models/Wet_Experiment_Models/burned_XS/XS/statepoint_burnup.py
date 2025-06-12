@@ -52,27 +52,27 @@ for step in burnup_steps:
 cumulative_days = cumulative_days[::2]
 print(cumulative_days)
 # Generate new files for each combination of fuel, coolant, and reflector temperatures
-# for l, burnup in enumerate(burnup_steps):
-#     for i, (fuel_temp, hzrh, zrh) in enumerate(zip(fuel_temps_K, h_zrh, zr_zrh)):
-#         for j, (coolant_temp) in enumerate(coolant_temps_K):  # Fixed the unpacking here
-#             for k, (reflector_temp, beo, obe, bem) in enumerate(zip(reflector_temps_K, be_o, o_be, be_met)):
-#                 baseFile = f"standardconditions_{l+1}_{i+1}_{j+1}_{k+1}"
-#                 ringres = S8_Wet(fe, ce, ir, br, ugp, lgp, cds, ae, fuelTemp=fuel_temp, coolantTemp=coolant_temp, refTemp=reflector_temp, baseFile=baseFile, geo="3D")
+for l, burnup in enumerate(burnup_steps):
+    for i, (fuel_temp, hzrh, zrh) in enumerate(zip(fuel_temps_K, h_zrh, zr_zrh)):
+        for j, (coolant_temp) in enumerate(coolant_temps_K):  # Fixed the unpacking here
+            for k, (reflector_temp, beo, obe, bem) in enumerate(zip(reflector_temps_K, be_o, o_be, be_met)):
+                baseFile = f"standardconditions_{l+1}_{i+1}_{j+1}_{k+1}"
+                ringres = S8_Wet(fe, ce, ir, br, ugp, lgp, cds, ae, fuelTemp=fuel_temp, coolantTemp=coolant_temp, refTemp=reflector_temp, baseFile=baseFile, geo="3D")
 
-#                 # include reading from restart file and a few other options
-#                 with open(f"standardconditions_{l+1}_{i+1}_{j+1}_{k+1}.main", "r") as main_file:
-#                     main_lines = main_file.readlines()
-#                     target_line = 'set powdens 0.0685975609756 fuel'
-#                     replacement_line = f"""set powdens 0.0685975609756 fuel
-# set mcvol -1e8
-# set xenon 1 fuel 
-# % set rfr {burnup} burned_mat
-# div fuel sep 2
-# % div ceramic sep 2"""
-#                 for idx, line in enumerate(main_lines):
-#                     if line.strip() == target_line.strip():
-#                         main_lines[idx] = replacement_line + '\n'
-#                 with open(f"standardconditions_{l+1}_{i+1}_{j+1}_{k+1}.main", 'w') as file:
-#                     file.writelines(main_lines)
+                # include reading from restart file and a few other options
+                with open(f"standardconditions_{l+1}_{i+1}_{j+1}_{k+1}.main", "r") as main_file:
+                    main_lines = main_file.readlines()
+                    target_line = 'set powdens 0.0685975609756 fuel'
+                    replacement_line = f"""set powdens 0.0685975609756 fuel
+set mcvol -1e8
+set xenon 1 fuel 
+% set rfr {burnup} burned_mat
+div fuel sep 2
+% div ceramic sep 2"""
+                for idx, line in enumerate(main_lines):
+                    if line.strip() == target_line.strip():
+                        main_lines[idx] = replacement_line + '\n'
+                with open(f"standardconditions_{l+1}_{i+1}_{j+1}_{k+1}.main", 'w') as file:
+                    file.writelines(main_lines)
                 
-#                 print(f"Generated: {baseFile}")
+                print(f"Generated: {baseFile}")

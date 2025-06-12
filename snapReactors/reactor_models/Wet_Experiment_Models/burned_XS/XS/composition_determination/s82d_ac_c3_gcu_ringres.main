@@ -15,3 +15,14 @@ set printm
 div fuel sep 2
 det PinMesh2 n dr -6 void dh 3 0.0 0.0 11.43 1 1 1.76022 37.70955938  1 
 det PinMesh3 n dh 3 0.0 0.0 11.43 1 1 1.76022 37.70955938  1 
+
+set mdep 1100
+set mdep 101
+set mdep 102
+set mdep 103
+set mdep 104
+set mdep 105
+set mdep 106
+set mdep 107
+set mdep 108
+set mdep 2100 
