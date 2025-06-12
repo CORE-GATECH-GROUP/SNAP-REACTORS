@@ -189,7 +189,7 @@ multi_app_z_pos = '${fparse lay1 + lay2}'
 [Mesh]
 	[core_unextruded]
 		type = FileMeshGenerator
-		file = s82d_ac_c3_gcu_ringres.e
+		file = /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/meshes/standardconditions.e
 	[]
     [transform_core_unextruded]
         type = TransformGenerator
@@ -237,12 +237,12 @@ multi_app_z_pos = '${fparse lay1 + lay2}'
     [coarse_mesh]
         type = GeneratedMeshGenerator
         dim = 3
-        xmin = -0.27
-        xmax = 0.27
-        ymin = -0.27
-        ymax = 0.27
+        xmin = -0.28
+        xmax = 0.28
+        ymin = -0.28
+        ymax = 0.28
         zmin = 0
-        zmax = 0.39
+        zmax = 0.40
         nx = 4
         ny = 4
         nz = 7
@@ -258,7 +258,7 @@ multi_app_z_pos = '${fparse lay1 + lay2}'
 
 total_power               = 600000.00 # (W). #total power
 inlet_T_fluid             = 866 # (K)
-ext_T_ref                 = 600 # (K)
+ext_T_ref                 = 605 # (K)
 # ==============================================================================
 # AUXVARIABLES AND AUXKERNELS
 # ==============================================================================
@@ -278,6 +278,11 @@ ext_T_ref                 = 600 # (K)
         order = constant
         initial_condition = '${ext_T_ref}'
     []
+    [burnup_MWd]
+        family = MONOMIAL
+        order = constant
+        initial_condition = 0
+    []
     [Unity]
         order = CONSTANT
         family = MONOMIAL
@@ -291,7 +296,7 @@ ext_T_ref                 = 600 # (K)
     [Griffin_htm]
     type = FullSolveMultiApp
     #app_type = GriffinApp
-    input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/core_2D_bison.i'
+    input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/pow_den/core_2D_Amer.i'
     positions = '0 0 ${multi_app_z_pos}' # lay1 + lay2
     execute_on = 'timestep_end'
     []
@@ -359,38 +364,38 @@ ext_T_ref                 = 600 # (K)
     [core]
         type = CoupledFeedbackMatIDNeutronicsMaterial
         block =  '${ugr_active_blocks    } ${uec_active_blocks    } ${acu_fuel_blocks_2d   } ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acl_fuel_blocks_2d   } ${lec_active_blocks    } ${lgr_active_blocks    }'
-		library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/non_burned_XS/s82d_ac_c3_gcu_ringres_XS.xml'
-		library_name = 's82d_ac_c3_gcu_ringres_XS'
+        library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+        library_name = 'standardconditions_XS'
         isotopes = 'pseudo'
         densities = '1.0'
         plus = 1
         is_meter = True
-        grid_names = 'Tfuel'
-        grid_variables = 'griffin_Tfuel'
+        grid_names = 'Burnup Tfuel'
+        grid_variables = 'burnup_MWd griffin_Tfuel'
     []
     [extref]
         type = CoupledFeedbackMatIDNeutronicsMaterial
         block =  '${acu_shimc_blocks_2d} ${acl_shimc_blocks_2d} ${uec_shimc_blocks_2d} ${lec_shimc_blocks_2d} ${acm_shimc_blocks_2d} ${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d}  ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_ext_blocks       } ${ugr_ext_blocks       }  ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  }  ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
-		library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/non_burned_XS/s82d_ac_c3_gcu_ringres_XS.xml'
-		library_name = 's82d_ac_c3_gcu_ringres_XS'
+        library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+        library_name = 'standardconditions_XS'
         isotopes = 'pseudo'
         densities = '1.0'
         plus = 1
         is_meter = True
-        grid_names = 'Tref'
-        grid_variables = 'griffin_Tref'
+        grid_names = 'Burnup Tref'
+        grid_variables = 'burnup_MWd griffin_Tref'
     []
     [coolant]
         type = CoupledFeedbackMatIDNeutronicsMaterial
         block =  '${acu_air_blocks_2d    } ${acm_air_blocks_2d    } ${acl_air_blocks_2d    }'
-		library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/non_burned_XS/s82d_ac_c3_gcu_ringres_XS.xml'
-		library_name = 's82d_ac_c3_gcu_ringres_XS'
+        library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions_XS.xml'
+        library_name = 'standardconditions_XS'
         isotopes = 'pseudo'
         densities = '1.0'
         plus = 1
         is_meter = True
-        grid_names = 'Tcool'
-        grid_variables = 'griffin_Tcool'
+        grid_names = 'Burnup Tcool'
+        grid_variables = 'burnup_MWd griffin_Tcool'
     []
 []
 

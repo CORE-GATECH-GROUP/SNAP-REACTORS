@@ -67,7 +67,7 @@
 #      doi = "10.2172/4393793",
 #      url = "https://www.osti.gov/biblio/4393793"
 #  }
-inlet_T_fluid             = 860.0  # (K) 
+inlet_T_fluid             = 866.0  # (K) 
 ht_coeff                  = 4539.6
 
 

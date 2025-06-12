@@ -1,0 +1,17 @@
+include s82d_ac_c3_gcu_ringres.mat
+include s82d_ac_c3_gcu_ringres.geo
+set bc 1 1 1
+set pop 1000000 120 100
+set powdens 0.0685975609756 fuel
+set acelib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata" "/hpc-common/data/serpent/xsdata/s2v0_endfb80/photon_endf80.xsdata"
+set nfylib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80.nfy"
+set declib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80.dec"
+plot 31 1000 1000 19.0
+plot 11 1000 1000 0.0
+set mcvol -1e8
+set gcu -1
+set xenon 1 fuel 
+set printm
+div fuel sep 2
+det PinMesh2 n dr -6 void dh 3 0.0 0.0 11.43 1 1 1.76022 37.70955938  1 
+det PinMesh3 n dh 3 0.0 0.0 11.43 1 1 1.76022 37.70955938  1 

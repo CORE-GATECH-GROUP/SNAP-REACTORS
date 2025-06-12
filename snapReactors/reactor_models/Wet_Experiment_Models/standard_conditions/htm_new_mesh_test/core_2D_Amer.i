@@ -280,7 +280,7 @@ lay2 = '${fparse 2.9083/100}'
         type = NormalizationAux
         variable = bison_norm_power_density
         source_variable = bison_power_density
-        normal_factor = 1#1.2658064684
+        normal_factor = 1.2658064684
         execute_on = 'timestep_begin' #check
     []    
     [flux]

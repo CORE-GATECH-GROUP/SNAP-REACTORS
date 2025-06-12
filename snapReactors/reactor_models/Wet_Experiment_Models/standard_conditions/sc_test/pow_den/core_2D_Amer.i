@@ -117,7 +117,7 @@
 #coolant_tc                    = 30
 
 
-inlet_T_fluid             = 639  # (K) 
+inlet_T_fluid             = 866  # (K) 
 ht_coeff                  = 4539.6
 fuel_blocks = 'Fuel'
 ceram_blocks = 'Ceramic'
@@ -260,18 +260,11 @@ extref_blocks = 'Reflector'
         normal_factor = 1
         execute_on = 'timestep_begin' #check
     []
-    [aux_power]
-        type = FunctionAux
-        function = axial_heat_rate
-        variable = bison_power_density
-        block = 'Fuel'
-        execute_on = 'timestep_begin'
-    []
     [norm_power_density]
         type = NormalizationAux
         variable = bison_norm_power_density
         source_variable = bison_power_density
-        normal_factor = 1#1.2658064684
+        normal_factor = 1.2658064684
         execute_on = 'timestep_begin' #check
     []  
     [make_powdens_linear]
@@ -295,14 +288,12 @@ extref_blocks = 'Reflector'
 [MultiApps]
     [sc]
       type = FullSolveMultiApp
-    #   app_type = SubChannelApp
       input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/pow_den/sc_core.i'
       execute_on =  timestep_end
       bounding_box_padding = '0.1 0.1 0'
       positions = '0 0 0'
       output_in_position = true
-    #   library_name = 'libsnapbench-opt.la'
-    #   library_path = '/home/garcsamu/moose_exec/snapbench/lib'
+      max_procs_per_app = 1
     []
 []
   
@@ -340,12 +331,6 @@ extref_blocks = 'Reflector'
     #     symbol_values = 'temp_av'
     #     expression = '472.27104+bison_temp*0.7275728'#Models/SNAP10A_dimensions
     # []
-    [axial_heat_rate]
-        type = ParsedFunction
-        expression = '55760474.8606'#"if(z > l1 & z < l2, 55760474.8606, 0)"
-        symbol_names = 'l1 l2'
-        symbol_values = '0 35.56'
-    []
 []
 
 # ==============================================================================
