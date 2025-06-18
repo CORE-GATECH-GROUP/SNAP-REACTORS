@@ -1,2 +1,0 @@
-slurmstepd: error: couldn't chdir to `/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/reactivity_worths/hydrogen_diffusion': No such file or directory: going to /tmp instead
-slurmstepd: error: couldn't chdir to `/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/reactivity_worths/hydrogen_diffusion': No such file or directory: going to /tmp instead
