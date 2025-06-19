@@ -63,83 +63,83 @@ plt.savefig('combined_burnup.png')
 
 ## comparing hydrogen effects at start of life
 
-# ratios = ["1.5", "1.55", "1.6", "1.65", "1.7"]
-# # ratios = ["1.6", "1.65", "1.7"]
-# # Dictionary to store results
-# results = {}
-# initial_rho_values = []
-# ratio_values = []
+ratios = ["1.5", "1.55", "1.6", "1.65", "1.7"]
+# ratios = ["1.6", "1.65", "1.7"]
+# Dictionary to store results
+results = {}
+initial_rho_values = []
+ratio_values = []
 
-# for ratio in ratios:
-#     # Construct paths
-#     h_zr_dir = f"H_Zr_{ratio}"
-#     res_rel_path = Path(f"{h_zr_dir}/s82d_ac_c3_gcu_ringres.main_res.m")
-#     res_path = (current_dir/res_rel_path).resolve()
+for ratio in ratios:
+    # Construct paths
+    h_zr_dir = f"H_Zr_{ratio}"
+    res_rel_path = Path(f"{h_zr_dir}/s82d_ac_c3_gcu_ringres.main_res.m")
+    res_path = (current_dir/res_rel_path).resolve()
     
-#     # Read result and burnup files
-#     dep = st.read(res_path)
-#     burnup_path = f"/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/{h_zr_dir}/s82d_ac_c3_gcu_ringres.main_dep.m"
-#     burnup = st.read(burnup_path).burnup
+    # Read result and burnup files
+    dep = st.read(res_path)
+    burnup_path = f"/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/{h_zr_dir}/s82d_ac_c3_gcu_ringres.main_dep.m"
+    burnup = st.read(burnup_path).burnup
     
-#     # Extract k values and calculate raw reactivity
-#     try:
-#         # Check if impKeff has multiple dimensions
-#         if len(dep['impKeff'].shape) > 1:
-#             anakeff = dep['impKeff'][:,0]
-#             k_err = dep['impKeff'][:,1]  # Original k error
-#         else:
-#             # Handle scalar or 1D case
-#             anakeff = np.array([dep['impKeff'][0]])  # Make it an array for consistency
-#             k_err = np.array([dep['impKeff'][1]])  # Make it an array for consistency
-#     except IndexError:
-#         # This handles the case if impKeff is a single value
-#         anakeff = np.array([dep['impKeff']])
-#         k_err = np.array([0.0])  # Assuming no error info in this case
+    # Extract k values and calculate raw reactivity
+    try:
+        # Check if impKeff has multiple dimensions
+        if len(dep['impKeff'].shape) > 1:
+            anakeff = dep['impKeff'][:,0]
+            k_err = dep['impKeff'][:,1]  # Original k error
+        else:
+            # Handle scalar or 1D case
+            anakeff = np.array([dep['impKeff'][0]])  # Make it an array for consistency
+            k_err = np.array([dep['impKeff'][1]])  # Make it an array for consistency
+    except IndexError:
+        # This handles the case if impKeff is a single value
+        anakeff = np.array([dep['impKeff']])
+        k_err = np.array([0.0])  # Assuming no error info in this case
     
-#     # Calculate reactivity
-#     rho = (1 - 1/anakeff) * 10**5  # Convert to pcm
+    # Calculate reactivity
+    rho = (1 - 1/anakeff) * 10**5  # Convert to pcm
     
-#     # Scale errors and convert k error to rho error
+    # Scale errors and convert k error to rho error
    
-#     rho_err = 3 * np.sqrt((1/anakeff)**2 * k_err**2)
-#     rho_err = abs(np.multiply(rho_err, rho))
+    rho_err = 3 * np.sqrt((1/anakeff)**2 * k_err**2)
+    rho_err = abs(np.multiply(rho_err, rho))
     
-#     # Store results
-#     results[ratio] = {
-#         'burnup': burnup,
-#         'keff': anakeff,
-#         'rho': rho,
-#         'rho_err': rho_err
-#     }
+    # Store results
+    results[ratio] = {
+        'burnup': burnup,
+        'keff': anakeff,
+        'rho': rho,
+        'rho_err': rho_err
+    }
     
-#     # Store initial reactivity for plotting - always use first element
-#     initial_rho_values.append(rho[0])
-#     ratio_values.append(float(ratio))
+    # Store initial reactivity for plotting - always use first element
+    initial_rho_values.append(rho[0])
+    ratio_values.append(float(ratio))
     
-#     print(f"Processed H_Zr_{ratio}: {len(burnup)} burnup steps")
+    print(f"Processed H_Zr_{ratio}: {len(burnup)} burnup steps")
 
-# # Plot reactivity as a function of H/Zr ratio
-# plt.figure(figsize=(10, 6))
+# Plot reactivity as a function of H/Zr ratio
+plt.figure(figsize=(10, 6))
 
-# # Create error bar data - handle both scalar and array cases
-# yerr_values = []
-# for r in ratios:
-#     if len(results[r]['rho_err']) > 0:
-#         yerr_values.append(results[r]['rho_err'][0])
-#     else:
-#         yerr_values.append(results[r]['rho_err'])
+# Create error bar data - handle both scalar and array cases
+yerr_values = []
+for r in ratios:
+    if len(results[r]['rho_err']) > 0:
+        yerr_values.append(results[r]['rho_err'][0])
+    else:
+        yerr_values.append(results[r]['rho_err'])
 
-# plt.errorbar(ratio_values, initial_rho_values, 
-#              yerr=yerr_values, 
-#              fmt='o-', capsize=5, linewidth=2, markersize=8)
+plt.errorbar(ratio_values, initial_rho_values, 
+             yerr=yerr_values, 
+             fmt='o-', capsize=5, linewidth=2, markersize=8)
 
-# plt.xlabel('H/Zr Ratio', fontsize=14)
-# plt.ylabel('Initial Reactivity (pcm)', fontsize=14)
-# plt.title('Initial Reactivity vs H/Zr Ratio', fontsize=16)
-# plt.grid(True)
-# plt.xticks(ratio_values)  # Ensure all ratio values are shown on x-axis
-# plt.tight_layout()
-# plt.savefig('H_Zr.png')
+plt.xlabel('H/Zr Ratio', fontsize=14)
+plt.ylabel('Initial Reactivity (pcm)', fontsize=14)
+plt.title('Initial Reactivity vs H/Zr Ratio', fontsize=16)
+plt.grid(True)
+plt.xticks(ratio_values)  # Ensure all ratio values are shown on x-axis
+plt.tight_layout()
+plt.savefig('H_Zr.png')
 
 # # Example of accessing results
 # print("\nResults summary:")
