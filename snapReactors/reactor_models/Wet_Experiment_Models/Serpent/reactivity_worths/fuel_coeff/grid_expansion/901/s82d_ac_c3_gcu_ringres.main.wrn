@@ -1,0 +1,17 @@
+
+***** Mon Apr 21 12:43:57 2025 (seed = 1745260242673, MPI task = 4)
+Warning message from function SamplePrecursorGroup:
+
+Precursor group sampling failed (92235.00c, mt 18, E = 1.748335E-03)
+
+
+***** Mon Apr 21 12:44:51 2025 (seed = 1745260242673, MPI task = 0)
+Warning message from function SamplePrecursorGroup:
+
+Precursor group sampling failed (92235.00c, mt 18, E = 3.951006E-05)
+
+
+Simulation completed.
+------------------------------------------------- MPI task 6
+Mon Apr 21 12:52:09 2025  (errors: 0, warnings: 0, notes: 0)
+
