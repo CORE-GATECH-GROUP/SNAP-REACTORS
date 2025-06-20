@@ -1,0 +1,695 @@
+
+***** Wed May 14 14:23:06 2025 (seed = 1747254173111, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 20046.02c has 1 decay modes
+
+
+***** Wed May 14 14:23:06 2025 (seed = 1747254173111, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74182.00c has 1 decay modes
+
+
+***** Wed May 14 14:23:06 2025 (seed = 1747254173111, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74183.00c has 1 decay modes
+
+
+***** Wed May 14 14:23:06 2025 (seed = 1747254173111, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74184.00c has 1 decay modes
+
+
+***** Wed May 14 14:23:11 2025 (seed = 1747254173111, MPI task = 0)
+Warning message from function ProcessXSData:
+
+2451 negative xs points in data (16033.00c mt 301)
+
+
+***** Wed May 14 14:23:11 2025 (seed = 1747254173111, MPI task = 2)
+Warning message from function ProcessXSData:
+
+2451 negative xs points in data (16033.00c mt 301)
+
+
+***** Wed May 14 14:23:11 2025 (seed = 1747254173111, MPI task = 3)
+Warning message from function ProcessXSData:
+
+2451 negative xs points in data (16033.00c mt 301)
+
+
+***** Wed May 14 14:23:11 2025 (seed = 1747254173111, MPI task = 4)
+Warning message from function ProcessXSData:
+
+2451 negative xs points in data (16033.00c mt 301)
+
+
+***** Wed May 14 14:23:11 2025 (seed = 1747254173111, MPI task = 7)
+Warning message from function ProcessXSData:
+
+2451 negative xs points in data (16033.00c mt 301)
+
+
+***** Wed May 14 14:23:11 2025 (seed = 1747254173111, MPI task = 5)
+Warning message from function ProcessXSData:
+
+2451 negative xs points in data (16033.00c mt 301)
+
+
+***** Wed May 14 14:23:11 2025 (seed = 1747254173111, MPI task = 6)
+Warning message from function ProcessXSData:
+
+2451 negative xs points in data (16033.00c mt 301)
+
+
+***** Wed May 14 14:23:11 2025 (seed = 1747254173111, MPI task = 1)
+Warning message from function ProcessXSData:
+
+2451 negative xs points in data (16033.00c mt 301)
+
+
+***** Wed May 14 14:23:11 2025 (seed = 1747254173111, MPI task = 0)
+Warning message from function ProcessXSData:
+
+5404 negative xs points in data (16036.00c mt 301)
+
+
+***** Wed May 14 14:23:11 2025 (seed = 1747254173111, MPI task = 2)
+Warning message from function ProcessXSData:
+
+5404 negative xs points in data (16036.00c mt 301)
+
+
+***** Wed May 14 14:23:11 2025 (seed = 1747254173111, MPI task = 3)
+Warning message from function ProcessXSData:
+
+5404 negative xs points in data (16036.00c mt 301)
+
+
+***** Wed May 14 14:23:12 2025 (seed = 1747254173111, MPI task = 8)
+Warning message from function ProcessXSData:
+
+5404 negative xs points in data (16036.00c mt 301)
+
+
+***** Wed May 14 14:23:12 2025 (seed = 1747254173111, MPI task = 5)
+Warning message from function ProcessXSData:
+
+5404 negative xs points in data (16036.00c mt 301)
+
+
+***** Wed May 14 14:23:12 2025 (seed = 1747254173111, MPI task = 4)
+Warning message from function ProcessXSData:
+
+5404 negative xs points in data (16036.00c mt 301)
+
+
+***** Wed May 14 14:23:12 2025 (seed = 1747254173111, MPI task = 6)
+Warning message from function ProcessXSData:
+
+5404 negative xs points in data (16036.00c mt 301)
+
+
+***** Wed May 14 14:23:12 2025 (seed = 1747254173111, MPI task = 7)
+Warning message from function ProcessXSData:
+
+5404 negative xs points in data (16036.00c mt 301)
+
+
+***** Wed May 14 14:23:12 2025 (seed = 1747254173111, MPI task = 9)
+Warning message from function ProcessXSData:
+
+5404 negative xs points in data (16036.00c mt 301)
+
+
+***** Wed May 14 14:23:12 2025 (seed = 1747254173111, MPI task = 1)
+Warning message from function ProcessXSData:
+
+5404 negative xs points in data (16036.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 2)
+Warning message from function ProcessXSData:
+
+3140 negative xs points in data (40092.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 3)
+Warning message from function ProcessXSData:
+
+3140 negative xs points in data (40092.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 0)
+Warning message from function ProcessXSData:
+
+3140 negative xs points in data (40092.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 2)
+Warning message from function ProcessXSData:
+
+3273 negative xs points in data (40094.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 3)
+Warning message from function ProcessXSData:
+
+3273 negative xs points in data (40094.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 0)
+Warning message from function ProcessXSData:
+
+3273 negative xs points in data (40094.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 8)
+Warning message from function ProcessXSData:
+
+3140 negative xs points in data (40092.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 4)
+Warning message from function ProcessXSData:
+
+3140 negative xs points in data (40092.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 5)
+Warning message from function ProcessXSData:
+
+3140 negative xs points in data (40092.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 7)
+Warning message from function ProcessXSData:
+
+3140 negative xs points in data (40092.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 2)
+Warning message from function ProcessXSData:
+
+2352 negative xs points in data (40096.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 3)
+Warning message from function ProcessXSData:
+
+2352 negative xs points in data (40096.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 9)
+Warning message from function ProcessXSData:
+
+3140 negative xs points in data (40092.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 1)
+Warning message from function ProcessXSData:
+
+3140 negative xs points in data (40092.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 0)
+Warning message from function ProcessXSData:
+
+2352 negative xs points in data (40096.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 2)
+Warning message from function ProcessXSData:
+
+204397 negative xs points in data (42092.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 8)
+Warning message from function ProcessXSData:
+
+3273 negative xs points in data (40094.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 4)
+Warning message from function ProcessXSData:
+
+3273 negative xs points in data (40094.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 5)
+Warning message from function ProcessXSData:
+
+3273 negative xs points in data (40094.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 3)
+Warning message from function ProcessXSData:
+
+204397 negative xs points in data (42092.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 6)
+Warning message from function ProcessXSData:
+
+3273 negative xs points in data (40094.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 7)
+Warning message from function ProcessXSData:
+
+3273 negative xs points in data (40094.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 9)
+Warning message from function ProcessXSData:
+
+3273 negative xs points in data (40094.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 0)
+Warning message from function ProcessXSData:
+
+204397 negative xs points in data (42092.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 1)
+Warning message from function ProcessXSData:
+
+3273 negative xs points in data (40094.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 2)
+Warning message from function ProcessXSData:
+
+138412 negative xs points in data (42094.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 3)
+Warning message from function ProcessXSData:
+
+138412 negative xs points in data (42094.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 8)
+Warning message from function ProcessXSData:
+
+2352 negative xs points in data (40096.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 5)
+Warning message from function ProcessXSData:
+
+2352 negative xs points in data (40096.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 4)
+Warning message from function ProcessXSData:
+
+2352 negative xs points in data (40096.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 6)
+Warning message from function ProcessXSData:
+
+2352 negative xs points in data (40096.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 7)
+Warning message from function ProcessXSData:
+
+2352 negative xs points in data (40096.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 0)
+Warning message from function ProcessXSData:
+
+138412 negative xs points in data (42094.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 9)
+Warning message from function ProcessXSData:
+
+2352 negative xs points in data (40096.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 1)
+Warning message from function ProcessXSData:
+
+2352 negative xs points in data (40096.02c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 8)
+Warning message from function ProcessXSData:
+
+204397 negative xs points in data (42092.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 5)
+Warning message from function ProcessXSData:
+
+204397 negative xs points in data (42092.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 4)
+Warning message from function ProcessXSData:
+
+204397 negative xs points in data (42092.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 6)
+Warning message from function ProcessXSData:
+
+204397 negative xs points in data (42092.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 7)
+Warning message from function ProcessXSData:
+
+204397 negative xs points in data (42092.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 9)
+Warning message from function ProcessXSData:
+
+204397 negative xs points in data (42092.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 1)
+Warning message from function ProcessXSData:
+
+204397 negative xs points in data (42092.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 8)
+Warning message from function ProcessXSData:
+
+138412 negative xs points in data (42094.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 4)
+Warning message from function ProcessXSData:
+
+138412 negative xs points in data (42094.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 2)
+Warning message from function ProcessXSData:
+
+173889 negative xs points in data (42096.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 3)
+Warning message from function ProcessXSData:
+
+173889 negative xs points in data (42096.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 7)
+Warning message from function ProcessXSData:
+
+138412 negative xs points in data (42094.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 9)
+Warning message from function ProcessXSData:
+
+138412 negative xs points in data (42094.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 1)
+Warning message from function ProcessXSData:
+
+138412 negative xs points in data (42094.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 0)
+Warning message from function ProcessXSData:
+
+173889 negative xs points in data (42096.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 2)
+Warning message from function ProcessXSData:
+
+25793 negative xs points in data (42097.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 3)
+Warning message from function ProcessXSData:
+
+25793 negative xs points in data (42097.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 0)
+Warning message from function ProcessXSData:
+
+25793 negative xs points in data (42097.00c mt 301)
+
+
+***** Wed May 14 14:23:17 2025 (seed = 1747254173111, MPI task = 2)
+Warning message from function ProcessXSData:
+
+166945 negative xs points in data (42098.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 5)
+Warning message from function ProcessXSData:
+
+173889 negative xs points in data (42096.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 4)
+Warning message from function ProcessXSData:
+
+173889 negative xs points in data (42096.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 6)
+Warning message from function ProcessXSData:
+
+173889 negative xs points in data (42096.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 0)
+Warning message from function ProcessXSData:
+
+166945 negative xs points in data (42098.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 7)
+Warning message from function ProcessXSData:
+
+173889 negative xs points in data (42096.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 8)
+Warning message from function ProcessXSData:
+
+173889 negative xs points in data (42096.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 9)
+Warning message from function ProcessXSData:
+
+173889 negative xs points in data (42096.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 1)
+Warning message from function ProcessXSData:
+
+173889 negative xs points in data (42096.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 5)
+Warning message from function ProcessXSData:
+
+25793 negative xs points in data (42097.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 4)
+Warning message from function ProcessXSData:
+
+25793 negative xs points in data (42097.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 6)
+Warning message from function ProcessXSData:
+
+25793 negative xs points in data (42097.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 7)
+Warning message from function ProcessXSData:
+
+25793 negative xs points in data (42097.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 8)
+Warning message from function ProcessXSData:
+
+25793 negative xs points in data (42097.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 1)
+Warning message from function ProcessXSData:
+
+25793 negative xs points in data (42097.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 5)
+Warning message from function ProcessXSData:
+
+166945 negative xs points in data (42098.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 4)
+Warning message from function ProcessXSData:
+
+166945 negative xs points in data (42098.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 6)
+Warning message from function ProcessXSData:
+
+166945 negative xs points in data (42098.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 7)
+Warning message from function ProcessXSData:
+
+166945 negative xs points in data (42098.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 8)
+Warning message from function ProcessXSData:
+
+166945 negative xs points in data (42098.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 1)
+Warning message from function ProcessXSData:
+
+166945 negative xs points in data (42098.00c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 3)
+Warning message from function ProcessXSData:
+
+1993 negative xs points in data (62147.02c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 2)
+Warning message from function ProcessXSData:
+
+1993 negative xs points in data (62147.02c mt 301)
+
+
+***** Wed May 14 14:23:18 2025 (seed = 1747254173111, MPI task = 0)
+Warning message from function ProcessXSData:
+
+1993 negative xs points in data (62147.02c mt 301)
+
+
+***** Wed May 14 14:23:19 2025 (seed = 1747254173111, MPI task = 5)
+Warning message from function ProcessXSData:
+
+1993 negative xs points in data (62147.02c mt 301)
+
+
+***** Wed May 14 14:23:19 2025 (seed = 1747254173111, MPI task = 4)
+Warning message from function ProcessXSData:
+
+1993 negative xs points in data (62147.02c mt 301)
+
+
+***** Wed May 14 14:23:19 2025 (seed = 1747254173111, MPI task = 6)
+Warning message from function ProcessXSData:
+
+1993 negative xs points in data (62147.02c mt 301)
+
+
+***** Wed May 14 14:23:19 2025 (seed = 1747254173111, MPI task = 7)
+Warning message from function ProcessXSData:
+
+1993 negative xs points in data (62147.02c mt 301)
+
+
+***** Wed May 14 14:23:19 2025 (seed = 1747254173111, MPI task = 8)
+Warning message from function ProcessXSData:
+
+1993 negative xs points in data (62147.02c mt 301)
+
+
+***** Wed May 14 14:23:19 2025 (seed = 1747254173111, MPI task = 1)
+Warning message from function ProcessXSData:
+
+1993 negative xs points in data (62147.02c mt 301)
+
+
+***** Wed May 14 14:23:19 2025 (seed = 1747254173111, MPI task = 9)
+Warning message from function ProcessXSData:
+
+1993 negative xs points in data (62147.02c mt 301)
+
+
+***** Wed May 14 14:23:19 2025 (seed = 1747254173111, MPI task = 3)
+Warning message from function ProcessXSData:
+
+2874 negative xs points in data (62149.02c mt 301)
+
+
+***** Wed May 14 14:23:19 2025 (seed = 1747254173111, MPI task = 2)
+Warning message from function ProcessXSData:
+
+2874 negative xs points in data (62149.02c mt 301)
+
+
+***** Wed May 14 14:23:19 2025 (seed = 1747254173111, MPI task = 0)
+Warning message from function ProcessXSData:
+
+2874 negative xs points in data (62149.02c mt 301)
+
+
+***** Wed May 14 14:23:19 2025 (seed = 1747254173111, MPI task = 5)
+Warning message from function ProcessXSData:
+
+2874 negative xs points in data (62149.02c mt 301)
+
+
+***** Wed May 14 14:23:19 2025 (seed = 1747254173111, MPI task = 6)
+Warning message from function ProcessXSData:
+
+2874 negative xs points in data (62149.02c mt 301)
+
+
+***** Wed May 14 14:23:19 2025 (seed = 1747254173111, MPI task = 4)
+Warning message from function ProcessXSData:
+
+2874 negative xs points in data (62149.02c mt 301)
+
+
+***** Wed May 14 14:23:19 2025 (seed = 1747254173111, MPI task = 1)
+Warning message from function ProcessXSData:
+
+2874 negative xs points in data (62149.02c mt 301)
+
+
+***** Wed May 14 14:23:19 2025 (seed = 1747254173111, MPI task = 8)
+Warning message from function ProcessXSData:
+
+2874 negative xs points in data (62149.02c mt 301)
+
+
+***** Wed May 14 14:23:19 2025 (seed = 1747254173111, MPI task = 9)
+Warning message from function ProcessXSData:
+
+2874 negative xs points in data (62149.02c mt 301)
+
+
+Simulation completed.
+------------------------------------------------- MPI task 8
+Wed May 14 14:36:01 2025  (errors: 0, warnings: 12, notes: 0)
+

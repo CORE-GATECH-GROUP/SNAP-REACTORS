@@ -1,0 +1,452 @@
+<ISOXML>
+  <Multigroup_Cross_Section_Libraries Name="s8c3_gcu_XS" NGroup="2" Description="s8c3_gcu">
+    <Multigroup_Cross_Section_Library ID="0" Ver="1.0" Generator="INL" TimeCreated="Fri Sep  1 07:19:33 2023" Description="">
+      <Tabulation>Tfuel</Tabulation>
+      <Tfuel>300</Tfuel>
+      <ReferenceGridIndex>1</ReferenceGridIndex>
+      <AllReactions>Total Fission Absorption NGamma Scattering Transport Removal nuFission kappaFission FissionSpectrum</AllReactions>
+      <TablewiseReactions/>
+      <LibrarywiseReactions/>
+      <Table gridIndex="1">
+        <Isotope Name="pseudo" L="1" I="6">
+          <Total>0.651171 1.20496</Total>
+          <NGamma>0.00414335 0.0360005</NGamma>
+          <Absorption>0.00909475 0.150755</Absorption>
+          <Fission>0.0049514 0.114754</Fission>
+          <nuFission>0.0120661 0.278912</nuFission>
+          <kappaFission>1.604651092e-13 3.718858901e-12</kappaFission>
+          <Transport>0.300111 0.938373</Transport>
+          <Removal>0.022915 0.15161</Removal>
+          <FissionSpectrum>1 0</FissionSpectrum>
+          <Scattering profile="1">
+            <Profile>
+              1 2
+              1 2
+              1 2
+              1 2
+            </Profile>
+            <Value>
+              0.628256 0.00082057
+              0.0145877 1.05335
+              0.231879 0.0001634
+              0.00424691 0.237838
+            </Value>
+          </Scattering>
+        </Isotope>
+      </Table>
+    </Multigroup_Cross_Section_Library>
+    <Multigroup_Cross_Section_Library ID="1100" Ver="1.0" Generator="INL" TimeCreated="Fri Sep  1 07:19:33 2023" Description="">
+      <Tabulation>Tfuel</Tabulation>
+      <Tfuel>300</Tfuel>
+      <ReferenceGridIndex>1</ReferenceGridIndex>
+      <AllReactions>Total Fission Absorption NGamma Scattering Transport Removal nuFission kappaFission FissionSpectrum</AllReactions>
+      <TablewiseReactions/>
+      <LibrarywiseReactions/>
+      <Table gridIndex="1">
+        <Isotope Name="pseudo" L="1" I="6">
+          <Total>0.745334 1.81917</Total>
+          <NGamma>0.0062399 0.0762397</NGamma>
+          <Absorption>0.0142566 0.321624</Absorption>
+          <Fission>0.00801673 0.245384</Fission>
+          <nuFission>0.019536 0.596409</nuFission>
+          <kappaFission>2.598064092e-13 7.952214935e-12</kappaFission>
+          <Transport>0.275649 1.18401</Transport>
+          <Removal>0.035653 0.32271</Removal>
+          <FissionSpectrum>1 0</FissionSpectrum>
+          <Scattering profile="1">
+            <Profile>
+              1 2
+              1 2
+              1 2
+              1 2
+            </Profile>
+            <Value>
+              0.709681 0.000991449
+              0.0214153 1.49646
+              0.343141 5.80199e-05
+              0.00746558 0.454651
+            </Value>
+          </Scattering>
+        </Isotope>
+      </Table>
+    </Multigroup_Cross_Section_Library>
+    <Multigroup_Cross_Section_Library ID="1000" Ver="1.0" Generator="INL" TimeCreated="Fri Sep  1 07:19:33 2023" Description="">
+      <Tabulation>Tfuel</Tabulation>
+      <Tfuel>300</Tfuel>
+      <ReferenceGridIndex>1</ReferenceGridIndex>
+      <AllReactions>Total Fission Absorption NGamma Scattering Transport Removal nuFission kappaFission FissionSpectrum</AllReactions>
+      <TablewiseReactions/>
+      <LibrarywiseReactions/>
+      <Table gridIndex="1">
+        <Isotope Name="pseudo" L="1" I="6">
+          <Total>0.747759 1.83537</Total>
+          <NGamma>0.00625321 0.0749607</NGamma>
+          <Absorption>0.0143974 0.32532</Absorption>
+          <Fission>0.00814423 0.250359</Fission>
+          <nuFission>0.0198467 0.608501</nuFission>
+          <kappaFission>2.639384328e-13 8.113440888e-12</kappaFission>
+          <Transport>0.27421 1.18541</Transport>
+          <Removal>0.036118 0.32637</Removal>
+          <FissionSpectrum>1 0</FissionSpectrum>
+          <Scattering profile="1">
+            <Profile>
+              1 2
+              1 2
+              1 2
+              1 2
+            </Profile>
+            <Value>
+              0.711641 0.000966753
+              0.021741 1.509
+              0.348054 5.9667e-05
+              0.00758826 0.463663
+            </Value>
+          </Scattering>
+        </Isotope>
+      </Table>
+    </Multigroup_Cross_Section_Library>
+    <Multigroup_Cross_Section_Library ID="900" Ver="1.0" Generator="INL" TimeCreated="Fri Sep  1 07:19:33 2023" Description="">
+      <Tabulation>Tfuel</Tabulation>
+      <Tfuel>300</Tfuel>
+      <ReferenceGridIndex>1</ReferenceGridIndex>
+      <AllReactions>Total Absorption NGamma Scattering Transport Removal</AllReactions>
+      <TablewiseReactions/>
+      <LibrarywiseReactions/>
+      <Table gridIndex="1">
+        <Isotope Name="pseudo" L="1" I="6">
+          <Total>0.000256475 0.000480505</Total>
+          <NGamma>2.48081e-06 3.97523e-05</NGamma>
+          <Absorption>2.48081e-06 3.97523e-05</Absorption>
+          <Transport>0.000157436 0.000446664</Transport>
+          <Removal>4.348e-06 3.2181e-05</Removal>
+          <Scattering profile="1">
+            <Profile>
+              1 2
+              1 2
+              1 2
+              1 2
+            </Profile>
+            <Value>
+              0.000252127 8.60042e-07
+              1.71922e-06 0.000448324
+              1.60995e-05 -8.52095e-07
+              -9.04103e-07 2.01477e-05
+            </Value>
+          </Scattering>
+        </Isotope>
+      </Table>
+    </Multigroup_Cross_Section_Library>
+    <Multigroup_Cross_Section_Library ID="800" Ver="1.0" Generator="INL" TimeCreated="Fri Sep  1 07:19:33 2023" Description="">
+      <Tabulation>Tfuel</Tabulation>
+      <Tfuel>300</Tfuel>
+      <ReferenceGridIndex>1</ReferenceGridIndex>
+      <AllReactions>Total Fission Absorption NGamma Scattering Transport Removal nuFission kappaFission FissionSpectrum</AllReactions>
+      <TablewiseReactions/>
+      <LibrarywiseReactions/>
+      <Table gridIndex="1">
+        <Isotope Name="pseudo" L="1" I="6">
+          <Total>0.840411 2.08267</Total>
+          <NGamma>0.00719847 0.0862758</NGamma>
+          <Absorption>0.0165393 0.375316</Absorption>
+          <Fission>0.00934085 0.28904</Fission>
+          <nuFission>0.0227439 0.702501</nuFission>
+          <kappaFission>3.027170305e-13 9.366984827e-12</kappaFission>
+          <Transport>0.305814 1.32674</Transport>
+          <Removal>0.041318 0.37632</Removal>
+          <FissionSpectrum>1 0</FissionSpectrum>
+          <Scattering profile="1">
+            <Profile>
+              1 2
+              1 2
+              1 2
+              1 2
+            </Profile>
+            <Value>
+              0.799093 0.00101477
+              0.0247957 1.70635
+              0.392797 6.4136e-05
+              0.00866237 0.511036
+            </Value>
+          </Scattering>
+        </Isotope>
+      </Table>
+    </Multigroup_Cross_Section_Library>
+    <Multigroup_Cross_Section_Library ID="700" Ver="1.0" Generator="INL" TimeCreated="Fri Sep  1 07:19:33 2023" Description="">
+      <Tabulation>Tfuel</Tabulation>
+      <Tfuel>300</Tfuel>
+      <ReferenceGridIndex>1</ReferenceGridIndex>
+      <AllReactions>Total Fission Absorption NGamma Scattering Transport Removal nuFission kappaFission FissionSpectrum</AllReactions>
+      <TablewiseReactions/>
+      <LibrarywiseReactions/>
+      <Table gridIndex="1">
+        <Isotope Name="pseudo" L="1" I="6">
+          <Total>0.820907 2.04191</Total>
+          <NGamma>0.00693915 0.083052</NGamma>
+          <Absorption>0.0160112 0.362538</Absorption>
+          <Fission>0.00907206 0.279486</Fission>
+          <nuFission>0.0221018 0.679295</nuFission>
+          <kappaFission>2.940075733e-13 9.057366183e-12</kappaFission>
+          <Transport>0.296086 1.29634</Transport>
+          <Removal>0.040299 0.36357</Removal>
+          <FissionSpectrum>1 0</FissionSpectrum>
+          <Scattering profile="1">
+            <Profile>
+              1 2
+              1 2
+              1 2
+              1 2
+            </Profile>
+            <Value>
+              0.780608 0.0010621
+              0.0243178 1.67834
+              0.383992 7.02592e-05
+              0.00847502 0.519193
+            </Value>
+          </Scattering>
+        </Isotope>
+      </Table>
+    </Multigroup_Cross_Section_Library>
+    <Multigroup_Cross_Section_Library ID="600" Ver="1.0" Generator="INL" TimeCreated="Fri Sep  1 07:19:33 2023" Description="">
+      <Tabulation>Tfuel</Tabulation>
+      <Tfuel>300</Tfuel>
+      <ReferenceGridIndex>1</ReferenceGridIndex>
+      <AllReactions>Total Fission Absorption NGamma Scattering Transport Removal nuFission kappaFission FissionSpectrum</AllReactions>
+      <TablewiseReactions/>
+      <LibrarywiseReactions/>
+      <Table gridIndex="1">
+        <Isotope Name="pseudo" L="1" I="6">
+          <Total>0.811386 2.03396</Total>
+          <NGamma>0.00680604 0.0826818</NGamma>
+          <Absorption>0.0157197 0.360505</Absorption>
+          <Fission>0.00891365 0.277823</Fission>
+          <nuFission>0.0217229 0.675257</nuFission>
+          <kappaFission>2.888738176e-13 9.003472965e-12</kappaFission>
+          <Transport>0.291682 1.29201</Transport>
+          <Removal>0.039566 0.36181</Removal>
+          <FissionSpectrum>1 0</FissionSpectrum>
+          <Scattering profile="1">
+            <Profile>
+              1 2
+              1 2
+              1 2
+              1 2
+            </Profile>
+            <Value>
+              0.77182 0.00107905
+              0.0238643 1.67215
+              0.379609 8.54298e-05
+              0.00835379 0.519975
+            </Value>
+          </Scattering>
+        </Isotope>
+      </Table>
+    </Multigroup_Cross_Section_Library>
+    <Multigroup_Cross_Section_Library ID="500" Ver="1.0" Generator="INL" TimeCreated="Fri Sep  1 07:19:33 2023" Description="">
+      <Tabulation>Tfuel</Tabulation>
+      <Tfuel>300</Tfuel>
+      <ReferenceGridIndex>1</ReferenceGridIndex>
+      <AllReactions>Total Fission Absorption NGamma Scattering Transport Removal nuFission kappaFission FissionSpectrum</AllReactions>
+      <TablewiseReactions/>
+      <LibrarywiseReactions/>
+      <Table gridIndex="1">
+        <Isotope Name="pseudo" L="1" I="6">
+          <Total>0.805184 2.03143</Total>
+          <NGamma>0.0067067 0.082348</NGamma>
+          <Absorption>0.0154864 0.359739</Absorption>
+          <Fission>0.00877975 0.277391</Fission>
+          <nuFission>0.0214008 0.674206</nuFission>
+          <kappaFission>2.845343826e-13 8.989473043e-12</kappaFission>
+          <Transport>0.28893 1.28939</Transport>
+          <Removal>0.038952 0.36105</Removal>
+          <FissionSpectrum>1 0</FissionSpectrum>
+          <Scattering profile="1">
+            <Profile>
+              1 2
+              1 2
+              1 2
+              1 2
+            </Profile>
+            <Value>
+              0.766232 0.00108794
+              0.02347 1.67038
+              0.376841 6.05926e-05
+              0.008211 0.519213
+            </Value>
+          </Scattering>
+        </Isotope>
+      </Table>
+    </Multigroup_Cross_Section_Library>
+    <Multigroup_Cross_Section_Library ID="400" Ver="1.0" Generator="INL" TimeCreated="Fri Sep  1 07:19:33 2023" Description="">
+      <Tabulation>Tfuel</Tabulation>
+      <Tfuel>300</Tfuel>
+      <ReferenceGridIndex>1</ReferenceGridIndex>
+      <AllReactions>Total Fission Absorption NGamma Scattering Transport Removal nuFission kappaFission FissionSpectrum</AllReactions>
+      <TablewiseReactions/>
+      <LibrarywiseReactions/>
+      <Table gridIndex="1">
+        <Isotope Name="pseudo" L="1" I="6">
+          <Total>0.802081 2.03411</Total>
+          <NGamma>0.00665822 0.0826031</NGamma>
+          <Absorption>0.0153809 0.36041</Absorption>
+          <Fission>0.00872264 0.277807</Fission>
+          <nuFission>0.0212637 0.675216</nuFission>
+          <kappaFission>2.826835602e-13 9.002954449e-12</kappaFission>
+          <Transport>0.28768 1.29031</Transport>
+          <Removal>0.038602 0.36115</Removal>
+          <FissionSpectrum>1 0</FissionSpectrum>
+          <Scattering profile="1">
+            <Profile>
+              1 2
+              1 2
+              1 2
+              1 2
+            </Profile>
+            <Value>
+              0.763479 0.00107846
+              0.0232435 1.67296
+              0.375421 5.5708e-05
+              0.00812564 0.520202
+            </Value>
+          </Scattering>
+        </Isotope>
+      </Table>
+    </Multigroup_Cross_Section_Library>
+    <Multigroup_Cross_Section_Library ID="300" Ver="1.0" Generator="INL" TimeCreated="Fri Sep  1 07:19:33 2023" Description="">
+      <Tabulation>Tfuel</Tabulation>
+      <Tfuel>300</Tfuel>
+      <ReferenceGridIndex>1</ReferenceGridIndex>
+      <AllReactions>Total Fission Absorption NGamma Scattering Transport Removal nuFission kappaFission FissionSpectrum</AllReactions>
+      <TablewiseReactions/>
+      <LibrarywiseReactions/>
+      <Table gridIndex="1">
+        <Isotope Name="pseudo" L="1" I="6">
+          <Total>0.801176 2.03276</Total>
+          <NGamma>0.00663716 0.0825319</NGamma>
+          <Absorption>0.0153343 0.360221</Absorption>
+          <Fission>0.00869715 0.277689</Fission>
+          <nuFission>0.0212025 0.67493</nuFission>
+          <kappaFission>2.818574795e-13 8.999130396e-12</kappaFission>
+          <Transport>0.287049 1.28856</Transport>
+          <Removal>0.038471 0.36158</Removal>
+          <FissionSpectrum>1 0</FissionSpectrum>
+          <Scattering profile="1">
+            <Profile>
+              1 2
+              1 2
+              1 2
+              1 2
+            </Profile>
+            <Value>
+              0.762705 0.00106744
+              0.0231195 1.67118
+              0.374948 4.26388e-05
+              0.0081031 0.518761
+            </Value>
+          </Scattering>
+        </Isotope>
+      </Table>
+    </Multigroup_Cross_Section_Library>
+    <Multigroup_Cross_Section_Library ID="200" Ver="1.0" Generator="INL" TimeCreated="Fri Sep  1 07:19:33 2023" Description="">
+      <Tabulation>Tfuel</Tabulation>
+      <Tfuel>300</Tfuel>
+      <ReferenceGridIndex>1</ReferenceGridIndex>
+      <AllReactions>Total Fission Absorption NGamma Scattering Transport Removal nuFission kappaFission FissionSpectrum</AllReactions>
+      <TablewiseReactions/>
+      <LibrarywiseReactions/>
+      <Table gridIndex="1">
+        <Isotope Name="pseudo" L="1" I="6">
+          <Total>0.800356 2.03668</Total>
+          <NGamma>0.00662291 0.0826655</NGamma>
+          <Absorption>0.0152872 0.360614</Absorption>
+          <Fission>0.00866426 0.277949</Fission>
+          <nuFission>0.0211235 0.675561</nuFission>
+          <kappaFission>2.807915795e-13 9.007556275e-12</kappaFission>
+          <Transport>0.287124 1.29536</Transport>
+          <Removal>0.038265 0.36169</Removal>
+          <FissionSpectrum>1 0</FissionSpectrum>
+          <Scattering profile="1">
+            <Profile>
+              1 2
+              1 2
+              1 2
+              1 2
+            </Profile>
+            <Value>
+              0.762091 0.00107253
+              0.0229833 1.67499
+              0.374696 4.21615e-05
+              0.00803345 0.521282
+            </Value>
+          </Scattering>
+        </Isotope>
+      </Table>
+    </Multigroup_Cross_Section_Library>
+    <Multigroup_Cross_Section_Library ID="100" Ver="1.0" Generator="INL" TimeCreated="Fri Sep  1 07:19:33 2023" Description="">
+      <Tabulation>Tfuel</Tabulation>
+      <Tfuel>300</Tfuel>
+      <ReferenceGridIndex>1</ReferenceGridIndex>
+      <AllReactions>Total Fission Absorption NGamma Scattering Transport Removal nuFission kappaFission FissionSpectrum</AllReactions>
+      <TablewiseReactions/>
+      <LibrarywiseReactions/>
+      <Table gridIndex="1">
+        <Isotope Name="pseudo" L="1" I="6">
+          <Total>0.800062 2.03598</Total>
+          <NGamma>0.00660328 0.0824987</NGamma>
+          <Absorption>0.0152568 0.360411</Absorption>
+          <Fission>0.00865353 0.277912</Fission>
+          <nuFission>0.0210978 0.675473</nuFission>
+          <kappaFission>2.804438414e-13 9.006357208e-12</kappaFission>
+          <Transport>0.287029 1.29114</Transport>
+          <Removal>0.03823 0.36229</Removal>
+          <FissionSpectrum>1 0</FissionSpectrum>
+          <Scattering profile="1">
+            <Profile>
+              1 2
+              1 2
+              1 2
+              1 2
+            </Profile>
+            <Value>
+              0.761832 0.00109698
+              0.0229529 1.67369
+              0.374555 7.60896e-05
+              0.00801123 0.51948
+            </Value>
+          </Scattering>
+        </Isotope>
+      </Table>
+    </Multigroup_Cross_Section_Library>
+    <Multigroup_Cross_Section_Library ID="1200" Ver="1.0" Generator="INL" TimeCreated="Fri Sep  1 07:19:33 2023" Description="">
+      <Tabulation>Tfuel</Tabulation>
+      <Tfuel>300</Tfuel>
+      <ReferenceGridIndex>1</ReferenceGridIndex>
+      <AllReactions>Total Absorption NGamma Scattering Transport Removal</AllReactions>
+      <TablewiseReactions/>
+      <LibrarywiseReactions/>
+      <Table gridIndex="1">
+        <Isotope Name="pseudo" L="1" I="6">
+          <Total>0.595333 0.781193</Total>
+          <NGamma>0.000902787 0.000764923</NGamma>
+          <Absorption>0.000902787 0.000764923</Absorption>
+          <Transport>0.428564 0.723324</Transport>
+          <Removal>0.002794 0.001544</Removal>
+          <Scattering profile="1">
+            <Profile>
+              1 2
+              1 2
+              1 2
+              1 2
+            </Profile>
+            <Value>
+              0.592539 0.000787131
+              0.00424555 0.779649
+              0.0622187 0.000300529
+              -0.00113583 0.0556177
+            </Value>
+          </Scattering>
+        </Isotope>
+      </Table>
+    </Multigroup_Cross_Section_Library>
+  </Multigroup_Cross_Section_Libraries>
+</ISOXML>
+

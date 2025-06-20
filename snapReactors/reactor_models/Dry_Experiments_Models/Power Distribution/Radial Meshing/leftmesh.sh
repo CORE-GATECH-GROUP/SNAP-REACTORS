@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -l select=2:ncpus=8:mpiprocs=4:mem=160gb
+#PBS -l select=8:ncpus=40:mpiprocs=1:mem=160gb
 #PBS -N LeftMesh
 #PBS -l walltime=10:30:00
 #PBS -k doe
@@ -9,10 +9,10 @@
 cat $PBS_NODEFILE
 
 module load use.exp_ctl
-module load serpent/2.1.32
+module load serpent2
 
 cd $PBS_O_WORKDIR
 
 export TMPDIR=/tmp
-export SERPENT_DATA=/hpc-common/data/serpent/xsdata/
-mpirun sss2 s8c4_leftmesh.main -omp 48 -nofatal
+export SERPENT_DATA=/hpc-common/data/serpent/xsdata/s2v0_endfb80
+mpirun sss2 s8c4_leftmesh.main -omp 40 -nofatal

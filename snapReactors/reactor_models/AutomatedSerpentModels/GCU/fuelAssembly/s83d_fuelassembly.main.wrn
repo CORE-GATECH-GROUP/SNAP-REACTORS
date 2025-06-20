@@ -1,0 +1,14 @@
+
+***** Mon Jan 15 02:21:41 2024
+
+Input error:
+
+Unable to locate cross section directory file "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
+
+Environment variable SERPENT_DATA not set, file path must be absolute
+
+
+Simulation aborted.
+------------------------------------------------------------
+Mon Jan 15 02:21:41 2024  (errors: 1, warnings: 0, notes: 0)
+

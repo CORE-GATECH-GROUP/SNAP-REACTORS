@@ -1,0 +1,18 @@
+
+ ***** Warning: Energy grid fgs is used for both group constant generation
+ and detector calculation (detector fgsdet)
+
+
+***** Sun Apr  7 21:33:04 2024
+
+Input error:
+
+Unable to locate cross section directory file "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
+
+Environment variable SERPENT_DATA not set, file path must be absolute
+
+
+Simulation aborted.
+------------------------------------------------------------
+Sun Apr  7 21:33:04 2024  (errors: 1, warnings: 0, notes: 1)
+

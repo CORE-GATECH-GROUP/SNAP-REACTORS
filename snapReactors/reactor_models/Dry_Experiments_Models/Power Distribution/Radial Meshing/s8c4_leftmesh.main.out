@@ -157,7 +157,7 @@
 
  Nuclide    1 / 98 : 1001.00c -- hydrogen (H-1)
 
- Pointers                     : 225004 1053
+ Pointers                     : 225815 1096
  Primary type                 : Transport
  Nuclide ZAI                  : 10010
  Library ID                   : 00c
@@ -207,7 +207,7 @@
 
  Nuclide    2 / 98 : 1001.00s -- hydrogen (H-1)
 
- Pointers                     : 444997 1053
+ Pointers                     : 445860 1096
  Primary type                 : Transport
  Nuclide ZAI                  : 10010
  Library ID                   : 00s
@@ -260,7 +260,7 @@
 
  Nuclide    3 / 98 : 1001.00s -- hydrogen (H-1)
 
- Pointers                     : 445595 1053
+ Pointers                     : 446459 1096
  Primary type                 : Transport
  Nuclide ZAI                  : 10010
  Library ID                   : 00s
@@ -313,7 +313,7 @@
 
  Nuclide    4 / 98 : 1002.00c -- deuterium (H-2)
 
- Pointers                     : 226346 1375
+ Pointers                     : 227159 1432
  Primary type                 : Transport
  Nuclide ZAI                  : 10020
  Library ID                   : 00c
@@ -365,7 +365,7 @@
 
  Nuclide    5 / 98 : 2004.00c -- helium 4 (He-4)
 
- Pointers                     : 434522 2341
+ Pointers                     : 435372 2440
  Primary type                 : Transport
  Nuclide ZAI                  : 20040
  Library ID                   : 00c
@@ -413,7 +413,7 @@
 
  Nuclide    6 / 98 : 3006.00c -- lithium 6 (Li-6)
 
- Pointers                     : 317562 2663
+ Pointers                     : 318383 2776
  Primary type                 : Transport
  Nuclide ZAI                  : 30060
  Library ID                   : 00c
@@ -501,7 +501,7 @@
 
  Nuclide    7 / 98 : 3007.00c -- lithium 7 (Li-7)
 
- Pointers                     : 320788 2985
+ Pointers                     : 321610 3112
  Primary type                 : Transport
  Nuclide ZAI                  : 30070
  Library ID                   : 00c
@@ -591,7 +591,7 @@
 
  Nuclide    8 / 98 : 4009.00c -- beryllium 9 (Be-9)
 
- Pointers                     : 441760 3629
+ Pointers                     : 442616 3784
  Primary type                 : Transport
  Nuclide ZAI                  : 40090
  Library ID                   : 00c
@@ -654,7 +654,7 @@
 
  Nuclide    9 / 98 : 4009.00s -- beryllium 9 (Be-9)
 
- Pointers                     : 450222 3629
+ Pointers                     : 451088 3784
  Primary type                 : Transport
  Nuclide ZAI                  : 40090
  Library ID                   : 00s
@@ -720,7 +720,7 @@
 
  Nuclide   10 / 98 : 4009.00s -- beryllium 9 (Be-9)
 
- Pointers                     : 457185 3629
+ Pointers                     : 458053 3784
  Primary type                 : Transport
  Nuclide ZAI                  : 40090
  Library ID                   : 00s
@@ -786,7 +786,7 @@
 
  Nuclide   11 / 98 : 6012.00c -- carbon 12 (C-12)
 
- Pointers                     : 169665 4917
+ Pointers                     : 170460 5128
  Primary type                 : Transport
  Nuclide ZAI                  : 60120
  Library ID                   : 00c
@@ -857,7 +857,7 @@
 
  Nuclide   12 / 98 : 6013.00c -- carbon 13 (C-13)
 
- Pointers                     : 225456 5239
+ Pointers                     : 226268 5464
  Primary type                 : Transport
  Nuclide ZAI                  : 60130
  Library ID                   : 00c
@@ -913,7 +913,7 @@
 
  Nuclide   13 / 98 : 7014.00c -- nitrogen 14 (N-14)
 
- Pointers                     : 179635 5561
+ Pointers                     : 180433 5800
  Primary type                 : Transport
  Nuclide ZAI                  : 70140
  Library ID                   : 00c
@@ -1025,7 +1025,7 @@
 
  Nuclide   14 / 98 : 7015.00c -- nitrogen 15 (N-15)
 
- Pointers                     : 184613 5883
+ Pointers                     : 185412 6136
  Primary type                 : Transport
  Nuclide ZAI                  : 70150
  Library ID                   : 00c
@@ -1094,7 +1094,7 @@
 
  Nuclide   15 / 98 : 8016.00c -- oxygen 16 (O-16)
 
- Pointers                     : 186452 6205
+ Pointers                     : 187252 6472
  Primary type                 : Transport
  Nuclide ZAI                  : 80160
  Library ID                   : 00c
@@ -1210,7 +1210,7 @@
 
  Nuclide   16 / 98 : 8016.00s -- oxygen 16 (O-16)
 
- Pointers                     : 451769 6205
+ Pointers                     : 452636 6472
  Primary type                 : Transport
  Nuclide ZAI                  : 80160
  Library ID                   : 00s
@@ -1329,7 +1329,7 @@
 
  Nuclide   17 / 98 : 8017.00c -- oxygen 17 (O-17)
 
- Pointers                     : 191722 6527
+ Pointers                     : 192523 6808
  Primary type                 : Transport
  Nuclide ZAI                  : 80170
  Library ID                   : 00c
@@ -1401,7 +1401,7 @@
 
  Nuclide   18 / 98 : 12024.00c -- magnesium 24 (Mg-24)
 
- Pointers                     : 361255 9103
+ Pointers                     : 362084 9496
  Primary type                 : Transport
  Nuclide ZAI                  : 120240
  Library ID                   : 00c
@@ -1470,7 +1470,7 @@
 
  Nuclide   19 / 98 : 12025.00c -- magnesium 25 (Mg-25)
 
- Pointers                     : 363094 9425
+ Pointers                     : 363924 9832
  Primary type                 : Transport
  Nuclide ZAI                  : 120250
  Library ID                   : 00c
@@ -1545,7 +1545,7 @@
 
  Nuclide   20 / 98 : 12026.00c -- magnesium 26 (Mg-26)
 
- Pointers                     : 365371 9747
+ Pointers                     : 366202 10168
  Primary type                 : Transport
  Nuclide ZAI                  : 120260
  Library ID                   : 00c
@@ -1616,7 +1616,7 @@
 
  Nuclide   21 / 98 : 13027.00c -- aluminum 27 (Al-27)
 
- Pointers                     : 202071 10391
+ Pointers                     : 202876 10840
  Primary type                 : Transport
  Nuclide ZAI                  : 130270
  Library ID                   : 00c
@@ -1800,7 +1800,7 @@
 
  Nuclide   22 / 98 : 14028.00c -- silicon 28 (Si-28)
 
- Pointers                     : 156556 10713
+ Pointers                     : 157348 11176
  Primary type                 : Transport
  Nuclide ZAI                  : 140280
  Library ID                   : 00c
@@ -1911,7 +1911,7 @@
 
  Nuclide   23 / 98 : 14029.00c -- silicon 29 (Si-29)
 
- Pointers                     : 161461 11035
+ Pointers                     : 162254 11512
  Primary type                 : Transport
  Nuclide ZAI                  : 140290
  Library ID                   : 00c
@@ -2024,7 +2024,7 @@
 
  Nuclide   24 / 98 : 14030.00c -- silicon 30 (Si-30)
 
- Pointers                     : 166512 11357
+ Pointers                     : 167306 11848
  Primary type                 : Transport
  Nuclide ZAI                  : 140300
  Library ID                   : 00c
@@ -2111,7 +2111,7 @@
 
  Nuclide   25 / 98 : 15031.00c -- phosphorus 31 (P-31)
 
- Pointers                     : 434828 12323
+ Pointers                     : 435679 12856
  Primary type                 : Transport
  Nuclide ZAI                  : 150310
  Library ID                   : 00c
@@ -2170,7 +2170,7 @@
 
  Nuclide   26 / 98 : 16032.00c -- sulfur 32 (S-32)
 
- Pointers                     : 435937 12645
+ Pointers                     : 436789 13192
  Primary type                 : Transport
  Nuclide ZAI                  : 160320
  Library ID                   : 00c
@@ -2234,7 +2234,7 @@
 
  Nuclide   27 / 98 : 16033.00c -- sulfur 33 (S-33)
 
- Pointers                     : 437411 12967
+ Pointers                     : 438264 13528
  Primary type                 : Transport
  Nuclide ZAI                  : 160330
  Library ID                   : 00c
@@ -2299,7 +2299,7 @@
 
  Nuclide   28 / 98 : 16034.00c -- sulfur 34 (S-34)
 
- Pointers                     : 438958 13289
+ Pointers                     : 439812 13864
  Primary type                 : Transport
  Nuclide ZAI                  : 160340
  Library ID                   : 00c
@@ -2362,7 +2362,7 @@
 
  Nuclide   29 / 98 : 16036.00c -- sulfur 36 (S-36)
 
- Pointers                     : 440359 13933
+ Pointers                     : 441214 14536
  Primary type                 : Transport
  Nuclide ZAI                  : 160360
  Library ID                   : 00c
@@ -2425,7 +2425,7 @@
 
  Nuclide   30 / 98 : 18036.00c -- argon 36 (Ar-36)
 
- Pointers                     : 193780 15221
+ Pointers                     : 194582 15880
  Primary type                 : Transport
  Nuclide ZAI                  : 180360
  Library ID                   : 00c
@@ -2507,7 +2507,7 @@
 
  Nuclide   31 / 98 : 18038.00c -- argon 38 (Ar-38)
 
- Pointers                     : 196568 15865
+ Pointers                     : 197371 16552
  Primary type                 : Transport
  Nuclide ZAI                  : 180380
  Library ID                   : 00c
@@ -2587,7 +2587,7 @@
 
  Nuclide   32 / 98 : 18040.00c -- argon 40 (Ar-40)
 
- Pointers                     : 199210 16509
+ Pointers                     : 200014 17224
  Primary type                 : Transport
  Nuclide ZAI                  : 180400
  Library ID                   : 00c
@@ -2670,7 +2670,7 @@
 
  Nuclide   33 / 98 : 20040.00c -- calcium 40 (Ca-40)
 
- Pointers                     : 324160 18119
+ Pointers                     : 324983 18904
  Primary type                 : Transport
  Nuclide ZAI                  : 200400
  Library ID                   : 00c
@@ -2808,7 +2808,7 @@
 
  Nuclide   34 / 98 : 20042.00c -- calcium 42 (Ca-42)
 
- Pointers                     : 331036 18763
+ Pointers                     : 331860 19576
  Primary type                 : Transport
  Nuclide ZAI                  : 200420
  Library ID                   : 00c
@@ -2945,7 +2945,7 @@
 
  Nuclide   35 / 98 : 20043.00c -- calcium 43 (Ca-43)
 
- Pointers                     : 337839 19085
+ Pointers                     : 338664 19912
  Primary type                 : Transport
  Nuclide ZAI                  : 200430
  Library ID                   : 00c
@@ -3082,7 +3082,7 @@
 
  Nuclide   36 / 98 : 20044.00c -- calcium 44 (Ca-44)
 
- Pointers                     : 344642 19407
+ Pointers                     : 345468 20248
  Primary type                 : Transport
  Nuclide ZAI                  : 200440
  Library ID                   : 00c
@@ -3211,7 +3211,7 @@
 
  Nuclide   37 / 98 : 20046.00c -- calcium 46 (Ca-46)
 
- Pointers                     : 350861 20051
+ Pointers                     : 351688 20920
  Primary type                 : Transport
  Nuclide ZAI                  : 200460
  Library ID                   : 00c
@@ -3329,11 +3329,11 @@
 
  1 decay reaction:
 
-   1  RTYP = 11    Q =  9.88350E-01 MeV  frac = 1.00000E+00  : beta- + beta-
+   1  RTYP = 1  1    Q =  9.88350E-01 MeV  frac = 1.00000E+00  : beta- + beta-
 
  Nuclide   38 / 98 : 20048.00c -- calcium 48 (Ca-48)
 
- Pointers                     : 356277 20695
+ Pointers                     : 357105 21592
  Primary type                 : Transport
  Nuclide ZAI                  : 200480
  Library ID                   : 00c
@@ -3344,6 +3344,7 @@
  XS temperature               : 294.0 Kelvin
  Minimum and maximum energy   : 1.00000E-11 2.00000E+02
  Half-life                    : 7.26E+26 seconds (2.3E+19 years)
+ Decay energy (total/photon)  : 1.65E+00 2.35E-02 MeV
  Specific ingestion toxicity  : N/A
  Specific inhalation toxicity : N/A
 
@@ -3444,12 +3445,12 @@
 
  2 decay reactions:
 
-   1  RTYP = 11    Q =  4.27360E+00 MeV  frac = 7.50000E-01  : beta- + beta-
-   2  RTYP = 1     Q =  2.81972E-01 MeV  frac = 2.50000E-01  : beta-
+   1  RTYP = 1  1    Q =  4.27360E+00 MeV  frac = 7.50000E-01  : beta- + beta-
+   2  RTYP = 1       Q =  2.81972E-01 MeV  frac = 2.50000E-01  : beta-
 
  Nuclide   39 / 98 : 22046.00c -- titanium 46 (Ti-46)
 
- Pointers                     : 212305 21339
+ Pointers                     : 213111 22264
  Primary type                 : Transport
  Nuclide ZAI                  : 220460
  Library ID                   : 00c
@@ -3523,7 +3524,7 @@
 
  Nuclide   40 / 98 : 22047.00c -- titanium 47 (Ti-47)
 
- Pointers                     : 214509 21661
+ Pointers                     : 215316 22600
  Primary type                 : Transport
  Nuclide ZAI                  : 220470
  Library ID                   : 00c
@@ -3604,7 +3605,7 @@
 
  Nuclide   41 / 98 : 22048.00c -- titanium 48 (Ti-48)
 
- Pointers                     : 217224 21983
+ Pointers                     : 218032 22936
  Primary type                 : Transport
  Nuclide ZAI                  : 220480
  Library ID                   : 00c
@@ -3686,7 +3687,7 @@
 
  Nuclide   42 / 98 : 22049.00c -- titanium 49 (Ti-49)
 
- Pointers                     : 220012 22305
+ Pointers                     : 220821 23272
  Primary type                 : Transport
  Nuclide ZAI                  : 220490
  Library ID                   : 00c
@@ -3766,7 +3767,7 @@
 
  Nuclide   43 / 98 : 22050.00c -- titanium 50 (Ti-50)
 
- Pointers                     : 222654 22627
+ Pointers                     : 223464 23608
  Primary type                 : Transport
  Nuclide ZAI                  : 220500
  Library ID                   : 00c
@@ -3842,7 +3843,7 @@
 
  Nuclide   44 / 98 : 23051.00c -- vanadium 51 (V-51)
 
- Pointers                     : 152892 23593
+ Pointers                     : 153683 24616
  Primary type                 : Transport
  Nuclide ZAI                  : 230510
  Library ID                   : 00c
@@ -3936,7 +3937,7 @@
 
  Nuclide   45 / 98 : 24050.00c -- chromium 50 (Cr-50)
 
- Pointers                     : 74448 23915
+ Pointers                     : 75219 24952
  Primary type                 : Transport
  Nuclide ZAI                  : 240500
  Library ID                   : 00c
@@ -4004,7 +4005,7 @@
 
  Nuclide   46 / 98 : 24052.00c -- chromium 52 (Cr-52)
 
- Pointers                     : 76214 24559
+ Pointers                     : 76986 25624
  Primary type                 : Transport
  Nuclide ZAI                  : 240520
  Library ID                   : 00c
@@ -4075,7 +4076,7 @@
 
  Nuclide   47 / 98 : 24053.00c -- chromium 53 (Cr-53)
 
- Pointers                     : 78199 24881
+ Pointers                     : 78972 25960
  Primary type                 : Transport
  Nuclide ZAI                  : 240530
  Library ID                   : 00c
@@ -4149,7 +4150,7 @@
 
  Nuclide   48 / 98 : 24054.00c -- chromium 54 (Cr-54)
 
- Pointers                     : 80403 25203
+ Pointers                     : 81177 26296
  Primary type                 : Transport
  Nuclide ZAI                  : 240540
  Library ID                   : 00c
@@ -4212,7 +4213,7 @@
 
  Nuclide   49 / 98 : 25055.00c -- manganese 55 (Mn-55)
 
- Pointers                     : 143899 25847
+ Pointers                     : 144689 26968
  Primary type                 : Transport
  Nuclide ZAI                  : 250550
  Library ID                   : 00c
@@ -4379,7 +4380,7 @@
 
  Nuclide   50 / 98 : 26054.00c -- iron 54 (Fe-54)
 
- Pointers                     : 103455 26169
+ Pointers                     : 104237 27304
  Primary type                 : Transport
  Nuclide ZAI                  : 260540
  Library ID                   : 00c
@@ -4509,7 +4510,7 @@
 
  Nuclide   51 / 98 : 26056.00c -- iron 56 (Fe-56)
 
- Pointers                     : 109747 26813
+ Pointers                     : 110530 27976
  Primary type                 : Transport
  Nuclide ZAI                  : 260560
  Library ID                   : 00c
@@ -4639,7 +4640,7 @@
 
  Nuclide   52 / 98 : 26057.00c -- iron 57 (Fe-57)
 
- Pointers                     : 116039 27135
+ Pointers                     : 116823 28312
  Primary type                 : Transport
  Nuclide ZAI                  : 260570
  Library ID                   : 00c
@@ -4772,7 +4773,7 @@
 
  Nuclide   53 / 98 : 26058.00c -- iron 58 (Fe-58)
 
- Pointers                     : 122550 27457
+ Pointers                     : 123335 28648
  Primary type                 : Transport
  Nuclide ZAI                  : 260580
  Library ID                   : 00c
@@ -4900,7 +4901,7 @@
 
  Nuclide   54 / 98 : 27059.00c -- cobalt 59 (Co-59)
 
- Pointers                     : 69744 28423
+ Pointers                     : 70514 29656
  Primary type                 : Transport
  Nuclide ZAI                  : 270590
  Library ID                   : 00c
@@ -5011,7 +5012,7 @@
 
  Nuclide   55 / 98 : 28058.00c -- nickel 58 (Ni-58)
 
- Pointers                     : 49302 28745
+ Pointers                     : 50067 29992
  Primary type                 : Transport
  Nuclide ZAI                  : 280580
  Library ID                   : 00c
@@ -5110,7 +5111,7 @@
 
  Nuclide   56 / 98 : 28060.00c -- nickel 60 (Ni-60)
 
- Pointers                     : 53336 29389
+ Pointers                     : 54102 30664
  Primary type                 : Transport
  Nuclide ZAI                  : 280600
  Library ID                   : 00c
@@ -5204,7 +5205,7 @@
 
  Nuclide   57 / 98 : 28061.00c -- nickel 61 (Ni-61)
 
- Pointers                     : 57000 29711
+ Pointers                     : 57767 31000
  Primary type                 : Transport
  Nuclide ZAI                  : 280610
  Library ID                   : 00c
@@ -5306,7 +5307,7 @@
 
  Nuclide   58 / 98 : 28062.00c -- nickel 62 (Ni-62)
 
- Pointers                     : 61248 30033
+ Pointers                     : 62016 31336
  Primary type                 : Transport
  Nuclide ZAI                  : 280620
  Library ID                   : 00c
@@ -5408,7 +5409,7 @@
 
  Nuclide   59 / 98 : 28064.00c -- nickel 64 (Ni-64)
 
- Pointers                     : 65496 30677
+ Pointers                     : 66265 32008
  Primary type                 : Transport
  Nuclide ZAI                  : 280640
  Library ID                   : 00c
@@ -5510,7 +5511,7 @@
 
  Nuclide   60 / 98 : 29063.00c -- copper 63 (Cu-63)
 
- Pointers                     : 171650 30999
+ Pointers                     : 172446 32344
  Primary type                 : Transport
  Nuclide ZAI                  : 290630
  Library ID                   : 00c
@@ -5604,7 +5605,7 @@
 
  Nuclide   61 / 98 : 29065.00c -- copper 65 (Cu-65)
 
- Pointers                     : 175314 31643
+ Pointers                     : 176111 33016
  Primary type                 : Transport
  Nuclide ZAI                  : 290650
  Library ID                   : 00c
@@ -5707,7 +5708,7 @@
 
  Nuclide   62 / 98 : 38084.00c -- strontium 84 (Sr-84)
 
- Pointers                     : 382728 46133
+ Pointers                     : 383567 48136
  Primary type                 : Transport
  Nuclide ZAI                  : 380840
  Library ID                   : 00c
@@ -5844,7 +5845,7 @@
 
  Nuclide   63 / 98 : 38086.00c -- strontium 86 (Sr-86)
 
- Pointers                     : 389330 46777
+ Pointers                     : 390170 48808
  Primary type                 : Transport
  Nuclide ZAI                  : 380860
  Library ID                   : 00c
@@ -5924,7 +5925,7 @@
 
  Nuclide   64 / 98 : 38087.00c -- strontium 87 (Sr-87)
 
- Pointers                     : 391771 47099
+ Pointers                     : 392612 49144
  Primary type                 : Transport
  Nuclide ZAI                  : 380870
  Library ID                   : 00c
@@ -5996,7 +5997,7 @@
 
  Nuclide   65 / 98 : 38088.00c -- strontium 88 (Sr-88)
 
- Pointers                     : 393829 47421
+ Pointers                     : 394671 49480
  Primary type                 : Transport
  Nuclide ZAI                  : 380880
  Library ID                   : 00c
@@ -6083,7 +6084,7 @@
 
  Nuclide   66 / 98 : 40090.00c -- zirconium 90 (Zr-90)
 
- Pointers                     : 292599 49353
+ Pointers                     : 293415 51496
  Primary type                 : Transport
  Nuclide ZAI                  : 400900
  Library ID                   : 00c
@@ -6180,7 +6181,7 @@
 
  Nuclide   67 / 98 : 40090.00s -- zirconium 90 (Zr-90)
 
- Pointers                     : 446193 49353
+ Pointers                     : 447058 51496
  Primary type                 : Transport
  Nuclide ZAI                  : 400900
  Library ID                   : 00s
@@ -6280,7 +6281,7 @@
 
  Nuclide   68 / 98 : 40091.00c -- zirconium 91 (Zr-91)
 
- Pointers                     : 296482 49675
+ Pointers                     : 297299 51832
  Primary type                 : Transport
  Nuclide ZAI                  : 400910
  Library ID                   : 00c
@@ -6405,7 +6406,7 @@
 
  Nuclide   69 / 98 : 40092.00c -- zirconium 92 (Zr-92)
 
- Pointers                     : 302409 49997
+ Pointers                     : 303227 52168
  Primary type                 : Transport
  Nuclide ZAI                  : 400920
  Library ID                   : 00c
@@ -6525,7 +6526,7 @@
 
  Nuclide   70 / 98 : 40094.00c -- zirconium 94 (Zr-94)
 
- Pointers                     : 307971 50641
+ Pointers                     : 308790 52840
  Primary type                 : Transport
  Nuclide ZAI                  : 400940
  Library ID                   : 00c
@@ -6657,7 +6658,7 @@
 
  Nuclide   71 / 98 : 40096.00c -- zirconium 96 (Zr-96)
 
- Pointers                     : 314409 51285
+ Pointers                     : 315229 53512
  Primary type                 : Transport
  Nuclide ZAI                  : 400960
  Library ID                   : 00c
@@ -6668,6 +6669,7 @@
  XS temperature               : 294.0 Kelvin
  Minimum and maximum energy   : 1.00000E-11 2.00000E+01
  Half-life                    : 6.31E+26 seconds (2E+19 years)
+ Decay energy (total/photon)  : 1.67E+00 0.00E+00 MeV
  Specific ingestion toxicity  : N/A
  Specific inhalation toxicity : N/A
 
@@ -6744,11 +6746,11 @@
 
  1 decay reaction:
 
-   1  RTYP = 11    Q =  3.34770E+00 MeV  frac = 1.00000E+00  : beta- + beta-
+   1  RTYP = 1  1    Q =  3.34770E+00 MeV  frac = 1.00000E+00  : beta- + beta-
 
  Nuclide   72 / 98 : 42092.00c -- molybdenum 92 (Mo-92)
 
- Pointers                     : 81804 52573
+ Pointers                     : 82579 54856
  Primary type                 : Transport
  Nuclide ZAI                  : 420920
  Library ID                   : 00c
@@ -6833,7 +6835,7 @@
 
  Nuclide   73 / 98 : 42094.00c -- molybdenum 94 (Mo-94)
 
- Pointers                     : 84610 53217
+ Pointers                     : 85386 55528
  Primary type                 : Transport
  Nuclide ZAI                  : 420940
  Library ID                   : 00c
@@ -6918,7 +6920,7 @@
 
  Nuclide   74 / 98 : 42095.00c -- molybdenum 95 (Mo-95)
 
- Pointers                     : 87617 53539
+ Pointers                     : 88394 55864
  Primary type                 : Transport
  Nuclide ZAI                  : 420950
  Library ID                   : 00c
@@ -7048,7 +7050,7 @@
 
  Nuclide   75 / 98 : 42096.00c -- molybdenum 96 (Mo-96)
 
- Pointers                     : 93909 53861
+ Pointers                     : 94687 56200
  Primary type                 : Transport
  Nuclide ZAI                  : 420960
  Library ID                   : 00c
@@ -7128,7 +7130,7 @@
 
  Nuclide   76 / 98 : 42097.00c -- molybdenum 97 (Mo-97)
 
- Pointers                     : 96551 54183
+ Pointers                     : 97330 56536
  Primary type                 : Transport
  Nuclide ZAI                  : 420970
  Library ID                   : 00c
@@ -7206,7 +7208,7 @@
 
  Nuclide   77 / 98 : 42098.00c -- molybdenum 98 (Mo-98)
 
- Pointers                     : 99047 54505
+ Pointers                     : 99827 56872
  Primary type                 : Transport
  Nuclide ZAI                  : 420980
  Library ID                   : 00c
@@ -7283,7 +7285,7 @@
 
  Nuclide   78 / 98 : 42100.00c -- molybdenum 100 (Mo-100)
 
- Pointers                     : 101470 55149
+ Pointers                     : 102251 57544
  Primary type                 : Transport
  Nuclide ZAI                  : 421000
  Library ID                   : 00c
@@ -7294,6 +7296,7 @@
  XS temperature               : 294.0 Kelvin
  Minimum and maximum energy   : 1.00000E-11 2.00000E+01
  Half-life                    : 2.30E+26 seconds (7.3E+18 years)
+ Decay energy (total/photon)  : 1.52E+00 0.00E+00 MeV
  Specific ingestion toxicity  : N/A
  Specific inhalation toxicity : N/A
 
@@ -7354,11 +7357,11 @@
 
  1 decay reaction:
 
-   1  RTYP = 11    Q =  3.03439E+00 MeV  frac = 1.00000E+00  : beta- + beta-
+   1  RTYP = 1  1    Q =  3.03439E+00 MeV  frac = 1.00000E+00  : beta- + beta-
 
  Nuclide   79 / 98 : 56130.00c -- barium 130 (Ba-130)
 
- Pointers                     : 367356 92823
+ Pointers                     : 368188 96856
  Primary type                 : Transport
  Nuclide ZAI                  : 561300
  Library ID                   : 00c
@@ -7436,7 +7439,7 @@
 
  Nuclide   80 / 98 : 56132.00c -- barium 132 (Ba-132)
 
- Pointers                     : 369651 93467
+ Pointers                     : 370484 97528
  Primary type                 : Transport
  Nuclide ZAI                  : 561320
  Library ID                   : 00c
@@ -7515,7 +7518,7 @@
 
  Nuclide   81 / 98 : 56134.00c -- barium 134 (Ba-134)
 
- Pointers                     : 372019 94111
+ Pointers                     : 372853 98200
  Primary type                 : Transport
  Nuclide ZAI                  : 561340
  Library ID                   : 00c
@@ -7595,7 +7598,7 @@
 
  Nuclide   82 / 98 : 56135.00c -- barium 135 (Ba-135)
 
- Pointers                     : 374460 94433
+ Pointers                     : 375295 98536
  Primary type                 : Transport
  Nuclide ZAI                  : 561350
  Library ID                   : 00c
@@ -7672,7 +7675,7 @@
 
  Nuclide   83 / 98 : 56136.00c -- barium 136 (Ba-136)
 
- Pointers                     : 376682 94755
+ Pointers                     : 377518 98872
  Primary type                 : Transport
  Nuclide ZAI                  : 561360
  Library ID                   : 00c
@@ -7749,7 +7752,7 @@
 
  Nuclide   84 / 98 : 56137.00c -- barium 137 (Ba-137)
 
- Pointers                     : 378904 95077
+ Pointers                     : 379741 99208
  Primary type                 : Transport
  Nuclide ZAI                  : 561370
  Library ID                   : 00c
@@ -7821,7 +7824,7 @@
 
  Nuclide   85 / 98 : 56138.00c -- barium 138 (Ba-138)
 
- Pointers                     : 380962 95399
+ Pointers                     : 381800 99544
  Primary type                 : Transport
  Nuclide ZAI                  : 561380
  Library ID                   : 00c
@@ -7889,7 +7892,7 @@
 
  Nuclide   86 / 98 : 62144.00c -- samarium 144 (Sm-144)
 
- Pointers                     : 396982 107635
+ Pointers                     : 397825 112312
  Primary type                 : Transport
  Nuclide ZAI                  : 621440
  Library ID                   : 00c
@@ -7985,7 +7988,7 @@
 
  Nuclide   87 / 98 : 62147.00c -- samarium 147 (Sm-147)
 
- Pointers                     : 400792 108601
+ Pointers                     : 401636 113320
  Primary type                 : Transport
  Nuclide ZAI                  : 621470
  Library ID                   : 00c
@@ -7996,6 +7999,7 @@
  XS temperature               : 294.0 Kelvin
  Minimum and maximum energy   : 1.00000E-11 2.00000E+01
  Half-life                    : 3.35E+18 seconds (106 billion years)
+ Decay energy (total/photon)  : 2.31E+00 0.00E+00 MeV
  Specific ingestion toxicity  : 4.90E-08 Sv/Bq
  Specific inhalation toxicity : 9.60E-06 Sv/Bq
 
@@ -8104,11 +8108,11 @@
 
  1 decay reaction:
 
-   1  RTYP = 4     Q =  2.31080E+00 MeV  frac = 1.00000E+00  : alpha
+   1  RTYP = 4       Q =  2.31080E+00 MeV  frac = 1.00000E+00  : alpha
 
  Nuclide   88 / 98 : 62148.00c -- samarium 148 (Sm-148)
 
- Pointers                     : 406314 108923
+ Pointers                     : 407159 113656
  Primary type                 : Transport
  Nuclide ZAI                  : 621480
  Library ID                   : 00c
@@ -8119,6 +8123,7 @@
  XS temperature               : 294.0 Kelvin
  Minimum and maximum energy   : 1.00000E-11 2.00000E+01
  Half-life                    : 2.21E+23 seconds (7E+15 years)
+ Decay energy (total/photon)  : 1.98E+00 0.00E+00 MeV
  Specific ingestion toxicity  : N/A
  Specific inhalation toxicity : N/A
 
@@ -8246,11 +8251,11 @@
 
  1 decay reaction:
 
-   1  RTYP = 4     Q =  1.98640E+00 MeV  frac = 1.00000E+00  : alpha
+   1  RTYP = 4       Q =  1.98640E+00 MeV  frac = 1.00000E+00  : alpha
 
  Nuclide   89 / 98 : 62149.00c -- samarium 149 (Sm-149)
 
- Pointers                     : 413223 109245
+ Pointers                     : 414069 113992
  Primary type                 : Transport
  Nuclide ZAI                  : 621490
  Library ID                   : 00c
@@ -8369,7 +8374,7 @@
 
  Nuclide   90 / 98 : 62150.00c -- samarium 150 (Sm-150)
 
- Pointers                     : 418712 109567
+ Pointers                     : 419559 114328
  Primary type                 : Transport
  Nuclide ZAI                  : 621500
  Library ID                   : 00c
@@ -8486,7 +8491,7 @@
 
  Nuclide   91 / 98 : 62152.00c -- samarium 152 (Sm-152)
 
- Pointers                     : 424055 110211
+ Pointers                     : 424903 115000
  Primary type                 : Transport
  Nuclide ZAI                  : 621520
  Library ID                   : 00c
@@ -8614,7 +8619,7 @@
 
  Nuclide   92 / 98 : 62154.00c -- samarium 154 (Sm-154)
 
- Pointers                     : 430201 110855
+ Pointers                     : 431050 115672
  Primary type                 : Transport
  Nuclide ZAI                  : 621540
  Library ID                   : 00c
@@ -8717,7 +8722,7 @@
 
  Nuclide   93 / 98 : 74182.00c -- tungsten 182 (W-182)
 
- Pointers                     : 128696 134039
+ Pointers                     : 129482 139864
  Primary type                 : Transport
  Nuclide ZAI                  : 741820
  Library ID                   : 00c
@@ -8831,11 +8836,11 @@
 
  1 decay reaction:
 
-   1  RTYP = 4     Q =  1.77183E+00 MeV  frac = 1.00000E+00  : alpha
+   1  RTYP = 4       Q =  1.77183E+00 MeV  frac = 1.00000E+00  : alpha
 
  Nuclide   94 / 98 : 74183.00c -- tungsten 183 (W-183)
 
- Pointers                     : 133619 134361
+ Pointers                     : 134406 140200
  Primary type                 : Transport
  Nuclide ZAI                  : 741830
  Library ID                   : 00c
@@ -8950,11 +8955,11 @@
 
  1 decay reaction:
 
-   1  RTYP = 4     Q =  1.68000E+00 MeV  frac = 1.00000E+00  : alpha
+   1  RTYP = 4       Q =  1.68000E+00 MeV  frac = 1.00000E+00  : alpha
 
  Nuclide   95 / 98 : 74184.00c -- tungsten 184 (W-184)
 
- Pointers                     : 138816 134683
+ Pointers                     : 139604 140536
  Primary type                 : Transport
  Nuclide ZAI                  : 741840
  Library ID                   : 00c
@@ -9037,11 +9042,11 @@
 
  1 decay reaction:
 
-   1  RTYP = 4     Q =  1.65618E+00 MeV  frac = 1.00000E+00  : alpha
+   1  RTYP = 4       Q =  1.65618E+00 MeV  frac = 1.00000E+00  : alpha
 
  Nuclide   96 / 98 : 74186.00c -- tungsten 186 (W-186)
 
- Pointers                     : 141476 135327
+ Pointers                     : 142265 141208
  Primary type                 : Transport
  Nuclide ZAI                  : 741860
  Library ID                   : 00c
@@ -9052,6 +9057,7 @@
  XS temperature               : 294.0 Kelvin
  Minimum and maximum energy   : 1.00000E-11 1.50000E+02
  Half-life                    : 5.36E+27 seconds (1.7E+20 years)
+ Decay energy (total/photon)  : 1.12E+00 0.00E+00 MeV
  Specific ingestion toxicity  : N/A
  Specific inhalation toxicity : N/A
 
@@ -9118,11 +9124,11 @@
 
  1 decay reaction:
 
-   1  RTYP = 4     Q =  1.11800E+00 MeV  frac = 1.00000E+00  : alpha
+   1  RTYP = 4       Q =  1.11800E+00 MeV  frac = 1.00000E+00  : alpha
 
  Nuclide   97 / 98 : 92235.00c -- uranium 235 (U-235)
 
- Pointers                     : 226944 159477
+ Pointers                     : 227758 166408
  Primary type                 : Transport
  Nuclide ZAI                  : 922350
  Library ID                   : 00c
@@ -9133,6 +9139,7 @@
  XS temperature               : 294.0 Kelvin
  Minimum and maximum energy   : 1.00000E-11 3.00000E+01
  Half-life                    : 2.22E+16 seconds (704 million years)
+ Decay energy (total/photon)  : 4.62E+00 1.64E-01 MeV
  Specific ingestion toxicity  : 4.70E-08 Sv/Bq
  Specific inhalation toxicity : 8.50E-06 Sv/Bq
  Energy deposited per fission : 202.27 MeV
@@ -9263,12 +9270,12 @@
 
  2 decay reactions:
 
-   1  RTYP = 6     Q =  1.76400E+02 MeV  frac = 7.20000E-11  : spontaneous fission
-   2  RTYP = 4     Q =  4.67870E+00 MeV  frac = 1.00000E+00  : alpha
+   1  RTYP = 6       Q =  1.76400E+02 MeV  frac = 7.20000E-11  : spontaneous fission
+   2  RTYP = 4       Q =  4.67870E+00 MeV  frac = 1.00000E+00  : alpha
 
  Nuclide   98 / 98 : 92238.00c -- uranium 238 (U-238)
 
- Pointers                     : 267803 160443
+ Pointers                     : 268618 167416
  Primary type                 : Transport
  Nuclide ZAI                  : 922380
  Library ID                   : 00c
@@ -9279,6 +9286,7 @@
  XS temperature               : 294.0 Kelvin
  Minimum and maximum energy   : 1.00000E-11 3.00000E+01
  Half-life                    : 1.41E+17 seconds (4.47 billion years)
+ Decay energy (total/photon)  : 4.27E+00 1.28E-03 MeV
  Specific ingestion toxicity  : 4.50E-08 Sv/Bq
  Specific inhalation toxicity : 8.00E-06 Sv/Bq
  Energy deposited per fission : 206.85 MeV
@@ -9374,10 +9382,10 @@
 
  2 decay reactions:
 
-   1  RTYP = 6     Q =  1.73600E+02 MeV  frac = 5.46000E-07  : spontaneous fission
-   2  RTYP = 4     Q =  4.26970E+00 MeV  frac = 1.00000E+00  : alpha
+   1  RTYP = 6       Q =  1.73600E+02 MeV  frac = 5.46000E-07  : spontaneous fission
+   2  RTYP = 4       Q =  4.26970E+00 MeV  frac = 1.00000E+00  : alpha
 
- --- Table  1: Summary of material compositions: 
+ --- Table  5: Summary of material compositions: 
 
  14 materials included in calculation
 
@@ -9395,7 +9403,7 @@ Material "lower_gridplate":
  - Neutron emission rate 0.00000E+00 1/s
  - 33 nuclides in composition
  - No nuclides associated with S(a,b) data
- - 41.03 Mb of memory allocated for data
+ - 41.01 Mb of memory allocated for data
 
 Isotopic composition (non-zero densities):
 
@@ -9446,12 +9454,12 @@ Material "coolant":
  - Atom density 5.07117E-05 1/barn*cm
  - Mass density 1.22500E-03 g/cm3
  - Volume 1.32300E+40 cm3
- - Mass 1.62067E+37 g
+ - Mass 1.62068E+37 g
  - Photon emission rate 0.00000E+00 1/s
  - Neutron emission rate 0.00000E+00 1/s
  - 7 nuclides in composition
  - No nuclides associated with S(a,b) data
- - 40.93 Mb of memory allocated for data
+ - 40.92 Mb of memory allocated for data
 
 Isotopic composition (non-zero densities):
 
@@ -9481,7 +9489,7 @@ Material "clad":
  - Neutron emission rate 0.00000E+00 1/s
  - 39 nuclides in composition
  - No nuclides associated with S(a,b) data
- - 41.06 Mb of memory allocated for data
+ - 41.03 Mb of memory allocated for data
 
 Isotopic composition (non-zero densities):
 
@@ -9602,7 +9610,7 @@ Material "diffusion_barrier":
  - Neutron emission rate 0.00000E+00 1/s
  - 37 nuclides in composition
  - No nuclides associated with S(a,b) data
- - 41.06 Mb of memory allocated for data
+ - 41.04 Mb of memory allocated for data
 
 Isotopic composition (non-zero densities):
 
@@ -9693,12 +9701,12 @@ Material "ceramic":
  - Neutron emission rate 0.00000E+00 1/s
  - 45 nuclides in composition
  - No nuclides associated with S(a,b) data
- - 41.09 Mb of memory allocated for data
+ - 41.07 Mb of memory allocated for data
 
 Material is a mixture of 2 components:
 
 -----------------------------------------
-Material             a. frac      m. frac
+Material           vol. frac      m. frac
 -----------------------------------------
 diffusion_barrier  9.94303E-01  9.83201E-01
 burnable_poison  5.69679E-03  1.67990E-02
@@ -9793,7 +9801,7 @@ Material "barrel":
  - Neutron emission rate 0.00000E+00 1/s
  - 32 nuclides in composition
  - No nuclides associated with S(a,b) data
- - 41.02 Mb of memory allocated for data
+ - 41.00 Mb of memory allocated for data
 
 Isotopic composition (non-zero densities):
 
@@ -9848,7 +9856,7 @@ Material "internal_reflector":
  - Neutron emission rate 0.00000E+00 1/s
  - 2 nuclides in composition
  - 2 nuclides associated with S(a,b) data
- - 40.91 Mb of memory allocated for data
+ - 40.90 Mb of memory allocated for data
 
 Isotopic composition (non-zero densities):
 
@@ -9873,12 +9881,12 @@ Material "reflMix":
  - Neutron emission rate 0.00000E+00 1/s
  - 80 nuclides in composition
  - 2 nuclides associated with S(a,b) data
- - 41.21 Mb of memory allocated for data
+ - 41.17 Mb of memory allocated for data
 
 Material is a mixture of 4 components:
 
 -----------------------------------------
-Material             a. frac      m. frac
+Material           vol. frac      m. frac
 -----------------------------------------
 barrel           1.91000E-01  4.85376E-01
 clad             4.20000E-02  1.18889E-01
@@ -9984,7 +9992,7 @@ Material "upper_gridplate":
  - Neutron emission rate 0.00000E+00 1/s
  - 32 nuclides in composition
  - No nuclides associated with S(a,b) data
- - 41.02 Mb of memory allocated for data
+ - 41.00 Mb of memory allocated for data
 
 Isotopic composition (non-zero densities):
 

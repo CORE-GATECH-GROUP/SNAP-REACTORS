@@ -1,0 +1,8 @@
+include s8c3_gcu.mat
+include s8c3_gcu.geo
+set bc 1 1 1
+set pop 100000 100 100
+set acelib ""
+plot 31 5000 5000 0.0
+set his 1
+set gcu 0 1100  1000  900  700  600  500  400  300  200  100  800  1200 

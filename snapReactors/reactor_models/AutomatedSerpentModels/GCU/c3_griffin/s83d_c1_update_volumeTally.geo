@@ -1,0 +1,1763 @@
+surf barrelACMvoidDrumh1 cyl 0.0 0.0 24.061557142481636 
+surf putBorder cuboid -24.061557142481636 24.061557142481636 -24.061557142481636 24.061557142481636 0.0 38.422579999999996 
+surf lgBarrelcc1 cyl 0.0 0.0 11.87704 
+surf lgvoidvoidDrumh1 cyl 0.0 0.0 24.061557142481636 
+surf lgvoidh6 hexyc 0.0 0.0 20.83791974 
+surf barrelleccc1 cyl 0.0 0.0 11.87704 
+surf lecCDvoidDrumh1 cyl 0.0 0.0 24.061557142481636 
+surf intrefleccc1 cyl 0.0 0.0 11.7475 
+surf hexBorderlowerEndCapLat hexyc 0.0 0.0 11.43 
+surf lecCDh1 hexyc 0.0 0.0 13.263102125 
+surf lecCDh2 hexyc 0.0 0.0 14.649164249999998 
+surf lecCDh3 hexyc 0.0 0.0 16.035226375 
+surf lecCDh4 hexyc 0.0 0.0 17.4212885 
+surf lecCDh5 hexyc 0.0 0.0 19.09571098 
+surf lecCDh6 hexyc 0.0 0.0 20.83791974 
+surf barrelACLcc1 cyl 0.0 0.0 11.87704 
+surf barrelACLvoidDrumh1 cyl 0.0 0.0 24.061557142481636 
+surf intrefACLcc1 cyl 0.0 0.0 11.7475 
+surf hexBorderactiveCoreLatACL hexyc 0.0 0.0 11.43 
+surf barrelACLh1 hexyc 0.0 0.0 13.263102125 
+surf barrelACLh2 hexyc 0.0 0.0 14.649164249999998 
+surf barrelACLh3 hexyc 0.0 0.0 16.035226375 
+surf barrelACLh4 hexyc 0.0 0.0 17.4212885 
+surf barrelACLh5 hexyc 0.0 0.0 19.09571098 
+surf barrelACLh6 hexyc 0.0 0.0 20.83791974 
+surf barrelACMcc1 cyl 0.0 0.0 11.87704 
+surf intrefACMcc1 cyl 0.0 0.0 11.7475 
+surf hexBorderactiveCoreLatACM hexyc 0.0 0.0 11.43 
+surf barrelACMh1 hexyc 0.0 0.0 13.263102125 
+surf barrelACMh2 hexyc 0.0 0.0 14.649164249999998 
+surf barrelACMh3 hexyc 0.0 0.0 16.035226375 
+surf barrelACMh4 hexyc 0.0 0.0 17.4212885 
+surf barrelACMh5 hexyc 0.0 0.0 19.09571098 
+surf barrelACMh6 hexyc 0.0 0.0 20.83791974 
+surf barrelACUcc1 cyl 0.0 0.0 11.87704 
+surf barrelACUvoidDrumh1 cyl 0.0 0.0 24.061557142481636 
+surf intrefACUcc1 cyl 0.0 0.0 11.7475 
+surf hexBorderactiveCoreLatACU hexyc 0.0 0.0 11.43 
+surf barrelACUh1 hexyc 0.0 0.0 13.263102125 
+surf barrelACUh2 hexyc 0.0 0.0 14.649164249999998 
+surf barrelACUh3 hexyc 0.0 0.0 16.035226375 
+surf barrelACUh4 hexyc 0.0 0.0 17.4212885 
+surf barrelACUh5 hexyc 0.0 0.0 19.09571098 
+surf barrelACUh6 hexyc 0.0 0.0 20.83791974 
+surf barrelueccc1 cyl 0.0 0.0 11.87704 
+surf uecCDvoidDrumh1 cyl 0.0 0.0 24.061557142481636 
+surf intrefueccc1 cyl 0.0 0.0 11.7475 
+surf hexBorderupperEndCapLat hexyc 0.0 0.0 11.43 
+surf uecCDh1 hexyc 0.0 0.0 13.263102125 
+surf uecCDh2 hexyc 0.0 0.0 14.649164249999998 
+surf uecCDh3 hexyc 0.0 0.0 16.035226375 
+surf uecCDh4 hexyc 0.0 0.0 17.4212885 
+surf uecCDh5 hexyc 0.0 0.0 19.09571098 
+surf uecCDh6 hexyc 0.0 0.0 20.83791974 
+surf ugBarrelcc1 cyl 0.0 0.0 11.87704 
+surf ugvoidvoidDrumh1 cyl 0.0 0.0 24.061557142481636 
+surf ugvoidh6 hexyc 0.0 0.0 20.83791974 
+cell fillRegion 1  fill cdBarrelStack -barrelACMvoidDrumh1 
+cell voidRegion 1  void barrelACMvoidDrumh1 -putBorder 
+cell lgBarrel_univlgvoidcdFull_cell1 lgBarrel_univlgvoidcdFull_univ fill 9400 -lgBarrelcc1
+cell lgBarrel_univlgvoidcdFull_cell2 lgBarrel_univlgvoidcdFull_univ  fill lgvoidcdFull lgBarrelcc1 -lgvoidvoidDrumh1 
+cell lgBarrel_cell 9400 fill lowerGridLat -lgBarrelcc1
+cell lgvoidcdSysD1 lgvoidcdFull fill 8000 lgBarrelcc1 -lgvoidh6
+cell lgvoidcdSysVoidDV lgvoidcdFull  void lgvoidh6 -lgvoidvoidDrumh1 
+cell lgvoidcdSys1 8000 8000 lgBarrelcc1 -lgvoidh6
+cell active_core_univlowerEndCapLatintreflec_univbarrellec_univlecCDcdFull_cell1 active_core_univlowerEndCapLatintreflec_univbarrellec_univlecCDcdFull_univ fill 9100 -barrelleccc1
+cell active_core_univlowerEndCapLatintreflec_univbarrellec_univlecCDcdFull_cell2 active_core_univlowerEndCapLatintreflec_univbarrellec_univlecCDcdFull_univ  fill lecCDcdFull barrelleccc1 -lecCDvoidDrumh1 
+cell active_core_univlowerEndCapLatintreflec_univbarrellec_cell1 9100 fill active_core_univlowerEndCapLatintreflec_univ -intrefleccc1
+cell active_core_univlowerEndCapLatintreflec_univbarrellec_cell2 9100 fill barrellec_univ intrefleccc1 -barrelleccc1
+cell active_core_univlowerEndCapLatintreflec_cell1 active_core_univlowerEndCapLatintreflec_univ  fill active_core_univlowerEndCapLat -hexBorderlowerEndCapLat 
+cell active_core_univlowerEndCapLatintreflec_cell2 active_core_univlowerEndCapLatintreflec_univ  fill intreflec_univ hexBorderlowerEndCapLat -intrefleccc1 
+cell active_core_celllowerEndCapLat active_core_univlowerEndCapLat  fill lowerEndCapLat -hexBorderlowerEndCapLat 
+cell intreflec_cell intreflec_univ  9100 hexBorderlowerEndCapLat -intrefleccc1 
+cell barrellec_cell barrellec_univ  9100 intrefleccc1 -barrelleccc1 
+cell lecCDcdSysD1 lecCDcdFull fill 7000 barrelleccc1 -lecCDh1
+cell lecCDcdSysD2 lecCDcdFull fill 7100 lecCDh1 -lecCDh2
+cell lecCDcdSysD3 lecCDcdFull fill 7200 lecCDh2 -lecCDh3
+cell lecCDcdSysD4 lecCDcdFull fill 7300 lecCDh3 -lecCDh4
+cell lecCDcdSysD5 lecCDcdFull fill 7400 lecCDh4 -lecCDh5
+cell lecCDcdSysD6 lecCDcdFull fill 9903 lecCDh5 -lecCDh6
+cell lecCDcdSysVoidDV lecCDcdFull  void lecCDh6 -lecCDvoidDrumh1 
+cell lecCDcdSys1 7000 7000 barrelleccc1 -lecCDh1
+cell lecCDcdSys2 7100 7100 lecCDh1 -lecCDh2
+cell lecCDcdSys3 7200 7200 lecCDh2 -lecCDh3
+cell lecCDcdSys4 7300 7300 lecCDh3 -lecCDh4
+cell lecCDcdSys5 7400 7400 lecCDh4 -lecCDh5
+cell lecCDcdSys6 9903 9903 lecCDh5 -lecCDh6
+cell active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univbarrelACLcdFull_cell1 active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univbarrelACLcdFull_univ  fill active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univ -barrelACLcc1 
+cell active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univbarrelACLcdFull_cell2 active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univbarrelACLcdFull_univ  fill barrelACLcdFull barrelACLcc1 -barrelACLvoidDrumh1 
+cell active_core_univactiveCoreLatACLintrefACL_univbarrelACL_cell1 active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univ  fill active_core_univactiveCoreLatACLintrefACL_univ -intrefACLcc1 
+cell active_core_univactiveCoreLatACLintrefACL_univbarrelACL_cell2 active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univ fill 3600 intrefACLcc1 -barrelACLcc1
+cell active_core_univactiveCoreLatACLintrefACL_cell1 active_core_univactiveCoreLatACLintrefACL_univ  fill active_core_univactiveCoreLatACL -hexBorderactiveCoreLatACL 
+cell active_core_univactiveCoreLatACLintrefACL_cell2 active_core_univactiveCoreLatACLintrefACL_univ fill 3500 hexBorderactiveCoreLatACL -intrefACLcc1
+cell active_core_cellactiveCoreLatACL active_core_univactiveCoreLatACL  fill activeCoreLatACL -hexBorderactiveCoreLatACL 
+cell intrefACL_cell 3500 3500 hexBorderactiveCoreLatACL -intrefACLcc1
+cell barrelACL_cell 3600 3600 intrefACLcc1 -barrelACLcc1
+cell barrelACLcdSysD1 barrelACLcdFull fill 5500 barrelACLcc1 -barrelACLh1
+cell barrelACLcdSysD2 barrelACLcdFull fill 5600 barrelACLh1 -barrelACLh2
+cell barrelACLcdSysD3 barrelACLcdFull fill 5700 barrelACLh2 -barrelACLh3
+cell barrelACLcdSysD4 barrelACLcdFull fill 5800 barrelACLh3 -barrelACLh4
+cell barrelACLcdSysD5 barrelACLcdFull fill 5900 barrelACLh4 -barrelACLh5
+cell barrelACLcdSysD6 barrelACLcdFull fill 9900 barrelACLh5 -barrelACLh6
+cell barrelACLcdSysVoidDV barrelACLcdFull  void barrelACLh6 -barrelACLvoidDrumh1 
+cell barrelACLcdSys1 5500 5500 barrelACLcc1 -barrelACLh1
+cell barrelACLcdSys2 5600 5600 barrelACLh1 -barrelACLh2
+cell barrelACLcdSys3 5700 5700 barrelACLh2 -barrelACLh3
+cell barrelACLcdSys4 5800 5800 barrelACLh3 -barrelACLh4
+cell barrelACLcdSys5 5900 5900 barrelACLh4 -barrelACLh5
+cell barrelACLcdSys6 9900 9900 barrelACLh5 -barrelACLh6
+cell active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univbarrelACMcdFull_cell1 active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univbarrelACMcdFull_univ  fill active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univ -barrelACMcc1 
+cell active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univbarrelACMcdFull_cell2 active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univbarrelACMcdFull_univ  fill barrelACMcdFull barrelACMcc1 -barrelACMvoidDrumh1 
+cell active_core_univactiveCoreLatACMintrefACM_univbarrelACM_cell1 active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univ  fill active_core_univactiveCoreLatACMintrefACM_univ -intrefACMcc1 
+cell active_core_univactiveCoreLatACMintrefACM_univbarrelACM_cell2 active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univ fill 3400 intrefACMcc1 -barrelACMcc1
+cell active_core_univactiveCoreLatACMintrefACM_cell1 active_core_univactiveCoreLatACMintrefACM_univ  fill active_core_univactiveCoreLatACM -hexBorderactiveCoreLatACM 
+cell active_core_univactiveCoreLatACMintrefACM_cell2 active_core_univactiveCoreLatACMintrefACM_univ fill 3300 hexBorderactiveCoreLatACM -intrefACMcc1
+cell active_core_cellactiveCoreLatACM active_core_univactiveCoreLatACM  fill activeCoreLatACM -hexBorderactiveCoreLatACM 
+cell intrefACM_cell 3300 3300 hexBorderactiveCoreLatACM -intrefACMcc1
+cell barrelACM_cell 3400 3400 intrefACMcc1 -barrelACMcc1
+cell barrelACMcdSysD1 barrelACMcdFull fill 3900 barrelACMcc1 -barrelACMh1
+cell barrelACMcdSysD2 barrelACMcdFull fill 4000 barrelACMh1 -barrelACMh2
+cell barrelACMcdSysD3 barrelACMcdFull fill 4100 barrelACMh2 -barrelACMh3
+cell barrelACMcdSysD4 barrelACMcdFull fill 4200 barrelACMh3 -barrelACMh4
+cell barrelACMcdSysD5 barrelACMcdFull fill 4300 barrelACMh4 -barrelACMh5
+cell barrelACMcdSysD6 barrelACMcdFull fill 4400 barrelACMh5 -barrelACMh6
+cell barrelACMcdSysVoidDV barrelACMcdFull  void barrelACMh6 -barrelACMvoidDrumh1 
+cell barrelACMcdSys1 3900 3900 barrelACMcc1 -barrelACMh1
+cell barrelACMcdSys2 4000 4000 barrelACMh1 -barrelACMh2
+cell barrelACMcdSys3 4100 4100 barrelACMh2 -barrelACMh3
+cell barrelACMcdSys4 4200 4200 barrelACMh3 -barrelACMh4
+cell barrelACMcdSys5 4300 4300 barrelACMh4 -barrelACMh5
+cell barrelACMcdSys6 4400 4400 barrelACMh5 -barrelACMh6
+cell active_core_univactiveCoreLatACUintrefACU_univbarrelACU_univbarrelACUcdFull_cell1 active_core_univactiveCoreLatACUintrefACU_univbarrelACU_univbarrelACUcdFull_univ  fill active_core_univactiveCoreLatACUintrefACU_univbarrelACU_univ -barrelACUcc1 
+cell active_core_univactiveCoreLatACUintrefACU_univbarrelACU_univbarrelACUcdFull_cell2 active_core_univactiveCoreLatACUintrefACU_univbarrelACU_univbarrelACUcdFull_univ  fill barrelACUcdFull barrelACUcc1 -barrelACUvoidDrumh1 
+cell active_core_univactiveCoreLatACUintrefACU_univbarrelACU_cell1 active_core_univactiveCoreLatACUintrefACU_univbarrelACU_univ  fill active_core_univactiveCoreLatACUintrefACU_univ -intrefACUcc1 
+cell active_core_univactiveCoreLatACUintrefACU_univbarrelACU_cell2 active_core_univactiveCoreLatACUintrefACU_univbarrelACU_univ fill 3800 intrefACUcc1 -barrelACUcc1
+cell active_core_univactiveCoreLatACUintrefACU_cell1 active_core_univactiveCoreLatACUintrefACU_univ  fill active_core_univactiveCoreLatACU -hexBorderactiveCoreLatACU 
+cell active_core_univactiveCoreLatACUintrefACU_cell2 active_core_univactiveCoreLatACUintrefACU_univ fill 3700 hexBorderactiveCoreLatACU -intrefACUcc1
+cell active_core_cellactiveCoreLatACU active_core_univactiveCoreLatACU  fill activeCoreLatACU -hexBorderactiveCoreLatACU 
+cell intrefACU_cell 3700 3700 hexBorderactiveCoreLatACU -intrefACUcc1
+cell barrelACU_cell 3800 3800 intrefACUcc1 -barrelACUcc1
+cell barrelACUcdSysD1 barrelACUcdFull fill 6000 barrelACUcc1 -barrelACUh1
+cell barrelACUcdSysD2 barrelACUcdFull fill 6100 barrelACUh1 -barrelACUh2
+cell barrelACUcdSysD3 barrelACUcdFull fill 6200 barrelACUh2 -barrelACUh3
+cell barrelACUcdSysD4 barrelACUcdFull fill 6300 barrelACUh3 -barrelACUh4
+cell barrelACUcdSysD5 barrelACUcdFull fill 6400 barrelACUh4 -barrelACUh5
+cell barrelACUcdSysD6 barrelACUcdFull fill 9901 barrelACUh5 -barrelACUh6
+cell barrelACUcdSysVoidDV barrelACUcdFull  void barrelACUh6 -barrelACUvoidDrumh1 
+cell barrelACUcdSys1 6000 6000 barrelACUcc1 -barrelACUh1
+cell barrelACUcdSys2 6100 6100 barrelACUh1 -barrelACUh2
+cell barrelACUcdSys3 6200 6200 barrelACUh2 -barrelACUh3
+cell barrelACUcdSys4 6300 6300 barrelACUh3 -barrelACUh4
+cell barrelACUcdSys5 6400 6400 barrelACUh4 -barrelACUh5
+cell barrelACUcdSys6 9901 9901 barrelACUh5 -barrelACUh6
+cell active_core_univupperEndCapLatintrefuec_univbarreluec_univuecCDcdFull_cell1 active_core_univupperEndCapLatintrefuec_univbarreluec_univuecCDcdFull_univ fill 9500 -barrelueccc1
+cell active_core_univupperEndCapLatintrefuec_univbarreluec_univuecCDcdFull_cell2 active_core_univupperEndCapLatintrefuec_univbarreluec_univuecCDcdFull_univ  fill uecCDcdFull barrelueccc1 -uecCDvoidDrumh1 
+cell active_core_univupperEndCapLatintrefuec_univbarreluec_cell1 9500 fill active_core_univupperEndCapLatintrefuec_univ -intrefueccc1
+cell active_core_univupperEndCapLatintrefuec_univbarreluec_cell2 9500 fill barreluec_univ intrefueccc1 -barrelueccc1
+cell active_core_univupperEndCapLatintrefuec_cell1 active_core_univupperEndCapLatintrefuec_univ  fill active_core_univupperEndCapLat -hexBorderupperEndCapLat 
+cell active_core_univupperEndCapLatintrefuec_cell2 active_core_univupperEndCapLatintrefuec_univ  fill intrefuec_univ hexBorderupperEndCapLat -intrefueccc1 
+cell active_core_cellupperEndCapLat active_core_univupperEndCapLat  fill upperEndCapLat -hexBorderupperEndCapLat 
+cell intrefuec_cell intrefuec_univ  9500 hexBorderupperEndCapLat -intrefueccc1 
+cell barreluec_cell barreluec_univ  9500 intrefueccc1 -barrelueccc1 
+cell uecCDcdSysD1 uecCDcdFull fill 6500 barrelueccc1 -uecCDh1
+cell uecCDcdSysD2 uecCDcdFull fill 6600 uecCDh1 -uecCDh2
+cell uecCDcdSysD3 uecCDcdFull fill 6700 uecCDh2 -uecCDh3
+cell uecCDcdSysD4 uecCDcdFull fill 6800 uecCDh3 -uecCDh4
+cell uecCDcdSysD5 uecCDcdFull fill 6900 uecCDh4 -uecCDh5
+cell uecCDcdSysD6 uecCDcdFull fill 9902 uecCDh5 -uecCDh6
+cell uecCDcdSysVoidDV uecCDcdFull  void uecCDh6 -uecCDvoidDrumh1 
+cell uecCDcdSys1 6500 6500 barrelueccc1 -uecCDh1
+cell uecCDcdSys2 6600 6600 uecCDh1 -uecCDh2
+cell uecCDcdSys3 6700 6700 uecCDh2 -uecCDh3
+cell uecCDcdSys4 6800 6800 uecCDh3 -uecCDh4
+cell uecCDcdSys5 6900 6900 uecCDh4 -uecCDh5
+cell uecCDcdSys6 9902 9902 uecCDh5 -uecCDh6
+cell ugBarrel_univugvoidcdFull_cell1 ugBarrel_univugvoidcdFull_univ fill 9300 -ugBarrelcc1
+cell ugBarrel_univugvoidcdFull_cell2 ugBarrel_univugvoidcdFull_univ  fill ugvoidcdFull ugBarrelcc1 -ugvoidvoidDrumh1 
+cell ugBarrel_cell 9300 fill upperGridLat -ugBarrelcc1
+cell ugvoidcdSysD1 ugvoidcdFull fill 7500 ugBarrelcc1 -ugvoidh6
+cell ugvoidcdSysVoidDV ugvoidcdFull  void ugvoidh6 -ugvoidvoidDrumh1 
+cell ugvoidcdSys1 7500 7500 ugBarrelcc1 -ugvoidh6
+cell outRegionIn 0  fill 1 -putBorder 
+cell outRegionOut 0  outside putBorder 
+lat cdBarrelStack 9 0 0 7
+0.0	lgBarrel_univlgvoidcdFull_univ
+0.79502	active_core_univlowerEndCapLatintreflec_univbarrellec_univlecCDcdFull_univ
+1.76022	active_core_univactiveCoreLatACLintrefACL_univbarrelACL_univbarrelACLcdFull_univ
+3.93192	active_core_univactiveCoreLatACMintrefACM_univbarrelACM_univbarrelACMcdFull_univ
+34.41192	active_core_univactiveCoreLatACUintrefACU_univbarrelACU_univbarrelACUcdFull_univ
+37.32022	active_core_univupperEndCapLatintrefuec_univbarreluec_univuecCDcdFull_univ
+37.54882	ugBarrel_univugvoidcdFull_univ
+
+lat lowerGridLat 3 0 0 21 21 1.4478
+pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG 
+ pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG 
+  pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG pLG 
+   pLG pLG pLG pLG pLG pLG pLG pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG 
+    pLG pLG pLG pLG pLG pLG pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG 
+     pLG pLG pLG pLG pLG pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG 
+      pLG pLG pLG pLG pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG 
+       pLG pLG pLG pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG 
+        pLG pLG pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG 
+         pLG pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG 
+          pLG pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG pLG 
+           pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG pLG 
+            pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG pLG pLG 
+             pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG pLG pLG pLG 
+              pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG pLG pLG pLG pLG 
+               pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG pLG pLG pLG pLG pLG 
+                pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG pLG pLG pLG pLG pLG pLG 
+                 pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG pLG pLG pLG pLG pLG pLG pLG 
+                  pLG pLG pLG pLGH pLGH pLGH pLGH pLGH pLGH pLGH pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG 
+                   pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG 
+                    pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG pLG 
+                     
+pin pLG
+9400
+
+pin pLGH
+9400	0.15875
+9400
+
+lat lowerEndCapLat 2 0 0 21 21 1.4478
+pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
+ pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
+  pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV pLECV 
+   pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV 
+    pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV 
+     pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV 
+      pLECV pLECV pLECV pLECV pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV 
+       pLECV pLECV pLECV pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV 
+        pLECV pLECV pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV 
+         pLECV pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV 
+          pLECV pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV pLECV 
+           pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV pLECV 
+            pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV pLECV pLECV 
+             pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV pLECV pLECV pLECV 
+              pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV pLECV pLECV pLECV pLECV 
+               pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
+                pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
+                 pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
+                  pLECV pLECV pLECV pLEC pLEC pLEC pLEC pLEC pLEC pLEC pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
+                   pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
+                    pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV pLECV 
+                     
+pin pLECV
+9100
+
+pin pLEC
+9100	0.7112
+9100
+
+lat activeCoreLatACL 2 0 0 21 21 1.4478
+2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000
+2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000
+2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 9700 9700 9700 9700 9700 9700 9700 2000 2000 2000
+2000 2000 2000 2000 2000 2000 2000 2000 2000 9700 9700 1700 1700 9700 1700 9700 9700 9700 9700 2000 2000
+2000 2000 2000 2000 2000 2000 2000 2000 9700 9700 1600 1600 1600 1600 1600 1600 1600 9700 9700 2000 2000
+2000 2000 2000 2000 2000 2000 2000 9700 9700 1600 1500 1500 1500 1500 1500 1500 1600 9700 9700 2000 2000
+2000 2000 2000 2000 2000 2000 9700 9700 1600 1500 1400 1400 1400 1400 1400 1500 1600 9700 9700 2000 2000
+2000 2000 2000 2000 2000 9700 9700 1600 1500 1400 1300 1300 1300 1300 1400 1500 1600 9700 9700 2000 2000
+2000 2000 2000 2000 9700 9700 1600 1500 1400 1300 1200 1200 1200 1300 1400 1500 1600 9700 9700 2000 2000
+2000 2000 2000 9700 9700 1600 1500 1400 1300 1200 1100 1100 1200 1300 1400 1500 1600 9700 9700 2000 2000
+2000 2000 2000 1700 1600 1500 1400 1300 1200 1100 1100 1100 1200 1300 1400 1500 1600 1700 2000 2000 2000
+2000 2000 1800 1700 1600 1500 1400 1300 1200 1100 1100 1200 1300 1400 1500 1600 1700 1800 2000 2000 2000
+2000 2000 1800 1700 1600 1500 1400 1300 1200 1200 1200 1300 1400 1500 1600 1700 1800 2000 2000 2000 2000
+2000 2000 1800 1700 1600 1500 1400 1300 1300 1300 1300 1400 1500 1600 1700 1800 2000 2000 2000 2000 2000
+2000 2000 1800 1700 1600 1500 1400 1400 1400 1400 1400 1500 1600 1700 1800 2000 2000 2000 2000 2000 2000
+2000 2000 1800 1700 1600 1500 1500 1500 1500 1500 1500 1600 1700 1800 2000 2000 2000 2000 2000 2000 2000
+2000 2000 1800 1700 1600 1600 1600 1600 1600 1600 1600 1700 1800 2000 2000 2000 2000 2000 2000 2000 2000
+2000 2000 1800 1700 1700 1700 1700 1700 1700 1700 1700 1800 2000 2000 2000 2000 2000 2000 2000 2000 2000
+2000 2000 2000 1800 1800 1800 1800 1800 1800 1800 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000
+2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000
+2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000
+                     
+pin 2000
+2000
+
+pin 9700
+9700	0.7112
+9700
+
+pin 1700
+1700	0.67564
+1700	0.681228
+1700	0.685292
+1700	0.71374
+1700
+
+pin 1600
+1600	0.67564
+1600	0.681228
+1600	0.685292
+1600	0.71374
+1600
+
+pin 1500
+1500	0.67564
+1500	0.681228
+1500	0.685292
+1500	0.71374
+1500
+
+pin 1400
+1400	0.67564
+1400	0.681228
+1400	0.685292
+1400	0.71374
+1400
+
+pin 1300
+1300	0.67564
+1300	0.681228
+1300	0.685292
+1300	0.71374
+1300
+
+pin 1200
+1200	0.67564
+1200	0.681228
+1200	0.685292
+1200	0.71374
+1200
+
+pin 1100
+1100	0.67564
+1100	0.681228
+1100	0.685292
+1100	0.71374
+1100
+
+pin 1800
+1800	0.67564
+1800	0.681228
+1800	0.685292
+1800	0.71374
+1800
+
+lat activeCoreLatACM 2 0 0 21 21 1.4478
+900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900
+900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900
+900 900 900 900 900 900 900 900 900 900 900 9600 9600 9600 9600 9600 9600 9600 900 900 900
+900 900 900 900 900 900 900 900 900 9600 9600 700 700 9600 700 9600 9600 9600 9600 900 900
+900 900 900 900 900 900 900 900 9600 9600 600 600 600 600 600 600 600 9600 9600 900 900
+900 900 900 900 900 900 900 9600 9600 600 500 500 500 500 500 500 600 9600 9600 900 900
+900 900 900 900 900 900 9600 9600 600 500 400 400 400 400 400 500 600 9600 9600 900 900
+900 900 900 900 900 9600 9600 600 500 400 300 300 300 300 400 500 600 9600 9600 900 900
+900 900 900 900 9600 9600 600 500 400 300 200 200 200 300 400 500 600 9600 9600 900 900
+900 900 900 9600 9600 600 500 400 300 200 100 100 200 300 400 500 600 9600 9600 900 900
+900 900 900 700 600 500 400 300 200 100 100 100 200 300 400 500 600 700 900 900 900
+900 900 800 700 600 500 400 300 200 100 100 200 300 400 500 600 700 800 900 900 900
+900 900 800 700 600 500 400 300 200 200 200 300 400 500 600 700 800 900 900 900 900
+900 900 800 700 600 500 400 300 300 300 300 400 500 600 700 800 900 900 900 900 900
+900 900 800 700 600 500 400 400 400 400 400 500 600 700 800 900 900 900 900 900 900
+900 900 800 700 600 500 500 500 500 500 500 600 700 800 900 900 900 900 900 900 900
+900 900 800 700 600 600 600 600 600 600 600 700 800 900 900 900 900 900 900 900 900
+900 900 800 700 700 700 700 700 700 700 700 800 900 900 900 900 900 900 900 900 900
+900 900 900 800 800 800 800 800 800 800 900 900 900 900 900 900 900 900 900 900 900
+900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900
+900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900
+                     
+pin 900
+900
+
+lat 9600 9 0 0 9
+0.0	9601
+3.3866666666666667	9602
+6.773333333333333	9603
+10.16	9604
+13.546666666666667	9605
+16.933333333333334	9606
+20.32	9607
+23.706666666666667	9608
+27.093333333333334	9609
+
+pin 9601
+9601	0.7112
+9601
+
+pin 9602
+9602	0.7112
+9602
+
+pin 9603
+9603	0.7112
+9603
+
+pin 9604
+9604	0.7112
+9604
+
+pin 9605
+9605	0.7112
+9605
+
+pin 9606
+9606	0.7112
+9606
+
+pin 9607
+9607	0.7112
+9607
+
+pin 9608
+9608	0.7112
+9608
+
+pin 9609
+9609	0.7112
+9609
+
+lat 700 9 0 0 9
+0.0	701
+3.3866666666666667	702
+6.773333333333333	703
+10.16	704
+13.546666666666667	705
+16.933333333333334	706
+20.32	707
+23.706666666666667	708
+27.093333333333334	709
+
+pin 701
+701	0.67564
+701	0.681228
+701	0.685292
+701	0.71374
+701
+
+pin 702
+702	0.67564
+702	0.681228
+702	0.685292
+702	0.71374
+702
+
+pin 703
+703	0.67564
+703	0.681228
+703	0.685292
+703	0.71374
+703
+
+pin 704
+704	0.67564
+704	0.681228
+704	0.685292
+704	0.71374
+704
+
+pin 705
+705	0.67564
+705	0.681228
+705	0.685292
+705	0.71374
+705
+
+pin 706
+706	0.67564
+706	0.681228
+706	0.685292
+706	0.71374
+706
+
+pin 707
+707	0.67564
+707	0.681228
+707	0.685292
+707	0.71374
+707
+
+pin 708
+708	0.67564
+708	0.681228
+708	0.685292
+708	0.71374
+708
+
+pin 709
+709	0.67564
+709	0.681228
+709	0.685292
+709	0.71374
+709
+
+lat 600 9 0 0 9
+0.0	601
+3.3866666666666667	602
+6.773333333333333	603
+10.16	604
+13.546666666666667	605
+16.933333333333334	606
+20.32	607
+23.706666666666667	608
+27.093333333333334	609
+
+pin 601
+601	0.67564
+601	0.681228
+601	0.685292
+601	0.71374
+601
+
+pin 602
+602	0.67564
+602	0.681228
+602	0.685292
+602	0.71374
+602
+
+pin 603
+603	0.67564
+603	0.681228
+603	0.685292
+603	0.71374
+603
+
+pin 604
+604	0.67564
+604	0.681228
+604	0.685292
+604	0.71374
+604
+
+pin 605
+605	0.67564
+605	0.681228
+605	0.685292
+605	0.71374
+605
+
+pin 606
+606	0.67564
+606	0.681228
+606	0.685292
+606	0.71374
+606
+
+pin 607
+607	0.67564
+607	0.681228
+607	0.685292
+607	0.71374
+607
+
+pin 608
+608	0.67564
+608	0.681228
+608	0.685292
+608	0.71374
+608
+
+pin 609
+609	0.67564
+609	0.681228
+609	0.685292
+609	0.71374
+609
+
+lat 500 9 0 0 9
+0.0	501
+3.3866666666666667	502
+6.773333333333333	503
+10.16	504
+13.546666666666667	505
+16.933333333333334	506
+20.32	507
+23.706666666666667	508
+27.093333333333334	509
+
+pin 501
+501	0.67564
+501	0.681228
+501	0.685292
+501	0.71374
+501
+
+pin 502
+502	0.67564
+502	0.681228
+502	0.685292
+502	0.71374
+502
+
+pin 503
+503	0.67564
+503	0.681228
+503	0.685292
+503	0.71374
+503
+
+pin 504
+504	0.67564
+504	0.681228
+504	0.685292
+504	0.71374
+504
+
+pin 505
+505	0.67564
+505	0.681228
+505	0.685292
+505	0.71374
+505
+
+pin 506
+506	0.67564
+506	0.681228
+506	0.685292
+506	0.71374
+506
+
+pin 507
+507	0.67564
+507	0.681228
+507	0.685292
+507	0.71374
+507
+
+pin 508
+508	0.67564
+508	0.681228
+508	0.685292
+508	0.71374
+508
+
+pin 509
+509	0.67564
+509	0.681228
+509	0.685292
+509	0.71374
+509
+
+lat 400 9 0 0 9
+0.0	401
+3.3866666666666667	402
+6.773333333333333	403
+10.16	404
+13.546666666666667	405
+16.933333333333334	406
+20.32	407
+23.706666666666667	408
+27.093333333333334	409
+
+pin 401
+401	0.67564
+401	0.681228
+401	0.685292
+401	0.71374
+401
+
+pin 402
+402	0.67564
+402	0.681228
+402	0.685292
+402	0.71374
+402
+
+pin 403
+403	0.67564
+403	0.681228
+403	0.685292
+403	0.71374
+403
+
+pin 404
+404	0.67564
+404	0.681228
+404	0.685292
+404	0.71374
+404
+
+pin 405
+405	0.67564
+405	0.681228
+405	0.685292
+405	0.71374
+405
+
+pin 406
+406	0.67564
+406	0.681228
+406	0.685292
+406	0.71374
+406
+
+pin 407
+407	0.67564
+407	0.681228
+407	0.685292
+407	0.71374
+407
+
+pin 408
+408	0.67564
+408	0.681228
+408	0.685292
+408	0.71374
+408
+
+pin 409
+409	0.67564
+409	0.681228
+409	0.685292
+409	0.71374
+409
+
+lat 300 9 0 0 9
+0.0	301
+3.3866666666666667	302
+6.773333333333333	303
+10.16	304
+13.546666666666667	305
+16.933333333333334	306
+20.32	307
+23.706666666666667	308
+27.093333333333334	309
+
+pin 301
+301	0.67564
+301	0.681228
+301	0.685292
+301	0.71374
+301
+
+pin 302
+302	0.67564
+302	0.681228
+302	0.685292
+302	0.71374
+302
+
+pin 303
+303	0.67564
+303	0.681228
+303	0.685292
+303	0.71374
+303
+
+pin 304
+304	0.67564
+304	0.681228
+304	0.685292
+304	0.71374
+304
+
+pin 305
+305	0.67564
+305	0.681228
+305	0.685292
+305	0.71374
+305
+
+pin 306
+306	0.67564
+306	0.681228
+306	0.685292
+306	0.71374
+306
+
+pin 307
+307	0.67564
+307	0.681228
+307	0.685292
+307	0.71374
+307
+
+pin 308
+308	0.67564
+308	0.681228
+308	0.685292
+308	0.71374
+308
+
+pin 309
+309	0.67564
+309	0.681228
+309	0.685292
+309	0.71374
+309
+
+lat 200 9 0 0 9
+0.0	201
+3.3866666666666667	202
+6.773333333333333	203
+10.16	204
+13.546666666666667	205
+16.933333333333334	206
+20.32	207
+23.706666666666667	208
+27.093333333333334	209
+
+pin 201
+201	0.67564
+201	0.681228
+201	0.685292
+201	0.71374
+201
+
+pin 202
+202	0.67564
+202	0.681228
+202	0.685292
+202	0.71374
+202
+
+pin 203
+203	0.67564
+203	0.681228
+203	0.685292
+203	0.71374
+203
+
+pin 204
+204	0.67564
+204	0.681228
+204	0.685292
+204	0.71374
+204
+
+pin 205
+205	0.67564
+205	0.681228
+205	0.685292
+205	0.71374
+205
+
+pin 206
+206	0.67564
+206	0.681228
+206	0.685292
+206	0.71374
+206
+
+pin 207
+207	0.67564
+207	0.681228
+207	0.685292
+207	0.71374
+207
+
+pin 208
+208	0.67564
+208	0.681228
+208	0.685292
+208	0.71374
+208
+
+pin 209
+209	0.67564
+209	0.681228
+209	0.685292
+209	0.71374
+209
+
+lat 100 9 0 0 9
+0.0	101
+3.3866666666666667	102
+6.773333333333333	103
+10.16	104
+13.546666666666667	105
+16.933333333333334	106
+20.32	107
+23.706666666666667	108
+27.093333333333334	109
+
+pin 101
+101	0.67564
+101	0.681228
+101	0.685292
+101	0.71374
+101
+
+pin 102
+102	0.67564
+102	0.681228
+102	0.685292
+102	0.71374
+102
+
+pin 103
+103	0.67564
+103	0.681228
+103	0.685292
+103	0.71374
+103
+
+pin 104
+104	0.67564
+104	0.681228
+104	0.685292
+104	0.71374
+104
+
+pin 105
+105	0.67564
+105	0.681228
+105	0.685292
+105	0.71374
+105
+
+pin 106
+106	0.67564
+106	0.681228
+106	0.685292
+106	0.71374
+106
+
+pin 107
+107	0.67564
+107	0.681228
+107	0.685292
+107	0.71374
+107
+
+pin 108
+108	0.67564
+108	0.681228
+108	0.685292
+108	0.71374
+108
+
+pin 109
+109	0.67564
+109	0.681228
+109	0.685292
+109	0.71374
+109
+
+lat 800 9 0 0 9
+0.0	801
+3.3866666666666667	802
+6.773333333333333	803
+10.16	804
+13.546666666666667	805
+16.933333333333334	806
+20.32	807
+23.706666666666667	808
+27.093333333333334	809
+
+pin 801
+801	0.67564
+801	0.681228
+801	0.685292
+801	0.71374
+801
+
+pin 802
+802	0.67564
+802	0.681228
+802	0.685292
+802	0.71374
+802
+
+pin 803
+803	0.67564
+803	0.681228
+803	0.685292
+803	0.71374
+803
+
+pin 804
+804	0.67564
+804	0.681228
+804	0.685292
+804	0.71374
+804
+
+pin 805
+805	0.67564
+805	0.681228
+805	0.685292
+805	0.71374
+805
+
+pin 806
+806	0.67564
+806	0.681228
+806	0.685292
+806	0.71374
+806
+
+pin 807
+807	0.67564
+807	0.681228
+807	0.685292
+807	0.71374
+807
+
+pin 808
+808	0.67564
+808	0.681228
+808	0.685292
+808	0.71374
+808
+
+pin 809
+809	0.67564
+809	0.681228
+809	0.685292
+809	0.71374
+809
+
+lat activeCoreLatACU 2 0 0 21 21 1.4478
+3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100
+3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100
+3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 9800 9800 9800 9800 9800 9800 9800 3100 3100 3100
+3100 3100 3100 3100 3100 3100 3100 3100 3100 9800 9800 2700 2700 9800 2700 9800 9800 9800 9800 3100 3100
+3100 3100 3100 3100 3100 3100 3100 3100 9800 9800 2600 2600 2600 2600 2600 2600 2600 9800 9800 3100 3100
+3100 3100 3100 3100 3100 3100 3100 9800 9800 2600 2500 2500 2500 2500 2500 2500 2600 9800 9800 3100 3100
+3100 3100 3100 3100 3100 3100 9800 9800 2600 2500 2400 2400 2400 2400 2400 2500 2600 9800 9800 3100 3100
+3100 3100 3100 3100 3100 9800 9800 2600 2500 2400 2300 2300 2300 2300 2400 2500 2600 9800 9800 3100 3100
+3100 3100 3100 3100 9800 9800 2600 2500 2400 2300 2200 2200 2200 2300 2400 2500 2600 9800 9800 3100 3100
+3100 3100 3100 9800 9800 2600 2500 2400 2300 2200 2100 2100 2200 2300 2400 2500 2600 9800 9800 3100 3100
+3100 3100 3100 2700 2600 2500 2400 2300 2200 2100 2100 2100 2200 2300 2400 2500 2600 2700 3100 3100 3100
+3100 3100 2800 2700 2600 2500 2400 2300 2200 2100 2100 2200 2300 2400 2500 2600 2700 2800 3100 3100 3100
+3100 3100 2800 2700 2600 2500 2400 2300 2200 2200 2200 2300 2400 2500 2600 2700 2800 3100 3100 3100 3100
+3100 3100 2800 2700 2600 2500 2400 2300 2300 2300 2300 2400 2500 2600 2700 2800 3100 3100 3100 3100 3100
+3100 3100 2800 2700 2600 2500 2400 2400 2400 2400 2400 2500 2600 2700 2800 3100 3100 3100 3100 3100 3100
+3100 3100 2800 2700 2600 2500 2500 2500 2500 2500 2500 2600 2700 2800 3100 3100 3100 3100 3100 3100 3100
+3100 3100 2800 2700 2600 2600 2600 2600 2600 2600 2600 2700 2800 3100 3100 3100 3100 3100 3100 3100 3100
+3100 3100 2800 2700 2700 2700 2700 2700 2700 2700 2700 2800 3100 3100 3100 3100 3100 3100 3100 3100 3100
+3100 3100 3100 2800 2800 2800 2800 2800 2800 2800 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100
+3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100
+3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100 3100
+                     
+pin 3100
+3100
+
+pin 9800
+9800	0.7112
+9800
+
+pin 2700
+2700	0.67564
+2700	0.681228
+2700	0.685292
+2700	0.71374
+2700
+
+pin 2600
+2600	0.67564
+2600	0.681228
+2600	0.685292
+2600	0.71374
+2600
+
+pin 2500
+2500	0.67564
+2500	0.681228
+2500	0.685292
+2500	0.71374
+2500
+
+pin 2400
+2400	0.67564
+2400	0.681228
+2400	0.685292
+2400	0.71374
+2400
+
+pin 2300
+2300	0.67564
+2300	0.681228
+2300	0.685292
+2300	0.71374
+2300
+
+pin 2200
+2200	0.67564
+2200	0.681228
+2200	0.685292
+2200	0.71374
+2200
+
+pin 2100
+2100	0.67564
+2100	0.681228
+2100	0.685292
+2100	0.71374
+2100
+
+pin 2800
+2800	0.67564
+2800	0.681228
+2800	0.685292
+2800	0.71374
+2800
+
+lat upperEndCapLat 2 0 0 21 21 1.4478
+pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV 
+ pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV 
+  pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV pUECV 
+   pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV 
+    pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV 
+     pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV 
+      pUECV pUECV pUECV pUECV pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV 
+       pUECV pUECV pUECV pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV 
+        pUECV pUECV pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV 
+         pUECV pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV 
+          pUECV pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV pUECV 
+           pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV pUECV 
+            pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV pUECV pUECV 
+             pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV pUECV pUECV pUECV 
+              pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV pUECV pUECV pUECV pUECV 
+               pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV pUECV pUECV pUECV pUECV pUECV 
+                pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV 
+                 pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV 
+                  pUECV pUECV pUECV pUEC pUEC pUEC pUEC pUEC pUEC pUEC pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV 
+                   pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV 
+                    pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV pUECV 
+                     
+pin pUECV
+9500
+
+pin pUEC
+9500	0.7112
+9500
+
+lat upperGridLat 3 0 0 21 21 1.4478
+pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG 
+ pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG 
+  pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG pUG 
+   pUG pUG pUG pUG pUG pUG pUG pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG 
+    pUG pUG pUG pUG pUG pUG pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG 
+     pUG pUG pUG pUG pUG pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG 
+      pUG pUG pUG pUG pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG 
+       pUG pUG pUG pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG 
+        pUG pUG pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG 
+         pUG pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG 
+          pUG pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG pUG 
+           pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG pUG 
+            pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG pUG pUG 
+             pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG pUG pUG pUG 
+              pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG pUG pUG pUG pUG 
+               pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG pUG pUG pUG pUG pUG 
+                pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG pUG pUG pUG pUG pUG pUG 
+                 pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG pUG pUG pUG pUG pUG pUG pUG 
+                  pUG pUG pUG pUGH pUGH pUGH pUGH pUGH pUGH pUGH pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG 
+                   pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG 
+                    pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG pUG 
+                     
+pin pUG
+9300
+
+pin pUGH
+9300	0.19840000000000002
+9300
+
+
+set pop 100000 100 100
+mat 9400 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 8000 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9100 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 7000 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 7100 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 7200 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 7300 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 7400 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9903 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 2000 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9700 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 1700 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 1600 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 1500 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 1400 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 1300 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 1200 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 1100 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 1800 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 3500 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 3600 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 5500 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 5600 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 5700 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 5800 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 5900 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9900 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 900 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9600 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9601 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9602 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9603 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9604 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9605 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9606 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9607 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9608 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9609 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 700 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 701 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 702 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 703 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 704 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 705 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 706 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 707 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 708 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 709 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 600 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 601 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 602 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 603 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 604 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 605 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 606 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 607 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 608 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 609 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 500 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 501 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 502 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 503 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 504 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 505 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 506 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 507 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 508 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 509 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 400 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 401 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 402 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 403 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 404 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 405 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 406 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 407 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 408 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 409 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 300 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 301 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 302 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 303 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 304 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 305 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 306 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 307 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 308 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 309 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 200 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 201 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 202 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 203 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 204 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 205 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 206 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 207 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 208 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 209 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 100 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 101 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 102 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 103 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 104 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 105 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 106 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 107 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 108 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 109 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 800 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 801 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 802 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 803 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 804 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 805 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 806 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 807 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 808 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 809 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 3300 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 3400 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 3900 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 4000 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 4100 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 4200 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 4300 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 4400 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 3100 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9800 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 2700 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 2600 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 2500 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 2400 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 2300 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 2200 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 2100 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 2800 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 3700 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 3800 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 6000 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 6100 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 6200 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 6300 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 6400 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9901 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9500 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 6500 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 6600 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 6700 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 6800 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 6900 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9902 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 9300 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+
+mat 7500 -0.7    
+1001.06c	0.66667
+8016.06c	0.33333
+

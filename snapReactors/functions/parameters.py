@@ -136,12 +136,37 @@ ALLOWED_DIMENSIONS =\
       DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
    'fuel_length': Dimension('fuel_length', 
       DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'buffer_radius': Dimension('buffer radius',
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'IPYC_radius': Dimension('IPYC radius',
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'SIC_radius': Dimension('SiC radius',
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'OPYC_radius': Dimension('OPYC radius',
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'compact_height': Dimension('compact height',
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'compact_radius': Dimension('compact radius',
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'small_coolant_radius': Dimension('small coolant radius',
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'large_coolant_radius': Dimension('large coolant radius',
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'moderator_radius': Dimension('moderator radius',
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'drum_radius': Dimension('drum radius',
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'absorber_thickness': Dimension('absorber thickness',
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),
+   'drum_block_gap': Dimension('drum block gap',
+      DUnits("m","ft", "cm"), DConversion(METERS_FEET, FEET_METERS, M_CM)),     
    }
 
 ALLOWED_MATERIALS = \
    {'fuel', 'diffusion_barrier', 'burnable_poison', 'clad', 'gap' 'internal_reflector', 
     'barrel', 'external_reflector', 'control_drum', 'coolant', 'upper_gridplate', 'lower_gridplate',
-    'flooding','shutdown_absorber'}
+    'flooding','shutdown_absorber', 'buffer', 'PYC', 'SiC', 'graphite', 'moderator', 'drum_radius',
+    'absorber_thickness', 'drum_block_gap'}
 ALLOWED_DEPENDENCIES =\
     {'T': Dependency('Temperature', 
         DepUnits("K","F"), DepConversion(__kelvin_faren, __faren_kelvin))
