@@ -321,11 +321,12 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
 []
 
 [Executioner]
-  type = Steady
+  type = Transient
   petsc_options_value = 'hypre boomeramg'
   petsc_options_iname = '-pc_type -pc_hypre_type'
-  # steady_state_detection = true
-  # steady_state_tolerance = 1e-4
+  steady_state_detection = true
+  steady_state_tolerance = 1e-5
+  dt = 0.1
 
 []
 
@@ -336,7 +337,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   #active = ''
   [viz]
     type = FullSolveMultiApp
-    input_files = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/standard_conditions/full_multiphysics/sc_core_viz.i"
+    input_files = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/depletion/full_multiphysics/sc_core_viz.i"
     execute_on = "final"
   []
 []

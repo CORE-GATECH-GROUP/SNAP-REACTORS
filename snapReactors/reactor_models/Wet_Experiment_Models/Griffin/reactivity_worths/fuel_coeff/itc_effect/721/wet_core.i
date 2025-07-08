@@ -259,7 +259,7 @@ multi_app_z_pos = '${fparse lay1 + lay2}'
 total_power               = 600000.00 # (W). #total power
 inlet_T_fluid             = 922.03 # (K)
 ext_T_ref                 = 866 # (K)
-fuel_temp                 = 934.6035 #(K)
+fuel_temp                 = 721 #(K)
 # ==============================================================================
 # AUXVARIABLES AND AUXKERNELS
 # ==============================================================================
@@ -293,43 +293,43 @@ fuel_temp                 = 934.6035 #(K)
 # ==============================================================================
 # MULTIAPPS AND TRANSFERS
 # ==============================================================================
-[MultiApps]
-    [Griffin_htm]
-    type = FullSolveMultiApp
-    #app_type = GriffinApp
-    input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/standard_conditions/full_multiphysics/core_2D_Amer.i'
-    positions = '0 0 ${multi_app_z_pos}' # lay1 + lay2
-    execute_on = 'timestep_end'
-    []
-[]
+# [MultiApps]
+#     [Griffin_htm]
+#     type = FullSolveMultiApp
+#     #app_type = GriffinApp
+#     input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/standard_conditions/full_multiphysics/core_2D_Amer.i'
+#     positions = '0 0 ${multi_app_z_pos}' # lay1 + lay2
+#     execute_on = 'timestep_end'
+#     []
+# []
 
-[Transfers]
-    [to_htm_power_density]
-        type = MultiAppProjectionTransfer
-        to_multi_app = Griffin_htm
-        source_variable = griffin_power_density
-        variable = bison_power_density
-    []
-    [from_htm_Tfuel]
-        type = MultiAppGeometricInterpolationTransfer
-        from_multi_app = Griffin_htm
-        source_variable = bison_Tfuel
-        variable = griffin_Tfuel
-    []     
-    [from_htm_ref_temp]
-        type = MultiAppGeometricInterpolationTransfer
-        from_multi_app = Griffin_htm
-        source_variable = bison_Tref
-        variable = griffin_Tref
-    []
-    # [from_htm_Tcool]
-    #     type = MultiAppGeometricInterpolationTransfer
-    #     from_multi_app = Griffin_htm
-    #     source_variable = aux_T_inf
-    #     variable = griffin_Tcool
-    # []
+# [Transfers]
+#     [to_htm_power_density]
+#         type = MultiAppProjectionTransfer
+#         to_multi_app = Griffin_htm
+#         source_variable = griffin_power_density
+#         variable = bison_power_density
+#     []
+#     [from_htm_Tfuel]
+#         type = MultiAppGeometricInterpolationTransfer
+#         from_multi_app = Griffin_htm
+#         source_variable = bison_Tfuel
+#         variable = griffin_Tfuel
+#     []     
+#     [from_htm_ref_temp]
+#         type = MultiAppGeometricInterpolationTransfer
+#         from_multi_app = Griffin_htm
+#         source_variable = bison_Tref
+#         variable = griffin_Tref
+#     []
+#     # [from_htm_Tcool]
+#     #     type = MultiAppGeometricInterpolationTransfer
+#     #     from_multi_app = Griffin_htm
+#     #     source_variable = aux_T_inf
+#     #     variable = griffin_Tcool
+#     # []
        
-[]
+# []
 # ==============================================================================
 # TRANSPORT SYSTEMS
 # ==============================================================================

@@ -481,43 +481,43 @@ fuel_temp                 = 934.6035 # (K)
 # ==============================================================================
 # MULTIAPPS AND TRANSFERS
 # ==============================================================================
-# [MultiApps]
-#     [Griffin_htm]
-#     type = FullSolveMultiApp
-#     #app_type = GriffinApp
-#     input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/htm_new_mesh_test/core_2D_Amer.i'
-#     positions = '0 0 ${multi_app_z_pos}' # lay1 + lay2
-#     execute_on = 'timestep_end'
-#     []
-# []
+[MultiApps]
+    [Griffin_htm]
+    type = TransientMultiApp
+    input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/standard_conditions/full_multiphysics/core_2D_Amer.i'
+    positions = '0 0 ${multi_app_z_pos}' # lay1 + lay2
+    execute_on = 'timestep_end'
 
-# [Transfers]
-#     [to_htm_power_density]
-#         type = MultiAppProjectionTransfer
-#         to_multi_app = Griffin_htm
-#         source_variable = griffin_power_density
-#         variable = bison_power_density
-#     []
-#     [from_htm_Tfuel]
-#         type = MultiAppGeometricInterpolationTransfer
-#         from_multi_app = Griffin_htm
-#         source_variable = bison_Tfuel
-#         variable = griffin_Tfuel
-#     []     
-#     # [from_htm_ref_temp]
-#     #     type = MultiAppGeometricInterpolationTransfer
-#     #     from_multi_app = Griffin_htm
-#     #     source_variable = bison_Tref
-#     #     variable = griffin_Tref
-#     # []
-#     # [from_htm_Tcool]
-#     #     type = MultiAppGeometricInterpolationTransfer
-#     #     from_multi_app = Griffin_htm
-#     #     source_variable = aux_T_inf
-#     #     variable = griffin_Tcool
-#     # []
-                                         
-# []                                      
+    []
+[]
+
+[Transfers]
+    [to_htm_power_density]
+        type = MultiAppProjectionTransfer
+        to_multi_app = Griffin_htm
+        source_variable = griffin_power_density
+        variable = bison_power_density
+    []
+    [from_htm_Tfuel]
+        type = MultiAppGeometricInterpolationTransfer
+        from_multi_app = Griffin_htm
+        source_variable = bison_Tfuel
+        variable = griffin_Tfuel
+    []     
+    [from_htm_ref_temp]
+        type = MultiAppGeometricInterpolationTransfer
+        from_multi_app = Griffin_htm
+        source_variable = bison_Tref
+        variable = griffin_Tref
+    []
+    # [from_htm_Tcool]
+    #     type = MultiAppGeometricInterpolationTransfer
+    #     from_multi_app = Griffin_htm
+    #     source_variable = aux_T_inf
+    #     variable = griffin_Tcool
+    # []
+       
+[]                                    
 # ==============================================================================
 # TRANSPORT SYSTEMS                           
 # ==============================================================================
@@ -1833,19 +1833,6 @@ fuel_temp                 = 934.6035 # (K)
     order = FIRST
 []
 
-# [UserObjects]
-#    [flux_map]
-#        type = FluxCartesianCoreMap
-#        transport_system = dsn
-#        #regular_grid = true
-#        print = 'block'
-#        power_map_from = nu_sigma_f
-#        execute_on = final
-#        output_in = 'c3_flux_map.txt'
-#    []
-# []
-
-
 
 # ==============================================================================
 # EXECUTION PARAMETERS
@@ -1873,10 +1860,10 @@ fuel_temp                 = 934.6035 # (K)
     coarse_element_id = coarse_element_id
     force_final_output = true
     
-    # fixed_point_max_its = 2
-    # fixed_point_solve_outer = true
-    # force_fixed_point_solve = true
-    # accept_on_max_fixed_point_iteration = True
+    fixed_point_max_its = 2
+    fixed_point_solve_outer = true
+    force_fixed_point_solve = true
+    accept_on_max_fixed_point_iteration = True
 []
 
 # ==============================================================================

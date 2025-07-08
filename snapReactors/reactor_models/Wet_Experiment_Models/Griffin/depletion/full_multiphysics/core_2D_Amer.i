@@ -287,8 +287,8 @@ extref_blocks = 'Reflector'
 # ==============================================================================
 [MultiApps]
     [sc]
-      type = FullSolveMultiApp
-      input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/standard_conditions/full_multiphysics/sc_core.i'
+      type = TransientMultiApp
+      input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/depletion/full_multiphysics/sc_core.i'
       execute_on =  timestep_end
       bounding_box_padding = '0.1 0.1 0'
       positions = '0 0 0'
@@ -435,20 +435,20 @@ extref_blocks = 'Reflector'
 # EXECUTION PARAMETERS
 # ==============================================================================
 [Executioner]
-    type = Steady
+    type = Transient
     nl_rel_tol = 1e-8
     nl_abs_tol = 1e-8
     nl_abs_step_tol = 1e-8
     l_tol = 1e-8
-    solve_type = NEWTON
-#   petsc_options_value = 'hypre boomeramg'
-#   petsc_options_iname = '-pc_type -pc_hypre_type'
-  petsc_options_value = 'bjacobi'
-  petsc_options_iname = '-pc_type'
-  fixed_point_max_its = 10
-  custom_rel_tol = 1e-4
-accept_on_max_fixed_point_iteration = True
-  #force_fixed_point_solve = true
+    dt = 0.1
+    nl_max_its = 400
+    steady_state_detection = True
+    steady_state_tolerance = 1e-5
+    petsc_options_value = 'bjacobi'
+    petsc_options_iname = '-pc_type'
+    fixed_point_max_its = 10
+    custom_rel_tol = 1e-4
+    accept_on_max_fixed_point_iteration = True
 []
 
 # ==============================================================================
@@ -513,16 +513,16 @@ accept_on_max_fixed_point_iteration = True
     []
 []
 
-[VectorPostprocessors]
-    [pow_dens]
-        type = LineValueSampler
-        start_point = '0 0 0.05'
-        end_point = '0 0 0.355'
-        num_points = 10
-        variable = bison_pow_lin
-        sort_by = 'z'
-    []
-[]
+# [VectorPostprocessors]
+#     [pow_dens]
+#         type = LineValueSampler
+#         start_point = '0 0 0.05'
+#         end_point = '0 0 0.355'
+#         num_points = 10
+#         variable = bison_pow_lin
+#         sort_by = 'z'
+#     []
+# []
 
 [Outputs]
     [csv]
