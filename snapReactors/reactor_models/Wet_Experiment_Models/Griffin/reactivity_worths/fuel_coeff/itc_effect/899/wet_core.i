@@ -178,7 +178,11 @@ acu_shima_matids_2d   = '6400'
 acu_shimb_matids_2d   = '6500'
 acu_shimc_matids_2d   = '9901'
 
-acm_dz = '${fparse 3.81/100}'
+total_power               = 600000.00 # (W). #total power
+inlet_T_fluid             = 899 # (K)
+ext_T_ref                 = 866 # (K)
+fuel_temp                 = 899 #(K)
+acm_dz = '${fparse (30.48 + 30.48 * (4.52e-6 + (fuel_temp - 273.15) * 1.925e-8) * ((fuel_temp - 273.15) - (300 - 273.15))) / 800}'
 lay1 = '${fparse 0.79502/100}'
 lay2 = '${fparse 0.9652/100}'
 lay3 = '${fparse 2.1717/100}'
@@ -256,10 +260,7 @@ multi_app_z_pos = '${fparse lay1 + lay2}'
     []
 []
 
-total_power               = 600000.00 # (W). #total power
-inlet_T_fluid             = 922.03 # (K)
-ext_T_ref                 = 866 # (K)
-fuel_temp                 = 899 #(K)
+
 # ==============================================================================
 # AUXVARIABLES AND AUXKERNELS
 # ==============================================================================
@@ -362,17 +363,29 @@ fuel_temp                 = 899 #(K)
 # FLUID PROPERTIES, MATERIALS, AND USER OBJECTS
 # ==============================================================================
 [Materials]
-    [core]
+    [grid]
         type = CoupledFeedbackMatIDNeutronicsMaterial
-        block =  '${ugr_active_blocks    } ${uec_active_blocks    } ${acu_fuel_blocks_2d   } ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acl_fuel_blocks_2d   } ${lec_active_blocks    } ${lgr_active_blocks    }'
+        block =  '${ugr_active_blocks    }  ${lgr_active_blocks    }'
         library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/XS_data/standardconditions_XS.xml'
         library_name = 'standardconditions_XS'
         isotopes = 'pseudo'
         densities = '1.0'
         plus = 1
         is_meter = True
-        grid_names = 'Burnup Tfuel'
-        grid_variables = 'burnup_MWd griffin_Tfuel'
+        grid_names = 'Burnup Tcool'
+        grid_variables = 'burnup_MWd griffin_Tcool'
+    []
+    [core]
+        type = CoupledFeedbackMatIDNeutronicsMaterial
+        block =  '${uec_active_blocks    } ${acu_fuel_blocks_2d   } ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acl_fuel_blocks_2d   } ${lec_active_blocks    }'
+        library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/XS_data/standardconditions_XS.xml'
+        library_name = 'standardconditions_XS'
+        isotopes = 'pseudo'
+        densities = '1.0'
+        plus = 1
+        is_meter = True
+        grid_names = 'Burnup Tfuel Tcool'
+        grid_variables = 'burnup_MWd griffin_Tfuel griffin_Tcool'
     []
     [extref]
         type = CoupledFeedbackMatIDNeutronicsMaterial
@@ -454,14 +467,6 @@ fuel_temp                 = 899 #(K)
 # POSTPROCESSORS DEBUG AND OUTPUTS
 # ==============================================================================
 
-[VectorPostprocessors]
-    [integral]
-        type = ExtraIDIntegralVectorPostprocessor
-        variable = 'Unity'
-        id_name = 'material_id'
-        execute_on = 'initial'
-    []
-[]
 [Postprocessors]
     [griffin_power]
         type = ElementIntegralVariablePostprocessor
@@ -499,12 +504,11 @@ fuel_temp                 = 899 #(K)
         type = CSV
         execute_on = 'initial timestep_end'
     []
-    [console]
-        type = Console
-        verbose = true
-    []
     [nemesis]
         type = Nemesis
     []
-    perf_graph = true
+    [out]
+        type = Checkpoint
+        enable = false
+    []
 []

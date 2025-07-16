@@ -11,4 +11,4 @@
 module load use.exp_ctl use.moose griffin-openmpi
 cd ${SLURM_SUBMIT_DIR:-$PWD}
 export TMPDIR=${SLURM_TMPDIR:-/tmp}
-mpiexec -n 9 griffin-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/standard_conditions/full_multiphysics/wet_core.i
+mpiexec -n 9 griffin-opt -i wet_core.i --allow-unused

@@ -178,7 +178,11 @@ acu_shima_matids_2d   = '6400'
 acu_shimb_matids_2d   = '6500'
 acu_shimc_matids_2d   = '9901'
 
-acm_dz = '${fparse 3.81/100}'
+total_power               = 600000.00 # (W). #total power
+inlet_T_fluid             = 922.03 # (K)
+ext_T_ref                 = 901 # (K)
+fuel_temp                 = 1000 #(K)
+acm_dz = '${fparse (30.48 + 30.48 * (4.52e-6 + (fuel_temp - 273.15) * 1.925e-8) * ((fuel_temp - 273.15) - (300 - 273.15))) / 800}'
 lay1 = '${fparse 0.79502/100}'
 lay2 = '${fparse 0.9652/100}'
 lay3 = '${fparse 2.1717/100}'
@@ -256,10 +260,7 @@ multi_app_z_pos = '${fparse lay1 + lay2}'
     []
 []
 
-total_power               = 600000.00 # (W). #total power
-inlet_T_fluid             = 922.03 # (K)
-ext_T_ref                 = 866 # (K)
-fuel_temp                 = 901 #(K)
+
 # ==============================================================================
 # AUXVARIABLES AND AUXKERNELS
 # ==============================================================================
@@ -383,8 +384,8 @@ fuel_temp                 = 901 #(K)
         densities = '1.0'
         plus = 1
         is_meter = True
-        grid_names = 'Burnup Tfuel'
-        grid_variables = 'burnup_MWd griffin_Tfuel'
+        grid_names = 'Burnup Tfuel Tcool'
+        grid_variables = 'burnup_MWd griffin_Tfuel griffin_Tcool'
     []
     [extref]
         type = CoupledFeedbackMatIDNeutronicsMaterial
@@ -466,14 +467,6 @@ fuel_temp                 = 901 #(K)
 # POSTPROCESSORS DEBUG AND OUTPUTS
 # ==============================================================================
 
-[VectorPostprocessors]
-    [integral]
-        type = ExtraIDIntegralVectorPostprocessor
-        variable = 'Unity'
-        id_name = 'material_id'
-        execute_on = 'initial'
-    []
-[]
 [Postprocessors]
     [griffin_power]
         type = ElementIntegralVariablePostprocessor
@@ -511,12 +504,11 @@ fuel_temp                 = 901 #(K)
         type = CSV
         execute_on = 'initial timestep_end'
     []
-    [console]
-        type = Console
-        verbose = true
-    []
     [nemesis]
         type = Nemesis
     []
-    perf_graph = true
+    [out]
+        type = Checkpoint
+        enable = false
+    []
 []

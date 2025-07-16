@@ -484,10 +484,10 @@ fuel_temp                 = 934.6035 # (K)
 [MultiApps]
     [Griffin_htm]
     type = TransientMultiApp
-    input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/standard_conditions/full_multiphysics/core_2D_Amer.i'
+    input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/depletion/full_multiphysics/core_2D_Amer.i'
     positions = '0 0 ${multi_app_z_pos}' # lay1 + lay2
     execute_on = 'timestep_end'
-
+    sub_cycling  = true
     []
 []
 
@@ -510,12 +510,12 @@ fuel_temp                 = 934.6035 # (K)
         source_variable = bison_Tref
         variable = griffin_Tref
     []
-    # [from_htm_Tcool]
-    #     type = MultiAppGeometricInterpolationTransfer
-    #     from_multi_app = Griffin_htm
-    #     source_variable = aux_T_inf
-    #     variable = griffin_Tcool
-    # []
+    [from_htm_Tcool]
+        type = MultiAppGeometricInterpolationTransfer
+        from_multi_app = Griffin_htm
+        source_variable = aux_T_inf
+        variable = griffin_Tcool
+    []
        
 []                                    
 # ==============================================================================
@@ -538,8 +538,8 @@ fuel_temp                 = 934.6035 # (K)
         NA = 1 # 1st degree anisotropy
         AQtype = Level-Symmetric # Gauss-Chebyshev (NP X NA X 4) LS ((AQ *(AQ+2))/2)
         AQorder = 12
-        NPolar = 2 # use >=2 for final runs (4 sawtooth nodes sufficient)\
-        NAzmthl = 6 # use >=6 for final runs (4 sawtooth nodes sufficient)
+       # NPolar = 2 # use >=2 for final runs (4 sawtooth nodes sufficient)\
+       # NAzmthl = 6 # use >=6 for final runs (4 sawtooth nodes sufficient)
 
         sweep_type = asynchronous_parallel_sweeper
         using_array_variable = true
@@ -666,8 +666,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
     # BURNABLE FUEL DEFINITIONS     
         [acu_fuel_material_71]
@@ -680,8 +680,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
             
         [acu_fuel_material_72]
@@ -694,8 +694,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
             
         [acu_fuel_material_73]
@@ -708,8 +708,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
             
         [acu_fuel_material_74]
@@ -722,8 +722,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
             
         [acu_fuel_material_75]
@@ -736,8 +736,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
             
         [acu_fuel_material_76]
@@ -750,8 +750,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
             
         [acu_fuel_material_77]
@@ -764,8 +764,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
             
         [acu_fuel_material_78]
@@ -778,8 +778,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay8_material_801]
@@ -792,8 +792,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
             
         [acm_fuel_lay8_material_802]
@@ -806,8 +806,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay8_material_803]
@@ -820,8 +820,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay8_material_804]
@@ -834,8 +834,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay8_material_805]
@@ -848,8 +848,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay8_material_806]
@@ -862,8 +862,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay8_material_807]
@@ -876,8 +876,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay8_material_808]
@@ -890,8 +890,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
 
         [acm_fuel_lay7_material_701]
@@ -904,8 +904,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay7_material_702]
@@ -918,8 +918,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay7_material_703]
@@ -932,8 +932,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay7_material_704]
@@ -946,8 +946,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay7_material_705]
@@ -960,8 +960,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay7_material_706]
@@ -974,8 +974,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay7_material_707]
@@ -988,8 +988,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay7_material_708]
@@ -1002,8 +1002,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
 
         [acm_fuel_lay6_material_601]
@@ -1016,8 +1016,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay6_material_602]
@@ -1030,8 +1030,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay6_material_603]
@@ -1044,8 +1044,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay6_material_604]
@@ -1058,8 +1058,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay6_material_605]
@@ -1072,8 +1072,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay6_material_606]
@@ -1086,8 +1086,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay6_material_607]
@@ -1100,8 +1100,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay6_material_608]
@@ -1114,8 +1114,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
 
         [acm_fuel_lay5_material_501]
@@ -1128,8 +1128,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay5_material_502]
@@ -1142,8 +1142,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay5_material_503]
@@ -1156,8 +1156,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay5_material_504]
@@ -1170,8 +1170,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay5_material_505]
@@ -1184,8 +1184,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay5_material_506]
@@ -1198,8 +1198,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay5_material_507]
@@ -1212,8 +1212,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay5_material_508]
@@ -1226,8 +1226,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
 
         [acm_fuel_lay4_material_401]
@@ -1240,8 +1240,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay4_material_402]
@@ -1254,8 +1254,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay4_material_403]
@@ -1268,8 +1268,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay4_material_404]
@@ -1282,8 +1282,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay4_material_405]
@@ -1296,8 +1296,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay4_material_406]
@@ -1310,8 +1310,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay4_material_407]
@@ -1324,8 +1324,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay4_material_408]
@@ -1338,8 +1338,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
 
         [acm_fuel_lay3_material_301]
@@ -1352,8 +1352,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay3_material_302]
@@ -1366,8 +1366,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay3_material_303]
@@ -1380,8 +1380,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay3_material_304]
@@ -1394,8 +1394,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay3_material_305]
@@ -1408,8 +1408,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay3_material_306]
@@ -1422,8 +1422,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay3_material_307]
@@ -1436,8 +1436,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay3_material_308]
@@ -1450,8 +1450,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
 
             [acm_fuel_lay2_material_201]
@@ -1464,8 +1464,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay2_material_202]
@@ -1478,8 +1478,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay2_material_203]
@@ -1492,8 +1492,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay2_material_204]
@@ -1506,8 +1506,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay2_material_205]
@@ -1520,8 +1520,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay2_material_206]
@@ -1534,8 +1534,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay2_material_207]
@@ -1548,8 +1548,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay2_material_208]
@@ -1562,8 +1562,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
 
         [acm_fuel_lay1_material_101]
@@ -1576,8 +1576,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay1_material_102]
@@ -1590,8 +1590,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay1_material_103]
@@ -1604,8 +1604,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay1_material_104]
@@ -1618,8 +1618,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay1_material_105]
@@ -1632,8 +1632,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay1_material_106]
@@ -1646,8 +1646,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay1_material_107]
@@ -1660,8 +1660,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acm_fuel_lay1_material_108]
@@ -1674,8 +1674,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
 
         [acl_fuel_material_81]
@@ -1688,8 +1688,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acl_fuel_material_82]
@@ -1702,8 +1702,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acl_fuel_material_83]
@@ -1716,8 +1716,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acl_fuel_material_84]
@@ -1730,8 +1730,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acl_fuel_material_85]
@@ -1744,8 +1744,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acl_fuel_material_86]
@@ -1758,8 +1758,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acl_fuel_material_87]
@@ -1772,8 +1772,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
         
         [acl_fuel_material_88]
@@ -1786,8 +1786,8 @@ fuel_temp                 = 934.6035 # (K)
             densities = '1.0'
             plus = 1
             is_meter = True
-            grid_names = 'Burnup Tfuel'
-            grid_variables = 'burnup_MWd/kg griffin_Tfuel'
+            grid_names = 'Burnup Tfuel Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tfuel griffin_Tcool'
         []
     
     
@@ -1870,14 +1870,6 @@ fuel_temp                 = 934.6035 # (K)
 # POSTPROCESSORS DEBUG AND OUTPUTS
 # ==============================================================================
 
-[VectorPostprocessors]
-    [integral]
-        type = ExtraIDIntegralVectorPostprocessor
-        variable = 'Unity'
-        id_name = 'material_id'
-        execute_on = 'initial'
-    []
-[]
 [Postprocessors]
     [griffin_power]
         type = ElementIntegralVariablePostprocessor
@@ -1915,12 +1907,11 @@ fuel_temp                 = 934.6035 # (K)
         type = CSV
         execute_on = 'initial timestep_end'
     []
-    [console]
-        type = Console
-        verbose = true
-    []
     [nemesis]
         type = Nemesis
     []
-    perf_graph = true
+    [out]
+        type = Checkpoint
+        enable = false
+    []
 []
