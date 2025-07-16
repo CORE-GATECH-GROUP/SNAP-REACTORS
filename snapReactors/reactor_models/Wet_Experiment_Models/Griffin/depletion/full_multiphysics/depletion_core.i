@@ -356,7 +356,11 @@ acu_shima_matids_2d   = '6400'
 acu_shimb_matids_2d   = '6500'
 acu_shimc_matids_2d   = '9901'
 
-acm_dz = '${fparse 3.81/100}'
+total_power               = 600000.00 # (W). #total power
+inlet_T_fluid             = 922.03 # (K)
+ext_T_ref                 = 866 # (K)
+fuel_temp                 = 934.065 #(K)
+acm_dz = '${fparse (30.48 + 30.48 * (4.52e-6 + (fuel_temp - 273.15) * 1.925e-8) * ((fuel_temp - 273.15) - (300 - 273.15))) / 800}'
 lay1 = '${fparse 0.79502/100}'
 lay2 = '${fparse 0.9652/100}'
 lay3 = '${fparse 2.1717/100}'
@@ -449,27 +453,24 @@ multi_app_z_pos = '${fparse lay1 + lay2}'
     []
 []
 
-total_power               = 450000.00 # (W) total power
-inlet_T_fluid             = 922.03  # (K)
-ext_T_ref                 = 866 # (K)
-fuel_temp                 = 934.6035 # (K)
+
 # ==============================================================================
 # AUXVARIABLES AND AUXKERNELS
 # ==============================================================================
 [AuxVariables]
     [griffin_Tfuel]
-        family = MONOMIAL
-        order = constant
+        family = L2_LAGRANGE
+        order = FIRST
         initial_condition = '${fuel_temp}'
     []
     [griffin_Tcool]
-        family = MONOMIAL
-        order = constant
+        family = L2_LAGRANGE
+        order = FIRST
         initial_condition = '${inlet_T_fluid}'
     []
     [griffin_Tref]
-        family = MONOMIAL
-        order = constant
+        family = L2_LAGRANGE
+        order = FIRST
         initial_condition = '${ext_T_ref}'
     []
     [Unity]
@@ -549,6 +550,7 @@ fuel_temp                 = 934.6035 # (K)
 # ==============================================================================
 # FLUID PROPERTIES, MATERIALS, AND USER OBJECTS
 # ==============================================================================
+
 [Compositions]
     [fuel]
         type = IsotopeComposition
@@ -654,12 +656,13 @@ fuel_temp                 = 934.6035 # (K)
                             ${acu_fuel_matids_2d2400} ${acu_fuel_matids_2d2500} ${acu_fuel_matids_2d2600} ${acu_fuel_matids_2d2700} ${acu_fuel_matids_2d2800}'
     []
 []
+
 [Materials]
     
     # Tfuel Materials
-        [tfuel_mats]
+        [end_cap_mats]
             type = CoupledFeedbackMatIDNeutronicsMaterial
-            block = '${ugr_active_blocks} ${uec_active_blocks} ${lec_active_blocks} ${lgr_active_blocks}'
+            block = '${uec_active_blocks} ${lec_active_blocks}'
             library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/XS_data/standardconditions_XS.xml'
             library_name = 'standardconditions_XS'
             isotopes = 'pseudo'
@@ -1792,7 +1795,7 @@ fuel_temp                 = 934.6035 # (K)
     
     
     # Tref Materials
-        [tref_mats]
+        [extref_mats]
             type = CoupledFeedbackMatIDNeutronicsMaterial
             block =  '${acu_shimc_blocks_2d} ${acl_shimc_blocks_2d} ${uec_shimc_blocks_2d} ${lec_shimc_blocks_2d} ${acm_shimc_blocks_2d} ${acu_shimb_blocks_2d} 
                     ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d} ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} 
@@ -1810,7 +1813,7 @@ fuel_temp                 = 934.6035 # (K)
             grid_variables = 'burnup_MWd/kg griffin_Tref'
         [] 
     # Tcool Materials
-        [tcool_mats]
+        [coolant_barrel_intref_mats]
             type = CoupledFeedbackMatIDNeutronicsMaterial
             block =  '${acu_air_blocks_2d    } ${acm_air_blocks_2d    } ${acl_air_blocks_2d    } ${acm_intref_blocks_2d} ${acl_intref_blocks_2d} ${acu_intref_blocks_2d} ${acl_barrel_blocks_2d} ${acm_barrel_blocks_2d} ${acu_barrel_blocks_2d}'
             library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/XS_data/standardconditions_XS.xml'
@@ -1821,6 +1824,18 @@ fuel_temp                 = 934.6035 # (K)
             is_meter = True
             grid_names = 'Burnup Tcool'
             grid_variables = 'burnup_MWd/kg griffin_Tcool'
+        []
+        [grid_mats]
+            type = CoupledFeedbackMatIDNeutronicsMaterial
+            block = '${ugr_active_blocks}${lgr_active_blocks}'
+            library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/XS_data/standardconditions_XS.xml'
+            library_name = 'standardconditions_XS'
+            isotopes = 'pseudo'
+            densities = '1.0'
+            plus = 1
+            is_meter = True
+            grid_names = 'Burnup Tcool'
+            grid_variables = 'burnup_MWd/kg griffin_Tcool'    
         []
 []
 
