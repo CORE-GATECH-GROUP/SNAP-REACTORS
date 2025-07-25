@@ -287,7 +287,7 @@ extref_blocks = 'Reflector'
 # ==============================================================================
 [MultiApps]
     [sc]
-      type = TransientMultiApp
+      type = FullSolveMultiApp
       input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/depletion/full_multiphysics/sc_core.i'
       execute_on =  timestep_end
       bounding_box_padding = '0.1 0.1 0'
@@ -319,7 +319,7 @@ extref_blocks = 'Reflector'
         source_variable = Tpin
         variable = bison_temp
         from_blocks = fuel_pins
-        to_blocks = 'Fuel'
+        to_blocks = 'Clad'
     []
   []
 
@@ -435,15 +435,12 @@ extref_blocks = 'Reflector'
 # EXECUTION PARAMETERS
 # ==============================================================================
 [Executioner]
-    type = Transient
+    type = Steady
     nl_rel_tol = 1e-8
     nl_abs_tol = 1e-8
     nl_abs_step_tol = 1e-8
     l_tol = 1e-8
-    dt = 0.1
-    nl_max_its = 400
-    steady_state_detection = True
-    steady_state_tolerance = 1e-5
+    solve_type = NEWTON
     petsc_options_value = 'bjacobi'
     petsc_options_iname = '-pc_type'
     fixed_point_max_its = 10

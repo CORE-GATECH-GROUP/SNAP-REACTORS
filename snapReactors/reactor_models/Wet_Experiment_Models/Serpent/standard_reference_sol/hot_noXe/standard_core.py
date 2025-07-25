@@ -36,3 +36,4 @@ acePath = "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata"
 
 
 ringres = S8_Wet(fe, ce, ir, br, ugp, lgp, cds, ae, fuelTemp = 934.6035, coolantTemp = 922.03, refTemp = 866, baseFile="standardconditions", geo = "3D")
+#ringres = HC_Test(fe, ce, ir, br, ugp, lgp, cds, ae, config='C1', xsLibrary="ENDF8", hasThermScatt=True, baseFile="HC_TEST", geo = "3D")
