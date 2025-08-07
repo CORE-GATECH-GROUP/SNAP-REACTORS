@@ -356,7 +356,7 @@ acu_shima_matids_2d   = '6400'
 acu_shimb_matids_2d   = '6500'
 acu_shimc_matids_2d   = '9901'
 
-total_power               = 600000.00 # (W). #total power
+total_power               = 450000.00 # (W). #total power
 inlet_T_fluid             = 922 # (K)
 ext_T_ref                 = 866 # (K)
 fuel_temp                 = 934.065 #(K)
