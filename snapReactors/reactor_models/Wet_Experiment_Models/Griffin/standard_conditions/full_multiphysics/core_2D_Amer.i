@@ -122,9 +122,9 @@ ht_coeff                  = 4539.6
 fuel_blocks = 'Fuel'
 ceram_blocks = 'Ceramic'
 clad_blocks = 'Clad'
-intref_blocks = 'Reflector'
+intref_blocks = 'outref'
 #barrel_blocks = 'barrel'
-extref_blocks = 'Reflector'
+extref_blocks = 'outref'
 
 #gap_inner = 1
 #gap_outer = 2
@@ -150,7 +150,7 @@ extref_blocks = 'Reflector'
 [Mesh]
     [core_unextruded]
         type = FileMeshGenerator
-        file = /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/meshes/SNAP_mesh_1_in.e
+        file = /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/meshes/SNAP_mesh_10_in.e
     []
     # [transform_core_unextruded]
     #     type = TransformGenerator
@@ -197,7 +197,7 @@ extref_blocks = 'Reflector'
     #     type = CoupledForce
     #     variable = bison_temp
     #     v = bison_norm_power_density
-    #     block = 'Reflector'
+    #     block = 'outref'
     #     coef = .07
     # []
 []
@@ -213,6 +213,9 @@ extref_blocks = 'Reflector'
         #initial_condition = '${pow_dens}' #
     []
     [bison_T_inf]
+        initial_condition = '${inlet_T_fluid}'
+    []
+    [bison_T_duct]
         initial_condition = '${inlet_T_fluid}'
     []
     [bison_Tfuel]
@@ -319,7 +322,13 @@ extref_blocks = 'Reflector'
         source_variable = Tpin
         variable = bison_temp
         from_blocks = fuel_pins
-        to_blocks = 'Fuel'
+        to_blocks = 'Clad'
+    []
+        [duct_temp_from_SC]
+        type = MultiAppGeneralFieldNearestLocationTransfer
+        from_multi_app = sc
+        source_variable = Tduct
+        variable = bison_T_duct
     []
   []
 
@@ -351,7 +360,7 @@ extref_blocks = 'Reflector'
       thermal_conductivity = 216.0
       specific_heat = 1925.0
       temp = bison_temp
-      block = 'Reflector'
+      block = 'outref'
     []
     [Fuel]
       type = ADHeatConductionMaterial
@@ -402,7 +411,12 @@ extref_blocks = 'Reflector'
         T_infinity = bison_T_inf
         htc = HTC
     []
-    # Convective BC outer surface fuel pin
+    [duct_temp_boundary]
+        type = ADMatchedValueBC
+        boundary = 'barrel_outer_surf'
+        v = bison_T_duct
+        variable = bison_temp
+    []
 []
 
 # [ThermalContact]

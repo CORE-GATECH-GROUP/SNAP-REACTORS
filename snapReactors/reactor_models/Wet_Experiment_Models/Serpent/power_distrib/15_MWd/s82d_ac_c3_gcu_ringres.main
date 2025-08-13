@@ -20,5 +20,5 @@ set rfr 1.64634E+01 burned_mat
 div fuel sep 2
 div ceramic sep 2
 det rmesh n dr -4 void dr -6 void dr -8 void dn 1 0 13 100 0 360 1 1.76022 37.70955938  1
-det PinMesh1 n dr -4 void dv 280.346931947 dh 3 0.0 0.0 1.4605 17 17 1.76022 37.70955938  1 
+det PinMesh1 n dr -8 void dv 280.346931947 dh 3 0.0 0.0 1.4603179929725998 17 17 1.76022 37.70955938  1 
 % det PinMesh2 n dr -6 void dv 280.346931947 dh 3 0.0 0.0 1.4605 17 17 1.76022 37.70955938  1 

@@ -138,7 +138,7 @@ extref_blocks = 'outref'
 # n_fuel_pins = 211
 # fuel_diameter = '${fparse 0.67564 * 2 * 0.01}'
 # unit_cell_height = '${units 35.56 cm -> m}'
-#pow_dens = 55760474.8606
+pow_dens = 55760474.8606
 
 # acm_dz = '${fparse 3.81/100}'
 # lay1 = '${fparse 2.1717/100}'
@@ -210,7 +210,7 @@ extref_blocks = 'outref'
         family = L2_LAGRANGE 
         order = FIRST 
         block = 'Fuel'
-        #initial_condition = '${pow_dens}' #
+        initial_condition = '${pow_dens}' #
     []
     [bison_T_inf]
         initial_condition = '${inlet_T_fluid}'
@@ -267,7 +267,7 @@ extref_blocks = 'outref'
         type = NormalizationAux
         variable = bison_norm_power_density
         source_variable = bison_power_density
-        normal_factor = 1.2658064684
+        normal_factor = 1
         execute_on = 'timestep_begin' #check
     []  
     [make_powdens_linear]
@@ -291,7 +291,7 @@ extref_blocks = 'outref'
 [MultiApps]
     [sc]
       type = FullSolveMultiApp
-      input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/depletion/full_multiphysics/sc_core.i'
+      input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/standard_conditions/full_multiphysics/sc_core.i'
       execute_on =  timestep_end
       bounding_box_padding = '0.1 0.1 0'
       positions = '0 0 0'
@@ -324,7 +324,7 @@ extref_blocks = 'outref'
         from_blocks = fuel_pins
         to_blocks = 'Clad'
     []
-        [duct_temp_from_SC]
+    [duct_temp_from_SC]
         type = MultiAppGeneralFieldNearestLocationTransfer
         from_multi_app = sc
         source_variable = Tduct
@@ -455,11 +455,14 @@ extref_blocks = 'outref'
     nl_abs_step_tol = 1e-8
     l_tol = 1e-8
     solve_type = NEWTON
-    petsc_options_value = 'bjacobi'
-    petsc_options_iname = '-pc_type'
-    fixed_point_max_its = 10
-    custom_rel_tol = 1e-4
-    accept_on_max_fixed_point_iteration = True
+#   petsc_options_value = 'hypre boomeramg'
+#   petsc_options_iname = '-pc_type -pc_hypre_type'
+  petsc_options_value = 'bjacobi'
+  petsc_options_iname = '-pc_type'
+  fixed_point_max_its = 10
+  custom_rel_tol = 1e-4
+accept_on_max_fixed_point_iteration = True
+  #force_fixed_point_solve = true
 []
 
 # ==============================================================================
@@ -524,16 +527,16 @@ extref_blocks = 'outref'
     []
 []
 
-# [VectorPostprocessors]
-#     [pow_dens]
-#         type = LineValueSampler
-#         start_point = '0 0 0.05'
-#         end_point = '0 0 0.355'
-#         num_points = 10
-#         variable = bison_pow_lin
-#         sort_by = 'z'
-#     []
-# []
+[VectorPostprocessors]
+    [pow_dens]
+        type = LineValueSampler
+        start_point = '0 0 0.05'
+        end_point = '0 0 0.355'
+        num_points = 10
+        variable = bison_pow_lin
+        sort_by = 'z'
+    []
+[]
 
 [Outputs]
     [csv]
