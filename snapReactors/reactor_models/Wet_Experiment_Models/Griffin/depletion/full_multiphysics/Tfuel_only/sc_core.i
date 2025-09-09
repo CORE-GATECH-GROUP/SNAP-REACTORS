@@ -3,9 +3,9 @@
 ###################################################
 # Thermal-hydraulics parameters
 ###################################################
-T_in = 866.5
+T_in = 866.0 
 P_out = 253727.1   # Pa
-reactor_power = 600000 #WTh
+# reactor_power = 671337.24 #WTh
 #fuel_assemblies_per_power_unit = '${fparse 1}'
 #fuel_pins_per_assembly = 211
 #pin_power = '${fparse reactor_power/(fuel_assemblies_per_power_unit*fuel_pins_per_assembly)}' # Approx.
@@ -34,7 +34,6 @@ duct_inside = '${fparse 11.43*2*scale_factor}'
 # entry1 = '${fparse 0.79502/100}'
 # entry2 = '${fparse 0.9652/100}'
 # entry3 = '${fparse 2.1717/100}'
-# entry1 = '${fparse 3.556/100}'
 entry1 = '${fparse 0/100}'
 entry2 = '${fparse 0/100}'
 entry3 = '${fparse 0/100}'
@@ -44,7 +43,6 @@ entry_length = '${fparse entry1 + entry2 + entry3}'
 # exit3 = '${fparse 0.87376/100}'
 exit1 = '${fparse 0/100}'
 exit2 = '${fparse 0/100}'
-# exit3 = '${fparse 3.556/100}'
 exit3 = '${fparse 0/100}'
 exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
 ###################################################
@@ -90,15 +88,15 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   []
 []
 
-[Functions]
-  [axial_heat_rate]
-    type = ParsedFunction
-    expression = '1.0'#'if(z>l1 & z<l2, 1.0, 0.0)'
-    #'(pi/2)*sin(pi*z/L)'
-    symbol_names = 'l1 l2'
-    symbol_values = '${entry_length} ${fparse length_heated_fuel}'
-  []
-[]
+
+# [Functions]
+#   [axial_heat_rate]
+#     type = ParsedFunction
+#     expression = '1.0'
+#     symbol_names = 'l1 l2'
+#     symbol_values = '${entry_length} ${fparse length_heated_fuel}'
+#   []
+# []
 
 [AuxVariables]
   [mdot]
@@ -136,6 +134,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   []
   [q_prime]
     block = fuel_pins
+    #initial_condition = 7000
   []
   [mu]
     block = subchannel
@@ -171,19 +170,21 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   fp = sodium
   n_blocks = 1
   P_out = ${P_out}
-  CT = 0
+  CT = 1.0
   compute_density = false #true
   compute_viscosity = true #true
   compute_power = true #true
-  P_tol = 1.0e-5
-  T_tol = 1.0e-5
+  P_tol = 1.0e-2
+  T_tol = 1.0e-2
   implicit = true
   segregated = false
   staggered_pressure = false
-  monolithic_thermal = false
-  verbose_multiapps = true
-  verbose_subchannel = true
+  monolithic_thermal = true
+  # verbose_multiapps = true
+  # verbose_subchannel = true
+  # type = NoSolveProblem
 []
+
 
 [ICs]
   [S_IC]
@@ -195,14 +196,14 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     type = SCMTriWettedPerimIC
     variable = w_perim
   []
-
-  [q_prime_IC]
-    type = SCMTriPowerIC
-    variable = q_prime
-    power = ${reactor_power} # W
-    filename = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/standard_conditions/sc_standalone/S8ER_pin.txt"
-    axial_heat_rate = axial_heat_rate
-  []
+  
+  # [q_prime_IC]
+  #   type = SCMTriPowerIC
+  #   variable = q_prime
+  #   power = ${reactor_power} # W
+  #   filename = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_standalone/S8ER_pin.txt"
+  #   axial_heat_rate = axial_heat_rate
+  # []
 
   [T_ic]
     type = ConstantIC
@@ -270,7 +271,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     variable = T
     boundary = inlet
     value = ${T_in}
-    execute_on = 'timestep_begin'
+    execute_on = 'initial timestep_begin'
     block = subchannel
   []
   [mdot_in_bc]
@@ -279,7 +280,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     boundary = inlet
     #area = S
     mass_flow = ${mass_flow}
-    execute_on = 'timestep_begin'
+    execute_on = 'initial timestep_begin'
     block = subchannel
   []
 []
@@ -296,48 +297,33 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     execute_on = timestep_end
   []
 []
-[Postprocessors]
-  [Tcool_out]
-    type = SideAverageValue
-    boundary = outlet
-    variable = T
-    execute_on = TIMESTEP_END
-  []
-  [Tfuel_avg]
-    type = ElementAverageValue
-    variable = Tpin
-    block = fuel_pins
+
+[VectorPostprocessors]
+  [pow_dens]
+      type = LineValueSampler
+      start_point = '0 0 0.05'
+      end_point = '0 0 0.355'
+      num_points = 10
+      variable = q_prime
+      sort_by = 'z'
+      execute_on = 'initial timestep_begin'
   []
 []
-# [VectorPostprocessors]
-#   [T_fuel_cen]
-#         type = LineValueSampler
-#         start_point = '0 0 0.05'
-#         end_point = '0 0 0.355'
-#         num_points = 10
-#         variable = Tpin
-#         sort_by = 'z'
-#         execute_on = 'timestep_end'
-#   []
-# []
 [Outputs]
-  exodus = true
-      [csv]
-        type = CSV
-        execute_on = 'timestep_end'
-    []
+  [exodus]
+    type = Exodus
+    execute_on = 'timestep_end'
+[]
+[csv]
+    type = CSV
+    execute_on = 'initial timestep_end'
+[]
 []
 
 [Executioner]
   type = Steady
   petsc_options_value = 'hypre boomeramg'
   petsc_options_iname = '-pc_type -pc_hypre_type'
-
-  # type = Transient
-  # petsc_options_value = 'hypre boomeramg'
-  # petsc_options_iname = '-pc_type -pc_hypre_type'
-  # steady_state_detection = true
-  # steady_state_tolerance = 1e-5
 []
 
 ################################################################################
@@ -347,7 +333,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   #active = ''
   [viz]
     type = FullSolveMultiApp
-    input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/standard_conditions/sc_standalone/sc_core_viz.i'
+    input_files = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/depletion/full_multiphysics/Tfuel_only/sc_core_viz.i"
     execute_on = "final"
   []
 []
