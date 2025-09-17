@@ -1,7 +1,7 @@
 #!/bin/bash
-#PBS -l select=10:ncpus=50:mpiprocs=1:mem=200gb
-#PBS -N 898T
-#PBS -l walltime=1:30:00
+#PBS -l select=10:ncpus=50:mpiprocs=1:mem=210gb
+#PBS -N poison_coeff
+#PBS -l walltime=00:30:00
 #PBS -k doe
 #PBS -j oe
 #PBS -P edu_res
@@ -9,8 +9,6 @@
 
 module load use.exp_ctl
 module load serpent2
-
-cd \$PBS_O_WORKDIR
 
 export TMPDIR=/tmp
 export SERPENT_DATA=/hpc-common/data/serpent/xsdata/s2v0_endfb80

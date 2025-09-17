@@ -316,20 +316,20 @@ extref_blocks = 'outref'
         source_variable = T
         variable = bison_T_inf
     []
-    [fuel_temp_from_SC]
-        type = MultiAppGeneralFieldNearestLocationTransfer
-        from_multi_app = sc
-        source_variable = Tpin
-        variable = bison_temp
-        from_blocks = fuel_pins
-        to_blocks = 'Clad'
-    []
-        [duct_temp_from_SC]
-        type = MultiAppGeneralFieldNearestLocationTransfer
-        from_multi_app = sc
-        source_variable = Tduct
-        variable = bison_T_duct
-    []
+    # [fuel_temp_from_SC]
+    #     type = MultiAppGeneralFieldNearestLocationTransfer
+    #     from_multi_app = sc
+    #     source_variable = Tpin
+    #     variable = bison_temp
+    #     from_blocks = fuel_pins
+    #     to_blocks = 'Clad'
+    # []
+    #     [duct_temp_from_SC]
+    #     type = MultiAppGeneralFieldNearestLocationTransfer
+    #     from_multi_app = sc
+    #     source_variable = Tduct
+    #     variable = bison_T_duct
+    # []
   []
 
 # ==============================================================================
@@ -410,12 +410,13 @@ extref_blocks = 'outref'
         boundary = 'fluid_solid_interface'
         T_infinity = bison_T_inf
         htc = HTC
-    []
+    []       
     [duct_temp_boundary]
-        type = ADMatchedValueBC
-        boundary = 'barrel_outer_surf'
-        v = bison_T_duct
+        type = CoupledConvectiveHeatFluxBC
         variable = bison_temp
+        boundary = 'barrel_outer_surf'
+        T_infinity = bison_T_inf
+        htc = HTC
     []
 []
 

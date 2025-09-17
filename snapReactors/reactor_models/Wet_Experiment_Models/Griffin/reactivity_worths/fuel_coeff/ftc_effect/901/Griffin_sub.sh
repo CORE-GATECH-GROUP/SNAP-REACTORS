@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=SC_Test          # Job name
-#SBATCH --nodes=9                   # Request 4 nodes
+#SBATCH --nodes=14                   # Request 4 nodes
 #SBATCH --ntasks-per-node=1          # 5 MPI processes per node
 #SBATCH --cpus-per-task=30           # 4 CPU cores per MPI process (20 ncpus / 5 mpiprocs)
 #SBATCH --time=03:45:00              # Walltime (hh:mm:ss)
@@ -11,4 +11,4 @@
 module load use.exp_ctl use.moose griffin-openmpi
 cd ${SLURM_SUBMIT_DIR:-$PWD}
 export TMPDIR=${SLURM_TMPDIR:-/tmp}
-mpiexec -n 9 griffin-opt -i wet_core.i --allow-unused
+mpiexec -n 14 griffin-opt -i wet_core.i --allow-unused

@@ -180,8 +180,8 @@ acu_shimc_matids_2d   = '9901'
 
 total_power               = 600000.00 # (W). #total power
 inlet_T_fluid             = 922.03 # (K)
-ext_T_ref                 = 901 # (K)
-fuel_temp                 = 1000 #(K)
+ext_T_ref                 = 866 # (K)
+fuel_temp                 = 901 #(K)
 acm_dz = '${fparse (30.48 + 30.48 * (4.52e-6 + (fuel_temp - 273.15) * 1.925e-8) * ((fuel_temp - 273.15) - (300 - 273.15))) / 800}'
 lay1 = '${fparse 0.79502/100}'
 lay2 = '${fparse 0.9652/100}'

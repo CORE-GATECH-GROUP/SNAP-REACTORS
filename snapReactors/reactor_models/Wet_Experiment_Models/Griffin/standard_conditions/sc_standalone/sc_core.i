@@ -140,7 +140,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   [mu]
     block = subchannel
   []
-  [q_prime_duct]
+  [duct_heat_flux]
     block = duct
     initial_condition = 0
   []
@@ -183,6 +183,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   monolithic_thermal = false
   verbose_multiapps = true
   verbose_subchannel = true
+  gravity = NONE
 []
 
 [ICs]
