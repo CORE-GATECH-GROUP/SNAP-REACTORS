@@ -25,7 +25,7 @@ wire_z_spacing = '${fparse 0*scale_factor}'
 wire_diameter = '${fparse 0*scale_factor}'
 n_rings = 9
 #length_entry_fuel = '${fparse 0*scale_factor}'
-length_heated_fuel = '${fparse 35.56*scale_factor}'
+length_heated_fuel = '${fparse 35.94877527127572*scale_factor}'
 #length_outlet_fuel = '${fparse 0*scale_factor}'
 #height = '${fparse length_entry_fuel+length_heated_fuel+length_outlet_fuel}'
 #orifice_plate_height = '${fparse 0*scale_factor}'
@@ -183,7 +183,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   monolithic_thermal = false
   verbose_multiapps = true
   verbose_subchannel = true
-  gravity = NONE
+  # gravity = NONE
 []
 
 [ICs]

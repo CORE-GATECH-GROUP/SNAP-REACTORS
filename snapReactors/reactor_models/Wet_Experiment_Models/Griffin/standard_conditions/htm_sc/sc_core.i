@@ -25,7 +25,7 @@ wire_z_spacing = '${fparse 0*scale_factor}'
 wire_diameter = '${fparse 0*scale_factor}'
 n_rings = 9
 #length_entry_fuel = '${fparse 0*scale_factor}'
-length_heated_fuel = '${fparse 35.56*scale_factor}'
+length_heated_fuel = '${fparse 35.94877527127572*scale_factor}'
 #length_outlet_fuel = '${fparse 0*scale_factor}'
 #height = '${fparse length_entry_fuel+length_heated_fuel+length_outlet_fuel}'
 #orifice_plate_height = '${fparse 0*scale_factor}'
@@ -139,7 +139,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   [mu]
     block = subchannel
   []
-  [q_prime_duct]
+  [duct_heat_flux]
     block = duct
     initial_condition = 0
   []
@@ -336,7 +336,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   #active = ''
   [viz]
     type = FullSolveMultiApp
-    input_files = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/standard_conditions/full_multiphysics/sc_core_viz.i"
+    input_files = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/standard_conditions/htm_sc/sc_core_viz.i"
     execute_on = "final"
   []
 []

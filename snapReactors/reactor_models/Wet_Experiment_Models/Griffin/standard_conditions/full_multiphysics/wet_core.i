@@ -178,7 +178,7 @@ acu_shima_matids_2d   = '6400'
 acu_shimb_matids_2d   = '6500'
 acu_shimc_matids_2d   = '9901'
 
-acm_dz = '${fparse 3.81/100}'
+acm_dz = '${fparse (35.56 + 35.56 * (4.52e-6 + (fuel_temp - 273.15) * 1.925e-8) * ((fuel_temp - 273.15) - (300 - 273.15)) - 2.9083 - 2.1717)/800}'
 lay1 = '${fparse 0.79502/100}'
 lay2 = '${fparse 0.9652/100}'
 lay3 = '${fparse 2.1717/100}'
@@ -322,14 +322,14 @@ fuel_temp                 = 934.6035 #(K)
         source_variable = bison_Tref
         variable = griffin_Tref
     []
-    # [from_htm_Tcool]
-    #     type = MultiAppGeometricInterpolationTransfer
-    #     from_multi_app = Griffin_htm
-    #     source_variable = aux_T_inf
-    #     variable = griffin_Tcool
-    # []
+    [from_htm_Tcool]
+        type = MultiAppGeometricInterpolationTransfer
+        from_multi_app = Griffin_htm
+        source_variable = bison_T_inf
+        variable = griffin_Tcool
+    []
        
-[]
+[]   
 # ==============================================================================
 # TRANSPORT SYSTEMS
 # ==============================================================================
@@ -434,16 +434,16 @@ fuel_temp                 = 934.6035 #(K)
     richardson_max_its = 50
     richardson_value = eigenvalue
     richardson_rel_tol = 1e-6
-    richardson_abs_tol = 1e-4
+    richardson_abs_tol = 1e-5
 
     inner_solve_type = GMRes
     max_inner_its = 2
 
     cmfd_acceleration = true
     custom_pp = eigenvalue
-    custom_rel_tol = 1e-3
+    custom_rel_tol = 1e-5
     coarse_element_id = coarse_element_id
-    fixed_point_max_its = 2
+    fixed_point_max_its = 4
     fixed_point_solve_outer = true
     force_fixed_point_solve = true
     accept_on_max_fixed_point_iteration = True

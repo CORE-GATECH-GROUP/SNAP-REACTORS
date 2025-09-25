@@ -122,9 +122,9 @@ ht_coeff                  = 4539.6
 fuel_blocks = 'Fuel'
 ceram_blocks = 'Ceramic'
 clad_blocks = 'Clad'
-intref_blocks = 'outref'
-#barrel_blocks = 'barrel'
-extref_blocks = 'outref'
+# intref_blocks = 'outref'
+# barrel_blocks = 'barrel'
+extref_blocks = 'outer_reflector1 outer_reflector1_trim'
 
 #gap_inner = 1
 #gap_outer = 2
@@ -150,7 +150,7 @@ extref_blocks = 'outref'
 [Mesh]
     [core_unextruded]
         type = FileMeshGenerator
-        file = /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/meshes/SNAP_mesh_10_in.e
+        file = /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/meshes/SNAP_HTM_mesh.e
     []
     # [transform_core_unextruded]
     #     type = TransformGenerator
@@ -267,7 +267,7 @@ extref_blocks = 'outref'
         type = NormalizationAux
         variable = bison_norm_power_density
         source_variable = bison_power_density
-        normal_factor = 1.2658064684
+        normal_factor = 1.26580604001
         execute_on = 'timestep_begin' #check
     []  
     [make_powdens_linear]
@@ -316,20 +316,20 @@ extref_blocks = 'outref'
         source_variable = T
         variable = bison_T_inf
     []
-    [fuel_temp_from_SC]
-        type = MultiAppGeneralFieldNearestLocationTransfer
-        from_multi_app = sc
-        source_variable = Tpin
-        variable = bison_temp
-        from_blocks = fuel_pins
-        to_blocks = 'Clad'
-    []
-        [duct_temp_from_SC]
-        type = MultiAppGeneralFieldNearestLocationTransfer
-        from_multi_app = sc
-        source_variable = Tduct
-        variable = bison_T_duct
-    []
+    # [fuel_temp_from_SC]
+    #     type = MultiAppGeneralFieldNearestLocationTransfer
+    #     from_multi_app = sc
+    #     source_variable = Tpin
+    #     variable = bison_temp
+    #     from_blocks = fuel_pins
+    #     to_blocks = 'Clad'
+    # []
+    #     [duct_temp_from_SC]
+    #     type = MultiAppGeneralFieldNearestLocationTransfer
+    #     from_multi_app = sc
+    #     source_variable = Tduct
+    #     variable = bison_T_duct
+    # []
   []
 
 # ==============================================================================
@@ -360,7 +360,7 @@ extref_blocks = 'outref'
       thermal_conductivity = 216.0
       specific_heat = 1925.0
       temp = bison_temp
-      block = 'outref'
+      block = '${extref_blocks}'
     []
     [Fuel]
       type = ADHeatConductionMaterial
@@ -412,13 +412,13 @@ extref_blocks = 'outref'
         htc = HTC
     []
     [duct_temp_boundary]
-        type = ADMatchedValueBC
-        boundary = 'barrel_outer_surf'
-        v = bison_T_duct
+        type = CoupledConvectiveHeatFluxBC
         variable = bison_temp
+        boundary = 'barrel_outer_surf'
+        T_infinity = bison_T_inf
+        htc = HTC
     []
 []
-
 # [ThermalContact]
 #     # Gap Heat Transfer 
 #     [gap_ht]
@@ -513,10 +513,7 @@ accept_on_max_fixed_point_iteration = True
         type = VolumePostprocessor
         block = ${fuel_blocks}
     []
-    [intref_vol]
-        type = VolumePostprocessor
-        block = ${intref_blocks}
-    []
+
     [clad_vol]
         type = VolumePostprocessor
         block = ${clad_blocks}
@@ -527,16 +524,16 @@ accept_on_max_fixed_point_iteration = True
     []
 []
 
-[VectorPostprocessors]
-    [pow_dens]
-        type = LineValueSampler
-        start_point = '0 0 0.05'
-        end_point = '0 0 0.355'
-        num_points = 10
-        variable = bison_pow_lin
-        sort_by = 'z'
-    []
-[]
+# [VectorPostprocessors]
+#     [pow_dens]
+#         type = LineValueSampler
+#         start_point = '0 0 0.05'
+#         end_point = '0 0 0.355'
+#         num_points = 10
+#         variable = bison_pow_lin
+#         sort_by = 'z'
+#     []
+# []
 
 [Outputs]
     [csv]

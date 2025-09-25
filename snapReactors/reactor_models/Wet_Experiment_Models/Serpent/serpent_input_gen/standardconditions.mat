@@ -115,7 +115,7 @@ mat barrel -7.954   tmp 924.03 rgb 102 0 0
 26058.02c	-0.00184759
 
 therm BeO be-beo.46t therm OBe o-beo.46t
-mat internal_reflector -2.9869346197294044 moder BeO 4009 moder OBe 8016  tmp 924.03 
+mat internal_reflector -2.986982527580071 moder BeO 4009 moder OBe 8016  tmp 924.03 
 8016.02c	-0.63968
 4009.02c	-0.36032
 
@@ -135,11 +135,11 @@ internal_reflector	0.41
 air	0.357
 
 therm Bem be-met.45t
-mat control_drum -1.8099636934121888 moder Bem 4009  tmp 866 rgb 247 215 183
+mat control_drum -1.8099927236660696 moder Bem 4009  tmp 866 rgb 247 215 183
 4009.01c	-1.0
 
 therm HZr h-zrh.46t therm ZrH zr-zrh.46t
-mat fuel -5.99436884590331 moder HZr 1001  moder ZrH 40090 burn 1 tmp 934.6035 rgb 219 89 89
+mat fuel -5.994462909343859 moder HZr 1001  moder ZrH 40090 burn 1 tmp 934.065 rgb 219 89 89
 1001.02c	0.06
 1002.02c	8.7e-06
 92235.02c	0.001455002
@@ -150,7 +150,7 @@ mat fuel -5.99436884590331 moder HZr 1001  moder ZrH 40090 burn 1 tmp 934.6035 r
 40094.02c	0.0061341
 40096.02c	0.00098824
 
-mat ceramic 0.0594845158487578  burn 1 tmp 934.6035 rgb 255 174 66
+mat ceramic 0.059485449277841655  burn 1 tmp 934.065 rgb 255 174 66
 8016.02c	0.038226
 14028.02c	0.0122916
 14029.02c	0.000597119
@@ -196,7 +196,7 @@ mat ceramic 0.0594845158487578  burn 1 tmp 934.6035 rgb 255 174 66
 62152.02c	4.34806e-05
 62154.02c	3.64953e-05
 
-mat gap -1.5740000000000002e-05   tmp 934.6035 
+mat gap -1.5740000000000002e-05   tmp 934.065 
 2004.02c	-1.0
 
 mat upper_gridplate -7.954   tmp 924.03 rgb 102 0 0

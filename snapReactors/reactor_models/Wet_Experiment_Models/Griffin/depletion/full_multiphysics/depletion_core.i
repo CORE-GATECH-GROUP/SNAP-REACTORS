@@ -359,8 +359,8 @@ acu_shimc_matids_2d   = '9901'
 total_power               = 450000.00 # (W). #total power
 inlet_T_fluid             = 922.03 # (K)
 ext_T_ref                 = 866 # (K)
-fuel_temp                 = 934.065 #(K)
-acm_dz = '${fparse (30.48 + 30.48 * (4.52e-6 + (fuel_temp - 273.15) * 1.925e-8) * ((fuel_temp - 273.15) - (300 - 273.15))) / 800}'
+fuel_temp                 = 934.6035 #(K)
+acm_dz = '${fparse (35.56 + 35.56 * (4.52e-6 + (fuel_temp - 273.15) * 1.925e-8) * ((fuel_temp - 273.15) - (300 - 273.15)) - 2.9083 - 2.1717)/800}'
 lay1 = '${fparse 0.79502/100}'
 lay2 = '${fparse 0.9652/100}'
 lay3 = '${fparse 2.1717/100}'
@@ -1869,11 +1869,11 @@ multi_app_z_pos = '${fparse lay1 + lay2}'
 
     cmfd_acceleration = true
     custom_pp = eigenvalue
-    custom_rel_tol = 1e-6
+    custom_rel_tol = 1e-5
     coarse_element_id = coarse_element_id
     force_final_output = true
     
-    fixed_point_max_its = 2
+    fixed_point_max_its = 4
     fixed_point_solve_outer = true
     force_fixed_point_solve = true
     accept_on_max_fixed_point_iteration = True

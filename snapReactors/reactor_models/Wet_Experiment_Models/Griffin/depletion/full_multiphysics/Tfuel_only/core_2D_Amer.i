@@ -122,9 +122,9 @@ ht_coeff                  = 4539.6
 fuel_blocks = 'Fuel'
 ceram_blocks = 'Ceramic'
 clad_blocks = 'Clad'
-intref_blocks = 'outref'
-#barrel_blocks = 'barrel'
-extref_blocks = 'outref'
+# intref_blocks = 'outref'
+# barrel_blocks = 'barrel'
+extref_blocks = 'outer_reflector1 outer_reflector1_trim'
 
 #gap_inner = 1
 #gap_outer = 2
@@ -150,7 +150,7 @@ extref_blocks = 'outref'
 [Mesh]
     [core_unextruded]
         type = FileMeshGenerator
-        file = /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/meshes/SNAP_mesh_10_in.e
+        file = /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/meshes/SNAP_HTM_mesh.e
     []
     # [transform_core_unextruded]
     #     type = TransformGenerator
@@ -267,7 +267,7 @@ extref_blocks = 'outref'
         type = NormalizationAux
         variable = bison_norm_power_density
         source_variable = bison_power_density
-        normal_factor = 1.2658064684
+        normal_factor = 1.26580604001
         execute_on = 'timestep_begin' #check
     []  
     [make_powdens_linear]
@@ -360,7 +360,7 @@ extref_blocks = 'outref'
       thermal_conductivity = 216.0
       specific_heat = 1925.0
       temp = bison_temp
-      block = 'outref'
+      block = '${extref_blocks}'
     []
     [Fuel]
       type = ADHeatConductionMaterial
@@ -510,10 +510,7 @@ extref_blocks = 'outref'
         type = VolumePostprocessor
         block = ${fuel_blocks}
     []
-    [intref_vol]
-        type = VolumePostprocessor
-        block = ${intref_blocks}
-    []
+
     [clad_vol]
         type = VolumePostprocessor
         block = ${clad_blocks}
