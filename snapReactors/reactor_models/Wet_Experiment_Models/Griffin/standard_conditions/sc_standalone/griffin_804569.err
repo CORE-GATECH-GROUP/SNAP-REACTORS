@@ -1,0 +1,72 @@
+libMesh terminatinglibMesh terminatinglibMesh terminating:
+ERROR: FunctionParser is unable to parse expression: (pi/2)*sin(pi*z/L)
+Syntax error: Unknown identifier
+Stack frames: 15
+0: libMesh::print_trace(std::ostream&)
+1: libMesh::MacroFunctions::report_error(char const*, int, char const*, char const*, std::ostream&)
+2: /home/garcsamu/moose_exec/moose/framework/libmoose-opt.so.0(+0x1caa4f5) [0x15555407a4f5]
+3: /home/garcsamu/moose_exec/moose/framework/libmoose-opt.so.0(+0x1caab47) [0x15555407ab47]
+4: /home/garcsamu/moose_exec/moose/framework/libmoose-opt.so.0(+0x1caaf54) [0x15555407af54]
+5: MooseParsedFunctionWrapper::MooseParsedFunctionWrapper(FEProblemBase&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, unsigned int)
+6: MooseParsedFunction::initialSetup()
+7: FEProblemBase::initialSetup()
+8: SubChannel1PhaseProblem::initialSetup()
+9: Steady::init()
+10: MooseApp::executeExecutioner()
+11: MooseApp::run()
+12: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x50f4) [0x5555555590f4]
+13: __libc_start_main
+14: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x538e) [0x55555555938e]
+[0] /home/garcsamu/miniforge/envs/moose/libmesh/include/libmesh/parsed_function.h, line 564, compiled Sep 15 2025 at 12:39:41
+
+:
+ERROR: FunctionParser is unable to parse expression: (pi/2)*sin(pi*z/L)
+Syntax error: Unknown identifier
+Stack frames: 15
+0: libMesh::print_trace(std::ostream&)
+1: libMesh::MacroFunctions::report_error(char const*, int, char const*, char const*, std::ostream&)
+2: /home/garcsamu/moose_exec/moose/framework/libmoose-opt.so.0(+0x1caa4f5) [0x15555407a4f5]
+3: /home/garcsamu/moose_exec/moose/framework/libmoose-opt.so.0(+0x1caab47) [0x15555407ab47]
+4: /home/garcsamu/moose_exec/moose/framework/libmoose-opt.so.0(+0x1caaf54) [0x15555407af54]
+5: MooseParsedFunctionWrapper::MooseParsedFunctionWrapper(FEProblemBase&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, unsigned int)
+6: MooseParsedFunction::initialSetup()
+7: FEProblemBase::initialSetup()
+8: SubChannel1PhaseProblem::initialSetup()
+9: Steady::init()
+10: MooseApp::executeExecutioner()
+11: MooseApp::run()
+12: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x50f4) [0x5555555590f4]
+13: __libc_start_main
+14: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x538e) [0x55555555938e]
+[0] /home/garcsamu/miniforge/envs/moose/libmesh/include/libmesh/parsed_function.h, line 564, compiled Sep 15 2025 at 12:39:41
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+:
+ERROR: FunctionParser is unable to parse expression: (pi/2)*sin(pi*z/L)
+Syntax error: Unknown identifier
+Stack frames: 15
+0: libMesh::print_trace(std::ostream&)
+1: libMesh::MacroFunctions::report_error(char const*, int, char const*, char const*, std::ostream&)
+2: /home/garcsamu/moose_exec/moose/framework/libmoose-opt.so.0(+0x1caa4f5) [0x15555407a4f5]
+3: /home/garcsamu/moose_exec/moose/framework/libmoose-opt.so.0(+0x1caab47) [0x15555407ab47]
+4: /home/garcsamu/moose_exec/moose/framework/libmoose-opt.so.0(+0x1caaf54) [0x15555407af54]
+5: MooseParsedFunctionWrapper::MooseParsedFunctionWrapper(FEProblemBase&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, unsigned int)
+6: MooseParsedFunction::initialSetup()
+7: FEProblemBase::initialSetup()
+8: SubChannel1PhaseProblem::initialSetup()
+9: Steady::init()
+10: MooseApp::executeExecutioner()
+11: MooseApp::run()
+12: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x50f4) [0x5555555590f4]
+13: __libc_start_main
+14: /home/garcsamu/moose_exec/snapbench/snapbench-opt(+0x538e) [0x55555555938e]
+[0] /home/garcsamu/miniforge/envs/moose/libmesh/include/libmesh/parsed_function.h, line 564, compiled Sep 15 2025 at 12:39:41
+
+Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+--------------------------------------------------------------------------
+prterun detected that one or more processes exited with non-zero status,
+thus causing the job to be terminated. The first process to do so was:
+
+   Process name: [prterun-wr3n31-273530@1,0] Exit code:    1
+--------------------------------------------------------------------------

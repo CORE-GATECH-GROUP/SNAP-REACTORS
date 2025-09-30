@@ -282,7 +282,7 @@ fuel_temp                 = 934.6035 #(K)
     [burnup_MWd]
         family = MONOMIAL
         order = constant
-        initial_condition = 0
+        initial_condition = 3.42988e-02
     []
     [Unity]
         order = CONSTANT
@@ -364,7 +364,7 @@ fuel_temp                 = 934.6035 #(K)
 [Materials]
     [core]
         type = CoupledFeedbackMatIDNeutronicsMaterial
-        block =  '${ugr_active_blocks    } ${uec_active_blocks    } ${acu_fuel_blocks_2d   } ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acl_fuel_blocks_2d   } ${lec_active_blocks    } ${lgr_active_blocks    }'
+        block =  ' ${uec_active_blocks    } ${acu_fuel_blocks_2d   } ${acm_fuel_blocks_lay8 } ${acm_fuel_blocks_lay7 } ${acm_fuel_blocks_lay6 } ${acm_fuel_blocks_lay5 } ${acm_fuel_blocks_lay4 } ${acm_fuel_blocks_lay3 } ${acm_fuel_blocks_lay2 } ${acm_fuel_blocks_lay1 } ${acl_fuel_blocks_2d   } ${lec_active_blocks    } '
         library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/XS_data/standardconditions_XS.xml'
         library_name = 'standardconditions_XS'
         isotopes = 'pseudo'
@@ -376,7 +376,12 @@ fuel_temp                 = 934.6035 #(K)
     []
     [extref]
         type = CoupledFeedbackMatIDNeutronicsMaterial
-        block =  '${acu_shimc_blocks_2d} ${acl_shimc_blocks_2d} ${uec_shimc_blocks_2d} ${lec_shimc_blocks_2d} ${acm_shimc_blocks_2d} ${acu_shimb_blocks_2d} ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d}  ${acm_intref_blocks_2d } ${acm_barrel_blocks_2d } ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d} ${acl_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  } ${acu_intref_blocks_2d } ${acu_barrel_blocks_2d } ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} ${acu_shima_blocks_2d  } ${lgr_ext_blocks       } ${ugr_ext_blocks       }  ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} ${lec_shima_blocks_2d  }  ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
+        block =  '${acu_shimc_blocks_2d} ${acl_shimc_blocks_2d} ${uec_shimc_blocks_2d} ${lec_shimc_blocks_2d} ${acm_shimc_blocks_2d} ${acu_shimb_blocks_2d} 
+        ${acl_shimb_blocks_2d} ${uec_shimb_blocks_2d} ${lec_shimb_blocks_2d} ${acm_shimb_blocks_2d}    ${acm_extref1_blocks_2d} ${acm_extref2_blocks_2d} 
+        ${acm_extref3_blocks_2d} ${acm_extref4_blocks_2d} ${acm_shima_blocks_2d}   ${acl_extref1_blocks_2d} ${acl_extref2_blocks_2d} ${acl_extref3_blocks_2d} 
+        ${acl_extref4_blocks_2d} ${acl_shima_blocks_2d  }   ${acu_extref1_blocks_2d} ${acu_extref2_blocks_2d} ${acu_extref3_blocks_2d} ${acu_extref4_blocks_2d} 
+        ${acu_shima_blocks_2d  } ${lgr_ext_blocks       } ${ugr_ext_blocks       }  ${lec_extref1_blocks_2d} ${lec_extref2_blocks_2d} ${lec_extref3_blocks_2d} ${lec_extref4_blocks_2d} 
+        ${lec_shima_blocks_2d  }  ${uec_extref1_blocks_2d} ${uec_extref2_blocks_2d} ${uec_extref3_blocks_2d} ${uec_extref4_blocks_2d} ${uec_shima_blocks_2d  }'
         library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/XS_data/standardconditions_XS.xml'
         library_name = 'standardconditions_XS'
         isotopes = 'pseudo'
@@ -388,7 +393,7 @@ fuel_temp                 = 934.6035 #(K)
     []
     [coolant]
         type = CoupledFeedbackMatIDNeutronicsMaterial
-        block =  '${acu_air_blocks_2d    } ${acm_air_blocks_2d    } ${acl_air_blocks_2d    }'
+        block =  '${acu_air_blocks_2d    } ${acm_air_blocks_2d    } ${acl_air_blocks_2d    } ${ugr_active_blocks    } ${lgr_active_blocks    } ${acl_intref_blocks_2d } ${acm_intref_blocks_2d } ${acu_intref_blocks_2d } ${acl_barrel_blocks_2d } ${acm_barrel_blocks_2d } ${acu_barrel_blocks_2d }'
         library_file = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/XS_data/standardconditions_XS.xml'
         library_name = 'standardconditions_XS'
         isotopes = 'pseudo'
@@ -505,6 +510,10 @@ fuel_temp                 = 934.6035 #(K)
     []
     [nemesis]
         type = Nemesis
+    []
+    [out]
+        type = Checkpoint
+        enable = false
     []
     perf_graph = true
 []

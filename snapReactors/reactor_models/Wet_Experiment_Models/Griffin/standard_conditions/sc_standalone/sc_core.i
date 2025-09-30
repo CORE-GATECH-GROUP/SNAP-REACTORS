@@ -93,8 +93,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
 [Functions]
   [axial_heat_rate]
     type = ParsedFunction
-    expression = '1.0'#'if(z>l1 & z<l2, 1.0, 0.0)'
-    #'(pi/2)*sin(pi*z/L)'
+    expression = 'if(z>l1 & z<l2, 1.0, 0.0)'
     symbol_names = 'l1 l2'
     symbol_values = '${entry_length} ${fparse length_heated_fuel}'
   []
@@ -154,15 +153,19 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
 []
 
 [FluidProperties]
+  # [sodium]
+  #   type = SimpleFluidProperties
+  #   molar_mass = 0.0355
+  #   cp = 873.0
+  #   cv = 873.0
+  #   specific_entropy = 1055
+  #   viscosity = 0.0001582
+  #   thermal_conductivity = 25.9
+  #   thermal_expansion = 2.77e-4
+  # []
   [sodium]
-    type = SimpleFluidProperties
-    molar_mass = 0.0355
-    cp = 873.0
-    cv = 873.0
-    specific_entropy = 1055
-    viscosity = 0.0001582
-    thermal_conductivity = 25.9
-    thermal_expansion = 2.77e-4
+    type = NaKFluidProperties
+    weight_fraction_K = 0.778
   []
 []
 
