@@ -3,8 +3,8 @@
 ###################################################
 # Thermal-hydraulics parameters
 ###################################################
-T_in = 866.5
-P_out = 253727.1   # Pa
+T_in = 870
+P_out = 254000   # Pa
 reactor_power = 600000 #WTh
 #fuel_assemblies_per_power_unit = '${fparse 1}'
 #fuel_pins_per_assembly = 211
@@ -20,7 +20,7 @@ mass_flow = '${fparse 6.15}' # kg/(s)
 scale_factor = 0.01
 #duct_thickness = '${fparse 0.3*scale_factor}'
 fuel_pin_pitch = '${fparse 1.4478*scale_factor}'
-fuel_pin_diameter = '${fparse 1.4268*scale_factor}'
+fuel_pin_diameter = '${fparse 1.42748*scale_factor}'
 wire_z_spacing = '${fparse 0*scale_factor}'
 wire_diameter = '${fparse 0*scale_factor}'
 n_rings = 9
@@ -153,20 +153,20 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
 []
 
 [FluidProperties]
-  # [sodium]
-  #   type = SimpleFluidProperties
-  #   molar_mass = 0.0355
-  #   cp = 873.0
-  #   cv = 873.0
-  #   specific_entropy = 1055
-  #   viscosity = 0.0001582
-  #   thermal_conductivity = 25.9
-  #   thermal_expansion = 2.77e-4
-  # []
   [sodium]
-    type = NaKFluidProperties
-    weight_fraction_K = 0.778
+    type = SimpleFluidProperties
+    molar_mass = 0.0355
+    cp = 873.0
+    cv = 873.0
+    specific_entropy = 1055
+    viscosity = 0.0001582
+    thermal_conductivity = 25.9
+    thermal_expansion = 2.77e-4
   []
+  # [sodium]
+  #   type = NaKFluidProperties
+  #   weight_fraction_K = 0.778
+  # []
 []
 
 [Problem]
@@ -186,7 +186,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   monolithic_thermal = false
   verbose_multiapps = true
   verbose_subchannel = true
-  # gravity = NONE
+  gravity = none
 []
 
 [ICs]
@@ -312,6 +312,13 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     variable = Tpin
     block = fuel_pins
   []
+[P_in]
+  type = SideAverageValue
+  boundary = inlet
+  variable = P
+  execute_on = 'TIMESTEP_END'
+  
+[]
 []
 # [VectorPostprocessors]
 #   [T_fuel_cen]

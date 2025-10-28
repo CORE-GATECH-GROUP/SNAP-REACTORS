@@ -3,8 +3,8 @@
 ###################################################
 # Thermal-hydraulics parameters
 ###################################################
-T_in = 866.0 
-P_out = 253727.1   # Pa
+T_in = 870 
+P_out = 254000   # Pa
 # reactor_power = 671337.24 #WTh
 #fuel_assemblies_per_power_unit = '${fparse 1}'
 #fuel_pins_per_assembly = 211
@@ -20,7 +20,7 @@ mass_flow = '${fparse 6.15}' # kg/(s)
 scale_factor = 0.01
 #duct_thickness = '${fparse 0.3*scale_factor}'
 fuel_pin_pitch = '${fparse 1.4478*scale_factor}'
-fuel_pin_diameter = '${fparse 1.4268*scale_factor}'
+fuel_pin_diameter = '${fparse 1.42748*scale_factor}'
 wire_z_spacing = '${fparse 0*scale_factor}'
 wire_diameter = '${fparse 0*scale_factor}'
 n_rings = 9
