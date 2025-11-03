@@ -174,7 +174,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   fp = sodium
   n_blocks = 1
   P_out = ${P_out}
-  CT = 0
+  CT = 1.0
   compute_density = false #true
   compute_viscosity = true #true
   compute_power = true #true
@@ -186,7 +186,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   monolithic_thermal = false
   verbose_multiapps = true
   verbose_subchannel = true
-  gravity = none
+  #gravity = none
 []
 
 [ICs]

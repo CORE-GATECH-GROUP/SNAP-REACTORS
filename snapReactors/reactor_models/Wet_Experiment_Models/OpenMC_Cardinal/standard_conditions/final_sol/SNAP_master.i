@@ -61,25 +61,35 @@ reflector_blocks = 'outer_reflector1 outer_reflector1_trim'
 []
 
 [ICs]
-  [temp]
-    type = FunctionIC
-    variable = temp
-    function = temp_ic
+  [openmc_Tcool]
+    type = ConstantIC
+    variable =  openmc_Tcool
+    value = 922.03
   []
+[openmc_Tfuel]
+  type = ConstantIC
+  value = 934.6035
+  variable = openmc_Tfuel
+[]
+[openmc_Tref]
+  type = ConstantIC
+  value = 870
+  variable = openmc_Tref
+[]
   [heat_source]
     type = ConstantIC
     variable = heat_source
-    block = ${fuel_blocks}
+    block = 'Fuel'
     value = ${fparse power / ((n_fuel_pins) * ( pi * fuel_diameter * fuel_diameter * unit_cell_height / 4.0 ))}
   []
 []
 
-[Functions]
-  [temp_ic]
-    type = ParsedFunction
-    expression = '${inlet_T} + (${height} - z) / ${height} * ${power} / ${mdot} / ${fluid_Cp}'
-  []
-[]
+# [Functions]
+#   [temp_ic]
+#     type = ParsedFunction
+#     expression = '${inlet_T} + (${height} - z) / ${height} * ${power} / ${mdot} / ${fluid_Cp}'
+#   []
+# []
 
 [Problem]
   type = OpenMCCellAverageProblem
@@ -97,27 +107,27 @@ reflector_blocks = 'outer_reflector1 outer_reflector1_trim'
   # results are instead obtained by increasing this parameter to 10000. We also use fewer
   # batches to speed things up; the converged results were obtained with 500 inactive batches
   # and 2000 active batches
-  particles = 200000
-  inactive_batches = 500
-  batches = 2000
+  particles = 20000
+  inactive_batches = 50
+  batches = 100
   lowest_cell_level = '1' # feedback on first level (level 0 is lattice, so we want cells within)
   source_rate_normalization = 'kappa_fission' # normalization for flux tally
 
   # we will read temperature from THM (for the fluid) and MOOSE (for the solid)
   # into variables we name as 'solid_temp' and 'thm_temp'. This syntax will automatically
   # create those variabes for us
-  temperature_blocks =    'Fuel Ceramic GAPHE Clad ;
-                           barrel ;
+  temperature_blocks =    'Fuel Ceramic GAPHE Clad;
+                           barrel;
                            outer_reflector1 outer_reflector1_trim'
-  temperature_variables = 'htm_Tfuel;
-                            htm_Tinf;
-                            htm_Tref'
+  temperature_variables = 'openmc_Tfuel;
+                            openmc_Tcool;
+                            openmc_Tref'
   verbose = true
   [Tallies]
     [heat_source]
       type = CellTally
       check_equal_mapped_tally_volumes = false
-      blocks = 'Fuel Ceramic GAPHE Clad'
+      block = 'Fuel'
       name = heat_source
       output = 'unrelaxed_tally_std_dev'
     []
@@ -153,19 +163,19 @@ reflector_blocks = 'outer_reflector1 outer_reflector1_trim'
      type = MultiAppGeometricInterpolationTransfer
      from_multi_app = htm
      source_variable = htm_Tref
-     variable = temp
+     variable = openmc_Tref
   []
   [from_htm_fuel_temp]
   type = MultiAppGeometricInterpolationTransfer
   from_multi_app = htm
-  source_variable = from_htm_Tfuel
-  variable = temp
+  source_variable = htm_Tfuel
+  variable = openmc_Tfuel
   []
   [from_htm_Tcool]
      type = MultiAppGeometricInterpolationTransfer
      from_multi_app = htm
      source_variable = htm_T_inf
-     variable = temp
+     variable = openmc_Tcool
   []
 []
 

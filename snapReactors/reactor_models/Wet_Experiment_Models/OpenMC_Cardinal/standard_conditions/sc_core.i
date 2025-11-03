@@ -3,7 +3,7 @@
 ###################################################
 # Thermal-hydraulics parameters
 ###################################################
-T_in = 870 
+T_in = 870.0 
 P_out = 254000   # Pa
 # reactor_power = 671337.24 #WTh
 #fuel_assemblies_per_power_unit = '${fparse 1}'
@@ -51,7 +51,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   [subchannel]
     type = SCMTriSubChannelMeshGenerator
     nrings = '${fparse n_rings}'
-    n_cells = 10
+    n_cells = 30
     flat_to_flat = '${fparse duct_inside}'
     unheated_length_entry = '${fparse entry_length}'
     heated_length = '${fparse length_heated_fuel}'
@@ -68,7 +68,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     type = SCMTriPinMeshGenerator
     input = subchannel
     nrings = '${fparse n_rings}'
-    n_cells = 10
+    n_cells = 30
     unheated_length_entry = '${fparse entry_length}'
     heated_length = '${fparse length_heated_fuel}'
     unheated_length_exit = '${fparse exit_length}'
@@ -79,7 +79,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     type = SCMTriDuctMeshGenerator
     input = fuel_pins
     nrings = '${fparse n_rings}'
-    n_cells = 10
+    n_cells = 30
     flat_to_flat = '${fparse duct_inside}'
     unheated_length_entry = '${fparse entry_length}'
     heated_length = '${fparse length_heated_fuel}'
@@ -139,7 +139,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   [mu]
     block = subchannel
   []
-  [duct_heat_flux]
+  [q_prime_duct]
     block = duct
     initial_condition = 0
   []
@@ -170,19 +170,18 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   fp = sodium
   n_blocks = 1
   P_out = ${P_out}
-  CT = 1.0
+  CT = 0
   compute_density = false #true
   compute_viscosity = true #true
   compute_power = true #true
-  P_tol = 1.0e-2
-  T_tol = 1.0e-2
+  P_tol = 1.0e-5
+  T_tol = 1.0e-5
   implicit = true
   segregated = false
   staggered_pressure = false
-  monolithic_thermal = true
-  # verbose_multiapps = true
-  # verbose_subchannel = true
-  # type = NoSolveProblem
+  monolithic_thermal = false
+  verbose_multiapps = true
+  verbose_subchannel = true
 []
 
 
@@ -196,14 +195,6 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     type = SCMTriWettedPerimIC
     variable = w_perim
   []
-  
-  # [q_prime_IC]
-  #   type = SCMTriPowerIC
-  #   variable = q_prime
-  #   power = ${reactor_power} # W
-  #   filename = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_standalone/S8ER_pin.txt"
-  #   axial_heat_rate = axial_heat_rate
-  # []
 
   [T_ic]
     type = ConstantIC
@@ -290,7 +281,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   [Tpin_avg_uo]
     type = NearestPointLayeredAverage
     direction = z
-    num_layers = 10
+    num_layers = 30
     variable = Tpin
     block = fuel_pins
     points = '${fparse 0.012} 0.0 0.0'
@@ -303,12 +294,14 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
       type = LineValueSampler
       start_point = '0 0 0.05'
       end_point = '0 0 0.355'
-      num_points = 10
+      num_points = 30
       variable = q_prime
       sort_by = 'z'
       execute_on = 'initial timestep_begin'
   []
 []
+
+
 [Outputs]
   [exodus]
     type = Exodus
@@ -336,7 +329,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   #active = ''
   [viz]
     type = FullSolveMultiApp
-    input_files = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/standard_conditions/full_multiphysics/sc_core_viz.i"
+    input_files = "sc_core_viz.i"
     execute_on = "final"
   []
 []

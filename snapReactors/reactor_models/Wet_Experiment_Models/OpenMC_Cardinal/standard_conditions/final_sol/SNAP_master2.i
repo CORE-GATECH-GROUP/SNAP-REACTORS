@@ -69,7 +69,7 @@ reflector_blocks = 'outer_reflector1 outer_reflector1_trim'
   [heat_source]
     type = ConstantIC
     variable = heat_source
-    block = ${fuel_blocks}
+    block = 'Fuel'
     value = ${fparse power / ((n_fuel_pins) * ( pi * fuel_diameter * fuel_diameter * unit_cell_height / 4.0 ))}
   []
 []
@@ -106,18 +106,13 @@ reflector_blocks = 'outer_reflector1 outer_reflector1_trim'
   # we will read temperature from THM (for the fluid) and MOOSE (for the solid)
   # into variables we name as 'solid_temp' and 'thm_temp'. This syntax will automatically
   # create those variabes for us
-  temperature_blocks =    'Fuel Ceramic GAPHE Clad ;
-                           barrel ;
-                           outer_reflector1 outer_reflector1_trim'
-  temperature_variables = 'htm_Tfuel;
-                            htm_Tinf;
-                            htm_Tref'
-  verbose = true
+  temperature_blocks =    'Fuel Ceramic GAPHE Clad barrel outer_reflector1 outer_reflector1_trim'
+
   [Tallies]
     [heat_source]
       type = CellTally
       check_equal_mapped_tally_volumes = false
-      blocks = 'Fuel Ceramic GAPHE Clad'
+      block = 'Fuel Ceramic GAPHE Clad'
       name = heat_source
       output = 'unrelaxed_tally_std_dev'
     []
@@ -126,7 +121,8 @@ reflector_blocks = 'outer_reflector1 outer_reflector1_trim'
 
 [MultiApps]
   # Heat conduction model
-  [htm] 				
+  [htm] 
+							
     type = FullSolveMultiApp
     app_type = CardinalApp
     input_files = htm_core.i
@@ -135,12 +131,12 @@ reflector_blocks = 'outer_reflector1 outer_reflector1_trim'
 []
 
 [Transfers]
-  # [temperature_to_master]
-  #   type = MultiAppGeneralFieldShapeEvaluationTransfer
-  #   from_multi_app = htm
-  #   variable = temp
-  #   source_variable = htm_temp
-  # []
+  [temperature_to_master]
+    type = MultiAppGeneralFieldShapeEvaluationTransfer
+    from_multi_app = htm
+    variable = temp
+    source_variable = htm_temp
+  []
   [source_to_htm]
     type = MultiAppGeneralFieldShapeEvaluationTransfer
     source_variable = heat_source
@@ -149,30 +145,25 @@ reflector_blocks = 'outer_reflector1 outer_reflector1_trim'
     from_postprocessors_to_be_preserved = heat_source
     to_postprocessors_to_be_preserved = power_density
   []
-  [from_htm_ref_temp]
-     type = MultiAppGeometricInterpolationTransfer
-     from_multi_app = htm
-     source_variable = htm_Tref
-     variable = temp
-  []
-  [from_htm_fuel_temp]
-  type = MultiAppGeometricInterpolationTransfer
-  from_multi_app = htm
-  source_variable = from_htm_Tfuel
-  variable = temp
-  []
-  [from_htm_Tcool]
-     type = MultiAppGeometricInterpolationTransfer
-     from_multi_app = htm
-     source_variable = htm_T_inf
-     variable = temp
-  []
+  #[from_htm_ref_temp]
+  #    type = MultiAppGeometricInterpolationTransfer
+  #    from_multi_app = htm
+  #    source_variable = htm_Tref
+  #    variable = temp
+  #[]
+  #[from_htm_Tcool]
+  #    type = MultiAppGeometricInterpolationTransfer
+  #    from_multi_app = htm
+  #    source_variable = htm_T_inf
+  #    variable = temp
+  #[]
 []
 
 [Postprocessors]
   [heat_source]
     type = ElementIntegralVariablePostprocessor
     variable = heat_source
+    block = 'Fuel Ceramic GAPHE Clad'
     execute_on = 'transfer initial timestep_end'
   []
   [max_tally_rel_err]
@@ -233,7 +224,14 @@ reflector_blocks = 'outer_reflector1 outer_reflector1_trim'
 [Executioner]
   #type = Transient
   #num_steps = 5
-  type = Steady
+    type = Steady
+    custom_pp = k
+    custom_rel_tol = 1e-7
+    fixed_point_max_its = 4
+    fixed_point_min_its = 3
+    fixed_point_solve_outer = true
+    force_fixed_point_solve = true
+    accept_on_max_fixed_point_iteration = True
 []
 
 
@@ -244,6 +242,8 @@ reflector_blocks = 'outer_reflector1 outer_reflector1_trim'
     type = CSV
     file_base = 'csv_SNAP/SNAP'
   []
+  [out]
+    type = Checkpoint
+    enable = false
+  []
 []
-
-

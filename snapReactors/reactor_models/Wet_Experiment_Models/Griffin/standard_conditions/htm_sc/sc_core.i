@@ -144,8 +144,14 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
 
 [FluidProperties]
   [sodium]
-    type = NaKFluidProperties
-    weight_fraction_K = 0.778
+    type = SimpleFluidProperties
+    molar_mass = 0.0355
+    cp = 873.0
+    cv = 873.0
+    specific_entropy = 1055
+    viscosity = 0.0001582
+    thermal_conductivity = 25.9
+    thermal_expansion = 2.77e-4
   []
 []
 
@@ -158,12 +164,12 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   compute_density = false #true
   compute_viscosity = true #true
   compute_power = true #true
-  P_tol = 1.0e-2
-  T_tol = 1.0e-2
+  P_tol = 1.0e-5
+  T_tol = 1.0e-5
   implicit = true
   segregated = false
   staggered_pressure = false
-  monolithic_thermal = true
+  monolithic_thermal = false
   # verbose_multiapps = true
   # verbose_subchannel = true
   # type = NoSolveProblem

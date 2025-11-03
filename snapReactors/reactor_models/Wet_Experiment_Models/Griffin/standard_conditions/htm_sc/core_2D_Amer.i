@@ -117,7 +117,7 @@
 #coolant_tc                    = 30
 
 
-inlet_T_fluid             = 866  # (K) 
+inlet_T_fluid             = 870  # (K) 
 ht_coeff                  = 4539.6
 fuel_blocks = 'Fuel'
 ceram_blocks = 'Ceramic'

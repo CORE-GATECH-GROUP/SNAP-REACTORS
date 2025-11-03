@@ -257,8 +257,8 @@ multi_app_z_pos = '${fparse lay1 + lay2}'
 []
 
 total_power               = 600000.00 # (W). #total power
-inlet_T_fluid             = 922.03 # (K)
-ext_T_ref                 = 866 # (K)
+inlet_T_fluid             = 925 # (K)
+ext_T_ref                 = 870 # (K)
 fuel_temp                 = 934.6035 #(K)
 # ==============================================================================
 # AUXVARIABLES AND AUXKERNELS
