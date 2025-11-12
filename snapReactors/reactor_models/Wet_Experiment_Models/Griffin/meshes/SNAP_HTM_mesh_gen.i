@@ -1,8 +1,8 @@
 # ./cardinal-opt -i common_SNAP.i SNAP_mesh.i --mesh-only
 n_layers = 8    # number of axial extrusion layers; for the converged case,
                   # we set this to 20 to get a finer mesh
-outer_height_top = '${units 32.6917 cm -> m}' # height of top of outer reflector
-outer_height_bottom = '${units 2.1717 cm -> m}' # height of bottom of outer reflector
+# outer_height_top = '${units 32.6917 cm -> m}' # height of top of outer reflector
+# outer_height_bottom = '${units 2.1717 cm -> m}' # height of bottom of outer reflector
 fuel_to_coolant_distance = 0.01448
 fuel_temp = 934.6035
 acm_dz = '${fparse (35.56 + 35.56 * (4.52e-6 + (fuel_temp - 273.15) * 1.925e-8) * ((fuel_temp - 273.15) - (300 - 273.15)) - 2.9083 - 2.1717)/100}'
@@ -84,6 +84,7 @@ lay2 = '${fparse 2.9083/100}'
   [barrel]
     type = PeripheralRingMeshGenerator
     input = core
+    peripheral_layer_num = 6
     input_mesh_external_boundary = 10000
     peripheral_ring_block_id = '15'
     peripheral_ring_block_name = 'barrel'
@@ -94,6 +95,7 @@ lay2 = '${fparse 2.9083/100}'
   [outer_reflector1]
     type = PeripheralRingMeshGenerator
     input = barrel
+    peripheral_layer_num = 6
     input_mesh_external_boundary = 'barrel_outer_surf'
     peripheral_ring_block_id = '3'
     peripheral_ring_block_name = 'outer_reflector1'

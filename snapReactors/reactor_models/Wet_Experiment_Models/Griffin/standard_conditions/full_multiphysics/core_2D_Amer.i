@@ -150,7 +150,7 @@ extref_blocks = 'outer_reflector1 outer_reflector1_trim'
 [Mesh]
     [core_unextruded]
         type = FileMeshGenerator
-        file = /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/meshes/SNAP_HTM_mesh.e
+        file = /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/meshes/SNAP_HTM_mesh_gen_in.e
     []
     # [transform_core_unextruded]
     #     type = TransformGenerator
@@ -267,7 +267,7 @@ extref_blocks = 'outer_reflector1 outer_reflector1_trim'
         type = NormalizationAux
         variable = bison_norm_power_density
         source_variable = bison_power_density
-        normal_factor = 1.26580604001
+        normal_factor = 1.26690820976 #1.26580604001
         execute_on = 'timestep_begin' #check
     []  
     [make_powdens_linear]
@@ -309,6 +309,8 @@ extref_blocks = 'outer_reflector1 outer_reflector1_trim'
         from_blocks = 'Fuel'
         to_blocks = fuel_pins
         greedy_search = true
+        from_postprocessors_to_be_preserved = norm_power
+        to_postprocessors_to_be_preserved = power
     []
     [coolant_temp_from_SC]
         type = MultiAppGeneralFieldNearestLocationTransfer
@@ -469,6 +471,12 @@ accept_on_max_fixed_point_iteration = True
 # POSTPROCESSORS DEBUG AND OUTPUTS
 # ==============================================================================
 [Postprocessors]
+    [heat_flux_barrel]
+        type = ADSideDiffusiveFluxIntegral
+        variable = bison_temp
+        boundary = barrel_outer_surf
+        diffusivity = thermal_conductivity
+    []
     [temp_max]
         type = ElementExtremeValue
         variable = bison_temp

@@ -336,7 +336,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   #active = ''
   [viz]
     type = FullSolveMultiApp
-    input_files = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/sc_core_viz.i"
+    input_files = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/sc_core_viz.i"
     execute_on = "final"
   []
 []

@@ -10,9 +10,6 @@ WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-comm
 WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
 WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
 WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
-WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
-WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
-WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
  WARNING: Negative value(s) found on probability table for nuclide Zr96 at 250K
  WARNING: Negative value(s) found on probability table for nuclide Zr96 at 294K
  WARNING: Negative value(s) found on probability table for nuclide Zr96 at 600K

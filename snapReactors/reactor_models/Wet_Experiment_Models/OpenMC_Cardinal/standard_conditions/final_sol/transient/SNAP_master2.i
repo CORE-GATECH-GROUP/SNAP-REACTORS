@@ -224,16 +224,16 @@ reflector_blocks = 'outer_reflector1 outer_reflector1_trim'
 []
 
 [Executioner]
-  #type = Transient
-  #num_steps = 5
-    type = Steady
-    custom_pp = k
-    custom_rel_tol = 1e-7
-    fixed_point_max_its = 4
-    fixed_point_min_its = 3
-    fixed_point_solve_outer = true
-    force_fixed_point_solve = true
-    accept_on_max_fixed_point_iteration = True
+  type = Transient
+  num_steps = 5
+    # type = Steady
+    # custom_pp = k
+    # custom_rel_tol = 1e-7
+    # fixed_point_max_its = 4
+    # fixed_point_min_its = 3
+    # fixed_point_solve_outer = true
+    # force_fixed_point_solve = true
+    # accept_on_max_fixed_point_iteration = True
 []
 
 

@@ -174,15 +174,14 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   compute_density = false #true
   compute_viscosity = true #true
   compute_power = true #true
-  P_tol = 1.0e-2
-  T_tol = 1.0e-2
+  P_tol = 1.0e-5
+  T_tol = 1.0e-5
   implicit = true
   segregated = false
   staggered_pressure = false
   monolithic_thermal = true
   # verbose_multiapps = true
   # verbose_subchannel = true
-  # type = NoSolveProblem
 []
 
 
@@ -196,14 +195,6 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     type = SCMTriWettedPerimIC
     variable = w_perim
   []
-  
-  # [q_prime_IC]
-  #   type = SCMTriPowerIC
-  #   variable = q_prime
-  #   power = ${reactor_power} # W
-  #   filename = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_standalone/S8ER_pin.txt"
-  #   axial_heat_rate = axial_heat_rate
-  # []
 
   [T_ic]
     type = ConstantIC
@@ -308,6 +299,15 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
       sort_by = 'z'
       execute_on = 'initial timestep_begin'
   []
+[]
+[Postprocessors]
+      [power]
+        type = ElementIntegralVariablePostprocessor
+        variable = q_prime
+        #use_displaced_mesh = true # check
+        block = fuel_pins
+        execute_on = 'transfer initial timestep_end'
+    []
 []
 [Outputs]
   [exodus]
