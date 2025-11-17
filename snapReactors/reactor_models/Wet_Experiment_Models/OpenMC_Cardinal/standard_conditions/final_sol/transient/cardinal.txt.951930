@@ -1,0 +1,358 @@
+
+[36m
+*** Info ***
+Merging inputs common_SNAP.i, SNAP_master2.i[39m
+
+[36m
+*** Info ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:5.1:  Parameter 'fuel_diameter' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:12, /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:6.1:  Parameter 'fuel_to_coolant_distance' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:13, /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:7.1:  Parameter 'height' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:14, /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:8.1:  Parameter 'unit_cell_height' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:15, /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:12.1:  Parameter 'fluid_density' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:19, /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:13.1:  Parameter 'fluid_Cp' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:20, /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:15.1:  Parameter 'gap_k' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:22, /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:16.1:  Parameter 'clad_k' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:23, /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:17.1:  Parameter 'ceramic_k' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:24, /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:18.1:  Parameter 'fuel_k' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:25, /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:19.1:  Parameter 'reflector_k' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:26, /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:23.1:  Parameter 'inlet_T' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:31, /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:24.1:  Parameter 'power' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:32, /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:25.1:  Parameter 'mdot' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:33, /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:26.1:  Parameter 'outlet_P' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:34, /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:30.1:  Parameter 'n_fuel_pins' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:38, /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:32.1:  Parameter 'num_layers_for_plots' overrides the same parameter in /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i:40
+[39m
+Setting Up...
+  Setting Up Undisplaced Mesh
+    Preparing Mesh
+      Finished Updating Mesh                                                             [[33m  2.62 s[39m] [[33m 1559 MB[39m]
+    Finished Preparing Mesh                                                              [[33m  3.13 s[39m] [[33m 1559 MB[39m]
+  Finished Setting Up Undisplaced Mesh                                                   [[33m  3.13 s[39m] [[33m 1559 MB[39m]
+                                %%%%%%%%%%%%%%%
+                           %%%%%%%%%%%%%%%%%%%%%%%%
+                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                    %%%%%%%%%%%%%%%%%%%%%%%%
+                                     %%%%%%%%%%%%%%%%%%%%%%%%
+                 ###############      %%%%%%%%%%%%%%%%%%%%%%%%
+                ##################     %%%%%%%%%%%%%%%%%%%%%%%
+                ###################     %%%%%%%%%%%%%%%%%%%%%%%
+                ####################     %%%%%%%%%%%%%%%%%%%%%%
+                #####################     %%%%%%%%%%%%%%%%%%%%%
+                ######################     %%%%%%%%%%%%%%%%%%%%
+                #######################     %%%%%%%%%%%%%%%%%%
+                 #######################     %%%%%%%%%%%%%%%%%
+                 ######################     %%%%%%%%%%%%%%%%%
+                  ####################     %%%%%%%%%%%%%%%%%
+                    #################     %%%%%%%%%%%%%%%%%
+                     ###############     %%%%%%%%%%%%%%%%
+                       ############     %%%%%%%%%%%%%%%
+                          ########     %%%%%%%%%%%%%%
+                                      %%%%%%%%%%%
+
+                 | The OpenMC Monte Carlo Code
+       Copyright | 2011-2025 MIT, UChicago Argonne LLC, and contributors
+         License | https://docs.openmc.org/en/latest/license.html
+         Version | 0.15.3-dev120
+     Commit Hash | 4011b7a5515e4098f179d825313f574680d3a68f
+       Date/Time | 2025-11-11 12:43:31
+   MPI Processes | 12
+  OpenMP Threads | 1
+
+ Reading settings XML file...
+ Reading cross sections XML file...
+ Reading materials XML file...
+ Reading geometry XML file...
+ Reading Na23 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Na23.h5
+ Reading K39 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/K39.h5
+ Reading K40 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/K40.h5
+ Reading K41 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/K41.h5
+ Reading C12 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/C12.h5
+ Reading Mn55 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Mn55.h5
+ Reading Si28 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Si28.h5
+ Reading Si29 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Si29.h5
+ Reading Si30 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Si30.h5
+ Reading P31 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/P31.h5
+ Reading S32 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/S32.h5
+ Reading S33 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/S33.h5
+ Reading S34 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/S34.h5
+ Reading S36 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/S36.h5
+ Reading Cr50 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Cr50.h5
+ Reading Cr52 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Cr52.h5
+ Reading Cr53 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Cr53.h5
+ Reading Cr54 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Cr54.h5
+ Reading Mo92 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Mo92.h5
+ Reading Mo94 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Mo94.h5
+ Reading Mo95 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Mo95.h5
+ Reading Mo96 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Mo96.h5
+ Reading Mo97 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Mo97.h5
+ Reading Mo98 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Mo98.h5
+ Reading Mo100 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Mo100.h5
+ Reading Ni58 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ni58.h5
+ Reading Ni60 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ni60.h5
+ Reading Ni61 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ni61.h5
+ Reading Ni62 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ni62.h5
+ Reading Ni64 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ni64.h5
+Still Setting Up Reading N14 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/N14.h5
+ Reading N15 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/N15.h5
+ Reading Fe54 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Fe54.h5
+ Reading Fe56 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Fe56.h5
+ Reading Fe57 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Fe57.h5
+ Reading Fe58 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Fe58.h5
+ Reading Zr92 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Zr92.h5
+ Reading Zr94 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Zr94.h5
+ Reading Zr95 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Zr95.h5
+ Reading Zr96 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Zr96.h5
+ Reading W182 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/W182.h5
+ Reading W183 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/W183.h5
+ Reading W184 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/W184.h5
+ Reading W186 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/W186.h5
+ Reading V51 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/V51.h5
+ Reading Cu63 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Cu63.h5
+ Reading Cu65 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Cu65.h5
+. Reading Co59 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Co59.h5
+ Reading Al27 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Al27.h5
+ Reading Ti46 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ti46.h5
+ Reading Ti47 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ti47.h5
+ Reading Ti48 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ti48.h5
+ Reading Ti49 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ti49.h5
+ Reading Ti50 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ti50.h5
+ Reading O16 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/O16.h5
+ Reading Be9 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Be9.h5
+ Reading O17 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/O17.h5
+ Reading Ar36 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ar36.h5
+ Reading Ar38 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ar38.h5
+ Reading Ar40 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ar40.h5
+ Reading H1 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/H1.h5
+ Reading H2 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/H2.h5
+ Reading U235 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/U235.h5
+ Reading U238 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/U238.h5
+ Reading Zr90 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Zr90.h5
+ Reading Zr91 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Zr91.h5
+ Reading Li6 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Li6.h5
+ Reading Li7 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Li7.h5
+ Reading Ca40 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ca40.h5
+ Reading Ca42 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ca42.h5
+ Reading Ca43 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ca43.h5
+ Reading Ca44 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ca44.h5
+ Reading Ca46 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ca46.h5
+ Reading Ca48 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ca48.h5
+ Reading Mg24 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Mg24.h5
+ Reading Mg25 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Mg25.h5
+ Reading Mg26 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Mg26.h5
+ Reading Ba130 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ba130.h5
+. Reading Ba132 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ba132.h5
+ Reading Ba134 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ba134.h5
+ Reading Ba135 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ba135.h5
+ Reading Ba136 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ba136.h5
+ Reading Ba137 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ba137.h5
+ Reading Ba138 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Ba138.h5
+ Reading Sr84 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Sr84.h5
+ Reading Sr86 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Sr86.h5
+ Reading Sr87 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Sr87.h5
+ Reading Sr88 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Sr88.h5
+ Reading Sm144 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Sm144.h5
+ Reading Sm147 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Sm147.h5
+ Reading Sm148 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Sm148.h5
+ Reading Sm149 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Sm149.h5
+ Reading Sm150 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Sm150.h5
+ Reading Sm152 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Sm152.h5
+ Reading Sm154 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/Sm154.h5
+ Reading He4 from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/He4.h5
+ Reading c_Be from /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/c_Be.h5
+ Reading c_H_in_ZrH from
+ /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/c_H_in_ZrH.h5
+. Reading c_Zr_in_ZrH from
+ /hpc-common/data/openmc/endfb-viii.0-hdf5/neutron/c_Zr_in_ZrH.h5
+ Minimum neutron data temperature: 250 K
+ Maximum neutron data temperature: 2500 K
+ Preparing distributed cell instances...
+ Reading plot XML file...
+ Writing summary.h5 file...
+
+
+[33m
+*** Warning ***
+/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i:84.1:
+The following occurred in the Problem 'MOOSE Problem' of type OpenMCCellAverageProblem.
+
+When either running in fixed-source mode, or all tallies have units of eV/src, the 'source_rate_normalization' parameter is unused![39m
+[36mhtm0: [39mSetting Up Undisplaced Mesh
+[36mhtm0: [39m  Preparing Mesh
+[36mhtm0: [39m    Finished Updating Mesh                                                         [[33m  2.30 s[39m] [[33m 5025 MB[39m]
+[36mhtm0: [39m  Finished Preparing Mesh                                                          [[33m  2.76 s[39m] [[33m 5025 MB[39m]
+[36mhtm0: [39mFinished Setting Up Undisplaced Mesh                                               [[33m  2.76 s[39m] [[33m 5025 MB[39m]
+[36mhtm0_sc0: [39mFinished Instantiating Sub-Apps                                                [[33m  1.92 s[39m] [[33m 5455 MB[39m]
+[36mhtm0: [39mFinished Instantiating Sub-Apps                                                    [[33m  2.09 s[39m] [[33m 5464 MB[39m]
+[36mhtm0: [39mInitializing[36mhtm0: [39m
+[36mhtm0: [39m  Initializing Equation Systems                                                    [[33m 12.95 s[39m] [[33m 6724 MB[39m]
+[36mhtm0: [39mFinished Initializing                                                              [[33m 15.55 s[39m] [[33m 6724 MB[39m]
+  Finished Instantiating Sub-Apps                                                        [[33m 43.20 s[39m] [[33m 6724 MB[39m]
+kappa-fission
+  Initializing
+    Finished Initializing Equation Systems                                               [[33m  7.58 s[39m] [[33m 6849 MB[39m]
+  Finished Initializing                                                                  [[33m 10.60 s[39m] [[33m 6849 MB[39m]
+Finished Setting Up                                                                      [[33m103.26 s[39m] [[33m 6849 MB[39m]
+Framework Information:
+MOOSE Version:           git commit b1e271b638 on 2025-10-10
+LibMesh Version:         8d86fc999b8682441722d52851cbab29e14e5bfd
+PETSc Version:           3.23.4
+SLEPc Version:           3.23.2
+Current Time:            Tue Nov 11 12:44:49 2025
+Executable Timestamp:    Sun Oct 26 19:44:32 2025
+
+Input File(s):
+  /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/common_SNAP.i
+  /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/SNAP_master2.i
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  User Checkpoint:         Outputs/out
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          12
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 2336873
+    Local:                 194711
+    Min/Max/Avg:           194711/194742/194739
+  Elems:                   
+    Total:                 2179380
+    Local:                 183540
+    Min/Max/Avg:           181440/183540/181615
+  Num Subdomains:          7
+  Num Partitions:          12
+  Partitioner:             metis
+
+Auxiliary System:
+  Num DOFs:                12971280
+  Num Local DOFs:          996240
+  Variables:               "cell_temperature" { "heat_source" "heat_source_std_dev" } "temp" { "cell_id" 
+                             "cell_instance" } 
+  Finite Element Types:    "MONOMIAL" "MONOMIAL" "MONOMIAL" "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" "CONSTANT" "CONSTANT" "CONSTANT" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             ConstantDT
+  TimeIntegrator(s):       ImplicitEuler
+  Solver Mode:             Preconditioned JFNK 
+[36mhtm0: [39mFramework Information:
+[36mhtm0: [39mMOOSE Version:           git commit b1e271b638 on 2025-10-10
+[36mhtm0: [39mLibMesh Version:         8d86fc999b8682441722d52851cbab29e14e5bfd
+[36mhtm0: [39mPETSc Version:           3.23.4
+[36mhtm0: [39mSLEPc Version:           3.23.2
+[36mhtm0: [39mCurrent Time:            Tue Nov 11 12:44:51 2025
+[36mhtm0: [39mExecutable Timestamp:    Sun Oct 26 19:44:32 2025
+[36mhtm0: [39m
+[36mhtm0: [39mInput File(s):
+[36mhtm0: [39m  /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/htm_core.i
+[36mhtm0: [39m
+[36mhtm0: [39mParallelism:
+[36mhtm0: [39m  Num Processors:          12
+[36mhtm0: [39m  Num Threads:             1
+[36mhtm0: [39m
+[36mhtm0: [39mMesh: 
+[36mhtm0: [39m  Parallel Type:           replicated
+[36mhtm0: [39m  Mesh Dimension:          3
+[36mhtm0: [39m  Spatial Dimension:       3
+[36mhtm0: [39m  Nodes:                   
+[36mhtm0: [39m    Total:                 2336873
+[36mhtm0: [39m    Local:                 194711
+[36mhtm0: [39m    Min/Max/Avg:           194711/194742/194739
+[36mhtm0: [39m  Elems:                   
+[36mhtm0: [39m    Total:                 2179380
+[36mhtm0: [39m    Local:                 183540
+[36mhtm0: [39m    Min/Max/Avg:           181440/183540/181615
+[36mhtm0: [39m  Num Subdomains:          7
+[36mhtm0: [39m  Num Partitions:          12
+[36mhtm0: [39m  Partitioner:             metis
+[36mhtm0: [39m
+[36mhtm0: [39mNonlinear System:
+[36mhtm0: [39m  Num DOFs:                2336873
+[36mhtm0: [39m  Num Local DOFs:          194711
+[36mhtm0: [39m  Variables:               "htm_temp" 
+[36mhtm0: [39m  Finite Element Types:    "LAGRANGE" 
+[36mhtm0: [39m  Approximation Orders:    "FIRST" 
+[36mhtm0: [39m
+[36mhtm0: [39mAuxiliary System:
+[36mhtm0: [39m  Num DOFs:                40285276
+[36mhtm0: [39m  Num Local DOFs:          2710420
+[36mhtm0: [39m  Variables:               "power" { "power_density" "adjusted_power_density" } { "htm_T_inf" "htm_T_duct" 
+[36mhtm0: [39m                             } "htm_Tfuel" "htm_Tref" "norm_power_density" "HTC" "pow_lin" "pow_lin_node" 
+[36mhtm0: [39m                             
+[36mhtm0: [39m  Finite Element Types:    "MONOMIAL" "L2_LAGRANGE" "LAGRANGE" "LAGRANGE" "LAGRANGE" "L2_LAGRANGE" "MONOMIAL" 
+[36mhtm0: [39m                             "L2_LAGRANGE" "LAGRANGE" 
+[36mhtm0: [39m  Approximation Orders:    "CONSTANT" "FIRST" "FIRST" "FIRST" "FIRST" "FIRST" "CONSTANT" "FIRST" "FIRST" 
+[36mhtm0: [39m                             
+[36mhtm0: [39m
+[36mhtm0: [39mExecution Information:
+[36mhtm0: [39m  Executioner:             Steady
+[36mhtm0: [39m  Solver Mode:             NEWTON 
+[36mhtm0: [39m  PETSc Preconditioner:    bjacobi 
+[36mhtm0: [39m  MOOSE Preconditioner:    SMP (auto) 
+[36mhtm0_sc0: [39mFramework Information:
+[36mhtm0_sc0: [39mMOOSE Version:           git commit b1e271b638 on 2025-10-10
+[36mhtm0_sc0: [39mLibMesh Version:         8d86fc999b8682441722d52851cbab29e14e5bfd
+[36mhtm0_sc0: [39mPETSc Version:           3.23.4
+[36mhtm0_sc0: [39mSLEPc Version:           3.23.2
+[36mhtm0_sc0: [39mCurrent Time:            Tue Nov 11 12:44:59 2025
+[36mhtm0_sc0: [39mExecutable Timestamp:    Sun Oct 26 19:44:32 2025
+[36mhtm0_sc0: [39m
+[36mhtm0_sc0: [39mInput File(s):
+[36mhtm0_sc0: [39m  /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/sc_core.i
+[36mhtm0_sc0: [39m
+[36mhtm0_sc0: [39mParallelism:
+[36mhtm0_sc0: [39m  Num Processors:          1
+[36mhtm0_sc0: [39m  Num Threads:             1
+[36mhtm0_sc0: [39m
+[36mhtm0_sc0: [39mMesh: 
+[36mhtm0_sc0: [39m  Parallel Type:           replicated
+[36mhtm0_sc0: [39m  Mesh Dimension:          2
+[36mhtm0_sc0: [39m  Spatial Dimension:       3
+[36mhtm0_sc0: [39m  Nodes:                   22165
+[36mhtm0_sc0: [39m  Elems:                   21450
+[36mhtm0_sc0: [39m  Num Subdomains:          3
+[36mhtm0_sc0: [39m
+[36mhtm0_sc0: [39mAuxiliary System:
+[36mhtm0_sc0: [39m  Num DOFs:                173259
+[36mhtm0_sc0: [39m  Num Local DOFs:          173259
+[36mhtm0_sc0: [39m  Variables:               { "mdot" "SumWij" "P" "DP" "h" "T" } { "Tpin" "Dpin" } { "rho" "S" "w_perim" 
+[36mhtm0_sc0: [39m                             } "q_prime" "mu" { "duct_heat_flux" "Tduct" } "displacement" 
+[36mhtm0_sc0: [39m  Finite Element Types:    "LAGRANGE" "LAGRANGE" "LAGRANGE" "LAGRANGE" "LAGRANGE" "LAGRANGE" "LAGRANGE" 
+[36mhtm0_sc0: [39m                             
+[36mhtm0_sc0: [39m  Approximation Orders:    "FIRST" "FIRST" "FIRST" "FIRST" "FIRST" "FIRST" "FIRST" 
+[36mhtm0_sc0: [39m
+[36mhtm0_sc0: [39mExecution Information:
+[36mhtm0_sc0: [39m  Executioner:             Steady
+[36mhtm0_sc0: [39m  Solver Mode:             Preconditioned JFNK 
+[36mhtm0_sc0: [39m  PETSc Preconditioner:    hypre boomeramg 
+[36mhtm0_sc0_viz0: [39mFramework Information:
+[36mhtm0_sc0_viz0: [39mMOOSE Version:           git commit b1e271b638 on 2025-10-10
+[36mhtm0_sc0_viz0: [39mLibMesh Version:         8d86fc999b8682441722d52851cbab29e14e5bfd
+[36mhtm0_sc0_viz0: [39mPETSc Version:           3.23.4
+[36mhtm0_sc0_viz0: [39mSLEPc Version:           3.23.2
+[36mhtm0_sc0_viz0: [39mCurrent Time:            Tue Nov 11 12:44:59 2025
+[36mhtm0_sc0_viz0: [39mExecutable Timestamp:    Sun Oct 26 19:44:32 2025
+[36mhtm0_sc0_viz0: [39m
+[36mhtm0_sc0_viz0: [39mInput File(s):
+[36mhtm0_sc0_viz0: [39m  /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/standard_conditions/final_sol/transient/sc_core_viz.i
+[36mhtm0_sc0_viz0: [39m
+[36mhtm0_sc0_viz0: [39mParallelism:
+[36mhtm0_sc0_viz0: [39m  Num Processors:          1
+[36mhtm0_sc0_viz0: [39m  Num Threads:             1
+[36mhtm0_sc0_viz0: [39m
+[36mhtm0_sc0_viz0: [39mMesh: 
+[36mhtm0_sc0_viz0: [39m  Parallel Type:           replicated
+[36mhtm0_sc0_viz0: [39m  Mesh Dimension:          3
+[36mhtm0_sc0_viz0: [39m  Spatial Dimension:       3
+[36mhtm0_sc0_viz0: [39m  Nodes:                   331793
+[36mhtm0_sc0_viz0: [39m  Elems:                   301440
+[36mhtm0_sc0_viz0: [39m  Num Subdomains:          2
+[36mhtm0_sc0_viz0: [39m
+[36mhtm0_sc0_viz0: [39mAuxiliary System:
+[36mhtm0_sc0_viz0: [39m  Num DOFs:                2517417
+[36mhtm0_sc0_viz0: [39m  Num Local DOFs:          2517417
+[36mhtm0_sc0_viz0: [39m  Variables:               { "mdot" "SumWij" "P" "DP" "h" "T" "rho" "mu" "S" "w_perim" } { "q_prime" 
+[36mhtm0_sc0_viz0: [39m                             "Tpin" "Dpin" } 
+[36mhtm0_sc0_viz0: [39m  Finite Element Types:    "LAGRANGE" "LAGRANGE" 
+[36mhtm0_sc0_viz0: [39m  Approximation Orders:    "FIRST" "FIRST" 
+[36mhtm0_sc0_viz0: [39m
+[36mhtm0_sc0_viz0: [39mExecution Information:
+[36mhtm0_sc0_viz0: [39m  Executioner:             Steady
+[36mhtm0_sc0_viz0: [39m  Solver Mode:             Preconditioned JFNK 
+[36mhtm0_sc0_viz0: [39m  PETSc Preconditioner:    hypre boomeramg strong_threshold: 0.7 (auto)

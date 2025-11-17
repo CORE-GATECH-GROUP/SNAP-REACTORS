@@ -1,0 +1,1 @@
+In this input fuel element has tref included and is at 601K

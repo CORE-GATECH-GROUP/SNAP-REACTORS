@@ -3,8 +3,8 @@
 ###################################################
 # Thermal-hydraulics parameters
 ###################################################
-T_in = 866.0 
-P_out = 253727.1   # Pa
+T_in = 870 
+P_out = 254000   # Pa
 # reactor_power = 671337.24 #WTh
 #fuel_assemblies_per_power_unit = '${fparse 1}'
 #fuel_pins_per_assembly = 211
@@ -20,12 +20,12 @@ mass_flow = '${fparse 6.15}' # kg/(s)
 scale_factor = 0.01
 #duct_thickness = '${fparse 0.3*scale_factor}'
 fuel_pin_pitch = '${fparse 1.4478*scale_factor}'
-fuel_pin_diameter = '${fparse 1.4268*scale_factor}'
+fuel_pin_diameter = '${fparse 1.42748*scale_factor}'
 wire_z_spacing = '${fparse 0*scale_factor}'
 wire_diameter = '${fparse 0*scale_factor}'
 n_rings = 9
 #length_entry_fuel = '${fparse 0*scale_factor}'
-length_heated_fuel = '${fparse 35.56*scale_factor}'
+length_heated_fuel = '${fparse 35.94877527127572*scale_factor}'
 #length_outlet_fuel = '${fparse 0*scale_factor}'
 #height = '${fparse length_entry_fuel+length_heated_fuel+length_outlet_fuel}'
 #orifice_plate_height = '${fparse 0*scale_factor}'
@@ -139,7 +139,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   [mu]
     block = subchannel
   []
-  [q_prime_duct]
+  [duct_heat_flux]
     block = duct
     initial_condition = 0
   []
@@ -174,15 +174,14 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   compute_density = false #true
   compute_viscosity = true #true
   compute_power = true #true
-  P_tol = 1.0e-2
-  T_tol = 1.0e-2
+  P_tol = 1.0e-5
+  T_tol = 1.0e-5
   implicit = true
   segregated = false
   staggered_pressure = false
   monolithic_thermal = true
   # verbose_multiapps = true
   # verbose_subchannel = true
-  # type = NoSolveProblem
 []
 
 
@@ -196,14 +195,6 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
     type = SCMTriWettedPerimIC
     variable = w_perim
   []
-  
-  # [q_prime_IC]
-  #   type = SCMTriPowerIC
-  #   variable = q_prime
-  #   power = ${reactor_power} # W
-  #   filename = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/sc_test/sc_standalone/S8ER_pin.txt"
-  #   axial_heat_rate = axial_heat_rate
-  # []
 
   [T_ic]
     type = ConstantIC
@@ -309,6 +300,15 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
       execute_on = 'initial timestep_begin'
   []
 []
+[Postprocessors]
+      [power]
+        type = ElementIntegralVariablePostprocessor
+        variable = q_prime
+        #use_displaced_mesh = true # check
+        block = fuel_pins
+        execute_on = 'transfer initial timestep_end'
+    []
+[]
 [Outputs]
   [exodus]
     type = Exodus
@@ -336,7 +336,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   #active = ''
   [viz]
     type = FullSolveMultiApp
-    input_files = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/full_multiphysics/sc_core_viz.i"
+    input_files = "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/standard_conditions/full_multiphysics/sc_core_viz.i"
     execute_on = "final"
   []
 []

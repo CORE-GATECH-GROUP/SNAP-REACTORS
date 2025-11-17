@@ -12,4 +12,4 @@ module load use.moose
 module load griffin-openmpi
 cd $PBS_O_WORKDIR
 export TMPDIR=/tmp
-griffin-opt --isoxml-input /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/burned_XS/XS/standardconditions.xml
+griffin-opt --isoxml-input /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/depletion/XS_Generation/standardconditions.xml
