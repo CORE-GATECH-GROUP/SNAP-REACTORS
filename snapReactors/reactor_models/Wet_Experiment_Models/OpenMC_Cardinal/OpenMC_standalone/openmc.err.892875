@@ -1,0 +1,19 @@
+/apps/spack/opt/gcc-13.3.0/py-openmc-0.15.0-mylqkgrgi67gyu77ngh57hnx7wmund77/lib/python3.12/site-packages/openmc/config.py:62: UserWarning: '/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml' does not exist.
+  warnings.warn(f"'{value}' does not exist.")
+/apps/spack/opt/gcc-13.3.0/py-openmc-0.15.0-mylqkgrgi67gyu77ngh57hnx7wmund77/lib/python3.12/site-packages/openmc/stats/multivariate.py:829: FutureWarning: The 'only_fissionable' has been deprecated. Use the 'constraints' argument when defining a source instead.
+  warn("The 'only_fissionable' has been deprecated. Use the "
+Traceback (most recent call last):
+  File "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/OpenMC_standalone/SNAP_ref.py", line 994, in <module>
+    main()
+  File "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/OpenMC_standalone/SNAP_ref.py", line 991, in main
+    model = SNAP_openmc(args.n_axial, args.n_inactive, args.n_active, args.entropy)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/OpenMC_standalone/SNAP_ref.py", line 896, in SNAP_openmc
+    plot1.to_ipython_image()
+  File "/apps/spack/opt/gcc-13.3.0/py-openmc-0.15.0-mylqkgrgi67gyu77ngh57hnx7wmund77/lib/python3.12/site-packages/openmc/plots.py", line 940, in to_ipython_image
+    openmc.plot_geometry(False, openmc_exec, cwd)
+  File "/apps/spack/opt/gcc-13.3.0/py-openmc-0.15.0-mylqkgrgi67gyu77ngh57hnx7wmund77/lib/python3.12/site-packages/openmc/executor.py", line 154, in plot_geometry
+    _run(args, output, cwd)
+  File "/apps/spack/opt/gcc-13.3.0/py-openmc-0.15.0-mylqkgrgi67gyu77ngh57hnx7wmund77/lib/python3.12/site-packages/openmc/executor.py", line 125, in _run
+    raise RuntimeError(error_msg)
+RuntimeError: OpenMC aborted unexpectedly.

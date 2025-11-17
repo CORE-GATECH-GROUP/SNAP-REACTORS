@@ -11,4 +11,4 @@
 module load use.exp_ctl use.moose griffin-openmpi
 cd ${SLURM_SUBMIT_DIR:-$PWD}
 export TMPDIR=${SLURM_TMPDIR:-/tmp}
-mpiexec -n 2 griffin-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/meshes/heat_conduction_mesh.i --mesh-only
+mpiexec -n 2 griffin-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/meshes/SNAP_HTM_mesh_gen.i --mesh-only

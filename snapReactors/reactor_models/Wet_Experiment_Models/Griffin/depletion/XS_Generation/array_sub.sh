@@ -4,7 +4,7 @@
 fuel_temps=(1 2 3 4)        # Adjust these as needed for the number of fuel temperature cases
 coolant_temps=(1 2 3 4)     # Adjust these as needed for the number of coolant temperature cases
 reflector_temps=(1 2 3 4)   # Adjust these as needed for the number of reflector temperature cases
-burnup_steps=(1)
+burnup_steps=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17)
 # Loop through all combinations of fuel, coolant, and reflector indices
 for l in "${burnup_steps[@]}"; do
     for i in "${fuel_temps[@]}"; do

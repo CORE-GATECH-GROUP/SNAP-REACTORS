@@ -13768,6 +13768,7 @@ class S8_Wet(S8ER):
         coolSerMats = [nakMat]
 
         dzACM = acmdz/nActiveLayers
+        print(acmdz)
         nlayersACM = nActiveLayers
 
         if geo == '2D':

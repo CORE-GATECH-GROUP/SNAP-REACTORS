@@ -117,14 +117,14 @@
 #coolant_tc                    = 30
 
 
-inlet_T_fluid             = 866  # (K) 
+inlet_T_fluid             = 870  # (K) 
 ht_coeff                  = 4539.6
 fuel_blocks = 'Fuel'
 ceram_blocks = 'Ceramic'
 clad_blocks = 'Clad'
-intref_blocks = 'Reflector'
-#barrel_blocks = 'barrel'
-extref_blocks = 'Reflector'
+# intref_blocks = 'outref'
+# barrel_blocks = 'barrel'
+extref_blocks = 'outer_reflector1 outer_reflector1_trim'
 
 #gap_inner = 1
 #gap_outer = 2
@@ -150,7 +150,7 @@ extref_blocks = 'Reflector'
 [Mesh]
     [core_unextruded]
         type = FileMeshGenerator
-        file = /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/meshes/SNAP_mesh_1_in.e
+        file = /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/meshes/SNAP_HTM_mesh_gen_in.e
     []
     # [transform_core_unextruded]
     #     type = TransformGenerator
@@ -197,7 +197,7 @@ extref_blocks = 'Reflector'
     #     type = CoupledForce
     #     variable = bison_temp
     #     v = bison_norm_power_density
-    #     block = 'Reflector'
+    #     block = 'outref'
     #     coef = .07
     # []
 []
@@ -213,6 +213,9 @@ extref_blocks = 'Reflector'
         #initial_condition = '${pow_dens}' #
     []
     [bison_T_inf]
+        initial_condition = '${inlet_T_fluid}'
+    []
+    [bison_T_duct]
         initial_condition = '${inlet_T_fluid}'
     []
     [bison_Tfuel]
@@ -264,7 +267,7 @@ extref_blocks = 'Reflector'
         type = NormalizationAux
         variable = bison_norm_power_density
         source_variable = bison_power_density
-        normal_factor = 1.2658064684
+        normal_factor = 1.26690820976 #1.26580604001
         execute_on = 'timestep_begin' #check
     []  
     [make_powdens_linear]
@@ -288,7 +291,7 @@ extref_blocks = 'Reflector'
 [MultiApps]
     [sc]
       type = FullSolveMultiApp
-      input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/standard_conditions/full_multiphysics/sc_core.i'
+      input_files = '/home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/standard_conditions/full_multiphysics/sc_core.i'
       execute_on =  timestep_end
       bounding_box_padding = '0.1 0.1 0'
       positions = '0 0 0'
@@ -306,6 +309,8 @@ extref_blocks = 'Reflector'
         from_blocks = 'Fuel'
         to_blocks = fuel_pins
         greedy_search = true
+        from_postprocessors_to_be_preserved = norm_power
+        to_postprocessors_to_be_preserved = power
     []
     [coolant_temp_from_SC]
         type = MultiAppGeneralFieldNearestLocationTransfer
@@ -313,14 +318,20 @@ extref_blocks = 'Reflector'
         source_variable = T
         variable = bison_T_inf
     []
-    [fuel_temp_from_SC]
-        type = MultiAppGeneralFieldNearestLocationTransfer
-        from_multi_app = sc
-        source_variable = Tpin
-        variable = bison_temp
-        from_blocks = fuel_pins
-        to_blocks = 'Fuel'
-    []
+    # [fuel_temp_from_SC]
+    #     type = MultiAppGeneralFieldNearestLocationTransfer
+    #     from_multi_app = sc
+    #     source_variable = Tpin
+    #     variable = bison_temp
+    #     from_blocks = fuel_pins
+    #     to_blocks = 'Clad'
+    # []
+    #     [duct_temp_from_SC]
+    #     type = MultiAppGeneralFieldNearestLocationTransfer
+    #     from_multi_app = sc
+    #     source_variable = Tduct
+    #     variable = bison_T_duct
+    # []
   []
 
 # ==============================================================================
@@ -351,7 +362,7 @@ extref_blocks = 'Reflector'
       thermal_conductivity = 216.0
       specific_heat = 1925.0
       temp = bison_temp
-      block = 'Reflector'
+      block = '${extref_blocks}'
     []
     [Fuel]
       type = ADHeatConductionMaterial
@@ -402,9 +413,14 @@ extref_blocks = 'Reflector'
         T_infinity = bison_T_inf
         htc = HTC
     []
-    # Convective BC outer surface fuel pin
+    [duct_temp_boundary]
+        type = CoupledConvectiveHeatFluxBC
+        variable = bison_temp
+        boundary = 'barrel_outer_surf'
+        T_infinity = bison_T_inf
+        htc = HTC
+    []
 []
-
 # [ThermalContact]
 #     # Gap Heat Transfer 
 #     [gap_ht]
@@ -455,6 +471,12 @@ accept_on_max_fixed_point_iteration = True
 # POSTPROCESSORS DEBUG AND OUTPUTS
 # ==============================================================================
 [Postprocessors]
+    [heat_flux_barrel]
+        type = ADSideDiffusiveFluxIntegral
+        variable = bison_temp
+        boundary = barrel_outer_surf
+        diffusivity = thermal_conductivity
+    []
     [temp_max]
         type = ElementExtremeValue
         variable = bison_temp
@@ -499,10 +521,7 @@ accept_on_max_fixed_point_iteration = True
         type = VolumePostprocessor
         block = ${fuel_blocks}
     []
-    [intref_vol]
-        type = VolumePostprocessor
-        block = ${intref_blocks}
-    []
+
     [clad_vol]
         type = VolumePostprocessor
         block = ${clad_blocks}
@@ -513,16 +532,16 @@ accept_on_max_fixed_point_iteration = True
     []
 []
 
-[VectorPostprocessors]
-    [pow_dens]
-        type = LineValueSampler
-        start_point = '0 0 0.05'
-        end_point = '0 0 0.355'
-        num_points = 10
-        variable = bison_pow_lin
-        sort_by = 'z'
-    []
-[]
+# [VectorPostprocessors]
+#     [pow_dens]
+#         type = LineValueSampler
+#         start_point = '0 0 0.05'
+#         end_point = '0 0 0.355'
+#         num_points = 10
+#         variable = bison_pow_lin
+#         sort_by = 'z'
+#     []
+# []
 
 [Outputs]
     [csv]

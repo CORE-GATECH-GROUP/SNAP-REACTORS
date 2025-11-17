@@ -4,8 +4,8 @@
 
 fuel_diameter = 0.0135                # diameter of fuel compacts (m)
 fuel_to_coolant_distance = 0.01448        # distance between center of fuel compact and coolant channel (m)
-height = '${units 35.56 cm -> m}'        # SNAP height of the full core (m)
-unit_cell_height = '${units 35.56 cm -> m}' # segment height, default is total.
+height = '${units 35.94877527127572 cm -> m}'        # SNAP height of the full core (m)
+unit_cell_height = '${units 1.778 cm -> m}' # segment height, default is total.
 
 # material parameters
 
@@ -20,25 +20,29 @@ reflector_k = 216.0                        # Be Reflector thermal conductivity (
 
 # operating conditions for the full core
 
-inlet_T = 860.0                         # inlet fluid temperature (K)
+inlet_T = 870.0                         # inlet fluid temperature (K)
 power = 6.0e+05                         # total power (W) / higher power than SNAP to compensate the 60% loss
 mdot = 6.15                            # total fluid mass flowrate (kg/s) 
-outlet_P = 253727.1                     # fluid outlet pressure (Pa)
+outlet_P = 254000                     # fluid outlet pressure (Pa)
 
 # other full core specifications used to construct the unit cell model
 
 n_fuel_pins = 211          # number of fuel compacts per assembly
 																
-num_layers_for_plots = 20                # number of averaging layers for making plots
-num_layers_for_THM = 20
-num_layers = 20 
+num_layers_for_plots = 30                # number of averaging layers for making plots
+num_layers_for_THM = 30
+num_layers = 30 
 
+#density_blocks = 'coolant'
+#temperature_blocks = 'Fuel Ceramic GAPHE Clad Reflector'
 fuel_blocks = 'Fuel'
+reflector_blocks = 'outer_reflector1 outer_reflector1_trim'
+																						
 
 [Mesh]
   [solid]
    type = FileMeshGenerator
-   file = SNAP_mesh_4_in.e # with reflector region in the MOOSE model
+   file = SNAP_mesh_8_4_in.e # with reflector region in the MOOSE model
   []
 []
 
@@ -102,13 +106,18 @@ fuel_blocks = 'Fuel'
   # we will read temperature from THM (for the fluid) and MOOSE (for the solid)
   # into variables we name as 'solid_temp' and 'thm_temp'. This syntax will automatically
   # create those variabes for us
-  temperature_blocks =    'Fuel Ceramic GAPHE Clad Reflector'
-
+  temperature_blocks =    'Fuel Ceramic GAPHE Clad ;
+                           barrel ;
+                           outer_reflector1 outer_reflector1_trim'
+  temperature_variables = 'htm_Tfuel;
+                            htm_Tinf;
+                            htm_Tref'
+  verbose = true
   [Tallies]
     [heat_source]
       type = CellTally
       check_equal_mapped_tally_volumes = false
-      block = 'Fuel Ceramic GAPHE Clad Reflector'
+      blocks = 'Fuel Ceramic GAPHE Clad'
       name = heat_source
       output = 'unrelaxed_tally_std_dev'
     []
@@ -117,28 +126,46 @@ fuel_blocks = 'Fuel'
 
 [MultiApps]
   # Heat conduction model
-  [htm] 
-    type = TransientMultiApp
+  [htm] 				
+    type = FullSolveMultiApp
     app_type = CardinalApp
-    input_files = solid_coupling_2.i
+    input_files = htm_core.i
     execute_on = timestep_end
   []
 []
 
 [Transfers]
-  [temperature_to_master]
-    type = MultiAppGeneralFieldShapeEvaluationTransfer
-    from_multi_app = htm
-    variable = temp
-    source_variable = T
-  []
+  # [temperature_to_master]
+  #   type = MultiAppGeneralFieldShapeEvaluationTransfer
+  #   from_multi_app = htm
+  #   variable = temp
+  #   source_variable = htm_temp
+  # []
   [source_to_htm]
     type = MultiAppGeneralFieldShapeEvaluationTransfer
     source_variable = heat_source
-    variable = power
+    variable = power_density
     to_multi_app = htm
     from_postprocessors_to_be_preserved = heat_source
-    to_postprocessors_to_be_preserved = power
+    to_postprocessors_to_be_preserved = power_density
+  []
+  [from_htm_ref_temp]
+     type = MultiAppGeometricInterpolationTransfer
+     from_multi_app = htm
+     source_variable = htm_Tref
+     variable = temp
+  []
+  [from_htm_fuel_temp]
+  type = MultiAppGeometricInterpolationTransfer
+  from_multi_app = htm
+  source_variable = from_htm_Tfuel
+  variable = temp
+  []
+  [from_htm_Tcool]
+     type = MultiAppGeometricInterpolationTransfer
+     from_multi_app = htm
+     source_variable = htm_T_inf
+     variable = temp
   []
 []
 
@@ -166,6 +193,10 @@ fuel_blocks = 'Fuel'
   []
   [k]
     type = KEigenvalue
+  []
+  [k_std_dev]
+    type = KEigenvalue
+    output = 'std_dev'
   []
 []
 
@@ -200,9 +231,11 @@ fuel_blocks = 'Fuel'
 []
 
 [Executioner]
-  type = Transient
-  num_steps = 1000
+  #type = Transient
+  #num_steps = 5
+  type = Steady
 []
+
 
 [Outputs]
   exodus = true
@@ -212,3 +245,5 @@ fuel_blocks = 'Fuel'
     file_base = 'csv_SNAP/SNAP'
   []
 []
+
+

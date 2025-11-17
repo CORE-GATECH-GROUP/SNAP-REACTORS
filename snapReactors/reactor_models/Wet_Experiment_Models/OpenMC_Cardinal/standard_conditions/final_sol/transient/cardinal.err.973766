@@ -1,0 +1,25 @@
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+ WARNING: Negative value(s) found on probability table for nuclide Zr96 at 250K
+ WARNING: Negative value(s) found on probability table for nuclide Zr96 at 294K
+ WARNING: Negative value(s) found on probability table for nuclide Zr96 at 600K
+ WARNING: Negative value(s) found on probability table for nuclide Zr96 at 900K
+ WARNING: Negative value(s) found on probability table for nuclide Zr96 at 1200K
+ WARNING: Negative value(s) found on probability table for nuclide Zr96 at 2500K
+ WARNING: Negative value(s) found on probability table for nuclide Ar36 at 250K
+ WARNING: Negative value(s) found on probability table for nuclide Ar36 at 294K
+ WARNING: Negative value(s) found on probability table for nuclide Ar36 at 600K
+ WARNING: Negative value(s) found on probability table for nuclide Ar36 at 900K
+ WARNING: Negative value(s) found on probability table for nuclide Ar36 at 1200K
+ WARNING: Negative value(s) found on probability table for nuclide Ar36 at 2500K
+slurmstepd: error: *** JOB 973766 ON wr2n39 CANCELLED AT 2025-11-11T15:34:31 ***
