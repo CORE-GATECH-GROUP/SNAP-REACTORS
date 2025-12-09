@@ -497,6 +497,8 @@ multi_app_z_pos = '${fparse lay1 + lay2}'
         to_multi_app = Griffin_htm
         source_variable = griffin_power_density
         variable = bison_power_density
+        from_postprocessors_to_be_preserved = griffin_power
+        to_postprocessors_to_be_preserved = bison_norm_power
     []
     [from_htm_Tfuel]
         type = MultiAppGeometricInterpolationTransfer
@@ -1889,7 +1891,7 @@ multi_app_z_pos = '${fparse lay1 + lay2}'
         type = ElementIntegralVariablePostprocessor
         variable = griffin_power_density
         #use_displaced_mesh = true
-        execute_on = 'initial timestep_end'
+        execute_on = 'transfer initial timestep_end'
     []
     # # [fuel_griffin_vol]
     # #     type = VolumePostprocessor

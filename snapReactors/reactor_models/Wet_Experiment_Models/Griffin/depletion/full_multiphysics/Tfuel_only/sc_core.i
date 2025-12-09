@@ -309,6 +309,15 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
       execute_on = 'initial timestep_begin'
   []
 []
+[Postprocessors]
+    [sc_power]
+        type = ElementIntegralVariablePostprocessor
+        variable = q_prime
+        #use_displaced_mesh = true # check
+        block = fuel_pins
+        execute_on = 'transfer initial timestep_end'
+    []
+[]
 [Outputs]
   [exodus]
     type = Exodus
