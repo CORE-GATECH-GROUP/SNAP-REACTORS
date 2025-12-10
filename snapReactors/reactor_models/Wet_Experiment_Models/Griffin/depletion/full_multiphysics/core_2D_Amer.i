@@ -267,7 +267,7 @@ extref_blocks = 'outer_reflector1 outer_reflector1_trim'
         type = NormalizationAux
         variable = bison_norm_power_density
         source_variable = bison_power_density
-        normal_factor = 1.26580604001
+        normal_factor = 1 #1.26580604001
         execute_on = 'timestep_begin' #check
     []  
     [make_powdens_linear]
@@ -486,7 +486,7 @@ extref_blocks = 'outer_reflector1 outer_reflector1_trim'
         variable = bison_power_density
         #use_displaced_mesh = true # check
         block = ${fuel_blocks}
-        execute_on = 'initial timestep_end'
+        execute_on = 'transfer initial timestep_end'
     []
     [bison_norm_power]
         type = ElementIntegralVariablePostprocessor
