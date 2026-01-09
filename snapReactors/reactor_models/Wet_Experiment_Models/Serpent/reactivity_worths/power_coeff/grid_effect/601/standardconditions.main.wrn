@@ -1,0 +1,108 @@
+
+***** Fri Jan  9 10:05:01 2026 (seed = 1767978287662, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 20046.01c has 1 decay modes
+
+
+***** Fri Jan  9 10:05:01 2026 (seed = 1767978287662, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74182.01c has 1 decay modes
+
+
+***** Fri Jan  9 10:05:01 2026 (seed = 1767978287662, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74183.01c has 1 decay modes
+
+
+***** Fri Jan  9 10:05:01 2026 (seed = 1767978287662, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74184.01c has 1 decay modes
+
+
+***** Fri Jan  9 10:05:36 2026
+
+Input error:
+
+Insufficient neutron buffer size, increase value of
+parameter "nbuf" (currently set to 5.0)
+
+
+***** Fri Jan  9 10:05:36 2026
+
+Input error:
+
+Insufficient neutron buffer size, increase value of
+parameter "nbuf" (currently set to 5.0)
+
+
+***** Fri Jan  9 10:05:38 2026
+
+Input error:
+
+Error in normalization: zero fission power
+
+
+***** Fri Jan  9 10:05:38 2026
+
+Input error:
+
+Error in normalization: zero fission power
+
+
+***** Fri Jan  9 10:05:38 2026
+
+Input error:
+
+Error in normalization: zero fission power
+
+
+***** Fri Jan  9 10:05:38 2026
+
+Input error:
+
+Error in normalization: zero fission power
+
+
+***** Fri Jan  9 10:05:39 2026
+
+Input error:
+
+Error in normalization: zero fission power
+
+
+***** Fri Jan  9 10:05:39 2026
+
+Input error:
+
+Error in normalization: zero fission power
+
+
+***** Fri Jan  9 10:05:39 2026
+
+Input error:
+
+Error in normalization: zero fission power
+
+
+***** Fri Jan  9 10:05:40 2026
+
+Input error:
+
+Error in normalization: zero fission power
+
+
+***** Fri Jan  9 10:05:40 2026
+
+Input error:
+
+Error in normalization: zero fission power
+
+
+Simulation aborted.
+------------------------------------------------- MPI task 6
+Fri Jan  9 10:05:40 2026  (errors: 1, warnings: 0, notes: 0)
+

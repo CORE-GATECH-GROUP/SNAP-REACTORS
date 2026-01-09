@@ -98,59 +98,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
 #   []
 # []
 
-[AuxVariables]
-  [mdot]
-    block = subchannel
-  []
-  [SumWij]
-    block = subchannel
-  []
-  [P]
-    block = subchannel
-  []
-  [DP]
-    block = subchannel
-  []
-  [h]
-    block = subchannel
-  []
-  [T]
-    block = subchannel
-  []
-  [Tpin]
-    block = fuel_pins
-  []
-  [Dpin]
-    block = fuel_pins
-  []
-  [rho]
-    block = subchannel
-  []
-  [S]
-    block = subchannel
-  []
-  [w_perim]
-    block = subchannel
-  []
-  [q_prime]
-    block = fuel_pins
-    #initial_condition = 7000
-  []
-  [mu]
-    block = subchannel
-  []
-  [duct_heat_flux]
-    block = duct
-    initial_condition = 0
-  []
-  [Tduct]
-    block = duct
-  []
-  [displacement]
-    block = subchannel
-    initial_condition = 0
-  []
-[]
+
 
 [FluidProperties]
   [sodium]
@@ -165,7 +113,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   []
 []
 
-[Problem]
+[SubChannel]
   type = TriSubChannel1PhaseProblem
   fp = sodium
   n_blocks = 1
@@ -176,14 +124,20 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   compute_power = true #true
   P_tol = 1.0e-5
   T_tol = 1.0e-5
+  # solver settings
   implicit = true
   segregated = false
   staggered_pressure = false
-  monolithic_thermal = true
-  # verbose_multiapps = true
-  # verbose_subchannel = true
+  # monolithic_thermal = true
+  # friction model
+  friction_closure = 'cheng'
 []
 
+[SCMClosures]
+  [cheng]
+    type = SCMFrictionUpdatedChengTodreas
+  []
+[]
 
 [ICs]
   [S_IC]
@@ -301,7 +255,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   []
 []
 [Postprocessors]
-      [power]
+      [sc_power]
         type = ElementIntegralVariablePostprocessor
         variable = q_prime
         #use_displaced_mesh = true # check
@@ -313,20 +267,17 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   [exodus]
     type = Exodus
     execute_on = 'timestep_end'
-[]
-[csv]
+  []
+  [csv]
     type = CSV
     execute_on = 'initial timestep_end'
-[]
+  []
 []
 
 [Executioner]
   type = Steady
   petsc_options_value = 'hypre boomeramg'
   petsc_options_iname = '-pc_type -pc_hypre_type'
-  # steady_state_detection = true
-  # steady_state_tolerance = 1e-4
-
 []
 
 ################################################################################

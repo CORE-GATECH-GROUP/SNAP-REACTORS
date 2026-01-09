@@ -358,7 +358,7 @@ acu_shimc_matids_2d   = '9901'
 
 total_power               = 450000.00 # (W). #total power
 inlet_T_fluid             = 922.03 # (K)
-ext_T_ref                 = 866 # (K)
+ext_T_ref                 = 870 # (K)
 fuel_temp                 = 934.6035 #(K)
 acm_dz = '${fparse (35.56 + 35.56 * (4.52e-6 + (fuel_temp - 273.15) * 1.925e-8) * ((fuel_temp - 273.15) - (300 - 273.15)) - 2.9083 - 2.1717)/800}'
 lay1 = '${fparse 0.79502/100}'
@@ -511,7 +511,7 @@ multi_app_z_pos = '${fparse lay1 + lay2}'
         source_variable = griffin_power_density
         variable = bison_power_density
         from_postprocessors_to_be_preserved = griffin_power
-        to_postprocessors_to_be_preserved = bison_norm_power
+        to_postprocessors_to_be_preserved = bison_power
     []
     [from_htm_Tfuel]
         type = MultiAppGeometricInterpolationTransfer
@@ -1887,7 +1887,7 @@ multi_app_z_pos = '${fparse lay1 + lay2}'
     custom_rel_tol = 1e-5
     coarse_element_id = coarse_element_id
     force_final_output = true
-    
+    fixed_point_min_its = 3
     fixed_point_max_its = 4
     fixed_point_solve_outer = true
     force_fixed_point_solve = true
