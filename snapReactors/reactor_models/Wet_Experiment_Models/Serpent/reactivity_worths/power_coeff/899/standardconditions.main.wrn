@@ -1,23 +1,23 @@
 
-***** Fri Jan  9 10:10:44 2026 (seed = 1767978630896, MPI task = 0)
+***** Fri Jan  9 12:39:57 2026 (seed = 1767987583092, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 20046.01c has 1 decay modes
 
 
-***** Fri Jan  9 10:10:44 2026 (seed = 1767978630896, MPI task = 0)
+***** Fri Jan  9 12:39:57 2026 (seed = 1767987583092, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 74182.02c has 1 decay modes
 
 
-***** Fri Jan  9 10:10:44 2026 (seed = 1767978630896, MPI task = 0)
+***** Fri Jan  9 12:39:57 2026 (seed = 1767987583092, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 74183.02c has 1 decay modes
 
 
-***** Fri Jan  9 10:10:44 2026 (seed = 1767978630896, MPI task = 0)
+***** Fri Jan  9 12:39:57 2026 (seed = 1767987583092, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 74184.02c has 1 decay modes
@@ -29,13 +29,10 @@ Stable nuclide 74184.02c has 1 decay modes
  ***** Warning: Zero flux in energy group 18
 
 
- ***** Warning: Zero flux in energy group 1
-
-
  ***** Warning: Zero flux in energy group 18
 
 
 Simulation completed.
-------------------------------------------------- MPI task 2
-Fri Jan  9 10:20:24 2026  (errors: 0, warnings: 0, notes: 0)
+------------------------------------------------- MPI task 7
+Fri Jan  9 12:49:53 2026  (errors: 0, warnings: 0, notes: 1)
 
