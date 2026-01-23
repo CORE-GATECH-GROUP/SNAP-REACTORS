@@ -9,7 +9,7 @@
 #SBATCH --wckey=edu_res          # (If applicable, define the partition)
 #SBATCH --mem-per-cpu=8G
  
-module load use.exp_ctl use.moose griffin-openmpi
+module load use.exp_ctl use.moose griffin-openmpi/2025.07.24-f06f0d9
 cd ${SLURM_SUBMIT_DIR:-$PWD}
 export TMPDIR=${SLURM_TMPDIR:-/tmp}
 mpiexec -n 14 griffin-opt -i /home/garcsamu/Serpent/SNAP-REACTORS-PRIVATE/snapReactors/reactor_models/Wet_Experiment_Models/Griffin/depletion/full_multiphysics/Tfuel_only/depletion_core.i --allow-unused
