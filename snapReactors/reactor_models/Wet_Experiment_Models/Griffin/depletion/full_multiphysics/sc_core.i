@@ -3,8 +3,8 @@
 ###################################################
 # Thermal-hydraulics parameters
 ###################################################
-T_in = 866.0 
-P_out = 253727.1   # Pa
+T_in = 870 
+P_out = 254000   # Pa
 # reactor_power = 671337.24 #WTh
 #fuel_assemblies_per_power_unit = '${fparse 1}'
 #fuel_pins_per_assembly = 211
@@ -20,7 +20,7 @@ mass_flow = '${fparse 6.15}' # kg/(s)
 scale_factor = 0.01
 #duct_thickness = '${fparse 0.3*scale_factor}'
 fuel_pin_pitch = '${fparse 1.4478*scale_factor}'
-fuel_pin_diameter = '${fparse 1.4268*scale_factor}'
+fuel_pin_diameter = '${fparse 1.42748*scale_factor}'
 wire_z_spacing = '${fparse 0*scale_factor}'
 wire_diameter = '${fparse 0*scale_factor}'
 n_rings = 9
@@ -98,59 +98,59 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
 #   []
 # []
 
-[AuxVariables]
-  [mdot]
-    block = subchannel
-  []
-  [SumWij]
-    block = subchannel
-  []
-  [P]
-    block = subchannel
-  []
-  [DP]
-    block = subchannel
-  []
-  [h]
-    block = subchannel
-  []
-  [T]
-    block = subchannel
-  []
-  [Tpin]
-    block = fuel_pins
-  []
-  [Dpin]
-    block = fuel_pins
-  []
-  [rho]
-    block = subchannel
-  []
-  [S]
-    block = subchannel
-  []
-  [w_perim]
-    block = subchannel
-  []
-  [q_prime]
-    block = fuel_pins
-    #initial_condition = 7000
-  []
-  [mu]
-    block = subchannel
-  []
-  [duct_heat_flux]
-    block = duct
-    initial_condition = 0
-  []
-  [Tduct]
-    block = duct
-  []
-  [displacement]
-    block = subchannel
-    initial_condition = 0
-  []
-[]
+# [AuxVariables]
+#   [mdot]
+#     block = subchannel
+#   []
+#   [SumWij]
+#     block = subchannel
+#   []
+#   [P]
+#     block = subchannel
+#   []
+#   [DP]
+#     block = subchannel
+#   []
+#   [h]
+#     block = subchannel
+#   []
+#   [T]
+#     block = subchannel
+#   []
+#   [Tpin]
+#     block = fuel_pins
+#   []
+#   [Dpin]
+#     block = fuel_pins
+#   []
+#   [rho]
+#     block = subchannel
+#   []
+#   [S]
+#     block = subchannel
+#   []
+#   [w_perim]
+#     block = subchannel
+#   []
+#   [q_prime]
+#     block = fuel_pins
+#     #initial_condition = 7000
+#   []
+#   [mu]
+#     block = subchannel
+#   []
+#   [duct_heat_flux]
+#     block = duct
+#     initial_condition = 0
+#   []
+#   [Tduct]
+#     block = duct
+#   []
+#   [displacement]
+#     block = subchannel
+#     initial_condition = 0
+#   []
+# []
 
 [FluidProperties]
   [sodium]
@@ -165,7 +165,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   []
 []
 
-[Problem]
+[SubChannel]
   type = TriSubChannel1PhaseProblem
   fp = sodium
   n_blocks = 1
@@ -174,17 +174,22 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   compute_density = false #true
   compute_viscosity = true #true
   compute_power = true #true
-  P_tol = 1.0e-2
-  T_tol = 1.0e-2
+  P_tol = 1.0e-5
+  T_tol = 1.0e-5
+  # solver settings
   implicit = true
   segregated = false
   staggered_pressure = false
   monolithic_thermal = true
-  # verbose_multiapps = true
-  # verbose_subchannel = true
-  # type = NoSolveProblem
+  # friction model
+  friction_closure = 'cheng'
 []
 
+[SCMClosures]
+  [cheng]
+    type = SCMFrictionUpdatedChengTodreas
+  []
+[]
 
 [ICs]
   [S_IC]
@@ -308,6 +313,15 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
       sort_by = 'z'
       execute_on = 'initial timestep_begin'
   []
+[]
+[Postprocessors]
+    [sc_power]
+        type = ElementIntegralVariablePostprocessor
+        variable = q_prime
+        #use_displaced_mesh = true # check
+        block = fuel_pins
+        execute_on = 'transfer initial timestep_end'
+    []
 []
 [Outputs]
   [exodus]

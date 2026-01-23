@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=MultiPhysDep          # Job name
+#SBATCH --job-name=Tcool_Tfuel          # Job name
 #SBATCH --nodes=14                   # Request 4 nodes
 #SBATCH --ntasks-per-node=1          # 5 MPI processes per node
 #SBATCH --cpus-per-task=30           # 4 CPU cores per MPI process (20 ncpus / 5 mpiprocs)

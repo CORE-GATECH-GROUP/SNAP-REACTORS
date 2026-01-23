@@ -256,8 +256,8 @@ multi_app_z_pos = '${fparse lay1 + lay2}'
     []
 []
 
-total_power               = 600000.00 # (W). #total power
-inlet_T_fluid             = 925 # (K)
+total_power               = 450000.00 # (W). #total power
+inlet_T_fluid             = 922.03 # (K)
 ext_T_ref                 = 870 # (K)
 fuel_temp                 = 934.6035 #(K)
 # ==============================================================================
@@ -289,6 +289,19 @@ fuel_temp                 = 934.6035 #(K)
         family = MONOMIAL
         initial_condition = 1
     []
+    [htm_power_density]
+        family = L2_LAGRANGE
+        order = FIRST
+    []
+[]
+[AuxKernels]
+    [scale_power_for_htm]
+        type = NormalizationAux
+        variable = htm_power_density
+        source_variable = griffin_power_density
+        normal_factor = 1.26580604001
+        execute_on = 'timestep_end'
+    []
 []
 # ==============================================================================
 # MULTIAPPS AND TRANSFERS
@@ -309,6 +322,8 @@ fuel_temp                 = 934.6035 #(K)
         to_multi_app = Griffin_htm
         source_variable = griffin_power_density
         variable = bison_power_density
+        from_postprocessors_to_be_preserved = griffin_power
+        to_postprocessors_to_be_preserved = bison_power
     []
     [from_htm_Tfuel]
         type = MultiAppGeometricInterpolationTransfer
@@ -350,8 +365,8 @@ fuel_temp                 = 934.6035 #(K)
         NA = 1 # 1st degree anisotropy
         AQtype = Level-Symmetric # Gauss-Chebyshev (NP X NA X 4) LS ((AQ *(AQ+2))/2)
         AQorder = 12
-        NPolar = 2 # use >=2 for final runs (4 sawtooth nodes sufficient)\
-        NAzmthl = 6 # use >=6 for final runs (4 sawtooth nodes sufficient)
+       # NPolar = 2 # use >=2 for final runs (4 sawtooth nodes sufficient)\
+       # NAzmthl = 6 # use >=6 for final runs (4 sawtooth nodes sufficient)
 
         sweep_type = asynchronous_parallel_sweeper
         using_array_variable = true
@@ -473,21 +488,21 @@ fuel_temp                 = 934.6035 #(K)
         type = ElementIntegralVariablePostprocessor
         variable = griffin_power_density
         #use_displaced_mesh = true
-        execute_on = 'initial timestep_end'
+        execute_on = 'transfer initial timestep_end'
     []
-    [fuel_griffin_vol]
-        type = VolumePostprocessor
-        block = '${acl_fuel_blocks_2d} ${acm_fuel_blocks_lay1}  ${acm_fuel_blocks_lay2} ${acm_fuel_blocks_lay3} ${acm_fuel_blocks_lay4} ${acm_fuel_blocks_lay5} ${acm_fuel_blocks_lay6} ${acm_fuel_blocks_lay7} ${acm_fuel_blocks_lay8}  ${acu_fuel_blocks_2d}'
-        execute_on = 'initial timestep_end'
-    []
-    [acl_acu_air_vol]
-        type = VolumePostprocessor
-        block = '${acl_air_blocks_2d} ${acu_air_blocks_2d}'
-    []
-    [single_acm_air_vol]
-        type = VolumePostprocessor
-        block = '${acm_air_blocks_2d}'
-    []
+    # # [fuel_griffin_vol]
+    # #     type = VolumePostprocessor
+    # #     block = '${acl_fuel_blocks_2d} ${acm_fuel_blocks_lay1}  ${acm_fuel_blocks_lay2} ${acm_fuel_blocks_lay3} ${acm_fuel_blocks_lay4} ${acm_fuel_blocks_lay5} ${acm_fuel_blocks_lay6} ${acm_fuel_blocks_lay7} ${acm_fuel_blocks_lay8}  ${acu_fuel_blocks_2d}'
+    # #     execute_on = 'initial timestep_end'
+    # # []
+    # [acl_acu_air_vol]
+    #     type = VolumePostprocessor
+    #     block = '${acl_air_blocks_2d} ${acu_air_blocks_2d}'
+    # []
+    # [single_acm_air_vol]
+    #     type = VolumePostprocessor
+    #     block = '${acm_air_blocks_2d}'
+    # []
     # [intref_vol]
     #    type = VolumePostprocessor
     #    block = ${intref_blocks_2d}
@@ -505,10 +520,6 @@ fuel_temp                 = 934.6035 #(K)
         type = CSV
         execute_on = 'initial timestep_end'
     []
-    [console]
-        type = Console
-        verbose = true
-    []
     [nemesis]
         type = Nemesis
     []
@@ -516,5 +527,4 @@ fuel_temp                 = 934.6035 #(K)
         type = Checkpoint
         enable = false
     []
-    perf_graph = true
 []

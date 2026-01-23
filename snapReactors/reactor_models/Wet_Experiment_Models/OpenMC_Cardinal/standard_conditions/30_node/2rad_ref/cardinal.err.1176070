@@ -1,0 +1,31 @@
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+WARNING: Environment variable OPENMC_CROSS_SECTIONS already has value [/hpc-common/data/openmc/endfb-viii.0-hdf5/cross_sections.xml], will not forward new value [/home/garcsamu/cross_sections/endfb-viii.0-hdf5/cross_sections.xml] from parent process environment
+ WARNING: Negative value(s) found on probability table for nuclide Zr96 at 250K
+ WARNING: Negative value(s) found on probability table for nuclide Zr96 at 294K
+ WARNING: Negative value(s) found on probability table for nuclide Zr96 at 600K
+ WARNING: Negative value(s) found on probability table for nuclide Zr96 at 900K
+ WARNING: Negative value(s) found on probability table for nuclide Zr96 at 1200K
+ WARNING: Negative value(s) found on probability table for nuclide Zr96 at 2500K
+ WARNING: Negative value(s) found on probability table for nuclide Ar36 at 250K
+ WARNING: Negative value(s) found on probability table for nuclide Ar36 at 294K
+ WARNING: Negative value(s) found on probability table for nuclide Ar36 at 600K
+ WARNING: Negative value(s) found on probability table for nuclide Ar36 at 900K
+ WARNING: Negative value(s) found on probability table for nuclide Ar36 at 1200K
+ WARNING: Negative value(s) found on probability table for nuclide Ar36 at 2500K
+--------------------------------------------------------------------------
+prterun detected that one or more processes exited with non-zero status,
+thus causing the job to be terminated. The first process to do so was:
+
+   Process name: [prterun-wr6n1-742894@1,7] Exit code:    1
+--------------------------------------------------------------------------
+/var/spool/slurmd/job1176070/slurm_script: line 21: 742894 Segmentation fault      (core dumped) mpiexec -n 12 cardinal-opt -i common_SNAP.i SNAP_master2.i

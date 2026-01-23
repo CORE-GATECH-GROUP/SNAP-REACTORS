@@ -1,0 +1,16 @@
+
+***** Fri Jan  9 14:47:39 2026
+
+Input error in parameter "include" on line 18 in file "s82d_ac_c3_gcu_ringres.main":
+
+Input file "s82d_ac_c3_gcu_ringres.main.mvol" does not exist
+
+For parameter description, try Serpent Wiki:
+
+http://serpent.vtt.fi/mediawiki/index.php/Input_syntax_manual#include
+
+
+Simulation aborted.
+------------------------------------------------------------
+Fri Jan  9 14:47:39 2026  (errors: 1, warnings: 0, notes: 0)
+
