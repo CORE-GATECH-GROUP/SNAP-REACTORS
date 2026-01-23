@@ -1,0 +1,12 @@
+slurmstepd: error: *** JOB 1150410 ON wr1n25 CANCELLED AT 2025-12-23T11:44:21 ***
+--------------------------------------------------------------------------
+PRTE has lost communication with a remote daemon.
+
+  HNP daemon   : [prterun-wr1n25-562059@0,0] on node wr1n25
+  Remote daemon: [prterun-wr1n25-562059@0,6] on node wr3n15
+
+This is usually due to either a failure of the TCP network
+connection to the node, or possibly an internal failure of
+the daemon itself. We cannot recover from this failure, and
+therefore will terminate the job.
+--------------------------------------------------------------------------

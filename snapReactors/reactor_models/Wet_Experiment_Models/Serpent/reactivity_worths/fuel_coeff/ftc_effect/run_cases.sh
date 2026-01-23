@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # List of directories to process
-directories=("1070" "530" "639" "721" "816" "901" "977")
+directories=("639" "721" "816" "899" "901" "977" "1070" )
 
 # Current directory before we start
 start_dir=$(pwd)

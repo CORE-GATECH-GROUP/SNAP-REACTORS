@@ -117,7 +117,7 @@
 #coolant_tc                    = 30
 
 
-inlet_T_fluid             = 866  # (K) 
+inlet_T_fluid             = 870  # (K) 
 ht_coeff                  = 4539.6
 fuel_blocks = 'Fuel'
 ceram_blocks = 'Ceramic'
@@ -189,7 +189,8 @@ extref_blocks = 'outer_reflector1 outer_reflector1_trim'
     [heat_source]
         type = ADCoupledForce
         variable = bison_temp
-        v = bison_norm_power_density
+        # v = bison_norm_power_density
+        v = bison_power_density
         block = 'Fuel'
         #coef = .93
     []
@@ -263,13 +264,13 @@ extref_blocks = 'outer_reflector1 outer_reflector1_trim'
         normal_factor = 1
         execute_on = 'timestep_begin' #check
     []
-    [norm_power_density]
-        type = NormalizationAux
-        variable = bison_norm_power_density
-        source_variable = bison_power_density
-        normal_factor = 1.26580604001
-        execute_on = 'timestep_begin' #check
-    []  
+    # [norm_power_density]
+    #     type = NormalizationAux
+    #     variable = bison_norm_power_density
+    #     source_variable = bison_power_density
+    #     normal_factor = 1.26690820976 #1.26580604001
+    #     execute_on = 'timestep_begin' #check
+    # []  
     [make_powdens_linear]
         type = NormalizationAux
         variable = bison_pow_lin
@@ -309,6 +310,8 @@ extref_blocks = 'outer_reflector1 outer_reflector1_trim'
         from_blocks = 'Fuel'
         to_blocks = fuel_pins
         greedy_search = true
+        from_postprocessors_to_be_preserved = bison_power
+        to_postprocessors_to_be_preserved = sc_power
     []
     [coolant_temp_from_SC]
         type = MultiAppGeneralFieldNearestLocationTransfer
@@ -419,6 +422,7 @@ extref_blocks = 'outer_reflector1 outer_reflector1_trim'
         htc = HTC
     []
 []
+
 # [ThermalContact]
 #     # Gap Heat Transfer 
 #     [gap_ht]
@@ -478,19 +482,19 @@ extref_blocks = 'outer_reflector1 outer_reflector1_trim'
         value_type = min
         block ='${fuel_blocks}'
     []
-    [power]
+    [bison_power]
         type = ElementIntegralVariablePostprocessor
         variable = bison_power_density
         #use_displaced_mesh = true # check
         block = ${fuel_blocks}
-        execute_on = 'initial timestep_end'
+        execute_on = 'transfer initial timestep_end'
     []
-    [norm_power]
+    [bison_norm_power]
         type = ElementIntegralVariablePostprocessor
         variable = bison_norm_power_density
         #use_displaced_mesh = true # check
         block = ${fuel_blocks}
-        execute_on = 'initial timestep_end'
+        execute_on = 'transfer initial timestep_end'
     []
     [power_density_avg]
         type = ElementAverageValue
