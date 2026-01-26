@@ -1,0 +1,11 @@
+include standardconditions.mat
+include standardconditions.geo
+set bc 1 1 1
+set pop 7000000 100 100
+set acelib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80_s_ab.xsdata" "/hpc-common/data/serpent/xsdata/s2v0_endfb80/photon_endf80.xsdata" 
+set nfylib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80.nfy"
+set declib "/hpc-common/data/serpent/xsdata/s2v0_endfb80/sss_endf80.dec" 
+plot 31 1000 1000 17.78
+plot 11 1000 1000 0.0
+set his 1
+set power 450000
