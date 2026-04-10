@@ -7,10 +7,50 @@ import serpentTools as st
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
-#
+# ============================================================================
+# EXPERIMENTAL DATA AND FIT (from previous analysis)
+# ============================================================================
+
+def hydrogen_loss_rate_experimental(burnup_MWd_kgU):
+    """Experimental hydrogen loss RATE in pcm/day as a function of burnup"""
+    bu = burnup_MWd_kgU
+    return (2.338230e-6*bu**7 - 2.726511e-4*bu**6 + 1.161189e-2*bu**5 - 
+            2.286456e-1*bu**4 + 2.317447*bu**3 - 9.012680*bu**2 + 
+            6.736471e+1*bu)
+
+def cumulative_hydrogen_loss_experimental(burnup_MWd_kgU, bu0=0):
+    """Cumulative (integrated) hydrogen loss in pcm"""
+    def integral(b):
+        return (2.338230e-6*b**7 - 2.726511e-4*b**6 + 1.161189e-2*b**5 - 
+                2.286456e-1*b**4 + 2.317447*b**3 - 9.012680*b**2 + 
+                6.736471e+1*b)
+    
+    if isinstance(burnup_MWd_kgU, np.ndarray):
+        return np.array([integral(bu) - integral(bu0) for bu in burnup_MWd_kgU])
+    else:
+        return integral(burnup_MWd_kgU) - integral(bu0)
+
+# Reactor parameters for conversion
+THERMAL_POWER = 0.450  # MW
+U_MASS = 6.560  # kg
+
+def days_to_burnup(days):
+    """Convert days to burnup (MWd/kgU)"""
+    return (THERMAL_POWER * days) / U_MASS
+
+def burnup_to_days(burnup_MWd_kgU):
+    """Convert burnup (MWd/kgU) to days"""
+    return (burnup_MWd_kgU * U_MASS) / THERMAL_POWER
+
+# ============================================================================
+# SERPENT MODEL DATA PROCESSING
+# ============================================================================
+
 base_path = Path.cwd()
 res_name = 'standardconditions.main_res.m'
-state_points = ['000_5', '002_0', '004_0', '010_0', '020_0', '030_0', '040_0', '050_0', '060_0', '090_0', '120_0', '150_0', '180_0', '240_0', '330_0', '450_0']
+state_points = ['000_5', '002_0', '004_0', '010_0', '020_0', '030_0', '040_0', 
+                '050_0', '060_0', '090_0', '120_0', '150_0', '180_0', '240_0', 
+                '330_0', '450_0']
 statepoints = [0, 0.5, 2, 4, 10, 20, 30, 40, 50, 60, 90, 120, 150, 180, 240, 330, 450]
 
 # Initialize lists for both rings
@@ -19,7 +59,7 @@ unc_list_1ring = []
 rho_list_8ring = []
 unc_list_8ring = []
 
-# reference solution
+# Reference solution
 ref_path = Path((base_path/'reference'/res_name).resolve())
 ref_res = st.read(ref_path)
 k = ref_res['anaKeff'][0]
@@ -32,9 +72,9 @@ unc_list_1ring.append(unc_ref)
 rho_list_8ring.append(rho_ref)
 unc_list_8ring.append(unc_ref)
 
-## ring 1
+# Ring 1
 for i in state_points:
-    res_path = Path((base_path/'1_ring'/i/res_name).resolve())
+    res_path = Path((base_path/'cladding_held'/'1_ring'/i/res_name).resolve())
     res = st.read(res_path)
     k = res['anaKeff'][0]
     k_unc = res['anaKeff'][1]
@@ -43,9 +83,9 @@ for i in state_points:
     rho_list_1ring.append(rho)
     unc_list_1ring.append(err_rho)
 
-## ring 8
+# Ring 8
 for i in state_points:
-    res_path = Path((base_path/'8_ring'/i/res_name).resolve())
+    res_path = Path((base_path/'cladding_held'/'8_ring'/i/res_name).resolve())
     res = st.read(res_path)
     k = res['anaKeff'][0]
     k_unc = res['anaKeff'][1]
@@ -61,30 +101,25 @@ rho_8ring_arr = np.array(rho_list_8ring)
 unc_1ring_arr = np.array(unc_list_1ring)
 unc_8ring_arr = np.array(unc_list_8ring)
 
-# Define fitting functions
+# Calculate experimental loss curve
+statepoints_burnup = days_to_burnup(statepoints_arr)
+exp_loss = cumulative_hydrogen_loss_experimental(statepoints_burnup)
+rho_exp = rho_ref - exp_loss  # Convert loss to reactivity
+
+# ============================================================================
+# FITTING FUNCTIONS
+# ============================================================================
+
 def exp_decay(t, rho0, rho_inf, tau):
-    """
-    Single exponential decay model
-    rho0: initial reactivity (at t=0)
-    rho_inf: asymptotic reactivity (final value as t->inf)
-    tau: time constant (days)
-    """
+    """Single exponential decay model"""
     return rho_inf + (rho0 - rho_inf) * np.exp(-t / tau)
 
 def double_exp_decay(t, rho0, rho_inf, tau1, tau2, A):
-    """
-    Double exponential for fast + slow loss components
-    rho0: initial reactivity
-    rho_inf: asymptotic reactivity
-    tau1: fast component time constant (days)
-    tau2: slow component time constant (days)
-    A: fraction of fast component (0 to 1)
-    """
+    """Double exponential for fast + slow loss components"""
     fast = A * np.exp(-t / tau1)
     slow = (1 - A) * np.exp(-t / tau2)
     return rho_inf + (rho0 - rho_inf) * (fast + slow)
 
-# Calculate residual sum of squares for model comparison
 def calculate_r_squared(y_data, y_fit):
     """Calculate R² goodness of fit"""
     ss_res = np.sum((y_data - y_fit) ** 2)
@@ -101,7 +136,9 @@ print("="*60)
 print("FITTING MODELS TO DATA")
 print("="*60)
 
-# ============= 1-RING DATA =============
+# ============================================================================
+# 1-RING DATA
+# ============================================================================
 print("\n1-RING DATA:")
 print("-" * 60)
 
@@ -125,7 +162,6 @@ print(f"  R² = {r2_1ring_single:.6f}")
 print(f"  Reduced χ² = {chi2_1ring_single:.4f}")
 
 # Double exponential fit
-# Initial guess: [rho0, rho_inf, tau1_fast, tau2_slow, A_fraction]
 p0_1ring_double = [rho_1ring_arr[0], rho_1ring_arr[-1], 10, 100, 0.5]
 try:
     popt_1ring_double, pcov_1ring_double = curve_fit(
@@ -149,7 +185,6 @@ try:
     print(f"  R² = {r2_1ring_double:.6f}")
     print(f"  Reduced χ² = {chi2_1ring_double:.4f}")
     
-    # Determine which model is better
     print(f"\n  ΔR² = {r2_1ring_double - r2_1ring_single:.6f}")
     if chi2_1ring_double < chi2_1ring_single and r2_1ring_double > r2_1ring_single:
         print("  → Double exponential provides BETTER fit")
@@ -163,7 +198,9 @@ except Exception as e:
     print("  → Using single exponential only")
     use_double_1ring = False
 
-# ============= 8-RING DATA =============
+# ============================================================================
+# 8-RING DATA
+# ============================================================================
 print("\n" + "="*60)
 print("8-RING DATA:")
 print("-" * 60)
@@ -226,121 +263,60 @@ except Exception as e:
 
 print("\n" + "="*60)
 
-# Generate smooth curves for plotting
+# ============================================================================
+# GENERATE SMOOTH CURVES FOR PLOTTING
+# ============================================================================
 t_smooth = np.linspace(0, 450, 1000)
+burnup_smooth = days_to_burnup(t_smooth)
+exp_loss_smooth = cumulative_hydrogen_loss_experimental(burnup_smooth)
+rho_exp_smooth = rho_ref - exp_loss_smooth
 
 # Choose best fits
 if use_double_1ring:
     rho_fit_1ring_smooth = double_exp_decay(t_smooth, *popt_1ring_double)
-    label_1ring = f'1 Ring (τ₁={popt_1ring_double[2]:.1f}d, τ₂={popt_1ring_double[3]:.1f}d)'
+    label_1ring = f'1 Ring Model (τ₁={popt_1ring_double[2]:.1f}d, τ₂={popt_1ring_double[3]:.1f}d)'
 else:
     rho_fit_1ring_smooth = exp_decay(t_smooth, *popt_1ring_single)
-    label_1ring = f'1 Ring (τ={popt_1ring_single[2]:.1f}d)'
+    label_1ring = f'1 Ring Model (τ={popt_1ring_single[2]:.1f}d)'
 
 if use_double_8ring:
     rho_fit_8ring_smooth = double_exp_decay(t_smooth, *popt_8ring_double)
-    label_8ring = f'8 Ring (τ₁={popt_8ring_double[2]:.1f}d, τ₂={popt_8ring_double[3]:.1f}d)'
+    label_8ring = f'8 Ring Model (τ₁={popt_8ring_double[2]:.1f}d, τ₂={popt_8ring_double[3]:.1f}d)'
 else:
     rho_fit_8ring_smooth = exp_decay(t_smooth, *popt_8ring_single)
-    label_8ring = f'8 Ring (τ={popt_8ring_single[2]:.1f}d)'
-
-# Plotting
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 10))
+    label_8ring = f'8 Ring Model (τ={popt_8ring_single[2]:.1f}d)'
+unc_1_ring_eol = np.sqrt(unc_list_1ring[-1]**2 + unc_list_1ring[0]**2)
+unc_8_ring_eol = np.sqrt(unc_list_8ring[-1]**2 + unc_list_8ring[0]**2)
+ring_1_eol = rho_list_1ring[-1] - rho_list_1ring[0]
+ring_8_eol = rho_list_8ring[-1] - rho_list_8ring[0]                        
+print(f'Total reactivity loss of 1-ring: {rho_list_1ring[-1] - rho_list_1ring[0]} +/- {np.sqrt(unc_list_1ring[-1]**2 + unc_list_1ring[0]**2)}')
+print(f'Total reactivity loss of 8-ring: {rho_list_8ring[-1] - rho_list_1ring[0]} +/- {np.sqrt(unc_list_8ring[-1]**2 + unc_list_8ring[0]**2)}')
+print(f'Discrepancy: {ring_1_eol - ring_8_eol} +/- {np.sqrt(unc_1_ring_eol**2 + unc_8_ring_eol**2)}')
+# ============================================================================
+# PLOTTING
+# ============================================================================
+fig, ax = plt.subplots(figsize=(10, 6))
 
 # Main plot
-ax1.set_title("Hydrogen Reactivity Loss with Fits")
-ax1.set_xlabel('Time [d]')
-ax1.set_ylabel('Reactivity [pcm]')
+# ax.set_title("Hydrogen Reactivity Loss: Model vs Experimental", fontsize=14, fontweight='bold')
+ax.set_xlabel('Time [days]', fontsize=12)
+ax.set_ylabel('Reactivity [pcm]', fontsize=12)
 
-# Data points with error bars
-ax1.errorbar(statepoints, rho_list_1ring, yerr=[3*u for u in unc_list_1ring], 
-             fmt='x', label='1 Ring (data)', color='red', capsize=3, markersize=8)
-ax1.errorbar(statepoints, rho_list_8ring, yerr=[3*u for u in unc_list_8ring], 
-             fmt='o', label='8 Ring (data)', color='blue', capsize=3, markersize=6)
+# Experimental curve (from fitted polynomial)
+ax.plot(t_smooth, rho_exp_smooth, 'k-', linewidth=2.5, 
+        label='Experimental Fit', zorder=3, alpha=0.9)
 
-# Fitted curves
-ax1.plot(t_smooth, rho_fit_1ring_smooth, '-', color='red', alpha=0.7, linewidth=2,
-         label=label_1ring)
-ax1.plot(t_smooth, rho_fit_8ring_smooth, '-', color='blue', alpha=0.7, linewidth=2,
-         label=label_8ring)
+# Model data points with error bars (NO FITTED CURVES)
+ax.errorbar(statepoints, rho_list_1ring, yerr=[3*u for u in unc_list_1ring], 
+            fmt='x', label='1 Ring Model', color='red', capsize=3, markersize=8)
+ax.errorbar(statepoints, rho_list_8ring, yerr=[3*u for u in unc_list_8ring], 
+            fmt='o', label='8 Ring Model', color='blue', capsize=3, markersize=6)
 
-ax1.legend()
-ax1.grid(True, linestyle='--', alpha=0.5)
-
-# Residuals plot
-ax2.set_title("Fit Residuals")
-ax2.set_xlabel('Time [d]')
-ax2.set_ylabel('Residual [pcm]')
-
-if use_double_1ring:
-    residuals_1ring = rho_1ring_arr - double_exp_decay(statepoints_arr, *popt_1ring_double)
-else:
-    residuals_1ring = rho_1ring_arr - exp_decay(statepoints_arr, *popt_1ring_single)
-
-if use_double_8ring:
-    residuals_8ring = rho_8ring_arr - double_exp_decay(statepoints_arr, *popt_8ring_double)
-else:
-    residuals_8ring = rho_8ring_arr - exp_decay(statepoints_arr, *popt_8ring_single)
-
-ax2.errorbar(statepoints, residuals_1ring, yerr=[3*u for u in unc_list_1ring],
-             fmt='x', color='red', capsize=3, markersize=8, label='1 Ring')
-ax2.errorbar(statepoints, residuals_8ring, yerr=[3*u for u in unc_list_8ring],
-             fmt='o', color='blue', capsize=3, markersize=6, label='8 Ring')
-ax2.axhline(y=0, color='black', linestyle='--', alpha=0.5)
-ax2.legend()
-ax2.grid(True, linestyle='--', alpha=0.5)
+ax.legend(fontsize=11, loc='best')
+ax.grid(True, linestyle='--', alpha=0.5)
 
 plt.tight_layout()
-plt.savefig('swift_loss_with_residuals.png', dpi=400)
+plt.savefig('swift_loss_with_experimental.png', dpi=400, bbox_inches='tight')
+plt.show()
 
-# Save fit parameters to file
-with open('reactivity_loss_fits.txt', 'w') as f:
-    f.write("Hydrogen Reactivity Loss Fit Parameters\n")
-    f.write("=" * 70 + "\n\n")
-    
-    f.write("1-RING CONFIGURATION:\n")
-    f.write("-" * 70 + "\n")
-    if use_double_1ring:
-        f.write("Best Fit: Double Exponential\n")
-        f.write("ρ(t) = ρ_∞ + (ρ₀ - ρ_∞) × [A·exp(-t/τ₁) + (1-A)·exp(-t/τ₂)]\n\n")
-        f.write(f"  ρ₀ = {popt_1ring_double[0]:.6f} ± {perr_1ring_double[0]:.6f} pcm\n")
-        f.write(f"  ρ_∞ = {popt_1ring_double[1]:.6f} ± {perr_1ring_double[1]:.6f} pcm\n")
-        f.write(f"  τ₁ (fast) = {popt_1ring_double[2]:.6f} ± {perr_1ring_double[2]:.6f} days\n")
-        f.write(f"  τ₂ (slow) = {popt_1ring_double[3]:.6f} ± {perr_1ring_double[3]:.6f} days\n")
-        f.write(f"  A = {popt_1ring_double[4]:.6f} ± {perr_1ring_double[4]:.6f}\n")
-        f.write(f"  R² = {r2_1ring_double:.6f}\n")
-        f.write(f"  Reduced χ² = {chi2_1ring_double:.6f}\n\n")
-        f.write(f"1 ring reactivity: {rho_1ring_arr}\n")
-    else:
-        f.write("Best Fit: Single Exponential\n")
-        f.write("ρ(t) = ρ_∞ + (ρ₀ - ρ_∞) × exp(-t/τ)\n\n")
-        f.write(f"  ρ₀ = {popt_1ring_single[0]:.6f} ± {perr_1ring_single[0]:.6f} pcm\n")
-        f.write(f"  ρ_∞ = {popt_1ring_single[1]:.6f} ± {perr_1ring_single[1]:.6f} pcm\n")
-        f.write(f"  τ = {popt_1ring_single[2]:.6f} ± {perr_1ring_single[2]:.6f} days\n")
-        f.write(f"  R² = {r2_1ring_single:.6f}\n")
-        f.write(f"  Reduced χ² = {chi2_1ring_single:.6f}\n\n")
-        f.write(f" 1 ring reactivity: {rho_1ring_arr}\n")
-    f.write("\n8-RING CONFIGURATION:\n")
-    f.write("-" * 70 + "\n")
-    if use_double_8ring:
-        f.write("Best Fit: Double Exponential\n")
-        f.write("ρ(t) = ρ_∞ + (ρ₀ - ρ_∞) × [A·exp(-t/τ₁) + (1-A)·exp(-t/τ₂)]\n\n")
-        f.write(f"  ρ₀ = {popt_8ring_double[0]:.6f} ± {perr_8ring_double[0]:.6f} pcm\n")
-        f.write(f"  ρ_∞ = {popt_8ring_double[1]:.6f} ± {perr_8ring_double[1]:.6f} pcm\n")
-        f.write(f"  τ₁ (fast) = {popt_8ring_double[2]:.6f} ± {perr_8ring_double[2]:.6f} days\n")
-        f.write(f"  τ₂ (slow) = {popt_8ring_double[3]:.6f} ± {perr_8ring_double[3]:.6f} days\n")
-        f.write(f"  A = {popt_8ring_double[4]:.6f} ± {perr_8ring_double[4]:.6f}\n")
-        f.write(f"  R² = {r2_8ring_double:.6f}\n")
-        f.write(f"  Reduced χ² = {chi2_8ring_double:.6f}\n\n")
-        f.write(f"8 ring reactivity: {rho_8ring_arr} \n")
-    else:
-        f.write("Best Fit: Single Exponential\n")
-        f.write("ρ(t) = ρ_∞ + (ρ₀ - ρ_∞) × exp(-t/τ)\n\n")
-        f.write(f"  ρ₀ = {popt_8ring_single[0]:.6f} ± {perr_8ring_single[0]:.6f} pcm\n")
-        f.write(f"  ρ_∞ = {popt_8ring_single[1]:.6f} ± {perr_8ring_single[1]:.6f} pcm\n")
-        f.write(f"  τ = {popt_8ring_single[2]:.6f} ± {perr_8ring_single[2]:.6f} days\n")
-        f.write(f"  R² = {r2_8ring_single:.6f}\n")
-        f.write(f"  Reduced χ² = {chi2_8ring_single:.6f}\n")
-        f.write(f"8 ring reactivity: {rho_8ring_arr}\n")
-print("\nFit parameters saved to 'reactivity_loss_fits.txt'")
-print("Plots saved to 'swift_loss_with_residuals.png'")
+print("\nPlot saved to 'swift_loss_with_experimental.png'")
