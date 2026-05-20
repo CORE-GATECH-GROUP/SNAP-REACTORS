@@ -1,5 +1,264 @@
 
-Simulation completed.
-------------------------------------------------------------
-Thu Sep 11 15:03:32 2025  (errors: 0, warnings: 0, notes: 0)
+***** Wed Apr 15 16:28:23 2026 (seed = 1776292090782, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 20046.02c has 1 decay modes
+
+
+***** Wed Apr 15 16:28:23 2026 (seed = 1776292090782, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74182.00c has 1 decay modes
+
+
+***** Wed Apr 15 16:28:23 2026 (seed = 1776292090782, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74183.00c has 1 decay modes
+
+
+***** Wed Apr 15 16:28:23 2026 (seed = 1776292090782, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74184.00c has 1 decay modes
+
+
+***** Wed Apr 15 16:28:36 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 0
+ - RNG parent seed  = 1776292090782
+ - Host name        = wr1n38
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+***** Wed Apr 15 16:28:36 2026:
+
+ - MPI task         = 17
+ - OpenMP thread    = 0
+ - RNG parent seed  = 1776292090782
+ - Host name        = wr11n37
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+***** Wed Apr 15 16:28:36 2026:
+
+ - MPI task         = 6
+ - OpenMP thread    = 0
+ - RNG parent seed  = 1776292090782
+ - Host name        = wr7n14
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+***** Wed Apr 15 16:28:36 2026:
+
+ - MPI task         = 12
+ - OpenMP thread    = 0
+ - RNG parent seed  = 1776292090782
+ - Host name        = wr8n13
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+Simulation aborted.
+------------------------------------------------- MPI task 12
+Wed Apr 15 16:28:37 2026  (errors: 1, warnings: 0, notes: 0)
+
+
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+***** Wed Apr 15 16:28:36 2026:
+
+ - MPI task         = 10
+ - OpenMP thread    = 0
+ - RNG parent seed  = 1776292090782
+ - Host name        = wr8n11
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+Simulation aborted.
+------------------------------------------------- MPI task 10
+Wed Apr 15 16:28:37 2026  (errors: 1, warnings: 0, notes: 0)
+
+3
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+***** Wed Apr 15 16:28:36 2026:
+
+ - MPI task         = 4
+ - OpenMP thread    = 0
+ - RNG parent seed  = 1776292090782
+ - Host name        = wr7n9
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+***** Wed Apr 15 16:28:36 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 0
+ - RNG parent seed  = 1776292090782
+ - Host name        = wr1n44
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+***** Wed Apr 15 16:28:36 2026:
+
+ - MPI task         = 15
+ - OpenMP thread    = 0
+ - RNG parent seed  = 1776292090782
+ - Host name        = wr10n40
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+Simulation aborted.
+------------------------------------------------- MPI task 15
+Wed Apr 15 16:28:37 2026  (errors: 1, warnings: 0, notes: 0)
+
+
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+***** Wed Apr 15 16:28:36 2026:
+
+ - MPI task         = 18
+ - OpenMP thread    = 0
+ - RNG parent seed  = 1776292090782
+ - Host name        = wr11n39
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+***** Wed Apr 15 16:28:36 2026:
+
+ - MPI task         = 19
+ - OpenMP thread    = 0
+ - RNG parent seed  = 1776292090782
+ - Host name        = wr11n40
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+***** Wed Apr 15 16:28:36 2026:
+
+ - MPI task         = 13
+ - OpenMP thread    = 0
+ - RNG parent seed  = 1776292090782
+ - Host name        = wr10n23
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+***** Wed Apr 15 16:28:36 2026:
+
+ - MPI task         = 3
+ - OpenMP thread    = 0
+ - RNG parent seed  = 1776292090782
+ - Host name        = wr7n2
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+***** Wed Apr 15 16:28:36 2026:
+
+ - MPI task         = 14
+ - OpenMP thread    = 0
+ - RNG parent seed  = 1776292090782
+ - Host name        = wr10n24
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+Simulation aborted.
+------------------------------------------------- MPI task 14
+Wed Apr 15 16:28:37 2026  (errors: 1, warnings: 0, notes: 0)
+
+0
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+***** Wed Apr 15 16:28:36 2026:
+
+ - MPI task         = 8
+ - OpenMP thread    = 0
+ - RNG parent seed  = 1776292090782
+ - Host name        = wr8n8
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+***** Wed Apr 15 16:28:36 2026:
+
+ - MPI task         = 16
+ - OpenMP thread    = 0
+ - RNG parent seed  = 1776292090782
+ - Host name        = wr10n48
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+Simulation aborted.
+------------------------------------------------- MPI task 16
+Wed Apr 15 16:28:37 2026  (errors: 1, warnings: 0, notes: 0)
+
+12
+
+Fatal error in function Mem:
+
+Memory allocation failed (realloc, size = 278217534432)
+
+
+Simulation aborted.
+------------------------------------------------- MPI task 18
+Wed Apr 15 16:28:37 2026  (errors: 1, warnings: 0, notes: 0)
 

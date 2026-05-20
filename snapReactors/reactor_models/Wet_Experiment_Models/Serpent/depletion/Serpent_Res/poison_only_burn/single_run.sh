@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -l select=10:ncpus=40:mpiprocs=1:mem=220gb
-#PBS -N Depletion_Run
+#PBS -N poison_burn
 #PBS -l walltime=15:30:00
 #PBS -k doe
 #PBS -j oe

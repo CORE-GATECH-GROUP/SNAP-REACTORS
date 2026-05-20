@@ -466,7 +466,7 @@ def plot_results(layer_averages, depletion_times, layer_boundaries, layer_names,
                   fontsize=14, fontweight='bold')
     ax1.legend()
     ax1.grid(True, alpha=0.3)
-    ax1.set_ylim([1.5, 1.9])  # Expected range for H/Zr ratio
+    ax1.set_ylim([1.1, 1.8])  # Expected range for H/Zr ratio
     
     # Add vertical lines to show layer boundaries (convert to cm)
     for bound in layer_boundaries:

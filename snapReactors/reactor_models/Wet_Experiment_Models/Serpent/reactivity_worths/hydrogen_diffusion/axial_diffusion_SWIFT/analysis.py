@@ -290,7 +290,7 @@ unc_8_ring_eol = np.sqrt(unc_list_8ring[-1]**2 + unc_list_8ring[0]**2)
 ring_1_eol = rho_list_1ring[-1] - rho_list_1ring[0]
 ring_8_eol = rho_list_8ring[-1] - rho_list_8ring[0]                        
 print(f'Total reactivity loss of 1-ring: {rho_list_1ring[-1] - rho_list_1ring[0]} +/- {np.sqrt(unc_list_1ring[-1]**2 + unc_list_1ring[0]**2)}')
-print(f'Total reactivity loss of 8-ring: {rho_list_8ring[-1] - rho_list_1ring[0]} +/- {np.sqrt(unc_list_8ring[-1]**2 + unc_list_8ring[0]**2)}')
+print(f'Total reactivity loss of 8-ring: {rho_list_8ring[-1] - rho_list_1ring[0]} +/- {np_1.sqrt(unc_list_8ring[-1]**2 + unc_list_8ring[0]**2)}')
 print(f'Discrepancy: {ring_1_eol - ring_8_eol} +/- {np.sqrt(unc_1_ring_eol**2 + unc_8_ring_eol**2)}')
 # ============================================================================
 # PLOTTING
