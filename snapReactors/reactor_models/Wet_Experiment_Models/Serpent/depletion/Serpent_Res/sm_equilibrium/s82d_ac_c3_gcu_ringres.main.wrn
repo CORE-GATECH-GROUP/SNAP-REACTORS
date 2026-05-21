@@ -1,0 +1,2031 @@
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 20046.02c has 1 decay modes
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74182.02c has 1 decay modes
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74183.02c has 1 decay modes
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74184.02c has 1 decay modes
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 34080.02c has 1 decay modes
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 52123.02c has 1 decay modes
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 52130.02c has 1 decay modes
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 54134.02c has 1 decay modes
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 54136.02c has 1 decay modes
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 58142.02c has 1 decay modes
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 63151.02c has 1 decay modes
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 30070.02c has 1 decay modes
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 64160.02c has 1 decay modes
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Mismatch in library ID
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Mismatch in library ID
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Mismatch in library ID
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Mismatch in library ID
+
+
+***** Tue Apr 14 07:57:28 2026 (seed = 1776174930601, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Mismatch in library ID
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 25
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 11021007498579385001
+ - Host name        = wr8n48
+ - RNG history idx  = 988736
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 14
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 12397219944945130153
+ - Host name        = wr8n48
+ - RNG history idx  = 992087
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 5
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 12229121350923164329
+ - Host name        = wr8n48
+ - RNG history idx  = 992085
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 35
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 1296544533723978409
+ - Host name        = wr8n48
+ - RNG history idx  = 988727
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 13
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 13345849964969433769
+ - Host name        = wr8n48
+ - RNG history idx  = 988738
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 38
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 13424517791915809449
+ - Host name        = wr8n48
+ - RNG history idx  = 988728
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 19
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 5980573799106058921
+ - Host name        = wr8n48
+ - RNG history idx  = 992090
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 37
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 8272133441306466985
+ - Host name        = wr8n48
+ - RNG history idx  = 988737
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 30
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 8185904433230092969
+ - Host name        = wr8n48
+ - RNG history idx  = 988730
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 33
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 11763316426041432745
+ - Host name        = wr8n48
+ - RNG history idx  = 992551
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 18
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 7922977948181306025
+ - Host name        = wr8n48
+ - RNG history idx  = 988714
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 22
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 5230072864881613481
+ - Host name        = wr8n48
+ - RNG history idx  = 988712
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 26
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 16290132601201072809
+ - Host name        = wr8n48
+ - RNG history idx  = 992554
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 34
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 2974628951250410153
+ - Host name        = wr8n48
+ - RNG history idx  = 992163
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 0
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 8519766363240372905
+ - Host name        = wr8n48
+ - RNG history idx  = 992153
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 8
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 13217704090033035945
+ - Host name        = wr8n48
+ - RNG history idx  = 992092
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 12
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 12527195118870567593
+ - Host name        = wr8n48
+ - RNG history idx  = 988722
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 3
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 5945152045738203817
+ - Host name        = wr8n48
+ - RNG history idx  = 992162
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 28
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 14933502771912088233
+ - Host name        = wr8n48
+ - RNG history idx  = 988726
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 10
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 17648673204175215273
+ - Host name        = wr8n48
+ - RNG history idx  = 988734
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 2
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 7015378495685499561
+ - Host name        = wr8n48
+ - RNG history idx  = 988723
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 24
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 10346536030387149481
+ - Host name        = wr8n48
+ - RNG history idx  = 992646
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 1
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 10358537776619297449
+ - Host name        = wr8n48
+ - RNG history idx  = 988733
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 7
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 6522999445564922537
+ - Host name        = wr8n48
+ - RNG history idx  = 992647
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 9
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 4121754206495546025
+ - Host name        = wr8n48
+ - RNG history idx  = 992169
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 11
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 10081164891406441129
+ - Host name        = wr8n48
+ - RNG history idx  = 992149
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 39
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 1561653863298341545
+ - Host name        = wr8n48
+ - RNG history idx  = 988729
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 27
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 5461059277764926121
+ - Host name        = wr8n48
+ - RNG history idx  = 992095
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 15
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 12496196520174000809
+ - Host name        = wr8n48
+ - RNG history idx  = 988718
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 29
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 6716679018507901609
+ - Host name        = wr8n48
+ - RNG history idx  = 988717
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 23
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 10925172981329402537
+ - Host name        = wr8n48
+ - RNG history idx  = 992164
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 31
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 15379202341415918249
+ - Host name        = wr8n48
+ - RNG history idx  = 988705
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 36
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 5096324063668574889
+ - Host name        = wr8n48
+ - RNG history idx  = 992640
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 17
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 12819996994871859881
+ - Host name        = wr8n48
+ - RNG history idx  = 988706
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 21
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 493554411803613865
+ - Host name        = wr8n48
+ - RNG history idx  = 992086
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 20
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 7529337647825394345
+ - Host name        = wr8n48
+ - RNG history idx  = 992093
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 6
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 4930639217122712233
+ - Host name        = wr8n48
+ - RNG history idx  = 988724
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 32
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 2651131741285751465
+ - Host name        = wr8n48
+ - RNG history idx  = 992618
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 16
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 15881625548738501289
+ - Host name        = wr8n48
+ - RNG history idx  = 988721
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 9
+ - OpenMP thread    = 4
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 16008008598848772777
+ - Host name        = wr8n48
+ - RNG history idx  = 988735
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 7
+ - OpenMP thread    = 9
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 1447238295551449769
+ - Host name        = wr8n33
+ - RNG history idx  = 789672
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 7
+ - OpenMP thread    = 5
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 56353985629231785
+ - Host name        = wr8n33
+ - RNG history idx  = 789482
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 7
+ - OpenMP thread    = 20
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 5389903108748974761
+ - Host name        = wr8n33
+ - RNG history idx  = 789491
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 7
+ - OpenMP thread    = 4
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 13960657426458057385
+ - Host name        = wr8n33
+ - RNG history idx  = 789486
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 7
+ - OpenMP thread    = 37
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 4913894636146760361
+ - Host name        = wr8n33
+ - RNG history idx  = 789479
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 7
+ - OpenMP thread    = 30
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 10819316253581613737
+ - Host name        = wr8n33
+ - RNG history idx  = 789476
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 7
+ - OpenMP thread    = 23
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 13766382644704680617
+ - Host name        = wr8n33
+ - RNG history idx  = 789671
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 7
+ - OpenMP thread    = 22
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 4288216935902845609
+ - Host name        = wr8n33
+ - RNG history idx  = 788325
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 7
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 9663944881822931625
+ - Host name        = wr2n44
+ - RNG history idx  = 248685
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 8
+ - OpenMP thread    = 13
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 5639995116035545769
+ - Host name        = wr8n39
+ - RNG history idx  = 893901
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 8
+ - OpenMP thread    = 27
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 15209682854723099305
+ - Host name        = wr8n39
+ - RNG history idx  = 893904
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 24
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 2330764984201026217
+ - Host name        = wr2n44
+ - RNG history idx  = 248782
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 34
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 14609566597756918441
+ - Host name        = wr2n44
+ - RNG history idx  = 248795
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 8
+ - OpenMP thread    = 9
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 16729567958457424553
+ - Host name        = wr8n39
+ - RNG history idx  = 893917
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 35
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 5086090777649781417
+ - Host name        = wr2n44
+ - RNG history idx  = 248808
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 8
+ - OpenMP thread    = 26
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 15335295961052453545
+ - Host name        = wr3n4
+ - RNG history idx  = 391840
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 3
+ - OpenMP thread    = 26
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 11431447014976756393
+ - Host name        = wr3n4
+ - RNG history idx  = 389168
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 3
+ - OpenMP thread    = 9
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 7225589447354718889
+ - Host name        = wr3n4
+ - RNG history idx  = 393008
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 3
+ - OpenMP thread    = 8
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 8041466489146415785
+ - Host name        = wr3n4
+ - RNG history idx  = 392998
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 3
+ - OpenMP thread    = 28
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 8589441419503966889
+ - Host name        = wr3n4
+ - RNG history idx  = 391826
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 3
+ - OpenMP thread    = 36
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 18169437231294945961
+ - Host name        = wr3n4
+ - RNG history idx  = 391838
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 3
+ - OpenMP thread    = 39
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 1077669079014021801
+ - Host name        = wr3n4
+ - RNG history idx  = 391839
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 3
+ - OpenMP thread    = 13
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 7415570855942789801
+ - Host name        = wr3n4
+ - RNG history idx  = 392987
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 3
+ - OpenMP thread    = 32
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 859914410352679593
+ - Host name        = wr3n4
+ - RNG history idx  = 393010
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+d
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 37
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 7774833380064139945
+ - Host name        = wr2n44
+ - RNG history idx  = 248773
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 10
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 3452571522418645673
+ - Host name        = wr2n44
+ - RNG history idx  = 248752
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 26
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 3999238624914741929
+ - Host name        = wr2n44
+ - RNG history idx  = 248786
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 3
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 16345747564154886825
+ - Host name        = wr2n44
+ - RNG history idx  = 248694
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 21
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 1594184827378375337
+ - Host name        = wr2n44
+ - RNG history idx  = 248680
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 19
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 13588588027913738921
+ - Host name        = wr2n44
+ - RNG history idx  = 248764
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 8
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 3161590248358189737
+ - Host name        = wr2n44
+ - RNG history idx  = 248769
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 17
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 1560930243771407017
+ - Host name        = wr2n44
+ - RNG history idx  = 248758
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 12
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 6848087284064885417
+ - Host name        = wr2n44
+ - RNG history idx  = 248799
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 25
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 15991118031190530729
+ - Host name        = wr2n44
+ - RNG history idx  = 248776
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 22
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 5303097436220332713
+ - Host name        = wr2n44
+ - RNG history idx  = 248757
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 9
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 9478420514778028713
+ - Host name        = wr2n44
+ - RNG history idx  = 248759
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 30
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 15219181420001794729
+ - Host name        = wr2n44
+ - RNG history idx  = 248751
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 36
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 13148065265701526185
+ - Host name        = wr2n44
+ - RNG history idx  = 248793
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 11
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 8554504232904071849
+ - Host name        = wr2n44
+ - RNG history idx  = 248741
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 28
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 13571104046030953129
+ - Host name        = wr2n44
+ - RNG history idx  = 248697
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 1
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 7933904718863833769
+ - Host name        = wr2n44
+ - RNG history idx  = 248796
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 32
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 16341881891464452777
+ - Host name        = wr2n44
+ - RNG history idx  = 248682
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 27
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 11179809960214567593
+ - Host name        = wr2n44
+ - RNG history idx  = 248763
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 20
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 11459518898248915625
+ - Host name        = wr2n44
+ - RNG history idx  = 248762
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 5
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 7338562743193606825
+ - Host name        = wr2n44
+ - RNG history idx  = 248686
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 23
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 10046605782056606377
+ - Host name        = wr2n44
+ - RNG history idx  = 248791
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 2
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 3048232157859584681
+ - Host name        = wr2n44
+ - RNG history idx  = 248784
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+  
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 14
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 4828282567002331817
+ - Host name        = wr2n44
+ - RNG history idx  = 248701
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+ 
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 6
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 11297821441250073257
+ - Host name        = wr2n44
+ - RNG history idx  = 248698
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 15
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 12966004541462715049
+ - Host name        = wr2n44
+ - RNG history idx  = 248788
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling fail
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 4
+ - OpenMP thread    = 39
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 13185926973453408937
+ - Host name        = wr3n10
+ - RNG history idx  = 487970
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+d
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 5
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 11060842762919058089
+ - Host name        = wr2n38
+ - RNG history idx  = 167988
+
+Fatal error in function CheckReaListSum:
+
+Error in total o
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 4
+ - OpenMP thread    = 13
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 11776724399935625897
+ - Host name        = wr3n10
+ - RNG history idx  = 488254
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 4
+ - OpenMP thread    = 33
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 9126359508926503593
+ - Host name        = wr3n10
+ - RNG history idx  = 487992
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 4
+ - OpenMP thread    = 5
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 15259280488138971817
+ - Host name        = wr3n10
+ - RNG history idx  = 487544
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 4
+ - OpenMP thread    = 26
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 1295303299501955753
+ - Host name        = wr3n10
+ - RNG history idx  = 487963
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+                                                                                                                                                                                                                                                                                                                                
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 31
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 17598730916738669225
+ - Host name        = wr2n44
+ - RNG history idx  = 248688
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 2
+ - OpenMP thread    = 4
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 5895792499930733225
+ - Host name        = wr2n44
+ - RNG history idx  = 248742
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 17
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 14761244209155250857
+ - Host name        = wr2n38
+ - RNG history idx  = 167956
+
+Fatalrror in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 36
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 9883952842338114217
+ - Host name        = wr2n19
+ - RNG history idx  = 48640
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 26
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 6988405860082424489
+ - Host name        = wr2n19
+ - RNG history idx  = 48635
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 2
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 10569886844269796009
+ - Host name        = wr2n19
+ - RNG history idx  = 60608
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 14
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 9621505913954146985
+ - Host name        = wr2n19
+ - RNG history idx  = 60588
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 23
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 3819905093822093993
+ - Host name        = wr2n19
+ - RNG history idx  = 60603
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 25
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 3957139594243644073
+ - Host name        = wr2n19
+ - RNG history idx  = 60896
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 15
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 11806268205083499177
+ - Host name        = wr2n38
+ - RNG history idx  = 168020
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+*** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 5
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 4448453495740996265
+ - Host name        = wr2n19
+ - RNG history idx  = 60897
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 8
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 13882132927808117417
+ - Host name        = wr2n38
+ - RNG history idx  = 168026
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 37
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 14501090309293906601
+ - Host name        = wr2n19
+ - RNG history idx  = 60594
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 1
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 15374884386802539177
+ - Host name        = wr2n19
+ - RNG history idx  = 60575
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 1
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 9824261513826376361
+ - Host name        = wr2n38
+ - RNG history idx  = 167990
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 4
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 16721676703671491241
+ - Host name        = wr2n38
+ - RNG history idx  = 168013
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 33
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 72884902780705449
+ - Host name        = wr2n38
+ - RNG history idx  = 168001
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 13
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 1302780602418436777
+ - Host name        = wr2n38
+ - RNG history idx  = 168009
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 19
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 2870608760639298217
+ - Host name        = wr2n38
+ - RNG history idx  = 168019
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 32
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 2691417748906023593
+ - Host name        = wr2n38
+ - RNG history idx  = 167950
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 3
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 426827249113864873
+ - Host name        = wr2n38
+ - RNG history idx  = 167997
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 29
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 13153394145729551017
+ - Host name        = wr2n38
+ - RNG history idx  = 168022
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 2
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 1074546104994077353
+ - Host name        = wr2n38
+ - RNG history idx  = 168021
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 37
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 2680942680111422121
+ - Host name        = wr2n38
+ - RNG history idx  = 168014
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 22
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 5576592381141162665
+ - Host name        = wr2n38
+ - RNG history idx  = 168018
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 14
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 14127951470002412201
+ - Host name        = wr2n38
+ - RNG history idx  = 167957
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 23
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 18191021885649558185
+ - Host name        = wr2n38
+ - RNG history idx  = 168007
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 16
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 10650068429736483497
+ - Host name        = wr2n38
+ - RNG history idx  = 167993
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+                                                                                                                                         689791875661994665
+ - Host name        = wr2n19
+ - RNG history idx  = 60905
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 38
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 303592262201154217
+ - Host name        = wr2n19
+ - RNG history idx  = 60908
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 27
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 16058980878140480169
+ - Host name        = wr2n19
+ - RNG history idx  = 48638
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 17
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 16779709152569629353
+ - Host name        = wr2n19
+ - RNG history idx  = 60595
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 21
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 16151724511488023209
+ - Host name        = wr2n19
+ - RNG history idx  = 60904
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 32
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 6444443735905442473
+ - Host name        = wr2n19
+ - RNG history idx  = 60586
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 1
+ - OpenMP thread    = 26
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 10381442007723514537
+ - Host name        = wr2n38
+ - RNG history idx  = 168028
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+**** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 18
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 1452032688778418857
+ - Host name        = wr2n19
+ - RNG history idx  = 60605
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 35
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 5153580445950843561
+ - Host name        = wr2n19
+ - RNG history idx  = 60569
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 15
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 8442215946402437801
+ - Host name        = wr2n19
+ - RNG history idx  = 60565
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 7
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 2012231782651435689
+ - Host name        = wr2n19
+ - RNG history idx  = 60559
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 3
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 6790563620916861609
+ - Host name        = wr2n19
+ - RNG history idx  = 60591
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 29
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 3624330101039995561
+ - Host name        = wr2n19
+ - RNG history idx  = 60596
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+
+
+***** Tue Apr 14 08:01:26 2026:
+
+ - MPI task         = 0
+ - OpenMP thread    = 28
+ - RNG parent seed  = 1776174930601
+ - RNG history seed = 18354458783622666921
+ - Host name        = wr2n19
+ - RNG history idx  = 60567
+
+Fatal error in function CheckReaListSum:
+
+Error in total or majorant, or reaction sampling failed
+

@@ -139,7 +139,7 @@ mat control_drum -1.8099927236660696 moder Bem 4009  tmp 866 rgb 247 215 183
 4009.01c	-1.0
 
 therm HZr h-zrh.46t therm ZrH zr-zrh.46t
-mat fuel -5.994462909343859 moder HZr 1001  moder ZrH 40090 burn 1 tmp 934.065 rgb 219 89 89
+mat fuel -5.994462909343859 moder HZr 1001  moder ZrH 40090 burn 1 tmp 934.065 
 1001.02c	0.06
 1002.02c	8.7e-06
 92235.02c	0.001455002
