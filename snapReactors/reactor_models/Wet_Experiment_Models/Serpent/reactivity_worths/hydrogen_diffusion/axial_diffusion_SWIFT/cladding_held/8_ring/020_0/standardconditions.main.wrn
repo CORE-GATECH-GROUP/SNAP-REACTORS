@@ -1,0 +1,29 @@
+
+***** Mon Jan 26 16:38:08 2026 (seed = 1769470674635, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 20046.02c has 1 decay modes
+
+
+***** Mon Jan 26 16:38:08 2026 (seed = 1769470674635, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74182.02c has 1 decay modes
+
+
+***** Mon Jan 26 16:38:08 2026 (seed = 1769470674635, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74183.02c has 1 decay modes
+
+
+***** Mon Jan 26 16:38:08 2026 (seed = 1769470674635, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 74184.02c has 1 decay modes
+
+
+Simulation completed.
+------------------------------------------------- MPI task 2
+Mon Jan 26 16:59:24 2026  (errors: 0, warnings: 0, notes: 0)
+

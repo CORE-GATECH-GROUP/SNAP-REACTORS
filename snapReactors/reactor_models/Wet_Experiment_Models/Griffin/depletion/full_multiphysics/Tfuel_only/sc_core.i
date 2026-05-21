@@ -139,7 +139,7 @@ exit_length = '${fparse exit1 + exit2 + exit3}'#'${fparse exit2 + exit3}'#
   [mu]
     block = subchannel
   []
-  [duct_heat_flux]
+  [q_prime_duct]
     block = duct
     initial_condition = 0
   []

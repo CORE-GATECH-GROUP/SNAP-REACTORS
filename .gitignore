@@ -137,3 +137,21 @@ snapReactors/.vscode/settings.json
 
 *.e
 *_XS.xml
+*.out
+*.sh.e*
+*.sh.o*
+*.cub5
+*.csv
+*_res.m
+*_dep.m
+*out_cp/
+*_nemesis.e.*
+burned_mat
+results.zip
+snapReactors/reactor_models/Wet_Experiment_Models/Serpent/depletion/OpenMC_Res/depletion_results.h5
+snapReactors/reactor_models/Wet_Experiment_Models/Griffin/depletion/XS_Generation/standardconditions_files_20250813_093759.zip
+snapReactors/reactor_models/Wet_Experiment_Models/Griffin/depletion/XS_Generation/standardconditions_files_20250715_124852.zip
+snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/depletion/ref_casl_fast_results.h5
+snapReactors/reactor_models/Wet_Experiment_Models/OpenMC_Cardinal/depletion/dep_4_casl_fast_results.h5
+*.h5
+snapReactors/reactor_models/Wet_Experiment_Models/Serpent/depletion/Serpent_Res/no_sm/no_sm_burned_mat

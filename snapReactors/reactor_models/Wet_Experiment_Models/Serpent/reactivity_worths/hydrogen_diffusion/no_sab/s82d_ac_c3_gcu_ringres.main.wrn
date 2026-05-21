@@ -1,29 +1,41 @@
 
-***** Thu Jul 31 14:24:56 2025 (seed = 1753993412517, MPI task = 0)
+***** Tue Apr 14 14:44:02 2026 (seed = 1776199353882, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 20046.02c has 1 decay modes
 
 
-***** Thu Jul 31 14:24:56 2025 (seed = 1753993412517, MPI task = 0)
+***** Tue Apr 14 14:44:02 2026 (seed = 1776199353882, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 74182.00c has 1 decay modes
 
 
-***** Thu Jul 31 14:24:56 2025 (seed = 1753993412517, MPI task = 0)
+***** Tue Apr 14 14:44:02 2026 (seed = 1776199353882, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 74183.00c has 1 decay modes
 
 
-***** Thu Jul 31 14:24:56 2025 (seed = 1753993412517, MPI task = 0)
+***** Tue Apr 14 14:44:02 2026 (seed = 1776199353882, MPI task = 0)
 Warning message from function CheckNuclideData:
 
 Stable nuclide 74184.00c has 1 decay modes
 
 
+***** Tue Apr 14 14:55:11 2026 (seed = 1776199353882, MPI task = 8)
+Warning message from function SamplePrecursorGroup:
+
+Precursor group sampling failed (92235.02c, mt 18, E = 2.359761E-05)
+
+
+***** Tue Apr 14 15:01:40 2026 (seed = 1776199353882, MPI task = 8)
+Warning message from function SamplePrecursorGroup:
+
+Precursor group sampling failed (92235.02c, mt 18, E = 1.929260E-05)
+
+
 Simulation completed.
-------------------------------------------------- MPI task 1
-Thu Jul 31 14:31:14 2025  (errors: 0, warnings: 0, notes: 0)
+------------------------------------------------- MPI task 6
+Tue Apr 14 15:05:04 2026  (errors: 0, warnings: 0, notes: 0)
 
