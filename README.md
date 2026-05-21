@@ -56,13 +56,6 @@ Follow the next execution line:
 python setup.py install --user
 
 
-Execution
----------
-The `snapReactors` package can now be imported as as standard PyPI using:
-
-import ``import snapReactors``
-
-
 
 References
 ----------
@@ -71,14 +64,3 @@ References
 [2] NAA-SR-MEMO-12099 
 
 [3] NAA-SR-9618
-
-
-
-Database
---------  
-Most Recent Version: v2_test   
-
-|Date|Version|Modifications|
-| :---: | :---: | :---: |
-|2022-01-25 15:19:53|v1_test |The [<snapReactors.containers.component.Component object at 0x000001A19E6D79A0>] component is added.|
-|2022-01-25 15:19:53|v2_test |The [<snapReactors.containers.component.Component object at 0x000001B91D9C5B80>] component is added.|
